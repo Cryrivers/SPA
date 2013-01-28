@@ -4,6 +4,9 @@
 .tags
 .tags_sorted_by_file
 
+#Autotester Binary
+[Aa]utotesting/
+
 #Visual Studio files
 *.[Oo]bj
 *.user
