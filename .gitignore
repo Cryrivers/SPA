@@ -5,7 +5,7 @@
 .tags_sorted_by_file
 
 #Autotester Binary
-[Aa]utotesting/
+[Aa]utotesting/*.exe
 
 #Visual Studio files
 *.[Oo]bj
