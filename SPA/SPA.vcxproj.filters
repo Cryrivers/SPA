@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Query Processor">
       <UniqueIdentifier>{95be50e6-2da8-4053-b99d-e7e14bb464a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UnitTest">
+      <UniqueIdentifier>{0e9d7724-f8ae-4b67-b70b-869ffe59e67c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UnitTest">
+      <UniqueIdentifier>{69ec1d14-b798-445d-97dc-276478c6f586}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -108,12 +114,30 @@
     <ClInclude Include="UsesP.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
+    <ClInclude Include="TestFollows.h">
+      <Filter>Header Files\UnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TestUses.h">
+      <Filter>Header Files\UnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TestModifies.h">
+      <Filter>Header Files\UnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TestParent.h">
+      <Filter>Header Files\UnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TestParserPKB.h">
+      <Filter>Header Files\UnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TestQueryEvaluator.h">
+      <Filter>Header Files\UnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="TestQueryPreprocessor.h">
+      <Filter>Header Files\UnitTest</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SPA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ASTNode.cpp">
@@ -170,5 +194,32 @@
     <ClCompile Include="CallTable.cpp">
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
+    <ClCompile Include="UnitTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestFollows.cpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TestUses.cpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TestModifies.cpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TestParent.cpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TestParserPKB.cpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TestQueryEvaluator.cpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClCompile>
+    <ClCompile Include="TestQueryPreprocessor.cpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\cppunit_debug.lib" />
   </ItemGroup>
 </Project>
