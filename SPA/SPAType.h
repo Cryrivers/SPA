@@ -44,6 +44,13 @@ enum StmtType {
 	STMT_NONE
 };
 
+enum WithType{
+	WITH_VARNAME,
+	WITH_PROCNAME,
+	WITH_CALLPROCNAME,
+	WITH_STMTNUMBER
+};
+
 struct stmtDetail {
 	int stmtNumber;
 	string stmtLine;
