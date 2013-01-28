@@ -7,7 +7,9 @@ typedef int STMT;
 typedef vector<int> STMT_LIST;
 typedef bool BOOLEAN;
 typedef int VAR_INDEX;
+typedef int PROC_INDEX;
 typedef vector<int> VAR_INDEX_LIST;
+typedef vector<int> PROC_INDEX_LIST;
 typedef string STRING;
 typedef vector<string> STRING_LIST;
 
@@ -30,6 +32,8 @@ enum ASTNodeType {
 enum StmtType {
 	STMT_ASSIGNMENT,
 	STMT_WHILE,
+	STMT_IF,
+	STMT_CALL,
 	STMT_OPEN_BRACKET,
 	STMT_CLOSE_BRACKET,
 	STMT_ELSE,
