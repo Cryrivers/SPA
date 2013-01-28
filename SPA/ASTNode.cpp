@@ -30,6 +30,14 @@ ASTNode *ASTNode::createNode(ASTNodeType t, int value)
 		node->_hashcode = "uk";
 		break;
 
+	case AST_CALL:
+		node->_hashcode = "ca";
+		break;
+
+	case AST_ELSE_BRANCH:
+		node->_hashcode = "el";
+		break;
+
 	case AST_PROGRAM:
 		node->_hashcode = "pg";
 		break;

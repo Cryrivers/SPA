@@ -3,11 +3,12 @@
 #include <string>
 #include <regex>
 #include "Parser.h"
+#include <assert.h>
 
 #define LEFT_BRACKET     0
 #define RIGHT_BRACKET    1
 #define SEMICOLON        2
-
+#define NO_STATEMENT_NUMBER -1
 using namespace std;
         
 Parser::Parser(AST *ast)
@@ -65,6 +66,7 @@ void Parser::parseLine()
 			}
 			previousNode = currentNode;
 			break; 
+
 		case STMT_OPEN_BRACKET:
 			_parentStack.push(_newParent);
 			_parentStackNoStmtLst.push(_newParentNoStmtLst);
@@ -122,23 +124,39 @@ void Parser::preprocessProgram(string program)
 			regex whileRegex("\\s*while\\s*([a-zA-Z0-9]*)\\s*");
 			regex ifRegex("\\s*if\\s*([a-zA-Z0-9]*)\\s*");
 			regex elseRegex("\\s*else\\s*");
+			regex callRegex("\\s*call\\s*([a-zA-Z0-9]*)\\s*");
 			regex assignRegex("\\s*([a-zA-Z0-9]+)\\s*=\\s*((\\(|[a-zA-Z0-9]+)+(\\s*[\\+|\\-|\\*|\\(]\\s*\\(*\\s*[a-zA-Z0-9]+\\s*[\\)|\\s]*)*)");
 			smatch sm;
 
 			statement s;
-
+			int _currentProcIndex = -1;
 			if (regex_match(thisStmt, sm, procRegex)) {
 				//TODO: Add Procedure to ProcTable
 				s.stmtLine = thisStmt;
 				s.stmtNumber = currentStmtNumber;
 				s.type = STMT_PROCEDURE;
 				s.extraName = sm[1];
+				_currentProcIndex = _pkb->addProc(sm[1]);
+				s.procIndex = _currentProcIndex;
+
 			}else if (regex_match(thisStmt, sm, whileRegex)) {
 				currentStmtNumber++;
 				s.stmtLine = thisStmt;
 				s.stmtNumber = currentStmtNumber;
 				s.type = STMT_WHILE;
 				s.extraCond = sm[1];
+				assert(_currentProcIndex>-1);
+				s.procIndex = _currentProcIndex;
+
+			}else if (regex_match(thisStmt, sm, callRegex)) {
+				currentStmtNumber++;
+				s.stmtLine = thisStmt;
+				s.stmtNumber = currentStmtNumber;
+				s.type = STMT_CALL;
+				s.extraName = sm[1];
+				assert(_currentProcIndex>-1);
+				s.procIndex = _currentProcIndex;
+
 			}else if (regex_match(thisStmt, sm, assignRegex)) {
 				currentStmtNumber++;
 				s.stmtLine = thisStmt;
@@ -146,22 +164,36 @@ void Parser::preprocessProgram(string program)
 				s.type = STMT_ASSIGNMENT;
 				s.extraExpr = sm[2];
 				s.extraVar = sm[1];
+				assert(_currentProcIndex>-1);
+				s.procIndex = _currentProcIndex;
+
 			}else if (regex_match(thisStmt,sm,ifRegex)) {
 				currentStmtNumber++;
 				s.stmtLine = thisStmt;
 				s.stmtNumber = currentStmtNumber;
-				//TODO: Finish it
+				s.type = STMT_IF;
+				s.extraCond = sm[1];
+				assert(_currentProcIndex>-1);
+				s.procIndex = _currentProcIndex;
+
+			}else if (regex_match(thisStmt,sm,elseRegex)) {
+				s.stmtLine = thisStmt;
+				s.stmtNumber = NO_STATEMENT_NUMBER;
+				s.type = STMT_ELSE;
+				assert(_currentProcIndex>-1);
+				s.procIndex = _currentProcIndex;
 
 			}else {
 				cout << "Parser cannot parse: " << thisStmt << endl;
 			}
 			preprocProgram->push_back(s);
 		}
+
 		if (nearestSeparator == LEFT_BRACKET) {
 			statement lb;
 			lb.type = STMT_OPEN_BRACKET;
 			lb.stmtLine = "{";
-			lb.stmtNumber = 0;
+			lb.stmtNumber = NO_STATEMENT_NUMBER;
 
 			preprocProgram->push_back(lb);
 		}else if (nearestSeparator == RIGHT_BRACKET) {
@@ -169,7 +201,7 @@ void Parser::preprocessProgram(string program)
 
 			rb.type = STMT_CLOSE_BRACKET;
 			rb.stmtLine = "}";
-			rb.stmtNumber = 0;
+			rb.stmtNumber = NO_STATEMENT_NUMBER;
 
 			preprocProgram->push_back(rb);
 		}
@@ -345,7 +377,6 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 			postfixValue.append(string(1, c));
 		}
 	}
-	//***************
 	//Update ParentTable
 	if(_parentStackNoStmtLst.top()->getStmtNumber()>0) _pkb->addParent(_parentStackNoStmtLst.top()->getStmtNumber(), s->stmtNumber);
 	node->addChild(variableStack.top());
@@ -356,19 +387,42 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 
 ASTNode* Parser::_buildIfAST(statement* s)
 {
-	//TODO: Finish IF AST
 	ASTNode *node = ASTNode::createNode(AST_IF_BRANCH, _pkb->addVar(s->extraCond));
+
 	node->setStmtNumber(s->stmtNumber);
+	_parentStack.top()->addChild(node);
+
+	node->createChild(AST_VARIABLE, _pkb->addVar(s->extraCond));
+	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST, NULL);
+	_newParent = stmtLstNode;
+	_newParentNoStmtLst = node;
+	if(_parentStackNoStmtLst.top()->getStmtNumber()>0) _pkb->addParent(_parentStackNoStmtLst.top()->getStmtNumber(), s->stmtNumber);
+	_pkb->addUses(s->stmtNumber,_pkb->addVar(s->extraCond));
+	return(node);
 }
 
 ASTNode* Parser::_buildElseAST(statement* s)
 {
-	//TODO: Finish ELSE AST
+	//Warning: It skips ELSE keyword and directly add a new statment list to IF branch. Should work.
+	ASTNode *stmtLstNode = previousNode->createChild(AST_STATEMENT_LIST, NULL);
+	_newParent = stmtLstNode;
+	_newParentNoStmtLst = previousNode;
+	return(previousNode);
+}
+
+ASTNode* Parser::_buildCallAST( statement* s )
+{
+	ASTNode *node = ASTNode::createNode(AST_CALL,NULL);
+	node->setStmtNumber(s->stmtNumber);
+	_parentStack.top()->addChild(node);
+
+	node->createChild(AST_PROCEDURE, _pkb->getProcIndex(s->extraName));
+	// _pkb->addCall
+	return(node);
 }
 
 ASTNode *Parser::_buildWhileLoopAST(statement *s)
 {
-	//0 is the condition value. (in varTable)
 	ASTNode *node = ASTNode::createNode(AST_WHILE_LOOP, _pkb->addVar(s->extraCond));
 
 	node->setStmtNumber(s->stmtNumber);
@@ -387,7 +441,7 @@ ASTNode *Parser::_buildWhileLoopAST(statement *s)
 ASTNode *Parser::_buildProcedureAST(statement *s)
 {
 	//0 is the index in procTable
-	ASTNode *node = ASTNode::createNode(AST_PROCEDURE, 0);
+	ASTNode *node = ASTNode::createNode(AST_PROCEDURE, s->procIndex);
 
 	_parentStack.top()->addChild(node);
 	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST, NULL);
