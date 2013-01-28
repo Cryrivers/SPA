@@ -120,12 +120,15 @@ void Parser::preprocessProgram(string program)
 		if (thisStmt.size() > 0) {
 			regex procRegex("\\s*procedure\\s*([a-zA-Z0-9]*)\\s*");
 			regex whileRegex("\\s*while\\s*([a-zA-Z0-9]*)\\s*");
+			regex ifRegex("\\s*if\\s*([a-zA-Z0-9]*)\\s*");
+			regex elseRegex("\\s*else\\s*");
 			regex assignRegex("\\s*([a-zA-Z0-9]+)\\s*=\\s*((\\(|[a-zA-Z0-9]+)+(\\s*[\\+|\\-|\\*|\\(]\\s*\\(*\\s*[a-zA-Z0-9]+\\s*[\\)|\\s]*)*)");
 			smatch sm;
 
 			statement s;
 
 			if (regex_match(thisStmt, sm, procRegex)) {
+				//TODO: Add Procedure to ProcTable
 				s.stmtLine = thisStmt;
 				s.stmtNumber = currentStmtNumber;
 				s.type = STMT_PROCEDURE;
@@ -143,6 +146,12 @@ void Parser::preprocessProgram(string program)
 				s.type = STMT_ASSIGNMENT;
 				s.extraExpr = sm[2];
 				s.extraVar = sm[1];
+			}else if (regex_match(thisStmt,sm,ifRegex)) {
+				currentStmtNumber++;
+				s.stmtLine = thisStmt;
+				s.stmtNumber = currentStmtNumber;
+				//TODO: Finish it
+
 			}else {
 				cout << "Parser cannot parse: " << thisStmt << endl;
 			}
@@ -345,6 +354,17 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 	return(node);
 }
 
+ASTNode* Parser::_buildIfAST(statement* s)
+{
+	//TODO: Finish IF AST
+	ASTNode *node = ASTNode::createNode(AST_IF_BRANCH, _pkb->addVar(s->extraCond));
+	node->setStmtNumber(s->stmtNumber);
+}
+
+ASTNode* Parser::_buildElseAST(statement* s)
+{
+	//TODO: Finish ELSE AST
+}
 
 ASTNode *Parser::_buildWhileLoopAST(statement *s)
 {

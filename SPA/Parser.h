@@ -30,6 +30,8 @@ private:
 	ASTNode* _buildAssignmentAST(statement* s);
 	ASTNode* _buildWhileLoopAST(statement* s);
 	ASTNode* _buildProcedureAST(statement* s);
+	ASTNode* _buildIfAST(statement* s);
+	ASTNode* _buildElseAST(statement* s);
 	inline int _findValidMinimumOfThree(size_t lb, size_t rb, size_t sc);
 	inline int _operatorPrecedence(char op);
 

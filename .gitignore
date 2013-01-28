@@ -1,6 +1,8 @@
 #OS junk files
 [Tt]humbs.db
 *.DS_Store
+.tags
+.tags_sorted_by_file
 
 #Visual Studio files
 *.[Oo]bj
