@@ -9,6 +9,8 @@
 #define RIGHT_BRACKET    1
 #define SEMICOLON        2
 #define NO_STATEMENT_NUMBER -1
+#define NO_SPECIFIC_PROC_INDEX -1
+
 using namespace std;
         
 Parser::Parser(AST *ast)
@@ -35,6 +37,19 @@ void Parser::parseLine()
 	for (vector<statement>::iterator it = preprocProgram->begin(); it != preprocProgram->end(); ++it) {
 		ASTNode* currentNode;
 		switch (it->type) {
+
+		case STMT_CALL:
+			_buildCallAST(&*it);
+			break;
+
+		case STMT_IF:
+			_buildIfAST(&*it);
+			break;
+
+		case STMT_ELSE:
+			_buildElseAST(&*it);
+			break;
+
 		case STMT_PROCEDURE:
 			_buildProcedureAST(&*it);
 			break;
@@ -91,6 +106,7 @@ void Parser::preprocessProgram(string program)
 {
 	string prog = program;
 
+	int currentProcIndex = NO_SPECIFIC_PROC_INDEX;
 	int currentStmtNumber = 0;
 	StmtType currentLineSeparatorType;
 	currentLineSeparatorType = STMT_NONE;
@@ -129,15 +145,15 @@ void Parser::preprocessProgram(string program)
 			smatch sm;
 
 			statement s;
-			int _currentProcIndex = -1;
+			
 			if (regex_match(thisStmt, sm, procRegex)) {
 				//TODO: Add Procedure to ProcTable
 				s.stmtLine = thisStmt;
 				s.stmtNumber = currentStmtNumber;
 				s.type = STMT_PROCEDURE;
 				s.extraName = sm[1];
-				_currentProcIndex = _pkb->addProc(sm[1]);
-				s.procIndex = _currentProcIndex;
+				currentProcIndex = _pkb->addProc(sm[1]);
+				s.procIndex = currentProcIndex;
 
 			}else if (regex_match(thisStmt, sm, whileRegex)) {
 				currentStmtNumber++;
@@ -145,8 +161,8 @@ void Parser::preprocessProgram(string program)
 				s.stmtNumber = currentStmtNumber;
 				s.type = STMT_WHILE;
 				s.extraCond = sm[1];
-				assert(_currentProcIndex>-1);
-				s.procIndex = _currentProcIndex;
+				assert(currentProcIndex>-1);
+				s.procIndex = currentProcIndex;
 
 			}else if (regex_match(thisStmt, sm, callRegex)) {
 				currentStmtNumber++;
@@ -154,8 +170,8 @@ void Parser::preprocessProgram(string program)
 				s.stmtNumber = currentStmtNumber;
 				s.type = STMT_CALL;
 				s.extraName = sm[1];
-				assert(_currentProcIndex>-1);
-				s.procIndex = _currentProcIndex;
+				assert(currentProcIndex>-1);
+				s.procIndex = currentProcIndex;
 
 			}else if (regex_match(thisStmt, sm, assignRegex)) {
 				currentStmtNumber++;
@@ -164,8 +180,8 @@ void Parser::preprocessProgram(string program)
 				s.type = STMT_ASSIGNMENT;
 				s.extraExpr = sm[2];
 				s.extraVar = sm[1];
-				assert(_currentProcIndex>-1);
-				s.procIndex = _currentProcIndex;
+				assert(currentProcIndex>-1);
+				s.procIndex = currentProcIndex;
 
 			}else if (regex_match(thisStmt,sm,ifRegex)) {
 				currentStmtNumber++;
@@ -173,15 +189,15 @@ void Parser::preprocessProgram(string program)
 				s.stmtNumber = currentStmtNumber;
 				s.type = STMT_IF;
 				s.extraCond = sm[1];
-				assert(_currentProcIndex>-1);
-				s.procIndex = _currentProcIndex;
+				assert(currentProcIndex>-1);
+				s.procIndex = currentProcIndex;
 
 			}else if (regex_match(thisStmt,sm,elseRegex)) {
 				s.stmtLine = thisStmt;
 				s.stmtNumber = NO_STATEMENT_NUMBER;
 				s.type = STMT_ELSE;
-				assert(_currentProcIndex>-1);
-				s.procIndex = _currentProcIndex;
+				assert(currentProcIndex>-1);
+				s.procIndex = currentProcIndex;
 
 			}else {
 				cout << "Parser cannot parse: " << thisStmt << endl;
@@ -194,7 +210,7 @@ void Parser::preprocessProgram(string program)
 			lb.type = STMT_OPEN_BRACKET;
 			lb.stmtLine = "{";
 			lb.stmtNumber = NO_STATEMENT_NUMBER;
-
+			lb.procIndex = NO_SPECIFIC_PROC_INDEX;
 			preprocProgram->push_back(lb);
 		}else if (nearestSeparator == RIGHT_BRACKET) {
 			statement rb;
@@ -202,7 +218,7 @@ void Parser::preprocessProgram(string program)
 			rb.type = STMT_CLOSE_BRACKET;
 			rb.stmtLine = "}";
 			rb.stmtNumber = NO_STATEMENT_NUMBER;
-
+			rb.procIndex = NO_SPECIFIC_PROC_INDEX;
 			preprocProgram->push_back(rb);
 		}
 	} while (nearestSeparator != -1);
