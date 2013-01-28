@@ -34,7 +34,6 @@ enum ASTNodeType {
 enum StmtType {
 	STMT_ASSIGNMENT,
 	STMT_WHILE,
-	STMT_IF,
 	STMT_CALL,
 	STMT_OPEN_BRACKET,
 	STMT_CLOSE_BRACKET,
@@ -53,6 +52,7 @@ enum WithType{
 
 struct stmtDetail {
 	int stmtNumber;
+	int procIndex;
 	string stmtLine;
 	StmtType type;
 	//Extra fields for PROCEDURE
