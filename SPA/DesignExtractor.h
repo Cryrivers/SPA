@@ -24,6 +24,8 @@ void addUses();
 BOOLEAN getAllStmt(STMT_LIST*);
 BOOLEAN getAllAssignment(STMT_LIST*);
 BOOLEAN getAllWhile(STMT_LIST*);
+BOOLEAN getAllIf(STMT_LIST*);
+BOOLEAN getAllCall(STMT_LIST*);
 BOOLEAN getAllConstant(vector<int> *);
 BOOLEAN pattern(vector<int>*, vector<int>*, string, int);
 

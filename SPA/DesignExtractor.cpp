@@ -98,6 +98,31 @@ BOOLEAN DesignExtractor::getAllWhile(STMT_LIST *result)
 	return(true);
 }
 
+BOOLEAN DesignExtractor::getAllIf(STMT_LIST *result)
+{
+	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
+		if (_pkb->getPreprocessedProgram()->at(i).type == STMT_IF) {
+			result->push_back(_pkb->getPreprocessedProgram()->at(i).stmtNumber);
+		}
+	}
+	if (result->size() == 0) {
+		return(false);
+	}
+	return(true);
+}
+
+BOOLEAN DesignExtractor::getAllCall(STMT_LIST *result)
+{
+	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
+		if (_pkb->getPreprocessedProgram()->at(i).type == STMT_CALL) {
+			result->push_back(_pkb->getPreprocessedProgram()->at(i).stmtNumber);
+		}
+	}
+	if (result->size() == 0) {
+		return(false);
+	}
+	return(true);
+}
 
 //not complete
 BOOLEAN DesignExtractor::getAllConstant(vector<int> *result)

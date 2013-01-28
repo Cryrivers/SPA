@@ -158,6 +158,36 @@ STRING_LIST PKBController::getAllVarName()
 	return (_varTable->getAllVarName());
 }
 
+//proctable
+VAR_INDEX PKBController::addProc(STRING procName)
+{
+	return(_procTable->addProc(procName));
+}
+
+
+STRING PKBController::getProcName(VAR_INDEX ind)
+{
+	return(_procTable->getProcName(ind));
+}
+
+
+VAR_INDEX PKBController::getProcIndex(STRING procName)
+{
+	return(_procTable->getProcIndex(procName));
+}
+
+
+STRING_LIST PKBController::getAllProcName(VAR_INDEX_LIST inds)
+{
+	return(_procTable->getAllProcName(inds));
+}
+
+STRING_LIST PKBController::getAllProcName()
+{
+	return (_procTable->getAllProcName());
+}
+
+//other
 vector<statement> *PKBController::getPreprocessedProgram()
 {
 	return(_preprocessedProgram);
@@ -179,6 +209,18 @@ BOOLEAN PKBController::getAllAssignment(STMT_LIST *result)
 BOOLEAN PKBController::getAllWhile(STMT_LIST *result)
 {
 	return(_designExtractor->getAllWhile(result));
+}
+
+
+BOOLEAN PKBController::getAllIf(STMT_LIST *result)
+{
+	return(_designExtractor->getAllIf(result));
+}
+
+
+BOOLEAN PKBController::getAllCall(STMT_LIST *result)
+{
+	return(_designExtractor->getAllCall(result));
 }
 
 
@@ -210,6 +252,7 @@ PKBController::~PKBController()
 	delete(_modifies);
 	delete(_uses);
 	delete(_varTable);
+	delete(_procTable);
 	delete(_ast);
 	delete(_preprocessedProgram);
 	delete(_designExtractor);
@@ -254,6 +297,7 @@ void PKBController::init()
 	_modifies = new Modifies();
 	_uses = new Uses();
 	_varTable = new VarTable();
+	_procTable = new ProcTable();
 	_constTable = new vector<int>();
 	_assignmentTable = new vector<ASTNode *>();
 	_ast = new AST();

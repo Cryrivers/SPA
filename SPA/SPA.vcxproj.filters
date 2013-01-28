@@ -96,6 +96,9 @@
     <ClInclude Include="QueryEvaluator.h">
       <Filter>Header Files\Query Processor</Filter>
     </ClInclude>
+    <ClInclude Include="ProcTable.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -145,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="QueryEvaluator.cpp">
       <Filter>Source Files\Query Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcTable.cpp">
+      <Filter>Source Files\PKB</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

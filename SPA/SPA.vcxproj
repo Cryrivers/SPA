@@ -80,6 +80,7 @@
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PKBController.h" />
+    <ClInclude Include="ProcTable.h" />
     <ClInclude Include="QueryEvaluator.h" />
     <ClInclude Include="QueryPreProcessor.h" />
     <ClInclude Include="QueryProcessor.h" />
@@ -99,6 +100,7 @@
     <ClCompile Include="Parent.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PKBController.cpp" />
+    <ClCompile Include="ProcTable.cpp" />
     <ClCompile Include="QueryEvaluator.cpp" />
     <ClCompile Include="QueryPreProcessor.cpp" />
     <ClCompile Include="QueryProcessor.cpp" />
