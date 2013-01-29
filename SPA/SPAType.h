@@ -50,17 +50,76 @@ enum WithType{
 	WITH_STMTNUMBER
 };
 
+/**
+ * \struct	stmtDetail
+ *
+ * \brief	The data structure containing all information of each line of code during the pre-
+ * 			process stage.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/1/29
+ */
+
 struct stmtDetail {
-	int stmtNumber;
+
+	/**
+	 * \brief	The Statement number.
+	 */
+
+	int stmtNumber; 
+
+	/**
+	 * \brief	Procedure Index, if any.
+	 */
+
 	int procIndex;
+
+	/**
+	 * \brief	 The actual program statement.
+	 */
+
 	string stmtLine;
+
+	/**
+	 * \brief	Statement Type.
+	 */
+
 	StmtType type;
-	//Extra fields for PROCEDURE
+
+	/**
+	 * \brief	The extra field for procedure name.
+	 * 			If a statement <b>st</b> which is a pre-processed statement object of
+	 * 			statement "procedure foo {", Then there is:
+	 * \code {cpp}
+	 * 		 st.stmtLine = "procedure foo {";
+	 * \endcode
+	 * 		   and the extraName of <b>st</b> is:
+	 * \code {cpp}
+	 * 		 st.extraName = "foo";
+	 * \endcode
+	 */
+
 	string extraName;
-	//Extra fields for IF-ELSE and WHILE
+
+	/**
+	 * \brief	Extra field for the condition in IF and WHILE blocks.
+	 */
+
 	string extraCond;
-	//Extra fields for assignments
-	string extraVar;
+
+	/**
+	 * \brief	Varible Name at left-hand side of an assignment. For instance,
+	 * 			in the assignment "a=b+c*(d-e);", the extraVar of this assignment is <b>a</b>.
+	 */
+
+	string extraVar; 
+
+	/**
+	 * \brief	Expression at right-hand side of an assignment. For instance,
+	 * 			in the assignment "a=b+c*(d-e);", the extraExpr of this assignment is <b>b+c*(d-e)</b>.
+	 * 			
+	 */
+
 	string extraExpr;
 };
 

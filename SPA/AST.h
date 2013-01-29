@@ -14,7 +14,7 @@ class AST
 private:
 	ASTNode* _root;
 	inline int _operatorPrecedence(char op);
-	string calcHashcode(ASTNode* node);
+	string _calcHashcode(ASTNode* node);
 	bool _containTree(ASTNode* container, ASTNode* object);
 public:
 	AST(void);

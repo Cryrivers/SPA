@@ -28,7 +28,7 @@ void setNodeType(ASTNodeType t);
 int getNodeValue();
 void setNodeValue(int v);
 
-ASTNode* getChildren(int index = 0);
+ASTNode* getChildren();
 void addChild(ASTNode* node);
 ASTNode* createChild(ASTNodeType t, int value);
 

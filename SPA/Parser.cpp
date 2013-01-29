@@ -1,3 +1,9 @@
+/**
+ * \file	Parser.cpp
+ * \class	Parser
+ * \brief	Implements SIMPLE parser class.
+ */
+
 #include "stdafx.h"
 #include <iostream>
 #include <string>
@@ -12,7 +18,19 @@
 #define NO_SPECIFIC_PROC_INDEX -1
 
 using namespace std;
-        
+
+/**
+ * \fn	Parser::Parser(AST *ast)
+ *
+ * \brief	Constructor of Parser. Developers need to specify an AST object.
+ * 			All the parsing result will directly output to the AST object.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/1/29
+ *
+ * \param [out]	ast	The AST object which stores the parsing result.
+ */
+
 Parser::Parser(AST *ast)
 {
 	_ast = ast;
@@ -30,7 +48,7 @@ Parser::~Parser(void)
 }
 
 
-void Parser::parseLine()
+void Parser::_parseLine()
 {
 	statement s;
 
@@ -101,8 +119,7 @@ void Parser::parseLine()
 	}
 }
 
-
-void Parser::preprocessProgram(string program)
+void Parser::_preprocessProgram(string program)
 {
 	string prog = program;
 
@@ -419,7 +436,6 @@ ASTNode* Parser::_buildIfAST(statement* s)
 
 ASTNode* Parser::_buildElseAST(statement* s)
 {
-	//Warning: It skips ELSE keyword and directly add a new statment list to IF branch. Should work.
 	ASTNode *stmtLstNode = previousNode->createChild(AST_STATEMENT_LIST, NULL);
 	_newParent = stmtLstNode;
 	_newParentNoStmtLst = previousNode;
@@ -484,9 +500,23 @@ inline int Parser::_operatorPrecedence(char op)
 	}
 }
 
+/**
+ * \fn	void Parser::parse( string program )
+ *
+ * \brief	Parse a program, build Abstract Syntax Tree of the program.
+ * 			Parser also finds Parent, Uses, Modifies and Calls relation in the program and 
+ * 			add them to respective tables.
+ * 			
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/1/29
+ *
+ * \param	program	Input program.
+ */
+
 void Parser::parse( string program )
 {
-	this->preprocessProgram(program);
-	this->parseLine();
+	this->_preprocessProgram(program);
+	this->_parseLine();
 	PKBController::createInstance()->completePKB();
 }

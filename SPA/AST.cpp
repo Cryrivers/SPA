@@ -13,6 +13,16 @@ AST::~AST(void)
 {
 }
 
+/**
+ * \fn	ASTNode *AST::getRoot()
+ *
+ * \brief	Gets the root ASTNode of this AST.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/1/29
+ *
+ * \return	null if it fails, else the root ASTNode object.
+ */
 
 ASTNode *AST::getRoot()
 {
@@ -22,12 +32,12 @@ ASTNode *AST::getRoot()
 
 vector<int> *AST::containSubtree(ASTNode *tree)
 {
-	calcHashcode(tree->getChildren()->getSibling());
+	_calcHashcode(tree->getChildren()->getSibling());
 	vector<int>* result  = new vector<int>();
 	vector<ASTNode*>* assignTable = PKBController::createInstance()->getAssignmentTable();
 	for(std::vector<ASTNode*>::iterator it = assignTable->begin(); it != assignTable->end();++it)
 	{
-		calcHashcode((*it)->getChildren()->getSibling());
+		_calcHashcode((*it)->getChildren()->getSibling());
 		ASTNode* lhs = (*it)->getChildren()->getSibling();
 		ASTNode* rhs = tree->getChildren()->getSibling();
 		//Compare the expression tree in Assignment Node.
@@ -44,17 +54,29 @@ vector<int> *AST::containSubtree(ASTNode *tree)
 	return(result);
 }
 
+/**
+ * \fn	vector<int> *AST::containTree(ASTNode *tree)
+ *
+ * \brief	Query if AST Contains the specific tree.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/1/29
+ *
+ * \param [in]	tree	If non-null, the tree.
+ *
+ * \return	vector of integer containing the statement numbers of the statments that contains the specific tree.
+ */
 
 vector<int> *AST::containTree(ASTNode *tree)
 {
-	calcHashcode(tree->getChildren()->getSibling());
+	_calcHashcode(tree->getChildren()->getSibling());
 	vector<int>* result  = new vector<int>();
 	vector<ASTNode*>* assignTable = PKBController::createInstance()->getAssignmentTable();
 	for(std::vector<ASTNode*>::iterator it = assignTable->begin(); it != assignTable->end();++it)
 	{
 		PKBController* _pkb = PKBController::createInstance();
 		//Compare the expression tree in Assignment Node.
-		calcHashcode((*it)->getChildren()->getSibling());
+		_calcHashcode((*it)->getChildren()->getSibling());
 		ASTNode* lhs = (*it)->getChildren()->getSibling();
 		ASTNode* rhs = tree->getChildren()->getSibling();
 		if(lhs->getHashcode() == rhs->getHashcode())
@@ -241,14 +263,22 @@ ASTNode *AST::buildAssignmentSubtree(int varIndex, string expression)
 	return(node);
 }
 
+/**
+ * \fn	void AST::calculateHashcode()
+ *
+ * \brief	Cacalculates every ASTNode's Hashcode in this AST.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/1/29
+ */
 
 void AST::calculateHashcode()
 {
-	calcHashcode(_root);
+	_calcHashcode(_root);
 }
 
 
-string AST::calcHashcode(ASTNode *node)
+string AST::_calcHashcode(ASTNode *node)
 {
 	if(node->isHashcodeComputed()) return (node->getHashcode());
 
@@ -257,10 +287,10 @@ string AST::calcHashcode(ASTNode *node)
 		return(node->getHashcode());
 	}
 	if (node->getChildren() != NULL) {
-		node->appendHashcode(calcHashcode(node->getChildren()));
+		node->appendHashcode(_calcHashcode(node->getChildren()));
 	}
 	if (node->getSibling() != NULL) {
-		node->appendHashcode(calcHashcode(node->getSibling()));
+		node->appendHashcode(_calcHashcode(node->getSibling()));
 	}
 
 	node->markHashcodeComputed();

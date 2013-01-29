@@ -35,12 +35,13 @@ private:
 	ASTNode* _buildCallAST(statement* s);
 	inline int _findValidMinimumOfThree(size_t lb, size_t rb, size_t sc);
 	inline int _operatorPrecedence(char op);
+	void _parseLine();
+	void _preprocessProgram(string program);
 
 public:
 	Parser(AST* ast);
 	~Parser(void);
 	void parse(string program);
-	void parseLine();
-	void preprocessProgram(string program);
+	
 };
 
