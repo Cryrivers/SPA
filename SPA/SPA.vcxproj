@@ -75,9 +75,11 @@
   <ItemGroup>
     <ClInclude Include="AST.h" />
     <ClInclude Include="ASTNode.h" />
+    <ClInclude Include="CallTable.h" />
     <ClInclude Include="DesignExtractor.h" />
     <ClInclude Include="Follows.h" />
     <ClInclude Include="Modifies.h" />
+    <ClInclude Include="ModifiesP.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PKBController.h" />
@@ -89,15 +91,18 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Uses.h" />
+    <ClInclude Include="UsesP.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="VarTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AST.cpp" />
     <ClCompile Include="ASTNode.cpp" />
+    <ClCompile Include="CallTable.cpp" />
     <ClCompile Include="DesignExtractor.cpp" />
     <ClCompile Include="Follows.cpp" />
     <ClCompile Include="Modifies.cpp" />
+    <ClCompile Include="ModifiesP.cpp" />
     <ClCompile Include="Parent.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PKBController.cpp" />
@@ -111,6 +116,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Uses.cpp" />
+    <ClCompile Include="UsesP.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="VarTable.cpp" />
   </ItemGroup>
