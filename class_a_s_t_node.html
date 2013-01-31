@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_a_s_t_node.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,6 +106,7 @@ $(document).ready(function(){initNavTree('class_a_s_t_node.html','');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_a_s_t_node-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ASTNode Class Reference</div>  </div>
@@ -172,6 +172,30 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a9d3cf2a01f25c631805030458dfa2ef0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_t_node.html#a9d3cf2a01f25c631805030458dfa2ef0">createNode</a> (ASTNodeType t, int value)</td></tr>
 <tr class="memdesc:a9d3cf2a01f25c631805030458dfa2ef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node.">ASTNode</a> with specific node type and value.  <a href="#a9d3cf2a01f25c631805030458dfa2ef0">More...</a><br/></td></tr>
 <tr class="separator:a9d3cf2a01f25c631805030458dfa2ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a286da7dfb83702a94e87ce947058ffc3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a286da7dfb83702a94e87ce947058ffc3"></a>
+ASTNodeType&#160;</td><td class="memItemRight" valign="bottom"><b>_nodeType</b></td></tr>
+<tr class="separator:a286da7dfb83702a94e87ce947058ffc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52fdae3f546d6f9df05b47df719ec89b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52fdae3f546d6f9df05b47df719ec89b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_nodeValue</b></td></tr>
+<tr class="separator:a52fdae3f546d6f9df05b47df719ec89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab41596483bf0633399c5e94fcbfff581"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab41596483bf0633399c5e94fcbfff581"></a>
+<a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_siblings</b></td></tr>
+<tr class="separator:ab41596483bf0633399c5e94fcbfff581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f36f265ca41f5f063d9b26c7cdc73ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f36f265ca41f5f063d9b26c7cdc73ea"></a>
+<a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_children</b></td></tr>
+<tr class="separator:a6f36f265ca41f5f063d9b26c7cdc73ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabf50a024fbd7b9d573531265a381071"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabf50a024fbd7b9d573531265a381071"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_stmtNumber</b></td></tr>
+<tr class="separator:aabf50a024fbd7b9d573531265a381071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086e8c9026b3baacc95cd08fba25e0f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a086e8c9026b3baacc95cd08fba25e0f0"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>_hashcode</b></td></tr>
+<tr class="separator:a086e8c9026b3baacc95cd08fba25e0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb4e870a451ffd8946dafd3094dadcd0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb4e870a451ffd8946dafd3094dadcd0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hashCodeComputed</b></td></tr>
+<tr class="separator:aeb4e870a451ffd8946dafd3094dadcd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implements the basic element of <a class="el" href="class_a_s_t.html">AST</a> which is <a class="el" href="class_a_s_t.html">AST</a> Node. </p>
@@ -624,7 +648,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_a_s_t_node.html">ASTNode</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:05 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

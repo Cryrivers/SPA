@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_modifies.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,6 +105,8 @@ $(document).ready(function(){initNavTree('class_modifies.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_modifies-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Modifies Class Reference</div>  </div>
@@ -126,6 +127,39 @@ STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllModifiesFi
 <tr class="memitem:a4ef7057178666e19c60d065f7bf4dbf0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ef7057178666e19c60d065f7bf4dbf0"></a>
 VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllModifiesSecond</b> ()</td></tr>
 <tr class="separator:a4ef7057178666e19c60d065f7bf4dbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac678bd985c2581909e4bfa033535fc52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac678bd985c2581909e4bfa033535fc52"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>isModifies</b> (STMT stmt, VAR_INDEX var)</td></tr>
+<tr class="separator:ac678bd985c2581909e4bfa033535fc52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac49ac2d245b92f09e9d1f00c0c37c411"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac49ac2d245b92f09e9d1f00c0c37c411"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getModifiesFirst</b> (VAR_INDEX var)</td></tr>
+<tr class="separator:ac49ac2d245b92f09e9d1f00c0c37c411"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d74d1ce422ceff378fcb28cffa287cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d74d1ce422ceff378fcb28cffa287cf"></a>
+VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getModifiesSecond</b> (STMT stmt)</td></tr>
+<tr class="separator:a4d74d1ce422ceff378fcb28cffa287cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d25d696674eebbfadef485b3025dec0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d25d696674eebbfadef485b3025dec0"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>modifies_00</b> (STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)</td></tr>
+<tr class="separator:a7d25d696674eebbfadef485b3025dec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841fd5cf4b01d3c1b1d837d59b237a42"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a841fd5cf4b01d3c1b1d837d59b237a42"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>modifies_01</b> (STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)</td></tr>
+<tr class="separator:a841fd5cf4b01d3c1b1d837d59b237a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0b29c96758817bac6b996e4922b2e86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0b29c96758817bac6b996e4922b2e86"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>modifies_10</b> (STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)</td></tr>
+<tr class="separator:ae0b29c96758817bac6b996e4922b2e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb2fd156dc688f6f82f22224eb611bbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb2fd156dc688f6f82f22224eb611bbf"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>modifies_11</b> (STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)</td></tr>
+<tr class="separator:adb2fd156dc688f6f82f22224eb611bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ad1879a38c335393e8e7cbce1211e2866"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1879a38c335393e8e7cbce1211e2866"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmts</b></td></tr>
+<tr class="separator:ad1879a38c335393e8e7cbce1211e2866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8542e60054e8ebb18c32171f0a6d4442"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8542e60054e8ebb18c32171f0a6d4442"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vars</b></td></tr>
+<tr class="separator:a8542e60054e8ebb18c32171f0a6d4442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_modifies_8h_source.html">Modifies.h</a></li>
@@ -137,7 +171,7 @@ VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllModif
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_modifies.html">Modifies</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:05 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_call_table.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,6 +105,8 @@ $(document).ready(function(){initNavTree('class_call_table.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_call_table-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CallTable Class Reference</div>  </div>
@@ -126,6 +127,30 @@ STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCallsFirst
 <tr class="memitem:a7d9ff0e77358c5aea9156a4a99bf822c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d9ff0e77358c5aea9156a4a99bf822c"></a>
 PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCallsSecond</b> ()</td></tr>
 <tr class="separator:a7d9ff0e77358c5aea9156a4a99bf822c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac5f665c359024a5c70f81df196fa2a17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5f665c359024a5c70f81df196fa2a17"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>isCalls</b> (STMT stmt, PROC_INDEX proc)</td></tr>
+<tr class="separator:ac5f665c359024a5c70f81df196fa2a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e8ec0c65cbb9a8e0bd57e2344c1176f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e8ec0c65cbb9a8e0bd57e2344c1176f"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getCallsFirst</b> (PROC_INDEX proc)</td></tr>
+<tr class="separator:a0e8ec0c65cbb9a8e0bd57e2344c1176f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51bb5d3695de38dc870fc27ce37b3624"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51bb5d3695de38dc870fc27ce37b3624"></a>
+PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>getCallsSecond</b> (STMT stmt)</td></tr>
+<tr class="separator:a51bb5d3695de38dc870fc27ce37b3624"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55c883557dab3e01962c434f9149a32e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55c883557dab3e01962c434f9149a32e"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>calls_00</b> (STMT_LIST *sts_p, PROC_INDEX_LIST *ps_p)</td></tr>
+<tr class="separator:a55c883557dab3e01962c434f9149a32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a51d78a903bde64dc3e3506bdd346099d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51d78a903bde64dc3e3506bdd346099d"></a>
+vector&lt; STMT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmts</b></td></tr>
+<tr class="separator:a51d78a903bde64dc3e3506bdd346099d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fba0e8d6c617aaf7acd64dbb0fba0db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fba0e8d6c617aaf7acd64dbb0fba0db"></a>
+vector&lt; PROC_INDEX &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>procs</b></td></tr>
+<tr class="separator:a0fba0e8d6c617aaf7acd64dbb0fba0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_call_table_8h_source.html">CallTable.h</a></li>
@@ -137,7 +162,7 @@ PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCall
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_call_table.html">CallTable</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:05 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

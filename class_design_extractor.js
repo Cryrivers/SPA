@@ -10,5 +10,7 @@ var class_design_extractor =
     [ "getAllIf", "class_design_extractor.html#af29dfb20bcfbc7fb188adffd8bfd39c6", null ],
     [ "getAllStmt", "class_design_extractor.html#ace811652940cd0c9b203466d718da76c", null ],
     [ "getAllWhile", "class_design_extractor.html#a38b674ccd8bb996d7c67984f01c174b8", null ],
-    [ "pattern", "class_design_extractor.html#a4fcba7f9091b7f4f04f9551afe30ee3d", null ]
+    [ "pattern", "class_design_extractor.html#a4fcba7f9091b7f4f04f9551afe30ee3d", null ],
+    [ "_ast", "class_design_extractor.html#a6b66ad323d70a96fec0fcf637d806f95", null ],
+    [ "_pkb", "class_design_extractor.html#af9fe9f9e990c265cc4c33d5363390e87", null ]
 ];

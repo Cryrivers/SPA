@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_follows.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,6 +105,8 @@ $(document).ready(function(){initNavTree('class_follows.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_follows-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Follows Class Reference</div>  </div>
@@ -123,6 +124,60 @@ BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>follows</b> (STMT_
 <tr class="memitem:ae13d02a9a48fac8d84f9d6c473ff1acc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae13d02a9a48fac8d84f9d6c473ff1acc"></a>
 BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>followsStar</b> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
 <tr class="separator:ae13d02a9a48fac8d84f9d6c473ff1acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a95b2a1e8f9d94e5ab50e4acb02c71a18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95b2a1e8f9d94e5ab50e4acb02c71a18"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getFollowsFirst</b> (int stmt)</td></tr>
+<tr class="separator:a95b2a1e8f9d94e5ab50e4acb02c71a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a713c6b7951ae547b8623309a4f221b7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a713c6b7951ae547b8623309a4f221b7d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getFollowsSecond</b> (int stmt)</td></tr>
+<tr class="separator:a713c6b7951ae547b8623309a4f221b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad815b9b0377d187fef9718c5e59e4128"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad815b9b0377d187fef9718c5e59e4128"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getFollowsStarFirst</b> (STMT stmt)</td></tr>
+<tr class="separator:ad815b9b0377d187fef9718c5e59e4128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7565852910255968a18a29092751d10f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7565852910255968a18a29092751d10f"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getFollowsStarSecond</b> (STMT stmt)</td></tr>
+<tr class="separator:a7565852910255968a18a29092751d10f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de379ae82fd27bcf0e966564931b532"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4de379ae82fd27bcf0e966564931b532"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>isFollows</b> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="separator:a4de379ae82fd27bcf0e966564931b532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac878d569eabe9e47436a43cec17a67db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac878d569eabe9e47436a43cec17a67db"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>isFollowsStar</b> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="separator:ac878d569eabe9e47436a43cec17a67db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a48f4c655c142c516bfaa9bca0bfbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0a48f4c655c142c516bfaa9bca0bfbc"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>follows_00</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:ab0a48f4c655c142c516bfaa9bca0bfbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4500e34be504747b9fe4d2023e0c304b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4500e34be504747b9fe4d2023e0c304b"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>follows_01</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a4500e34be504747b9fe4d2023e0c304b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d222be9efe89f536935efc3b074e0a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d222be9efe89f536935efc3b074e0a5"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>follows_10</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a0d222be9efe89f536935efc3b074e0a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcc69b88104ba84644a2ac088df0e2af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcc69b88104ba84644a2ac088df0e2af"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>follows_11</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:abcc69b88104ba84644a2ac088df0e2af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79ad00efe881e5ba54d336f0aa80d722"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79ad00efe881e5ba54d336f0aa80d722"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>followsStar_00</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a79ad00efe881e5ba54d336f0aa80d722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba514b07f884691032d03b5cb0959858"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba514b07f884691032d03b5cb0959858"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>followsStar_01</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:aba514b07f884691032d03b5cb0959858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a511d7d4064d2fc51d0f9f7b45d275f50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a511d7d4064d2fc51d0f9f7b45d275f50"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>followsStar_10</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a511d7d4064d2fc51d0f9f7b45d275f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e86db027d27e6221faecb1a8fd00021"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e86db027d27e6221faecb1a8fd00021"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>followsStar_11</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a5e86db027d27e6221faecb1a8fd00021"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ada594081cc115894d08384e4373e1b53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada594081cc115894d08384e4373e1b53"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmt1s</b></td></tr>
+<tr class="separator:ada594081cc115894d08384e4373e1b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cc0c0e3b831d3033dc31201dc8fc512"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cc0c0e3b831d3033dc31201dc8fc512"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmt2s</b></td></tr>
+<tr class="separator:a2cc0c0e3b831d3033dc31201dc8fc512"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_follows_8h_source.html">Follows.h</a></li>
@@ -134,7 +189,7 @@ BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>followsStar</b> (S
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_follows.html">Follows</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:05 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

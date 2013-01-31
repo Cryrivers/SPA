@@ -2,5 +2,24 @@ var class_parser =
 [
     [ "Parser", "class_parser.html#a167a551127b86054e7382d9d563d869c", null ],
     [ "~Parser", "class_parser.html#a1e70d9a903c5d2e8166fb571de3d581c", null ],
-    [ "parse", "class_parser.html#a47e4377402ad1398757c68ed2f92f4d8", null ]
+    [ "_buildAssignmentAST", "class_parser.html#ab346886653fca84ebb1b841f05493b10", null ],
+    [ "_buildCallAST", "class_parser.html#a7e28ae4f61c566beb01b06cca738d52e", null ],
+    [ "_buildElseAST", "class_parser.html#afc8dac64538654e694265b53efff2449", null ],
+    [ "_buildIfAST", "class_parser.html#a7cce56d5d69b2488bb9cf43dc22af1bf", null ],
+    [ "_buildProcedureAST", "class_parser.html#a47a597eab3ebfd118e9e7b8ff3c9bf6c", null ],
+    [ "_buildWhileLoopAST", "class_parser.html#a5273abe0aa4e0500d1386d1341d831ac", null ],
+    [ "_findValidMinimumOfThree", "class_parser.html#aa8c7656ebe27057c806447992513724b", null ],
+    [ "_operatorPrecedence", "class_parser.html#ac1ae8286ebf8ba879aa034cc0d3826f4", null ],
+    [ "_parseLine", "class_parser.html#a67d2664055de5195621f155412de3852", null ],
+    [ "_preprocessProgram", "class_parser.html#a5407f0d094c1e58a519ea52227732da2", null ],
+    [ "parse", "class_parser.html#a47e4377402ad1398757c68ed2f92f4d8", null ],
+    [ "_ast", "class_parser.html#a382938a35cd57d2712d9f76ed5942cc3", null ],
+    [ "_newParent", "class_parser.html#a78afc265c4f3e990223d12ec928c7de1", null ],
+    [ "_newParentNoStmtLst", "class_parser.html#a7fa5e863bdf2c63fb0c966386240d879", null ],
+    [ "_parentStack", "class_parser.html#a6dd1bff50aec437c602725ed07b82021", null ],
+    [ "_parentStackNoStmtLst", "class_parser.html#aca88a674157245b37db339a8f0748313", null ],
+    [ "_pkb", "class_parser.html#abf2f2df4ff013bb0d579427da9c03bc8", null ],
+    [ "preprocProgram", "class_parser.html#adf08c81ae703f1767b5d34f8f4b30586", null ],
+    [ "previousNode", "class_parser.html#adf30893060f34bcee294cdf61dd55dee", null ],
+    [ "sameLevelAtNext", "class_parser.html#a5e781d036b297485ae1bb7f4422d9d03", null ]
 ];

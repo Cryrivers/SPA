@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_query_evaluator.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,15 +110,30 @@ $(document).ready(function(){initNavTree('class_query_evaluator.html','');});
 
 <p>This is the complete list of members for <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>, including all inherited members.</p>
 <table class="directory">
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>cartesianProduct</b>(vector&lt; int &gt; *, vector&lt; int &gt; *) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>dependencymap</b> (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>evaluate</b>(vector&lt; Query_clause &gt;, vector&lt; Query_variable &gt;, int, list&lt; string &gt; &amp;) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>QueryEvaluator</b>(void) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~QueryEvaluator</b>(void) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>evaluateClause</b>(Query_clause) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>evaluateQuery</b>() (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getOtherVector</b>(vector&lt; int &gt; *, int, int *, vector&lt; int &gt; *) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getResult</b>(list&lt; string &gt; &amp;, int) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getVector</b>(vector&lt; int &gt; *, int, int *) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getVectors</b>(vector&lt; int &gt; *, vector&lt; int &gt; *, int, int, int *) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>intersect</b>(vector&lt; int &gt; *, vector&lt; int &gt; *, int, int, int) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>intersectDependencyMap</b>(vector&lt; int &gt; *, int) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>optimise</b>() (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>pkb</b> (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>qClauseList</b> (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>QueryEvaluator</b>(void) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>qVariableList</b> (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>removeDuplicates</b>(vector&lt; int &gt;) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~QueryEvaluator</b>(void) (defined in <a class="el" href="class_query_evaluator.html">QueryEvaluator</a>)</td><td class="entry"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:06 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

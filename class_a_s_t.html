@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_a_s_t.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,6 +105,8 @@ $(document).ready(function(){initNavTree('class_a_s_t.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_a_s_t-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">AST Class Reference</div>  </div>
@@ -132,6 +133,24 @@ vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>cont
 <tr class="memitem:aaebedffee7d5ee9c043fc1c31ec6c0d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_t.html#aaebedffee7d5ee9c043fc1c31ec6c0d7">calculateHashcode</a> ()</td></tr>
 <tr class="memdesc:aaebedffee7d5ee9c043fc1c31ec6c0d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cacalculates every <a class="el" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node.">ASTNode</a>'s Hashcode in this <a class="el" href="class_a_s_t.html">AST</a>.  <a href="#aaebedffee7d5ee9c043fc1c31ec6c0d7">More...</a><br/></td></tr>
 <tr class="separator:aaebedffee7d5ee9c043fc1c31ec6c0d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aa0b1ea71140f2587f1deb18de96fb17e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0b1ea71140f2587f1deb18de96fb17e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_operatorPrecedence</b> (char op)</td></tr>
+<tr class="separator:aa0b1ea71140f2587f1deb18de96fb17e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65c1dc435582ceb484aa1f88cf246a1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65c1dc435582ceb484aa1f88cf246a1f"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>_calcHashcode</b> (<a class="el" href="class_a_s_t_node.html">ASTNode</a> *node)</td></tr>
+<tr class="separator:a65c1dc435582ceb484aa1f88cf246a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaac461882bbbff30fb0c7dca4784b2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeaac461882bbbff30fb0c7dca4784b2f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_containTree</b> (<a class="el" href="class_a_s_t_node.html">ASTNode</a> *container, <a class="el" href="class_a_s_t_node.html">ASTNode</a> *object)</td></tr>
+<tr class="separator:aeaac461882bbbff30fb0c7dca4784b2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aff132c9406202f6f24ebddb9579db80b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff132c9406202f6f24ebddb9579db80b"></a>
+<a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_root</b></td></tr>
+<tr class="separator:aff132c9406202f6f24ebddb9579db80b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aaebedffee7d5ee9c043fc1c31ec6c0d7"></a>
@@ -210,7 +229,7 @@ vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>cont
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_a_s_t.html">AST</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:05 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_uses.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,6 +105,8 @@ $(document).ready(function(){initNavTree('class_uses.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_uses-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Uses Class Reference</div>  </div>
@@ -126,6 +127,39 @@ STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllUsesFirst<
 <tr class="memitem:ac60cee037b23764ed00f06071a2693db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac60cee037b23764ed00f06071a2693db"></a>
 STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllUsesSecond</b> ()</td></tr>
 <tr class="separator:ac60cee037b23764ed00f06071a2693db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a5a55353c1761e5182ad7c842cc5e3d89"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a55353c1761e5182ad7c842cc5e3d89"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>isUses</b> (STMT stmt, VAR_INDEX var)</td></tr>
+<tr class="separator:a5a55353c1761e5182ad7c842cc5e3d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec3f6a8345dea78c083244726673dfac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec3f6a8345dea78c083244726673dfac"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getUsesFirst</b> (VAR_INDEX var)</td></tr>
+<tr class="separator:aec3f6a8345dea78c083244726673dfac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba0950409d4e77e57db121425135454"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ba0950409d4e77e57db121425135454"></a>
+VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getUsesSecond</b> (STMT stmt)</td></tr>
+<tr class="separator:a4ba0950409d4e77e57db121425135454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34a4fd0b12a7e077f5a18f4cb2af1ba7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34a4fd0b12a7e077f5a18f4cb2af1ba7"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>uses_00</b> (STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)</td></tr>
+<tr class="separator:a34a4fd0b12a7e077f5a18f4cb2af1ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e756e6ccf084e5bc0ee3428438ed0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48e756e6ccf084e5bc0ee3428438ed0c"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>uses_01</b> (STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)</td></tr>
+<tr class="separator:a48e756e6ccf084e5bc0ee3428438ed0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5610b45ac6d6124b86e0c5133b1f3a3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5610b45ac6d6124b86e0c5133b1f3a3c"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>uses_10</b> (STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)</td></tr>
+<tr class="separator:a5610b45ac6d6124b86e0c5133b1f3a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f4c18d4613c43553a11aa119f18dd43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f4c18d4613c43553a11aa119f18dd43"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>uses_11</b> (STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)</td></tr>
+<tr class="separator:a4f4c18d4613c43553a11aa119f18dd43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3a8b4fa07a9c315484afe63aa44adee8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a8b4fa07a9c315484afe63aa44adee8"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmts</b></td></tr>
+<tr class="separator:a3a8b4fa07a9c315484afe63aa44adee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96d3f3f06991a2da741720d4a7165084"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96d3f3f06991a2da741720d4a7165084"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vars</b></td></tr>
+<tr class="separator:a96d3f3f06991a2da741720d4a7165084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_uses_8h_source.html">Uses.h</a></li>
@@ -137,7 +171,7 @@ STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllUsesSecond
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_uses.html">Uses</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:06 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:25 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

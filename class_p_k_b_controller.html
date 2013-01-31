@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_p_k_b_controller.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,6 +106,8 @@ $(document).ready(function(){initNavTree('class_p_k_b_controller.html','');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_p_k_b_controller-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PKBController Class Reference</div>  </div>
@@ -244,6 +245,51 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a2ad81eda5417c9bb5cefe8d0000a142b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ad81eda5417c9bb5cefe8d0000a142b"></a>
 static <a class="el" href="class_p_k_b_controller.html">PKBController</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>createInstance</b> ()</td></tr>
 <tr class="separator:a2ad81eda5417c9bb5cefe8d0000a142b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aab08992e94b86081c14dde8a598f07c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab08992e94b86081c14dde8a598f07c5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
+<tr class="separator:aab08992e94b86081c14dde8a598f07c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a58f2841e58eab86e1a158779601b7d90"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58f2841e58eab86e1a158779601b7d90"></a>
+<a class="el" href="class_follows.html">Follows</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_follows</b></td></tr>
+<tr class="separator:a58f2841e58eab86e1a158779601b7d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfdfa01470968251eccbebab70454a99"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfdfa01470968251eccbebab70454a99"></a>
+<a class="el" href="class_parent.html">Parent</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_parent</b></td></tr>
+<tr class="separator:adfdfa01470968251eccbebab70454a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34d090366a3e993da258549245700b6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34d090366a3e993da258549245700b6c"></a>
+<a class="el" href="class_modifies.html">Modifies</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_modifies</b></td></tr>
+<tr class="separator:a34d090366a3e993da258549245700b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ac893ba288c1d6708132b314b350f17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ac893ba288c1d6708132b314b350f17"></a>
+<a class="el" href="class_uses.html">Uses</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_uses</b></td></tr>
+<tr class="separator:a3ac893ba288c1d6708132b314b350f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a2d8b205de069165ced03a049ef99d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a2d8b205de069165ced03a049ef99d6"></a>
+<a class="el" href="class_var_table.html">VarTable</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_varTable</b></td></tr>
+<tr class="separator:a2a2d8b205de069165ced03a049ef99d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01d097d6a5528ee7ae3cc3a1527774ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01d097d6a5528ee7ae3cc3a1527774ed"></a>
+<a class="el" href="class_proc_table.html">ProcTable</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_procTable</b></td></tr>
+<tr class="separator:a01d097d6a5528ee7ae3cc3a1527774ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0a93c9382621f062414532754b5efca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0a93c9382621f062414532754b5efca"></a>
+<a class="el" href="class_a_s_t.html">AST</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_ast</b></td></tr>
+<tr class="separator:aa0a93c9382621f062414532754b5efca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4acb06186bc992832e34154be33d425e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4acb06186bc992832e34154be33d425e"></a>
+<a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_astNode</b></td></tr>
+<tr class="separator:a4acb06186bc992832e34154be33d425e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66705bbe9d60940ee6ec3fece4ac013"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad66705bbe9d60940ee6ec3fece4ac013"></a>
+<a class="el" href="class_design_extractor.html">DesignExtractor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_designExtractor</b></td></tr>
+<tr class="separator:ad66705bbe9d60940ee6ec3fece4ac013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a730d6e90f086f04f6db5de56ad99f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a730d6e90f086f04f6db5de56ad99f55b"></a>
+vector&lt; <a class="el" href="structstmt_detail.html">statement</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_preprocessedProgram</b></td></tr>
+<tr class="separator:a730d6e90f086f04f6db5de56ad99f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de5b4541c1a6243871ae86c6924e53b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4de5b4541c1a6243871ae86c6924e53b"></a>
+vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_constTable</b></td></tr>
+<tr class="separator:a4de5b4541c1a6243871ae86c6924e53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9e8ee573909fec5fc992c7798f3aa46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9e8ee573909fec5fc992c7798f3aa46"></a>
+vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_assignmentTable</b></td></tr>
+<tr class="separator:aa9e8ee573909fec5fc992c7798f3aa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_p_k_b_controller_8h_source.html">PKBController.h</a></li>
@@ -255,7 +301,7 @@ static <a class="el" href="class_p_k_b_controller.html">PKBController</a> *&#160
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_p_k_b_controller.html">PKBController</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:06 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

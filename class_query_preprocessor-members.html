@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_query_preprocessor.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,18 +110,18 @@ $(document).ready(function(){initNavTree('class_query_preprocessor.html','');});
 
 <p>This is the complete list of members for <a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_query_preprocessor.html#a66dbc91ccf7b9506316af857234a685b">getQueryClauseTable</a>()</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_query_preprocessor.html#a784bf47aa8f9e9d0c318e82c8900135e">getQueryTargetTable</a>()</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_query_preprocessor.html#ab9cdc33dce820f20f00a8b20509b1b3f">getQueryVariableTable</a>()</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199">parse</a>(string input)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_query_preprocessor.html#a50e8467985e1b2d7fe63f8a874059b91">QueryPreprocessor</a>(void)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_query_preprocessor.html#a584d45b3837240e0ba96f1c7320ce7c7">~QueryPreprocessor</a>(void)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getQueryClauseTable</b>() (defined in <a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a>)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getQueryVariableTable</b>() (defined in <a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a>)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getTargetVariable</b>() (defined in <a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a>)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>parse</b>(string input) (defined in <a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a>)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>QueryPreprocessor</b>(void) (defined in <a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a>)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~QueryPreprocessor</b>(void) (defined in <a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a>)</td><td class="entry"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:06 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

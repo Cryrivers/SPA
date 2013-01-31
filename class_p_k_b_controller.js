@@ -1,6 +1,7 @@
 var class_p_k_b_controller =
 [
     [ "~PKBController", "class_p_k_b_controller.html#ac2d59c7ad720263d7f10fe66c6f1b834", null ],
+    [ "PKBController", "class_p_k_b_controller.html#a639d2e9ab9c4d27c6b833f6b46f90ead", null ],
     [ "addAssignmentNode", "class_p_k_b_controller.html#a013b38d04094fcce85b1104e9e0061ed", null ],
     [ "addConstant", "class_p_k_b_controller.html#a7d78e7214b76f584912995b8ca82a2bb", null ],
     [ "addFollows", "class_p_k_b_controller.html#a8669c80fd550b2722c71da84874ca6c4", null ],
@@ -36,10 +37,23 @@ var class_p_k_b_controller =
     [ "getProcName", "class_p_k_b_controller.html#a25a56c45105d5e0593afebf72b9112f0", null ],
     [ "getVarIndex", "class_p_k_b_controller.html#a6d846b8b888fc465e77870838d9e7793", null ],
     [ "getVarName", "class_p_k_b_controller.html#afc3210a870161b785cdec1eefaf7b896", null ],
+    [ "init", "class_p_k_b_controller.html#aab08992e94b86081c14dde8a598f07c5", null ],
     [ "modifies", "class_p_k_b_controller.html#a13f5e8929ad62c8efd2632d1b8ed7275", null ],
     [ "parent", "class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204", null ],
     [ "parentStar", "class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41", null ],
     [ "pattern", "class_p_k_b_controller.html#ad8f6b3467a4975dd76d085e665285373", null ],
     [ "setPreprocessedProgram", "class_p_k_b_controller.html#aa2403b1a0003e7324a534970ccc314ed", null ],
-    [ "uses", "class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4", null ]
+    [ "uses", "class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4", null ],
+    [ "_assignmentTable", "class_p_k_b_controller.html#aa9e8ee573909fec5fc992c7798f3aa46", null ],
+    [ "_ast", "class_p_k_b_controller.html#aa0a93c9382621f062414532754b5efca", null ],
+    [ "_astNode", "class_p_k_b_controller.html#a4acb06186bc992832e34154be33d425e", null ],
+    [ "_constTable", "class_p_k_b_controller.html#a4de5b4541c1a6243871ae86c6924e53b", null ],
+    [ "_designExtractor", "class_p_k_b_controller.html#ad66705bbe9d60940ee6ec3fece4ac013", null ],
+    [ "_follows", "class_p_k_b_controller.html#a58f2841e58eab86e1a158779601b7d90", null ],
+    [ "_modifies", "class_p_k_b_controller.html#a34d090366a3e993da258549245700b6c", null ],
+    [ "_parent", "class_p_k_b_controller.html#adfdfa01470968251eccbebab70454a99", null ],
+    [ "_preprocessedProgram", "class_p_k_b_controller.html#a730d6e90f086f04f6db5de56ad99f55b", null ],
+    [ "_procTable", "class_p_k_b_controller.html#a01d097d6a5528ee7ae3cc3a1527774ed", null ],
+    [ "_uses", "class_p_k_b_controller.html#a3ac893ba288c1d6708132b314b350f17", null ],
+    [ "_varTable", "class_p_k_b_controller.html#a2a2d8b205de069165ced03a049ef99d6", null ]
 ];

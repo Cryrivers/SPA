@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_parent.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,6 +105,8 @@ $(document).ready(function(){initNavTree('class_parent.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_parent-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Parent Class Reference</div>  </div>
@@ -123,6 +124,60 @@ BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parent</b> (STMT_L
 <tr class="memitem:ac36f4516d73fd22cb22a15443e385d30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac36f4516d73fd22cb22a15443e385d30"></a>
 BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parentStar</b> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
 <tr class="separator:ac36f4516d73fd22cb22a15443e385d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:af5610191919ce87b257e73913620269d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5610191919ce87b257e73913620269d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getParentFirst</b> (int stmt)</td></tr>
+<tr class="separator:af5610191919ce87b257e73913620269d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cef3c67ffc4a2731aea67eca56ef188"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0cef3c67ffc4a2731aea67eca56ef188"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getParentSecond</b> (int stmt)</td></tr>
+<tr class="separator:a0cef3c67ffc4a2731aea67eca56ef188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80f917ae9e8a32624a5fad8a8c06650e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80f917ae9e8a32624a5fad8a8c06650e"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getParentStarFirst</b> (STMT stmt)</td></tr>
+<tr class="separator:a80f917ae9e8a32624a5fad8a8c06650e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09754d0f88dc7a219804c7c47f6f58dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09754d0f88dc7a219804c7c47f6f58dc"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getParentStarSecond</b> (STMT stmt)</td></tr>
+<tr class="separator:a09754d0f88dc7a219804c7c47f6f58dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6210dd8c02eb8e926d2258ee4289c7a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6210dd8c02eb8e926d2258ee4289c7a5"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>isParent</b> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="separator:a6210dd8c02eb8e926d2258ee4289c7a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25fb0758b3d9248451ff6fe48bb705fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25fb0758b3d9248451ff6fe48bb705fc"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>isParentStar</b> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="separator:a25fb0758b3d9248451ff6fe48bb705fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7137f32ae3a2133c6ec038021cf1fd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7137f32ae3a2133c6ec038021cf1fd1"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parent_00</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:ab7137f32ae3a2133c6ec038021cf1fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e61e6c6020848f53d24d8581240e6ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e61e6c6020848f53d24d8581240e6ea"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parent_01</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a8e61e6c6020848f53d24d8581240e6ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2353666546fa4dd9fbd25b6e44531036"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2353666546fa4dd9fbd25b6e44531036"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parent_10</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a2353666546fa4dd9fbd25b6e44531036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e5c5bd186180a2c83849e0128364896"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e5c5bd186180a2c83849e0128364896"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parent_11</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a2e5c5bd186180a2c83849e0128364896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a845f57a5264e658ff07c8030a5e8ce3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a845f57a5264e658ff07c8030a5e8ce3f"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parentStar_00</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a845f57a5264e658ff07c8030a5e8ce3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7b763deec2670fd5b6a09209f061d46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7b763deec2670fd5b6a09209f061d46"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parentStar_01</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:ac7b763deec2670fd5b6a09209f061d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a743b8b94b2e07ba9711682434f45cdc2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a743b8b94b2e07ba9711682434f45cdc2"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parentStar_10</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:a743b8b94b2e07ba9711682434f45cdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af95a84708f3ce5d289a78be7c5aed8f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af95a84708f3ce5d289a78be7c5aed8f8"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parentStar_11</b> (STMT_LIST *st1s_p, STMT_LIST *st2s_p)</td></tr>
+<tr class="separator:af95a84708f3ce5d289a78be7c5aed8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aa898310786e59f8b975b28088524b58a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa898310786e59f8b975b28088524b58a"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmt1s</b></td></tr>
+<tr class="separator:aa898310786e59f8b975b28088524b58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13c3078fa07488ddc866e71541b0737d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13c3078fa07488ddc866e71541b0737d"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmt2s</b></td></tr>
+<tr class="separator:a13c3078fa07488ddc866e71541b0737d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_parent_8h_source.html">Parent.h</a></li>
@@ -134,7 +189,7 @@ BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parentStar</b> (ST
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_parent.html">Parent</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:05 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

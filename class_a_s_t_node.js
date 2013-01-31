@@ -1,5 +1,6 @@
 var class_a_s_t_node =
 [
+    [ "ASTNode", "class_a_s_t_node.html#a5a9a413a7f9065edce213ebc4d8f301e", null ],
     [ "~ASTNode", "class_a_s_t_node.html#a075d226c6382610b649193f72902faf7", null ],
     [ "addChild", "class_a_s_t_node.html#ac8750b89a9f5e76c550f7cc878a68712", null ],
     [ "addSibling", "class_a_s_t_node.html#af7d6d63178333b47891337a7a2b31d99", null ],
@@ -16,5 +17,12 @@ var class_a_s_t_node =
     [ "markHashcodeComputed", "class_a_s_t_node.html#a62988be21c3da9e0b01652624dc3c504", null ],
     [ "setNodeType", "class_a_s_t_node.html#abc7ea24000fa4c9108d98d8361af06d4", null ],
     [ "setNodeValue", "class_a_s_t_node.html#a548db93f5fb07720f91fe42826670762", null ],
-    [ "setStmtNumber", "class_a_s_t_node.html#a170a3a5f48a2a0a1b12f81e77289c117", null ]
+    [ "setStmtNumber", "class_a_s_t_node.html#a170a3a5f48a2a0a1b12f81e77289c117", null ],
+    [ "_children", "class_a_s_t_node.html#a6f36f265ca41f5f063d9b26c7cdc73ea", null ],
+    [ "_hashcode", "class_a_s_t_node.html#a086e8c9026b3baacc95cd08fba25e0f0", null ],
+    [ "_nodeType", "class_a_s_t_node.html#a286da7dfb83702a94e87ce947058ffc3", null ],
+    [ "_nodeValue", "class_a_s_t_node.html#a52fdae3f546d6f9df05b47df719ec89b", null ],
+    [ "_siblings", "class_a_s_t_node.html#ab41596483bf0633399c5e94fcbfff581", null ],
+    [ "_stmtNumber", "class_a_s_t_node.html#aabf50a024fbd7b9d573531265a381071", null ],
+    [ "hashCodeComputed", "class_a_s_t_node.html#aeb4e870a451ffd8946dafd3094dadcd0", null ]
 ];

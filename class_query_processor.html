@@ -46,7 +46,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,7 +93,7 @@ $(document).ready(function(){initNavTree('class_query_processor.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -106,6 +105,7 @@ $(document).ready(function(){initNavTree('class_query_processor.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_query_processor-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">QueryProcessor Class Reference</div>  </div>
@@ -117,6 +117,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a59f58877a638d0f331b9b87ed8edf8ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59f58877a638d0f331b9b87ed8edf8ce"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> (string, list&lt; string &gt; &amp;)</td></tr>
 <tr class="separator:a59f58877a638d0f331b9b87ed8edf8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac58376167e1560db751359a7747198fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac58376167e1560db751359a7747198fb"></a>
+<a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>qPre</b></td></tr>
+<tr class="separator:ac58376167e1560db751359a7747198fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dc121bbd7bbc25c2c2d37a25c6cd07a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3dc121bbd7bbc25c2c2d37a25c6cd07a"></a>
+<a class="el" href="class_query_evaluator.html">QueryEvaluator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>qEval</b></td></tr>
+<tr class="separator:a3dc121bbd7bbc25c2c2d37a25c6cd07a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_query_processor_8h_source.html">QueryProcessor.h</a></li>
@@ -128,7 +137,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> (string,
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_query_processor.html">QueryProcessor</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:02:06 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
