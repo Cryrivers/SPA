@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_query_preprocessor.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,25 +111,156 @@ $(document).ready(function(){initNavTree('class_query_preprocessor.html','');});
 <div class="title">QueryPreprocessor Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Parse in PQL query and build query tree.  
+ <a href="class_query_preprocessor.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_query_pre_processor_8h_source.html">QueryPreProcessor.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aee9b5aff1691bf42df24723183a88199"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee9b5aff1691bf42df24723183a88199"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>parse</b> (string input)</td></tr>
+<tr class="memitem:a50e8467985e1b2d7fe63f8a874059b91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a50e8467985e1b2d7fe63f8a874059b91">QueryPreprocessor</a> (void)</td></tr>
+<tr class="memdesc:a50e8467985e1b2d7fe63f8a874059b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a50e8467985e1b2d7fe63f8a874059b91">More...</a><br/></td></tr>
+<tr class="separator:a50e8467985e1b2d7fe63f8a874059b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a584d45b3837240e0ba96f1c7320ce7c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a584d45b3837240e0ba96f1c7320ce7c7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a584d45b3837240e0ba96f1c7320ce7c7">~QueryPreprocessor</a> (void)</td></tr>
+<tr class="memdesc:a584d45b3837240e0ba96f1c7320ce7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
+<tr class="separator:a584d45b3837240e0ba96f1c7320ce7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee9b5aff1691bf42df24723183a88199"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199">parse</a> (string input)</td></tr>
 <tr class="separator:aee9b5aff1691bf42df24723183a88199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7830244371263b6ee30610d72b61e187"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7830244371263b6ee30610d72b61e187"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getTargetVariable</b> ()</td></tr>
-<tr class="separator:a7830244371263b6ee30610d72b61e187"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae35e13ad9c4bb05baa61e48a9f179e21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae35e13ad9c4bb05baa61e48a9f179e21"></a>
-vector&lt; <a class="el" href="class_query__variable.html">Query_variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getQueryVariableTable</b> ()</td></tr>
-<tr class="separator:ae35e13ad9c4bb05baa61e48a9f179e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb1bab398625e4183fa53ce99f275e65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb1bab398625e4183fa53ce99f275e65"></a>
-vector&lt; <a class="el" href="class_query__clause.html">Query_clause</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getQueryClauseTable</b> ()</td></tr>
-<tr class="separator:acb1bab398625e4183fa53ce99f275e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9cdc33dce820f20f00a8b20509b1b3f"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#ab9cdc33dce820f20f00a8b20509b1b3f">getQueryVariableTable</a> ()</td></tr>
+<tr class="separator:ab9cdc33dce820f20f00a8b20509b1b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a784bf47aa8f9e9d0c318e82c8900135e"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_target.html">QueryTarget</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a784bf47aa8f9e9d0c318e82c8900135e">getQueryTargetTable</a> ()</td></tr>
+<tr class="separator:a784bf47aa8f9e9d0c318e82c8900135e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66dbc91ccf7b9506316af857234a685b"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a66dbc91ccf7b9506316af857234a685b">getQueryClauseTable</a> ()</td></tr>
+<tr class="separator:a66dbc91ccf7b9506316af857234a685b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Parse in PQL query and build query tree. </p>
+<p>Used to parse in PQL query <br/>
+<br/>
+ Workflow: <br/>
+</p>
+<ol type="1">
+<li>parse the query <br/>
+</li>
+<li>build query tree in table format <br/>
+</li>
+<li>validate the query <br/>
+</li>
+<li>make optimisation for fast performance <br/>
+</li>
+<li>set dependancy for query variables <br/>
+ <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_query_validator.html" title="Valifate query elements according to PQL.">QueryValidator</a> </dd>
+<dd>
+<a class="el" href="class_query_processor.html">QueryProcessor</a> </dd>
+<dd>
+<a class="el" href="class_p_k_b_controller.html">PKBController</a> </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Zhang Haoqiang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>30.01.2012 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.00 </dd></dl>
+</li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a50e8467985e1b2d7fe63f8a874059b91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QueryPreprocessor::QueryPreprocessor </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="_query_pre_processor_8h.html" title="Header file for query preprocessor.">QueryPreprocessor.h</a></dd></dl>
+<p>Set up dictionary </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a66dbc91ccf7b9506316af857234a685b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt; QueryPreprocessor::getQueryClauseTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getter for queryClaTable </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>confirm is it better to pass by pointer? </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a784bf47aa8f9e9d0c318e82c8900135e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_query_target.html">QueryTarget</a> &gt; QueryPreprocessor::getQueryTargetTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getter for queryTarTable </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>confirm is it better to pass by pointer? </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab9cdc33dce820f20f00a8b20509b1b3f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt; QueryPreprocessor::getQueryVariableTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getter for queryVarTable </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>confirm is it better to pass by pointer? </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aee9b5aff1691bf42df24723183a88199"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QueryPreprocessor::parse </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>query</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>string free format, can be anything </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>comfirm the return type of BOOLEAN </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 suceed definitly success 1 false if the boolean needs to return false instead of none -1 error just not pass the validation </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>SPA/<a class="el" href="_query_pre_processor_8h_source.html">QueryPreProcessor.h</a></li>
-<li>SPA/QueryPreProcessor.cpp</li>
+<li>SPA/SPA/<a class="el" href="_query_pre_processor_8h_source.html">QueryPreProcessor.h</a></li>
+<li>SPA/SPA/<a class="el" href="_query_pre_processor_8cpp.html">QueryPreProcessor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -136,7 +268,7 @@ vector&lt; <a class="el" href="class_query__clause.html">Query_clause</a> &gt;&#
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 18:34:11 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:02:06 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

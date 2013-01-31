@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -80,6 +81,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="#index_a"><span>a</span></a></li>
+      <li><a href="#index_c"><span>c</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_q"><span>q</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_0x7e"><span>~</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -100,7 +114,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,7 +124,9 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </div>
 
 <div class="contents">
-&#160;<ul>
+&#160;
+
+<h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
 <li>addChild()
 : <a class="el" href="class_a_s_t_node.html#ac8750b89a9f5e76c550f7cc878a68712">ASTNode</a>
 </li>
@@ -120,6 +136,10 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>appendHashcode()
 : <a class="el" href="class_a_s_t_node.html#a7acec727b648b033037096f0f353626e">ASTNode</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>calculateHashcode()
 : <a class="el" href="class_a_s_t.html#aaebedffee7d5ee9c043fc1c31ec6c0d7">AST</a>
 </li>
@@ -135,6 +155,10 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>createSibling()
 : <a class="el" href="class_a_s_t_node.html#a0d91c8d5c9c70f35fa4531771917f528">ASTNode</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
 <li>getChildren()
 : <a class="el" href="class_a_s_t_node.html#ac132be149375fbdc3e87b522ad4301f7">ASTNode</a>
 </li>
@@ -147,6 +171,15 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>getNodeValue()
 : <a class="el" href="class_a_s_t_node.html#ac553a005168caf9703e05a181df61529">ASTNode</a>
 </li>
+<li>getQueryClauseTable()
+: <a class="el" href="class_query_preprocessor.html#a66dbc91ccf7b9506316af857234a685b">QueryPreprocessor</a>
+</li>
+<li>getQueryTargetTable()
+: <a class="el" href="class_query_preprocessor.html#a784bf47aa8f9e9d0c318e82c8900135e">QueryPreprocessor</a>
+</li>
+<li>getQueryVariableTable()
+: <a class="el" href="class_query_preprocessor.html#ab9cdc33dce820f20f00a8b20509b1b3f">QueryPreprocessor</a>
+</li>
 <li>getRoot()
 : <a class="el" href="class_a_s_t.html#acc1a0efce9b143a98fc3b9f7d6caeac1">AST</a>
 </li>
@@ -156,18 +189,87 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>getStmtNumber()
 : <a class="el" href="class_a_s_t_node.html#afb6e377ad7a66b3a847283274c956ce4">ASTNode</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>isAttrRef()
+: <a class="el" href="class_query_validator.html#a209d8bdf73afb7cc47524d0c6ed67d7d">QueryValidator</a>
+</li>
+<li>isDigit()
+: <a class="el" href="class_query_validator.html#a02b3aca4fd564ea07d9f0b651c62eef4">QueryValidator</a>
+</li>
+<li>isElem()
+: <a class="el" href="class_query_validator.html#a16f19f739c0eae7636ee05b138df05a7">QueryValidator</a>
+</li>
+<li>isEntRef()
+: <a class="el" href="class_query_validator.html#ae2013e77f9084cf95d2ef3fa9a2e2e3a">QueryValidator</a>
+</li>
+<li>isExprSpec()
+: <a class="el" href="class_query_validator.html#a06706200349bddf2d97502a1446913fe">QueryValidator</a>
+</li>
 <li>isHashcodeComputed()
 : <a class="el" href="class_a_s_t_node.html#a621195a3f784447cb2ba3f47da81ab05">ASTNode</a>
 </li>
+<li>isIndent()
+: <a class="el" href="class_query_validator.html#a6fd95a27146673bffb9303f053110971">QueryValidator</a>
+</li>
+<li>isInteger()
+: <a class="el" href="class_query_validator.html#a76e03097047ff0278c875113b7e97ef4">QueryValidator</a>
+</li>
+<li>isLetter()
+: <a class="el" href="class_query_validator.html#a4e022d85107d74e26e7ae6254d3fe08a">QueryValidator</a>
+</li>
+<li>isLineRef()
+: <a class="el" href="class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4">QueryValidator</a>
+</li>
+<li>isRef()
+: <a class="el" href="class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1">QueryValidator</a>
+</li>
+<li>isRefpl()
+: <a class="el" href="class_query_validator.html#a15e17874cc766ead8630a791e21a913d">QueryValidator</a>
+</li>
+<li>isStmtRef()
+: <a class="el" href="class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e">QueryValidator</a>
+</li>
+<li>isSynonym()
+: <a class="el" href="class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435">QueryValidator</a>
+</li>
+<li>isVarRef()
+: <a class="el" href="class_query_validator.html#a7511f7d7905ce02d91ac6ccbd76511e4">QueryValidator</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
 <li>markHashcodeComputed()
 : <a class="el" href="class_a_s_t_node.html#a62988be21c3da9e0b01652624dc3c504">ASTNode</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>parse()
 : <a class="el" href="class_parser.html#a47e4377402ad1398757c68ed2f92f4d8">Parser</a>
+, <a class="el" href="class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199">QueryPreprocessor</a>
 </li>
 <li>Parser()
 : <a class="el" href="class_parser.html#a167a551127b86054e7382d9d563d869c">Parser</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_q"></a>- q -</h3><ul>
+<li>QueryPreprocessor()
+: <a class="el" href="class_query_preprocessor.html#a50e8467985e1b2d7fe63f8a874059b91">QueryPreprocessor</a>
+</li>
+<li>QueryValidator()
+: <a class="el" href="class_query_validator.html#a7a7ba081ec3076874a45a673c35a724c">QueryValidator</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>setNodeType()
 : <a class="el" href="class_a_s_t_node.html#abc7ea24000fa4c9108d98d8361af06d4">ASTNode</a>
 </li>
@@ -178,12 +280,22 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 : <a class="el" href="class_a_s_t_node.html#a170a3a5f48a2a0a1b12f81e77289c117">ASTNode</a>
 </li>
 </ul>
+
+
+<h3><a class="anchor" id="index_0x7e"></a>- ~ -</h3><ul>
+<li>~QueryPreprocessor()
+: <a class="el" href="class_query_preprocessor.html#a584d45b3837240e0ba96f1c7320ce7c7">QueryPreprocessor</a>
+</li>
+<li>~QueryValidator()
+: <a class="el" href="class_query_validator.html#aafd321661d5a63c2630f44b5eb006f24">QueryValidator</a>
+</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jan 31 2013 18:34:11 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:02:06 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

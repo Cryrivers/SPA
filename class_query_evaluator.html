@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_query_evaluator.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -114,12 +115,12 @@ $(document).ready(function(){initNavTree('class_query_evaluator.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4303d1f2905c58abff801feca5c5ca7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4303d1f2905c58abff801feca5c5ca7b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> (vector&lt; <a class="el" href="class_query__clause.html">Query_clause</a> &gt;, vector&lt; <a class="el" href="class_query__variable.html">Query_variable</a> &gt;, int, list&lt; string &gt; &amp;)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> (vector&lt; Query_clause &gt;, vector&lt; Query_variable &gt;, int, list&lt; string &gt; &amp;)</td></tr>
 <tr class="separator:a4303d1f2905c58abff801feca5c5ca7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>SPA/<a class="el" href="_query_evaluator_8h_source.html">QueryEvaluator.h</a></li>
-<li>SPA/QueryEvaluator.cpp</li>
+<li>SPA/SPA/<a class="el" href="_query_evaluator_8h_source.html">QueryEvaluator.h</a></li>
+<li>SPA/SPA/QueryEvaluator.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -127,7 +128,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> (vector&
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 18:34:11 for SPA by
+    <li class="footer">Generated on Thu Jan 31 2013 21:02:06 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
