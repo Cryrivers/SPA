@@ -87,9 +87,6 @@
     <ClInclude Include="Utility.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="QueryPreProcessor.h">
-      <Filter>Header Files\Query Processor</Filter>
-    </ClInclude>
     <ClInclude Include="QueryProcessor.h">
       <Filter>Header Files\Query Processor</Filter>
     </ClInclude>
@@ -107,6 +104,15 @@
     </ClInclude>
     <ClInclude Include="UsesP.h">
       <Filter>Header Files\PKB</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryDataType.h">
+      <Filter>Header Files\Query Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryPreProcessor.h">
+      <Filter>Header Files\Query Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryValidator.h">
+      <Filter>Header Files\Query Processor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -149,9 +155,6 @@
     <ClCompile Include="Utility.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
-    <ClCompile Include="QueryPreProcessor.cpp">
-      <Filter>Source Files\Query Processor</Filter>
-    </ClCompile>
     <ClCompile Include="QueryProcessor.cpp">
       <Filter>Source Files\Query Processor</Filter>
     </ClCompile>
@@ -169,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="CallTable.cpp">
       <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryPreProcessor.cpp">
+      <Filter>Source Files\Query Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryValidator.cpp">
+      <Filter>Source Files\Query Processor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

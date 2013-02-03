@@ -84,9 +84,11 @@
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PKBController.h" />
     <ClInclude Include="ProcTable.h" />
+    <ClInclude Include="QueryDataType.h" />
     <ClInclude Include="QueryEvaluator.h" />
     <ClInclude Include="QueryPreProcessor.h" />
     <ClInclude Include="QueryProcessor.h" />
+    <ClInclude Include="QueryValidator.h" />
     <ClInclude Include="SPAType.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -110,6 +112,7 @@
     <ClCompile Include="QueryEvaluator.cpp" />
     <ClCompile Include="QueryPreProcessor.cpp" />
     <ClCompile Include="QueryProcessor.cpp" />
+    <ClCompile Include="QueryValidator.cpp" />
     <ClCompile Include="SPA.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

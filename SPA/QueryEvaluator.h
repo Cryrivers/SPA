@@ -16,13 +16,13 @@ using namespace std;
 class QueryEvaluator
 {
 	PKBController* pkb;
-	vector<Query_clause> qClauseList;
-	vector<Query_variable> qVariableList;
+	vector<QueryClause> qClauseList;
+	vector<QueryVariable> qVariableList;
 	map<int, vector<int>> dependencymap;
 	
 	bool optimise();
 	bool evaluateQuery();
-	bool evaluateClause(Query_clause);
+	bool evaluateClause(QueryClause);
 	
 	bool getVectors(vector<int>*, vector<int>*, int, int, int*);
 	bool getOtherVector(vector<int>*, int, int*, vector<int>*);
@@ -38,7 +38,7 @@ public:
 	QueryEvaluator(void);
 	~QueryEvaluator(void);
 	
-	bool evaluate(vector<Query_clause>, vector<Query_variable>, int, list<string>&);
+	bool evaluate(vector<QueryClause>, vector<QueryVariable>, int, list<string>&);
 };
 
 #endif

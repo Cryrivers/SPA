@@ -1,66 +1,85 @@
 #pragma once
-
 #ifndef QUERYPREPROCESSOR_H
+/**
+ * include guards\n
+ * Explain in wiki: 
+ * <a href="http://en.wikipedia.org/wiki/Include%5Fguard">link</a>
+ */
 #define QUERYPREPROCESSOR_H
-
+#define DICCLAUSESIZE 4			/**< contain: "such that", "and", "pattern", "with"*/
+#define DICDESIGNENTITYSIZE 10	/**< contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
+#define DICRELATIONREFSIZE 12	/**< contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls"*/
+#define DICATTRIBUTESIZE 5		/**< contain: "procName", "varName", "value", "stmt#", "prog_line#", "procName"*/
+#include "stdafx.h"
 #include "PKBController.h"
-#include <iostream>
-#include <string>
-#include <vector>
-#define MAX_VAR 10
-#define MAX_SUB 10
-
-using namespace std;
-
-class Query_variable{
-public:
-	enum queryVariableType{
-		QV_VARIABLE,	//0
-		QV_STMT,		//1
-		QV_ASSIGN,		//2
-		QV_WHILE,		//3
-		QV_STMT_NUMBER,	//4
-		QV_CONSTANT,	//5
-		QV_BOOLEAN,		//6
-		QV_UNDERSCORE,	//7
-		QV_CONSTANTVAR	//8
-	};
-	queryVariableType type; 
-	int dependency;
-	int countAppear;
-	string content;
-};
-
-class Query_clause{
-public:
-	enum queryClauseType{		
-		QC_PARENT,		//0
-		QC_PARENTT,		//1
-		QC_FOLLOWS,		//2
-		QC_FOLLOWST,	//3
-		QC_PATTERN,		//4
-		QC_MODIFIES,	//5
-		QC_USES			//6
-	};
-	queryClauseType relation;
-	int index;
-	int variable1;
-	int variable2;
-	string variable3; 
-};
-
-
-class QueryPreprocessor{ 
+/********************************************//**
+ * @file QueryPreprocessor.h
+ * @brief Header file for query preprocessor
+ * @author Zhang Haoqiang
+ * @date 30.01.2012
+ * @version 2.01
+ ***********************************************/
+#include "QueryValidator.h"
+/********************************************//**
+ * @brief Parse in PQL query and build query tree 
+ * @class  QueryPreprocessor
+ * @details Used to parse in PQL query \n\n
+ * Workflow: \n
+ * 1. parse the query \n
+ * 2. build query tree in table format \n
+ * 3. validate the query \n
+ * 4. make optimisation for fast performance \n
+ * 5. set dependancy for query variables \n
+ * @see QueryValidator
+ * @see QueryProcessor
+ * @see PKBController
+ * @author Zhang Haoqiang
+ * @date 30.01.2012
+ * @version 1.00
+ ***********************************************/
+class QueryPreprocessor{  
+private:
+	/**@brief Used for merge same query variables. @see setupClaTable*/
+	int mergeFlag;		
+	/**@brief  contain: "such that", "and", "pattern", "with"*/ 
+	string dicClause[DICCLAUSESIZE];		
+	/**@brief  contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
+	string dicDesignEntity[DICDESIGNENTITYSIZE];	
+	/**@brief  contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls"*/
+	string dicRelationRef[DICRELATIONREFSIZE];		
+	/**@brief  contain: "procName", "varName", "value", "stmt#", "prog_line#", "procName"*/
+	string dicAttribute[DICATTRIBUTESIZE];			
+	/**@brief  Provaide validate functions*/
+	QueryValidator qv;	
+	/**@brief  Used for getting indexes from pkb*/
+	PKBController* pkb;
+	vector<QueryVariable> queryVarTable;	/**< @see QueryVariable*/
+	vector<QueryTarget>   queryTarTable;	/**< @see QueryTarget*/
+	vector<QueryClause>   queryClaTable;	/**< @see QueryClause*/
+	int getIndexOfFirstFrom (string b, string a[], int size);
+	int getIndexOfNextFrom (string b, string a[], int size);
+	int findNextIndexFrom (string b, string a[], int size);
+	void trim (string &str, char del);
+	void trim_all (string &str);
+	vector<string> getDeclares (string &str); 
+	vector<string> getTargets (string &str);
+	vector<string> getClauses (string &str);
+	vector<string> extractRelation (string str); 
+	Type getAttributeOfVariable (int a, int b);
+	int getIndexFromVarTable (string str, int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
+	bool setupVarTable (vector<string> declares);
+	bool setupTarTable (vector<string> tarTable);
+	bool setupClaTable (vector<string> claTable); 
+	bool setDependency ();
 public:
 	//constructor
 	QueryPreprocessor(void);
 	~QueryPreprocessor(void);
 	//parser 
 	int parse(string input);
-	//returned results
-	int getTargetVariable();
-	vector<Query_variable> getQueryVariableTable();
-	vector<Query_clause> getQueryClauseTable(); 
+	//results
+	vector<QueryVariable> getQueryVariableTable();
+	vector<QueryTarget>   getQueryTargetTable();
+	vector<QueryClause>   getQueryClauseTable(); 
 };
-
 #endif
