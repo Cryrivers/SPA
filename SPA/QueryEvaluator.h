@@ -18,19 +18,21 @@ class QueryEvaluator
 	PKBController* pkb;
 	vector<QueryClause> qClauseList;
 	vector<QueryVariable> qVariableList;
-	map<int, vector<int>> dependencymap;
+	vector<QueryTarget> qTargetList;
+	map<int, map<int, vector<int>>> dependencymap;
 	
-	bool optimise();
 	bool evaluateQuery();
 	bool evaluateClause(QueryClause);
-	
+	bool evaluateRelationClause(QueryClause);
+	bool evaluateWithClause(QueryClause);
+
 	bool getVectors(vector<int>*, vector<int>*, int, int, int*);
-	bool getOtherVector(vector<int>*, int, int*, vector<int>*);
 	bool getVector(vector<int>*, int, int*);
 	bool intersect(vector<int>*, vector<int>*, int, int, int);
-	bool intersectDependencyMap(vector<int>*, int);
+	bool intersectDependencyMap(int, int, vector<int>*);
+	bool intersectDependencyMapPair(int, int, vector<int>*, int, vector<int>*);
 	bool cartesianProduct(vector<int>*, vector<int>*);
-	bool getResult(list<string>&, int);
+	bool getResult(list<string>&);
 
 	vector<int> removeDuplicates(vector<int>);
 
@@ -38,7 +40,7 @@ public:
 	QueryEvaluator(void);
 	~QueryEvaluator(void);
 	
-	bool evaluate(vector<QueryClause>, vector<QueryVariable>, int, list<string>&);
+	bool evaluate(vector<QueryClause>, vector<QueryVariable>, vector<QueryTarget>, list<string>&);
 };
 
 #endif

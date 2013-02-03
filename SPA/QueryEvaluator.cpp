@@ -1,3 +1,9 @@
+/**
+ * \file	QueryEvaluator.cpp
+ * \class	QueryEvaluator
+ * \brief	Evaluates PQL query given a query tree
+ * \author	Ong Zhen Ming
+ */
 #include "stdafx.h"
 #include "QueryEvaluator.h"
 
@@ -11,11 +17,21 @@ QueryEvaluator::~QueryEvaluator(void)
 {
 }
 
-bool QueryEvaluator::evaluate(vector<Query_clause> qcl, vector<Query_variable> qvl, int tv, list<string>& r)
+/**
+ * \fn		QueryEvaluator::evaluate(vector<QueryClause> qcl, vector<QueryVariable> qvl, vector<QueryTarget> qtl, list<string>& r)
+ * \brief	Public method to call for evaluating query 
+ * \param [in]	qcl: list of query clause; 
+ *				qvl: list of query variables; 
+ *				qtl: list of query target.
+ * \param [out]	r: results are stored in this list.
+ * \return 	TRUE if query evaluation is successful, FALSE otherwise
+ */
+bool QueryEvaluator::evaluate(vector<QueryClause> qcl, vector<QueryVariable> qvl, vector<QueryTarget> qtl, list<string>& r)
 {
 	// prepare new query, initialise data members 
 	qClauseList = qcl;
 	qVariableList = qvl;
+	qTargetList = qtl;
 	dependencymap.clear();
 
 	//optimise();
@@ -23,20 +39,27 @@ bool QueryEvaluator::evaluate(vector<Query_clause> qcl, vector<Query_variable> q
 	if (!evaluateQuery()) 
 		return false; // at least one query clause failed
 
-	if (!getResult(r, tv))
+	if (!getResult(r))
 		return false; // result is empty
 
 	return true;
 }
 
+/*
 bool QueryEvaluator::optimise()
 {
 	return true;
-}	
+}
+*/	
 
+/**
+ * \fn		QueryEvaluator::evaluateQuery()
+ * \brief	Evaluates query by querying clauses one at a time  
+ * \return 	TRUE if evaluation is successful, FALSE otherwise
+ */
 bool QueryEvaluator::evaluateQuery() 
 {
-	for (vector<Query_clause>::iterator it = qClauseList.begin(); it != qClauseList.end(); ++it) {
+	for (vector<QueryClause>::iterator it = qClauseList.begin(); it != qClauseList.end(); ++it) {
 		if (!evaluateClause(*it)) {
 			return false; // query clause evaluated to false
 		}
@@ -44,7 +67,42 @@ bool QueryEvaluator::evaluateQuery()
 	return true;
 }
 
-bool QueryEvaluator::evaluateClause(Query_clause qc) {
+/**
+ * \fn		QueryEvaluator::evaluateClause(QueryClause qc)
+ * \brief	Evaluates a given query clause  
+ * \param [in]	qc: query clause. 
+ * \return 	TRUE if evaluation is successful, FALSE otherwise
+ */
+bool QueryEvaluator::evaluateClause(QueryClause qc) {
+	
+	switch (qc.relationType) {
+		
+		case CT_WITH:
+			
+			if (!evaluateWithClause(qc)) {
+				return false; // query clause evaluated to false
+			}
+			break;
+
+		default:
+
+			if (!evaluateRelationClause(qc)) {
+				return false; // query clause evaluated to false
+			}
+			break;
+	}
+
+	return true;
+
+}
+
+/**
+ * \fn		QueryEvaluator::evaluateRelationClause(QueryClause qc)
+ * \brief	Evaluates a given relation query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, UsesS, Pattern.  
+ * \param [in]	qc: query clause. 
+ * \return 	TRUE if evaluation is successful, FALSE otherwise
+ */
+bool QueryEvaluator::evaluateRelationClause(QueryClause qc) {
 
 	vector<int> vectorA, vectorB;
 	int arg;
@@ -52,45 +110,45 @@ bool QueryEvaluator::evaluateClause(Query_clause qc) {
 	if (!getVectors(&vectorA, &vectorB, qc.variable1, qc.variable2, &arg))
 		return false; // unable to get vectors
 
-	switch (qc.relation) {
+	switch (qc.relationType) {
 
-		case Query_clause::QC_PARENT:
+		case RT_PARENT:
 			
 			if (!pkb->parent(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
-		case Query_clause::QC_FOLLOWS:
-			
-			if (!pkb->follows(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-		case Query_clause::QC_MODIFIES:
-			
-			if (!pkb->modifies(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-		
-		case Query_clause::QC_USES:
-			
-			if (!pkb->uses(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-		
-		case Query_clause::QC_PARENTT:
+		case RT_PARENTT:
 
 			if (!pkb->parentStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
-		case Query_clause::QC_FOLLOWST:
+		case RT_FOLLOWS:
+			
+			if (!pkb->follows(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+		case RT_FOLLOWST:
 
 			if (!pkb->followsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
-		case Query_clause::QC_PATTERN:
+		case RT_MODIFIESS:
+			
+			if (!pkb->modifies(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+		
+		case RT_USESS:
+			
+			if (!pkb->uses(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+		
+		case CT_PATTERN:
 			
 			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, arg))
 				return false; // can't find relation
@@ -103,34 +161,134 @@ bool QueryEvaluator::evaluateClause(Query_clause qc) {
 	return true;
 }
 
+/**
+ * \fn		QueryEvaluator::evaluateWithClause(QueryClause qc)
+ * \brief	Evaluates a given with query clause  
+ * \param [in]	qc: query clause, qc is of type CT_WITH. 
+ * \return 	TRUE if evaluation is successful, FALSE otherwise
+ */
+bool QueryEvaluator::evaluateWithClause(QueryClause qc) {
+	
+	vector<int> vectorA, vectorB;
+	int arg;
+
+	if (!getVectors(&vectorA, &vectorB, qc.variable1, qc.variable2, &arg))
+		return false; // unable to get vectors
+
+	// Case 1: call.procName = constant
+	if (qc.attribute1 == AT_CALL_PROC_NAME && qc.attribute2 == AT_PROCTABLEINDEX) {	
+		if (!pkb->with(&vectorA, &vectorB, WITH_CALLPROCNAME, WITH_PROCNAME))
+			return false;	
+	}
+
+	// Case 2a: call.procname = proc.procname
+	if (qc.attribute1 == AT_CALL_PROC_NAME && qc.attribute2 == AT_PROC_NAME) {
+		if (!pkb->with(&vectorA, &vectorB, WITH_CALLPROCNAME, WITH_PROCNAME))
+			return false;
+	}
+
+	// Case 2b: proc.procname = call.procname
+	if (qc.attribute1 == AT_PROC_NAME && qc.attribute2 == AT_CALL_PROC_NAME) {
+		if (!pkb->with(&vectorA, &vectorB, WITH_PROCNAME, WITH_CALLPROCNAME))
+			return false;
+	}
+	
+	// Case 3a: call.procname = var.varname
+	if (qc.attribute1 == AT_CALL_PROC_NAME && qc.attribute2 == AT_VAR_NAME) {
+		if (!pkb->with(&vectorA, &vectorB, WITH_CALLPROCNAME, WITH_VARNAME))
+			return false;
+	}
+
+	// Case 3b: var.varname = call.procname
+	if (qc.attribute1 == AT_VAR_NAME && qc.attribute2 == AT_CALL_PROC_NAME) {
+		if (!pkb->with(&vectorA, &vectorB, WITH_VARNAME, WITH_CALLPROCNAME))
+			return false;
+	}
+	
+	// Case 4a: proc.procname = var.varname
+	if (qc.attribute1 == AT_PROC_NAME && qc.attribute2 == AT_VAR_NAME) {
+		if (!pkb->with(&vectorA, &vectorB, WITH_PROCNAME, WITH_VARNAME))
+			return false;
+	}
+
+	// Case 4b: var.varname = proc.procname
+	if (qc.attribute1 == AT_VAR_NAME && qc.attribute2 == AT_PROC_NAME) {
+		if (!pkb->with(&vectorA, &vectorB, WITH_VARNAME, WITH_PROCNAME))
+			return false;
+	}
+	
+	// Case 5a: stmt.stmt# = const.value
+	if (qc.attribute1 == AT_STMT_NUM && qc.attribute2 == AT_VALUE) {
+		if (!pkb->with(&vectorA, &vectorB, WITH_STMTNUMBER, WITH_VALUE))
+			return false;
+	}
+
+	// Case 5b: const.value = stmt.stmt# 
+	if (qc.attribute1 == AT_VALUE && qc.attribute2 == AT_STMT_NUM) {
+		if (!pkb->with(&vectorA, &vectorB, WITH_VALUE, WITH_STMTNUMBER))
+			return false;
+	}
+
+	if (intersect(&vectorA, &vectorB, qc.variable1, qc.variable2, arg))
+		return true; // intersection succeed
+	
+	return false;
+
+}
+
+/**
+ * \fn		QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int b, int *arg)
+ * \brief	Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses.  
+ * \param [in]	a: 1st query variable index;
+ *				b: 2nd query variable index.
+ * \param [out]	vecA: vector corresponding to a;
+ *				vecB: vector corresponding to b;
+ *				arg:  the dependency of a and b. 
+ * \return 	TRUE if vectors could be obtained, FALSE otherwise
+ */
 bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int b, int *arg) {
 	
-	int argA, argB;
+	int argA, argB, depA, depB;
 	
-	argA = dependencymap.count(a);
-	argB = dependencymap.count(b);
+	depA = qVariableList.at(a).dependency; 
+	depB = qVariableList.at(b).dependency;
+	argA = 0;
+	argB = 0;
+
+	// checks if a and b exists in dependency map
+	if (depA >= 0 && dependencymap.count(depA) == 1)
+		argA = dependencymap[depA].count(a);
+	if (depB >= 0 && dependencymap.count(depB) == 1)
+		argB = dependencymap[depB].count(b);
+
 	*arg = 2*argA + argB;
 
 	switch (*arg) {
 
 		case 3: // both a and b are found in dependency map
 			
-			*vecA = dependencymap[a]; // get vector a
-			*vecB = dependencymap[b]; // get vector b
+			*vecA = dependencymap[depA][a]; // get vector a
+			*vecB = dependencymap[depB][b]; // get vector b
+			
+			// no need for cartesian product as both must belong to the same dependency
 			return true;
 		
-		case 2: // a is found in dependency map
+		case 2: // only a is found in dependency map
 
-			*vecA = removeDuplicates(dependencymap[a]); // get vector a
-			if (!getOtherVector(vecB, b, &argB, vecA)) // get vector b, cartesian product performed if required 
+			*vecA = removeDuplicates(dependencymap[depA][a]); // get vector a
+			if (!getVector(vecB, b, &argB)) // get vector b 
+				return false;
+			if (argB == 1 && !vecB->empty() && !cartesianProduct(vecA, vecB)) // perform cartesian product if vecB is dependent and not empty
 				return false;
 			*arg += argB;
 			return true;
 
-		case 1: // b is found in dependency map
+		case 1: // only b is found in dependency map
 			
-			*vecB = removeDuplicates(dependencymap[b]); // get vector b
-			if (!getOtherVector(vecA, a, &argA, vecB)) // get vector a, cartesian product performed if required
+			*vecB = removeDuplicates(dependencymap[depB][b]); // get vector b
+			if (!getVector(vecA, a, &argA)) // get vector a
+				return false;
+			if (argA == 1 && !vecA->empty() && !cartesianProduct(vecA, vecB)) // perform cartesian product if vecA is dependent and not empty
 				return false;
 			*arg += 2*argA;
 			return true;
@@ -142,308 +300,576 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 			if (!getVector(vecB, b, &argB)) // get vector b
 				return false;
 			*arg = 2*argA + argB;
-			// if arg = 3 and vecA and vecB are both not empty, do cartesian product 
-			if (*arg == 3 && !vecA->empty() && !vecB->empty())
-				cartesianProduct(vecA, vecB);
+			// if arg = 3 (both dependent) and vecA and vecB are both not empty, do cartesian product 
+			if (*arg == 3 && !vecA->empty() && !vecB->empty() && !cartesianProduct(vecA, vecB))
+				return false;
 			return true;
 	
 	}
 
 }
-
-// fills up vector vec given query variable v.
-// v does not appear in dependency map
-// if v is dependent and not empty, perform cartesian product with vec2
-bool QueryEvaluator::getOtherVector(vector<int>* vec, int v, int *arg, vector<int>* vec2) {
+ 
+/**
+ * \fn		QueryEvaluator::getVectorsgetVector(vector<int>* vec, int v, int *arg)
+ * \brief	Fills up vector vec given query variable v. Currently, v does not appear in dependency map.  
+ * \param [in]	v: query variable index.
+ * \param [out]	vec: vector corresponding to v;
+ *				arg:  the dependency of v. 
+ * \return 	TRUE if vector could be obtained, FALSE otherwise
+ */
+ bool QueryEvaluator::getVector(vector<int>* vec, int v, int *arg) {
 	
-	Query_variable qv = qVariableList.at(v);
+	QueryVariable qv = qVariableList.at(v);
 
-	if (qv.dependency >= 0) {
-	// variable is dependent
-
-		switch (qv.type) {
+	switch (qv.variableType) {
 		
-			case Query_variable::QV_ASSIGN:
-				
-				if (!pkb->getAllAssignment(vec))
-					return false;
-				else if (!cartesianProduct(vec, vec2))
-					return false;
-				break;
-
-			case Query_variable::QV_WHILE:
-				
-				if (!pkb->getAllWhile(vec))
-					return false;
-				else if (!cartesianProduct(vec, vec2))
-					return false;
-				break;
-
-			case Query_variable::QV_STMT:
-			case Query_variable::QV_VARIABLE:
-				break;
-
-			// invalid cases??
-			case Query_variable::QV_STMT_NUMBER:
-			case Query_variable::QV_CONSTANTVAR:
-			case Query_variable::QV_UNDERSCORE:
-			case Query_variable::QV_CONSTANT:
-				break;
-		}
-
-		*arg = 1;
-	
-	} else {
-	// variable is independent
-
-		switch (qv.type) {
-		
-			case Query_variable::QV_ASSIGN:
-				
-				if (!pkb->getAllAssignment(vec))
-					return false;
-				break;
-
-			case Query_variable::QV_WHILE:
-				
-				if (!pkb->getAllWhile(vec))
-					return false;
-				break;
-
-			// vector is empty for the next 3 cases
-			case Query_variable::QV_STMT: 
-			case Query_variable::QV_VARIABLE:
-			case Query_variable::QV_UNDERSCORE: 
-				break;
+		case DT_ASSIGN: 	
 			
-			// adds the constant element to the vector
-			case Query_variable::QV_STMT_NUMBER:
-			case Query_variable::QV_CONSTANTVAR:
-				vec->push_back(stoi(qv.content));
-				break;
-
-			// invalid case??
-			case Query_variable::QV_CONSTANT:
-				break;
-		}
+			if (!pkb->getAllAssignment(vec))
+				return false;
+			break;
 		
-		*arg = 0;
-	
+		case DT_WHILE: 		
+			
+			if (!pkb->getAllWhile(vec))
+				return false;
+			break;
+		
+		case DT_IF:			
+		
+			if (!pkb->getAllIf(vec))
+				return false;
+			break;
+
+		case DT_CALL: 		
+
+			if (!pkb->getAllCall(vec))
+				return false;
+			break;
+		
+		case DT_CONSTANT:	
+			
+			if (!pkb->getAllConstant(vec))
+				return false;
+			break;
+
+		// no restriction on the following types, leave vector empty
+		case DT_STMT: 		
+		case DT_VARIABLE: 	
+		case DT_PROCEDURE:	
+		case DT_UNDERSCORE:		
+			break;
+			
+		// invalid types, should not appear in relations
+		case DT_STMTLST: 	
+		case DT_BOOLEAN:	
+			break;
+			
+		// Known Constants
+		case KT_STMT_NUM:			
+		case KT_KNOWN_VARIABLE,		
+		case KT_KNOWN_PROCEDURE,	
+			
+			vec->push_back(qv.content);
+			break;
+		
+		// invalid types, should not appear in relations
+		case KT_CONSTANT_INTEGER:		
+		case KT_CONSTANT_STRING:	
+			break;
+
 	}
+	
+	if (qv.dependency >= 0) 
+		*arg = 1;
+	else 
+		*arg = 0;
 
 	return true;
 
 }
 
-// fills up vector vec given query variable v.
-// v does not appear in dependency map
-bool QueryEvaluator::getVector(vector<int>* vec, int v, int* arg) {
-	
-	Query_variable qv = qVariableList.at(v);
-
-	if (qv.dependency >= 0) {
-	// variable is dependent
-
-		switch (qv.type) {
-		
-			case Query_variable::QV_ASSIGN:
-				
-				if (!pkb->getAllAssignment(vec))
-					return false;
-				break;
-
-			case Query_variable::QV_WHILE:
-				
-				if (!pkb->getAllWhile(vec))
-					return false;
-				break;
-
-			case Query_variable::QV_STMT:
-			case Query_variable::QV_VARIABLE:
-				break;
-
-			// invalid cases??
-			case Query_variable::QV_STMT_NUMBER:
-			case Query_variable::QV_CONSTANTVAR:
-			case Query_variable::QV_UNDERSCORE:
-			case Query_variable::QV_CONSTANT:
-				break;
-		}
-
-		*arg = 1;
-	
-	} else {
-	// variable is independent
-
-		switch (qv.type) {
-		
-			case Query_variable::QV_ASSIGN:
-				
-				if (!pkb->getAllAssignment(vec))
-					return false;
-				
-				break;
-
-			case Query_variable::QV_WHILE:
-				
-				if (!pkb->getAllWhile(vec))
-					return false;
-
-				break;
-
-			// vector is empty for the next 3 cases
-			case Query_variable::QV_STMT: 
-			case Query_variable::QV_VARIABLE:
-			case Query_variable::QV_UNDERSCORE: 
-				break;
-			
-			// adds the constant element to the vector
-			case Query_variable::QV_STMT_NUMBER:
-			case Query_variable::QV_CONSTANTVAR:
-				vec->push_back(stoi(qv.content));
-				break;
-
-			// invalid case??
-			case Query_variable::QV_CONSTANT:
-				break;
-		}
-		
-		*arg = 0;
-	
-	}
-
-	return true;
-
-}
-
+/**
+ * \fn		QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int b, int arg)
+ * \brief	Wrapper for performing intersection with the dependency map.  
+ * \param [in]	vecA: vector corresponding to a;
+ *				vecB: vector corresponding to b;
+ *				a: 1st query variable index;
+ *				b: 2nd query variable index;
+ *				arg:  the dependency of a and b. 
+ * \return 	TRUE if intersection is successful, FALSE otherwise
+ */
 bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int b, int arg) {
-// for only 2 clauses, at most 2 dependent variables, if size of map = 2, always correspondence
+	
+	int dep;
 
 	switch (arg) {
 		case 3: // store both vecA and vecB
 
-			// Since at most 2 dependent variables, do not need to do any intersection
-			dependencymap[a] = *vecA;
-			dependencymap[b] = *vecB;
+			dep = qVariableList.at(a).dependency; // a and b must be of the same dependency
+			
+			if (dependencymap.count(dep) == 1) { 
+			// dependency map already exists
+				
+				if (!intersectDependencyMapPair(dep, a, vecA, b, vecB))
+					return false; // intersection is empty set
+
+			} else { 
+			// dependency map is empty
+				
+				// store both vectors
+				dependencymap[dep][a] = *vecA;
+				dependencymap[dep][b] = *vecB;
+			
+			}
+			
+			break;
 
 		case 2: // store only vecA
 		
-			if (dependencymap.count(a) == 0) {
-			// no vecA in dependency map
+			dep = qVariableList.at(a).dependency;
+			
+			if (dependencymap.count(dep) == 1) { 
+			// dependency map already exists
 				
-				if (dependencymap.empty()) {
-				// current dependency map is empty
-					dependencymap[a] = *vecA; // store vecA
-				} else {
-				// dependency map is not empty
-				/***************************************************************
-				* IMPOSSIBLE CASE FOR 2 CLAUSES + SINGLE TARGET VARIABLE
-				* * * not empty => this is second clause, and first clause contains
-				* * * dependent x only (at most 2 dependent variables). 
-				* * * if x not in second clause, x is target variable 
-				* * * => a only appears once => a not dependent.
-				***************************************************************/
-				}
+				if (!intersectDependencyMap(dep, a, vecA))
+					return false; // intersection is empty set
 
-			} else {
-			// vecA already exists in dependency map
+			} else { 
+			// dependency map is empty
+				
+				// store vecA
+				dependencymap[dep][a] = *vecA;
 
-				if (dependencymap.size() == 1) {
-				// dependency map only contains key a
-					dependencymap[a] = *vecA; // replace it with new vecA
-				} else {
-				// dependency map contains other keys
-					// intersect vecA with dependencymap 
-					if (!intersectDependencyMap(vecA, a))
-						return false; // intersection is empty set			
-				}
 			}
+			
+			break;
 
 		case 1: // store only vecB
 			
-			if (dependencymap.count(b) == 0) {
-			// no vecB in dependency map
+			dep = qVariableList.at(b).dependency;
+			
+			if (dependencymap.count(dep) == 1) { 
+			// dependency map already exists
 				
-				if (dependencymap.empty()) {
-				// current dependency map is empty
-					dependencymap[b] = *vecB; // store vecB
-				} else {
-				// dependency map is not empty
-				/***************************************************************
-				* IMPOSSIBLE CASE FOR 2 CLAUSES + SINGLE TARGET VARIABLE
-				* * * not empty => this is second clause, and first clause contains
-				* * * dependent x only (at most 2 dependent variables). 
-				* * * if x not in second clause, x is target variable 
-				* * * => b only appears once => b not dependent.
-				***************************************************************/
-				}
+				if (!intersectDependencyMap(dep, b, vecB))
+					return false; // intersection is empty set
 
-			} else {
-			// vecB already exists in dependency map
+			} else { 
+			// dependency map is empty
+				
+				// store vecB
+				dependencymap[dep][b] = *vecB;
 
-				if (dependencymap.size() == 1) {
-				// dependency map only contains key b
-					dependencymap[b] = *vecB; // replace it with new vecB
-				} else {
-				// dependency map contains other keys
-					// intersect vecB with dependencymap 
-					if (!intersectDependencyMap(vecB, b))
-						return false; // intersection is empty set			
-				}
 			}
-
+			
 			break;
+			
 		case 0: // do not need to store
 			break;
 	}
+	
 	return true;
 }
 
-// map contains 2 keys, i, j (both with correspondence)
-// intersection of an existing variable in map, with new vector
-bool QueryEvaluator::intersectDependencyMap(vector<int>* vec, int v) {
+/**
+ * \fn		QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec)
+ * \brief	Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new. 
+ * \param [in]	dep: dependency of v;
+ *				v: query variable index;
+ *				vec: vector corresponding to v. 
+ * \return 	TRUE if intersection is successful, FALSE otherwise
+ */
+bool QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec) {
 	
-	int v2, size, index;
+	int size, index;
+	
+	if (dependencymap[dep].count(v) == 1) {
+	// variable already exists, remove rows from map
+	
+		size = dependencymap[dep][v].size();
+		index = 0;
+		
+		for (int i = 0; i < size; i++) {
+		
+			bool match = false;
+			int x = dependencymap[dep][v][index];
+		
+			for (int j = 0; j < vec->size(); j++) {
+				if (x == vec->at(j)) {
+				// intersection success
+					match = true;
+					index++;
+					break;
+				}
+			}
 
-	for (map<int, vector<int>>::iterator it = dependencymap.begin() ; it != dependencymap.end(); it++) {
-		if ((*it).first != v)
-			v2 = (*it).first;
-	}
-
-	size = dependencymap[v].size();
-	index = 0;
-		
-	for (int i = 0; i < size; i++) {
-		
-		bool match = false;
-		int x = dependencymap[v][index];
-		
-		for (int j = 0; j < vec->size(); j++) {
-			if (x == vec->at(j)) {
-			// intersection success
-				match = true;
-				index++;
-				break;
+			if (!match) {
+			// found no match, remove elements
+				for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin() + index);
+				}
 			}
 		}
 
-		if (!match) {
-		// found no match, remove elements
-			dependencymap[v].erase(dependencymap[v].begin() + index);
-			dependencymap[v2].erase(dependencymap[v2].begin() + index);
+		if (dependencymap[dep][v].empty()) // intersection is null
+			return false;
+
+	} else {
+	// variable is new, do cartesian product
+		
+		size = dependencymap[dep].begin()->second.size();
+			
+		for (int j = 0; j < vec->size(); j++) {
+			
+			int x = vec->at(j); 
+
+			for (int i = 0; i < size; i++) {
+				
+				dependencymap[dep][v].push_back(x);
+				
+				if (j != 0) { // do not push for first add
+					
+					for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+						if ((*it).first != v) // skip variable v
+							dependencymap[dep][(*it).first].push_back(dependencymap[dep][(*it).first][i]);
+					}
+		
+				}
+			}
 		}
-	
 	}
 	
-	if (dependencymap[v].empty()) // intersection is null
-		return false;
-	else
-		return true;
+	return true;
 
 }
 
-// perform cartesian product of 2 vectors
-bool QueryEvaluator::cartesianProduct(vector<int>* vec1, vector<int>* vec2) {
+/**
+ * \fn		QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vecA, int b, vector<int>* vecB)
+ * \brief	Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables either already exist or are new. 
+ * \param [in]	dep: dependency of a and b;
+ *				a: 1st query variable index;
+ *				vecA: vector corresponding to a;
+ *				b: 2nd query variable index;
+ *				vecB: vector corresponding to b. 
+ * \return 	TRUE if intersection is successful, FALSE otherwise
+ */
+bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vecA, int b, vector<int>* vecB) {
+	
+	int size, index;
+	
+	if (dependencymap[dep].count(a) == 1 && dependencymap[dep].count(b) == 1) {
+	// both variable already exists, remove rows from map
+	
+		size = dependencymap[dep][a].size();
+		index = 0;
+		
+		for (int i = 0; i < size; i++) {
+		
+			bool match = false;
+			int x = dependencymap[dep][a][index];
+			int y = dependencymap[dep][b][index];
+		
+			for (int j = 0; j < vecA->size(); j++) {
+				if (x == vecA->at(j) && y == vecB->at(j)) {
+				// intersection success
+					match = true;
+					index++;
+					break;
+				}
+			}
+
+			if (!match) {
+			// found no match, remove elements
+				for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin() + index);
+				}
+			}
+		}
+
+		if (dependencymap[dep][a].empty()) // intersection is null
+			return false;
+
+	} else if (dependencymap[dep].count(a) == 1) {
+	// variable a exists in map
+		
+		size = dependencymap[dep][a].size();
+		
+		for (int i = 0; i < size; i++) {
+		
+			bool match = false;
+			int x = dependencymap[dep][a][0];
+			vector<int> y;
+		
+			for (int j = 0; j < vecA->size(); j++) {
+				if (x == vecA->at(j)) {
+				// intersection success
+					match = true;
+					y.push_back(vecB->at(j));			
+				}
+			}
+
+			if (match) {
+			// match, duplicate first elements y.size times
+				
+				for (int k = 0; k < y.size(); k++) {
+					
+					for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+						if ((*it).first != b) // skip variable b
+							dependencymap[dep][(*it).first].push_back(dependencymap[dep][(*it).first][0]); //always push first element
+					}
+
+					dependencymap[dep][b].push_back(y[k]);
+				}
+			} 
+
+			// always remove first element at the end of each iteration
+			for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+				if ((*it).first != b) // skip variable b
+					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin());
+			}
+		}
+
+		if (dependencymap[dep][a].empty()) // intersection is null
+			return false;
+
+	} else if (dependencymap[dep].count(b) == 1) {
+	// variable b exists in map
+
+		size = dependencymap[dep][b].size();
+		
+		for (int i = 0; i < size; i++) {
+		
+			bool match = false;
+			int x = dependencymap[dep][b][0];
+			vector<int> y;
+		
+			for (int j = 0; j < vecB->size(); j++) {
+				if (x == vecB->at(j)) {
+				// intersection success
+					match = true;
+					y.push_back(vecA->at(j));			
+				}
+			}
+
+			if (match) {
+			// match, duplicate first elements y.size times
+				
+				for (int k = 0; k < y.size(); k++) {
+					
+					for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+						if ((*it).first != a) // skip variable a
+							dependencymap[dep][(*it).first].push_back(dependencymap[dep][(*it).first][0]); //always push first element
+					}
+
+					dependencymap[dep][a].push_back(y[k]);
+				}
+			} 
+
+			// always remove first element at the end of each iteration
+			for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+				if ((*it).first != a) // skip variable a
+					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin());
+			}
+		}
+
+		if (dependencymap[dep][b].empty()) // intersection is null
+			return false;
+	
+	} else {
+	// both variables are new, do cartesian product
+		
+		size = dependencymap[dep].begin()->second.size();
+			
+		for (int j = 0; j < vecA->size(); j++) {
+			
+			int x = vecA->at(j); 
+			int y = vecB->at(j); 
+
+			for (int i = 0; i < size; i++) {
+				
+				dependencymap[dep][a].push_back(x);
+				dependencymap[dep][b].push_back(y);
+				
+				if (j != 0) { // do not push for first add
+					
+					for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+						if ((*it).first != a && (*it).first != b) // skip variable a and b
+							dependencymap[dep][(*it).first].push_back(dependencymap[dep][(*it).first][i]);
+					}
+		
+				}
+			}
+		}
+	}
+	
+	return true;
+
+}
+
+/**
+ * \fn		QueryEvaluator::getResult(list<string>& result)
+ * \brief	Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable. 
+ * \param [out]	result: results are stored in this list, duplicates allowed. 
+ * \return 	TRUE if target list contain exactly 1 element, result obtained is not empty, FALSE otherwise
+ */
+ bool QueryEvaluator::getResult(list<string>& result) {
+	
+	if (qTargetList.size() == 1) {
+		
+		QueryVariable qv;
+		QueryTarget qt;
+		vector<int> vecI;
+		vector<string> vecS;
+		int v, dep;
+
+		qt = qTargetList.at(0);
+		v = qt.varIndex;
+		qv = qVariableList.at(v);
+		dep = qv.dependency;
+		
+		if (dep >= 0 && dependencymap[dep].count(v) == 1) {
+		// variable is in dependency map (dependent)
+
+			switch (qv.variableType) {
+				
+				case DT_VARIABLE: 	
+				// target is of type variable
+					
+					vecS = pkb->getAllVarName(dependencymap[dep][v]); 
+					for (int i = 0; i < vecS.size(); i++) {
+						result.push_back(vecS[i]);
+					}
+					break;
+
+				case DT_PROCEDURE:	
+				// target is of type procedure
+					
+					vecS = pkb->getAllProcName(dependencymap[dep][v]); 
+					for (int i = 0; i < vecS.size(); i++) {
+						result.push_back(vecS[i]);
+					}
+					break;
+
+				default:
+				// target is not of type variable or procedure
+					
+					for (vector<int>::iterator it = dependencymap[dep][v].begin(); it != dependencymap[dep][v].end(); ++it) {
+						result.push_back(to_string(static_cast<long long>(*it)));
+					}
+					break;
+					
+			}
+
+		} else {
+		// variable is not in dependency map (independent)
+		
+			switch (qv.variableType) {
+				
+				case DT_VARIABLE: 	
+				// target is of type variable
+					
+					vecS = pkb->getAllVarName();
+					for (int i = 0; i < vecS.size(); i++) {
+						result.push_back(vecS[i]);
+					}
+					break;
+
+				case DT_PROCEDURE:	
+				// target is of type procedure
+					
+					vecS = pkb->getAllProcName();
+					for (int i = 0; i < vecS.size(); i++) {
+						result.push_back(vecS[i]);
+					}
+					break;
+
+				case DT_BOOLEAN:	
+					
+					result.push_back("TRUE");
+					break;
+				
+				case DT_ASSIGN: 	
+			
+					if (!pkb->getAllAssignment(&vecI))
+						return false;
+					break;
+		
+				case DT_WHILE: 		
+			
+					if (!pkb->getAllWhile(&vecI))
+						return false;
+					break;
+		
+				case DT_IF:			
+		
+					if (!pkb->getAllIf(&vecI))
+						return false;
+					break;
+
+				case DT_CALL: 		
+
+					if (!pkb->getAllCall(&vecI))
+						return false;
+					break;
+		
+				case DT_CONSTANT:	
+			
+					if (!pkb->getAllConstant(&vecI))
+						return false;
+					break;
+
+				case DT_STMT: 		
+					
+					if (!pkb->getAllStmt(&vecI))
+						return false;
+					break;
+			
+				// Known Constants, to consider?
+				case KT_STMT_NUM:			
+				case KT_KNOWN_VARIABLE,		
+				case KT_KNOWN_PROCEDURE,	
+					break;
+		
+				// invalid types, should not appear in target
+				case DT_UNDERSCORE:		
+				case DT_STMTLST: 			
+				case KT_CONSTANT_INTEGER:		
+				case KT_CONSTANT_STRING:	
+					break;
+
+			}
+
+			switch (qv.variableType) {
+				
+				case DT_ASSIGN: 	
+				case DT_WHILE: 		
+				case DT_IF:			
+				case DT_CALL: 		
+				case DT_CONSTANT:	
+				case DT_STMT: 		
+					
+					for (int i = 0; i < vecI.size(); i++) 
+						result.push_back(to_string(static_cast<long long>(vecI[i])));
+					break;
+			}
+
+		}
+	
+	} else // size not 1, cant handle now
+		return false;
+	
+	return true;
+}
+
+/**
+ * \fn		QueryEvaluator::cartesianProduct(vector<int>* vec1, vector<int>* vec2)
+ * \brief	Perform cartesian product of 2 vectors. 
+ * \param 	vec1: 1st vector; 
+ *			vec2: 2nd vector. 
+ * \return 	TRUE if both vectors are not empty, FALSE otherwise
+ */
+ bool QueryEvaluator::cartesianProduct(vector<int>* vec1, vector<int>* vec2) {
 	vector<int> v1, v2; 
 	
 	if (vec1->empty() || vec2->empty()) 
@@ -467,87 +893,13 @@ bool QueryEvaluator::cartesianProduct(vector<int>* vec1, vector<int>* vec2) {
 	return true;
 }
 
-// autotester allows duplicate
-bool QueryEvaluator::getResult(list<string>& result, int v) {
-	
-	Query_variable qv;
-	vector<int> vecI;
-	vector<string> vecS;
-	
-	qv = qVariableList.at(v);
-
-	if (dependencymap.count(v) == 1) {
-	// variable is in dependency map (dependent)
-
-		if (qv.type == Query_variable::QV_VARIABLE) { 
-		// target is of type variable
-			vecS = pkb->getAllVarName(dependencymap[v]); 
-			for (int i = 0; i < vecS.size(); i++) {
-				result.push_back(vecS[i]);
-			}
-		}
-		else {
-		// target is not of type variable
-			for (vector<int>::iterator it = dependencymap[v].begin(); it != dependencymap[v].end(); ++it) {
-				result.push_back(to_string(static_cast<long long>(*it)));
-			}
-		}
-
-	} else {
-	// variable is not in dependency map (independent)
-		
-		if (qv.type == Query_variable::QV_VARIABLE) { 
-		// target is of type variable
-			vecS = pkb->getAllVarName();
-			for (int i = 0; i < vecS.size(); i++) {
-				result.push_back(vecS[i]);
-			}
-		}
-		else {
-		// target is not of type variable	
-			switch (qv.type) {
-		
-				case Query_variable::QV_ASSIGN:
-				
-					if (!pkb->getAllAssignment(&vecI))
-						return false;
-					break;
-
-				case Query_variable::QV_WHILE:
-				
-					if (!pkb->getAllWhile(&vecI))
-						return false;
-					break;
-
-				case Query_variable::QV_STMT:
-					
-					if (!pkb->getAllStmt(&vecI))
-						return false;
-					break;
-				
-				case Query_variable::QV_CONSTANT:
-
-					if (!pkb->getAllConstant(&vecI))
-						return false;
-					break;
-
-				// invalid cases??
-				case Query_variable::QV_VARIABLE:
-				case Query_variable::QV_STMT_NUMBER:
-				case Query_variable::QV_CONSTANTVAR:
-				case Query_variable::QV_UNDERSCORE:
-					break;
-			}
-
-			for (int i = 0; i < vecI.size(); i++) {
-				result.push_back(to_string(static_cast<long long>(vecI[i])));
-			}
-		}
-	}
-	return true;
-}
-
-vector<int> QueryEvaluator::removeDuplicates(vector<int> vec) {
+/**
+ * \fn		QueryEvaluator::removeDuplicates(vector<int> vec)
+ * \brief	Removes duplicate elements in vector. 
+ * \param [in] vec: vector to remove duplicates;  
+ * \return 	Vector that does not contain duplicate.
+ */
+ vector<int> QueryEvaluator::removeDuplicates(vector<int> vec) {
 	set<int> s(vec.begin(), vec.end());
 	return vector<int> (s.begin(), s.end());
 }
