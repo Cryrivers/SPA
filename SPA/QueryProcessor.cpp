@@ -9,6 +9,6 @@ QueryProcessor::~QueryProcessor(void){
 
 void QueryProcessor::evaluate(string query, list<string>& results){
 	if (qPre.parse(query) == 0) {
-		qEval.evaluate(qPre.getQueryClauseTable(), qPre.getQueryVariableTable(), qPre.getTargetVariable(), results);
+		qEval.evaluate(qPre.getQueryClauseTable(), qPre.getQueryVariableTable(), qPre.getQueryTargetTable(), results);
 	}
 }
