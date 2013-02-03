@@ -1,3 +1,9 @@
+/**
+ * \file	CallTable.cpp
+ * \class	CallTable
+ * \brief	Store all 'Calls' relations in the form (stmt, proc) where 'stmt' is a statement number and 'proc' is a procedure index. Provide funtions for query on this relation.
+ */
+
 #include "stdafx.h"
 #include "CallTable.h"
 
@@ -41,7 +47,17 @@ PROC_INDEX CallTable::getCallsSecond(STMT stmt)
 	return(-1);
 }
 
-
+/**
+ * \fn	void CallTable::addCall(STMT stmt, PROC_INDEX proc)
+ *
+ * \brief	Add a new 'Calls' relation in the form (stmt, proc) to CallTable where 'stmt' is a statement number and 'proc' is a procedure index. If the relation already exists, do nothing.
+ * 
+ *
+ * \param	stmt	The statement number of this call statement.
+ * \param	proc	The index of the procedure that is being called in the procedure table.
+ *
+ * \return	void.
+ */
 void CallTable::addCall(STMT stmt, PROC_INDEX proc)
 {
 	if (isCalls(stmt, proc)) {
@@ -53,7 +69,30 @@ void CallTable::addCall(STMT stmt, PROC_INDEX proc)
 	}
 }
 
-
+/**
+ * \fn	BOOLEAN CallTable::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
+ *
+ * \brief	A function for query on 'Calls' relations.
+ * 
+ * To handle a query in the form calls(List A, List B, arg).
+ * In Iteration 1, only part of this function is implemented, i.e. when arg is 0.
+ * Case 1: arg = 00 = 0
+ *  1a) Both lists are empty
+ *	Return TRUE if CallTable is not empty, FASLE otherwise.
+ *	1b) List A empty, List B non-empty
+ *	Return TRUE if there exists one entry (stmt, proc) in the CallTable where proc equals to at least one of the element in List B, FASLE otherwise.
+ *	1c) List A non-empty, List B empty
+ *	Return TRUE if there exists one entry (stmt, proc) in the CallTable where stmt equals to at least one of the element in List A, FASLE otherwise.
+ *	1d) Both lists are non-empty
+ *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that (ai, bj) is an entry in CallTable, FASLE otherwise.
+ * Case: arg = other values
+ *	Exception
+ *
+ * \param	sts_ptr	A pointer to a statement list, which contains a list of statement numbers.
+ * \param	ps_ptr	A pointer to a procedure index list.
+ *
+ * \return	A Boolean value as specified in the detailed description.
+ */
 BOOLEAN CallTable::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
 {
 	switch (arg) {
@@ -346,12 +385,33 @@ BOOLEAN CallTable::modifies_11(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
 }
 */
 
+/**
+ * \fn	STMT_LIST CallTable::getAllCallsFirst()
+ *
+ * \brief	Return all the statement numbers stored in CallTable as a list.
+ * 
+ *
+ * 
+ * 
+ *
+ * \return	STMT_LIST.
+ */
 STMT_LIST CallTable::getAllCallsFirst()
 {
 	return(stmts);
 }
 
-
+/**
+ * \fn	PROC_INDEX_LIST CallTable::getAllCallsSecond()
+ *
+ * \brief	Return all the procedure indices stored in CallTable as a list.
+ * 
+ *
+ * 
+ * 
+ *
+ * \return	PROC_INDEX_LIST.
+ */
 PROC_INDEX_LIST CallTable::getAllCallsSecond()
 {
 	return(procs);

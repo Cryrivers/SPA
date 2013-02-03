@@ -1,3 +1,9 @@
+/**
+ * \file	Modifies.cpp
+ * \class	Modifies
+ * \brief	Store all 'Modifies' relations for statements (call them 'Modifies' relation) in the form (stmt, var) where 'stmt' is a statement number and 'var' is a variable index. Provide funtions for query on this relation for statements. The storage is referred to as ModifiesTable.
+ */
+
 #include "stdafx.h"
 #include "Modifies.h"
 
@@ -43,7 +49,17 @@ VAR_INDEX_LIST Modifies::getModifiesSecond(STMT stmt)
 	return(resultLst);
 }
 
-
+/**
+ * \fn	void Modifies::addModifies(STMT stmt, VAR_INDEX var)
+ *
+ * \brief	Add a new 'Modifies' relation in the form (stmt, var) to ModifiesTable where 'stmt' is a statement number and 'var' is a variable index. If the relation already exists, do nothing.
+ * 
+ *
+ * \param	stmt	The statement number of the statement in this Modifies relation.
+ * \param	var	    The index of the variable that is being modified in the variable table.
+ *
+ * \return	void.
+ */
 void Modifies::addModifies(STMT stmt, VAR_INDEX var)
 {
 	if (isModifies(stmt, var)) {
@@ -55,7 +71,71 @@ void Modifies::addModifies(STMT stmt, VAR_INDEX var)
 	}
 }
 
+/**
+ * \fn	BOOLEAN Modifies::modifies(STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)
+ *
+ * \brief	A function for query on 'Modifies' relations.
+ * 
+ * To handle a query in the form Modifies(List A, List B, arg).
 
+ * Case 1: arg = 00 = 0
+ *	1a) Both lists are empty
+ *	Return TRUE if ModifiesTable is not empty, FASLE otherwise.
+ *	1b) List A empty, List B non-empty
+ *	Return TRUE if there exists one entry (stmt, var) in the ModifiesTable where var equals to at least one of the element in List B, FASLE otherwise.
+ *	1c) List A non-empty, List B empty
+ *	Return TRUE if there exists one entry (stmt, var) in the ModifiesTable where stmt equals to at least one of the element in List A, FASLE otherwise.
+ *	1d) Both lists are non-empty
+ *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that (ai, bj) is an entry in ModifiesTable, FASLE otherwise.
+
+ * Case 2: arg = 01 = 1
+ *  2a) Both lists are empty
+ *	Fill up list B with all the distinct values in the second column of ModifiesTable.
+ *	2b) List A nont-empty, List B empty
+ *	Fill up list B with all the values in the second column of ModifiesTable where the corresponding first column equals to the elements in list A.
+ *	2c) List A empty, List B non-empty
+ *	Remove elements from list B that are not found in the second column of ModifiesTable.
+ *	2d) Both lists are non-empty
+ *	Find all values (say V2) in the second column of ModifiesTable where the corresponding first column value equals to the elements in list A and remove elements from list B that are not in V2.
+ *	For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.
+
+ * Case 3: arg = 10 = 2
+ *  3a) Both lists are empty
+ *	Fill up list A with all the distinct values in the first column of ModifiesTable.
+ *	3b) List A empty, List B non-empty
+ *	Fill up list A with all the values in the first column of ModifiesTable where the corresponding second column equals to the elements in list B.
+ *	3c) List A non-empty, List B empty
+ *	Remove elements from list A that are not found in the first column of ModifiesTable.
+ *	3d) Both lists are non-empty
+ *	Find all values (say V1) in the first column of ModifiesTable where the corresponding second column value equals to the elements in list B and remove elements from list A that are not in V1.
+ *	For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.
+
+ * Case 4: arg = 11 = 3
+ *  4a) Both lists are empty
+ *	Fill up the two lists with all entries of ModifiesTable.
+ *	4b) List A empty, List B non-empty
+ *	For each element (bi) in list B, find values in the first column of ModifiesTable where the second column equals to bi.
+	(i) If found no values, remove bi from list B.
+	(ii) If found 1 single value, add this value to list A.
+	(iii) if found n (n>1) values, add these values to list A and duplicate bi n-1 times in list B.
+ *	4c) List A non-empty, List B empty
+ *	For each element (ai) in list A, find values in the second column of ModifiesTable where the first column equals to ai.
+	(i) If found no values, remove ai from list A.
+	(ii) If found 1 single value, add this value to list B.
+	(iii) if found n (n>1) values, add these values to list B and duplicate ai n-1 times in list A.
+ *	4d) Both lists are non-empty
+ *	Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. 
+ *	Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if (ai, bi) is not an entry in ModifiesTable.
+ *	For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.
+ 
+ * Case: arg = other values
+ *	Exception
+
+ * \param	sts_ptr	A pointer to a statement list, which contains a list of statement numbers.
+ * \param	vs_ptr	A pointer to a variable index list.
+ *
+ * \return	A Boolean value as specified in the detailed description.
+ */
 BOOLEAN Modifies::modifies(STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)
 {
 	switch (arg) {
@@ -340,13 +420,33 @@ BOOLEAN Modifies::modifies_11(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
 	}
 }
 
-
+/**
+ * \fn	STMT_LIST Modifies::getAllModifiesFirst()
+ *
+ * \brief	Return all the statement numbers stored in ModifiesTable as a list.
+ * 
+ *
+ * 
+ * 
+ *
+ * \return	STMT_LIST.
+ */
 STMT_LIST Modifies::getAllModifiesFirst()
 {
 	return(stmts);
 }
 
-
+/**
+ * \fn	VAR_INDEX_LIST Modifies::getAllModifiesSecond()
+ *
+ * \brief	Return all the variable indices stored in ModifiesTable as a list.
+ * 
+ *
+ * 
+ * 
+ *
+ * \return	VAR_INDEX_LIST.
+ */
 VAR_INDEX_LIST Modifies::getAllModifiesSecond()
 {
 	return(vars);

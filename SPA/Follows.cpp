@@ -1,3 +1,9 @@
+/**
+ * \file	Follows.cpp
+ * \class	Follows
+ * \brief	Store all 'Follows' relations in the form (stmt1, stmt2) where 'stmt1' and 'stmt2' are statement numbers. Provide funtions for query on 'Follows' and 'FollowsStar' relations. The storage is referred to as FollowsTable.
+ */
+
 #include "stdafx.h"
 #include "Follows.h"
 
@@ -85,7 +91,17 @@ BOOLEAN Follows::isFollowsStar(STMT stmt1, STMT stmt2)
 	}
 }
 
-
+/**
+ * \fn	void Follows::addFollows(STMT stmt1, STMT stmt2)
+ *
+ * \brief	Add a 'Follows' relation in the form (stmt1, stmt2) into FollowsTable where 'stmt1' and 'stmt2' are statement numbers.
+ * 
+ *
+ * \param	stmt1	The statement number of the first statement in the relation Follows.
+ * \param	stmt2	The statement number of the second statement in the relation Follows.
+ *
+ * \return	void.
+ */
 void Follows::addFollows(STMT stmt1, STMT stmt2)
 {
 	//if(isFollows(stmt1, stmt2)) {
@@ -97,7 +113,71 @@ void Follows::addFollows(STMT stmt1, STMT stmt2)
 	//}
 }
 
+/**
+ * \fn	BOOLEAN Follows::follows(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
+ *
+ * \brief	A function for query on 'Follows' relations.
+ * 
+ * To handle a query in the form follows(List A, List B, arg).
 
+ * Case 1: arg = 00 = 0
+ *	1a) Both lists are empty
+ *	Return TRUE if FollowsTable is not empty, FASLE otherwise.
+ *	1b) List A empty, List B non-empty
+ *	Return TRUE if there exists one entry (stmt1, stmt2) in the FollowsTable where stmt2 equals to at least one of the element in List B, FASLE otherwise.
+ *	1c) List A non-empty, List B empty
+ *	Return TRUE if there exists one entry (stmt1, stmt2) in the FollowsTable where stmt1 equals to at least one of the element in List A, FASLE otherwise.
+ *	1d) Both lists are non-empty
+ *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that (ai, bj) is an entry in FollowsTable, FASLE otherwise.
+
+ * Case 2: arg = 01 = 1
+ *  2a) Both lists are empty
+ *	Fill up list B with all the distinct values in the second column of FollowsTable.
+ *	2b) List A nont-empty, List B empty
+ *	Fill up list B with all the values in the second column of FollowsTable where the corresponding first column equals to the elements in list A.
+ *	2c) List A empty, List B non-empty
+ *	Remove elements from list B that are not found in the second column of FollowsTable.
+ *	2d) Both lists are non-empty
+ *	Find all values (say V2) in the second column of FollowsTable where the corresponding first column value equals to the elements in list A and remove elements from list B that are not in V2.
+ *	For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.
+
+ * Case 3: arg = 10 = 2
+ *  3a) Both lists are empty
+ *	Fill up list A with all the distinct values in the first column of FollowsTable.
+ *	3b) List A empty, List B non-empty
+ *	Fill up list A with all the values in the first column of FollowsTable where the corresponding second column equals to the elements in list B.
+ *	3c) List A non-empty, List B empty
+ *	Remove elements from list A that are not found in the first column of FollowsTable.
+ *	3d) Both lists are non-empty
+ *	Find all values (say V1) in the first column of FollowsTable where the corresponding second column value equals to the elements in list B and remove elements from list A that are not in V1.
+ *	For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.
+
+ * Case 4: arg = 11 = 3
+ *  4a) Both lists are empty
+ *	Fill up the two lists with all entries of FollowsTable.
+ *	4b) List A empty, List B non-empty
+ *	For each element (bi) in list B, find values in the first column of FollowsTable where the second column equals to bi.
+	(i) If found no values, remove bi from list B.
+	(ii) If found 1 single value, add this value to list A.
+	(iii) if found n (n>1) values, add these values to list A and duplicate bi n-1 times in list B.
+ *	4c) List A non-empty, List B empty
+ *	For each element (ai) in list A, find values in the second column of FollowsTable where the first column equals to ai.
+	(i) If found no values, remove ai from list A.
+	(ii) If found 1 single value, add this value to list B.
+	(iii) if found n (n>1) values, add these values to list B and duplicate ai n-1 times in list A.
+ *	4d) Both lists are non-empty
+ *	Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. 
+ *	Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if (ai, bi) is not an entry in FollowsTable.
+ *	For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.
+ 
+ * Case: arg = other values
+ *	Exception
+
+ * \param	st1s_ptr	A pointer to a statement list, which contains a list of statement numbers. These statements are the first statement of relation Follows.
+ * \param	st2s_ptr	A pointer to a statement list, which contains a list of statement numbers. These statements are the second statement of relation Follows.
+ *
+ * \return	A Boolean value as specified in the detailed description.
+ */
 BOOLEAN Follows::follows(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
 {
 	switch (arg) {
@@ -354,7 +434,71 @@ BOOLEAN Follows::follows_11(STMT_LIST *st1s_p, STMT_LIST *st2s_p)
 	}
 }
 
+/**
+ * \fn	BOOLEAN Follows::followsStar(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
+ *
+ * \brief	A function for query on 'FollowsStar' relations.
+ * 
+ * To handle a query in the form followsStar(List A, List B, arg).
 
+ * Case 1: arg = 00 = 0
+ *	1a) Both lists are empty
+ *	Return TRUE if FollowsTable is not empty, FASLE otherwise.
+ *	1b) List A empty, List B non-empty
+ *	Return TRUE if there exists one entry (stmt1, stmt2) in the FollowsTable where stmt2 equals to at least one of the element in List B, FASLE otherwise.
+ *	1c) List A non-empty, List B empty
+ *	Return TRUE if there exists one entry (stmt1, stmt2) in the FollowsTable where stmt1 equals to at least one of the element in List A, FASLE otherwise.
+ *	1d) Both lists are non-empty
+ *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that FollowsStar(ai, bj) is true, FASLE otherwise.
+
+ * Case 2: arg = 01 = 1
+ *  2a) Both lists are empty
+ *	Fill up list B with all the distinct values in the second column of FollowsTable.
+ *	2b) List A nont-empty, List B empty
+ *	Fill up list B with all the values b if followsStar(a, b) is true where a is any element in list A.
+ *	2c) List A empty, List B non-empty
+ *	Remove elements from list B that are not found in the second column of FollowsTable.
+ *	2d) Both lists are non-empty
+ *	For each element bi from list B, if no element aj from list A can satisfy FollowsStar(aj, bi), then remove this bi. Otherwise, keep it.
+ *	For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.
+
+ * Case 3: arg = 10 = 2
+ *  3a) Both lists are empty
+ *	Fill up list A with all the distinct values in the first column of FollowsTable.
+ *	3b) List A empty, List B non-empty
+ *	Fill up list A with all the values a if followsStar(a, b) is true where b is any element in list B.
+ *	3c) List A non-empty, List B empty
+ *	Remove elements from list A that are not found in the first column of FollowsTable.
+ *	3d) Both lists are non-empty
+ *	For each element ai from list A, if no element bj from list B can satisfy FollowsStar(ai, bj), then remove this ai. Otherwise, keep it.
+ *	For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.
+
+ * Case 4: arg = 11 = 3
+ *  4a) Both lists are empty
+ *	Throw Exception.
+ *	4b) List A empty, List B non-empty
+ *	For each element (bi) in list B, find values in the first column of FollowsTable where the second column equals to bi.
+	(i) If found no values, remove bi from list B.
+	(ii) If found 1 single value, add this value to list A.
+	(iii) if found n (n>1) values, add these values to list A and duplicate bi n-1 times in list B.
+ *	4c) List A non-empty, List B empty
+ *	For each element (ai) in list A, find values in the second column of FollowsTable where the first column equals to ai.
+	(i) If found no values, remove ai from list A.
+	(ii) If found 1 single value, add this value to list B.
+	(iii) if found n (n>1) values, add these values to list B and duplicate ai n-1 times in list A.
+ *	4d) Both lists are non-empty
+ *	Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. 
+ *	Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if FollowsStar(ai, bi) is false.
+ *	For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.
+ 
+ * Case: arg = other values
+ *	Exception
+
+ * \param	st1s_ptr	A pointer to a statement list, which contains a list of statement numbers. These statements are the first statement of relation FollowsStar.
+ * \param	st2s_ptr	A pointer to a statement list, which contains a list of statement numbers. These statements are the second statement of relation FollowsStar.
+ *
+ * \return	A Boolean value as specified in the detailed description.
+ */
 BOOLEAN Follows::followsStar(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
 {
 	switch (arg) {
