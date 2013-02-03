@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_design_extractor.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,23 +113,23 @@ $(document).ready(function(){initNavTree('class_design_extractor.html','');});
 <table class="directory">
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_ast</b> (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>_pkb</b> (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>addModifies</b>() (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>addUses</b>() (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DesignExtractor</b>(void) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getAllAssignment</b>(STMT_LIST *) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getAllCall</b>(STMT_LIST *) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getAllConstant</b>(vector&lt; int &gt; *) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getAllIf</b>(STMT_LIST *) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getAllStmt</b>(STMT_LIST *) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getAllWhile</b>(STMT_LIST *) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>pattern</b>(vector&lt; int &gt; *, vector&lt; int &gt; *, string, int) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573">addModifies</a>()</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a">addUses</a>()</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_design_extractor.html#ab43568887023f04b5ea405cc7dfbeea8">DesignExtractor</a>(void)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_design_extractor.html#ac726aa0f4d7683e0b516f6375d5cbed2">getAllAssignment</a>(STMT_LIST *)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431">getAllCall</a>(STMT_LIST *)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_design_extractor.html#ad4c6d709f46b4a6a681bf8a7b6e554f3">getAllConstant</a>(vector&lt; int &gt; *)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_design_extractor.html#af29dfb20bcfbc7fb188adffd8bfd39c6">getAllIf</a>(STMT_LIST *)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_design_extractor.html#ace811652940cd0c9b203466d718da76c">getAllStmt</a>(STMT_LIST *)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_design_extractor.html#a38b674ccd8bb996d7c67984f01c174b8">getAllWhile</a>(STMT_LIST *)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_design_extractor.html#a4fcba7f9091b7f4f04f9551afe30ee3d">pattern</a>(vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~DesignExtractor</b>(void) (defined in <a class="el" href="class_design_extractor.html">DesignExtractor</a>)</td><td class="entry"><a class="el" href="class_design_extractor.html">DesignExtractor</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

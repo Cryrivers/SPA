@@ -2,7 +2,7 @@ var class_uses =
 [
     [ "addUses", "class_uses.html#adba4dfa43c0a1a98ef594260e0f8ef47", null ],
     [ "getAllUsesFirst", "class_uses.html#a921fcc24e00a591ed4ea4e617bd4a12c", null ],
-    [ "getAllUsesSecond", "class_uses.html#ac60cee037b23764ed00f06071a2693db", null ],
+    [ "getAllUsesSecond", "class_uses.html#aa15239ef6722d679b89ebc7bc100e815", null ],
     [ "getUsesFirst", "class_uses.html#aec3f6a8345dea78c083244726673dfac", null ],
     [ "getUsesSecond", "class_uses.html#a4ba0950409d4e77e57db121425135454", null ],
     [ "isUses", "class_uses.html#a5a55353c1761e5182ad7c842cc5e3d89", null ],

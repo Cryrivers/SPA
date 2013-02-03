@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_query_preprocessor.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -105,30 +106,1180 @@ $(document).ready(function(){initNavTree('class_query_preprocessor.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_query_preprocessor-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">QueryPreprocessor Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Parse in PQL query and build query tree.  
+ <a href="class_query_preprocessor.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_query_pre_processor_8h_source.html">QueryPreProcessor.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aee9b5aff1691bf42df24723183a88199"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee9b5aff1691bf42df24723183a88199"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>parse</b> (string input)</td></tr>
+<tr class="memitem:a50e8467985e1b2d7fe63f8a874059b91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a50e8467985e1b2d7fe63f8a874059b91">QueryPreprocessor</a> (void)</td></tr>
+<tr class="memdesc:a50e8467985e1b2d7fe63f8a874059b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a50e8467985e1b2d7fe63f8a874059b91">More...</a><br/></td></tr>
+<tr class="separator:a50e8467985e1b2d7fe63f8a874059b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a584d45b3837240e0ba96f1c7320ce7c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a584d45b3837240e0ba96f1c7320ce7c7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a584d45b3837240e0ba96f1c7320ce7c7">~QueryPreprocessor</a> (void)</td></tr>
+<tr class="memdesc:a584d45b3837240e0ba96f1c7320ce7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
+<tr class="separator:a584d45b3837240e0ba96f1c7320ce7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee9b5aff1691bf42df24723183a88199"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199">parse</a> (string input)</td></tr>
 <tr class="separator:aee9b5aff1691bf42df24723183a88199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7830244371263b6ee30610d72b61e187"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7830244371263b6ee30610d72b61e187"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getTargetVariable</b> ()</td></tr>
-<tr class="separator:a7830244371263b6ee30610d72b61e187"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae35e13ad9c4bb05baa61e48a9f179e21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae35e13ad9c4bb05baa61e48a9f179e21"></a>
-vector&lt; <a class="el" href="class_query__variable.html">Query_variable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getQueryVariableTable</b> ()</td></tr>
-<tr class="separator:ae35e13ad9c4bb05baa61e48a9f179e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb1bab398625e4183fa53ce99f275e65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb1bab398625e4183fa53ce99f275e65"></a>
-vector&lt; <a class="el" href="class_query__clause.html">Query_clause</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getQueryClauseTable</b> ()</td></tr>
-<tr class="separator:acb1bab398625e4183fa53ce99f275e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9cdc33dce820f20f00a8b20509b1b3f"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#ab9cdc33dce820f20f00a8b20509b1b3f">getQueryVariableTable</a> ()</td></tr>
+<tr class="separator:ab9cdc33dce820f20f00a8b20509b1b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a784bf47aa8f9e9d0c318e82c8900135e"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_target.html">QueryTarget</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a784bf47aa8f9e9d0c318e82c8900135e">getQueryTargetTable</a> ()</td></tr>
+<tr class="separator:a784bf47aa8f9e9d0c318e82c8900135e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66dbc91ccf7b9506316af857234a685b"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a66dbc91ccf7b9506316af857234a685b">getQueryClauseTable</a> ()</td></tr>
+<tr class="separator:a66dbc91ccf7b9506316af857234a685b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a709f0d33cbb680e4f754d2a55964b9be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a709f0d33cbb680e4f754d2a55964b9be">getIndexOfFirstFrom</a> (string b, string a[], int size)</td></tr>
+<tr class="memdesc:a709f0d33cbb680e4f754d2a55964b9be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for matching the first word of the input string to the given dictionary.  <a href="#a709f0d33cbb680e4f754d2a55964b9be">More...</a><br/></td></tr>
+<tr class="separator:a709f0d33cbb680e4f754d2a55964b9be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55bbe743f102ce34bb276b7e2ff4feb0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a55bbe743f102ce34bb276b7e2ff4feb0">getIndexOfNextFrom</a> (string b, string a[], int size)</td></tr>
+<tr class="memdesc:a55bbe743f102ce34bb276b7e2ff4feb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for matching the next matching word of the input string from the given dictionary.  <a href="#a55bbe743f102ce34bb276b7e2ff4feb0">More...</a><br/></td></tr>
+<tr class="separator:a55bbe743f102ce34bb276b7e2ff4feb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff26bed4c571104d8c3cb6183da0fb78"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#aff26bed4c571104d8c3cb6183da0fb78">findNextIndexFrom</a> (string b, string a[], int size)</td></tr>
+<tr class="memdesc:aff26bed4c571104d8c3cb6183da0fb78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for find the next word in the input string that match any given word in the given dictionary.  <a href="#aff26bed4c571104d8c3cb6183da0fb78">More...</a><br/></td></tr>
+<tr class="separator:aff26bed4c571104d8c3cb6183da0fb78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d78a7b445cc88398c370acb25decff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a36d78a7b445cc88398c370acb25decff">trim</a> (string &amp;str, char del)</td></tr>
+<tr class="memdesc:a36d78a7b445cc88398c370acb25decff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trim the char from string.  <a href="#a36d78a7b445cc88398c370acb25decff">More...</a><br/></td></tr>
+<tr class="separator:a36d78a7b445cc88398c370acb25decff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a881270b46049507564a33ba68e04f06b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a881270b46049507564a33ba68e04f06b">trim_all</a> (string &amp;str)</td></tr>
+<tr class="memdesc:a881270b46049507564a33ba68e04f06b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trim space, ';', '\n'.  <a href="#a881270b46049507564a33ba68e04f06b">More...</a><br/></td></tr>
+<tr class="separator:a881270b46049507564a33ba68e04f06b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0fda61f89dc0296ef60ba4ae68f105"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a8f0fda61f89dc0296ef60ba4ae68f105">getDeclares</a> (string &amp;str)</td></tr>
+<tr class="memdesc:a8f0fda61f89dc0296ef60ba4ae68f105"><td class="mdescLeft">&#160;</td><td class="mdescRight">split the declartion part from query  <a href="#a8f0fda61f89dc0296ef60ba4ae68f105">More...</a><br/></td></tr>
+<tr class="separator:a8f0fda61f89dc0296ef60ba4ae68f105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16884e7c24b6e2879dc8ae1d49b179a3"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a16884e7c24b6e2879dc8ae1d49b179a3">getTargets</a> (string &amp;str)</td></tr>
+<tr class="memdesc:a16884e7c24b6e2879dc8ae1d49b179a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">split the result clause part from query  <a href="#a16884e7c24b6e2879dc8ae1d49b179a3">More...</a><br/></td></tr>
+<tr class="separator:a16884e7c24b6e2879dc8ae1d49b179a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8386398ca7580e07b0f2d962e07cd8f1"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a8386398ca7580e07b0f2d962e07cd8f1">getClauses</a> (string &amp;str)</td></tr>
+<tr class="memdesc:a8386398ca7580e07b0f2d962e07cd8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">split the declartion part from query  <a href="#a8386398ca7580e07b0f2d962e07cd8f1">More...</a><br/></td></tr>
+<tr class="separator:a8386398ca7580e07b0f2d962e07cd8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2d69d54aad9dd61109a669f3347e87d"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#ab2d69d54aad9dd61109a669f3347e87d">extractRelation</a> (string str)</td></tr>
+<tr class="memdesc:ab2d69d54aad9dd61109a669f3347e87d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to cut the relation.  <a href="#ab2d69d54aad9dd61109a669f3347e87d">More...</a><br/></td></tr>
+<tr class="separator:ab2d69d54aad9dd61109a669f3347e87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d531e35590b42c05b3c46cda43b2b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#af0d531e35590b42c05b3c46cda43b2b0">getAttributeOfVariable</a> (int a, int b)</td></tr>
+<tr class="memdesc:af0d531e35590b42c05b3c46cda43b2b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to get attribute of type b.a.  <a href="#af0d531e35590b42c05b3c46cda43b2b0">More...</a><br/></td></tr>
+<tr class="separator:af0d531e35590b42c05b3c46cda43b2b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd543d557bc9f6f23e06d0f067b5e988"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988">getIndexFromVarTable</a> (string str, int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7)</td></tr>
+<tr class="memdesc:acd543d557bc9f6f23e06d0f067b5e988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the index of given string in queryVarTable.  <a href="#acd543d557bc9f6f23e06d0f067b5e988">More...</a><br/></td></tr>
+<tr class="separator:acd543d557bc9f6f23e06d0f067b5e988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3271617742831c2bf018474cf4ccac6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6">setupVarTable</a> (vector&lt; string &gt; declares)</td></tr>
+<tr class="memdesc:ae3271617742831c2bf018474cf4ccac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">insert the declared variables into the var table  <a href="#ae3271617742831c2bf018474cf4ccac6">More...</a><br/></td></tr>
+<tr class="separator:ae3271617742831c2bf018474cf4ccac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e43e334e9c8860abcb6fd1e8e145e37"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37">setupTarTable</a> (vector&lt; string &gt; tarTable)</td></tr>
+<tr class="memdesc:a4e43e334e9c8860abcb6fd1e8e145e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the select clause of the query  <a href="#a4e43e334e9c8860abcb6fd1e8e145e37">More...</a><br/></td></tr>
+<tr class="separator:a4e43e334e9c8860abcb6fd1e8e145e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe7ec5cf69f1a998589d0e10fa531154"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154">setupClaTable</a> (vector&lt; string &gt; claTable)</td></tr>
+<tr class="separator:afe7ec5cf69f1a998589d0e10fa531154"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0360a7ff0680055b4568077f2e83fc31"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a0360a7ff0680055b4568077f2e83fc31">setDependency</a> ()</td></tr>
+<tr class="separator:a0360a7ff0680055b4568077f2e83fc31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0aae7683680f802e5a83c9171e73e19b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a0aae7683680f802e5a83c9171e73e19b">mergeFlag</a></td></tr>
+<tr class="memdesc:a0aae7683680f802e5a83c9171e73e19b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for merge same query variables.  <a href="#a0aae7683680f802e5a83c9171e73e19b">More...</a><br/></td></tr>
+<tr class="separator:a0aae7683680f802e5a83c9171e73e19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e86971eeb765c6e9e6c27d6812b6742"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e86971eeb765c6e9e6c27d6812b6742"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a9e86971eeb765c6e9e6c27d6812b6742">dicClause</a> [<a class="el" href="_query_pre_processor_8h.html#a89325b91ef884cc5dc0f0d9bbc4df380">DICCLAUSESIZE</a>]</td></tr>
+<tr class="memdesc:a9e86971eeb765c6e9e6c27d6812b6742"><td class="mdescLeft">&#160;</td><td class="mdescRight">contain: "such that", "and", "pattern", "with" <br/></td></tr>
+<tr class="separator:a9e86971eeb765c6e9e6c27d6812b6742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac534761ed85cd8a98e7bbe398ec94c91"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac534761ed85cd8a98e7bbe398ec94c91"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#ac534761ed85cd8a98e7bbe398ec94c91">dicDesignEntity</a> [<a class="el" href="_query_pre_processor_8h.html#aa18e6ab1439a15ec4de21e313e0e1e98">DICDESIGNENTITYSIZE</a>]</td></tr>
+<tr class="memdesc:ac534761ed85cd8a98e7bbe398ec94c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure" <br/></td></tr>
+<tr class="separator:ac534761ed85cd8a98e7bbe398ec94c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74b1cc1ca92132c7a49371cd6c675d64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74b1cc1ca92132c7a49371cd6c675d64"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a74b1cc1ca92132c7a49371cd6c675d64">dicRelationRef</a> [<a class="el" href="_query_pre_processor_8h.html#a35a139391d677cf21fbdde03bbccef7b">DICRELATIONREFSIZE</a>]</td></tr>
+<tr class="memdesc:a74b1cc1ca92132c7a49371cd6c675d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls" <br/></td></tr>
+<tr class="separator:a74b1cc1ca92132c7a49371cd6c675d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e83730c3b1f742d00652aed71996fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50e83730c3b1f742d00652aed71996fd"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a50e83730c3b1f742d00652aed71996fd">dicAttribute</a> [<a class="el" href="_query_pre_processor_8h.html#acbcb2ea3283f1a05a1f2965afd817f40">DICATTRIBUTESIZE</a>]</td></tr>
+<tr class="memdesc:a50e83730c3b1f742d00652aed71996fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">contain: "procName", "varName", "value", "stmt#", "prog_line#", "procName" <br/></td></tr>
+<tr class="separator:a50e83730c3b1f742d00652aed71996fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ba1b975e435cafb8f56f06950111513"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ba1b975e435cafb8f56f06950111513"></a>
+<a class="el" href="class_query_validator.html">QueryValidator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a4ba1b975e435cafb8f56f06950111513">qv</a></td></tr>
+<tr class="memdesc:a4ba1b975e435cafb8f56f06950111513"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provaide validate functions. <br/></td></tr>
+<tr class="separator:a4ba1b975e435cafb8f56f06950111513"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea7a0bc659a2e72807608ec4dd6b4536"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea7a0bc659a2e72807608ec4dd6b4536"></a>
+<a class="el" href="class_p_k_b_controller.html">PKBController</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#aea7a0bc659a2e72807608ec4dd6b4536">pkb</a></td></tr>
+<tr class="memdesc:aea7a0bc659a2e72807608ec4dd6b4536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for getting indexes from pkb. <br/></td></tr>
+<tr class="separator:aea7a0bc659a2e72807608ec4dd6b4536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e01db25df4f2f0ac192057c28a6935f"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a2e01db25df4f2f0ac192057c28a6935f">queryVarTable</a></td></tr>
+<tr class="separator:a2e01db25df4f2f0ac192057c28a6935f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74bb9d70d4caf1015e688b6f33f7981a"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_target.html">QueryTarget</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#a74bb9d70d4caf1015e688b6f33f7981a">queryTarTable</a></td></tr>
+<tr class="separator:a74bb9d70d4caf1015e688b6f33f7981a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac58197019543cf779b8fd1bbb3d2115b"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_preprocessor.html#ac58197019543cf779b8fd1bbb3d2115b">queryClaTable</a></td></tr>
+<tr class="separator:ac58197019543cf779b8fd1bbb3d2115b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Parse in PQL query and build query tree. </p>
+<p>Used to parse in PQL query <br/>
+<br/>
+ Workflow: <br/>
+</p>
+<ol type="1">
+<li>parse the query <br/>
+</li>
+<li>build query tree in table format <br/>
+</li>
+<li>validate the query <br/>
+</li>
+<li>make optimisation for fast performance <br/>
+</li>
+<li>set dependancy for query variables <br/>
+ <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_query_validator.html" title="Validate query elements according to PQL.">QueryValidator</a> </dd>
+<dd>
+<a class="el" href="class_query_processor.html">QueryProcessor</a> </dd>
+<dd>
+<a class="el" href="class_p_k_b_controller.html">PKBController</a> </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Zhang Haoqiang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>30.01.2012 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.00 </dd></dl>
+</li>
+</ol>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a50e8467985e1b2d7fe63f8a874059b91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QueryPreprocessor::QueryPreprocessor </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="_query_pre_processor_8h.html" title="Header file for query preprocessor.">QueryPreprocessor.h</a></dd></dl>
+<p>Set up dictionary </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab2d69d54aad9dd61109a669f3347e87d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; string &gt; QueryPreprocessor::extractRelation </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used to cut the relation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>string</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>cut the relation into top, front and back variables <br/>
+ example: Modifies(a, b) -&gt; r, a, b </p>
+<dl class="section return"><dt>Returns</dt><dd>vector&lt;string&gt; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aff26bed4c571104d8c3cb6183da0fb78"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QueryPreprocessor::findNextIndexFrom </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>a</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used for find the next word in the input string that match any given word in the given dictionary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>string that is going to match </td></tr>
+    <tr><td class="paramname">a</td><td>string[] input dictionary </td></tr>
+    <tr><td class="paramname">size</td><td>integer size of the input dictionary </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the index of the matched word in dictionary<br/>
+ else return -1 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af0d531e35590b42c05b3c46cda43b2b0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> QueryPreprocessor::getAttributeOfVariable </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used to get attribute of type b.a. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>integer the index of attribute dictionary </td></tr>
+    <tr><td class="paramname">b</td><td>integer the index of var in queryVarTable</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>A type check is performed to prevent attribute not matching variable type, like var.procName </p>
+<dl class="section return"><dt>Returns</dt><dd>attribut type </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8386398ca7580e07b0f2d962e07cd8f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; string &gt; QueryPreprocessor::getClauses </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>split the declartion part from query </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>string&amp; address of string</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>according to the clause dictionary<br/>
+ The and clause will be replaced with the previous clause as defined </p>
+<dl class="section return"><dt>Returns</dt><dd>a vector of choped items </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8f0fda61f89dc0296ef60ba4ae68f105"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; string &gt; QueryPreprocessor::getDeclares </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>split the declartion part from query </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>string&amp; address of string</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>according to the ';' and further spilt into separate declare </p>
+<dl class="section return"><dt>Returns</dt><dd>a vector of choped items </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acd543d557bc9f6f23e06d0f067b5e988"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QueryPreprocessor::getIndexFromVarTable </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a5</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a6</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a7</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find the index of given string in queryVarTable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>string </td></tr>
+    <tr><td class="paramname">flag</td><td>integer Use of flag <br/>
+ Reduce the loads of traverse and do validation <br/>
+ 0 The variable don't need to exist 1 The variable must exist 2 Type boolean 3 The variable will be a variable 4 The variable will be a procedure 5 '_' 6 stmt_num</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Process: <br/>
+</p>
+<ol type="1">
+<li>get the index of variables found inside the query body <br/>
+</li>
+<li>if new special variables will be added <br/>
+</li>
+<li>if it's already there then return the index <br/>
+ else return -1 <br/>
+<br/>
+ Cases: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>'_' -&gt;underscore <br/>
+</li>
+<li>boolean -&gt;boolean <br/>
+</li>
+<li>integer -&gt;stmt num <br/>
+</li>
+<li>"NAME" -&gt;known <br/>
+<br/>
+ Validates: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>If known variables exist in pkb <br/>
+</li>
+<li>If the required <a class="el" href="class_query_variable.html" title="Table for all variables and interger in PQL.">QueryVariable</a> type is stmt <br/>
+ <dl class="section note"><dt>Note</dt><dd>The flag 1 is a trick of playing with avaliability, thus variables variable and assign cannot be tested in this function </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>int the index in queryVarTable or -1 </dd></dl>
+</li>
+</ol>
+
+</div>
+</div>
+<a class="anchor" id="a709f0d33cbb680e4f754d2a55964b9be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QueryPreprocessor::getIndexOfFirstFrom </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>a</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used for matching the first word of the input string to the given dictionary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>string that is going to match </td></tr>
+    <tr><td class="paramname">a</td><td>string[] input dictionary </td></tr>
+    <tr><td class="paramname">size</td><td>integer size of the input dictionary </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the index of the matched word in dictionary<br/>
+ else return -1 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a55bbe743f102ce34bb276b7e2ff4feb0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QueryPreprocessor::getIndexOfNextFrom </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>a</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used for matching the next matching word of the input string from the given dictionary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>string that is going to match </td></tr>
+    <tr><td class="paramname">a</td><td>string[] input dictionary </td></tr>
+    <tr><td class="paramname">size</td><td>integer size of the input dictionary </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the index of the matched word in dictionary<br/>
+ else return -1 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a66dbc91ccf7b9506316af857234a685b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt; QueryPreprocessor::getQueryClauseTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getter for queryClaTable </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>confirm is it better to pass by pointer? </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a784bf47aa8f9e9d0c318e82c8900135e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_query_target.html">QueryTarget</a> &gt; QueryPreprocessor::getQueryTargetTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getter for queryTarTable </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>confirm is it better to pass by pointer? </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab9cdc33dce820f20f00a8b20509b1b3f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt; QueryPreprocessor::getQueryVariableTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getter for queryVarTable </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>confirm is it better to pass by pointer? </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a16884e7c24b6e2879dc8ae1d49b179a3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; string &gt; QueryPreprocessor::getTargets </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>split the result clause part from query </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>string&amp; address of string</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>according to the next clause and further spilt into tuples </p>
+<dl class="section warning"><dt>Warning</dt><dd>'Select' should be capitalized </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a vector of choped items </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aee9b5aff1691bf42df24723183a88199"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QueryPreprocessor::parse </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>query</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>string free format, can be anything </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>comfirm the return type of BOOLEAN </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 suceed definitly success 1 false if the boolean needs to return false instead of none -1 error just not pass the validation </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0360a7ff0680055b4568077f2e83fc31"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryPreprocessor::setDependency </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Process: <br/>
+</p>
+<ol type="1">
+<li>merge same variables with p1.procName=p2.procName <br/>
+</li>
+<li>count appearance <br/>
+</li>
+<li>set dependency <br/>
+ Philosophy: <br/>
+</li>
+</ol>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd><p class="startdd">merge </p>
+<p class="enddd">The judging of dependency is bot too simple, needs to improve </p>
+</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The complitance of this function, true for done, false for error </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afe7ec5cf69f1a998589d0e10fa531154"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryPreprocessor::setupClaTable </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>claTable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">claTable</td><td>vector&lt;string&gt; elements in this vector is alraedy well formed</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>example: if a, b stmt c, d <br/>
+ Cases: <br/>
+<br/>
+ 1.with: <br/>
+<br/>
+ Example: attrRef ‘=’ ref | synonym ‘=’ ref-pl <br/>
+<br/>
+ Process: <br/>
+</p>
+<ol type="1">
+<li>get attribute or constant on both side <br/>
+</li>
+<li>validate the exsitence of attri and variable <br/>
+</li>
+<li>optimise results <br/>
+<br/>
+ Validates: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>Type on the left should be attrRef or synonym <br/>
+</li>
+<li>The content along the equal sign should be comparable <br/>
+<br/>
+ Optimise: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>merge single variable like proc.procName="sth" <br/>
+ proc-&gt;kownn_proc, pkb index into origin <br/>
+ var -&gt;known_var, pkb index into origin <br/>
+ stmt-&gt;stmt_num, integer into origin <br/>
+ call.stmtnumber-&gt;kownn_proc, pkb index into origin <br/>
+</li>
+<li>constant.value <br/>
+</li>
+<li>calls with string will create a new known proc variable <br/>
+</li>
+<li>if the case of p.procname=q.procname make a flag for this!! mergeFlag = 1 <br/>
+<br/>
+ 2.pattern: <br/>
+<br/>
+ Process: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>sort out three different cases <br/>
+</li>
+<li>validate the exsitence of attri and variable <br/>
+</li>
+<li>optimise results <br/>
+<br/>
+ Validates: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>The first argument is either assign, while, if <br/>
+</li>
+<li>Match the following case:<br/>
+ assign( varRef, expression-spec | ‘_’ ) <br/>
+ while( varRef, ‘_’ ) <br/>
+ if( varRef, ‘_’ ‘,’ ‘_’ ) <br/>
+<br/>
+ Optimise: <br/>
+ Currently none <br/>
+<br/>
+ 3.such that: <br/>
+<br/>
+ Process: <br/>
+ Just validate and insert into claTable Validates: <br/>
+ Relation is "Parent*", "Parent", "Follows*", "Follows" <br/>
+ var1 must be stmtRef <br/>
+ var2 must be stmtRef <br/>
+ var1 must be stmt or ‘_’ <br/>
+ var2 must be stmt or ‘_’ <br/>
+ cannot be the same, except when '_' <br/>
+ integer argument means statement number <br/>
+<br/>
+ Relation is "Modifies", "Uses" <br/>
+ var1 must be entRef <br/>
+ var2 must be varRef <br/>
+ var1 must be stmt or procedure <br/>
+ var2 must be variable or '_' <br/>
+ integer argument means statement number <br/>
+<br/>
+ Relation is "Affects*", "Affects" <br/>
+ var1 must be stmtRef <br/>
+ var2 must be stmtRef <br/>
+ var1 must be assign or ‘_’ <br/>
+ var2 must be assign or ‘_’ <br/>
+ cannot be the same, except when '_' <br/>
+ integer argument means statement number <br/>
+<br/>
+ Relation is "Next*", "Next" <br/>
+ var1 must be lineRef <br/>
+ var2 must be lineRef <br/>
+ var1 must be stmt or stmt number or ‘_’ <br/>
+ var2 must be stmt or stmt number or ‘_’ <br/>
+ integer arguments mean program line numbers <br/>
+<br/>
+ Relation is "Call*", "Call" <br/>
+ var1 must be entRef <br/>
+ var2 must be entRef <br/>
+ var1 must be procedure or ‘_’ <br/>
+ var2 must be procedure or ‘_’ <br/>
+<br/>
+ cannot be the same (no recusive), except when '_' <br/>
+ Optimise: <br/>
+ Currently none <br/>
+<br/>
+ <dl class="section note"><dt>Note</dt><dd>The and clause is already handled by <a class="el" href="class_query_preprocessor.html#a8386398ca7580e07b0f2d962e07cd8f1" title="split the declartion part from query">getClauses()</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> </dd>
+<dd>
+<a class="el" href="class_query_preprocessor.html#a8386398ca7580e07b0f2d962e07cd8f1" title="split the declartion part from query">getClauses</a> </dd>
+<dd>
+<a class="el" href="class_query_clause.html" title="Table for all clauses: with, pattern, such that.">QueryClause</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The complitance of this function, true for done, false for error </dd></dl>
+</li>
+</ol>
+
+</div>
+</div>
+<a class="anchor" id="a4e43e334e9c8860abcb6fd1e8e145e37"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryPreprocessor::setupTarTable </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>tarTable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get the select clause of the query </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tarTable</td><td>vector&lt;string&gt; elements in this vector is alraedy well formed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>the target is considered to be a tuple all the time</dd></dl>
+<p>Example: s | s.stmt# <br/>
+<br/>
+ Process: <br/>
+</p>
+<ol type="1">
+<li>Loop through the table and check if exists <br/>
+</li>
+<li>find if there is attribute <br/>
+</li>
+<li>Insert to QueryTarTable <br/>
+<br/>
+ Cases: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>Has attribute <br/>
+</li>
+<li>Single variable <br/>
+<br/>
+ Validates: <br/>
+ each entry is a elem <dl class="section note"><dt>Note</dt><dd>All variables needs to be predefined, thus flag is 0 <br/>
+ Since variable in select clause already exist once, countAppear should be added </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_query_target.html" title="Table for query results: all elements in tuple.">QueryTarget</a> </dd>
+<dd>
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The complitance of this function, true for done, false for error </dd></dl>
+</li>
+</ol>
+
+</div>
+</div>
+<a class="anchor" id="ae3271617742831c2bf018474cf4ccac6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryPreprocessor::setupVarTable </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>declares</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>insert the declared variables into the var table </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">declares</td><td>vector&lt;string&gt; elements in this vector is alraedy well formed</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>example: if a, b stmt c, d <br/>
+<br/>
+ Process: <br/>
+</p>
+<ol type="1">
+<li>Loop through the declare table and insert value to QueryVarTable <br/>
+</li>
+<li>Validate each variable <br/>
+<br/>
+ Cases: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>Only one variable is declared <br/>
+</li>
+<li>More than one variable is declared <br/>
+<br/>
+ Validates: <br/>
+</li>
+</ol>
+<ol type="1">
+<li>Name should be synonms <br/>
+</li>
+<li>Variable cannot be duplicate <br/>
+ <dl class="section note"><dt>Note</dt><dd>In order to check the duplicate, all flags for getIndexFromVarTable should be set to 0, which indicate no adding is allowed. </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> </dd>
+<dd>
+<a class="el" href="class_query_variable.html" title="Table for all variables and interger in PQL.">QueryVariable</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The complitance of this function, true for done, false for error </dd></dl>
+</li>
+</ol>
+
+</div>
+</div>
+<a class="anchor" id="a36d78a7b445cc88398c370acb25decff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QueryPreprocessor::trim </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Trim the char from string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>string&amp; address of string </td></tr>
+    <tr><td class="paramname">del</td><td>char you want to delete </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a881270b46049507564a33ba68e04f06b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QueryPreprocessor::trim_all </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Trim space, ';', '\n'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>string&amp; address of string</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Operation done from both side </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a0aae7683680f802e5a83c9171e73e19b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QueryPreprocessor::mergeFlag</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used for merge same query variables. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154">setupClaTable</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac58197019543cf779b8fd1bbb3d2115b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="class_query_clause.html">QueryClause</a>&gt; QueryPreprocessor::queryClaTable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_query_clause.html" title="Table for all clauses: with, pattern, such that.">QueryClause</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a74bb9d70d4caf1015e688b6f33f7981a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="class_query_target.html">QueryTarget</a>&gt; QueryPreprocessor::queryTarTable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_query_target.html" title="Table for query results: all elements in tuple.">QueryTarget</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2e01db25df4f2f0ac192057c28a6935f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="class_query_variable.html">QueryVariable</a>&gt; QueryPreprocessor::queryVarTable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_query_variable.html" title="Table for all variables and interger in PQL.">QueryVariable</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_query_pre_processor_8h_source.html">QueryPreProcessor.h</a></li>
-<li>SPA/SPA/QueryPreProcessor.cpp</li>
+<li>SPA/SPA/<a class="el" href="_query_pre_processor_8cpp.html">QueryPreProcessor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -136,7 +1287,7 @@ vector&lt; <a class="el" href="class_query__clause.html">Query_clause</a> &gt;&#
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_query_preprocessor.html">QueryPreprocessor</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

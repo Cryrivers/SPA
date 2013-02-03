@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -69,6 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('_p_k_b_controller_8h_source.html','');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -128,50 +130,50 @@ $(document).ready(function(){initNavTree('_p_k_b_controller_8h_source.html','');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> init();</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_p_k_b_controller.html">PKBController</a>* createInstance();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_p_k_b_controller.html">PKBController</a>* <a class="code" href="class_p_k_b_controller.html#a2ad81eda5417c9bb5cefe8d0000a142b" title="Create only once the PKBController object. If PKBController object exists, return the object...">createInstance</a>();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    ~<a class="code" href="class_p_k_b_controller.html">PKBController</a>();</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">//ASTNode* getASTRoot();</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node.">ASTNode</a>* astGetRoot();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node.">ASTNode</a>* <a class="code" href="class_p_k_b_controller.html#aaf51526307856d6c9b39f30cef466a7d" title="Return the root node of AST For Design Extractor and Parser to access AST.">astGetRoot</a>();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_a_s_t.html">AST</a>* getAST();</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">//follows api</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> addFollows(STMT stmt1, STMT stmt2);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    BOOLEAN follows(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,<span class="keywordtype">int</span> arg);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    BOOLEAN followsStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, <span class="keywordtype">int</span> arg);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_p_k_b_controller.html#a8669c80fd550b2722c71da84874ca6c4" title="For Parser to add relation Follows(stmt1,stmt2) to Follows table.">addFollows</a>(STMT stmt1, STMT stmt2);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a5f88ed6963a8854908686082117d9936" title="Propagate the call to follows table.">follows</a>(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,<span class="keywordtype">int</span> arg);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a2e425eee23e66745d62b9eb6d4d41dea" title="Propagate the call to follows table.">followsStar</a>(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, <span class="keywordtype">int</span> arg);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//parent api</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> addParent(STMT stmt1, STMT stmt2);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    BOOLEAN parent(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,<span class="keywordtype">int</span> arg);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    BOOLEAN parentStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,<span class="keywordtype">int</span> arg);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_p_k_b_controller.html#a5892a424531b7c8a10385de613d4469e" title="Propagate the call to Parent table.">addParent</a>(STMT stmt1, STMT stmt2);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204" title="Propagate the call to Parent table.">parent</a>(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,<span class="keywordtype">int</span> arg);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table.">parentStar</a>(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,<span class="keywordtype">int</span> arg);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">//STMT_LIST getAllParentFirst();</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">//STMT_LIST getAllParentSecond();</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">//modifies api</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> addModifies(STMT stmt, VAR_INDEX var);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    BOOLEAN modifies(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr,<span class="keywordtype">int</span> arg);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    STMT_LIST getAllModifiesFirst();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    VAR_INDEX_LIST getAllModifiesSecond();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_p_k_b_controller.html#ae45e870e969ee9d5da02dbafb0d264c3" title="Propagate the call to Modifies table.">addModifies</a>(STMT stmt, VAR_INDEX var);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a13f5e8929ad62c8efd2632d1b8ed7275" title="Propagate the call to Modifies table.">modifies</a>(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr,<span class="keywordtype">int</span> arg);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    STMT_LIST <a class="code" href="class_p_k_b_controller.html#ae349f43fd139e8d53cbbdcd59f813112" title="Propagate the call to Modifies table.">getAllModifiesFirst</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    VAR_INDEX_LIST <a class="code" href="class_p_k_b_controller.html#a6928ee2303002df8468e076381504b6e" title="Propagate the call to Modifies table.">getAllModifiesSecond</a>();</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">//uses api</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> addUses(STMT stmt, VAR_INDEX var);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    BOOLEAN uses(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr,<span class="keywordtype">int</span> arg);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    STMT_LIST getAllUsesFirst();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    STMT_LIST getAllUsesSecond();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_p_k_b_controller.html#a3899818c88ba771728c68ecc45c6fcd1" title="Propagate the call to Uses table.">addUses</a>(STMT stmt, VAR_INDEX var);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4" title="Propagate the call to Uses table.">uses</a>(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr,<span class="keywordtype">int</span> arg);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    STMT_LIST <a class="code" href="class_p_k_b_controller.html#a52ab9de01f4df9ab7d890bcf3fbc9136" title="Propagate the call to Uses table.">getAllUsesFirst</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    STMT_LIST <a class="code" href="class_p_k_b_controller.html#a6544b441bc3609e08476d96dc7e63a0e" title="Propagate the call to Uses table.">getAllUsesSecond</a>();</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">//vartable api</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    VAR_INDEX addVar(STRING varName);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    STRING getVarName(VAR_INDEX ind);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    VAR_INDEX getVarIndex(STRING varName);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    STRING_LIST getAllVarName(VAR_INDEX_LIST inds);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    STRING_LIST getAllVarName();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    VAR_INDEX <a class="code" href="class_p_k_b_controller.html#a2b62af6e627d5f5ff6753074a2433af3" title="Propagate the call to Var table.">addVar</a>(STRING varName);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    STRING <a class="code" href="class_p_k_b_controller.html#afc3210a870161b785cdec1eefaf7b896" title="Propagate the call to Var table.">getVarName</a>(VAR_INDEX ind);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    VAR_INDEX <a class="code" href="class_p_k_b_controller.html#a6d846b8b888fc465e77870838d9e7793" title="Propagate the call to Var table.">getVarIndex</a>(STRING varName);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    STRING_LIST <a class="code" href="class_p_k_b_controller.html#ad1c405dce05559bd727f25f0f4fe5079" title="Propagate the call to Var table.">getAllVarName</a>(VAR_INDEX_LIST inds);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    STRING_LIST <a class="code" href="class_p_k_b_controller.html#ad1c405dce05559bd727f25f0f4fe5079" title="Propagate the call to Var table.">getAllVarName</a>();</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//procTable api</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    PROC_INDEX addProc(STRING procName);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    STRING getProcName(PROC_INDEX ind);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    PROC_INDEX getProcIndex(STRING procName);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    STRING_LIST getAllProcName(PROC_INDEX_LIST inds);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    STRING_LIST getAllProcName();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    PROC_INDEX <a class="code" href="class_p_k_b_controller.html#a1ec5fb1acd81802c744c21b8f43ef364" title="Propagate the call to Proc table.">addProc</a>(STRING procName);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    STRING <a class="code" href="class_p_k_b_controller.html#a25a56c45105d5e0593afebf72b9112f0" title="Propagate the call to Proc table.">getProcName</a>(PROC_INDEX ind);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    PROC_INDEX <a class="code" href="class_p_k_b_controller.html#a9652a236717ec3621fbd36a28c7c167e" title="Propagate the call to Proc table.">getProcIndex</a>(STRING procName);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    STRING_LIST <a class="code" href="class_p_k_b_controller.html#a7e59bbf92c58c2b7ca6ca9db64a28d07" title="Propagate the call to Proc table.">getAllProcName</a>(PROC_INDEX_LIST inds);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    STRING_LIST <a class="code" href="class_p_k_b_controller.html#a7e59bbf92c58c2b7ca6ca9db64a28d07" title="Propagate the call to Proc table.">getAllProcName</a>();</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">//additional api</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> addConstant(<span class="keywordtype">int</span> value);</div>
@@ -180,27 +182,27 @@ $(document).ready(function(){initNavTree('_p_k_b_controller_8h_source.html','');
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    vector&lt;ASTNode*&gt;* getAssignmentTable();</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">//parser api</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    vector&lt;statement&gt;* getPreprocessedProgram();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    vector&lt;statement&gt;* <a class="code" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers.">getPreprocessedProgram</a>();</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> setPreprocessedProgram(vector&lt;statement&gt;* p);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">//design extractor</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    BOOLEAN getAllStmt(STMT_LIST *);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    BOOLEAN getAllAssignment(STMT_LIST *);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    BOOLEAN getAllWhile(STMT_LIST *);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    BOOLEAN getAllConstant(vector&lt;int&gt; *);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    BOOLEAN getAllIf(STMT_LIST*);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    BOOLEAN getAllCall(STMT_LIST*);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a49a72cd623a3561d4bb12352d2fa64de" title="Propagate the call to Design Extractor.">getAllStmt</a>(STMT_LIST *);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a3f41b496a8aef3e16b04353c359c65a4" title="Propagate the call to Design Extractor.">getAllAssignment</a>(STMT_LIST *);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#adb8d2a46ca64352212086f40d8a31986" title="Propagate the call to Design Extractor.">getAllWhile</a>(STMT_LIST *);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a7e30f188c2015b809e3b79e4eb3932ef" title="Propagate the call to Design Extractor.">getAllConstant</a>(vector&lt;int&gt; *);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a50723c23dfd18f3c56fed0fcd22adae0" title="Propagate the call to Design Extractor.">getAllIf</a>(STMT_LIST*);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#a0a9c546aaafc2ba40cdb2143252ec0aa" title="Propagate the call to Design Extractor.">getAllCall</a>(STMT_LIST*);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    BOOLEAN getAllProc(vector&lt;int&gt;*);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    BOOLEAN pattern(vector&lt;int&gt;*, vector&lt;int&gt;*, <span class="keywordtype">string</span>, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    BOOLEAN <a class="code" href="class_p_k_b_controller.html#ad8f6b3467a4975dd76d085e665285373" title="Propagate the call to Design Extractor.">pattern</a>(vector&lt;int&gt;*, vector&lt;int&gt;*, <span class="keywordtype">string</span>, <span class="keywordtype">int</span>);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> completePKB();</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="class_follows.html">Follows</a>* _follows;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="class_parent.html">Parent</a>* _parent;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="class_modifies.html">Modifies</a>* _modifies;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="class_uses.html">Uses</a>* _uses;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="class_var_table.html">VarTable</a>* _varTable;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="class_proc_table.html">ProcTable</a>* _procTable;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>* _follows;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a>* _parent;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a>* _modifies;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>* _uses;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="class_var_table.html" title="Store the information of all variables and provide funtions for retrieving information of variables...">VarTable</a>* _varTable;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="class_proc_table.html" title="Store the information of all procedures and provide funtions for retrieving information of procedures...">ProcTable</a>* _procTable;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="class_a_s_t.html">AST</a>* _ast;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node.">ASTNode</a>* _astNode;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="class_design_extractor.html">DesignExtractor</a>* _designExtractor;</div>
@@ -218,7 +220,7 @@ $(document).ready(function(){initNavTree('_p_k_b_controller_8h_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d33bcfb0cd6530259be5990e622e7b2b.html">SPA</a></li><li class="navelem"><a class="el" href="dir_5fc8ab4af506cd4fa559bebce489ceea.html">SPA</a></li><li class="navelem"><b>PKBController.h</b></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:22 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

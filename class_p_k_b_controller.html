@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_p_k_b_controller.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -116,83 +117,83 @@ $(document).ready(function(){initNavTree('class_p_k_b_controller.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaf51526307856d6c9b39f30cef466a7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf51526307856d6c9b39f30cef466a7d"></a>
-<a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>astGetRoot</b> ()</td></tr>
+<tr class="memitem:aaf51526307856d6c9b39f30cef466a7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#aaf51526307856d6c9b39f30cef466a7d">astGetRoot</a> ()</td></tr>
+<tr class="memdesc:aaf51526307856d6c9b39f30cef466a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the root node of <a class="el" href="class_a_s_t.html">AST</a> For <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor and <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> to access <a class="el" href="class_a_s_t.html">AST</a>.  <a href="#aaf51526307856d6c9b39f30cef466a7d">More...</a><br/></td></tr>
 <tr class="separator:aaf51526307856d6c9b39f30cef466a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8bea69350b07812ccf15e4d02236ef4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8bea69350b07812ccf15e4d02236ef4"></a>
 <a class="el" href="class_a_s_t.html">AST</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getAST</b> ()</td></tr>
 <tr class="separator:ab8bea69350b07812ccf15e4d02236ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8669c80fd550b2722c71da84874ca6c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8669c80fd550b2722c71da84874ca6c4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addFollows</b> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="memitem:a8669c80fd550b2722c71da84874ca6c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a8669c80fd550b2722c71da84874ca6c4">addFollows</a> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="memdesc:a8669c80fd550b2722c71da84874ca6c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">For <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> to add relation Follows(stmt1,stmt2) to <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a> table.  <a href="#a8669c80fd550b2722c71da84874ca6c4">More...</a><br/></td></tr>
 <tr class="separator:a8669c80fd550b2722c71da84874ca6c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f88ed6963a8854908686082117d9936"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f88ed6963a8854908686082117d9936"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>follows</b> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memitem:a5f88ed6963a8854908686082117d9936"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a5f88ed6963a8854908686082117d9936">follows</a> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memdesc:a5f88ed6963a8854908686082117d9936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to follows table.  <a href="#a5f88ed6963a8854908686082117d9936">More...</a><br/></td></tr>
 <tr class="separator:a5f88ed6963a8854908686082117d9936"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e425eee23e66745d62b9eb6d4d41dea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e425eee23e66745d62b9eb6d4d41dea"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>followsStar</b> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memitem:a2e425eee23e66745d62b9eb6d4d41dea"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a2e425eee23e66745d62b9eb6d4d41dea">followsStar</a> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memdesc:a2e425eee23e66745d62b9eb6d4d41dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to follows table.  <a href="#a2e425eee23e66745d62b9eb6d4d41dea">More...</a><br/></td></tr>
 <tr class="separator:a2e425eee23e66745d62b9eb6d4d41dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5892a424531b7c8a10385de613d4469e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5892a424531b7c8a10385de613d4469e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addParent</b> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="memitem:a5892a424531b7c8a10385de613d4469e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a5892a424531b7c8a10385de613d4469e">addParent</a> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="memdesc:a5892a424531b7c8a10385de613d4469e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a> table.  <a href="#a5892a424531b7c8a10385de613d4469e">More...</a><br/></td></tr>
 <tr class="separator:a5892a424531b7c8a10385de613d4469e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5c9a1ae31abf3e5c9db5e7894a0b204"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5c9a1ae31abf3e5c9db5e7894a0b204"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parent</b> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memitem:ae5c9a1ae31abf3e5c9db5e7894a0b204"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204">parent</a> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memdesc:ae5c9a1ae31abf3e5c9db5e7894a0b204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a> table.  <a href="#ae5c9a1ae31abf3e5c9db5e7894a0b204">More...</a><br/></td></tr>
 <tr class="separator:ae5c9a1ae31abf3e5c9db5e7894a0b204"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2686b34e1df29188f2b392d9bb18be41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2686b34e1df29188f2b392d9bb18be41"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>parentStar</b> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memitem:a2686b34e1df29188f2b392d9bb18be41"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41">parentStar</a> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memdesc:a2686b34e1df29188f2b392d9bb18be41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a> table.  <a href="#a2686b34e1df29188f2b392d9bb18be41">More...</a><br/></td></tr>
 <tr class="separator:a2686b34e1df29188f2b392d9bb18be41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae45e870e969ee9d5da02dbafb0d264c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae45e870e969ee9d5da02dbafb0d264c3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addModifies</b> (STMT stmt, VAR_INDEX var)</td></tr>
+<tr class="memitem:ae45e870e969ee9d5da02dbafb0d264c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ae45e870e969ee9d5da02dbafb0d264c3">addModifies</a> (STMT stmt, VAR_INDEX var)</td></tr>
+<tr class="memdesc:ae45e870e969ee9d5da02dbafb0d264c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table.  <a href="#ae45e870e969ee9d5da02dbafb0d264c3">More...</a><br/></td></tr>
 <tr class="separator:ae45e870e969ee9d5da02dbafb0d264c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13f5e8929ad62c8efd2632d1b8ed7275"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13f5e8929ad62c8efd2632d1b8ed7275"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>modifies</b> (STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memitem:a13f5e8929ad62c8efd2632d1b8ed7275"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a13f5e8929ad62c8efd2632d1b8ed7275">modifies</a> (STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memdesc:a13f5e8929ad62c8efd2632d1b8ed7275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table.  <a href="#a13f5e8929ad62c8efd2632d1b8ed7275">More...</a><br/></td></tr>
 <tr class="separator:a13f5e8929ad62c8efd2632d1b8ed7275"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae349f43fd139e8d53cbbdcd59f813112"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae349f43fd139e8d53cbbdcd59f813112"></a>
-STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllModifiesFirst</b> ()</td></tr>
+<tr class="memitem:ae349f43fd139e8d53cbbdcd59f813112"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ae349f43fd139e8d53cbbdcd59f813112">getAllModifiesFirst</a> ()</td></tr>
+<tr class="memdesc:ae349f43fd139e8d53cbbdcd59f813112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table.  <a href="#ae349f43fd139e8d53cbbdcd59f813112">More...</a><br/></td></tr>
 <tr class="separator:ae349f43fd139e8d53cbbdcd59f813112"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6928ee2303002df8468e076381504b6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6928ee2303002df8468e076381504b6e"></a>
-VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllModifiesSecond</b> ()</td></tr>
+<tr class="memitem:a6928ee2303002df8468e076381504b6e"><td class="memItemLeft" align="right" valign="top">VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a6928ee2303002df8468e076381504b6e">getAllModifiesSecond</a> ()</td></tr>
+<tr class="memdesc:a6928ee2303002df8468e076381504b6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table.  <a href="#a6928ee2303002df8468e076381504b6e">More...</a><br/></td></tr>
 <tr class="separator:a6928ee2303002df8468e076381504b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3899818c88ba771728c68ecc45c6fcd1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3899818c88ba771728c68ecc45c6fcd1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addUses</b> (STMT stmt, VAR_INDEX var)</td></tr>
+<tr class="memitem:a3899818c88ba771728c68ecc45c6fcd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a3899818c88ba771728c68ecc45c6fcd1">addUses</a> (STMT stmt, VAR_INDEX var)</td></tr>
+<tr class="memdesc:a3899818c88ba771728c68ecc45c6fcd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table.  <a href="#a3899818c88ba771728c68ecc45c6fcd1">More...</a><br/></td></tr>
 <tr class="separator:a3899818c88ba771728c68ecc45c6fcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adffa1fd32d39d021d4c2f6fb4a2e39d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adffa1fd32d39d021d4c2f6fb4a2e39d4"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>uses</b> (STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memitem:adffa1fd32d39d021d4c2f6fb4a2e39d4"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4">uses</a> (STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memdesc:adffa1fd32d39d021d4c2f6fb4a2e39d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table.  <a href="#adffa1fd32d39d021d4c2f6fb4a2e39d4">More...</a><br/></td></tr>
 <tr class="separator:adffa1fd32d39d021d4c2f6fb4a2e39d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52ab9de01f4df9ab7d890bcf3fbc9136"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52ab9de01f4df9ab7d890bcf3fbc9136"></a>
-STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllUsesFirst</b> ()</td></tr>
+<tr class="memitem:a52ab9de01f4df9ab7d890bcf3fbc9136"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a52ab9de01f4df9ab7d890bcf3fbc9136">getAllUsesFirst</a> ()</td></tr>
+<tr class="memdesc:a52ab9de01f4df9ab7d890bcf3fbc9136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table.  <a href="#a52ab9de01f4df9ab7d890bcf3fbc9136">More...</a><br/></td></tr>
 <tr class="separator:a52ab9de01f4df9ab7d890bcf3fbc9136"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6544b441bc3609e08476d96dc7e63a0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6544b441bc3609e08476d96dc7e63a0e"></a>
-STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllUsesSecond</b> ()</td></tr>
+<tr class="memitem:a6544b441bc3609e08476d96dc7e63a0e"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a6544b441bc3609e08476d96dc7e63a0e">getAllUsesSecond</a> ()</td></tr>
+<tr class="memdesc:a6544b441bc3609e08476d96dc7e63a0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table.  <a href="#a6544b441bc3609e08476d96dc7e63a0e">More...</a><br/></td></tr>
 <tr class="separator:a6544b441bc3609e08476d96dc7e63a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b62af6e627d5f5ff6753074a2433af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b62af6e627d5f5ff6753074a2433af3"></a>
-VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>addVar</b> (STRING varName)</td></tr>
+<tr class="memitem:a2b62af6e627d5f5ff6753074a2433af3"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a2b62af6e627d5f5ff6753074a2433af3">addVar</a> (STRING varName)</td></tr>
+<tr class="memdesc:a2b62af6e627d5f5ff6753074a2433af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Var table.  <a href="#a2b62af6e627d5f5ff6753074a2433af3">More...</a><br/></td></tr>
 <tr class="separator:a2b62af6e627d5f5ff6753074a2433af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc3210a870161b785cdec1eefaf7b896"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc3210a870161b785cdec1eefaf7b896"></a>
-STRING&#160;</td><td class="memItemRight" valign="bottom"><b>getVarName</b> (VAR_INDEX ind)</td></tr>
+<tr class="memitem:afc3210a870161b785cdec1eefaf7b896"><td class="memItemLeft" align="right" valign="top">STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#afc3210a870161b785cdec1eefaf7b896">getVarName</a> (VAR_INDEX ind)</td></tr>
+<tr class="memdesc:afc3210a870161b785cdec1eefaf7b896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Var table.  <a href="#afc3210a870161b785cdec1eefaf7b896">More...</a><br/></td></tr>
 <tr class="separator:afc3210a870161b785cdec1eefaf7b896"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d846b8b888fc465e77870838d9e7793"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d846b8b888fc465e77870838d9e7793"></a>
-VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>getVarIndex</b> (STRING varName)</td></tr>
+<tr class="memitem:a6d846b8b888fc465e77870838d9e7793"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a6d846b8b888fc465e77870838d9e7793">getVarIndex</a> (STRING varName)</td></tr>
+<tr class="memdesc:a6d846b8b888fc465e77870838d9e7793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Var table.  <a href="#a6d846b8b888fc465e77870838d9e7793">More...</a><br/></td></tr>
 <tr class="separator:a6d846b8b888fc465e77870838d9e7793"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab16b995c7865fe6d482619b5e593b42b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab16b995c7865fe6d482619b5e593b42b"></a>
-STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllVarName</b> (VAR_INDEX_LIST inds)</td></tr>
+<tr class="memitem:ab16b995c7865fe6d482619b5e593b42b"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ab16b995c7865fe6d482619b5e593b42b">getAllVarName</a> (VAR_INDEX_LIST inds)</td></tr>
+<tr class="memdesc:ab16b995c7865fe6d482619b5e593b42b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Var table.  <a href="#ab16b995c7865fe6d482619b5e593b42b">More...</a><br/></td></tr>
 <tr class="separator:ab16b995c7865fe6d482619b5e593b42b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1c405dce05559bd727f25f0f4fe5079"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1c405dce05559bd727f25f0f4fe5079"></a>
-STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllVarName</b> ()</td></tr>
+<tr class="memitem:ad1c405dce05559bd727f25f0f4fe5079"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ad1c405dce05559bd727f25f0f4fe5079">getAllVarName</a> ()</td></tr>
+<tr class="memdesc:ad1c405dce05559bd727f25f0f4fe5079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Var table.  <a href="#ad1c405dce05559bd727f25f0f4fe5079">More...</a><br/></td></tr>
 <tr class="separator:ad1c405dce05559bd727f25f0f4fe5079"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ec5fb1acd81802c744c21b8f43ef364"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ec5fb1acd81802c744c21b8f43ef364"></a>
-PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>addProc</b> (STRING procName)</td></tr>
+<tr class="memitem:a1ec5fb1acd81802c744c21b8f43ef364"><td class="memItemLeft" align="right" valign="top">PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a1ec5fb1acd81802c744c21b8f43ef364">addProc</a> (STRING procName)</td></tr>
+<tr class="memdesc:a1ec5fb1acd81802c744c21b8f43ef364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Proc table.  <a href="#a1ec5fb1acd81802c744c21b8f43ef364">More...</a><br/></td></tr>
 <tr class="separator:a1ec5fb1acd81802c744c21b8f43ef364"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25a56c45105d5e0593afebf72b9112f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25a56c45105d5e0593afebf72b9112f0"></a>
-STRING&#160;</td><td class="memItemRight" valign="bottom"><b>getProcName</b> (PROC_INDEX ind)</td></tr>
+<tr class="memitem:a25a56c45105d5e0593afebf72b9112f0"><td class="memItemLeft" align="right" valign="top">STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a25a56c45105d5e0593afebf72b9112f0">getProcName</a> (PROC_INDEX ind)</td></tr>
+<tr class="memdesc:a25a56c45105d5e0593afebf72b9112f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Proc table.  <a href="#a25a56c45105d5e0593afebf72b9112f0">More...</a><br/></td></tr>
 <tr class="separator:a25a56c45105d5e0593afebf72b9112f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9652a236717ec3621fbd36a28c7c167e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9652a236717ec3621fbd36a28c7c167e"></a>
-PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>getProcIndex</b> (STRING procName)</td></tr>
+<tr class="memitem:a9652a236717ec3621fbd36a28c7c167e"><td class="memItemLeft" align="right" valign="top">PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a9652a236717ec3621fbd36a28c7c167e">getProcIndex</a> (STRING procName)</td></tr>
+<tr class="memdesc:a9652a236717ec3621fbd36a28c7c167e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Proc table.  <a href="#a9652a236717ec3621fbd36a28c7c167e">More...</a><br/></td></tr>
 <tr class="separator:a9652a236717ec3621fbd36a28c7c167e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdf4ead26e3e4097d0806705f4f684cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdf4ead26e3e4097d0806705f4f684cc"></a>
-STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllProcName</b> (PROC_INDEX_LIST inds)</td></tr>
+<tr class="memitem:afdf4ead26e3e4097d0806705f4f684cc"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#afdf4ead26e3e4097d0806705f4f684cc">getAllProcName</a> (PROC_INDEX_LIST inds)</td></tr>
+<tr class="memdesc:afdf4ead26e3e4097d0806705f4f684cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Proc table.  <a href="#afdf4ead26e3e4097d0806705f4f684cc">More...</a><br/></td></tr>
 <tr class="separator:afdf4ead26e3e4097d0806705f4f684cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e59bbf92c58c2b7ca6ca9db64a28d07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e59bbf92c58c2b7ca6ca9db64a28d07"></a>
-STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllProcName</b> ()</td></tr>
+<tr class="memitem:a7e59bbf92c58c2b7ca6ca9db64a28d07"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a7e59bbf92c58c2b7ca6ca9db64a28d07">getAllProcName</a> ()</td></tr>
+<tr class="memdesc:a7e59bbf92c58c2b7ca6ca9db64a28d07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Proc table.  <a href="#a7e59bbf92c58c2b7ca6ca9db64a28d07">More...</a><br/></td></tr>
 <tr class="separator:a7e59bbf92c58c2b7ca6ca9db64a28d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d78e7214b76f584912995b8ca82a2bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d78e7214b76f584912995b8ca82a2bb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addConstant</b> (int value)</td></tr>
@@ -206,35 +207,35 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>addAssignmentNode</b>
 <tr class="memitem:adb8200e1b1a101ea9a201b80aa7323a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb8200e1b1a101ea9a201b80aa7323a1"></a>
 vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getAssignmentTable</b> ()</td></tr>
 <tr class="separator:adb8200e1b1a101ea9a201b80aa7323a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabb3a080ffa5913e52f518a961c93c26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabb3a080ffa5913e52f518a961c93c26"></a>
-vector&lt; <a class="el" href="structstmt_detail.html">statement</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getPreprocessedProgram</b> ()</td></tr>
+<tr class="memitem:aabb3a080ffa5913e52f518a961c93c26"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="structstmt_detail.html">statement</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26">getPreprocessedProgram</a> ()</td></tr>
+<tr class="memdesc:aabb3a080ffa5913e52f518a961c93c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the table of preprocessed program. Easier for preprocessor to travers.  <a href="#aabb3a080ffa5913e52f518a961c93c26">More...</a><br/></td></tr>
 <tr class="separator:aabb3a080ffa5913e52f518a961c93c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2403b1a0003e7324a534970ccc314ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2403b1a0003e7324a534970ccc314ed"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPreprocessedProgram</b> (vector&lt; <a class="el" href="structstmt_detail.html">statement</a> &gt; *p)</td></tr>
 <tr class="separator:aa2403b1a0003e7324a534970ccc314ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49a72cd623a3561d4bb12352d2fa64de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49a72cd623a3561d4bb12352d2fa64de"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllStmt</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:a49a72cd623a3561d4bb12352d2fa64de"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a49a72cd623a3561d4bb12352d2fa64de">getAllStmt</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:a49a72cd623a3561d4bb12352d2fa64de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#a49a72cd623a3561d4bb12352d2fa64de">More...</a><br/></td></tr>
 <tr class="separator:a49a72cd623a3561d4bb12352d2fa64de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f41b496a8aef3e16b04353c359c65a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f41b496a8aef3e16b04353c359c65a4"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllAssignment</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:a3f41b496a8aef3e16b04353c359c65a4"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a3f41b496a8aef3e16b04353c359c65a4">getAllAssignment</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:a3f41b496a8aef3e16b04353c359c65a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#a3f41b496a8aef3e16b04353c359c65a4">More...</a><br/></td></tr>
 <tr class="separator:a3f41b496a8aef3e16b04353c359c65a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb8d2a46ca64352212086f40d8a31986"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb8d2a46ca64352212086f40d8a31986"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllWhile</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:adb8d2a46ca64352212086f40d8a31986"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#adb8d2a46ca64352212086f40d8a31986">getAllWhile</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:adb8d2a46ca64352212086f40d8a31986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#adb8d2a46ca64352212086f40d8a31986">More...</a><br/></td></tr>
 <tr class="separator:adb8d2a46ca64352212086f40d8a31986"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e30f188c2015b809e3b79e4eb3932ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e30f188c2015b809e3b79e4eb3932ef"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllConstant</b> (vector&lt; int &gt; *)</td></tr>
+<tr class="memitem:a7e30f188c2015b809e3b79e4eb3932ef"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a7e30f188c2015b809e3b79e4eb3932ef">getAllConstant</a> (vector&lt; int &gt; *)</td></tr>
+<tr class="memdesc:a7e30f188c2015b809e3b79e4eb3932ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#a7e30f188c2015b809e3b79e4eb3932ef">More...</a><br/></td></tr>
 <tr class="separator:a7e30f188c2015b809e3b79e4eb3932ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50723c23dfd18f3c56fed0fcd22adae0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50723c23dfd18f3c56fed0fcd22adae0"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllIf</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:a50723c23dfd18f3c56fed0fcd22adae0"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a50723c23dfd18f3c56fed0fcd22adae0">getAllIf</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:a50723c23dfd18f3c56fed0fcd22adae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#a50723c23dfd18f3c56fed0fcd22adae0">More...</a><br/></td></tr>
 <tr class="separator:a50723c23dfd18f3c56fed0fcd22adae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a9c546aaafc2ba40cdb2143252ec0aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a9c546aaafc2ba40cdb2143252ec0aa"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCall</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:a0a9c546aaafc2ba40cdb2143252ec0aa"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a0a9c546aaafc2ba40cdb2143252ec0aa">getAllCall</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:a0a9c546aaafc2ba40cdb2143252ec0aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#a0a9c546aaafc2ba40cdb2143252ec0aa">More...</a><br/></td></tr>
 <tr class="separator:a0a9c546aaafc2ba40cdb2143252ec0aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79dd75709166f4b5e14a988c1c986c58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79dd75709166f4b5e14a988c1c986c58"></a>
 BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllProc</b> (vector&lt; int &gt; *)</td></tr>
 <tr class="separator:a79dd75709166f4b5e14a988c1c986c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8f6b3467a4975dd76d085e665285373"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8f6b3467a4975dd76d085e665285373"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>pattern</b> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td></tr>
+<tr class="memitem:ad8f6b3467a4975dd76d085e665285373"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ad8f6b3467a4975dd76d085e665285373">pattern</a> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td></tr>
+<tr class="memdesc:ad8f6b3467a4975dd76d085e665285373"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#ad8f6b3467a4975dd76d085e665285373">More...</a><br/></td></tr>
 <tr class="separator:ad8f6b3467a4975dd76d085e665285373"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cbfa9cc2fe478b223345945adc45f9f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cbfa9cc2fe478b223345945adc45f9f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>completePKB</b> ()</td></tr>
@@ -242,8 +243,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>completePKB</b> ()</t
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2ad81eda5417c9bb5cefe8d0000a142b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ad81eda5417c9bb5cefe8d0000a142b"></a>
-static <a class="el" href="class_p_k_b_controller.html">PKBController</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>createInstance</b> ()</td></tr>
+<tr class="memitem:a2ad81eda5417c9bb5cefe8d0000a142b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_p_k_b_controller.html">PKBController</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a2ad81eda5417c9bb5cefe8d0000a142b">createInstance</a> ()</td></tr>
+<tr class="memdesc:a2ad81eda5417c9bb5cefe8d0000a142b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create only once the <a class="el" href="class_p_k_b_controller.html">PKBController</a> object. If <a class="el" href="class_p_k_b_controller.html">PKBController</a> object exists, return the object. If <a class="el" href="class_p_k_b_controller.html">PKBController</a> object does not exist, create new object and return.  <a href="#a2ad81eda5417c9bb5cefe8d0000a142b">More...</a><br/></td></tr>
 <tr class="separator:a2ad81eda5417c9bb5cefe8d0000a142b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -291,9 +292,825 @@ vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_con
 vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_assignmentTable</b></td></tr>
 <tr class="separator:aa9e8ee573909fec5fc992c7798f3aa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8669c80fd550b2722c71da84874ca6c4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addFollows </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>For <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> to add relation Follows(stmt1,stmt2) to <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae45e870e969ee9d5da02dbafb0d264c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addModifies </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>var</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5892a424531b7c8a10385de613d4469e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addParent </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1ec5fb1acd81802c744c21b8f43ef364"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX PKBController::addProc </td>
+          <td>(</td>
+          <td class="paramtype">STRING&#160;</td>
+          <td class="paramname"><em>procName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Proc table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3899818c88ba771728c68ecc45c6fcd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addUses </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>var</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b62af6e627d5f5ff6753074a2433af3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX PKBController::addVar </td>
+          <td>(</td>
+          <td class="paramtype">STRING&#160;</td>
+          <td class="paramname"><em>varName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Var table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aaf51526307856d6c9b39f30cef466a7d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_a_s_t_node.html">ASTNode</a> * PKBController::astGetRoot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the root node of <a class="el" href="class_a_s_t.html">AST</a> For <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor and <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> to access <a class="el" href="class_a_s_t.html">AST</a>. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">ast</td><td><a class="el" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node.">ASTNode</a> object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2ad81eda5417c9bb5cefe8d0000a142b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_p_k_b_controller.html">PKBController</a> * PKBController::createInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create only once the <a class="el" href="class_p_k_b_controller.html">PKBController</a> object. If <a class="el" href="class_p_k_b_controller.html">PKBController</a> object exists, return the object. If <a class="el" href="class_p_k_b_controller.html">PKBController</a> object does not exist, create new object and return. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">obj</td><td>The <a class="el" href="class_p_k_b_controller.html">PKBController</a> object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5f88ed6963a8854908686082117d9936"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::follows </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st1s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st2s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to follows table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2e425eee23e66745d62b9eb6d4d41dea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::followsStar </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st1s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st2s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to follows table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3f41b496a8aef3e16b04353c359c65a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::getAllAssignment </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0a9c546aaafc2ba40cdb2143252ec0aa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::getAllCall </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7e30f188c2015b809e3b79e4eb3932ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::getAllConstant </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a50723c23dfd18f3c56fed0fcd22adae0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::getAllIf </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae349f43fd139e8d53cbbdcd59f813112"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST PKBController::getAllModifiesFirst </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6928ee2303002df8468e076381504b6e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX_LIST PKBController::getAllModifiesSecond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afdf4ead26e3e4097d0806705f4f684cc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING_LIST PKBController::getAllProcName </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX_LIST&#160;</td>
+          <td class="paramname"><em>inds</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Proc table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7e59bbf92c58c2b7ca6ca9db64a28d07"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING_LIST PKBController::getAllProcName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Proc table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a49a72cd623a3561d4bb12352d2fa64de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::getAllStmt </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a52ab9de01f4df9ab7d890bcf3fbc9136"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST PKBController::getAllUsesFirst </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6544b441bc3609e08476d96dc7e63a0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST PKBController::getAllUsesSecond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab16b995c7865fe6d482619b5e593b42b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING_LIST PKBController::getAllVarName </td>
+          <td>(</td>
+          <td class="paramtype">VAR_INDEX_LIST&#160;</td>
+          <td class="paramname"><em>inds</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Var table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad1c405dce05559bd727f25f0f4fe5079"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING_LIST PKBController::getAllVarName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Var table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adb8d2a46ca64352212086f40d8a31986"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::getAllWhile </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aabb3a080ffa5913e52f518a961c93c26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="structstmt_detail.html">statement</a> &gt; * PKBController::getPreprocessedProgram </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the table of preprocessed program. Easier for preprocessor to travers. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9652a236717ec3621fbd36a28c7c167e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX PKBController::getProcIndex </td>
+          <td>(</td>
+          <td class="paramtype">STRING&#160;</td>
+          <td class="paramname"><em>procName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Proc table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a25a56c45105d5e0593afebf72b9112f0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING PKBController::getProcName </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>ind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Proc table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6d846b8b888fc465e77870838d9e7793"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX PKBController::getVarIndex </td>
+          <td>(</td>
+          <td class="paramtype">STRING&#160;</td>
+          <td class="paramname"><em>varName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Var table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afc3210a870161b785cdec1eefaf7b896"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING PKBController::getVarName </td>
+          <td>(</td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>ind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to Var table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a13f5e8929ad62c8efd2632d1b8ed7275"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::modifies </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>sts_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>vs_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae5c9a1ae31abf3e5c9db5e7894a0b204"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::parent </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st1s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st2s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2686b34e1df29188f2b392d9bb18be41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::parentStar </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st1s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st2s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad8f6b3467a4975dd76d085e665285373"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::pattern </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>expr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adffa1fd32d39d021d4c2f6fb4a2e39d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::uses </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>sts_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>vs_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_p_k_b_controller_8h_source.html">PKBController.h</a></li>
-<li>SPA/SPA/PKBController.cpp</li>
+<li>SPA/SPA/<a class="el" href="_p_k_b_controller_8cpp.html">PKBController.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -301,7 +1118,7 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_p_k_b_controller.html">PKBController</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

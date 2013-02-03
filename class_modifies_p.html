@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_modifies_p.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,20 +113,23 @@ $(document).ready(function(){initNavTree('class_modifies_p.html','');});
 <div class="title">ModifiesP Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Store all '<a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a>' relations for procedures (call them '<a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a>' relation) in the form (proc, var) where 'proc' is a procedure index and 'var' is a variable index. Provide funtions for query on <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> relation for procedures (i.e. <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> relation). The storage is referred to as ModifiesPTable.  
+ <a href="class_modifies_p.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8b4e9f782550ae6ef5a5af37f04dc8ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b4e9f782550ae6ef5a5af37f04dc8ea"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addModifiesP</b> (PROC_INDEX proc, VAR_INDEX var)</td></tr>
+<tr class="memitem:a8b4e9f782550ae6ef5a5af37f04dc8ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_modifies_p.html#a8b4e9f782550ae6ef5a5af37f04dc8ea">addModifiesP</a> (PROC_INDEX proc, VAR_INDEX var)</td></tr>
+<tr class="memdesc:a8b4e9f782550ae6ef5a5af37f04dc8ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new '<a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a>' relation in the form (proc, var) to ModifiesTable where 'proc' is a procedure index and 'var' is a variable index. If the relation already exists, do nothing.  <a href="#a8b4e9f782550ae6ef5a5af37f04dc8ea">More...</a><br/></td></tr>
 <tr class="separator:a8b4e9f782550ae6ef5a5af37f04dc8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af78f22e7a81f0291df3bb7c49a65ce64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af78f22e7a81f0291df3bb7c49a65ce64"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>modifiesP</b> (PROC_INDEX_LIST *ps_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memitem:af78f22e7a81f0291df3bb7c49a65ce64"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_modifies_p.html#af78f22e7a81f0291df3bb7c49a65ce64">modifiesP</a> (PROC_INDEX_LIST *ps_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memdesc:af78f22e7a81f0291df3bb7c49a65ce64"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function for query on '<a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a>' relations.  <a href="#af78f22e7a81f0291df3bb7c49a65ce64">More...</a><br/></td></tr>
 <tr class="separator:af78f22e7a81f0291df3bb7c49a65ce64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a165c481aab215c9c14ca583ff6c27978"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a165c481aab215c9c14ca583ff6c27978"></a>
-PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllModifiesPFirst</b> ()</td></tr>
+<tr class="memitem:a165c481aab215c9c14ca583ff6c27978"><td class="memItemLeft" align="right" valign="top">PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_modifies_p.html#a165c481aab215c9c14ca583ff6c27978">getAllModifiesPFirst</a> ()</td></tr>
+<tr class="memdesc:a165c481aab215c9c14ca583ff6c27978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all the procedure indices stored in ModifiesPTable as a list.  <a href="#a165c481aab215c9c14ca583ff6c27978">More...</a><br/></td></tr>
 <tr class="separator:a165c481aab215c9c14ca583ff6c27978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af863f3f7ea11881d6c25d886a9093019"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af863f3f7ea11881d6c25d886a9093019"></a>
-VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllModifiesPSecond</b> ()</td></tr>
+<tr class="memitem:af863f3f7ea11881d6c25d886a9093019"><td class="memItemLeft" align="right" valign="top">VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_modifies_p.html#af863f3f7ea11881d6c25d886a9093019">getAllModifiesPSecond</a> ()</td></tr>
+<tr class="memdesc:af863f3f7ea11881d6c25d886a9093019"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all the variable indices stored in ModifiesPTable as a list.  <a href="#af863f3f7ea11881d6c25d886a9093019">More...</a><br/></td></tr>
 <tr class="separator:af863f3f7ea11881d6c25d886a9093019"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -161,9 +165,132 @@ PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>procs</b><
 VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>vars</b></td></tr>
 <tr class="separator:a8070dbddd06abb0d4a9ce93d48138e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Store all '<a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a>' relations for procedures (call them '<a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a>' relation) in the form (proc, var) where 'proc' is a procedure index and 'var' is a variable index. Provide funtions for query on <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> relation for procedures (i.e. <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> relation). The storage is referred to as ModifiesPTable. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8b4e9f782550ae6ef5a5af37f04dc8ea"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ModifiesP::addModifiesP </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>var</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new '<a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a>' relation in the form (proc, var) to ModifiesTable where 'proc' is a procedure index and 'var' is a variable index. If the relation already exists, do nothing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">proc</td><td>The index of the procedure in this <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> relation. </td></tr>
+    <tr><td class="paramname">var</td><td>The index of the variable that is being modified in the variable table.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a165c481aab215c9c14ca583ff6c27978"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PROC_INDEX_LIST ModifiesP::getAllModifiesPFirst </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all the procedure indices stored in ModifiesPTable as a list. </p>
+<dl class="section return"><dt>Returns</dt><dd>PROC_INDEX_LIST. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af863f3f7ea11881d6c25d886a9093019"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX_LIST ModifiesP::getAllModifiesPSecond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all the variable indices stored in ModifiesPTable as a list. </p>
+<dl class="section return"><dt>Returns</dt><dd>VAR_INDEX_LIST. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af78f22e7a81f0291df3bb7c49a65ce64"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN ModifiesP::modifiesP </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>ps_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>vs_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function for query on '<a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a>' relations. </p>
+<p>To handle a query in the form ModifiesP(List A, List B, arg).</p>
+<p>Case 1: arg = 00 = 0 1a) Both lists are empty Return TRUE if ModifiesPTable is not empty, FASLE otherwise. 1b) List A empty, List B non-empty Return TRUE if there exists one entry (proc, var) in the ModifiesPTable where var equals to at least one of the element in List B, FASLE otherwise. 1c) List A non-empty, List B empty Return TRUE if there exists one entry (proc, var) in the ModifiesPTable where proc equals to at least one of the element in List A, FASLE otherwise. 1d) Both lists are non-empty Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one &lt;ai, bj&gt; pair such that (ai, bj) is an entry in ModifiesPTable, FASLE otherwise.</p>
+<p>Case 2: arg = 01 = 1 2a) Both lists are empty Fill up list B with all the distinct values in the second column of ModifiesPTable. 2b) List A nont-empty, List B empty Fill up list B with all the values in the second column of ModifiesPTable where the corresponding first column equals to the elements in list A. 2c) List A empty, List B non-empty Remove elements from list B that are not found in the second column of ModifiesPTable. 2d) Both lists are non-empty Find all values (say V2) in the second column of ModifiesPTable where the corresponding first column value equals to the elements in list A and remove elements from list B that are not in V2. For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.</p>
+<p>Case 3: arg = 10 = 2 3a) Both lists are empty Fill up list A with all the distinct values in the first column of ModifiesPTable. 3b) List A empty, List B non-empty Fill up list A with all the values in the first column of ModifiesPTable where the corresponding second column equals to the elements in list B. 3c) List A non-empty, List B empty Remove elements from list A that are not found in the first column of ModifiesPTable. 3d) Both lists are non-empty Find all values (say V1) in the first column of ModifiesPTable where the corresponding second column value equals to the elements in list B and remove elements from list A that are not in V1. For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.</p>
+<p>Case 4: arg = 11 = 3 4a) Both lists are empty Fill up the two lists with all entries of ModifiesPTable. 4b) List A empty, List B non-empty For each element (bi) in list B, find values in the first column of ModifiesPTable where the second column equals to bi. (i) If found no values, remove bi from list B. (ii) If found 1 single value, add this value to list A. (iii) if found n (n&gt;1) values, add these values to list A and duplicate bi n-1 times in list B. 4c) List A non-empty, List B empty For each element (ai) in list A, find values in the second column of ModifiesPTable where the first column equals to ai. (i) If found no values, remove ai from list A. (ii) If found 1 single value, add this value to list B. (iii) if found n (n&gt;1) values, add these values to list B and duplicate ai n-1 times in list A. 4d) Both lists are non-empty Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if (ai, bi) is not an entry in ModifiesPTable. For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.</p>
+<p>Case: arg = other values Exception</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ps_ptr</td><td>A pointer to a procedure index list. </td></tr>
+    <tr><td class="paramname">vs_ptr</td><td>A pointer to a variable index list.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A Boolean value as specified in the detailed description. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_modifies_p_8h_source.html">ModifiesP.h</a></li>
-<li>SPA/SPA/ModifiesP.cpp</li>
+<li>SPA/SPA/<a class="el" href="_modifies_p_8cpp.html">ModifiesP.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -171,7 +298,7 @@ VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>vars</b></t
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_modifies_p.html">ModifiesP</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

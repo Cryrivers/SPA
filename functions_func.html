@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -80,6 +81,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="#index_a"><span>a</span></a></li>
+      <li><a href="#index_c"><span>c</span></a></li>
+      <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_f"><span>f</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_q"><span>q</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_u"><span>u</span></a></li>
+      <li><a href="#index_0x7e"><span>~</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -100,7 +119,7 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,18 +129,65 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </div>
 
 <div class="contents">
-&#160;<ul>
+&#160;
+
+<h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>addCall()
+: <a class="el" href="class_call_table.html#ab75a32e80543adaecbfe4fae9f06fa3d">CallTable</a>
+</li>
 <li>addChild()
 : <a class="el" href="class_a_s_t_node.html#ac8750b89a9f5e76c550f7cc878a68712">ASTNode</a>
+</li>
+<li>addFollows()
+: <a class="el" href="class_p_k_b_controller.html#a8669c80fd550b2722c71da84874ca6c4">PKBController</a>
+, <a class="el" href="class_follows.html#a15934b299d99d274bd1e7daa13399a31">Follows</a>
+</li>
+<li>addModifies()
+: <a class="el" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573">DesignExtractor</a>
+, <a class="el" href="class_modifies.html#addef41a687768ae932be01eedfa14b26">Modifies</a>
+, <a class="el" href="class_p_k_b_controller.html#ae45e870e969ee9d5da02dbafb0d264c3">PKBController</a>
+</li>
+<li>addModifiesP()
+: <a class="el" href="class_modifies_p.html#a8b4e9f782550ae6ef5a5af37f04dc8ea">ModifiesP</a>
+</li>
+<li>addParent()
+: <a class="el" href="class_parent.html#a7fe4a135b34cde6db156f3b13663b236">Parent</a>
+, <a class="el" href="class_p_k_b_controller.html#a5892a424531b7c8a10385de613d4469e">PKBController</a>
+</li>
+<li>addProc()
+: <a class="el" href="class_p_k_b_controller.html#a1ec5fb1acd81802c744c21b8f43ef364">PKBController</a>
+, <a class="el" href="class_proc_table.html#a74c237ef109380f8f39e1a88b61a0c6d">ProcTable</a>
 </li>
 <li>addSibling()
 : <a class="el" href="class_a_s_t_node.html#af7d6d63178333b47891337a7a2b31d99">ASTNode</a>
 </li>
+<li>addUses()
+: <a class="el" href="class_p_k_b_controller.html#a3899818c88ba771728c68ecc45c6fcd1">PKBController</a>
+, <a class="el" href="class_uses.html#adba4dfa43c0a1a98ef594260e0f8ef47">Uses</a>
+, <a class="el" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a">DesignExtractor</a>
+</li>
+<li>addUsesP()
+: <a class="el" href="class_uses_p.html#ab07063361196a369f961dd02bc9e5b76">UsesP</a>
+</li>
+<li>addVar()
+: <a class="el" href="class_var_table.html#a3525d63f866a56c3de7a616f4a276106">VarTable</a>
+, <a class="el" href="class_p_k_b_controller.html#a2b62af6e627d5f5ff6753074a2433af3">PKBController</a>
+</li>
 <li>appendHashcode()
 : <a class="el" href="class_a_s_t_node.html#a7acec727b648b033037096f0f353626e">ASTNode</a>
 </li>
+<li>astGetRoot()
+: <a class="el" href="class_p_k_b_controller.html#aaf51526307856d6c9b39f30cef466a7d">PKBController</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>calculateHashcode()
 : <a class="el" href="class_a_s_t.html#aaebedffee7d5ee9c043fc1c31ec6c0d7">AST</a>
+</li>
+<li>calls()
+: <a class="el" href="class_call_table.html#a48074824fd276c3d24b1c80c65ac6e65">CallTable</a>
 </li>
 <li>containTree()
 : <a class="el" href="class_a_s_t.html#a17dd2291ffc6aad76c9c023c1a36fb60">AST</a>
@@ -129,23 +195,164 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>createChild()
 : <a class="el" href="class_a_s_t_node.html#a1dc16ab600c8bac334b25ecd2517c835">ASTNode</a>
 </li>
+<li>createInstance()
+: <a class="el" href="class_p_k_b_controller.html#a2ad81eda5417c9bb5cefe8d0000a142b">PKBController</a>
+</li>
 <li>createNode()
 : <a class="el" href="class_a_s_t_node.html#a9d3cf2a01f25c631805030458dfa2ef0">ASTNode</a>
 </li>
 <li>createSibling()
 : <a class="el" href="class_a_s_t_node.html#a0d91c8d5c9c70f35fa4531771917f528">ASTNode</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>DesignExtractor()
+: <a class="el" href="class_design_extractor.html#ab43568887023f04b5ea405cc7dfbeea8">DesignExtractor</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>extractRelation()
+: <a class="el" href="class_query_preprocessor.html#ab2d69d54aad9dd61109a669f3347e87d">QueryPreprocessor</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
+<li>findNextIndexFrom()
+: <a class="el" href="class_query_preprocessor.html#aff26bed4c571104d8c3cb6183da0fb78">QueryPreprocessor</a>
+</li>
+<li>follows()
+: <a class="el" href="class_follows.html#ad274f4216424ccb65bf5fa3e2824fc21">Follows</a>
+, <a class="el" href="class_p_k_b_controller.html#a5f88ed6963a8854908686082117d9936">PKBController</a>
+</li>
+<li>followsStar()
+: <a class="el" href="class_follows.html#ae13d02a9a48fac8d84f9d6c473ff1acc">Follows</a>
+, <a class="el" href="class_p_k_b_controller.html#a2e425eee23e66745d62b9eb6d4d41dea">PKBController</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>getAllAssignment()
+: <a class="el" href="class_design_extractor.html#ac726aa0f4d7683e0b516f6375d5cbed2">DesignExtractor</a>
+, <a class="el" href="class_p_k_b_controller.html#a3f41b496a8aef3e16b04353c359c65a4">PKBController</a>
+</li>
+<li>getAllCall()
+: <a class="el" href="class_p_k_b_controller.html#a0a9c546aaafc2ba40cdb2143252ec0aa">PKBController</a>
+, <a class="el" href="class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431">DesignExtractor</a>
+</li>
+<li>getAllCallsFirst()
+: <a class="el" href="class_call_table.html#a4d91f5bccbf4d041b86e0424c1b52007">CallTable</a>
+</li>
+<li>getAllCallsSecond()
+: <a class="el" href="class_call_table.html#a7d9ff0e77358c5aea9156a4a99bf822c">CallTable</a>
+</li>
+<li>getAllConstant()
+: <a class="el" href="class_p_k_b_controller.html#a7e30f188c2015b809e3b79e4eb3932ef">PKBController</a>
+, <a class="el" href="class_design_extractor.html#ad4c6d709f46b4a6a681bf8a7b6e554f3">DesignExtractor</a>
+</li>
+<li>getAllIf()
+: <a class="el" href="class_design_extractor.html#af29dfb20bcfbc7fb188adffd8bfd39c6">DesignExtractor</a>
+, <a class="el" href="class_p_k_b_controller.html#a50723c23dfd18f3c56fed0fcd22adae0">PKBController</a>
+</li>
+<li>getAllModifiesFirst()
+: <a class="el" href="class_modifies.html#ab04c57776781460bb0dc9253aa4f6e7f">Modifies</a>
+, <a class="el" href="class_p_k_b_controller.html#ae349f43fd139e8d53cbbdcd59f813112">PKBController</a>
+</li>
+<li>getAllModifiesPFirst()
+: <a class="el" href="class_modifies_p.html#a165c481aab215c9c14ca583ff6c27978">ModifiesP</a>
+</li>
+<li>getAllModifiesPSecond()
+: <a class="el" href="class_modifies_p.html#af863f3f7ea11881d6c25d886a9093019">ModifiesP</a>
+</li>
+<li>getAllModifiesSecond()
+: <a class="el" href="class_p_k_b_controller.html#a6928ee2303002df8468e076381504b6e">PKBController</a>
+, <a class="el" href="class_modifies.html#a4ef7057178666e19c60d065f7bf4dbf0">Modifies</a>
+</li>
+<li>getAllProcName()
+: <a class="el" href="class_p_k_b_controller.html#afdf4ead26e3e4097d0806705f4f684cc">PKBController</a>
+, <a class="el" href="class_proc_table.html#ac17c2cc7db468c8b043c8bc1c5cd23b7">ProcTable</a>
+</li>
+<li>getAllStmt()
+: <a class="el" href="class_design_extractor.html#ace811652940cd0c9b203466d718da76c">DesignExtractor</a>
+, <a class="el" href="class_p_k_b_controller.html#a49a72cd623a3561d4bb12352d2fa64de">PKBController</a>
+</li>
+<li>getAllUsesFirst()
+: <a class="el" href="class_p_k_b_controller.html#a52ab9de01f4df9ab7d890bcf3fbc9136">PKBController</a>
+, <a class="el" href="class_uses.html#a921fcc24e00a591ed4ea4e617bd4a12c">Uses</a>
+</li>
+<li>getAllUsesPFirst()
+: <a class="el" href="class_uses_p.html#a3dad2f6f42cb7541d1035c42a4a21e19">UsesP</a>
+</li>
+<li>getAllUsesPSecond()
+: <a class="el" href="class_uses_p.html#a5e8d3e63da221bf3aed7315e6e11fa98">UsesP</a>
+</li>
+<li>getAllUsesSecond()
+: <a class="el" href="class_p_k_b_controller.html#a6544b441bc3609e08476d96dc7e63a0e">PKBController</a>
+, <a class="el" href="class_uses.html#aa15239ef6722d679b89ebc7bc100e815">Uses</a>
+</li>
+<li>getAllVarName()
+: <a class="el" href="class_var_table.html#a8a44180fccb4a83842728c722901a81f">VarTable</a>
+, <a class="el" href="class_p_k_b_controller.html#ab16b995c7865fe6d482619b5e593b42b">PKBController</a>
+, <a class="el" href="class_var_table.html#a8aa0ee217a587fca37ff95719fc760ce">VarTable</a>
+</li>
+<li>getAllWhile()
+: <a class="el" href="class_design_extractor.html#a38b674ccd8bb996d7c67984f01c174b8">DesignExtractor</a>
+, <a class="el" href="class_p_k_b_controller.html#adb8d2a46ca64352212086f40d8a31986">PKBController</a>
+</li>
+<li>getAttributeOfVariable()
+: <a class="el" href="class_query_preprocessor.html#af0d531e35590b42c05b3c46cda43b2b0">QueryPreprocessor</a>
+</li>
 <li>getChildren()
 : <a class="el" href="class_a_s_t_node.html#ac132be149375fbdc3e87b522ad4301f7">ASTNode</a>
 </li>
+<li>getClauses()
+: <a class="el" href="class_query_preprocessor.html#a8386398ca7580e07b0f2d962e07cd8f1">QueryPreprocessor</a>
+</li>
+<li>getDeclares()
+: <a class="el" href="class_query_preprocessor.html#a8f0fda61f89dc0296ef60ba4ae68f105">QueryPreprocessor</a>
+</li>
 <li>getHashcode()
 : <a class="el" href="class_a_s_t_node.html#a64a02c13cd3175e600aa8e055f05178e">ASTNode</a>
+</li>
+<li>getIndexFromVarTable()
+: <a class="el" href="class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988">QueryPreprocessor</a>
+</li>
+<li>getIndexOfFirstFrom()
+: <a class="el" href="class_query_preprocessor.html#a709f0d33cbb680e4f754d2a55964b9be">QueryPreprocessor</a>
+</li>
+<li>getIndexOfNextFrom()
+: <a class="el" href="class_query_preprocessor.html#a55bbe743f102ce34bb276b7e2ff4feb0">QueryPreprocessor</a>
 </li>
 <li>getNodeType()
 : <a class="el" href="class_a_s_t_node.html#af847a76978610e128f6d2cec903f5cdf">ASTNode</a>
 </li>
 <li>getNodeValue()
 : <a class="el" href="class_a_s_t_node.html#ac553a005168caf9703e05a181df61529">ASTNode</a>
+</li>
+<li>getPreprocessedProgram()
+: <a class="el" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26">PKBController</a>
+</li>
+<li>getProcIndex()
+: <a class="el" href="class_p_k_b_controller.html#a9652a236717ec3621fbd36a28c7c167e">PKBController</a>
+, <a class="el" href="class_proc_table.html#ae46657037c2248bb7a845ed3270d2566">ProcTable</a>
+</li>
+<li>getProcName()
+: <a class="el" href="class_p_k_b_controller.html#a25a56c45105d5e0593afebf72b9112f0">PKBController</a>
+, <a class="el" href="class_proc_table.html#a415700fb31a12fe473ce32c864a3b2b7">ProcTable</a>
+</li>
+<li>getQueryClauseTable()
+: <a class="el" href="class_query_preprocessor.html#a66dbc91ccf7b9506316af857234a685b">QueryPreprocessor</a>
+</li>
+<li>getQueryTargetTable()
+: <a class="el" href="class_query_preprocessor.html#a784bf47aa8f9e9d0c318e82c8900135e">QueryPreprocessor</a>
+</li>
+<li>getQueryVariableTable()
+: <a class="el" href="class_query_preprocessor.html#ab9cdc33dce820f20f00a8b20509b1b3f">QueryPreprocessor</a>
 </li>
 <li>getRoot()
 : <a class="el" href="class_a_s_t.html#acc1a0efce9b143a98fc3b9f7d6caeac1">AST</a>
@@ -156,17 +363,117 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>getStmtNumber()
 : <a class="el" href="class_a_s_t_node.html#afb6e377ad7a66b3a847283274c956ce4">ASTNode</a>
 </li>
+<li>getTargets()
+: <a class="el" href="class_query_preprocessor.html#a16884e7c24b6e2879dc8ae1d49b179a3">QueryPreprocessor</a>
+</li>
+<li>getVarIndex()
+: <a class="el" href="class_p_k_b_controller.html#a6d846b8b888fc465e77870838d9e7793">PKBController</a>
+, <a class="el" href="class_var_table.html#a445457aba8dc2d6b5371049f0e5396fe">VarTable</a>
+</li>
+<li>getVarName()
+: <a class="el" href="class_var_table.html#a7d41f6dc3a6e31665f611c54310301de">VarTable</a>
+, <a class="el" href="class_p_k_b_controller.html#afc3210a870161b785cdec1eefaf7b896">PKBController</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>isAttrRef()
+: <a class="el" href="class_query_validator.html#a209d8bdf73afb7cc47524d0c6ed67d7d">QueryValidator</a>
+</li>
+<li>isDigit()
+: <a class="el" href="class_query_validator.html#a02b3aca4fd564ea07d9f0b651c62eef4">QueryValidator</a>
+</li>
+<li>isElem()
+: <a class="el" href="class_query_validator.html#a16f19f739c0eae7636ee05b138df05a7">QueryValidator</a>
+</li>
+<li>isEntRef()
+: <a class="el" href="class_query_validator.html#ae2013e77f9084cf95d2ef3fa9a2e2e3a">QueryValidator</a>
+</li>
+<li>isExprSpec()
+: <a class="el" href="class_query_validator.html#a06706200349bddf2d97502a1446913fe">QueryValidator</a>
+</li>
 <li>isHashcodeComputed()
 : <a class="el" href="class_a_s_t_node.html#a621195a3f784447cb2ba3f47da81ab05">ASTNode</a>
 </li>
+<li>isIndent()
+: <a class="el" href="class_query_validator.html#a6fd95a27146673bffb9303f053110971">QueryValidator</a>
+</li>
+<li>isInteger()
+: <a class="el" href="class_query_validator.html#a76e03097047ff0278c875113b7e97ef4">QueryValidator</a>
+</li>
+<li>isLetter()
+: <a class="el" href="class_query_validator.html#a4e022d85107d74e26e7ae6254d3fe08a">QueryValidator</a>
+</li>
+<li>isLineRef()
+: <a class="el" href="class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4">QueryValidator</a>
+</li>
+<li>isRef()
+: <a class="el" href="class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1">QueryValidator</a>
+</li>
+<li>isRefpl()
+: <a class="el" href="class_query_validator.html#a15e17874cc766ead8630a791e21a913d">QueryValidator</a>
+</li>
+<li>isStmtRef()
+: <a class="el" href="class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e">QueryValidator</a>
+</li>
+<li>isSynonym()
+: <a class="el" href="class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435">QueryValidator</a>
+</li>
+<li>isVarRef()
+: <a class="el" href="class_query_validator.html#a7511f7d7905ce02d91ac6ccbd76511e4">QueryValidator</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
 <li>markHashcodeComputed()
 : <a class="el" href="class_a_s_t_node.html#a62988be21c3da9e0b01652624dc3c504">ASTNode</a>
 </li>
+<li>modifies()
+: <a class="el" href="class_modifies.html#ae1bd617eccdfdcc175ccb0c3d83f64a8">Modifies</a>
+, <a class="el" href="class_p_k_b_controller.html#a13f5e8929ad62c8efd2632d1b8ed7275">PKBController</a>
+</li>
+<li>modifiesP()
+: <a class="el" href="class_modifies_p.html#af78f22e7a81f0291df3bb7c49a65ce64">ModifiesP</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>parent()
+: <a class="el" href="class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204">PKBController</a>
+</li>
+<li>parentStar()
+: <a class="el" href="class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41">PKBController</a>
+</li>
 <li>parse()
-: <a class="el" href="class_parser.html#a47e4377402ad1398757c68ed2f92f4d8">Parser</a>
+: <a class="el" href="class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199">QueryPreprocessor</a>
+, <a class="el" href="class_parser.html#a47e4377402ad1398757c68ed2f92f4d8">Parser</a>
 </li>
 <li>Parser()
 : <a class="el" href="class_parser.html#a167a551127b86054e7382d9d563d869c">Parser</a>
+</li>
+<li>pattern()
+: <a class="el" href="class_design_extractor.html#a4fcba7f9091b7f4f04f9551afe30ee3d">DesignExtractor</a>
+, <a class="el" href="class_p_k_b_controller.html#ad8f6b3467a4975dd76d085e665285373">PKBController</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_q"></a>- q -</h3><ul>
+<li>QueryPreprocessor()
+: <a class="el" href="class_query_preprocessor.html#a50e8467985e1b2d7fe63f8a874059b91">QueryPreprocessor</a>
+</li>
+<li>QueryValidator()
+: <a class="el" href="class_query_validator.html#a7a7ba081ec3076874a45a673c35a724c">QueryValidator</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>setDependency()
+: <a class="el" href="class_query_preprocessor.html#a0360a7ff0680055b4568077f2e83fc31">QueryPreprocessor</a>
 </li>
 <li>setNodeType()
 : <a class="el" href="class_a_s_t_node.html#abc7ea24000fa4c9108d98d8361af06d4">ASTNode</a>
@@ -177,13 +484,53 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>setStmtNumber()
 : <a class="el" href="class_a_s_t_node.html#a170a3a5f48a2a0a1b12f81e77289c117">ASTNode</a>
 </li>
+<li>setupClaTable()
+: <a class="el" href="class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154">QueryPreprocessor</a>
+</li>
+<li>setupTarTable()
+: <a class="el" href="class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37">QueryPreprocessor</a>
+</li>
+<li>setupVarTable()
+: <a class="el" href="class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6">QueryPreprocessor</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>trim()
+: <a class="el" href="class_query_preprocessor.html#a36d78a7b445cc88398c370acb25decff">QueryPreprocessor</a>
+</li>
+<li>trim_all()
+: <a class="el" href="class_query_preprocessor.html#a881270b46049507564a33ba68e04f06b">QueryPreprocessor</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>uses()
+: <a class="el" href="class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4">PKBController</a>
+, <a class="el" href="class_uses.html#ae64bc1c74167d13f5075079ea81495fc">Uses</a>
+</li>
+<li>usesP()
+: <a class="el" href="class_uses_p.html#a994967a33cfa0647ae6bd5e443dfa5a9">UsesP</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_0x7e"></a>- ~ -</h3><ul>
+<li>~QueryPreprocessor()
+: <a class="el" href="class_query_preprocessor.html#a584d45b3837240e0ba96f1c7320ce7c7">QueryPreprocessor</a>
+</li>
+<li>~QueryValidator()
+: <a class="el" href="class_query_validator.html#aafd321661d5a63c2630f44b5eb006f24">QueryValidator</a>
+</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:25 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:19 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

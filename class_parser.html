@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_parser.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -122,7 +123,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a167a551127b86054e7382d9d563d869c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a>. Developers need to specify an <a class="el" href="class_a_s_t.html">AST</a> object. All the parsing result will directly output to the <a class="el" href="class_a_s_t.html">AST</a> object.  <a href="#a167a551127b86054e7382d9d563d869c">More...</a><br/></td></tr>
 <tr class="separator:a167a551127b86054e7382d9d563d869c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47e4377402ad1398757c68ed2f92f4d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parser.html#a47e4377402ad1398757c68ed2f92f4d8">parse</a> (string program)</td></tr>
-<tr class="memdesc:a47e4377402ad1398757c68ed2f92f4d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a program, build Abstract Syntax Tree of the program. <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> also finds <a class="el" href="class_parent.html">Parent</a>, <a class="el" href="class_uses.html">Uses</a>, <a class="el" href="class_modifies.html">Modifies</a> and Calls relation in the program and add them to respective tables.  <a href="#a47e4377402ad1398757c68ed2f92f4d8">More...</a><br/></td></tr>
+<tr class="memdesc:a47e4377402ad1398757c68ed2f92f4d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a program, build Abstract Syntax Tree of the program. <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> also finds <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a>, <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>, <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> and Calls relation in the program and add them to respective tables.  <a href="#a47e4377402ad1398757c68ed2f92f4d8">More...</a><br/></td></tr>
 <tr class="separator:a47e4377402ad1398757c68ed2f92f4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -232,7 +233,7 @@ stack&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt;&#160;</t
       </table>
 </div><div class="memdoc">
 
-<p>Parse a program, build Abstract Syntax Tree of the program. <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> also finds <a class="el" href="class_parent.html">Parent</a>, <a class="el" href="class_uses.html">Uses</a>, <a class="el" href="class_modifies.html">Modifies</a> and Calls relation in the program and add them to respective tables. </p>
+<p>Parse a program, build Abstract Syntax Tree of the program. <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> also finds <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a>, <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>, <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> and Calls relation in the program and add them to respective tables. </p>
 <dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2013/1/29</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -254,7 +255,7 @@ stack&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt;&#160;</t
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_parser.html">Parser</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_follows.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,17 +113,20 @@ $(document).ready(function(){initNavTree('class_follows.html','');});
 <div class="title">Follows Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Store all '<a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>' relations in the form (stmt1, stmt2) where 'stmt1' and 'stmt2' are statement numbers. Provide funtions for query on '<a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>' and 'FollowsStar' relations. The storage is referred to as FollowsTable.  
+ <a href="class_follows.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a15934b299d99d274bd1e7daa13399a31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a15934b299d99d274bd1e7daa13399a31"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addFollows</b> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="memitem:a15934b299d99d274bd1e7daa13399a31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_follows.html#a15934b299d99d274bd1e7daa13399a31">addFollows</a> (STMT stmt1, STMT stmt2)</td></tr>
+<tr class="memdesc:a15934b299d99d274bd1e7daa13399a31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a '<a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>' relation in the form (stmt1, stmt2) into FollowsTable where 'stmt1' and 'stmt2' are statement numbers.  <a href="#a15934b299d99d274bd1e7daa13399a31">More...</a><br/></td></tr>
 <tr class="separator:a15934b299d99d274bd1e7daa13399a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad274f4216424ccb65bf5fa3e2824fc21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad274f4216424ccb65bf5fa3e2824fc21"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>follows</b> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memitem:ad274f4216424ccb65bf5fa3e2824fc21"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_follows.html#ad274f4216424ccb65bf5fa3e2824fc21">follows</a> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memdesc:ad274f4216424ccb65bf5fa3e2824fc21"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function for query on '<a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>' relations.  <a href="#ad274f4216424ccb65bf5fa3e2824fc21">More...</a><br/></td></tr>
 <tr class="separator:ad274f4216424ccb65bf5fa3e2824fc21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae13d02a9a48fac8d84f9d6c473ff1acc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae13d02a9a48fac8d84f9d6c473ff1acc"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>followsStar</b> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memitem:ae13d02a9a48fac8d84f9d6c473ff1acc"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_follows.html#ae13d02a9a48fac8d84f9d6c473ff1acc">followsStar</a> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)</td></tr>
+<tr class="memdesc:ae13d02a9a48fac8d84f9d6c473ff1acc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function for query on 'FollowsStar' relations.  <a href="#ae13d02a9a48fac8d84f9d6c473ff1acc">More...</a><br/></td></tr>
 <tr class="separator:ae13d02a9a48fac8d84f9d6c473ff1acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -179,9 +183,144 @@ vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmt1s
 vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmt2s</b></td></tr>
 <tr class="separator:a2cc0c0e3b831d3033dc31201dc8fc512"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Store all '<a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>' relations in the form (stmt1, stmt2) where 'stmt1' and 'stmt2' are statement numbers. Provide funtions for query on '<a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>' and 'FollowsStar' relations. The storage is referred to as FollowsTable. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a15934b299d99d274bd1e7daa13399a31"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Follows::addFollows </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a '<a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>' relation in the form (stmt1, stmt2) into FollowsTable where 'stmt1' and 'stmt2' are statement numbers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stmt1</td><td>The statement number of the first statement in the relation <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>. </td></tr>
+    <tr><td class="paramname">stmt2</td><td>The statement number of the second statement in the relation <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad274f4216424ccb65bf5fa3e2824fc21"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN Follows::follows </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st1s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st2s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function for query on '<a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>' relations. </p>
+<p>To handle a query in the form follows(List A, List B, arg).</p>
+<p>Case 1: arg = 00 = 0 1a) Both lists are empty Return TRUE if FollowsTable is not empty, FASLE otherwise. 1b) List A empty, List B non-empty Return TRUE if there exists one entry (stmt1, stmt2) in the FollowsTable where stmt2 equals to at least one of the element in List B, FASLE otherwise. 1c) List A non-empty, List B empty Return TRUE if there exists one entry (stmt1, stmt2) in the FollowsTable where stmt1 equals to at least one of the element in List A, FASLE otherwise. 1d) Both lists are non-empty Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one &lt;ai, bj&gt; pair such that (ai, bj) is an entry in FollowsTable, FASLE otherwise.</p>
+<p>Case 2: arg = 01 = 1 2a) Both lists are empty Fill up list B with all the distinct values in the second column of FollowsTable. 2b) List A nont-empty, List B empty Fill up list B with all the values in the second column of FollowsTable where the corresponding first column equals to the elements in list A. 2c) List A empty, List B non-empty Remove elements from list B that are not found in the second column of FollowsTable. 2d) Both lists are non-empty Find all values (say V2) in the second column of FollowsTable where the corresponding first column value equals to the elements in list A and remove elements from list B that are not in V2. For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.</p>
+<p>Case 3: arg = 10 = 2 3a) Both lists are empty Fill up list A with all the distinct values in the first column of FollowsTable. 3b) List A empty, List B non-empty Fill up list A with all the values in the first column of FollowsTable where the corresponding second column equals to the elements in list B. 3c) List A non-empty, List B empty Remove elements from list A that are not found in the first column of FollowsTable. 3d) Both lists are non-empty Find all values (say V1) in the first column of FollowsTable where the corresponding second column value equals to the elements in list B and remove elements from list A that are not in V1. For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.</p>
+<p>Case 4: arg = 11 = 3 4a) Both lists are empty Fill up the two lists with all entries of FollowsTable. 4b) List A empty, List B non-empty For each element (bi) in list B, find values in the first column of FollowsTable where the second column equals to bi. (i) If found no values, remove bi from list B. (ii) If found 1 single value, add this value to list A. (iii) if found n (n&gt;1) values, add these values to list A and duplicate bi n-1 times in list B. 4c) List A non-empty, List B empty For each element (ai) in list A, find values in the second column of FollowsTable where the first column equals to ai. (i) If found no values, remove ai from list A. (ii) If found 1 single value, add this value to list B. (iii) if found n (n&gt;1) values, add these values to list B and duplicate ai n-1 times in list A. 4d) Both lists are non-empty Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if (ai, bi) is not an entry in FollowsTable. For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.</p>
+<p>Case: arg = other values Exception</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">st1s_ptr</td><td>A pointer to a statement list, which contains a list of statement numbers. These statements are the first statement of relation <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>. </td></tr>
+    <tr><td class="paramname">st2s_ptr</td><td>A pointer to a statement list, which contains a list of statement numbers. These statements are the second statement of relation <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A Boolean value as specified in the detailed description. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae13d02a9a48fac8d84f9d6c473ff1acc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN Follows::followsStar </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st1s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st2s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function for query on 'FollowsStar' relations. </p>
+<p>To handle a query in the form followsStar(List A, List B, arg).</p>
+<p>Case 1: arg = 00 = 0 1a) Both lists are empty Return TRUE if FollowsTable is not empty, FASLE otherwise. 1b) List A empty, List B non-empty Return TRUE if there exists one entry (stmt1, stmt2) in the FollowsTable where stmt2 equals to at least one of the element in List B, FASLE otherwise. 1c) List A non-empty, List B empty Return TRUE if there exists one entry (stmt1, stmt2) in the FollowsTable where stmt1 equals to at least one of the element in List A, FASLE otherwise. 1d) Both lists are non-empty Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one &lt;ai, bj&gt; pair such that FollowsStar(ai, bj) is true, FASLE otherwise.</p>
+<p>Case 2: arg = 01 = 1 2a) Both lists are empty Fill up list B with all the distinct values in the second column of FollowsTable. 2b) List A nont-empty, List B empty Fill up list B with all the values b if followsStar(a, b) is true where a is any element in list A. 2c) List A empty, List B non-empty Remove elements from list B that are not found in the second column of FollowsTable. 2d) Both lists are non-empty For each element bi from list B, if no element aj from list A can satisfy FollowsStar(aj, bi), then remove this bi. Otherwise, keep it. For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.</p>
+<p>Case 3: arg = 10 = 2 3a) Both lists are empty Fill up list A with all the distinct values in the first column of FollowsTable. 3b) List A empty, List B non-empty Fill up list A with all the values a if followsStar(a, b) is true where b is any element in list B. 3c) List A non-empty, List B empty Remove elements from list A that are not found in the first column of FollowsTable. 3d) Both lists are non-empty For each element ai from list A, if no element bj from list B can satisfy FollowsStar(ai, bj), then remove this ai. Otherwise, keep it. For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.</p>
+<p>Case 4: arg = 11 = 3 4a) Both lists are empty Throw Exception. 4b) List A empty, List B non-empty For each element (bi) in list B, find values in the first column of FollowsTable where the second column equals to bi. (i) If found no values, remove bi from list B. (ii) If found 1 single value, add this value to list A. (iii) if found n (n&gt;1) values, add these values to list A and duplicate bi n-1 times in list B. 4c) List A non-empty, List B empty For each element (ai) in list A, find values in the second column of FollowsTable where the first column equals to ai. (i) If found no values, remove ai from list A. (ii) If found 1 single value, add this value to list B. (iii) if found n (n&gt;1) values, add these values to list B and duplicate ai n-1 times in list A. 4d) Both lists are non-empty Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if FollowsStar(ai, bi) is false. For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.</p>
+<p>Case: arg = other values Exception</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">st1s_ptr</td><td>A pointer to a statement list, which contains a list of statement numbers. These statements are the first statement of relation FollowsStar. </td></tr>
+    <tr><td class="paramname">st2s_ptr</td><td>A pointer to a statement list, which contains a list of statement numbers. These statements are the second statement of relation FollowsStar.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A Boolean value as specified in the detailed description. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_follows_8h_source.html">Follows.h</a></li>
-<li>SPA/SPA/Follows.cpp</li>
+<li>SPA/SPA/<a class="el" href="_follows_8cpp.html">Follows.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -189,7 +328,7 @@ vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmt2s
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_follows.html">Follows</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

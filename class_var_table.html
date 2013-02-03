@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_var_table.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,23 +112,26 @@ $(document).ready(function(){initNavTree('class_var_table.html','');});
 <div class="title">VarTable Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Store the information of all variables and provide funtions for retrieving information of variables.  
+ <a href="class_var_table.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3525d63f866a56c3de7a616f4a276106"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3525d63f866a56c3de7a616f4a276106"></a>
-VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>addVar</b> (STRING varName)</td></tr>
+<tr class="memitem:a3525d63f866a56c3de7a616f4a276106"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_table.html#a3525d63f866a56c3de7a616f4a276106">addVar</a> (STRING varName)</td></tr>
+<tr class="memdesc:a3525d63f866a56c3de7a616f4a276106"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the variable as given by the name 'varName' is not in the variable table, add it into the table and return its assigned index in the table. Otherwise, return its index.  <a href="#a3525d63f866a56c3de7a616f4a276106">More...</a><br/></td></tr>
 <tr class="separator:a3525d63f866a56c3de7a616f4a276106"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d41f6dc3a6e31665f611c54310301de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d41f6dc3a6e31665f611c54310301de"></a>
-STRING&#160;</td><td class="memItemRight" valign="bottom"><b>getVarName</b> (VAR_INDEX ind)</td></tr>
+<tr class="memitem:a7d41f6dc3a6e31665f611c54310301de"><td class="memItemLeft" align="right" valign="top">STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_table.html#a7d41f6dc3a6e31665f611c54310301de">getVarName</a> (VAR_INDEX ind)</td></tr>
+<tr class="memdesc:a7d41f6dc3a6e31665f611c54310301de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the variable that has the given index. If no variables has the given index, exception.  <a href="#a7d41f6dc3a6e31665f611c54310301de">More...</a><br/></td></tr>
 <tr class="separator:a7d41f6dc3a6e31665f611c54310301de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a445457aba8dc2d6b5371049f0e5396fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a445457aba8dc2d6b5371049f0e5396fe"></a>
-VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>getVarIndex</b> (STRING varName)</td></tr>
+<tr class="memitem:a445457aba8dc2d6b5371049f0e5396fe"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_table.html#a445457aba8dc2d6b5371049f0e5396fe">getVarIndex</a> (STRING varName)</td></tr>
+<tr class="memdesc:a445457aba8dc2d6b5371049f0e5396fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the variable that has the given name. If no variable has the given name, return -1.  <a href="#a445457aba8dc2d6b5371049f0e5396fe">More...</a><br/></td></tr>
 <tr class="separator:a445457aba8dc2d6b5371049f0e5396fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8aa0ee217a587fca37ff95719fc760ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8aa0ee217a587fca37ff95719fc760ce"></a>
-STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllVarName</b> (VAR_INDEX_LIST inds)</td></tr>
+<tr class="memitem:a8aa0ee217a587fca37ff95719fc760ce"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_table.html#a8aa0ee217a587fca37ff95719fc760ce">getAllVarName</a> (VAR_INDEX_LIST inds)</td></tr>
+<tr class="memdesc:a8aa0ee217a587fca37ff95719fc760ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">For each index from the given list of variable indices, add the corresponding variable name into a result list. If any index is invalid, throw an exception.  <a href="#a8aa0ee217a587fca37ff95719fc760ce">More...</a><br/></td></tr>
 <tr class="separator:a8aa0ee217a587fca37ff95719fc760ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a44180fccb4a83842728c722901a81f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a44180fccb4a83842728c722901a81f"></a>
-STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllVarName</b> ()</td></tr>
+<tr class="memitem:a8a44180fccb4a83842728c722901a81f"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_table.html#a8a44180fccb4a83842728c722901a81f">getAllVarName</a> ()</td></tr>
+<tr class="memdesc:a8a44180fccb4a83842728c722901a81f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the names of all variables.  <a href="#a8a44180fccb4a83842728c722901a81f">More...</a><br/></td></tr>
 <tr class="separator:a8a44180fccb4a83842728c722901a81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -136,9 +140,130 @@ Private Attributes</h2></td></tr>
 vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>variables</b></td></tr>
 <tr class="separator:ac42f1b88bc7c1871f28c40105f521fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Store the information of all variables and provide funtions for retrieving information of variables. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3525d63f866a56c3de7a616f4a276106"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX VarTable::addVar </td>
+          <td>(</td>
+          <td class="paramtype">STRING&#160;</td>
+          <td class="paramname"><em>varName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If the variable as given by the name 'varName' is not in the variable table, add it into the table and return its assigned index in the table. Otherwise, return its index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">varName</td><td>The name of the variable that is being added.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>VAR_INDEX. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8aa0ee217a587fca37ff95719fc760ce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING_LIST VarTable::getAllVarName </td>
+          <td>(</td>
+          <td class="paramtype">VAR_INDEX_LIST&#160;</td>
+          <td class="paramname"><em>inds</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>For each index from the given list of variable indices, add the corresponding variable name into a result list. If any index is invalid, throw an exception. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inds</td><td>A list of variable indices.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The produced result list. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8a44180fccb4a83842728c722901a81f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING_LIST VarTable::getAllVarName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the names of all variables. </p>
+<dl class="section return"><dt>Returns</dt><dd>STRING_LIST. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a445457aba8dc2d6b5371049f0e5396fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX VarTable::getVarIndex </td>
+          <td>(</td>
+          <td class="paramtype">STRING&#160;</td>
+          <td class="paramname"><em>varName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the index of the variable that has the given name. If no variable has the given name, return -1. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">varName</td><td>The name of the variable.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>VAR_INDEX. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7d41f6dc3a6e31665f611c54310301de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING VarTable::getVarName </td>
+          <td>(</td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>ind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the name of the variable that has the given index. If no variables has the given index, exception. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ind</td><td>The index of the variable.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>STRING. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_var_table_8h_source.html">VarTable.h</a></li>
-<li>SPA/SPA/VarTable.cpp</li>
+<li>SPA/SPA/<a class="el" href="_var_table_8cpp.html">VarTable.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -146,7 +271,7 @@ vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>var
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_var_table.html">VarTable</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:25 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:19 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

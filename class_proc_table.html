@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_proc_table.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,23 +112,26 @@ $(document).ready(function(){initNavTree('class_proc_table.html','');});
 <div class="title">ProcTable Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Store the information of all procedures and provide funtions for retrieving information of procedures.  
+ <a href="class_proc_table.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a959483b1c7fc810a5cd130a3a270c257"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a959483b1c7fc810a5cd130a3a270c257"></a>
-VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>addProc</b> (STRING procName)</td></tr>
-<tr class="separator:a959483b1c7fc810a5cd130a3a270c257"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a415700fb31a12fe473ce32c864a3b2b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a415700fb31a12fe473ce32c864a3b2b7"></a>
-STRING&#160;</td><td class="memItemRight" valign="bottom"><b>getProcName</b> (VAR_INDEX ind)</td></tr>
+<tr class="memitem:a74c237ef109380f8f39e1a88b61a0c6d"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#a74c237ef109380f8f39e1a88b61a0c6d">addProc</a> (STRING procName)</td></tr>
+<tr class="memdesc:a74c237ef109380f8f39e1a88b61a0c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the procedure as given by the name 'procName' is not in the procedure table, add it into the table and return its assigned index in the table. Otherwise, return its index.  <a href="#a74c237ef109380f8f39e1a88b61a0c6d">More...</a><br/></td></tr>
+<tr class="separator:a74c237ef109380f8f39e1a88b61a0c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a415700fb31a12fe473ce32c864a3b2b7"><td class="memItemLeft" align="right" valign="top">STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#a415700fb31a12fe473ce32c864a3b2b7">getProcName</a> (VAR_INDEX ind)</td></tr>
+<tr class="memdesc:a415700fb31a12fe473ce32c864a3b2b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the procedure that has the given index. If no procedure has the given index, exception.  <a href="#a415700fb31a12fe473ce32c864a3b2b7">More...</a><br/></td></tr>
 <tr class="separator:a415700fb31a12fe473ce32c864a3b2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a891803d667870ec7dceb631e7bfe91a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a891803d667870ec7dceb631e7bfe91a0"></a>
-VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><b>getProcIndex</b> (STRING procName)</td></tr>
-<tr class="separator:a891803d667870ec7dceb631e7bfe91a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac17c2cc7db468c8b043c8bc1c5cd23b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac17c2cc7db468c8b043c8bc1c5cd23b7"></a>
-STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllProcName</b> (VAR_INDEX_LIST inds)</td></tr>
+<tr class="memitem:ae46657037c2248bb7a845ed3270d2566"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#ae46657037c2248bb7a845ed3270d2566">getProcIndex</a> (STRING procName)</td></tr>
+<tr class="memdesc:ae46657037c2248bb7a845ed3270d2566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the procedure that has the given name. If no procedure has the given name, return -1.  <a href="#ae46657037c2248bb7a845ed3270d2566">More...</a><br/></td></tr>
+<tr class="separator:ae46657037c2248bb7a845ed3270d2566"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac17c2cc7db468c8b043c8bc1c5cd23b7"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#ac17c2cc7db468c8b043c8bc1c5cd23b7">getAllProcName</a> (VAR_INDEX_LIST inds)</td></tr>
+<tr class="memdesc:ac17c2cc7db468c8b043c8bc1c5cd23b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">For each index from the given list of procedure indices, add the corresponding procedure name into a result list. If any index is invalid, throw an exception.  <a href="#ac17c2cc7db468c8b043c8bc1c5cd23b7">More...</a><br/></td></tr>
 <tr class="separator:ac17c2cc7db468c8b043c8bc1c5cd23b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc05a8b64fd6320cfc40547ca9fda14b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc05a8b64fd6320cfc40547ca9fda14b"></a>
-STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllProcName</b> ()</td></tr>
+<tr class="memitem:adc05a8b64fd6320cfc40547ca9fda14b"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#adc05a8b64fd6320cfc40547ca9fda14b">getAllProcName</a> ()</td></tr>
+<tr class="memdesc:adc05a8b64fd6320cfc40547ca9fda14b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the names of all procedures.  <a href="#adc05a8b64fd6320cfc40547ca9fda14b">More...</a><br/></td></tr>
 <tr class="separator:adc05a8b64fd6320cfc40547ca9fda14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -136,9 +140,130 @@ Private Attributes</h2></td></tr>
 vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>procedures</b></td></tr>
 <tr class="separator:a424d68867fbe709b2be8a3f39d0e39ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Store the information of all procedures and provide funtions for retrieving information of procedures. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a74c237ef109380f8f39e1a88b61a0c6d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PROC_INDEX ProcTable::addProc </td>
+          <td>(</td>
+          <td class="paramtype">STRING&#160;</td>
+          <td class="paramname"><em>procName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If the procedure as given by the name 'procName' is not in the procedure table, add it into the table and return its assigned index in the table. Otherwise, return its index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">procName</td><td>The name of the procedure that is being added.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>PROC_INDEX. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac17c2cc7db468c8b043c8bc1c5cd23b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING_LIST ProcTable::getAllProcName </td>
+          <td>(</td>
+          <td class="paramtype">VAR_INDEX_LIST&#160;</td>
+          <td class="paramname"><em>inds</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>For each index from the given list of procedure indices, add the corresponding procedure name into a result list. If any index is invalid, throw an exception. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inds</td><td>A list of procedure indices.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The produced result list. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adc05a8b64fd6320cfc40547ca9fda14b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING_LIST ProcTable::getAllProcName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the names of all procedures. </p>
+<dl class="section return"><dt>Returns</dt><dd>STRING_LIST. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae46657037c2248bb7a845ed3270d2566"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PROC_INDEX ProcTable::getProcIndex </td>
+          <td>(</td>
+          <td class="paramtype">STRING&#160;</td>
+          <td class="paramname"><em>procName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the index of the procedure that has the given name. If no procedure has the given name, return -1. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">procName</td><td>The name of the procedure.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>PROC_INDEX. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a415700fb31a12fe473ce32c864a3b2b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STRING ProcTable::getProcName </td>
+          <td>(</td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>ind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the name of the procedure that has the given index. If no procedure has the given index, exception. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ind</td><td>The index of the procedure.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>STRING. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_proc_table_8h_source.html">ProcTable.h</a></li>
-<li>SPA/SPA/ProcTable.cpp</li>
+<li>SPA/SPA/<a class="el" href="_proc_table_8cpp.html">ProcTable.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -146,7 +271,7 @@ vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pro
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_proc_table.html">ProcTable</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

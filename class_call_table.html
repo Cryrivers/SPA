@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_call_table.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,20 +113,23 @@ $(document).ready(function(){initNavTree('class_call_table.html','');});
 <div class="title">CallTable Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Store all 'Calls' relations in the form (stmt, proc) where 'stmt' is a statement number and 'proc' is a procedure index. Provide funtions for query on this relation.  
+ <a href="class_call_table.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab75a32e80543adaecbfe4fae9f06fa3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab75a32e80543adaecbfe4fae9f06fa3d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addCall</b> (STMT stmt, PROC_INDEX proc)</td></tr>
+<tr class="memitem:ab75a32e80543adaecbfe4fae9f06fa3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_call_table.html#ab75a32e80543adaecbfe4fae9f06fa3d">addCall</a> (STMT stmt, PROC_INDEX proc)</td></tr>
+<tr class="memdesc:ab75a32e80543adaecbfe4fae9f06fa3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new 'Calls' relation in the form (stmt, proc) to <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> where 'stmt' is a statement number and 'proc' is a procedure index. If the relation already exists, do nothing.  <a href="#ab75a32e80543adaecbfe4fae9f06fa3d">More...</a><br/></td></tr>
 <tr class="separator:ab75a32e80543adaecbfe4fae9f06fa3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48074824fd276c3d24b1c80c65ac6e65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48074824fd276c3d24b1c80c65ac6e65"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>calls</b> (STMT_LIST *sts_ptr, PROC_INDEX_LIST *ps_ptr, int arg)</td></tr>
+<tr class="memitem:a48074824fd276c3d24b1c80c65ac6e65"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_call_table.html#a48074824fd276c3d24b1c80c65ac6e65">calls</a> (STMT_LIST *sts_ptr, PROC_INDEX_LIST *ps_ptr, int arg)</td></tr>
+<tr class="memdesc:a48074824fd276c3d24b1c80c65ac6e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function for query on 'Calls' relations.  <a href="#a48074824fd276c3d24b1c80c65ac6e65">More...</a><br/></td></tr>
 <tr class="separator:a48074824fd276c3d24b1c80c65ac6e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d91f5bccbf4d041b86e0424c1b52007"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d91f5bccbf4d041b86e0424c1b52007"></a>
-STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCallsFirst</b> ()</td></tr>
+<tr class="memitem:a4d91f5bccbf4d041b86e0424c1b52007"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_call_table.html#a4d91f5bccbf4d041b86e0424c1b52007">getAllCallsFirst</a> ()</td></tr>
+<tr class="memdesc:a4d91f5bccbf4d041b86e0424c1b52007"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all the statement numbers stored in <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> as a list.  <a href="#a4d91f5bccbf4d041b86e0424c1b52007">More...</a><br/></td></tr>
 <tr class="separator:a4d91f5bccbf4d041b86e0424c1b52007"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d9ff0e77358c5aea9156a4a99bf822c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d9ff0e77358c5aea9156a4a99bf822c"></a>
-PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCallsSecond</b> ()</td></tr>
+<tr class="memitem:a7d9ff0e77358c5aea9156a4a99bf822c"><td class="memItemLeft" align="right" valign="top">PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_call_table.html#a7d9ff0e77358c5aea9156a4a99bf822c">getAllCallsSecond</a> ()</td></tr>
+<tr class="memdesc:a7d9ff0e77358c5aea9156a4a99bf822c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all the procedure indices stored in <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> as a list.  <a href="#a7d9ff0e77358c5aea9156a4a99bf822c">More...</a><br/></td></tr>
 <tr class="separator:a7d9ff0e77358c5aea9156a4a99bf822c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -152,9 +156,127 @@ vector&lt; STMT &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmts
 vector&lt; PROC_INDEX &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>procs</b></td></tr>
 <tr class="separator:a0fba0e8d6c617aaf7acd64dbb0fba0db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Store all 'Calls' relations in the form (stmt, proc) where 'stmt' is a statement number and 'proc' is a procedure index. Provide funtions for query on this relation. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ab75a32e80543adaecbfe4fae9f06fa3d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CallTable::addCall </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>proc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new 'Calls' relation in the form (stmt, proc) to <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> where 'stmt' is a statement number and 'proc' is a procedure index. If the relation already exists, do nothing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stmt</td><td>The statement number of this call statement. </td></tr>
+    <tr><td class="paramname">proc</td><td>The index of the procedure that is being called in the procedure table.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a48074824fd276c3d24b1c80c65ac6e65"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN CallTable::calls </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>sts_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PROC_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>ps_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function for query on 'Calls' relations. </p>
+<p>To handle a query in the form calls(List A, List B, arg). In Iteration 1, only part of this function is implemented, i.e. when arg is 0. Case 1: arg = 00 = 0 1a) Both lists are empty Return TRUE if <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> is not empty, FASLE otherwise. 1b) List A empty, List B non-empty Return TRUE if there exists one entry (stmt, proc) in the <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> where proc equals to at least one of the element in List B, FASLE otherwise. 1c) List A non-empty, List B empty Return TRUE if there exists one entry (stmt, proc) in the <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> where stmt equals to at least one of the element in List A, FASLE otherwise. 1d) Both lists are non-empty Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one &lt;ai, bj&gt; pair such that (ai, bj) is an entry in <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a>, FASLE otherwise. Case: arg = other values Exception</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sts_ptr</td><td>A pointer to a statement list, which contains a list of statement numbers. </td></tr>
+    <tr><td class="paramname">ps_ptr</td><td>A pointer to a procedure index list.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A Boolean value as specified in the detailed description. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4d91f5bccbf4d041b86e0424c1b52007"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST CallTable::getAllCallsFirst </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all the statement numbers stored in <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> as a list. </p>
+<dl class="section return"><dt>Returns</dt><dd>STMT_LIST. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7d9ff0e77358c5aea9156a4a99bf822c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PROC_INDEX_LIST CallTable::getAllCallsSecond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all the procedure indices stored in <a class="el" href="class_call_table.html" title="Store all &#39;Calls&#39; relations in the form (stmt, proc) where &#39;stmt&#39; is a statement number and &#39;proc&#39; is...">CallTable</a> as a list. </p>
+<dl class="section return"><dt>Returns</dt><dd>PROC_INDEX_LIST. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_call_table_8h_source.html">CallTable.h</a></li>
-<li>SPA/SPA/CallTable.cpp</li>
+<li>SPA/SPA/<a class="el" href="_call_table_8cpp.html">CallTable.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -162,7 +284,7 @@ vector&lt; PROC_INDEX &gt;&#160;</td><td class="memItemRight" valign="bottom"><b
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_call_table.html">CallTable</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_uses.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,21 +113,24 @@ $(document).ready(function(){initNavTree('class_uses.html','');});
 <div class="title">Uses Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Store all '<a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>' relations for statements (call them '<a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>' relation) in the form (stmt, var) where 'stmt' is a statement number and 'var' is a variable index. Provide funtions for query on this relation for statements. The storage is referred to as UsesTable.  
+ <a href="class_uses.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:adba4dfa43c0a1a98ef594260e0f8ef47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adba4dfa43c0a1a98ef594260e0f8ef47"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addUses</b> (STMT stmt, VAR_INDEX var)</td></tr>
+<tr class="memitem:adba4dfa43c0a1a98ef594260e0f8ef47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_uses.html#adba4dfa43c0a1a98ef594260e0f8ef47">addUses</a> (STMT stmt, VAR_INDEX var)</td></tr>
+<tr class="memdesc:adba4dfa43c0a1a98ef594260e0f8ef47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new '<a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>' relation in the form (stmt, var) to UsesTable where 'stmt' is a statement number and 'var' is a variable index. If the relation already exists, do nothing.  <a href="#adba4dfa43c0a1a98ef594260e0f8ef47">More...</a><br/></td></tr>
 <tr class="separator:adba4dfa43c0a1a98ef594260e0f8ef47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae64bc1c74167d13f5075079ea81495fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae64bc1c74167d13f5075079ea81495fc"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>uses</b> (STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memitem:ae64bc1c74167d13f5075079ea81495fc"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_uses.html#ae64bc1c74167d13f5075079ea81495fc">uses</a> (STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memdesc:ae64bc1c74167d13f5075079ea81495fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function for query on '<a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>' relations.  <a href="#ae64bc1c74167d13f5075079ea81495fc">More...</a><br/></td></tr>
 <tr class="separator:ae64bc1c74167d13f5075079ea81495fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a921fcc24e00a591ed4ea4e617bd4a12c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a921fcc24e00a591ed4ea4e617bd4a12c"></a>
-STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllUsesFirst</b> ()</td></tr>
+<tr class="memitem:a921fcc24e00a591ed4ea4e617bd4a12c"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_uses.html#a921fcc24e00a591ed4ea4e617bd4a12c">getAllUsesFirst</a> ()</td></tr>
+<tr class="memdesc:a921fcc24e00a591ed4ea4e617bd4a12c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all the statement numbers stored in UsesTable as a list.  <a href="#a921fcc24e00a591ed4ea4e617bd4a12c">More...</a><br/></td></tr>
 <tr class="separator:a921fcc24e00a591ed4ea4e617bd4a12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac60cee037b23764ed00f06071a2693db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac60cee037b23764ed00f06071a2693db"></a>
-STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllUsesSecond</b> ()</td></tr>
-<tr class="separator:ac60cee037b23764ed00f06071a2693db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa15239ef6722d679b89ebc7bc100e815"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_uses.html#aa15239ef6722d679b89ebc7bc100e815">getAllUsesSecond</a> ()</td></tr>
+<tr class="memdesc:aa15239ef6722d679b89ebc7bc100e815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return all the variable indices stored in UsesTable as a list.  <a href="#aa15239ef6722d679b89ebc7bc100e815">More...</a><br/></td></tr>
+<tr class="separator:aa15239ef6722d679b89ebc7bc100e815"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -161,9 +165,132 @@ vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>stmts<
 vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vars</b></td></tr>
 <tr class="separator:a96d3f3f06991a2da741720d4a7165084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Store all '<a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>' relations for statements (call them '<a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>' relation) in the form (stmt, var) where 'stmt' is a statement number and 'var' is a variable index. Provide funtions for query on this relation for statements. The storage is referred to as UsesTable. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="adba4dfa43c0a1a98ef594260e0f8ef47"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Uses::addUses </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>var</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a new '<a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>' relation in the form (stmt, var) to UsesTable where 'stmt' is a statement number and 'var' is a variable index. If the relation already exists, do nothing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stmt</td><td>The statement number of the statement in this <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> relation. </td></tr>
+    <tr><td class="paramname">var</td><td>The index of the variable that is being used in the variable table.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a921fcc24e00a591ed4ea4e617bd4a12c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST Uses::getAllUsesFirst </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all the statement numbers stored in UsesTable as a list. </p>
+<dl class="section return"><dt>Returns</dt><dd>STMT_LIST. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa15239ef6722d679b89ebc7bc100e815"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX_LIST Uses::getAllUsesSecond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return all the variable indices stored in UsesTable as a list. </p>
+<dl class="section return"><dt>Returns</dt><dd>VAR_INDEX_LIST. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae64bc1c74167d13f5075079ea81495fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN Uses::uses </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>sts_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>vs_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function for query on '<a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a>' relations. </p>
+<p>To handle a query in the form Uses(List A, List B, arg).</p>
+<p>Case 1: arg = 00 = 0 1a) Both lists are empty Return TRUE if UsesTable is not empty, FASLE otherwise. 1b) List A empty, List B non-empty Return TRUE if there exists one entry (stmt, var) in the UsesTable where var equals to at least one of the element in List B, FASLE otherwise. 1c) List A non-empty, List B empty Return TRUE if there exists one entry (stmt, var) in the UsesTable where stmt equals to at least one of the element in List A, FASLE otherwise. 1d) Both lists are non-empty Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one &lt;ai, bj&gt; pair such that (ai, bj) is an entry in UsesTable, FASLE otherwise.</p>
+<p>Case 2: arg = 01 = 1 2a) Both lists are empty Fill up list B with all the distinct values in the second column of UsesTable. 2b) List A nont-empty, List B empty Fill up list B with all the values in the second column of UsesTable where the corresponding first column equals to the elements in list A. 2c) List A empty, List B non-empty Remove elements from list B that are not found in the second column of UsesTable. 2d) Both lists are non-empty Find all values (say V2) in the second column of UsesTable where the corresponding first column value equals to the elements in list A and remove elements from list B that are not in V2. For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.</p>
+<p>Case 3: arg = 10 = 2 3a) Both lists are empty Fill up list A with all the distinct values in the first column of UsesTable. 3b) List A empty, List B non-empty Fill up list A with all the values in the first column of UsesTable where the corresponding second column equals to the elements in list B. 3c) List A non-empty, List B empty Remove elements from list A that are not found in the first column of UsesTable. 3d) Both lists are non-empty Find all values (say V1) in the first column of UsesTable where the corresponding second column value equals to the elements in list B and remove elements from list A that are not in V1. For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.</p>
+<p>Case 4: arg = 11 = 3 4a) Both lists are empty Fill up the two lists with all entries of UsesTable. 4b) List A empty, List B non-empty For each element (bi) in list B, find values in the first column of UsesTable where the second column equals to bi. (i) If found no values, remove bi from list B. (ii) If found 1 single value, add this value to list A. (iii) if found n (n&gt;1) values, add these values to list A and duplicate bi n-1 times in list B. 4c) List A non-empty, List B empty For each element (ai) in list A, find values in the second column of UsesTable where the first column equals to ai. (i) If found no values, remove ai from list A. (ii) If found 1 single value, add this value to list B. (iii) if found n (n&gt;1) values, add these values to list B and duplicate ai n-1 times in list A. 4d) Both lists are non-empty Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if (ai, bi) is not an entry in UsesTable. For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.</p>
+<p>Case: arg = other values Exception</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sts_ptr</td><td>A pointer to a statement list, which contains a list of statement numbers. </td></tr>
+    <tr><td class="paramname">vs_ptr</td><td>A pointer to a variable index list.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A Boolean value as specified in the detailed description. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_uses_8h_source.html">Uses.h</a></li>
-<li>SPA/SPA/Uses.cpp</li>
+<li>SPA/SPA/<a class="el" href="_uses_8cpp.html">Uses.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -171,7 +298,7 @@ vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vars</
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_uses.html">Uses</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:25 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:19 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

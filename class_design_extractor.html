@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SPA
-   &#160;<span id="projectnumber">2.0</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">A CS3202 Project</div>
   </td>
@@ -46,6 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_design_extractor.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -114,32 +115,35 @@ $(document).ready(function(){initNavTree('class_design_extractor.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8f6e3080e90667899715019130ef7573"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f6e3080e90667899715019130ef7573"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addModifies</b> ()</td></tr>
+<tr class="memitem:ab43568887023f04b5ea405cc7dfbeea8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#ab43568887023f04b5ea405cc7dfbeea8">DesignExtractor</a> (void)</td></tr>
+<tr class="memdesc:ab43568887023f04b5ea405cc7dfbeea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct <a class="el" href="class_design_extractor.html">DesignExtractor</a> object containing <a class="el" href="class_a_s_t.html">AST</a> object and <a class="el" href="class_p_k_b_controller.html">PKBController</a> object.  <a href="#ab43568887023f04b5ea405cc7dfbeea8">More...</a><br/></td></tr>
+<tr class="separator:ab43568887023f04b5ea405cc7dfbeea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f6e3080e90667899715019130ef7573"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573">addModifies</a> ()</td></tr>
+<tr class="memdesc:a8f6e3080e90667899715019130ef7573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complete modifies table Combine parent table and previous modifies table(only for assignment)  <a href="#a8f6e3080e90667899715019130ef7573">More...</a><br/></td></tr>
 <tr class="separator:a8f6e3080e90667899715019130ef7573"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28bff702b2741582aa75bc88b87c302a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28bff702b2741582aa75bc88b87c302a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addUses</b> ()</td></tr>
+<tr class="memitem:a28bff702b2741582aa75bc88b87c302a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a">addUses</a> ()</td></tr>
+<tr class="memdesc:a28bff702b2741582aa75bc88b87c302a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complete <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table Combine parent table and previous uses table(only for assignment)  <a href="#a28bff702b2741582aa75bc88b87c302a">More...</a><br/></td></tr>
 <tr class="separator:a28bff702b2741582aa75bc88b87c302a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace811652940cd0c9b203466d718da76c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace811652940cd0c9b203466d718da76c"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllStmt</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:ace811652940cd0c9b203466d718da76c"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#ace811652940cd0c9b203466d718da76c">getAllStmt</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:ace811652940cd0c9b203466d718da76c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all program line that is a statement to result list.  <a href="#ace811652940cd0c9b203466d718da76c">More...</a><br/></td></tr>
 <tr class="separator:ace811652940cd0c9b203466d718da76c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac726aa0f4d7683e0b516f6375d5cbed2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac726aa0f4d7683e0b516f6375d5cbed2"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllAssignment</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:ac726aa0f4d7683e0b516f6375d5cbed2"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#ac726aa0f4d7683e0b516f6375d5cbed2">getAllAssignment</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:ac726aa0f4d7683e0b516f6375d5cbed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all program line that is an assignment to result list.  <a href="#ac726aa0f4d7683e0b516f6375d5cbed2">More...</a><br/></td></tr>
 <tr class="separator:ac726aa0f4d7683e0b516f6375d5cbed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38b674ccd8bb996d7c67984f01c174b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38b674ccd8bb996d7c67984f01c174b8"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllWhile</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:a38b674ccd8bb996d7c67984f01c174b8"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a38b674ccd8bb996d7c67984f01c174b8">getAllWhile</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:a38b674ccd8bb996d7c67984f01c174b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all program line that is a while to result list.  <a href="#a38b674ccd8bb996d7c67984f01c174b8">More...</a><br/></td></tr>
 <tr class="separator:a38b674ccd8bb996d7c67984f01c174b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af29dfb20bcfbc7fb188adffd8bfd39c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af29dfb20bcfbc7fb188adffd8bfd39c6"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllIf</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:af29dfb20bcfbc7fb188adffd8bfd39c6"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#af29dfb20bcfbc7fb188adffd8bfd39c6">getAllIf</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:af29dfb20bcfbc7fb188adffd8bfd39c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all program line that is an if to result list.  <a href="#af29dfb20bcfbc7fb188adffd8bfd39c6">More...</a><br/></td></tr>
 <tr class="separator:af29dfb20bcfbc7fb188adffd8bfd39c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c91fa47243801752d9f3b26c2fee431"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c91fa47243801752d9f3b26c2fee431"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCall</b> (STMT_LIST *)</td></tr>
+<tr class="memitem:a9c91fa47243801752d9f3b26c2fee431"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431">getAllCall</a> (STMT_LIST *)</td></tr>
+<tr class="memdesc:a9c91fa47243801752d9f3b26c2fee431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all program line that is a call statement to result list.  <a href="#a9c91fa47243801752d9f3b26c2fee431">More...</a><br/></td></tr>
 <tr class="separator:a9c91fa47243801752d9f3b26c2fee431"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4c6d709f46b4a6a681bf8a7b6e554f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4c6d709f46b4a6a681bf8a7b6e554f3"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllConstant</b> (vector&lt; int &gt; *)</td></tr>
+<tr class="memitem:ad4c6d709f46b4a6a681bf8a7b6e554f3"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#ad4c6d709f46b4a6a681bf8a7b6e554f3">getAllConstant</a> (vector&lt; int &gt; *)</td></tr>
+<tr class="memdesc:ad4c6d709f46b4a6a681bf8a7b6e554f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all constant to result vector.  <a href="#ad4c6d709f46b4a6a681bf8a7b6e554f3">More...</a><br/></td></tr>
 <tr class="separator:ad4c6d709f46b4a6a681bf8a7b6e554f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fcba7f9091b7f4f04f9551afe30ee3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fcba7f9091b7f4f04f9551afe30ee3d"></a>
-BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>pattern</b> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td></tr>
+<tr class="memitem:a4fcba7f9091b7f4f04f9551afe30ee3d"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a4fcba7f9091b7f4f04f9551afe30ee3d">pattern</a> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td></tr>
+<tr class="memdesc:a4fcba7f9091b7f4f04f9551afe30ee3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles patterns query.  <a href="#a4fcba7f9091b7f4f04f9551afe30ee3d">More...</a><br/></td></tr>
 <tr class="separator:a4fcba7f9091b7f4f04f9551afe30ee3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -151,9 +155,317 @@ Private Attributes</h2></td></tr>
 <a class="el" href="class_p_k_b_controller.html">PKBController</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_pkb</b></td></tr>
 <tr class="separator:af9fe9f9e990c265cc4c33d5363390e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab43568887023f04b5ea405cc7dfbeea8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DesignExtractor::DesignExtractor </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct <a class="el" href="class_design_extractor.html">DesignExtractor</a> object containing <a class="el" href="class_a_s_t.html">AST</a> object and <a class="el" href="class_p_k_b_controller.html">PKBController</a> object. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8f6e3080e90667899715019130ef7573"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesignExtractor::addModifies </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Complete modifies table Combine parent table and previous modifies table(only for assignment) </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a28bff702b2741582aa75bc88b87c302a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesignExtractor::addUses </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Complete <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table Combine parent table and previous uses table(only for assignment) </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac726aa0f4d7683e0b516f6375d5cbed2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN DesignExtractor::getAllAssignment </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add all program line that is an assignment to result list. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">True</td><td>or False If there is no item in result list, return false. else return true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9c91fa47243801752d9f3b26c2fee431"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN DesignExtractor::getAllCall </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add all program line that is a call statement to result list. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">True</td><td>or False If there is no item in result list, return false. else return true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad4c6d709f46b4a6a681bf8a7b6e554f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN DesignExtractor::getAllConstant </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add all constant to result vector. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">True</td><td>or False If there is no item in result list, return false. else return true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af29dfb20bcfbc7fb188adffd8bfd39c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN DesignExtractor::getAllIf </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add all program line that is an if to result list. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">True</td><td>or False If there is no item in result list, return false. else return true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ace811652940cd0c9b203466d718da76c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN DesignExtractor::getAllStmt </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add all program line that is a statement to result list. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">True</td><td>or False If there is no item in result list, return false. else return true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a38b674ccd8bb996d7c67984f01c174b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN DesignExtractor::getAllWhile </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add all program line that is a while to result list. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">True</td><td>or False If there is no item in result list, return false. else return true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4fcba7f9091b7f4f04f9551afe30ee3d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN DesignExtractor::pattern </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>expr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles patterns query. </p>
+<hr/>
+<p> Case 1: arg = 00 = 0 (Both independent - only need to return TRUE FALSE)</p>
+<p>1a) vectorA empty, vectorB empty Return TRUE if expr exists on the RHS of assignment statements, FASLE otherwise. 1b) vectorA empty, vectorB size = 1 (element b) Return TRUE if there exists assignment statement a such that pattern a(b, expr) is true, FASLE otherwise. 1c) vectorA size &gt;= 1, vectorB empty Return TRUE if expr exists on the RHS of assignment statements, FASLE otherwise. 1d) vectorA size &gt;= 1,, vectorB size = 1 (element b) Return TRUE if there exists assignment statement a such that pattern a(b, expr) is true, FASLE otherwise.</p>
+<p>a and c are the same, b and d are the same. </p>
+<hr/>
+ <pre class="fragment">        Case 2: arg = 01 = 1 
+        (A independent, B dependent - Modify vectorB, don¡¯t modify vectorA)
+
+        2a) vectorA empty, vectorB empty
+            Fill up vectorB with all the variable index on LHS such that RHS contains expr.
+        2b) vectorA size &gt;= 1, vectorB empty
+            For assignment statements in A, fill up vectorB with all the variable index on LHS where RHS contains expr..
+        2c) vectorA empty, vectorB size &gt;= 1 
+            Remove elements from vectorB where RHS does not contain expr. 
+        2d) vectorA size &gt;= 1, vectorB size &gt;= 1 
+            For assignment statements in A, remove elements from vectorB where LHS = b and RHS does not contain expr. 
+
+        For case 2a -&gt; 2d:
+        Return TRUE if at the end, vectorB is not empty, FASLE otherwise.
+</pre><hr/>
+ <pre class="fragment">        Case 3: arg = 10 = 2 
+        (A dependent, B independent - Modify vectorA, don¡¯t modify vectorB)
+
+        3a) vectorA empty, vectorB empty
+            Fill up vectorA with all the assignment statements where RHS contains expr.
+        3b) vectorA empty, vectorB size 1 (element b)
+            Fill up vectorA with all the assignment statements where LHS = b, and RHS contains expr..
+        3c) vectorA size &gt;= 1, vectorB empty
+            Remove elements from vectorA where RHS does not contain expr. 
+        3d) vectorA size &gt;= 1, vectorB size 1 (element b)
+            Remove elements from vectorA where LHS != b or RHS does not contain expr. 
+
+        For case 3a -&gt; 3d:
+        Return TRUE if at the end, vectorA is not empty, FASLE otherwise.
+</pre><hr/>
+ <pre class="fragment">        Case 4: arg = 11 = 3 
+        (Both dependent - Modify both vectors)
+
+        4a) vectorA empty, vectorB empty
+            Fill up both vectors with all (ai, bi) where pattern ai(bi, expr) is true.
+        4b) vectorA empty, vectorB size &gt;= 1
+            For each element (bi) in vectorB, find assignment statements a such that pattern a(bi, expr) is true.
+                (i) If found no a, remove bi from vectorB.
+                (ii) If found 1 a, add a to vectorA.
+                (iii) if found n&gt;1 a, add them to vectorA, duplicate bi n times in vectorB.
+        4c) vectorA size &gt;= 1, vectorB empty
+            For each element (ai) in vectorA, find variables b such that pattern ai(b, expr) is true.
+            Remove elements from vectorA where RHS does not contain expr. Add fill up vectorB
+        4d) vectorA size = n, vectorB size = n (where n &gt;= 1)
+            Let ai be the ith element of vectorA and bi be the ith element of vectorB. For i from 1 to n, remove ai, bi from vectorA, vectorB if pattern ai(bi, expr) is false.
+
+        For case 4a -&gt; 4d:
+        At the end, size of vectorA = size of vectorB.
+</pre><dl class="section author"><dt>Author</dt><dd>Yue Cong</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">a,:</td><td>list of assignment statement number; b: list of variables on left hand side; expr: expression to be matched on right hand side; arg: 0-3 according to dependency.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">True</td><td>or False If there is no item in a or b, return false. else return true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_design_extractor_8h_source.html">DesignExtractor.h</a></li>
-<li>SPA/SPA/DesignExtractor.cpp</li>
+<li>SPA/SPA/<a class="el" href="_design_extractor_8cpp.html">DesignExtractor.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -161,7 +473,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_design_extractor.html">DesignExtractor</a></li>
-    <li class="footer">Generated on Thu Jan 31 2013 21:44:24 for SPA by
+    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
