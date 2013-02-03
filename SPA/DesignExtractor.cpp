@@ -1,8 +1,22 @@
+/**
+ * \file	DesignExtractor.cpp
+ * \class	Design Extractor
+ * \brief	Handles Pattern, With and getAll* queries and complete Modifies and Uses table
+ */
+
 #include "stdafx.h"
 #include "DesignExtractor.h"
 #include "SPAType.h"
 #include "ASTNode.h"
 #include <string>
+
+/**
+ * \fn	DesignExtractor::DesignExtractor(void)
+ *
+ * \brief	Construct DesignExtractor object containing AST object and PKBController object
+ *
+ * \author	Yue Cong
+ */
 
 DesignExtractor::DesignExtractor(void)
 {
@@ -16,7 +30,14 @@ DesignExtractor::~DesignExtractor(void)
 	delete(_ast);
 }
 
-
+/**
+ * \fn	void DesignExtractor::addModifies()
+ *
+ * \brief	Complete modifies table
+ *			Combine parent table and previous modifies table(only for assignment)
+ *
+ * \author	Yue Cong
+ */
 void DesignExtractor::addModifies()
 {
 	STMT_LIST stmts = _pkb->getAllModifiesFirst();
@@ -36,7 +57,14 @@ void DesignExtractor::addModifies()
 	}
 }
 
-
+/**
+ * \fn	void DesignExtractor::addUses()
+ *
+ * \brief	Complete Uses table
+ *			Combine parent table and previous uses table(only for assignment)
+ *
+ * \author	Yue Cong
+ */
 void DesignExtractor::addUses()
 {
 	int j = 0;
@@ -56,7 +84,15 @@ void DesignExtractor::addUses()
 	}
 }
 
-
+/**
+ * \fn	BOOLEAN DesignExtractor::getAllStmt(STMT_LIST *result)
+ *
+ * \brief	Add all program line that is a statement to result list
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	True or False	If there is no item in result list, return false. else return true.
+ */
 BOOLEAN DesignExtractor::getAllStmt(STMT_LIST *result)
 {
 	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
@@ -70,7 +106,15 @@ BOOLEAN DesignExtractor::getAllStmt(STMT_LIST *result)
 	return(true);
 }
 
-
+/**
+ * \fn	BOOLEAN DesignExtractor::getAllAssignment(STMT_LIST *result)
+ *
+ * \brief	Add all program line that is an assignment to result list
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	True or False	If there is no item in result list, return false. else return true.
+ */
 BOOLEAN DesignExtractor::getAllAssignment(STMT_LIST *result)
 {
 	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
@@ -84,7 +128,15 @@ BOOLEAN DesignExtractor::getAllAssignment(STMT_LIST *result)
 	return(true);
 }
 
-
+/**
+ * \fn	BOOLEAN DesignExtractor::getAllWhile(STMT_LIST *result)
+ *
+ * \brief	Add all program line that is a while to result list
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	True or False	If there is no item in result list, return false. else return true.
+ */
 BOOLEAN DesignExtractor::getAllWhile(STMT_LIST *result)
 {
 	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
@@ -98,6 +150,15 @@ BOOLEAN DesignExtractor::getAllWhile(STMT_LIST *result)
 	return(true);
 }
 
+/**
+ * \fn	BOOLEAN DesignExtractor::getAllIf(STMT_LIST *result)
+ *
+ * \brief	Add all program line that is an if to result list
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	True or False	If there is no item in result list, return false. else return true.
+ */
 BOOLEAN DesignExtractor::getAllIf(STMT_LIST *result)
 {
 	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
@@ -111,6 +172,15 @@ BOOLEAN DesignExtractor::getAllIf(STMT_LIST *result)
 	return(true);
 }
 
+/**
+ * \fn	BOOLEAN DesignExtractor::getAllCall(STMT_LIST *result)
+ *
+ * \brief	Add all program line that is a call statement to result list
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	True or False	If there is no item in result list, return false. else return true.
+ */
 BOOLEAN DesignExtractor::getAllCall(STMT_LIST *result)
 {
 	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
@@ -125,6 +195,15 @@ BOOLEAN DesignExtractor::getAllCall(STMT_LIST *result)
 }
 
 //not complete
+/**
+ * \fn	BOOLEAN DesignExtractor::getAllConstant(vector<int> *result)
+ *
+ * \brief	Add all constant to result vector
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	True or False	If there is no item in result list, return false. else return true.
+ */
 BOOLEAN DesignExtractor::getAllConstant(vector<int> *result)
 {
 	/*
@@ -148,7 +227,90 @@ BOOLEAN DesignExtractor::getAllConstant(vector<int> *result)
 	return(true);
 }
 
+/**
+ * \fn	BOOLEAN DesignExtractor::pattern(vector<int> *a, vector<int> *b, string expr, int arg)
+ *
+ * \brief	Handles patterns query
 
+ *----------------------------------------------------------------------------------------------------------------------------
+ *			Case 1: arg = 00 = 0 
+ *			(Both independent - only need to return TRUE FALSE)
+ *
+ *			1a) vectorA empty, vectorB empty
+ *				Return TRUE if expr exists on the RHS of assignment statements, FASLE otherwise.
+ *			1b) vectorA empty, vectorB size = 1 (element b)
+ *				Return TRUE if there exists assignment statement a such that pattern a(b, expr) is true, FASLE otherwise.
+ *			1c) vectorA size >= 1, vectorB empty
+ *				Return TRUE if expr exists on the RHS of assignment statements, FASLE otherwise.
+ *			1d) vectorA size >= 1,, vectorB size = 1 (element b)
+ *				Return TRUE if there exists assignment statement a such that pattern a(b, expr) is true, FASLE otherwise.
+ *
+ *				a and c are the same, b and d are the same.
+ *
+ *----------------------------------------------------------------------------------------------------------------------------
+ *
+ *			Case 2: arg = 01 = 1 
+ *			(A independent, B dependent - Modify vectorB, don¡¯t modify vectorA)
+ *
+ *			2a) vectorA empty, vectorB empty
+ *				Fill up vectorB with all the variable index on LHS such that RHS contains expr.
+ *			2b) vectorA size >= 1, vectorB empty
+ *				For assignment statements in A, fill up vectorB with all the variable index on LHS where RHS contains expr..
+ *			2c) vectorA empty, vectorB size >= 1 
+ *				Remove elements from vectorB where RHS does not contain expr. 
+ *			2d) vectorA size >= 1, vectorB size >= 1 
+ *				For assignment statements in A, remove elements from vectorB where LHS = b and RHS does not contain expr. 
+ *
+ *			For case 2a -> 2d:
+ *			Return TRUE if at the end, vectorB is not empty, FASLE otherwise.
+ *
+ *----------------------------------------------------------------------------------------------------------------------------
+ *
+ *			Case 3: arg = 10 = 2 
+ *			(A dependent, B independent - Modify vectorA, don¡¯t modify vectorB)
+ *
+ *			3a) vectorA empty, vectorB empty
+ *				Fill up vectorA with all the assignment statements where RHS contains expr.
+ *			3b) vectorA empty, vectorB size 1 (element b)
+ *				Fill up vectorA with all the assignment statements where LHS = b, and RHS contains expr..
+ *			3c) vectorA size >= 1, vectorB empty
+ *				Remove elements from vectorA where RHS does not contain expr. 
+ *			3d) vectorA size >= 1, vectorB size 1 (element b)
+ *				Remove elements from vectorA where LHS != b or RHS does not contain expr. 
+ *
+ *			For case 3a -> 3d:
+ *			Return TRUE if at the end, vectorA is not empty, FASLE otherwise.
+ *
+ *----------------------------------------------------------------------------------------------------------------------------
+ *
+ *			Case 4: arg = 11 = 3 
+ *			(Both dependent - Modify both vectors)
+ *
+ *			4a) vectorA empty, vectorB empty
+ *				Fill up both vectors with all (ai, bi) where pattern ai(bi, expr) is true.
+ *			4b) vectorA empty, vectorB size >= 1
+ *				For each element (bi) in vectorB, find assignment statements a such that pattern a(bi, expr) is true.
+ *					(i) If found no a, remove bi from vectorB.
+ *					(ii) If found 1 a, add a to vectorA.
+ *					(iii) if found n>1 a, add them to vectorA, duplicate bi n times in vectorB.
+ *			4c) vectorA size >= 1, vectorB empty
+ *				For each element (ai) in vectorA, find variables b such that pattern ai(b, expr) is true.
+ *				Remove elements from vectorA where RHS does not contain expr. Add fill up vectorB
+ *			4d) vectorA size = n, vectorB size = n (where n >= 1)
+ *				Let ai be the ith element of vectorA and bi be the ith element of vectorB. For i from 1 to n, remove ai, bi from vectorA, vectorB if pattern ai(bi, expr) is false.
+ *
+ *			For case 4a -> 4d:
+ *			At the end, size of vectorA = size of vectorB.
+ *
+ * \author	Yue Cong
+ *
+ * \param [in]	a: list of assignment statement number; 
+ *				b: list of variables on left hand side; 
+ *				expr: expression to be matched on right hand side; 
+ *				arg: 0-3 according to dependency.
+ *
+ * \param [out]	True or False	If there is no item in a or b, return false. else return true.
+ */
 BOOLEAN DesignExtractor::pattern(vector<int> *a, vector<int> *b, string expr, int arg)
 {
 	ASTNode *tree;

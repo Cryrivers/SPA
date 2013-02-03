@@ -1,8 +1,26 @@
+/**
+ * \file	PKBController.cpp
+ * \class	PKB
+ * \brief	Interface between PKB and Parser, PKB and Query Processor
+ */
+
 #include "stdafx.h"
 #include <iostream>
 #include "PKBController.h"
 
 using namespace std;
+
+/**
+ * \fn	PKBController *PKBController::createInstance()
+ *
+ * \brief	Create only once the PKBController object.
+ * 			If PKBController object exists, return the object.
+ *			If PKBController object does not exist, create new object and return.
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	obj	The PKBController object
+ */
 
 PKBController *PKBController::createInstance()
 {
@@ -19,6 +37,16 @@ PKBController *PKBController::createInstance()
 
 
 //ast api
+/**
+ * \fn	ASTNode *PKBController::astGetRoot()
+ *
+ * \brief	Return the root node of AST
+ *			For Design Extractor and Parser to access AST
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	ast	ASTNode object
+ */
 ASTNode *PKBController::astGetRoot()
 {
 	return(_ast->getRoot());
@@ -26,18 +54,41 @@ ASTNode *PKBController::astGetRoot()
 
 
 //follows api
+
+/**
+ * \fn	void PKBController::addFollows(STMT stmt1, STMT stmt2)
+ *
+ * \brief	For Parser to add relation Follows(stmt1,stmt2) to Follows table			
+ *
+ * \author	Yue Cong
+ *
+ */
 void PKBController::addFollows(STMT stmt1, STMT stmt2)
 {
 	_follows->addFollows(stmt1, stmt2);
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::follows(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
+ *
+ * \brief	Propagate the call to follows table		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::follows(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
 {
 	return(_follows->follows(st1s_ptr, st2s_ptr, arg));
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::followsStar(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
+ *
+ * \brief	Propagate the call to follows table		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::followsStar(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
 {
 	if ((arg == 3) && (st1s_ptr->size() == 0) && (st2s_ptr->size() == 0)) {
@@ -53,18 +104,40 @@ BOOLEAN PKBController::followsStar(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int
 
 
 //parent api
+/**
+ * \fn	void PKBController::addParent(STMT stmt1, STMT stmt2)
+ *
+ * \brief	Propagate the call to Parent table		
+ *
+ * \author	Yue Cong
+ *
+ */
 void PKBController::addParent(STMT stmt1, STMT stmt2)
 {
 	_parent->addParent(stmt1, stmt2);
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::parent(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
+ *
+ * \brief	Propagate the call to Parent table		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::parent(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
 {
 	return(_parent->parent(st1s_ptr, st2s_ptr, arg));
 }
 
-
+/**
+ * \fn	PKBController::parentStar(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
+ *
+ * \brief	Propagate the call to Parent table		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::parentStar(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg)
 {
 	if ((arg == 3) && (st1s_ptr->size() == 0) && (st2s_ptr->size() == 0)) {
@@ -80,24 +153,53 @@ BOOLEAN PKBController::parentStar(STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int 
 
 
 //modifies api
+/**
+ * \fn	PKBController::addModifies(STMT stmt, VAR_INDEX var)
+ *
+ * \brief	Propagate the call to Modifies table		
+ *
+ * \author	Yue Cong
+ *
+ */
 void PKBController::addModifies(STMT stmt, VAR_INDEX var)
 {
 	_modifies->addModifies(stmt, var);
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::modifies(STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)
+ *
+ * \brief	Propagate the call to Modifies table		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::modifies(STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)
 {
 	return(_modifies->modifies(sts_ptr, vs_ptr, arg));
 }
 
-
+/**
+ * \fn	STMT_LIST PKBController::getAllModifiesFirst()
+ *
+ * \brief	Propagate the call to Modifies table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STMT_LIST PKBController::getAllModifiesFirst()
 {
 	return(_modifies->getAllModifiesFirst());
 }
 
-
+/**
+ * \fn	VAR_INDEX_LIST PKBController::getAllModifiesSecond()
+ *
+ * \brief	Propagate the call to Modifies table		
+ *
+ * \author	Yue Cong
+ *
+ */
 VAR_INDEX_LIST PKBController::getAllModifiesSecond()
 {
 	return(_modifies->getAllModifiesSecond());
@@ -105,24 +207,53 @@ VAR_INDEX_LIST PKBController::getAllModifiesSecond()
 
 
 //uses api
+/**
+ * \fn	void PKBController::addUses(STMT stmt, VAR_INDEX var)
+ *
+ * \brief	Propagate the call to Uses table		
+ *
+ * \author	Yue Cong
+ *
+ */
 void PKBController::addUses(STMT stmt, VAR_INDEX var)
 {
 	_uses->addUses(stmt, var);
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::uses(STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)
+ *
+ * \brief	Propagate the call to Uses table		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::uses(STMT_LIST *sts_ptr, VAR_INDEX_LIST *vs_ptr, int arg)
 {
 	return(_uses->uses(sts_ptr, vs_ptr, arg));
 }
 
-
+/**
+ * \fn	STMT_LIST PKBController::getAllUsesFirst()
+ *
+ * \brief	Propagate the call to Uses table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STMT_LIST PKBController::getAllUsesFirst()
 {
 	return(_uses->getAllUsesFirst());
 }
 
-
+/**
+ * \fn	STMT_LIST PKBController::getAllUsesSecond()
+ *
+ * \brief	Propagate the call to Uses table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STMT_LIST PKBController::getAllUsesSecond()
 {
 	return(_uses->getAllUsesSecond());
@@ -130,106 +261,235 @@ STMT_LIST PKBController::getAllUsesSecond()
 
 
 //vartable api
+/**
+ * \fn	VAR_INDEX PKBController::addVar(STRING varName)
+ *
+ * \brief	Propagate the call to Var table		
+ *
+ * \author	Yue Cong
+ *
+ */
 VAR_INDEX PKBController::addVar(STRING varName)
 {
 	return(_varTable->addVar(varName));
 }
 
-
+/**
+ * \fn	STRING PKBController::getVarName(VAR_INDEX ind)
+ *
+ * \brief	Propagate the call to Var table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STRING PKBController::getVarName(VAR_INDEX ind)
 {
 	return(_varTable->getVarName(ind));
 }
 
-
+/**
+ * \fn	VAR_INDEX PKBController::getVarIndex(STRING varName)
+ *
+ * \brief	Propagate the call to Var table		
+ *
+ * \author	Yue Cong
+ *
+ */
 VAR_INDEX PKBController::getVarIndex(STRING varName)
 {
 	return(_varTable->getVarIndex(varName));
 }
 
-
+/**
+ * \fn	STRING_LIST PKBController::getAllVarName(VAR_INDEX_LIST inds)
+ *
+ * \brief	Propagate the call to Var table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STRING_LIST PKBController::getAllVarName(VAR_INDEX_LIST inds)
 {
 	return(_varTable->getAllVarName(inds));
 }
-
+/**
+ * \fn	STRING_LIST PKBController::getAllVarName()
+ *
+ * \brief	Propagate the call to Var table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STRING_LIST PKBController::getAllVarName()
 {
 	return (_varTable->getAllVarName());
 }
 
 //proctable
+/**
+ * \fn	VAR_INDEX PKBController::addProc(STRING procName)
+ *
+ * \brief	Propagate the call to Proc table		
+ *
+ * \author	Yue Cong
+ *
+ */
 VAR_INDEX PKBController::addProc(STRING procName)
 {
 	return(_procTable->addProc(procName));
 }
 
-
+/**
+ * \fn	STRING PKBController::getProcName(VAR_INDEX ind)
+ *
+ * \brief	Propagate the call to Proc table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STRING PKBController::getProcName(VAR_INDEX ind)
 {
 	return(_procTable->getProcName(ind));
 }
 
-
+/**
+ * \fn	VAR_INDEX PKBController::getProcIndex(STRING procName)
+ *
+ * \brief	Propagate the call to Proc table		
+ *
+ * \author	Yue Cong
+ *
+ */
 VAR_INDEX PKBController::getProcIndex(STRING procName)
 {
 	return(_procTable->getProcIndex(procName));
 }
 
-
+/**
+ * \fn	STRING_LIST PKBController::getAllProcName(VAR_INDEX_LIST inds)
+ *
+ * \brief	Propagate the call to Proc table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STRING_LIST PKBController::getAllProcName(VAR_INDEX_LIST inds)
 {
 	return(_procTable->getAllProcName(inds));
 }
-
+/**
+ * \fn	STRING_LIST PKBController::getAllProcName()
+ *
+ * \brief	Propagate the call to Proc table		
+ *
+ * \author	Yue Cong
+ *
+ */
 STRING_LIST PKBController::getAllProcName()
 {
 	return (_procTable->getAllProcName());
 }
 
 //other
+/**
+ * \fn	vector<statement> *PKBController::getPreprocessedProgram()
+ *
+ * \brief	Get the table of preprocessed program. Easier for preprocessor to travers
+ *
+ * \author	Yue Cong
+ *
+ */
 vector<statement> *PKBController::getPreprocessedProgram()
 {
 	return(_preprocessedProgram);
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::getAllStmt(STMT_LIST *result)
+ *
+ * \brief	Propagate the call to Design Extractor		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::getAllStmt(STMT_LIST *result)
 {
 	return(_designExtractor->getAllStmt(result));
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::getAllAssignment(STMT_LIST *result)
+ *
+ * \brief	Propagate the call to Design Extractor		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::getAllAssignment(STMT_LIST *result)
 {
 	return(_designExtractor->getAllAssignment(result));
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::getAllWhile(STMT_LIST *result)
+ *
+ * \brief	Propagate the call to Design Extractor		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::getAllWhile(STMT_LIST *result)
 {
 	return(_designExtractor->getAllWhile(result));
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::getAllIf(STMT_LIST *result)
+ *
+ * \brief	Propagate the call to Design Extractor		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::getAllIf(STMT_LIST *result)
 {
 	return(_designExtractor->getAllIf(result));
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::getAllCall(STMT_LIST *result)
+ *
+ * \brief	Propagate the call to Design Extractor		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::getAllCall(STMT_LIST *result)
 {
 	return(_designExtractor->getAllCall(result));
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::getAllConstant(vector<int> *result)
+ *
+ * \brief	Propagate the call to Design Extractor		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::getAllConstant(vector<int> *result)
 {
 	return(_designExtractor->getAllConstant(result));
 }
 
-
+/**
+ * \fn	BOOLEAN PKBController::pattern(vector<int> *a, vector<int> *b, string expr, int arg)
+ *
+ * \brief	Propagate the call to Design Extractor		
+ *
+ * \author	Yue Cong
+ *
+ */
 BOOLEAN PKBController::pattern(vector<int> *a, vector<int> *b, string expr, int arg)
 {
 	return(_designExtractor->pattern(a, b, expr, arg));
