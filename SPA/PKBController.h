@@ -28,6 +28,9 @@ public:
 	ASTNode* astGetRoot();
 	AST* getAST();
 
+	//tempt with api
+	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2);
+
 	//follows api
 	void addFollows(STMT stmt1, STMT stmt2);
 	BOOLEAN follows(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg);

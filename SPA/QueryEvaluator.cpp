@@ -367,8 +367,8 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 			
 		// Known Constants
 		case KT_STMT_NUM:			
-		case KT_KNOWN_VARIABLE,		
-		case KT_KNOWN_PROCEDURE,	
+		case KT_KNOWN_VARIABLE:		
+		case KT_KNOWN_PROCEDURE:	
 			
 			vec->push_back(qv.content);
 			break;
@@ -827,8 +827,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			
 				// Known Constants, to consider?
 				case KT_STMT_NUM:			
-				case KT_KNOWN_VARIABLE,		
-				case KT_KNOWN_PROCEDURE,	
+				case KT_KNOWN_VARIABLE:		
+				case KT_KNOWN_PROCEDURE:	
 					break;
 		
 				// invalid types, should not appear in target

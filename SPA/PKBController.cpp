@@ -36,6 +36,12 @@ PKBController *PKBController::createInstance()
 }
 
 
+BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2){
+	return false;
+}
+
+
+
 //ast api
 /**
  * \fn	ASTNode *PKBController::astGetRoot()

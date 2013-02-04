@@ -10,7 +10,6 @@
 #define DICDESIGNENTITYSIZE 10	/**< contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
 #define DICRELATIONREFSIZE 12	/**< contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls"*/
 #define DICATTRIBUTESIZE 5		/**< contain: "procName", "varName", "value", "stmt#", "prog_line#", "procName"*/
-#include "stdafx.h"
 #include "PKBController.h"
 /********************************************//**
  * @file QueryPreprocessor.h

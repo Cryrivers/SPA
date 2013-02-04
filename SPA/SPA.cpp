@@ -20,7 +20,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
-	ifstream myfile("C:\\Users\\Yue Cong\\Desktop\\SPA-SupportsExpression\\SPA\\SPA\\Debug\\sampleCode.c");
+	ifstream myfile("..\\SPA\\sampleCode.c");
 	if (myfile.is_open())
 	{
 		while ( myfile.good() )
@@ -30,6 +30,7 @@ int _tmain(int argc, _TCHAR *argv[])
 			program += "\n";
 		}
 		myfile.close();
+		cout<<program<<endl;
 	}
 
 	parser->parse(program);
@@ -37,7 +38,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 	
-	string query("assign a; variable v; Select v such that Uses(a,v) pattern a(v,_)");
+	string query("assign a; variable v; procedure p; Select a such that Modifies(a, \"x\")");
 	processor->evaluate(query,result);
 
 	while(result.size()>0)
