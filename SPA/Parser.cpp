@@ -155,7 +155,7 @@ void Parser::_preprocessProgram(string program)
 		if (thisStmt.size() > 0) {
 			regex procRegex("\\s*procedure\\s*([a-zA-Z0-9]*)\\s*");
 			regex whileRegex("\\s*while\\s*([a-zA-Z0-9]*)\\s*");
-			regex ifRegex("\\s*if\\s*([a-zA-Z0-9]*)\\s*");
+			regex ifRegex("\\s*if\\s*([a-zA-Z0-9]*)\\s*then\\s*");
 			regex elseRegex("\\s*else\\s*");
 			regex callRegex("\\s*call\\s*([a-zA-Z0-9]*)\\s*");
 			regex assignRegex("\\s*([a-zA-Z0-9]+)\\s*=\\s*((\\(|[a-zA-Z0-9]+)+(\\s*[\\+|\\-|\\*|\\(]\\s*\\(*\\s*[a-zA-Z0-9]+\\s*[\\)|\\s]*)*)");
