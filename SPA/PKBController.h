@@ -5,7 +5,9 @@
 #include "Follows.h"
 #include "Parent.h"
 #include "Modifies.h"
+#include "ModifiesP.h"
 #include "Uses.h"
+#include "UsesP.h"
 #include "VarTable.h"
 #include "ASTNode.h"
 #include "AST.h"
@@ -47,11 +49,23 @@ public:
 	STMT_LIST getAllModifiesFirst();
 	VAR_INDEX_LIST getAllModifiesSecond();
 
+	//modifiesP api
+	void addModifiesP(PROC_INDEX proc, VAR_INDEX var);
+	BOOLEAN modifiesP(PROC_INDEX_LIST* ps_ptr, VAR_INDEX_LIST* vs_ptr,int arg);
+	STMT_LIST getAllModifiesPFirst();
+	VAR_INDEX_LIST getAllModifiesPSecond();
+
 	//uses api
 	void addUses(STMT stmt, VAR_INDEX var);
 	BOOLEAN uses(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr,int arg);
 	STMT_LIST getAllUsesFirst();
 	STMT_LIST getAllUsesSecond();
+
+	//usesP api
+	void addUsesP(PROC_INDEX proc, VAR_INDEX var);
+	BOOLEAN usesP(PROC_INDEX_LIST* ps_ptr, VAR_INDEX_LIST* vs_ptr,int arg);
+	STMT_LIST getAllUsesPFirst();
+	STMT_LIST getAllUsesPSecond();
 
 	//calls api
 	void addCalls(STMT stmt, PROC_INDEX proc);
@@ -99,7 +113,9 @@ private:
 	Follows* _follows;
 	Parent* _parent;
 	Modifies* _modifies;
+	ModifiesP* _modifiesP;
 	Uses* _uses;
+	UsesP* _usesP;
 	Calls* _calls;
 	VarTable* _varTable;
 	ProcTable* _procTable;

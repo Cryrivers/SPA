@@ -205,6 +205,58 @@ VAR_INDEX_LIST PKBController::getAllModifiesSecond()
 	return(_modifies->getAllModifiesSecond());
 }
 
+/**
+ * \fn	void PKBController::addModifiesP(PROC_INDEX proc, VAR_INDEX var)
+ *
+ * \brief	Propagate the call to ModifiesP table		
+ *
+ * \author	Yue Cong
+ *
+ */
+void PKBController::addModifiesP(PROC_INDEX proc, VAR_INDEX var)
+{
+	return _modifiesP->addModifiesP(proc, var);
+}
+
+/**
+ * \fn	BOOLEAN PKBController::modifiesP(PROC_INDEX_LIST* ps_ptr, VAR_INDEX_LIST* vs_ptr,int arg)
+ *
+ * \brief	Propagate the call to ModifiesP table		
+ *
+ * \author	Yue Cong
+ *
+ */
+BOOLEAN PKBController::modifiesP(PROC_INDEX_LIST* ps_ptr, VAR_INDEX_LIST* vs_ptr,int arg)
+{
+	return _modifiesP->modifiesP(ps_ptr, vs_ptr, arg);
+}
+
+/**
+ * \fn	STMT_LIST PKBController::getAllModifiesPFirst()
+ *
+ * \brief	Propagate the call to ModifiesP table		
+ *
+ * \author	Yue Cong
+ *
+ */
+STMT_LIST PKBController::getAllModifiesPFirst()
+{
+	return _modifiesP->getAllModifiesPFirst();
+}
+
+/**
+ * \fn	VAR_INDEX_LIST PKBController::getAllModifiesPSecond()
+ *
+ * \brief	Propagate the call to ModifiesP table		
+ *
+ * \author	Yue Cong
+ *
+ */
+VAR_INDEX_LIST PKBController::getAllModifiesPSecond()
+{
+	return _modifiesP->getAllModifiesPSecond();
+}
+
 
 //uses api
 /**
@@ -259,6 +311,57 @@ STMT_LIST PKBController::getAllUsesSecond()
 	return(_uses->getAllUsesSecond());
 }
 
+/**
+ * \fn	void PKBController::addUsesP(PROC_INDEX proc, VAR_INDEX var)
+ *
+ * \brief	Propagate the call to UsesP table		
+ *
+ * \author	Yue Cong
+ *
+ */
+void PKBController::addUsesP(PROC_INDEX proc, VAR_INDEX var)
+{
+	return _usesP->addUsesP(proc, var);
+}
+
+/**
+ * \fn	BOOLEAN PKBController::usesP(PROC_INDEX_LIST* ps_ptr, VAR_INDEX_LIST* vs_ptr,int arg)
+ *
+ * \brief	Propagate the call to UsesP table		
+ *
+ * \author	Yue Cong
+ *
+ */
+BOOLEAN PKBController::usesP(PROC_INDEX_LIST* ps_ptr, VAR_INDEX_LIST* vs_ptr,int arg)
+{
+	return _usesP->usesP(ps_ptr, vs_ptr, arg);
+}
+
+/**
+ * \fn	STMT_LIST PKBController::getAllUsesPFirst()
+ *
+ * \brief	Propagate the call to UsesP table		
+ *
+ * \author	Yue Cong
+ *
+ */
+STMT_LIST PKBController::getAllUsesPFirst()
+{
+	return _usesP->getAllUsesPFirst();
+}
+
+/**
+ * \fn	STMT_LIST PKBController::getAllUsesPSecond()
+ *
+ * \brief	Propagate the call to UsesP table		
+ *
+ * \author	Yue Cong
+ *
+ */
+STMT_LIST PKBController::getAllUsesPSecond()
+{
+	return _usesP->getAllUsesPSecond();
+}
 
 /**
  * \fn	void PKBController::addCalls(STMT stmt, PROC_INDEX proc)
@@ -619,7 +722,9 @@ void PKBController::init()
 	_follows = new Follows();
 	_parent = new Parent();
 	_modifies = new Modifies();
+	_modifiesP = new ModifiesP();
 	_uses = new Uses();
+	_usesP = new UsesP();
 	_calls = new Calls();
 	_varTable = new VarTable();
 	_procTable = new ProcTable();
