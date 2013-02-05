@@ -77,7 +77,7 @@
   <ItemGroup>
     <ClInclude Include="AST.h" />
     <ClInclude Include="ASTNode.h" />
-    <ClInclude Include="CallTable.h" />
+    <ClInclude Include="Calls.h" />
     <ClInclude Include="DesignExtractor.h" />
     <ClInclude Include="Follows.h" />
     <ClInclude Include="Modifies.h" />
@@ -102,7 +102,7 @@
   <ItemGroup>
     <ClCompile Include="AST.cpp" />
     <ClCompile Include="ASTNode.cpp" />
-    <ClCompile Include="CallTable.cpp" />
+    <ClCompile Include="Calls.cpp" />
     <ClCompile Include="DesignExtractor.cpp" />
     <ClCompile Include="Follows.cpp" />
     <ClCompile Include="Modifies.cpp" />

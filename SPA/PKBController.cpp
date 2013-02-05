@@ -620,7 +620,7 @@ void PKBController::init()
 	_parent = new Parent();
 	_modifies = new Modifies();
 	_uses = new Uses();
-	_calls = new CallTable();
+	_calls = new Calls();
 	_varTable = new VarTable();
 	_procTable = new ProcTable();
 	_constTable = new vector<int>();

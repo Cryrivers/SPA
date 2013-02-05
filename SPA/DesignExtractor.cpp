@@ -698,5 +698,5 @@ BOOLEAN DesignExtractor::pattern(vector<int> *a, vector<int> *b, string expr, in
 
 
 BOOLEAN DesignExtractor::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2){
-
+	return false;
 }
