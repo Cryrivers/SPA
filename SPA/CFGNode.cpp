@@ -10,7 +10,10 @@
 
 CFGNode::CFGNode(void)
 {
-
+	//TODO: Fix Coding standards later
+	_start = -1;
+	_end = -1;
+	_type = CFG_NORMAL_BLOCK;
 }
 
 
@@ -130,4 +133,36 @@ int CFGNode::getEdgeSize()
 bool CFGNode::containStatement( STMT stmtNumber )
 {
 	return (stmtNumber >= _start && stmtNumber <= _end);
+}
+
+/**
+ * \fn	CFGType CFGNode::getCFGType()
+ *
+ * \brief	Gets configuration type.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/5
+ *
+ * \return	The configuration type.
+ */
+
+CFGType CFGNode::getCFGType()
+{
+	return _type;
+}
+
+/**
+ * \fn	void CFGNode::setCFGType( CFGType type )
+ *
+ * \brief	Sets configuration type.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/5
+ *
+ * \param	type	The type.
+ */
+
+void CFGNode::setCFGType( CFGType type )
+{
+	_type = type;
 }

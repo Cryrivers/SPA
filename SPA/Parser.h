@@ -31,6 +31,7 @@ private:
 
 	CFGNode* _currentCFGNode;
 	CFGNode* _previousCFGNode;
+	stack<CFGNode*> _cfgStack;
 
 	ASTNode* _buildAssignmentAST(statement* s);
 	ASTNode* _buildWhileLoopAST(statement* s);

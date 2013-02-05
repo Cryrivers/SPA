@@ -55,9 +55,14 @@ void Parser::_parseLine()
 	for (vector<statement>::iterator it = preprocProgram->begin(); it != preprocProgram->end(); ++it) {
 		ASTNode* currentASTNode;
 
-		if(_currentCFGNode == NULL && it->stmtNumber != NO_STATEMENT_NUMBER)
+		if(_currentCFGNode == NULL && it->stmtNumber >0)
 		{
 			_currentCFGNode = new CFGNode();
+			_currentCFGNode->setStartStatement(it->stmtNumber);
+		}
+
+		if(_currentCFGNode->getStartStatement()==-1 && it->stmtNumber >0)
+		{
 			_currentCFGNode->setStartStatement(it->stmtNumber);
 		}
 
@@ -95,6 +100,21 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_WHILE:
+			
+			_pkb->getCFG()->addToCFG(_currentCFGNode);
+			_previousCFGNode = _currentCFGNode;
+			
+			CFGNode* whileNode = new CFGNode();
+			whileNode->setCFGType(CFG_WHILE_STATEMENT);
+			whileNode->setStartStatement(it->stmtNumber);
+			whileNode->setEndStatement(it->stmtNumber);
+
+			_previousCFGNode->addEdge(whileNode);
+			_cfgStack.push(whileNode);
+			_currentCFGNode = new CFGNode();
+			whileNode->addEdge(_currentCFGNode);
+			_pkb->getCFG()->addToCFG(whileNode);
+
 			currentASTNode = _buildWhileLoopAST(&*it);
 			if(sameLevelAtNext)
 			{
@@ -115,6 +135,17 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_CLOSE_BRACKET:
+			_pkb->getCFG()->addToCFG(_currentCFGNode);
+			CFGNode* topCFGNode = _cfgStack.top();
+			if(topCFGNode->getCFGType() == CFG_WHILE_STATEMENT)
+			{
+				_currentCFGNode->addEdge(topCFGNode);
+			}
+			_cfgStack.pop();
+			_previousCFGNode =  _currentCFGNode;
+			_currentCFGNode = new CFGNode();
+			_previousCFGNode -> addEdge(_currentCFGNode);
+
 			previousNode = _parentStackNoStmtLst.top();
 			_parentStack.pop();
 			_parentStackNoStmtLst.pop();

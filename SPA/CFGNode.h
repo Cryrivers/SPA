@@ -13,9 +13,12 @@ public:
 	void addEdge(CFGNode* nextPath);
 	int getEdgeSize();
 	bool containStatement(STMT stmtNumber);
+	CFGType getCFGType();
+	void setCFGType(CFGType type);
 private:
 	int _start;
 	int _end;
 	vector<CFGNode*> _edges;
+	CFGType _type;
 };
 

@@ -14,6 +14,7 @@
 #include "SPAType.h"
 #include "Calls.h"
 #include "ProcTable.h"
+#include "CFG.h"
 
 class DesignExtractor;
 class AST;
@@ -30,6 +31,7 @@ public:
 	//ASTNode* getASTRoot();
 	ASTNode* astGetRoot();
 	AST* getAST();
+	CFG* getCFG();
 
 	//follows api
 	void addFollows(STMT stmt1, STMT stmt2);
@@ -121,6 +123,7 @@ private:
 	VarTable* _varTable;
 	ProcTable* _procTable;
 	AST* _ast;
+	CFG* _cfg;
 	ASTNode* _astNode;
 	DesignExtractor* _designExtractor;
 	vector<statement>* _preprocessedProgram;
