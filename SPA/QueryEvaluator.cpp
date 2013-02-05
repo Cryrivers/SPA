@@ -98,7 +98,7 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 
 /**
  * \fn		QueryEvaluator::evaluateRelationClause(QueryClause qc)
- * \brief	Evaluates a given relation query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, UsesS, Pattern.  
+ * \brief	Evaluates a given relation query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, Pattern.  
  * \param [in]	qc: query clause. 
  * \return 	TRUE if evaluation is successful, FALSE otherwise
  */
@@ -181,7 +181,8 @@ bool QueryEvaluator::evaluateRelationClause(QueryClause qc) {
 
 /**
  * \fn		QueryEvaluator::evaluateWithClause(QueryClause qc)
- * \brief	Evaluates a given with query clause  
+ * \brief	Evaluates a given with query clause
+			[INCOMPLETE] PKB only supports case 4D
  * \param [in]	qc: query clause, qc is of type CT_WITH. 
  * \return 	TRUE if evaluation is successful, FALSE otherwise
  */
@@ -195,8 +196,13 @@ bool QueryEvaluator::evaluateWithClause(QueryClause qc) {
 
 	// Case 1: call.procName = constant
 	if (qc.attribute1 == AT_CALL_PROC_NAME && qc.attribute2 == AT_PROCTABLEINDEX) {	
+		
+		//non generalised method
+		if (!cartesianProduct(&vectorA, &vectorB))
+			return false;
+		
 		if (!pkb->with(&vectorA, &vectorB, WITH_CALLPROCNAME, WITH_PROCNAME))
-			return false;	
+			return false;		
 	}
 
 	// Case 2a: call.procname = proc.procname
