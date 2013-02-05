@@ -2,6 +2,8 @@
 
 #include "AST.h"
 #include "ASTNode.h"
+#include "CFG.h"
+#include "CFGNode.h"
 #include "PKBController.h"
 #include <string>
 #include <stack>
@@ -26,6 +28,9 @@ private:
 	stack<ASTNode*> _parentStackNoStmtLst;
 	ASTNode* _newParent;
 	ASTNode* _newParentNoStmtLst;
+
+	CFGNode* _currentCFGNode;
+	CFGNode* _previousCFGNode;
 
 	ASTNode* _buildAssignmentAST(statement* s);
 	ASTNode* _buildWhileLoopAST(statement* s);

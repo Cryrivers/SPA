@@ -51,9 +51,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ASTNode.h">
-      <Filter>Header Files\Parser</Filter>
-    </ClInclude>
     <ClInclude Include="Parser.h">
       <Filter>Header Files\Parser</Filter>
     </ClInclude>
@@ -114,6 +111,15 @@
     <ClInclude Include="Calls.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
+    <ClInclude Include="CFGNode.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
+    <ClInclude Include="ASTNode.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
+    <ClInclude Include="CFG.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -121,9 +127,6 @@
     </ClCompile>
     <ClCompile Include="SPA.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ASTNode.cpp">
-      <Filter>Source Files\Parser</Filter>
     </ClCompile>
     <ClCompile Include="Parser.cpp">
       <Filter>Source Files\Parser</Filter>
@@ -177,6 +180,15 @@
       <Filter>Source Files\Query Processor</Filter>
     </ClCompile>
     <ClCompile Include="Calls.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="CFGNode.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="ASTNode.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="CFG.cpp">
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
   </ItemGroup>

@@ -53,7 +53,14 @@ void Parser::_parseLine()
 	statement s;
 
 	for (vector<statement>::iterator it = preprocProgram->begin(); it != preprocProgram->end(); ++it) {
-		ASTNode* currentNode;
+		ASTNode* currentASTNode;
+
+		if(_currentCFGNode == NULL && it->stmtNumber != NO_STATEMENT_NUMBER)
+		{
+			_currentCFGNode = new CFGNode();
+			_currentCFGNode->setStartStatement(it->stmtNumber);
+		}
+
 		switch (it->type) {
 
 		case STMT_CALL:
@@ -73,31 +80,32 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_ASSIGNMENT:
-			currentNode = _buildAssignmentAST(&*it);
+			currentASTNode = _buildAssignmentAST(&*it);
+			_currentCFGNode->setEndStatement(it->stmtNumber);
 			if(sameLevelAtNext)
 			{
 				if(previousNode->getStmtNumber()>0)
-				_pkb->addFollows(previousNode->getStmtNumber(), currentNode->getStmtNumber());
+				_pkb->addFollows(previousNode->getStmtNumber(), currentASTNode->getStmtNumber());
 			}
 			else
 			{
 				sameLevelAtNext = true;
 			}
-			previousNode = currentNode;
+			previousNode = currentASTNode;
 			break;
 
 		case STMT_WHILE:
-			currentNode = _buildWhileLoopAST(&*it);
+			currentASTNode = _buildWhileLoopAST(&*it);
 			if(sameLevelAtNext)
 			{
 				if(previousNode->getStmtNumber()>0)
-					_pkb->addFollows(previousNode->getStmtNumber(), currentNode->getStmtNumber());
+					_pkb->addFollows(previousNode->getStmtNumber(), currentASTNode->getStmtNumber());
 			}
 			else
 			{
 				sameLevelAtNext = true;
 			}
-			previousNode = currentNode;
+			previousNode = currentASTNode;
 			break; 
 
 		case STMT_OPEN_BRACKET:
