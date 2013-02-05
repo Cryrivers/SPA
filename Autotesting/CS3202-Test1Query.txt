@@ -1,4 +1,9 @@
-34
+35
+0 - Test case for Iteration1  ::
+call c;
+Select c such that Modifies(c, "y")
+5, 18, 21
+5000
 1 - Test case for Iteration1  ::
 stmt s, s1;
 Select s such that Parent (s, s1) with s1.stmt#= 13
