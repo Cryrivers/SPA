@@ -273,6 +273,7 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 
 	//add modifies
 	_pkb->addModifies(s->stmtNumber, _pkb->addVar(s->extraVar));
+	_pkb->addModifiesP(s->procIndex, _pkb->addVar(s->extraVar));
 
 	//***************
 	//build expression tree. infix to postfix
@@ -401,7 +402,8 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 			}else {
 				//0 refer to value in varTable
 				ASTNode *variableNode = ASTNode::createNode(AST_VARIABLE, PKBController::createInstance()->addVar(postfixValue));
-				_pkb->addUses(s->stmtNumber,PKBController::createInstance()->addVar(postfixValue));
+				_pkb->addUses(s->stmtNumber,_pkb->addVar(postfixValue));
+				_pkb->addUsesP(s->procIndex,_pkb->getVarIndex(postfixValue));
 				variableStack.push(variableNode);
 				concatState = 0;
 				postfixValue.clear();
@@ -431,6 +433,7 @@ ASTNode* Parser::_buildIfAST(statement* s)
 	_newParentNoStmtLst = node;
 	if(_parentStackNoStmtLst.top()->getStmtNumber()>0) _pkb->addParent(_parentStackNoStmtLst.top()->getStmtNumber(), s->stmtNumber);
 	_pkb->addUses(s->stmtNumber,_pkb->addVar(s->extraCond));
+	_pkb->addUsesP(s->procIndex,_pkb->addVar(s->extraCond));
 	return(node);
 }
 
@@ -448,8 +451,8 @@ ASTNode* Parser::_buildCallAST( statement* s )
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
 
-	node->createChild(AST_PROCEDURE, _pkb->getProcIndex(s->extraName));
-	_pkb->addCalls(s->stmtNumber, _pkb->getProcIndex(s->extraName));
+	node->createChild(AST_PROCEDURE, s->procIndex);
+	_pkb->addCalls(s->stmtNumber, s->procIndex);
 	return(node);
 }
 
@@ -466,6 +469,7 @@ ASTNode *Parser::_buildWhileLoopAST(statement *s)
 	_newParentNoStmtLst = node;
 	if(_parentStackNoStmtLst.top()->getStmtNumber()>0) _pkb->addParent(_parentStackNoStmtLst.top()->getStmtNumber(), s->stmtNumber);
 	_pkb->addUses(s->stmtNumber,_pkb->addVar(s->extraCond));
+	_pkb->addUsesP(s->procIndex,_pkb->addVar(s->extraCond));
 	return(node);
 }
 
