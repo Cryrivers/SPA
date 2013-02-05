@@ -451,8 +451,9 @@ ASTNode* Parser::_buildCallAST( statement* s )
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
 
-	node->createChild(AST_PROCEDURE, s->procIndex);
-	_pkb->addCalls(s->stmtNumber, s->procIndex);
+	node->createChild(AST_PROCEDURE, _pkb->getProcIndex(s->extraName));
+	_pkb->addCalls(s->stmtNumber,s->procIndex,_pkb->getProcIndex(s->extraName));
+
 	return(node);
 }
 
