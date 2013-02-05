@@ -10,6 +10,7 @@
 #include "ASTNode.h"
 #include "AST.h"
 #include "SPAType.h"
+#include "Calls.h"
 #include "ProcTable.h"
 
 class DesignExtractor;
@@ -27,9 +28,6 @@ public:
 	//ASTNode* getASTRoot();
 	ASTNode* astGetRoot();
 	AST* getAST();
-
-	//tempt with api
-	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2);
 
 	//follows api
 	void addFollows(STMT stmt1, STMT stmt2);
@@ -54,6 +52,12 @@ public:
 	BOOLEAN uses(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr,int arg);
 	STMT_LIST getAllUsesFirst();
 	STMT_LIST getAllUsesSecond();
+
+	//calls api
+	void addCalls(STMT stmt, PROC_INDEX proc);
+	BOOLEAN calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg);
+	STMT_LIST getAllCallsFirst();
+	PROC_INDEX_LIST getAllCallsSecond();
 
 	//vartable api
 	VAR_INDEX addVar(STRING varName);
@@ -88,6 +92,7 @@ public:
 	BOOLEAN getAllCall(STMT_LIST*);
 	BOOLEAN getAllProc(vector<int>*);
 	BOOLEAN pattern(vector<int>*, vector<int>*, string, int);
+	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2);
 	void completePKB();
 
 private:
@@ -95,6 +100,7 @@ private:
 	Parent* _parent;
 	Modifies* _modifies;
 	Uses* _uses;
+	Calls* _calls;
 	VarTable* _varTable;
 	ProcTable* _procTable;
 	AST* _ast;

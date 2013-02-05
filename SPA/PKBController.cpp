@@ -36,12 +36,6 @@ PKBController *PKBController::createInstance()
 }
 
 
-BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2){
-	return false;
-}
-
-
-
 //ast api
 /**
  * \fn	ASTNode *PKBController::astGetRoot()
@@ -265,6 +259,58 @@ STMT_LIST PKBController::getAllUsesSecond()
 	return(_uses->getAllUsesSecond());
 }
 
+
+/**
+ * \fn	void PKBController::addCalls(STMT stmt, PROC_INDEX proc)
+ *
+ * \brief	Propagate the call to Calls table		
+ *
+ * \author	Yue Cong
+ *
+ */
+void PKBController::addCalls(STMT stmt, PROC_INDEX proc)
+{
+	return (_calls->addCalls(stmt,proc));
+}
+
+/**
+ * \fn	BOOLEAN PKBController::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
+ *
+ * \brief	Propagate the call to Calls table		
+ *
+ * \author	Yue Cong
+ *
+ */
+BOOLEAN PKBController::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
+{
+	return _calls->calls(sts_ptr,ps_ptr,arg);
+}
+
+/**
+ * \fn	STMT_LIST PKBController::getAllCallsFirst()
+ *
+ * \brief	Propagate the call to Calls table		
+ *
+ * \author	Yue Cong
+ *
+ */
+STMT_LIST PKBController::getAllCallsFirst()
+{
+	return _calls->getAllCallsFirst();
+}
+
+/**
+ * \fn	PROC_INDEX_LIST PKBController::getAllCallsSecond()
+ *
+ * \brief	Propagate the call to Calls table		
+ *
+ * \author	Yue Cong
+ *
+ */
+PROC_INDEX_LIST PKBController::getAllCallsSecond()
+{
+	return _calls->getAllCallsSecond();
+}
 
 //vartable api
 /**
@@ -501,6 +547,18 @@ BOOLEAN PKBController::pattern(vector<int> *a, vector<int> *b, string expr, int 
 	return(_designExtractor->pattern(a, b, expr, arg));
 }
 
+/**
+ * \fn	BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2)
+ *
+ * \brief	Propagate the call to Design Extractor		
+ *
+ * \author	Yue Cong
+ *
+ */
+BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2){
+	return _designExtractor->with(st1s_ptr,st2s_ptr,arg1,arg2);
+}
+
 void PKBController::completePKB(){
 	_designExtractor->addModifies();
 	_designExtractor->addUses();
@@ -562,6 +620,7 @@ void PKBController::init()
 	_parent = new Parent();
 	_modifies = new Modifies();
 	_uses = new Uses();
+	_calls = new CallTable();
 	_varTable = new VarTable();
 	_procTable = new ProcTable();
 	_constTable = new vector<int>();

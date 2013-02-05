@@ -1,19 +1,13 @@
-/*
- * VarTable.h
- *
- *  Created on: 21 Oct 2012
- *      Author: ray
- */
-
-#ifndef CALLTABLE_H_
-#define CALLTABLE_H_
+#ifndef CALLS_H_
+#define CALLS_H_
 
 #include <string>
 #include <vector>
 #include "SPAType.h"
+
 using namespace std;
 
-class CallTable
+class Calls
 {
 vector<STMT> stmts;
 vector<PROC_INDEX> procs;
@@ -27,11 +21,11 @@ BOOLEAN calls_00(STMT_LIST* sts_p, PROC_INDEX_LIST* ps_p);
 
 
 public:
-void addCall(STMT stmt, PROC_INDEX proc);
+void addCalls(STMT stmt, PROC_INDEX proc);
 BOOLEAN calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg);
 STMT_LIST getAllCallsFirst();
 PROC_INDEX_LIST getAllCallsSecond();
 };
 
 
-#endif /* CALLTABLE_H_ */
+#endif /* CALLS_H_ */

@@ -1,13 +1,13 @@
 /**
- * \file	CallTable.cpp
- * \class	CallTable
- * \brief	Store all 'Calls' relations in the form (stmt, proc) where 'stmt' is a statement number and 'proc' is a procedure index. Provide funtions for query on this relation.
+ * \file	Calls.cpp
+ * \class	Calls
+ * \brief	Store all 'Calls' relations in the form (stmt, proc) where 'stmt' is a statement number and 'proc' is a procedure index. Provide funtions for query on this relation. The storage is referred as CallTable.
  */
 
 #include "stdafx.h"
-#include "CallTable.h"
+#include "Calls.h"
 
-BOOLEAN CallTable::isCalls(STMT stmt, PROC_INDEX proc)
+BOOLEAN Calls::isCalls(STMT stmt, PROC_INDEX proc)
 {
 	int size = stmts.size();
 
@@ -20,7 +20,7 @@ BOOLEAN CallTable::isCalls(STMT stmt, PROC_INDEX proc)
 }
 
 
-STMT_LIST CallTable::getCallsFirst(PROC_INDEX proc)
+STMT_LIST Calls::getCallsFirst(PROC_INDEX proc)
 {
 	vector<int> resultLst;
 
@@ -35,7 +35,7 @@ STMT_LIST CallTable::getCallsFirst(PROC_INDEX proc)
 }
 
 
-PROC_INDEX CallTable::getCallsSecond(STMT stmt)
+PROC_INDEX Calls::getCallsSecond(STMT stmt)
 {
 	int size = stmts.size();
 	for (int i = 0; i < size; i++) {
@@ -48,9 +48,9 @@ PROC_INDEX CallTable::getCallsSecond(STMT stmt)
 }
 
 /**
- * \fn	void CallTable::addCall(STMT stmt, PROC_INDEX proc)
+ * \fn	void Calls::addCalls(STMT stmt, PROC_INDEX proc)
  *
- * \brief	Add a new 'Calls' relation in the form (stmt, proc) to CallTable where 'stmt' is a statement number and 'proc' is a procedure index. If the relation already exists, do nothing.
+ * \brief	Add a new 'Calls' relation in the form (stmt, proc) to Calls where 'stmt' is a statement number and 'proc' is a procedure index. If the relation already exists, do nothing.
  * 
  *
  * \param	stmt	The statement number of this call statement.
@@ -58,19 +58,19 @@ PROC_INDEX CallTable::getCallsSecond(STMT stmt)
  *
  * \return	void.
  */
-void CallTable::addCall(STMT stmt, PROC_INDEX proc)
+void Calls::addCalls(STMT stmt, PROC_INDEX proc)
 {
 	if (isCalls(stmt, proc)) {
-		// CallTable(stmt, proc) already in the table, do nothing
+		// Calls(stmt, proc) already in the table, do nothing
 	}else {
-		// CallTable(stmt, proc) not in the table, add in
+		// Calls(stmt, proc) not in the table, add in
 		stmts.push_back(stmt);
 		procs.push_back(proc);
 	}
 }
 
 /**
- * \fn	BOOLEAN CallTable::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
+ * \fn	BOOLEAN Calls::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
  *
  * \brief	A function for query on 'Calls' relations.
  * 
@@ -78,13 +78,13 @@ void CallTable::addCall(STMT stmt, PROC_INDEX proc)
  * In Iteration 1, only part of this function is implemented, i.e. when arg is 0.
  * Case 1: arg = 00 = 0
  *  1a) Both lists are empty
- *	Return TRUE if CallTable is not empty, FASLE otherwise.
+ *	Return TRUE if Calls is not empty, FASLE otherwise.
  *	1b) List A empty, List B non-empty
- *	Return TRUE if there exists one entry (stmt, proc) in the CallTable where proc equals to at least one of the element in List B, FASLE otherwise.
+ *	Return TRUE if there exists one entry (stmt, proc) in the Calls where proc equals to at least one of the element in List B, FASLE otherwise.
  *	1c) List A non-empty, List B empty
- *	Return TRUE if there exists one entry (stmt, proc) in the CallTable where stmt equals to at least one of the element in List A, FASLE otherwise.
+ *	Return TRUE if there exists one entry (stmt, proc) in the Calls where stmt equals to at least one of the element in List A, FASLE otherwise.
  *	1d) Both lists are non-empty
- *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that (ai, bj) is an entry in CallTable, FASLE otherwise.
+ *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that (ai, bj) is an entry in Calls, FASLE otherwise.
  * Case: arg = other values
  *	Exception
  *
@@ -93,7 +93,7 @@ void CallTable::addCall(STMT stmt, PROC_INDEX proc)
  *
  * \return	A Boolean value as specified in the detailed description.
  */
-BOOLEAN CallTable::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
+BOOLEAN Calls::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
 {
 	switch (arg) {
 	case 0:
@@ -114,7 +114,7 @@ BOOLEAN CallTable::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
 }
 
 
-BOOLEAN CallTable::calls_00(STMT_LIST* sts_p, PROC_INDEX_LIST* ps_p)
+BOOLEAN Calls::calls_00(STMT_LIST* sts_p, PROC_INDEX_LIST* ps_p)
 {
 	int size1 = sts_p->size();
 	int size2 = ps_p->size();
@@ -156,7 +156,7 @@ BOOLEAN CallTable::calls_00(STMT_LIST* sts_p, PROC_INDEX_LIST* ps_p)
 }
 
 /*
-BOOLEAN CallTable::modifies_01(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
+BOOLEAN Calls::modifies_01(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
 {
 	int size1 = sts_p->size();
 	int size2 = vs_p->size();
@@ -234,7 +234,7 @@ BOOLEAN CallTable::modifies_01(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
 }
 */
 /*
-BOOLEAN CallTable::modifies_10(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
+BOOLEAN Calls::modifies_10(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
 {
 	int size1 = sts_p->size();
 	int size2 = vs_p->size();
@@ -311,7 +311,7 @@ BOOLEAN CallTable::modifies_10(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
 */
 /*
 
-BOOLEAN CallTable::modifies_11(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
+BOOLEAN Calls::modifies_11(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
 {
 	int size1 = sts_p->size();
 	int size2 = vs_p->size();
@@ -386,9 +386,9 @@ BOOLEAN CallTable::modifies_11(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
 */
 
 /**
- * \fn	STMT_LIST CallTable::getAllCallsFirst()
+ * \fn	STMT_LIST Calls::getAllCallsFirst()
  *
- * \brief	Return all the statement numbers stored in CallTable as a list.
+ * \brief	Return all the statement numbers stored in Calls as a list.
  * 
  *
  * 
@@ -396,15 +396,15 @@ BOOLEAN CallTable::modifies_11(STMT_LIST *sts_p, VAR_INDEX_LIST *vs_p)
  *
  * \return	STMT_LIST.
  */
-STMT_LIST CallTable::getAllCallsFirst()
+STMT_LIST Calls::getAllCallsFirst()
 {
 	return(stmts);
 }
 
 /**
- * \fn	PROC_INDEX_LIST CallTable::getAllCallsSecond()
+ * \fn	PROC_INDEX_LIST Calls::getAllCallsSecond()
  *
- * \brief	Return all the procedure indices stored in CallTable as a list.
+ * \brief	Return all the procedure indices stored in Calls as a list.
  * 
  *
  * 
@@ -412,7 +412,7 @@ STMT_LIST CallTable::getAllCallsFirst()
  *
  * \return	PROC_INDEX_LIST.
  */
-PROC_INDEX_LIST CallTable::getAllCallsSecond()
+PROC_INDEX_LIST Calls::getAllCallsSecond()
 {
 	return(procs);
 }
