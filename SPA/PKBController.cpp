@@ -364,42 +364,54 @@ STMT_LIST PKBController::getAllUsesPSecond()
 }
 
 /**
- * \fn	void PKBController::addCalls(STMT stmt, PROC_INDEX proc)
+ * \fn	void PKBController::addCalls(STMT stmt, PROC_INDEX caller, PROC_INDEX callee)
  *
  * \brief	Propagate the call to Calls table		
  *
  * \author	Yue Cong
  *
  */
-void PKBController::addCalls(STMT stmt, PROC_INDEX proc)
+void PKBController::addCalls(STMT stmt, PROC_INDEX caller, PROC_INDEX callee)
 {
-	return (_calls->addCalls(stmt,proc));
+	return (_calls->addCalls(stmt,caller,callee));
 }
 
 /**
- * \fn	BOOLEAN PKBController::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
+ * \fn	BOOLEAN PKBController::calls(PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg)
  *
  * \brief	Propagate the call to Calls table		
  *
  * \author	Yue Cong
  *
  */
-BOOLEAN PKBController::calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg)
+BOOLEAN PKBController::calls(PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg)
 {
-	return _calls->calls(sts_ptr,ps_ptr,arg);
+	return _calls->calls(callers_ptr,callees_ptr,arg);
 }
 
 /**
- * \fn	STMT_LIST PKBController::getAllCallsFirst()
+ * \fn	PROC_INDEX PKBController::getCallee(STMT stmt)
  *
  * \brief	Propagate the call to Calls table		
  *
  * \author	Yue Cong
  *
  */
-STMT_LIST PKBController::getAllCallsFirst()
+PROC_INDEX PKBController::getCallee(STMT stmt)
 {
-	return _calls->getAllCallsFirst();
+	return _calls->getCallee(stmt);
+}
+/**
+ * \fn	STMT_LIST PKBController::getAllCallers()
+ *
+ * \brief	Propagate the call to Calls table		
+ *
+ * \author	Yue Cong
+ *
+ */
+STMT_LIST PKBController::getAllCallers()
+{
+	return _calls->getAllCallers();
 }
 
 /**
@@ -410,9 +422,9 @@ STMT_LIST PKBController::getAllCallsFirst()
  * \author	Yue Cong
  *
  */
-PROC_INDEX_LIST PKBController::getAllCallsSecond()
+PROC_INDEX_LIST PKBController::getAllCallees()
 {
-	return _calls->getAllCallsSecond();
+	return _calls->getAllCallees();
 }
 
 //vartable api

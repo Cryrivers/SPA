@@ -68,10 +68,11 @@ public:
 	STMT_LIST getAllUsesPSecond();
 
 	//calls api
-	void addCalls(STMT stmt, PROC_INDEX proc);
-	BOOLEAN calls(STMT_LIST* sts_ptr, PROC_INDEX_LIST* ps_ptr, int arg);
-	STMT_LIST getAllCallsFirst();
-	PROC_INDEX_LIST getAllCallsSecond();
+	void addCalls(STMT stmt, PROC_INDEX caller, PROC_INDEX callee);
+	BOOLEAN calls(PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg);
+	PROC_INDEX getCallee(STMT stmt);
+	PROC_INDEX_LIST getAllCallers();
+	PROC_INDEX_LIST getAllCallees();
 
 	//vartable api
 	VAR_INDEX addVar(STRING varName);
