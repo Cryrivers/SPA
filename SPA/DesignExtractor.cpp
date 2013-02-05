@@ -55,7 +55,7 @@ void DesignExtractor::addModifies()
 	for (int i = 0; i < callNumbers->size();i++)
 	{
 		pmod.push_back(callees.at(i));
-		_pkb->modifies(&pmod, &pvars, 1);
+		_pkb->modifiesP(&pmod, &pvars, 1);
 		for (int j = 0; j < pvars.size(); j++)
 		{
 			_pkb->addModifies(callNumbers->at(i), pvars.at(j));
