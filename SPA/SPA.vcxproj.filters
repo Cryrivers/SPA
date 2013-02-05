@@ -120,6 +120,9 @@
     <ClInclude Include="CFG.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
+    <ClInclude Include="Next.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -189,6 +192,9 @@
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
     <ClCompile Include="CFG.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Next.cpp">
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
   </ItemGroup>
