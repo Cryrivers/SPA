@@ -1,7 +1,7 @@
 /**
  * \file	Calls.cpp
  * \class	Calls
- * \brief	Store all 'Calls' relations in the form (stmt, caller, callee) where 'stmt' is a statement number and both 'caller' and 'callee' are procedure indices. Provide functions for query on this relation. The storage is referred as CallTable. The first column of CallTable means the procedures that call another procedure (callers), the second column of CallTable means the procedures that is called by another procedure (callees).
+ * \brief	Store all 'Calls' relations in the form (stmt, caller, callee) where 'stmt' is a statement number and both 'caller' and 'callee' are procedure indices. Provide functions for query on this relation. The storage is referred as CallsTable. The first column of CallsTable means the procedures that call another procedure (callers), the second column of CallsTable means the procedures that is called by another procedure (callees).
  */
 
 #include "stdafx.h"
@@ -20,6 +20,37 @@ BOOLEAN Calls::isCalls(PROC_INDEX caller, PROC_INDEX callee)
 	return(false);
 }
 
+BOOLEAN Calls::isCallsStar(PROC_INDEX caller, PROC_INDEX callee)
+{
+	if(isCalls(caller, callee)) //direct Calls relation found, return true
+		return true;
+	else {
+		PROC_INDEX_LIST links; // the link between caller and callee
+		links = getCallsSecond(caller);
+		return isCallsStarHelper(links, callee);
+	}
+}
+
+BOOLEAN Calls::isCallsStarHelper(PROC_INDEX_LIST links, PROC_INDEX callee)
+{
+	int linkSize = links.size();
+	if(linkSize==0) // no more links between caller and callee, return false;
+		return false;
+
+	for(int i=0; i<linkSize; i++) {
+		if(isCalls(links.at(i), callee)) // one Calls* path found, return true
+			return true;
+	}
+
+	PROC_INDEX_LIST links2;
+	for(int i=0; i<linkSize; i++) {
+		PROC_INDEX_LIST temp = getCallsSecond(links.at(i));
+		for(int j=0; j<temp.size(); j++) {
+			links2.push_back(temp.at(j));
+		}
+	}
+	return isCallsStarHelper(links2, callee);
+}
 
 PROC_INDEX_LIST Calls::getCallsFirst(PROC_INDEX callee)
 {
@@ -48,6 +79,52 @@ PROC_INDEX_LIST Calls::getCallsSecond(PROC_INDEX caller)
 		}
 	}
 	return (resultLst);
+}
+
+PROC_INDEX_LIST Calls::getCallsStarFirst(PROC_INDEX callee)
+{
+	PROC_INDEX_LIST directCallersLst = getCallsFirst(callee);
+	PROC_INDEX_LIST resultLst;
+
+	if (directCallersLst.size() == 0) { // no more callers, base case, stop here
+		return(resultLst);
+	}else {
+		int directCallersLstSize = directCallersLst.size();
+		for (int i = 0; i < directCallersLstSize; i++) { // loop through each direct caller
+			int currentCaller = directCallersLst.at(i);
+			resultLst.push_back(currentCaller);     // add in this caller first
+			PROC_INDEX_LIST temp = getCallsStarFirst(currentCaller); // let this caller find all its direct/indirect callers
+			if (temp.size() != 0) {                // caller is not leaf node
+				for (int j = 0; j < temp.size(); j++) { // add all its ancestors as own ancestors
+					resultLst.push_back(temp.at(j));
+				}
+			}
+		}
+		return(resultLst);
+	}
+}
+
+PROC_INDEX_LIST Calls::getCallsStarSecond(PROC_INDEX caller)
+{
+	PROC_INDEX_LIST directCalleesLst = getCallsSecond(caller);
+	PROC_INDEX_LIST resultLst;
+
+	if (directCalleesLst.size() == 0) { // no more callees, base case, stop here
+		return(resultLst);
+	}else {
+		int directCalleesLstSize = directCalleesLst.size();
+		for (int i = 0; i < directCalleesLstSize; i++) { // loop through each direct callee
+			int currentCallee = directCalleesLst.at(i);
+			resultLst.push_back(currentCallee);     // add in this callee first
+			PROC_INDEX_LIST temp = getCallsStarSecond(currentCallee); // let this callee find all its direct/indirect callees
+			if (temp.size() != 0) {                // callee is not leaf node
+				for (int j = 0; j < temp.size(); j++) { // add all its descendant as own descendant
+					resultLst.push_back(temp.at(j));
+				}
+			}
+		}
+		return(resultLst);
+	}
 }
 
 /**
@@ -84,52 +161,52 @@ void Calls::addCalls(STMT stmt, PROC_INDEX caller, PROC_INDEX callee)
  * To handle a query in the form calls(List A, List B, arg).
  * Case 1: arg = 00 = 0
  *  1a) Both lists are empty
- *	Return TRUE if CallTable is not empty, FASLE otherwise.
+ *	Return TRUE if CallsTable is not empty, FASLE otherwise.
  *	1b) List A empty, List B non-empty
- *	Return TRUE if there exists one entry (caller, callee) in the CallTable where callee equals to at least one of the element in List B, FASLE otherwise.
+ *	Return TRUE if there exists one entry (caller, callee) in the CallsTable where callee equals to at least one of the element in List B, FASLE otherwise.
  *	1c) List A non-empty, List B empty
- *	Return TRUE if there exists one entry (caller, callee) in the CallTable where caller equals to at least one of the element in List A, FASLE otherwise.
+ *	Return TRUE if there exists one entry (caller, callee) in the CallsTable where caller equals to at least one of the element in List A, FASLE otherwise.
  *	1d) Both lists are non-empty
- *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that (ai, bj) is an entry in CallTable, FASLE otherwise.
+ *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that (ai, bj) is an entry in CallsTable, FASLE otherwise.
  *
  * Case 2: arg = 01 = 1
  *  2a) Both lists are empty
- *	Fill up list B with all the distinct values in the second column of CallTable.
+ *	Fill up list B with all the distinct values in the second column of CallsTable.
  *	2b) List A nont-empty, List B empty
- *	Fill up list B with all the values in the second column of CallTable where the corresponding first column equals to the elements in list A.
+ *	Fill up list B with all the values in the second column of CallsTable where the corresponding first column equals to the elements in list A.
  *	2c) List A empty, List B non-empty
- *	Remove elements from list B that are not found in the second column of CallTable.
+ *	Remove elements from list B that are not found in the second column of CallsTable.
  *	2d) Both lists are non-empty
- *	Find all values (say V2) in the second column of CallTable where the corresponding first column value equals to the elements in list A and remove elements from list B that are not in V2.
+ *	Find all values (say V2) in the second column of CallsTable where the corresponding first column value equals to the elements in list A and remove elements from list B that are not in V2.
  *	For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.
  *
  * Case 3: arg = 10 = 2
  *  3a) Both lists are empty
- *	Fill up list A with all the distinct values in the first column of CallTable.
+ *	Fill up list A with all the distinct values in the first column of CallsTable.
  *	3b) List A empty, List B non-empty
- *	Fill up list A with all the values in the first column of CallTable where the corresponding second column equals to the elements in list B.
+ *	Fill up list A with all the values in the first column of CallsTable where the corresponding second column equals to the elements in list B.
  *	3c) List A non-empty, List B empty
- *	Remove elements from list A that are not found in the first column of CallTable.
+ *	Remove elements from list A that are not found in the first column of CallsTable.
  *	3d) Both lists are non-empty
- *	Find all values (say V1) in the first column of CallTable where the corresponding second column value equals to the elements in list B and remove elements from list A that are not in V1.
+ *	Find all values (say V1) in the first column of CallsTable where the corresponding second column value equals to the elements in list B and remove elements from list A that are not in V1.
  *	For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.
  *
  * Case 4: arg = 11 = 3
  *  4a) Both lists are empty
- *	Fill up the two lists with all entries of CallTable.
+ *	Fill up the two lists with all entries of CallsTable.
  *	4b) List A empty, List B non-empty
- *	For each element (bi) in list B, find values in the first column of CallTable where the second column equals to bi.
+ *	For each element (bi) in list B, find values in the first column of CallsTable where the second column equals to bi.
 	(i) If found no values, remove bi from list B.
 	(ii) If found 1 single value, add this value to list A.
 	(iii) if found n (n>1) values, add these values to list A and duplicate bi n-1 times in list B.
  *	4c) List A non-empty, List B empty
- *	For each element (ai) in list A, find values in the second column of CallTable where the first column equals to ai.
+ *	For each element (ai) in list A, find values in the second column of CallsTable where the first column equals to ai.
 	(i) If found no values, remove ai from list A.
 	(ii) If found 1 single value, add this value to list B.
 	(iii) if found n (n>1) values, add these values to list B and duplicate ai n-1 times in list A.
  *	4d) Both lists are non-empty
  *	Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. 
- *	Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if (ai, bi) is not an entry in CallTable.
+ *	Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if (ai, bi) is not an entry in CallsTable.
  *	For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.
  * Case: arg = other values
  *	Exception
@@ -423,9 +500,347 @@ BOOLEAN Calls::calls_11(PROC_INDEX_LIST* callers_p, PROC_INDEX_LIST* callees_p)
 }
 
 /**
+ * \fn	BOOLEAN Calls::callsStar(PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg)
+ *
+ * \brief	A function for query on 'CallsStar' relation.
+ * 
+ * To handle a query in the form CallsStar(List A, List B, arg).
+
+ * Case 1: arg = 00 = 0
+ *	1a) Both lists are empty
+ *	Return TRUE if CallsTable is not empty, FASLE otherwise.
+ *	1b) List A empty, List B non-empty
+ *	Return TRUE if there exists one entry (proc1, proc2) in the CallsTable where proc2 equals to at least one of the element in List B, FASLE otherwise.
+ *	1c) List A non-empty, List B empty
+ *	Return TRUE if there exists one entry (proc1, proc2) in the CallsTable where proc1 equals to at least one of the element in List A, FASLE otherwise.
+ *	1d) Both lists are non-empty
+ *	Let ai be the i-th element of List A and bj be the j-th element of List B. Return TRUE if there exist at least one <ai, bj> pair such that CallsStar(ai, bj) is true, FASLE otherwise.
+
+ * Case 2: arg = 01 = 1
+ *  2a) Both lists are empty
+ *	Fill up list B with all the distinct values in the second column of CallsTable.
+ *	2b) List A non-empty, List B empty
+ *	Fill up list B with all the values b if CallsStar(a, b) is true where a is any element in list A.
+ *	2c) List A empty, List B non-empty
+ *	Remove elements from list B that are not found in the second column of CallsTable.
+ *	2d) Both lists are non-empty
+ *	For each element bi from list B, if no element aj from list A can satisfy CallsStar(aj, bi), then remove this bi. Otherwise, keep it.
+ *	For case 2a, 2b, 2c and 2d: Return TRUE if at the end, list B is not empty, FASLE otherwise.
+
+ * Case 3: arg = 10 = 2
+ *  3a) Both lists are empty
+ *	Fill up list A with all the distinct values in the first column of CallsTable.
+ *	3b) List A empty, List B non-empty
+ *	Fill up list A with all the values a if CallsStar(a, b) is true where b is any element in list B.
+ *	3c) List A non-empty, List B empty
+ *	Remove elements from list A that are not found in the first column of CallsTable.
+ *	3d) Both lists are non-empty
+ *	For each element ai from list A, if no element bj from list B can satisfy CallsStar(ai, bj), then remove this ai. Otherwise, keep it.
+ *	For case 3a, 3b, 3c and 3d: Return TRUE if at the end, list A is not empty, FASLE otherwise.
+
+ * Case 4: arg = 11 = 3
+ *  4a) Both lists are empty
+ *	Throw Exception.
+ *	4b) List A empty, List B non-empty
+ *	For each element (bi) in list B, find values in the first column of CallsTable where the second column equals to bi.
+	(i) If found no values, remove bi from list B.
+	(ii) If found 1 single value, add this value to list A.
+	(iii) if found n (n>1) values, add these values to list A and duplicate bi n-1 times in list B.
+ *	4c) List A non-empty, List B empty
+ *	For each element (ai) in list A, find values in the second column of CallsTable where the first column equals to ai.
+	(i) If found no values, remove ai from list A.
+	(ii) If found 1 single value, add this value to list B.
+	(iii) if found n (n>1) values, add these values to list B and duplicate ai n-1 times in list A.
+ *	4d) Both lists are non-empty
+ *	Sizes of the two lists must be the same, otherwise exception. Say the sizes are both n. 
+ *	Let ai be the i-th element of list A and b-i be the i-th element of list B. For i from 1 to n, remove ai, bi from list A, list B if CallsStar(ai, bi) is false.
+ *	For case 4a, 4b, 4c and 4d: At the end, size of list A = size of list B. Return TRUE if at the end, list A is not empty, FASLE otherwise.
+ 
+ * Case: arg = other values
+ *	Exception
+
+ * \param	callers_ptr	 A pointer to a list of procedure indices. These procedures are the first parameter of relation CallsStar.
+ * \param	callees_ptr	 A pointer to a list of procedure indices. These procedures are the second parameter of relation CallsStar.
+ *
+ * \return	A Boolean value as specified in the detailed description.
+ */
+BOOLEAN Calls::callsStar(PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg)
+{
+	switch (arg) {
+	case 0:
+		return(callsStar_00(callers_ptr, callees_ptr));
+
+	case 1:
+		return(callsStar_01(callers_ptr, callees_ptr));
+
+	case 2:
+		return(callsStar_10(callers_ptr, callees_ptr));
+
+	case 3:
+		return(callsStar_11(callers_ptr, callees_ptr));
+
+	default:
+		throw "arg value invalid";
+	}
+}
+
+BOOLEAN Calls::callsStar_00(PROC_INDEX_LIST* callers_p, PROC_INDEX_LIST* callees_p)
+{
+	int size1 = callers_p->size();
+	int size2 = callees_p->size();
+
+	if ((size1 == 0) && (size2 == 0)) { //case 1a
+		if (callers.size() == 0) {
+			return(false);
+		}else {
+			return(true);
+		}
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 1b
+		for (int i = 0; i < callees.size(); i++) {
+			for (int j = 0; j < size2; j++) {
+				if (callees.at(i) == callees_p->at(j)) {
+					return(true);
+				}
+			}
+		}
+		return(false);
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 1c
+		for (int i = 0; i < callers.size(); i++) {
+			for (int j = 0; j < size1; j++) {
+				if (callers.at(i) == callers_p->at(j)) {
+					return(true);
+				}
+			}
+		}
+		return(false);
+	}else {  //size1!=0 && size2!=0, case 1d
+		for (int i = 0; i < size1; i++) {
+			for (int j = 0; j < size2; j++) {
+				if (isCallsStar(callers_p->at(i), callees_p->at(j))) {
+					return(true);
+				}
+			}
+		}
+		return(false);
+	}
+}
+
+BOOLEAN Calls::callsStar_01(PROC_INDEX_LIST* callers_p, PROC_INDEX_LIST* callees_p)
+{
+	int size1 = callers_p->size();
+	int size2 = callees_p->size();
+
+	if ((size1 == 0) && (size2 == 0)) { //case 2a
+		for (int i = 0; i < callees.size(); i++) {
+			callees_p->push_back(callees.at(i));
+		}
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 2c
+		int index = 0;
+		for (int i = 0; i < size2; i++) {
+			if (indexOf(callees, callees_p->at(index)) == -1) {
+				callees_p->erase(callees_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 2b
+		for (int i = 0; i < size1; i++) {
+			vector<int> val = getCallsStarSecond(callers_p->at(i));
+			for (int j = 0; j < val.size(); j++) {
+				int current = val.at(j);
+				if (indexOf(*callees_p, current) == -1) {
+					callees_p->push_back(current);
+				}
+			}
+		}
+	}else {  //size1!=0 && size2!=0, case 2d
+		 /*
+		  * VectorA (a1, a2, бн, am) VectorB (b1, b2, бн, bn)
+		  * for bi from b1 to bn {
+		  * nomatch = true
+		  * for aj from a1 to am {
+		  * if isRelationStar(aj, bi) is true
+		  *      nomatch = false
+		  *      break
+		  * }
+		  * if (nomatch)
+		  * remove bi
+		  * }
+		  */
+		int index = 0;
+		for (int i = 0; i < size2; i++) {
+			BOOLEAN noMatch = true;
+			for (int j = 0; j < size1; j++) {
+				if (isCallsStar(callers_p->at(j), callees_p->at(index))) {
+					noMatch = false;
+					break;
+				}
+			}
+			if (noMatch) {
+				callees_p->erase(callees_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	}
+
+	if (callees_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
+}
+
+BOOLEAN Calls::callsStar_10(PROC_INDEX_LIST* callers_p, PROC_INDEX_LIST* callees_p)
+{
+	int size1 = callers_p->size();
+	int size2 = callees_p->size();
+
+	if ((size1 == 0) && (size2 == 0)) { //case 3a
+		for (int i = 0; i < callers.size(); i++) {
+			int current = callers.at(i);
+			if (indexOf(*callers_p, current) == -1) {
+				callers_p->push_back(current);
+			}
+		}
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 3b
+		for (int i = 0; i < size2; i++) {
+			vector<int> val = getCallsStarFirst(callees_p->at(i));
+			for (int j = 0; j < val.size(); j++) {
+				int current = val.at(j);
+				if (indexOf(*callers_p, current) == -1) {
+					callers_p->push_back(current);
+				}
+			}
+		}
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 3c
+		int index = 0;
+		for (int i = 0; i < size1; i++) {
+			if (indexOf(callers, callers_p->at(index)) == -1) {
+				callers_p->erase(callers_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	}else {  //size1!=0 && size2!=0, case 3d
+		 /*
+		  * VectorA (a1, a2, бн, am) VectorB (b1, b2, бн, bn)
+		  * for ai from a1 to am {
+		  * nomatch = true
+		  * for bj from b1 to bn {
+		  * if isRelationStar(ai, bj) is true
+		  *      nomatch = false
+		  *      break
+		  * }
+		  * if (nomatch)
+		  * remove ai
+		  * }
+		  */
+		int index = 0;
+		for (int i = 0; i < size1; i++) {
+			BOOLEAN noMatch = true;
+			for (int j = 0; j < size2; j++) {
+				if (isCallsStar(callers_p->at(index), callees_p->at(j))) {
+					noMatch = false;
+					break;
+				}
+			}
+			if (noMatch) {
+				callers_p->erase(callers_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	}
+
+	if (callers_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
+}
+
+BOOLEAN Calls::callsStar_11(PROC_INDEX_LIST* callers_p, PROC_INDEX_LIST* callees_p)
+{
+	int size1 = callers_p->size();
+	int size2 = callees_p->size();
+
+	if ((size1 == 0) && (size2 == 0)) { //case 4a
+		throw "arg is 11, but both vectors are empty.";
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 4b
+		vector<int> callees_copy;
+		for (int i = 0; i < size2; i++) {
+			callees_copy.push_back(callees_p->at(i));
+		}
+		callees_p->clear();
+
+		for (int i = 0; i < size2; i++) {
+			int currentEleCallees = callees_copy.at(i);
+			vector<int> temp = getCallsStarFirst(currentEleCallees);
+			int tempSize = temp.size();
+			if (tempSize == 0) {
+				//do not fill in vector
+			}else {
+				for (int j = 0; j < tempSize; j++) {
+					callers_p->push_back(temp.at(j));
+					callees_p->push_back(currentEleCallees);
+				}
+			}
+		}
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 4c
+		vector<int> callers_copy;
+		for (int i = 0; i < size1; i++) {
+			callers_copy.push_back(callers_p->at(i));
+		}
+		callers_p->clear();
+
+		for (int i = 0; i < size1; i++) {
+			int currentEleCallers = callers_copy.at(i);
+			vector<int> temp = getCallsStarSecond(currentEleCallers);
+			int tempSize = temp.size();
+			if (tempSize == 0) {
+				//do not fill in vector
+			}else {
+				for (int j = 0; j < tempSize; j++) {
+					callers_p->push_back(currentEleCallers);
+					callees_p->push_back(temp.at(j));
+				}
+			}
+		}
+	}else {           //size1!=0 && size2!=0, case 4d
+		if (size1 == size2) { //case 4d
+			int index = 0;
+			for (int i = 0; i < size1; i++) {
+				if (isCallsStar(callers_p->at(index), callees_p->at(index))) {
+					index++;
+				}else {
+					callers_p->erase(callers_p->begin() + index);
+					callees_p->erase(callees_p->begin() + index);
+				}
+			}
+		}else {  //exception
+			throw "arg is 11, but sizes of both vectors are not the same.";
+		}
+	}
+	if (callers_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
+}
+
+/**
  * \fn	PROC_INDEX_LIST Calls::getAllCallers()
  *
- * \brief	Return all the procedure indices stored in first column of CallTable as a list.
+ * \brief	Return all the procedure indices stored in first column of CallsTable as a list.
  * 
  *
  * 
@@ -441,7 +856,7 @@ PROC_INDEX_LIST Calls::getAllCallers()
 /**
  * \fn	PROC_INDEX_LIST Calls::getAllCallees()
  *
- * \brief	Return all the procedure indices stored in second column of CallTable as a list.
+ * \brief	Return all the procedure indices stored in second column of CallsTable as a list.
  * 
  *
  * 

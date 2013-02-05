@@ -84,6 +84,7 @@
     <ClInclude Include="Follows.h" />
     <ClInclude Include="Modifies.h" />
     <ClInclude Include="ModifiesP.h" />
+    <ClInclude Include="Next.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="PKBController.h" />
@@ -111,6 +112,7 @@
     <ClCompile Include="Follows.cpp" />
     <ClCompile Include="Modifies.cpp" />
     <ClCompile Include="ModifiesP.cpp" />
+    <ClCompile Include="Next.cpp" />
     <ClCompile Include="Parent.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PKBController.cpp" />
