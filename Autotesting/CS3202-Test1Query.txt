@@ -1,0 +1,6 @@
+1
+43 - Special case ::
+while w; stmt s;
+Select s such that Follows(w, w)
+none
+5000
