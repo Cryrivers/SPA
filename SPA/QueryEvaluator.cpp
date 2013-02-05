@@ -142,9 +142,27 @@ bool QueryEvaluator::evaluateRelationClause(QueryClause qc) {
 				return false; // can't find relation
 			break;
 		
+		case RT_MODIFIESP:
+
+			if (!pkb->modifiesP(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
 		case RT_USESS:
 			
 			if (!pkb->uses(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+		
+		case RT_USESP:
+			
+			if (!pkb->usesP(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+		
+		case RT_CALLS:
+			
+			if (!pkb->calls(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
