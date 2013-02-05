@@ -6,7 +6,7 @@
 
 #include "StdAfx.h"
 #include "CFGNode.h"
-
+#include <assert.h>
 
 CFGNode::CFGNode(void)
 {
@@ -34,6 +34,7 @@ CFGNode::~CFGNode(void)
 
 void CFGNode::setStartStatement( STMT startStatement )
 {
+	assert(startStatement < 50);
 	_start = startStatement;
 }
 
@@ -98,6 +99,10 @@ STMT CFGNode::getEndStatement()
 
 void CFGNode::addEdge( CFGNode* nextPath )
 {
+	//In case of duplicates
+	for (vector<CFGNode*>::iterator it = _edges.begin(); it != _edges.end(); ++it)
+		if(*it == nextPath) return;
+
 	_edges.push_back(nextPath);
 }
 
@@ -132,6 +137,7 @@ int CFGNode::getEdgeSize()
 
 bool CFGNode::containStatement( STMT stmtNumber )
 {
+	assert(_start <= _end);
 	return (stmtNumber >= _start && stmtNumber <= _end);
 }
 
@@ -165,4 +171,19 @@ CFGType CFGNode::getCFGType()
 void CFGNode::setCFGType( CFGType type )
 {
 	_type = type;
+}
+
+/**
+ * \fn	void CFGNode::popLastEdge()
+ *
+ * \brief	Pops the last edge.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/6
+ */
+
+void CFGNode::popLastEdge()
+{
+	assert(_edges.size() > 0);
+	_edges.pop_back();
 }

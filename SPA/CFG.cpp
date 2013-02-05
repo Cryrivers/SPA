@@ -32,3 +32,24 @@ void CFG::addToCFG( CFGNode* cfgnode )
 {
 	_CFGBlocks.push_back(cfgnode);
 }
+
+/**
+ * \fn	CFGNode* CFG::getCFGNodeByStmtNumber( STMT stmtNumber )
+ *
+ * \brief	Gets configuration node by statement number.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/6
+ *
+ * \param	stmtNumber	The statement number.
+ *
+ * \return	null if it fails, else the configuration node by statement number.
+ */
+
+CFGNode* CFG::getCFGNodeByStmtNumber( STMT stmtNumber )
+{
+	for(vector<CFGNode*>::iterator it = _CFGBlocks.begin(); it != _CFGBlocks.end();++it)
+		if((*it)->containStatement(stmtNumber))
+			return *it;
+	return NULL;
+}

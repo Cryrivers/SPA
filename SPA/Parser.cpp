@@ -53,6 +53,7 @@ Parser::~Parser(void)
 void Parser::_parseLine()
 {
 	//CFG Related
+	CFGNode* ifNode;
 	CFGNode* whileNode;
 	CFGNode* topCFGNode;
 
@@ -82,6 +83,24 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_IF:
+			//Ensure to add a valid CFGNode
+			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
+			_pkb->getCFG()->addToCFG(_currentCFGNode);
+			
+			_previousCFGNode = _currentCFGNode;
+
+			ifNode=new CFGNode();
+			ifNode->setCFGType(CFG_IF_STATEMENT);
+			ifNode->setStartStatement(it->stmtNumber);
+			ifNode->setEndStatement(it->stmtNumber);
+
+			_previousCFGNode->addEdge(ifNode);
+			_cfgStack.push(ifNode);
+			_cfgStack.push(ifNode); //Push twice to connect it to Else Block
+			_currentCFGNode = new CFGNode();
+			ifNode->addEdge(_currentCFGNode);
+			_pkb->getCFG()->addToCFG(ifNode);
+
 			_buildIfAST(&*it);
 			break;
 
@@ -110,7 +129,10 @@ void Parser::_parseLine()
 
 		case STMT_WHILE:
 			
-			_pkb->getCFG()->addToCFG(_currentCFGNode);
+			//Ensure to add a valid CFGNode
+			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
+				_pkb->getCFG()->addToCFG(_currentCFGNode);
+			
 			_previousCFGNode = _currentCFGNode;
 			
 			whileNode=new CFGNode();
@@ -144,18 +166,55 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_CLOSE_BRACKET:
-			_pkb->getCFG()->addToCFG(_currentCFGNode);
+			
+			//Remove empty and invalid CFGNode and do rollback, if any.
+			//This currently applies to WHILE-LOOP case
+			assert(_currentCFGNode != NULL);
+			if(_currentCFGNode->getStartStatement() < 0 || _currentCFGNode->getEndStatement() < 0)
+			{
+				_previousCFGNode->popLastEdge();
+				free(_currentCFGNode);
+				_currentCFGNode = _previousCFGNode;
+			}
+			else
+			{
+				_pkb->getCFG()->addToCFG(_currentCFGNode);
+			}
+
+			//Start normal CFG parsing procedure
 			if(_cfgStack.size()>0)
 			{
+
 				topCFGNode = _cfgStack.top();
+
 				if(topCFGNode->getCFGType() == CFG_WHILE_STATEMENT)
 				{
 					_currentCFGNode->addEdge(topCFGNode);
+					_cfgStack.pop();
+					_previousCFGNode =  _currentCFGNode;
+					_currentCFGNode = new CFGNode();
+					_previousCFGNode -> addEdge(_currentCFGNode);
 				}
-				_cfgStack.pop();
-				_previousCFGNode =  _currentCFGNode;
-				_currentCFGNode = new CFGNode();
-				_previousCFGNode -> addEdge(_currentCFGNode);
+				else if(topCFGNode->getCFGType() == CFG_IF_STATEMENT)
+				{
+					topCFGNode->addEdge(_currentCFGNode);
+					_cfgStack.pop();
+					//Connect IF Block and Else Block to Next Block
+					if(_previousCFGNode->getCFGType() == CFG_NORMAL_BLOCK && 
+						_previousCFGNode->getStartStatement()>0 && _previousCFGNode->getEndStatement()>0)
+					{
+						CFGNode* newNode = new CFGNode();
+						_previousCFGNode->addEdge(newNode);
+						_currentCFGNode-> addEdge(newNode);
+						_currentCFGNode = newNode;
+					}
+					else
+					{
+						_previousCFGNode = _currentCFGNode;
+						_currentCFGNode = new CFGNode();
+					}
+				}
+				
 			}
 			
 			previousNode = _parentStackNoStmtLst.top();
