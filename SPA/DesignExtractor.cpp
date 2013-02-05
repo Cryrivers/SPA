@@ -40,11 +40,29 @@ DesignExtractor::~DesignExtractor(void)
  */
 void DesignExtractor::addModifies()
 {
-	STMT_LIST stmts = _pkb->getAllModifiesFirst();
-	VAR_INDEX_LIST vars = _pkb->getAllModifiesSecond();
-	STMT_LIST      *parents = new STMT_LIST();
-	STMT_LIST      *child = new STMT_LIST();
+	STMT_LIST       stmts = _pkb->getAllModifiesFirst();
+	VAR_INDEX_LIST  vars = _pkb->getAllModifiesSecond();
+	PROC_INDEX_LIST proc = _pkb->getAllModifiesPFirst();
+	VAR_INDEX_LIST  pvars;
+	STMT_LIST       *parents = new STMT_LIST();
+	STMT_LIST       *child = new STMT_LIST();
+	STMT_LIST       *callNumbers = new STMT_LIST();
+	PROC_INDEX_LIST callees = _pkb->getAllCallees();
+	PROC_INDEX_LIST callers = _pkb->getAllCallers();
+	PROC_INDEX_LIST pmod;
 
+	getAllCall(callNumbers);
+	for (int i = 0; i < callNumbers->size();i++)
+	{
+		pmod.push_back(callees.at(i));
+		_pkb->modifies(&pmod, &pvars, 1);
+		for (int j = 0; j < pvars.size(); j++)
+		{
+			_pkb->addModifies(callNumbers->at(i), pvars.at(j));
+			_pkb->addModifiesP(callers.at(i), pvars.at(j));
+		}
+	}
+	
 	for (int i = 0; i < stmts.size(); i++) {
 		child->push_back(stmts.at(i));
 		_pkb->parentStar(parents, child, 2);
@@ -67,11 +85,28 @@ void DesignExtractor::addModifies()
  */
 void DesignExtractor::addUses()
 {
-	int j = 0;
-	STMT_LIST stmts = _pkb->getAllUsesFirst();
-	VAR_INDEX_LIST vars = _pkb->getAllUsesSecond();
-	STMT_LIST      *parents = new STMT_LIST();
-	STMT_LIST      *child = new STMT_LIST();
+	STMT_LIST       stmts = _pkb->getAllUsesFirst();
+	VAR_INDEX_LIST  vars = _pkb->getAllUsesSecond();
+	PROC_INDEX_LIST proc = _pkb->getAllUsesPFirst();
+	VAR_INDEX_LIST  pvars;
+	STMT_LIST       *parents = new STMT_LIST();
+	STMT_LIST       *child = new STMT_LIST();
+	STMT_LIST       *callNumbers = new STMT_LIST();
+	PROC_INDEX_LIST callees = _pkb->getAllCallees();
+	PROC_INDEX_LIST callers = _pkb->getAllCallers();
+	PROC_INDEX_LIST pmod;
+
+	getAllCall(callNumbers);
+	for (int i = 0; i < callNumbers->size();i++)
+	{
+		pmod.push_back(callees.at(i));
+		_pkb->usesP(&pmod, &pvars, 1);
+		for (int j = 0; j < pvars.size(); j++)
+		{
+			_pkb->addUses(callNumbers->at(i), pvars.at(j));
+			_pkb->addUsesP(callers.at(i), pvars.at(j));
+		}
+	}
 
 	for (int i = 0; i < stmts.size(); i++) {
 		child->push_back(stmts.at(i));
