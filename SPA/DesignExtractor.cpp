@@ -62,6 +62,7 @@ void DesignExtractor::addModifies()
 			_pkb->addModifiesP(callers.at(i), pvars.at(j));
 		}
 		pmod.clear();
+		pvars.clear();
 	}
 	
 	for (int i = 0; i < stmts.size(); i++) {
@@ -108,6 +109,7 @@ void DesignExtractor::addUses()
 			_pkb->addUsesP(callers.at(i), pvars.at(j));
 		}
 		pmod.clear();
+		pvars.clear();
 	}
 
 	for (int i = 0; i < stmts.size(); i++) {

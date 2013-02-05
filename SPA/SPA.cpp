@@ -20,7 +20,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
-	ifstream myfile("C:\\SampleWhileLoop.c");
+	ifstream myfile("C:\\CS3202-Test1Code.c");
 	if (myfile.is_open())
 	{
 		while ( myfile.good() )
@@ -38,7 +38,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 	
-	string query("assign a; variable v; procedure p; Select a such that Modifies(a, \"x\")");
+	string query("call c; Select c such that Modifies(c,\"y\")");
 	processor->evaluate(query,result);
 
 	while(result.size()>0)
