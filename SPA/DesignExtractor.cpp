@@ -698,5 +698,82 @@ BOOLEAN DesignExtractor::pattern(vector<int> *a, vector<int> *b, string expr, in
 
 
 BOOLEAN DesignExtractor::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2){
-	return false;
+	STRING_LIST var,callProcName,procName;
+	vector<int> callStmt,callProcIndex,procIndex;
+	if(st1s_ptr->size() == 0 || st2s_ptr->size() == 0) return false;
+	switch(arg1){
+	case WITH_VARNAME:
+		var = _pkb->getAllVarName();
+		switch(arg2){
+		case WITH_CALLPROCNAME:
+			callStmt = _pkb->getAllCallsFirst();
+			callProcIndex = _pkb->getAllCallsSecond();
+			callProcName = _pkb->getAllProcName();
+			int i = 0;
+			while (i<st1s_ptr->size())
+			{
+				int j;
+				for(j = 0; j < st2s_ptr->at(i);j++){
+					if(callStmt.at(j) == st2s_ptr->at(i)) break;
+				}
+				if (var.at(st1s_ptr->at(i)) == callProcName.at(callProcIndex.at(j)))
+				{
+					i++;
+				}
+				else
+				{
+					st1s_ptr->erase(st1s_ptr->begin()+i);
+					st1s_ptr->erase(st2s_ptr->begin()+i);
+				}
+			}
+			break;
+		case WITH_PROCNAME:
+			break;
+		default:
+			break;
+		}
+		break;
+	case WITH_PROCNAME:
+		switch (arg2)
+		{
+		case WITH_CALLPROCNAME:
+			break;
+		case WITH_VARNAME:
+			break;
+		default:
+			break;
+		}
+		break;
+	case WITH_CALLPROCNAME:
+		switch (arg2)
+		{
+		case WITH_VARNAME:
+			break;
+		case WITH_PROCNAME:
+			break;
+		default:
+			break;
+		}
+		break;
+	case WITH_STMTNUMBER:
+		switch (arg2)
+		{
+		case WITH_VALUE:
+			break;
+		default:
+			break;
+		}
+		break;
+	case WITH_VALUE:
+		switch (arg2)
+		{
+		case WITH_STMTNUMBER:
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
 }
