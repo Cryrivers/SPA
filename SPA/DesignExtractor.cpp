@@ -61,6 +61,7 @@ void DesignExtractor::addModifies()
 			_pkb->addModifies(callNumbers->at(i), pvars.at(j));
 			_pkb->addModifiesP(callers.at(i), pvars.at(j));
 		}
+		pmod.clear();
 	}
 	
 	for (int i = 0; i < stmts.size(); i++) {
@@ -106,6 +107,7 @@ void DesignExtractor::addUses()
 			_pkb->addUses(callNumbers->at(i), pvars.at(j));
 			_pkb->addUsesP(callers.at(i), pvars.at(j));
 		}
+		pmod.clear();
 	}
 
 	for (int i = 0; i < stmts.size(); i++) {
