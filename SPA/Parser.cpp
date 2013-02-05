@@ -40,6 +40,8 @@ Parser::Parser(AST *ast)
 	sameLevelAtNext = true;
 	previousNode = ASTNode::createNode(AST_ANY,0);
 	previousNode->setStmtNumber(0);
+	_currentCFGNode = NULL;
+	_previousCFGNode = NULL;
 }
 
 
@@ -50,6 +52,10 @@ Parser::~Parser(void)
 
 void Parser::_parseLine()
 {
+	//CFG Related
+	CFGNode* whileNode;
+	CFGNode* topCFGNode;
+
 	statement s;
 
 	for (vector<statement>::iterator it = preprocProgram->begin(); it != preprocProgram->end(); ++it) {
@@ -61,9 +67,12 @@ void Parser::_parseLine()
 			_currentCFGNode->setStartStatement(it->stmtNumber);
 		}
 
-		if(_currentCFGNode->getStartStatement()==-1 && it->stmtNumber >0)
+		if(_currentCFGNode != NULL)
 		{
-			_currentCFGNode->setStartStatement(it->stmtNumber);
+			if(_currentCFGNode->getStartStatement()==-1 && it->stmtNumber >0)
+			{
+				_currentCFGNode->setStartStatement(it->stmtNumber);
+			}
 		}
 
 		switch (it->type) {
@@ -104,7 +113,7 @@ void Parser::_parseLine()
 			_pkb->getCFG()->addToCFG(_currentCFGNode);
 			_previousCFGNode = _currentCFGNode;
 			
-			CFGNode* whileNode = new CFGNode();
+			whileNode=new CFGNode();
 			whileNode->setCFGType(CFG_WHILE_STATEMENT);
 			whileNode->setStartStatement(it->stmtNumber);
 			whileNode->setEndStatement(it->stmtNumber);
@@ -136,16 +145,19 @@ void Parser::_parseLine()
 
 		case STMT_CLOSE_BRACKET:
 			_pkb->getCFG()->addToCFG(_currentCFGNode);
-			CFGNode* topCFGNode = _cfgStack.top();
-			if(topCFGNode->getCFGType() == CFG_WHILE_STATEMENT)
+			if(_cfgStack.size()>0)
 			{
-				_currentCFGNode->addEdge(topCFGNode);
+				topCFGNode = _cfgStack.top();
+				if(topCFGNode->getCFGType() == CFG_WHILE_STATEMENT)
+				{
+					_currentCFGNode->addEdge(topCFGNode);
+				}
+				_cfgStack.pop();
+				_previousCFGNode =  _currentCFGNode;
+				_currentCFGNode = new CFGNode();
+				_previousCFGNode -> addEdge(_currentCFGNode);
 			}
-			_cfgStack.pop();
-			_previousCFGNode =  _currentCFGNode;
-			_currentCFGNode = new CFGNode();
-			_previousCFGNode -> addEdge(_currentCFGNode);
-
+			
 			previousNode = _parentStackNoStmtLst.top();
 			_parentStack.pop();
 			_parentStackNoStmtLst.pop();

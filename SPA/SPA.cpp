@@ -20,7 +20,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
-	ifstream myfile("C:\\sampleIfCall.c");
+	ifstream myfile("C:\\SampleWhileLoop.c");
 	if (myfile.is_open())
 	{
 		while ( myfile.good() )
