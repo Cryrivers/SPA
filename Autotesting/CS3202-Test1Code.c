@@ -5,11 +5,11 @@ procedure Bill {
   d = x + y * 12;
   call John;
   d = d + z + x;
-  call Jane
+  call Jane;
   e = d + z * x;
   while i {
 		e = x - y;
- 		if z {
+ 		if z then {
  			y = y + z;
  			i = y + 1; }
 else {
