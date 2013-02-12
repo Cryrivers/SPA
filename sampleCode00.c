@@ -10,8 +10,11 @@ procedure Second {
 	while i {
 		x = x + 2 * y;
 		call Third;
-		i = i - 1; 
-	}
+		i = i - 1; }
+	if x then {
+		x = x + 1; }
+	else {
+		z = 1; }
 	z = z + x + i;
 	y = z + 2;
 	x = x * y + z; 

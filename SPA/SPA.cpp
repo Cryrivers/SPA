@@ -20,17 +20,30 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
-	ifstream myfile("C:\\SampleWhileLoop.c");
+	ifstream myfile("../sampleCode01.c");
 	if (myfile.is_open())
 	{
+	int i=1;
 		while ( myfile.good() )
 		{
 			getline(myfile,line);
 			program += line;
 			program += "\n";
+			if(line.find("procedure")<line.size()){ 
+				cout<<"     "<<line<<endl;
+			}else if(line.find("else")<line.size()){
+				cout<<"     "<<line<<endl;
+			}else if(line.size()<2){
+				cout<<"     "<<line<<endl;
+			}else{
+				printf("%3d. ", i);
+				cout<<line<<endl;
+				i++;
+			}
 		}
 		myfile.close();
-		cout<<program<<endl;
+	}else{
+		cout<<"Read error!"<<endl;
 	}
 
 	parser->parse(program);
@@ -43,10 +56,10 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	while(result.size()>0)
 	{
-		cout << result.front() << endl;
+		cout << result.front() << ", ";
 		result.pop_front();
 	}
-
+	cout << endl;
 	/*
 	string query1("assign a; variable v; Select a pattern a(v,_\"((k+e)*c)+2*(5-i)\"_) such that Uses(a,v)");
 	string query2("assign a; while w; Select a such that Follows*(a,w) pattern a(_,_\"k*e\"_)");
