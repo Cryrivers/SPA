@@ -48,6 +48,7 @@ enum Type{
 	KT_STMT_NUM,			/**< integers used in relation*/
 	KT_KNOWN_VARIABLE,		/**< used in relation of form "INDENT"*/
 	KT_KNOWN_PROCEDURE,		/**< used in relation of form "INDENT"*/
+	KT_KNOWN_CONSTANT,		/**< constant c.vlaue=3*/
 	KT_CONSTANT_INTEGER,	/**< integer for with and especially for calls*/	
 	KT_CONSTANT_STRING,		/**< string for with and especially for calls*/
 	//Types for Attributes
@@ -126,7 +127,7 @@ public:
 	int variable2;		/**< var2 in relation*/
 	Type attribute2;	/**< only set if used in with clause*/
 	string variable3;	/**< expr in pattern*/
-	Type patternType;	/**< differenciate assign, if and while*/
+	PatternQueryType patternType;	/**< differenciate assign, if and while*/
 };
 
 #endif
