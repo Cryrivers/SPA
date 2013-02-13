@@ -15,4 +15,5 @@ STRING getProcName(VAR_INDEX ind);
 VAR_INDEX getProcIndex(STRING procName);
 STRING_LIST getAllProcName(VAR_INDEX_LIST inds);
 STRING_LIST getAllProcName();
+int size();
 };

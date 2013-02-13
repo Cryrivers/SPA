@@ -24,6 +24,7 @@ STRING getVarName(VAR_INDEX ind);
 VAR_INDEX getVarIndex(STRING varName);
 STRING_LIST getAllVarName(VAR_INDEX_LIST inds);
 STRING_LIST getAllVarName();
+int size();
 };
 
 

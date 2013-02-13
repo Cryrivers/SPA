@@ -110,3 +110,7 @@ PROC_INDEX ProcTable::getProcIndex(STRING procName)
 	}
 	return(-1); // prociable not found, return -1
 }
+
+int ProcTable::size(){
+	return procedures.size();
+}

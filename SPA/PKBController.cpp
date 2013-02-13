@@ -675,8 +675,10 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 	case WITH_VARNAME:
 		switch(arg2){
 		case WITH_CALLPROCNAME:
+			_var_call->parent(st1s_ptr, st2s_ptr, arg);
 			break;
 		case WITH_PROCNAME:
+			_proc_var->follows(st2s_ptr, st1s_ptr, arg);
 			break;
 		default:
 			break;
@@ -686,8 +688,10 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_CALLPROCNAME:
+			_proc_call->parent(st1s_ptr, st2s_ptr, arg);
 			break;
 		case WITH_VARNAME:
+			_proc_var->follows(st1s_ptr,st2s_ptr,arg);
 			break;
 		default:
 			break;
@@ -697,8 +701,13 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_VARNAME:
+			_var_call->parent(st2s_ptr, st1s_ptr, arg);
 			break;
 		case WITH_PROCNAME:
+			_proc_call->parent(st2s_ptr, st1s_ptr, arg);
+			break;
+		case WITH_CALLPROCNAME:
+			_call_call->modifies(st1s_ptr, st2s_ptr, arg);
 			break;
 		default:
 			break;
@@ -708,6 +717,7 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_VALUE:
+			_stmt_const->follows(st1s_ptr, st2s_ptr, arg);
 			break;
 		default:
 			break;
@@ -717,6 +727,7 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_STMTNUMBER:
+			_stmt_const->follows(st2s_ptr, st1s_ptr, arg);
 			break;
 		default:
 			break;
@@ -730,6 +741,11 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 void PKBController::completePKB(){
 	_designExtractor->addModifies();
 	_designExtractor->addUses();
+	build_call_call();
+	build_proc_call();
+	build_proc_var();
+	build_var_call();
+	build_stmt_const();
 }
 
 PKBController::PKBController()
@@ -800,6 +816,12 @@ void PKBController::init()
 	_cfg = new CFG();
 	_designExtractor = new DesignExtractor();
 	_preprocessedProgram = new vector<statement>();
+	//with
+	_proc_call = new Parent();
+	_proc_var = new Follows();
+	_call_call = new Modifies();
+	_var_call = new Parent();
+	_stmt_const = new Follows();
 }
 
 void PKBController::setPreprocessedProgram( vector<statement>* p )
@@ -810,4 +832,72 @@ void PKBController::setPreprocessedProgram( vector<statement>* p )
 CFG* PKBController::getCFG()
 {
 	return _cfg;
+}
+
+void PKBController::build_proc_var(){
+	for (int i = 0; i < _procTable->size(); i++)
+	{
+		for (int j = 0; j < _varTable->size(); j++){
+			if (_procTable->getProcName(i)==_varTable->getVarName(j))
+			{
+				_proc_var->addFollows(i,j);
+			}
+		}
+	}
+}
+
+void PKBController::build_call_call(){
+	vector<int>* _a;
+	getAllCall(_a);
+
+	for (int i = 0; i < _a->size(); i++)
+	{
+		_call_call->addModifies(_a->at(i), _a->at(i));
+		for (int j = i+1; j < _a->size(); j++){
+			if(_calls->getCallee(_a->at(i)) == _calls->getCallee(_a->at(j))){
+				_call_call->addModifies(_a->at(i), _a->at(j));
+			}
+		}
+	}
+}
+
+void PKBController::build_proc_call(){
+	vector<int>* _a;
+	getAllCall(_a);
+
+	for(int i = 0; i < _procTable->size(); i++){
+		for (int j = 0; j < _a->size(); j++)
+		{
+			if(i == _calls->getCallee(_a->at(i))){
+				_proc_call->addParent(i, _a->at(i));
+			}
+		}
+	}
+}
+
+void PKBController::build_var_call(){
+	vector<int> *_a;
+	getAllCall(_a);
+
+	for (int i = 0; i < _varTable->size(); i++)
+	{
+		for (int j = 0; j < _a->size(); j++)
+		{
+			if(_varTable->getVarName(i) == _procTable->getProcName(getCallee(_a->at(j)))){
+				_var_call->addParent(i, _a->at(j));
+			}
+		}
+	}
+}
+
+void PKBController::build_stmt_const(){
+	vector<int> *stmtlist;
+	getAllAssignment(stmtlist);
+	for (int i = 0; i < _constTable->size(); i++)
+	{
+		if (_constTable->at(i)<stmtlist->size()&&_constTable->at(i)!=0)
+		{
+			_var_call->addParent(_constTable->at(i), _constTable->at(i));
+		}
+	}
 }

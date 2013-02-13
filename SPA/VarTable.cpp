@@ -110,3 +110,7 @@ VAR_INDEX VarTable::getVarIndex(STRING varName)
 	}
 	return(-1); // variable not found, return -1
 }
+
+int VarTable::size(){
+	return variables.size();
+}
