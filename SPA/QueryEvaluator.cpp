@@ -147,7 +147,7 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 		
 		case CT_PATTERN:
 			
-			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, arg))
+			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
 				return false; // can't find relation
 			break;
 		
