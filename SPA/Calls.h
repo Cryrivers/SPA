@@ -36,6 +36,7 @@ BOOLEAN callsStar(PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, in
 PROC_INDEX getCallee(STMT stmt);
 PROC_INDEX_LIST getAllCallers();
 PROC_INDEX_LIST getAllCallees();
+int size();
 };
 
 

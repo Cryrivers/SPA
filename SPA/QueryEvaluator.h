@@ -23,8 +23,6 @@ class QueryEvaluator
 	
 	bool evaluateQuery();
 	bool evaluateClause(QueryClause);
-	bool evaluateRelationClause(QueryClause);
-	bool evaluateWithClause(QueryClause);
 
 	bool getVectors(vector<int>*, vector<int>*, int, int, int*);
 	bool getVector(vector<int>*, int, int*);
@@ -35,6 +33,7 @@ class QueryEvaluator
 	bool getResult(list<string>&);
 
 	vector<int> removeDuplicates(vector<int>);
+	int getWithType(int);
 
 public:
 	QueryEvaluator(void);

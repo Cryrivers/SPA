@@ -891,3 +891,7 @@ PROC_INDEX Calls::getCallee(STMT stmt)
 	}
 	return(-1);
 }
+
+int Calls::size(){
+	return stmts.size();
+}

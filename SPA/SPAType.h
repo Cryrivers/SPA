@@ -132,3 +132,12 @@ struct stmtDetail {
 };
 
 typedef struct stmtDetail statement;
+
+enum PatternQueryType
+{
+	PATTERN_IF,
+	PATTERN_WHILE,
+	PATTERN_ASSIGN_UNDERSCORE_ONLY,
+	PATTERN_ASSIGN_WITH_UNDERSCORE,
+	PATTERN_ASSIGN_NO_UNDERSCORE
+};

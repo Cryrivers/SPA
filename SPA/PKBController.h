@@ -109,7 +109,7 @@ public:
 	BOOLEAN getAllCall(STMT_LIST*);
 	BOOLEAN getAllProc(vector<int>*);
 	BOOLEAN pattern(vector<int>*, vector<int>*, string, int);
-	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2);
+	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2, int arg);
 	void completePKB();
 
 private:
@@ -131,6 +131,17 @@ private:
 	vector<int>* _constTable;
 	vector<ASTNode*>* _assignmentTable;
 
-	PKBController();
+	//with
+	Follows* _proc_var;
+	Modifies* _call_call;
+	Parent* _proc_call;
+	Parent* _var_call;
+	Follows* _stmt_const;
 
+	PKBController();
+	void build_proc_var();
+	void build_proc_call();
+	void build_var_call();
+	void build_call_call();
+	void build_stmt_const();
 };

@@ -69,40 +69,11 @@ bool QueryEvaluator::evaluateQuery()
 
 /**
  * \fn		QueryEvaluator::evaluateClause(QueryClause qc)
- * \brief	Evaluates a given query clause  
+ * \brief	Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With.  
  * \param [in]	qc: query clause. 
  * \return 	TRUE if evaluation is successful, FALSE otherwise
  */
 bool QueryEvaluator::evaluateClause(QueryClause qc) {
-	
-	switch (qc.relationType) {
-		
-		case CT_WITH:
-			
-			if (!evaluateWithClause(qc)) {
-				return false; // query clause evaluated to false
-			}
-			break;
-
-		default:
-
-			if (!evaluateRelationClause(qc)) {
-				return false; // query clause evaluated to false
-			}
-			break;
-	}
-
-	return true;
-
-}
-
-/**
- * \fn		QueryEvaluator::evaluateRelationClause(QueryClause qc)
- * \brief	Evaluates a given relation query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, Pattern.  
- * \param [in]	qc: query clause. 
- * \return 	TRUE if evaluation is successful, FALSE otherwise
- */
-bool QueryEvaluator::evaluateRelationClause(QueryClause qc) {
 
 	vector<int> vectorA, vectorB;
 	int arg;
@@ -166,98 +137,32 @@ bool QueryEvaluator::evaluateRelationClause(QueryClause qc) {
 				return false; // can't find relation
 			break;
 		
+		/*
+		case RT_CALLST:
+		
+			if (!pkb->callsStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+		*/
+		
 		case CT_PATTERN:
 			
 			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, arg))
 				return false; // can't find relation
 			break;
+		
+		case CT_WITH:
+
+			if (!pkb->with(&vectorA, &vectorB, getWithType(qc.attribute1), getWithType(qc.attribute2), arg))
+				return false;
+			break;
+
 	}
 	
 	if (!intersect(&vectorA, &vectorB, qc.variable1, qc.variable2, arg))
 		return false; // intersection is empty
 
 	return true;
-}
-
-/**
- * \fn		QueryEvaluator::evaluateWithClause(QueryClause qc)
- * \brief	Evaluates a given with query clause
-			[INCOMPLETE] PKB only supports case 4D
- * \param [in]	qc: query clause, qc is of type CT_WITH. 
- * \return 	TRUE if evaluation is successful, FALSE otherwise
- */
-bool QueryEvaluator::evaluateWithClause(QueryClause qc) {
-	
-	vector<int> vectorA, vectorB;
-	int arg;
-
-	if (!getVectors(&vectorA, &vectorB, qc.variable1, qc.variable2, &arg))
-		return false; // unable to get vectors
-
-	// Case 1: call.procName = constant
-	if (qc.attribute1 == AT_CALL_PROC_NAME && qc.attribute2 == AT_PROCTABLEINDEX) {	
-		
-		//non generalised method
-		if (!cartesianProduct(&vectorA, &vectorB))
-			return false;
-		
-		if (!pkb->with(&vectorA, &vectorB, WITH_CALLPROCNAME, WITH_PROCNAME))
-			return false;		
-	}
-
-	// Case 2a: call.procname = proc.procname
-	if (qc.attribute1 == AT_CALL_PROC_NAME && qc.attribute2 == AT_PROC_NAME) {
-		if (!pkb->with(&vectorA, &vectorB, WITH_CALLPROCNAME, WITH_PROCNAME))
-			return false;
-	}
-
-	// Case 2b: proc.procname = call.procname
-	if (qc.attribute1 == AT_PROC_NAME && qc.attribute2 == AT_CALL_PROC_NAME) {
-		if (!pkb->with(&vectorA, &vectorB, WITH_PROCNAME, WITH_CALLPROCNAME))
-			return false;
-	}
-	
-	// Case 3a: call.procname = var.varname
-	if (qc.attribute1 == AT_CALL_PROC_NAME && qc.attribute2 == AT_VAR_NAME) {
-		if (!pkb->with(&vectorA, &vectorB, WITH_CALLPROCNAME, WITH_VARNAME))
-			return false;
-	}
-
-	// Case 3b: var.varname = call.procname
-	if (qc.attribute1 == AT_VAR_NAME && qc.attribute2 == AT_CALL_PROC_NAME) {
-		if (!pkb->with(&vectorA, &vectorB, WITH_VARNAME, WITH_CALLPROCNAME))
-			return false;
-	}
-	
-	// Case 4a: proc.procname = var.varname
-	if (qc.attribute1 == AT_PROC_NAME && qc.attribute2 == AT_VAR_NAME) {
-		if (!pkb->with(&vectorA, &vectorB, WITH_PROCNAME, WITH_VARNAME))
-			return false;
-	}
-
-	// Case 4b: var.varname = proc.procname
-	if (qc.attribute1 == AT_VAR_NAME && qc.attribute2 == AT_PROC_NAME) {
-		if (!pkb->with(&vectorA, &vectorB, WITH_VARNAME, WITH_PROCNAME))
-			return false;
-	}
-	
-	// Case 5a: stmt.stmt# = const.value
-	if (qc.attribute1 == AT_STMT_NUM && qc.attribute2 == AT_VALUE) {
-		if (!pkb->with(&vectorA, &vectorB, WITH_STMTNUMBER, WITH_VALUE))
-			return false;
-	}
-
-	// Case 5b: const.value = stmt.stmt# 
-	if (qc.attribute1 == AT_VALUE && qc.attribute2 == AT_STMT_NUM) {
-		if (!pkb->with(&vectorA, &vectorB, WITH_VALUE, WITH_STMTNUMBER))
-			return false;
-	}
-
-	if (intersect(&vectorA, &vectorB, qc.variable1, qc.variable2, arg))
-		return true; // intersection succeed
-	
-	return false;
-
 }
 
 /**
@@ -920,13 +825,48 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 /**
  * \fn		QueryEvaluator::removeDuplicates(vector<int> vec)
  * \brief	Removes duplicate elements in vector. 
- * \param [in] vec: vector to remove duplicates;  
+ * \param [in] vec: vector to remove duplicates.  
  * \return 	Vector that does not contain duplicate.
  */
  vector<int> QueryEvaluator::removeDuplicates(vector<int> vec) {
 	set<int> s(vec.begin(), vec.end());
 	return vector<int> (s.begin(), s.end());
 }
+
+/**
+ * \fn		QueryEvaluator::getWithType(int t)
+ * \brief	Switch enum (for with) from Query Preprocessor to its PKB equivalent. 
+ * \param [in] t: Query Preprocessor enum.  
+ * \return 	equivalent PKB enum.
+ */
+ int QueryEvaluator::getWithType(int t) {
+
+	 switch (t) {
+	 
+		case AT_STMT_NUM:
+			
+			return WITH_STMTNUMBER;
+		
+		case AT_VAR_NAME:	
+			
+			return WITH_VARNAME;
+		
+		case AT_PROC_NAME:		
+
+			return WITH_PROCNAME;
+
+		case AT_CALL_PROC_NAME:		
+
+			return WITH_CALLPROCNAME;
+
+		case AT_VALUE:
+
+			return WITH_VALUE;
+	 
+	 }
+
+ }
+
 
 /*int main()
 {

@@ -55,6 +55,7 @@ void Parser::_parseLine()
 	//CFG Related
 	CFGNode* ifNode;
 	CFGNode* whileNode;
+	CFGNode* callNode;
 	CFGNode* topCFGNode;
 
 	statement s;
@@ -79,6 +80,19 @@ void Parser::_parseLine()
 		switch (it->type) {
 
 		case STMT_CALL:
+			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
+				_pkb->getCFG()->addToCFG(_currentCFGNode);
+			_previousCFGNode = _currentCFGNode;
+			callNode = new CFGNode();
+			callNode->setCFGType(CFG_CALL_STATEMENT);
+			callNode->setStartStatement(it->stmtNumber);
+			callNode->setEndStatement(it->stmtNumber);
+			_previousCFGNode->addEdge(callNode);
+			//TODO: CallNode should add edge to the procedure
+			_previousCFGNode = callNode;
+			_currentCFGNode = new CFGNode();
+			callNode->addEdge(_currentCFGNode);
+			_pkb->getCFG()->addToCFG(callNode);
 			_buildCallAST(&*it);
 			break;
 
@@ -274,9 +288,10 @@ void Parser::_preprocessProgram(string program)
 			statement s;
 			
 			if (regex_match(thisStmt, sm, procRegex)) {
-				//TODO: Add Procedure to ProcTable
 				s.stmtLine = thisStmt;
-				s.stmtNumber = currentStmtNumber;
+				//Equals the statement number of the first line
+				// of code in this procedure
+				s.stmtNumber = currentStmtNumber+1;
 				s.type = STMT_PROCEDURE;
 				s.extraName = sm[1];
 				currentProcIndex = _pkb->addProc(sm[1]);
