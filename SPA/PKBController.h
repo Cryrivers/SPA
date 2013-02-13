@@ -131,6 +131,17 @@ private:
 	vector<int>* _constTable;
 	vector<ASTNode*>* _assignmentTable;
 
-	PKBController();
+	//with
+	Follows* _proc_var;
+	Modifies* _call_call;
+	Parent* _proc_call;
+	Parent* _var_call;
+	Follows* _stmt_const;
 
+	PKBController();
+	void build_proc_var();
+	void build_proc_call();
+	void build_var_call();
+	void build_call_call();
+	void build_stmt_const();
 };
