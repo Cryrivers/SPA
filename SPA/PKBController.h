@@ -109,7 +109,7 @@ public:
 	BOOLEAN getAllCall(STMT_LIST*);
 	BOOLEAN getAllProc(vector<int>*);
 	BOOLEAN pattern(vector<int>*, vector<int>*, string, int);
-	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2);
+	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2, int arg);
 	void completePKB();
 
 private:

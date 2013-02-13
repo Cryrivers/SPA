@@ -670,8 +670,61 @@ BOOLEAN PKBController::pattern(vector<int> *a, vector<int> *b, string expr, int 
  * \author	Yue Cong
  *
  */
-BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2){
-	return _designExtractor->with(st1s_ptr,st2s_ptr,arg1,arg2);
+BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2, int arg){
+	switch(arg1){
+	case WITH_VARNAME:
+		switch(arg2){
+		case WITH_CALLPROCNAME:
+			break;
+		case WITH_PROCNAME:
+			break;
+		default:
+			break;
+		}
+		break;
+	case WITH_PROCNAME:
+		switch (arg2)
+		{
+		case WITH_CALLPROCNAME:
+			break;
+		case WITH_VARNAME:
+			break;
+		default:
+			break;
+		}
+		break;
+	case WITH_CALLPROCNAME:
+		switch (arg2)
+		{
+		case WITH_VARNAME:
+			break;
+		case WITH_PROCNAME:
+			break;
+		default:
+			break;
+		}
+		break;
+	case WITH_STMTNUMBER:
+		switch (arg2)
+		{
+		case WITH_VALUE:
+			break;
+		default:
+			break;
+		}
+		break;
+	case WITH_VALUE:
+		switch (arg2)
+		{
+		case WITH_STMTNUMBER:
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 void PKBController::completePKB(){
