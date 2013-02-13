@@ -741,6 +741,11 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 void PKBController::completePKB(){
 	_designExtractor->addModifies();
 	_designExtractor->addUses();
+	build_call_call();
+	build_proc_call();
+	build_proc_var();
+	build_var_call();
+	build_stmt_const();
 }
 
 PKBController::PKBController()
