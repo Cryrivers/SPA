@@ -7,13 +7,17 @@ using namespace std;
 class ProcTable
 {
 //int size = 0;
-vector<string> procedures;
+vector<string> procedureNames;
+STMT_LIST startStmts;
+STMT_LIST endStmts;
 
 public:
-VAR_INDEX addProc(STRING procName);
-STRING getProcName(VAR_INDEX ind);
-VAR_INDEX getProcIndex(STRING procName);
-STRING_LIST getAllProcName(VAR_INDEX_LIST inds);
+PROC_INDEX addProc(STRING procName, STMT start, STMT end);
+STRING getProcName(PROC_INDEX ind);
+PROC_INDEX getProcIndex(STRING procName);
+STRING_LIST getAllProcName(PROC_INDEX_LIST inds);
 STRING_LIST getAllProcName();
+STMT getProcStart(PROC_INDEX ind);
+STMT getProcEnd(PROC_INDEX ind);
 int size();
 };

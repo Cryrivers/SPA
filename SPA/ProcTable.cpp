@@ -1,7 +1,7 @@
 /**
  * \file	ProcTable.cpp
  * \class	ProcTable
- * \brief	Store the information of all procedures and provide funtions for retrieving information of procedures.
+ * \brief	Store the information of all procedures and provide functions for retrieving information of procedures.
  */
 
 #include "StdAfx.h"
@@ -9,7 +9,7 @@
 
 
 /**
- * \fn	PROC_INDEX ProcTable::addProc(STRING procName)
+ * \fn	PROC_INDEX ProcTable::addProc(STRING procName, STMT start, STMT end)
  *
  * \brief	If the procedure as given by the name 'procName' is not in the procedure table, add it into the table and return its assigned index in the table. Otherwise, return its index.
  * 
@@ -18,15 +18,17 @@
  *
  * \return	PROC_INDEX.
  */
-PROC_INDEX ProcTable::addProc(STRING procName)
+PROC_INDEX ProcTable::addProc(STRING procName, STMT start, STMT end)
 {
 	int index = getProcIndex(procName);
 
-	if (index == -1) { // prociable not yet in the table
-		procedures.push_back(procName);
+	if (index == -1) { // procedure not yet in the table
+		procedureNames.push_back(procName);
+		startStmts.push_back(start);
+		endStmts.push_back(end);
 		//size++;
 		//return size-1;
-		return(procedures.size() - 1);
+		return(procedureNames.size() - 1);
 	}else {
 		return(index);
 	}
@@ -44,10 +46,48 @@ PROC_INDEX ProcTable::addProc(STRING procName)
  */
 STRING ProcTable::getProcName(PROC_INDEX ind)
 {
-	if ((ind < 0) || (ind >= procedures.size())) {
+	if ((ind < 0) || (ind >= procedureNames.size())) {
 		throw exception("Given index out of range!");
 	}else {
-		return(procedures.at(ind));
+		return(procedureNames.at(ind));
+	}
+}
+
+/**
+ * \fn	STMT ProcTable::getProcStart(PROC_INDEX ind)
+ *
+ * \brief	Return the start statement of the procedure that has the given index. If no procedure has the given index, exception.
+ * 
+ *
+ * \param	ind	The index of the procedure.
+ *
+ * \return	STMT.
+ */
+STMT ProcTable::getProcStart(PROC_INDEX ind)
+{
+	if ((ind < 0) || (ind >= startStmts.size())) {
+		throw exception("Given index out of range!");
+	}else {
+		return(startStmts.at(ind));
+	}
+}
+
+/**
+ * \fn	STMT ProcTable::getProcEnd(PROC_INDEX ind)
+ *
+ * \brief	Return the end statement of the procedure that has the given index. If no procedure has the given index, exception.
+ * 
+ *
+ * \param	ind	The index of the procedure.
+ *
+ * \return	STMT.
+ */
+STMT ProcTable::getProcEnd(PROC_INDEX ind)
+{
+	if ((ind < 0) || (ind >= endStmts.size())) {
+		throw exception("Given index out of range!");
+	}else {
+		return(endStmts.at(ind));
 	}
 }
 
@@ -86,7 +126,7 @@ STRING_LIST ProcTable::getAllProcName(PROC_INDEX_LIST inds)
  */
 STRING_LIST ProcTable::getAllProcName()
 {
-	return(procedures);
+	return(procedureNames);
 }
 
 /**
@@ -101,16 +141,16 @@ STRING_LIST ProcTable::getAllProcName()
  */
 PROC_INDEX ProcTable::getProcIndex(STRING procName)
 {
-	int size = procedures.size();
+	int size = procedureNames.size();
 
 	for (int i = 0; i < size; i++) {
-		if (procedures.at(i).compare(procName) == 0) {
+		if (procedureNames.at(i).compare(procName) == 0) {
 			return(i);
 		}
 	}
-	return(-1); // prociable not found, return -1
+	return(-1); // procedure not found, return -1
 }
 
 int ProcTable::size(){
-	return procedures.size();
+	return procedureNames.size();
 }
