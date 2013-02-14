@@ -52,6 +52,9 @@ Parser::~Parser(void)
 
 void Parser::_parseLine()
 {
+	string astCurrentProcName;
+	STMT astCurrentProcStart;
+	STMT astCurrentProcEnd;
 	//CFG Related
 	CFGNode* ifNode;
 	CFGNode* whileNode;
@@ -80,6 +83,7 @@ void Parser::_parseLine()
 		switch (it->type) {
 
 		case STMT_CALL:
+			astCurrentProcEnd = it->stmtNumber;
 			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
 				_pkb->getCFG()->addToCFG(_currentCFGNode);
 			_previousCFGNode = _currentCFGNode;
@@ -97,6 +101,7 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_IF:
+			astCurrentProcEnd = it->stmtNumber;
 			//Ensure to add a valid CFGNode
 			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
 			_pkb->getCFG()->addToCFG(_currentCFGNode);
@@ -123,10 +128,13 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_PROCEDURE:
+			astCurrentProcName = it->extraName;
+			astCurrentProcStart = it->stmtNumber;
 			_buildProcedureAST(&*it);
 			break;
 
 		case STMT_ASSIGNMENT:
+			astCurrentProcEnd = it->stmtNumber;
 			currentASTNode = _buildAssignmentAST(&*it);
 			_currentCFGNode->setEndStatement(it->stmtNumber);
 			if(sameLevelAtNext)
@@ -142,7 +150,7 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_WHILE:
-			
+			astCurrentProcEnd = it->stmtNumber;
 			//Ensure to add a valid CFGNode
 			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
 				_pkb->getCFG()->addToCFG(_currentCFGNode);
@@ -232,6 +240,8 @@ void Parser::_parseLine()
 			}
 			
 			previousNode = _parentStackNoStmtLst.top();
+			if(previousNode->getNodeType() == AST_PROCEDURE)
+				_pkb->addProc(astCurrentProcName,astCurrentProcStart,astCurrentProcEnd);
 			_parentStack.pop();
 			_parentStackNoStmtLst.pop();
 			sameLevelAtNext = true;
@@ -294,8 +304,8 @@ void Parser::_preprocessProgram(string program)
 				s.stmtNumber = currentStmtNumber+1;
 				s.type = STMT_PROCEDURE;
 				s.extraName = sm[1];
-				//TODO: Add START and END line number to ProcTable
-				currentProcIndex = _pkb->addProc(sm[1],0,0);
+				//Hack: Assume the procIndex here. Add to ProcTable while generating AST
+				currentProcIndex++;
 				s.procIndex = currentProcIndex;
 
 			}else if (regex_match(thisStmt, sm, whileRegex)) {

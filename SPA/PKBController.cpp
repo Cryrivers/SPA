@@ -848,7 +848,7 @@ void PKBController::build_proc_var(){
 }
 
 void PKBController::build_call_call(){
-	vector<int>* _a;
+	vector<int>* _a = new vector<int>();
 	getAllCall(_a);
 
 	for (int i = 0; i < _a->size(); i++)
@@ -860,10 +860,11 @@ void PKBController::build_call_call(){
 			}
 		}
 	}
+	delete(_a);
 }
 
 void PKBController::build_proc_call(){
-	vector<int>* _a;
+	vector<int>* _a = new vector<int>();
 	getAllCall(_a);
 
 	for(int i = 0; i < _procTable->size(); i++){
@@ -874,10 +875,11 @@ void PKBController::build_proc_call(){
 			}
 		}
 	}
+	delete(_a);
 }
 
 void PKBController::build_var_call(){
-	vector<int> *_a;
+	vector<int>* _a = new vector<int>();
 	getAllCall(_a);
 
 	for (int i = 0; i < _varTable->size(); i++)
@@ -889,10 +891,11 @@ void PKBController::build_var_call(){
 			}
 		}
 	}
+	delete(_a);
 }
 
 void PKBController::build_stmt_const(){
-	vector<int> *stmtlist;
+	vector<int> *stmtlist = new vector<int>();
 	getAllAssignment(stmtlist);
 	for (int i = 0; i < _constTable->size(); i++)
 	{
@@ -901,4 +904,5 @@ void PKBController::build_stmt_const(){
 			_var_call->addParent(_constTable->at(i), _constTable->at(i));
 		}
 	}
+	delete(stmtlist);
 }
