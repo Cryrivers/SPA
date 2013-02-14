@@ -43,6 +43,7 @@ private:
 	inline int _operatorPrecedence(char op);
 	void _parseLine();
 	void _preprocessProgram(string program);
+	PROC_INDEX _findAssumedProcIndexByName(string name);
 
 public:
 	Parser(AST* ast);

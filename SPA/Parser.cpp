@@ -587,8 +587,8 @@ ASTNode* Parser::_buildCallAST( statement* s )
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
 
-	node->createChild(AST_PROCEDURE, _pkb->getProcIndex(s->extraName));
-	_pkb->addCalls(s->stmtNumber,s->procIndex,_pkb->getProcIndex(s->extraName));
+	node->createChild(AST_PROCEDURE, _findAssumedProcIndexByName(s->extraName));
+	_pkb->addCalls(s->stmtNumber,s->procIndex,_findAssumedProcIndexByName(s->extraName));
 
 	return(node);
 }
@@ -660,4 +660,14 @@ void Parser::parse( string program )
 	this->_preprocessProgram(program);
 	this->_parseLine();
 	PKBController::createInstance()->completePKB();
+}
+
+PROC_INDEX Parser::_findAssumedProcIndexByName( string name )
+{
+	for(vector<statement>::iterator it = _pkb->getPreprocessedProgram()->begin(); it != _pkb->getPreprocessedProgram()->end(); ++it )
+		if(it->type == STMT_PROCEDURE && it->extraName == name)
+			return it->procIndex;
+
+	throw("No Specific Procedure Name Found");
+	return -1;
 }
