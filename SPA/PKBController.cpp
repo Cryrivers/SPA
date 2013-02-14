@@ -501,9 +501,9 @@ STRING_LIST PKBController::getAllVarName()
  * \author	Yue Cong
  *
  */
-VAR_INDEX PKBController::addProc(STRING procName)
+VAR_INDEX PKBController::addProc(STRING procName,STMT start, STMT end)
 {
-	return(_procTable->addProc(procName));
+	return(_procTable->addProc(procName,start,end));
 }
 
 /**
@@ -657,9 +657,9 @@ BOOLEAN PKBController::getAllConstant(vector<int> *result)
  * \author	Yue Cong
  *
  */
-BOOLEAN PKBController::pattern(vector<int> *a, vector<int> *b, string expr, int arg)
+BOOLEAN PKBController::pattern(vector<int> *a, vector<int> *b, string expr, PatternQueryType queryType, int arg)
 {
-	return(_designExtractor->pattern(a, b, expr, arg));
+	return(_designExtractor->pattern(a, b, expr, queryType,arg));
 }
 
 /**
@@ -736,6 +736,7 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 	default:
 		break;
 	}
+	return false;
 }
 
 void PKBController::completePKB(){

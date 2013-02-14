@@ -19,6 +19,7 @@
 #include <string>
 #include <vector>
 #include "stdafx.h"
+#include "SPAType.h"
 using namespace std;
 /********************************************//**
  * @enum Type

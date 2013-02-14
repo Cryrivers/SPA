@@ -27,7 +27,7 @@ BOOLEAN getAllWhile(STMT_LIST*);
 BOOLEAN getAllIf(STMT_LIST*);
 BOOLEAN getAllCall(STMT_LIST*);
 BOOLEAN getAllConstant(vector<int> *);
-BOOLEAN pattern(vector<int>*, vector<int>*, string, int);
+BOOLEAN pattern(vector<int>*, vector<int>*, string,PatternQueryType, int);
 
 };
 

@@ -84,7 +84,7 @@ public:
 	STRING_LIST getAllVarName();
 
 	//procTable api
-	PROC_INDEX addProc(STRING procName);
+	PROC_INDEX addProc(STRING procName,STMT,STMT);
 	STRING getProcName(PROC_INDEX ind);
 	PROC_INDEX getProcIndex(STRING procName);
 	STRING_LIST getAllProcName(PROC_INDEX_LIST inds);
@@ -108,7 +108,7 @@ public:
 	BOOLEAN getAllIf(STMT_LIST*);
 	BOOLEAN getAllCall(STMT_LIST*);
 	BOOLEAN getAllProc(vector<int>*);
-	BOOLEAN pattern(vector<int>*, vector<int>*, string, int);
+	BOOLEAN pattern(vector<int>*, vector<int>*, string, PatternQueryType, int);
 	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2, int arg);
 	void completePKB();
 

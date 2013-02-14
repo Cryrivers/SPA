@@ -283,7 +283,7 @@ BOOLEAN Parent::parent_01(STMT_LIST *st1s_p, STMT_LIST *st2s_p)
 		}
 	}else {  //size1!=0 && size2!=0, case 2d
 		 /*
-		  * VectorA (a1, a2, …, am) VectorB (b1, b2, …, bn)
+		  * VectorA (a1, a2, ..., am) VectorB (b1, b2, ..., bn)
 		  * for bi from b1 to bn {
 		  * nomatch = true
 		  * for aj from a1 to am {
@@ -356,7 +356,7 @@ BOOLEAN Parent::parent_10(STMT_LIST *st1s_p, STMT_LIST *st2s_p)
 		}
 	}else {  //size1!=0 && size2!=0, case 3d
 		 /*
-		  * VectorA (a1, a2, …, am) VectorB (b1, b2, …, bn)
+		  * VectorA (a1, a2, ..., am) VectorB (b1, b2, ..., bn)
 		  * for ai from a1 to am {
 		  * nomatch = true
 		  * for bj from b1 to bn {
@@ -620,7 +620,7 @@ BOOLEAN Parent::parentStar_01(STMT_LIST *st1s_p, STMT_LIST *st2s_p)
 		}
 	}else {  //size1!=0 && size2!=0, case 2d
 		 /*
-		  * VectorA (a1, a2, …, am) VectorB (b1, b2, …, bn)
+		  * VectorA (a1, a2, ..., am) VectorB (b1, b2, ..., bn)
 		  * for bi from b1 to bn {
 		  * nomatch = true
 		  * for aj from a1 to am {
@@ -694,7 +694,7 @@ BOOLEAN Parent::parentStar_10(STMT_LIST *st1s_p, STMT_LIST *st2s_p)
 		}
 	}else {  //size1!=0 && size2!=0, case 3d
 		 /*
-		  * VectorA (a1, a2, …, am) VectorB (b1, b2, …, bn)
+		  * VectorA (a1, a2, ..., am) VectorB (b1, b2, ..., bn)
 		  * for ai from a1 to am {
 		  * nomatch = true
 		  * for bj from b1 to bn {

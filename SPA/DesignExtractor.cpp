@@ -350,7 +350,7 @@ BOOLEAN DesignExtractor::getAllConstant(vector<int> *result)
  *
  * \param [out]	True or False	If there is no item in a or b, return false. else return true.
  */
-BOOLEAN DesignExtractor::pattern(vector<int> *a, vector<int> *b, string expr, int arg)
+BOOLEAN DesignExtractor::pattern(vector<int> *a, vector<int> *b, string expr,PatternQueryType queryType, int arg)
 {
 	ASTNode *tree;
 	vector<ASTNode *> *assign = _pkb->getAssignmentTable();

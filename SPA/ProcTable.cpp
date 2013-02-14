@@ -106,10 +106,10 @@ STRING_LIST ProcTable::getAllProcName(PROC_INDEX_LIST inds)
 	vector<string> resultLst;
 	for (int i = 0; i < inds.size(); i++) {
 		int ind = inds.at(i);
-		if ((ind < 0) || (ind >= procedures.size())) {
+		if ((ind < 0) || (ind >= procedureNames.size())) {
 			throw exception("Given index out of range!");
 		}else {
-			resultLst.push_back(procedures.at(ind));
+			resultLst.push_back(procedureNames.at(ind));
 		}
 	}
 	return(resultLst);

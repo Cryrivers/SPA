@@ -294,7 +294,8 @@ void Parser::_preprocessProgram(string program)
 				s.stmtNumber = currentStmtNumber+1;
 				s.type = STMT_PROCEDURE;
 				s.extraName = sm[1];
-				currentProcIndex = _pkb->addProc(sm[1]);
+				//TODO: Add START and END line number to ProcTable
+				currentProcIndex = _pkb->addProc(sm[1],0,0);
 				s.procIndex = currentProcIndex;
 
 			}else if (regex_match(thisStmt, sm, whileRegex)) {
