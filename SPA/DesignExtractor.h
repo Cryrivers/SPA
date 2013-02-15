@@ -19,6 +19,8 @@ public:
 DesignExtractor(void);
 ~DesignExtractor(void);
 
+void completeCallCFG();
+void addNext();
 void addModifies();
 void addUses();
 BOOLEAN getAllStmt(STMT_LIST*);
