@@ -39,7 +39,7 @@
 class QueryPreprocessor{  
 private:
 	/**@brief Used for merge same query variables. @see setupClaTable*/
-	int mergeFlag;		
+	vector<int> mergeFlag;		
 	/**@brief  contain: "such that", "and", "pattern", "with"*/ 
 	string dicClause[DICCLAUSESIZE];		
 	/**@brief  contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
