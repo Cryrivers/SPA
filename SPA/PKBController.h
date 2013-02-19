@@ -94,7 +94,11 @@ public:
 	void addConstant(int value);
 	vector<int>* getConstantTable();
 	void addAssignmentNode(ASTNode* node);
+	void addWhileLoopNode(ASTNode* node);
+	void addIfBranchNode(ASTNode* node);
 	vector<ASTNode*>* getAssignmentTable();
+	vector<ASTNode*>* getWhileTable();
+	vector<ASTNode*>* getIfBranchTable();
 
 	//parser api
 	vector<statement>* getPreprocessedProgram();
@@ -130,6 +134,8 @@ private:
 
 	vector<int>* _constTable;
 	vector<ASTNode*>* _assignmentTable;
+	vector<ASTNode*>* _whileLoopTable;
+	vector<ASTNode*>* _ifBranchTable;
 
 	//with
 	Follows* _proc_var;

@@ -63,6 +63,8 @@ ASTNode *ASTNode::createNode(ASTNodeType t, int value)
 
 	case AST_PROCEDURE:
 		node->_hashcode = "pc";
+		//Unique Proc Index
+		node->_hashcode.append(to_string(static_cast<long long>(value)));
 		break;
 
 	case AST_STATEMENT_LIST:
@@ -70,6 +72,7 @@ ASTNode *ASTNode::createNode(ASTNodeType t, int value)
 
 	case AST_VARIABLE:
 		node->_hashcode = "v";
+		//Unique Variable Index
 		node->_hashcode.append(to_string(static_cast<long long>(value)));
 		break;
 

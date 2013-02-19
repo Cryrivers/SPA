@@ -570,6 +570,7 @@ ASTNode* Parser::_buildIfAST(statement* s)
 	if(_parentStackNoStmtLst.top()->getStmtNumber()>0) _pkb->addParent(_parentStackNoStmtLst.top()->getStmtNumber(), s->stmtNumber);
 	_pkb->addUses(s->stmtNumber,_pkb->addVar(s->extraCond));
 	_pkb->addUsesP(s->procIndex,_pkb->addVar(s->extraCond));
+	_pkb->addIfBranchNode(node);
 	return(node);
 }
 
@@ -607,6 +608,7 @@ ASTNode *Parser::_buildWhileLoopAST(statement *s)
 	if(_parentStackNoStmtLst.top()->getStmtNumber()>0) _pkb->addParent(_parentStackNoStmtLst.top()->getStmtNumber(), s->stmtNumber);
 	_pkb->addUses(s->stmtNumber,_pkb->addVar(s->extraCond));
 	_pkb->addUsesP(s->procIndex,_pkb->addVar(s->extraCond));
+	_pkb->addWhileLoopNode(node);
 	return(node);
 }
 

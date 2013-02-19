@@ -768,6 +768,8 @@ PKBController::~PKBController()
 	delete(_designExtractor);
 	delete(_constTable);
 	delete(_assignmentTable);
+	delete(_whileLoopTable);
+	delete(_ifBranchTable);
 }
 
 
@@ -813,6 +815,8 @@ void PKBController::init()
 	_procTable = new ProcTable();
 	_constTable = new vector<int>();
 	_assignmentTable = new vector<ASTNode *>();
+	_whileLoopTable = new vector<ASTNode *>();
+	_ifBranchTable = new vector<ASTNode *>();
 	_ast = new AST();
 	_cfg = new CFG();
 	_designExtractor = new DesignExtractor();
@@ -905,4 +909,68 @@ void PKBController::build_stmt_const(){
 		}
 	}
 	delete(stmtlist);
+}
+
+/**
+ * \fn	void PKBController::addWhileLoopNode( ASTNode* node )
+ *
+ * \brief	Adds a while loop node.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/19
+ *
+ * \param [in]	node	If non-null, the node.
+ */
+
+void PKBController::addWhileLoopNode( ASTNode* node )
+{
+	_whileLoopTable->push_back(node);
+}
+
+/**
+ * \fn	void PKBController::addIfBranchNode( ASTNode* node )
+ *
+ * \brief	Adds if branch node.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/19
+ *
+ * \param [in,out]	node	If non-null, the node.
+ */
+
+void PKBController::addIfBranchNode( ASTNode* node )
+{
+	_ifBranchTable->push_back(node);
+}
+
+/**
+ * \fn	vector<ASTNode*>* PKBController::getIfBranchTable()
+ *
+ * \brief	Gets if branch table.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/19
+ *
+ * \return	null if it fails, else if branch table.
+ */
+
+vector<ASTNode*>* PKBController::getIfBranchTable()
+{
+	return _ifBranchTable;
+}
+
+/**
+ * \fn	vector<ASTNode*>* PKBController::getWhileTable()
+ *
+ * \brief	Gets while table.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/19
+ *
+ * \return	null if it fails, else the while table.
+ */
+
+vector<ASTNode*>* PKBController::getWhileTable()
+{
+	return _whileLoopTable;
 }
