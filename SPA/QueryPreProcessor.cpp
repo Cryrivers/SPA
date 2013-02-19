@@ -788,7 +788,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				//===========================
 				int frontAttribute = getIndexOfNextFrom(front, dicAttribute, DICATTRIBUTESIZE); 
 				int backAttribute = getIndexOfNextFrom(back, dicAttribute, DICATTRIBUTESIZE);  
-				if(frontAttribute != -1 && backAttribute !=-1){
+				if(frontAttribute != -1 && backAttribute != -1){
 					//===========================
 					//both have attribute
 					//===========================
@@ -823,9 +823,18 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 					//===========================
 					//Same attribute
 					//check if type is the same
+					//
+					//note for the stmt=if
 					//===========================
 					if(ta==tb){
-						mergeFlag=1;
+						if(queryVarTable[ia].variableType!=KT_STMT_NUM&&queryVarTable[ib].variableType!=KT_STMT_NUM){
+							 if(queryVarTable[ia].variableType!=queryVarTable[ia].variableType){
+								return false;
+							 }
+						}						 
+						mergeFlag.push_back(ia);
+						mergeFlag.push_back(ib);
+						continue;
 					}
 					//===========================
 					//Comparable
@@ -1296,7 +1305,7 @@ int QueryPreprocessor::parse(string query){
 	queryTarTable.clear();
 	queryClaTable.clear();
 	trim_all(query);
-	mergeFlag=0;
+	mergeFlag.clear();
 	while(true){
 		//=======================================>>Stage 1 Declare
 		vector<string> declares = getDeclares(query);
