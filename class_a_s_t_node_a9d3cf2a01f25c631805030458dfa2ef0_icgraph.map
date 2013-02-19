@@ -1,0 +1,5 @@
+<map id="ASTNode::createNode" name="ASTNode::createNode">
+<area shape="rect" id="node2" href="$class_a_s_t_node.html#a1dc16ab600c8bac334b25ecd2517c835" title="Creates a child ASTNode of this one." alt="" coords="210,5,361,32"/>
+<area shape="rect" id="node3" href="$class_a_s_t_node.html#a0d91c8d5c9c70f35fa4531771917f528" title="Creates a new ASTNode which is the sibling of this ASTNode." alt="" coords="205,56,365,83"/>
+<area shape="rect" id="node4" href="$class_parser.html#a167a551127b86054e7382d9d563d869c" title="Constructor of Parser. Developers need to specify an AST object. All the parsing result will directly..." alt="" coords="232,107,339,133"/>
+</map>

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['relationtype',['relationType',['../class_query_clause.html#a85dbc71e13015150e86cd421b224fcc6',1,'QueryClause']]],
+  ['removeduplicates',['removeDuplicates',['../class_query_evaluator.html#a7e8a5c113d9d61672d0b0f19f873bab1',1,'QueryEvaluator']]],
   ['rt_5faffects',['RT_AFFECTS',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8e006da57f312363ec95a614dda2c7be',1,'QueryDataType.h']]],
   ['rt_5faffectst',['RT_AFFECTST',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ac7002cc4a62f7fe396cee93cc52663e5',1,'QueryDataType.h']]],
   ['rt_5fcalls',['RT_CALLS',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a42d3c832dc584e126a67d35c6ad97e7d',1,'QueryDataType.h']]],

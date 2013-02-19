@@ -11,5 +11,7 @@ var class_a_s_t =
     [ "containSubtree", "class_a_s_t.html#a12e4ec6094232fd225eda721fd41f8ed", null ],
     [ "containTree", "class_a_s_t.html#a17dd2291ffc6aad76c9c023c1a36fb60", null ],
     [ "getRoot", "class_a_s_t.html#acc1a0efce9b143a98fc3b9f7d6caeac1", null ],
+    [ "matchIfBranch", "class_a_s_t.html#a41ccb8870a14fba0866889ca76f4a40f", null ],
+    [ "matchWhileLoop", "class_a_s_t.html#a79e511c7dd486683ec16ed935596c5aa", null ],
     [ "_root", "class_a_s_t.html#aff132c9406202f6f24ebddb9579db80b", null ]
 ];

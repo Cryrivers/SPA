@@ -1,0 +1,12 @@
+<map id="DesignExtractor::addUses" name="DesignExtractor::addUses">
+<area shape="rect" id="node2" href="$class_p_k_b_controller.html#a52ab9de01f4df9ab7d890bcf3fbc9136" title="Propagate the call to Uses table." alt="" coords="235,5,410,46"/>
+<area shape="rect" id="node3" href="$class_p_k_b_controller.html#a6544b441bc3609e08476d96dc7e63a0e" title="Propagate the call to Uses table." alt="" coords="235,70,410,111"/>
+<area shape="rect" id="node4" href="$class_p_k_b_controller.html#a2f9cb6df2b5a9f728e2fa1668fef1a34" title="Propagate the call to UsesP table." alt="" coords="235,135,410,177"/>
+<area shape="rect" id="node5" href="$class_p_k_b_controller.html#ac4098fec7ddf461d0443f654056dcc94" title="Propagate the call to Calls table." alt="" coords="230,201,415,228"/>
+<area shape="rect" id="node6" href="$class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431" title="Add all program line that is a call statement to result list." alt="" coords="233,252,412,279"/>
+<area shape="rect" id="node8" href="$class_p_k_b_controller.html#a564da27461e46f8bad746b674901ae5a" title="Propagate the call to UsesP table." alt="" coords="248,303,397,329"/>
+<area shape="rect" id="node9" href="$class_p_k_b_controller.html#a3899818c88ba771728c68ecc45c6fcd1" title="Propagate the call to Uses table." alt="" coords="241,353,404,380"/>
+<area shape="rect" id="node10" href="$class_p_k_b_controller.html#a1d2ba733d653b383095093cc13391e27" title="Propagate the call to UsesP table." alt="" coords="237,404,409,431"/>
+<area shape="rect" id="node11" href="$class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="237,455,409,481"/>
+<area shape="rect" id="node7" href="$class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers." alt="" coords="464,245,675,286"/>
+</map>

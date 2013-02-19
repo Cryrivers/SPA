@@ -1,0 +1,5 @@
+<map id="ASTNode::addSibling" name="ASTNode::addSibling">
+<area shape="rect" id="node2" href="$class_a_s_t_node.html#ac8750b89a9f5e76c550f7cc878a68712" title="Adds a existing ASTNode to this one as a child ASTNode." alt="" coords="213,5,347,32"/>
+<area shape="rect" id="node4" href="$class_a_s_t_node.html#a0d91c8d5c9c70f35fa4531771917f528" title="Creates a new ASTNode which is the sibling of this ASTNode." alt="" coords="200,56,360,83"/>
+<area shape="rect" id="node3" href="$class_a_s_t_node.html#a1dc16ab600c8bac334b25ecd2517c835" title="Creates a child ASTNode of this one." alt="" coords="409,5,559,32"/>
+</map>

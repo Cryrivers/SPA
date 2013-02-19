@@ -1,0 +1,4 @@
+<map id="AST::matchIfBranch" name="AST::matchIfBranch">
+<area shape="rect" id="node2" href="$class_p_k_b_controller.html#a2ad81eda5417c9bb5cefe8d0000a142b" title="Create only once the PKBController object. If PKBController object exists, return the object..." alt="" coords="192,5,389,32"/>
+<area shape="rect" id="node3" href="$class_p_k_b_controller.html#a8bf0fbfa127efae9f32f66d87eddc6b5" title="Gets if branch table." alt="" coords="202,57,379,98"/>
+</map>

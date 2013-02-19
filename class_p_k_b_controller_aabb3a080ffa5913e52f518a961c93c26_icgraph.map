@@ -1,0 +1,9 @@
+<map id="PKBController::getPreprocessedProgram" name="PKBController::getPreprocessedProgram">
+<area shape="rect" id="node2" href="$class_design_extractor.html#ace811652940cd0c9b203466d718da76c" title="Add all program line that is a statement to result list." alt="" coords="285,5,469,32"/>
+<area shape="rect" id="node3" href="$class_design_extractor.html#ac726aa0f4d7683e0b516f6375d5cbed2" title="Add all program line that is an assignment to result list." alt="" coords="265,56,490,83"/>
+<area shape="rect" id="node4" href="$class_design_extractor.html#a38b674ccd8bb996d7c67984f01c174b8" title="Add all program line that is a while to result list." alt="" coords="283,107,472,133"/>
+<area shape="rect" id="node5" href="$class_design_extractor.html#af29dfb20bcfbc7fb188adffd8bfd39c6" title="Add all program line that is an if to result list." alt="" coords="296,157,459,184"/>
+<area shape="rect" id="node6" href="$class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431" title="Add all program line that is a call statement to result list." alt="" coords="288,208,467,235"/>
+<area shape="rect" id="node7" href="$class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="539,183,731,209"/>
+<area shape="rect" id="node8" href="$class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="547,233,722,260"/>
+</map>

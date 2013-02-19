@@ -1,0 +1,25 @@
+<map id="SPA/SPA/QueryEvaluator.cpp" name="SPA/SPA/QueryEvaluator.cpp">
+<area shape="rect" id="node2" href="$stdafx_8h_source.html" title="stdafx.h" alt="" coords="99,528,167,555"/>
+<area shape="rect" id="node7" href="$_query_evaluator_8h_source.html" title="QueryEvaluator.h" alt="" coords="246,80,367,107"/>
+<area shape="rect" id="node3" href="$targetver_8h_source.html" title="targetver.h" alt="" coords="92,603,175,629"/>
+<area shape="rect" id="node13" href="$_query_pre_processor_8h.html" title="Header file for query preprocessor." alt="" coords="383,155,528,181"/>
+<area shape="rect" id="node14" href="$_p_k_b_controller_8h_source.html" title="PKBController.h" alt="" coords="1069,229,1184,256"/>
+<area shape="rect" id="node34" href="$_query_validator_8h.html" title="Header file for query validator." alt="" coords="397,379,515,405"/>
+<area shape="rect" id="node15" href="$_design_extractor_8h_source.html" title="DesignExtractor.h" alt="" coords="1294,304,1420,331"/>
+<area shape="rect" id="node21" href="$_follows_8h_source.html" title="Follows.h" alt="" coords="635,379,712,405"/>
+<area shape="rect" id="node24" href="$_parent_8h_source.html" title="Parent.h" alt="" coords="539,379,609,405"/>
+<area shape="rect" id="node25" href="$_modifies_8h_source.html" title="Modifies.h" alt="" coords="737,379,817,405"/>
+<area shape="rect" id="node26" href="$_modifies_p_8h_source.html" title="ModifiesP.h" alt="" coords="843,379,933,405"/>
+<area shape="rect" id="node27" href="$_uses_8h_source.html" title="Uses.h" alt="" coords="958,379,1020,405"/>
+<area shape="rect" id="node28" href="$_uses_p_8h_source.html" title="UsesP.h" alt="" coords="1045,379,1117,405"/>
+<area shape="rect" id="node29" href="$_var_table_8h_source.html" title="VarTable.h" alt="" coords="1037,453,1120,480"/>
+<area shape="rect" id="node17" href="$_a_s_t_node_8h_source.html" title="ASTNode.h" alt="" coords="1232,453,1320,480"/>
+<area shape="rect" id="node16" href="$_a_s_t_8h_source.html" title="AST.h" alt="" coords="1441,379,1500,405"/>
+<area shape="rect" id="node18" href="$_s_p_a_type_8h_source.html" title="SPAType.h" alt="" coords="904,528,992,555"/>
+<area shape="rect" id="node30" href="$_calls_8h_source.html" title="Calls.h" alt="" coords="1145,453,1207,480"/>
+<area shape="rect" id="node31" href="$_proc_table_8h_source.html" title="ProcTable.h" alt="" coords="1655,453,1745,480"/>
+<area shape="rect" id="node32" href="$_c_f_g_8h_source.html" title="CFG.h" alt="" coords="313,379,372,405"/>
+<area shape="rect" id="node22" href="$_utility_8h_source.html" title="Utility.h" alt="" coords="743,453,809,480"/>
+<area shape="rect" id="node33" href="$_c_f_g_node_8h_source.html" title="CFGNode.h" alt="" coords="476,453,567,480"/>
+<area shape="rect" id="node35" href="$_query_data_type_8h.html" title="Global variables and enum for Query processor." alt="" coords="329,453,452,480"/>
+</map>

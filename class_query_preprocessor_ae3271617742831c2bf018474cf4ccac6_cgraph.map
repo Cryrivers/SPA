@@ -1,0 +1,13 @@
+<map id="QueryPreprocessor::setupVarTable" name="QueryPreprocessor::setupVarTable">
+<area shape="rect" id="node2" href="$class_query_preprocessor.html#a709f0d33cbb680e4f754d2a55964b9be" title="Used for matching the first word of the input string to the given dictionary." alt="" coords="217,5,359,46"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#a881270b46049507564a33ba68e04f06b" title="Trim space, &#39;;&#39;, &#39;\n&#39;." alt="" coords="217,70,359,111"/>
+<area shape="rect" id="node5" href="$class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435" title="QueryValidator::isSynonym" alt="" coords="197,136,379,163"/>
+<area shape="rect" id="node9" href="$class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="212,209,364,250"/>
+<area shape="rect" id="node4" href="$class_query_preprocessor.html#a36d78a7b445cc88398c370acb25decff" title="Trim the char from string." alt="" coords="439,77,603,104"/>
+<area shape="rect" id="node6" href="$class_query_validator.html#a6fd95a27146673bffb9303f053110971" title="QueryValidator::isIndent" alt="" coords="441,132,602,159"/>
+<area shape="rect" id="node7" href="$class_query_validator.html#a4e022d85107d74e26e7ae6254d3fe08a" title="QueryValidator::isLetter" alt="" coords="665,132,823,159"/>
+<area shape="rect" id="node8" href="$class_query_validator.html#a02b3aca4fd564ea07d9f0b651c62eef4" title="QueryValidator::isDigit" alt="" coords="668,233,820,260"/>
+<area shape="rect" id="node10" href="$class_p_k_b_controller.html#a6d846b8b888fc465e77870838d9e7793" title="Propagate the call to Var table." alt="" coords="431,183,612,209"/>
+<area shape="rect" id="node11" href="$class_p_k_b_controller.html#a9652a236717ec3621fbd36a28c7c167e" title="Propagate the call to Proc table." alt="" coords="427,233,615,260"/>
+<area shape="rect" id="node12" href="$class_query_validator.html#a76e03097047ff0278c875113b7e97ef4" title="QueryValidator::isInteger" alt="" coords="439,284,604,311"/>
+</map>

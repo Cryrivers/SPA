@@ -1,0 +1,4 @@
+<map id="ASTNode::createNode" name="ASTNode::createNode">
+<area shape="rect" id="node2" href="$class_a_s_t_node.html#abc7ea24000fa4c9108d98d8361af06d4" title="Sets the type of ASTNode." alt="" coords="209,5,370,32"/>
+<area shape="rect" id="node3" href="$class_a_s_t_node.html#a548db93f5fb07720f91fe42826670762" title="Sets ASTNode&#39;s custom value. The custom value can be ProcIndex, VarIndex, constant, etc." alt="" coords="206,56,373,83"/>
+</map>

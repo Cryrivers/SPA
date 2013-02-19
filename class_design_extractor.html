@@ -106,18 +106,32 @@ $(document).ready(function(){initNavTree('class_design_extractor.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_design_extractor-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">DesignExtractor Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for DesignExtractor:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor__coll__graph.png" border="0" usemap="#_design_extractor_coll__map" alt="Collaboration graph"/></div>
+<map name="_design_extractor_coll__map" id="_design_extractor_coll__map">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html" title="{PKBController\n|&#45; _preprocessedProgram\l&#45; _constTable\l&#45; _assignmentTable\l&#45; _whileLoopTable\l&#45; _ifBranchTable\l|+ ~PKBController()\l+ astGetRoot()\l+ getAST()\l+ getCFG()\l+ addFollows()\l+ follows()\l+ followsStar()\l+ addParent()\l+ parent()\l+ parentStar()\land 51 more...\l+ createInstance()\l&#45; init()\l&#45; PKBController()\l&#45; build_proc_var()\l&#45; build_proc_call()\l&#45; build_var_call()\l&#45; build_call_call()\l&#45; build_stmt_const()\l}" alt="" coords="1233,1208,1396,1608"/><area shape="rect" id="node3" href="class_c_f_g.html" title="{CFG\n|&#45; _CFGBlocks\l|+ CFG()\l+ ~CFG()\l+ addToCFG()\l+ getCFGNodeByStmtNumber()\l}" alt="" coords="5,846,211,967"/><area shape="rect" id="node4" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and..." alt="" coords="235,699,388,1114"/><area shape="rect" id="node5" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc..." alt="" coords="413,787,571,1026"/><area shape="rect" id="node6" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt..." alt="" coords="595,787,761,1026"/><area shape="rect" id="node7" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb..." alt="" coords="787,743,955,1070"/><area shape="rect" id="node8" href="class_var_table.html" title="Store the information of all variables and provide funtions for retrieving information of variables..." alt="" coords="979,831,1108,982"/><area shape="rect" id="node9" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc..." alt="" coords="1133,787,1309,1026"/><area shape="rect" id="node10" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt..." alt="" coords="1333,787,1483,1026"/><area shape="rect" id="node11" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe..." alt="" coords="1507,743,1669,1070"/><area shape="rect" id="node12" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node." alt="" coords="1676,5,1823,317"/><area shape="rect" id="node13" href="class_a_s_t.html" title="{AST\n||+ AST()\l+ ~AST()\l+ getRoot()\l+ buildSubtree()\l+ buildAssignmentSubtree()\l+ containSubtree()\l+ containTree()\l+ matchWhileLoop()\l+ matchIfBranch()\l+ calculateHashcode()\l&#45; _operatorPrecedence()\l&#45; _calcHashcode()\l&#45; _containTree()\l}" alt="" coords="1745,381,1927,635"/><area shape="rect" id="node14" href="class_proc_table.html" title="Store the information of all procedures and provide functions for retrieving information of procedure..." alt="" coords="1993,802,2129,1011"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab43568887023f04b5ea405cc7dfbeea8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#ab43568887023f04b5ea405cc7dfbeea8">DesignExtractor</a> (void)</td></tr>
 <tr class="memdesc:ab43568887023f04b5ea405cc7dfbeea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct <a class="el" href="class_design_extractor.html">DesignExtractor</a> object containing <a class="el" href="class_a_s_t.html">AST</a> object and <a class="el" href="class_p_k_b_controller.html">PKBController</a> object.  <a href="#ab43568887023f04b5ea405cc7dfbeea8">More...</a><br/></td></tr>
 <tr class="separator:ab43568887023f04b5ea405cc7dfbeea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add9a616e381c362288f89ee0a287f239"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#add9a616e381c362288f89ee0a287f239">completeCallCFG</a> ()</td></tr>
+<tr class="memdesc:add9a616e381c362288f89ee0a287f239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complete call configuration.  <a href="#add9a616e381c362288f89ee0a287f239">More...</a><br/></td></tr>
+<tr class="separator:add9a616e381c362288f89ee0a287f239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a683d322683f769b883159edd9b6f03d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a683d322683f769b883159edd9b6f03d6">addNext</a> ()</td></tr>
+<tr class="memdesc:a683d322683f769b883159edd9b6f03d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds next.  <a href="#a683d322683f769b883159edd9b6f03d6">More...</a><br/></td></tr>
+<tr class="separator:a683d322683f769b883159edd9b6f03d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f6e3080e90667899715019130ef7573"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573">addModifies</a> ()</td></tr>
 <tr class="memdesc:a8f6e3080e90667899715019130ef7573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complete modifies table Combine parent table and previous modifies table(only for assignment)  <a href="#a8f6e3080e90667899715019130ef7573">More...</a><br/></td></tr>
 <tr class="separator:a8f6e3080e90667899715019130ef7573"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,9 +156,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad4c6d709f46b4a6a681bf8a7b6e554f3"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#ad4c6d709f46b4a6a681bf8a7b6e554f3">getAllConstant</a> (vector&lt; int &gt; *)</td></tr>
 <tr class="memdesc:ad4c6d709f46b4a6a681bf8a7b6e554f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all constant to result vector.  <a href="#ad4c6d709f46b4a6a681bf8a7b6e554f3">More...</a><br/></td></tr>
 <tr class="separator:ad4c6d709f46b4a6a681bf8a7b6e554f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fcba7f9091b7f4f04f9551afe30ee3d"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a4fcba7f9091b7f4f04f9551afe30ee3d">pattern</a> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td></tr>
-<tr class="memdesc:a4fcba7f9091b7f4f04f9551afe30ee3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles patterns query.  <a href="#a4fcba7f9091b7f4f04f9551afe30ee3d">More...</a><br/></td></tr>
-<tr class="separator:a4fcba7f9091b7f4f04f9551afe30ee3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e530b086371a01f9011f461d18f2aff"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_design_extractor.html#a8e530b086371a01f9011f461d18f2aff">pattern</a> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, PatternQueryType, int)</td></tr>
+<tr class="memdesc:a8e530b086371a01f9011f461d18f2aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles patterns query.  <a href="#a8e530b086371a01f9011f461d18f2aff">More...</a><br/></td></tr>
+<tr class="separator:a8e530b086371a01f9011f461d18f2aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a6f33f9a2e9aa01f0b6ed3acfc327afe5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f33f9a2e9aa01f0b6ed3acfc327afe5"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>assignPattern</b> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int, int)</td></tr>
+<tr class="separator:a6f33f9a2e9aa01f0b6ed3acfc327afe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50b61a20e31ce1726923c0f970fe4f07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50b61a20e31ce1726923c0f970fe4f07"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>whilePattern</b> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td></tr>
+<tr class="separator:a50b61a20e31ce1726923c0f970fe4f07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a53e1e2e774f45d1f43455b13ce3e75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a53e1e2e774f45d1f43455b13ce3e75"></a>
+BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>ifPattern</b> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td></tr>
+<tr class="separator:a4a53e1e2e774f45d1f43455b13ce3e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -173,6 +199,15 @@ Private Attributes</h2></td></tr>
 <p>Construct <a class="el" href="class_design_extractor.html">DesignExtractor</a> object containing <a class="el" href="class_a_s_t.html">AST</a> object and <a class="el" href="class_p_k_b_controller.html">PKBController</a> object. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_ab43568887023f04b5ea405cc7dfbeea8_cgraph.png" border="0" usemap="#class_design_extractor_ab43568887023f04b5ea405cc7dfbeea8_cgraph" alt=""/></div>
+<map name="class_design_extractor_ab43568887023f04b5ea405cc7dfbeea8_cgraph" id="class_design_extractor_ab43568887023f04b5ea405cc7dfbeea8_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#a2ad81eda5417c9bb5cefe8d0000a142b" title="Create only once the PKBController object. If PKBController object exists, return the object..." alt="" coords="269,5,467,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -192,6 +227,34 @@ Private Attributes</h2></td></tr>
 <p>Complete modifies table Combine parent table and previous modifies table(only for assignment) </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_a8f6e3080e90667899715019130ef7573_cgraph.png" border="0" usemap="#class_design_extractor_a8f6e3080e90667899715019130ef7573_cgraph" alt=""/></div>
+<map name="class_design_extractor_a8f6e3080e90667899715019130ef7573_cgraph" id="class_design_extractor_a8f6e3080e90667899715019130ef7573_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#ae349f43fd139e8d53cbbdcd59f813112" title="Propagate the call to Modifies table." alt="" coords="246,5,439,46"/><area shape="rect" id="node3" href="class_p_k_b_controller.html#a6928ee2303002df8468e076381504b6e" title="Propagate the call to Modifies table." alt="" coords="246,70,439,111"/><area shape="rect" id="node4" href="class_p_k_b_controller.html#a3e85531f1fc9621e86760d6e6311adde" title="Propagate the call to ModifiesP table." alt="" coords="246,135,439,177"/><area shape="rect" id="node5" href="class_p_k_b_controller.html#ac4098fec7ddf461d0443f654056dcc94" title="Propagate the call to Calls table." alt="" coords="250,201,435,228"/><area shape="rect" id="node6" href="class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431" title="Add all program line that is a call statement to result list." alt="" coords="253,252,432,279"/><area shape="rect" id="node8" href="class_p_k_b_controller.html#a623c8a419b9a3f8299a7e7f505746c29" title="Propagate the call to ModifiesP table." alt="" coords="258,303,427,329"/><area shape="rect" id="node9" href="class_p_k_b_controller.html#ae45e870e969ee9d5da02dbafb0d264c3" title="Propagate the call to Modifies table." alt="" coords="252,353,433,380"/><area shape="rect" id="node10" href="class_p_k_b_controller.html#acb10a0f51cde290b40ce61557d920468" title="Propagate the call to ModifiesP table." alt="" coords="247,404,438,431"/><area shape="rect" id="node11" href="class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="257,455,429,481"/><area shape="rect" id="node7" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers." alt="" coords="488,245,699,286"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a683d322683f769b883159edd9b6f03d6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesignExtractor::addNext </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds next. </p>
+<dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013/2/15 </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a28bff702b2741582aa75bc88b87c302a"></a>
@@ -209,6 +272,43 @@ Private Attributes</h2></td></tr>
 
 <p>Complete <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table Combine parent table and previous uses table(only for assignment) </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_a28bff702b2741582aa75bc88b87c302a_cgraph.png" border="0" usemap="#class_design_extractor_a28bff702b2741582aa75bc88b87c302a_cgraph" alt=""/></div>
+<map name="class_design_extractor_a28bff702b2741582aa75bc88b87c302a_cgraph" id="class_design_extractor_a28bff702b2741582aa75bc88b87c302a_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#a52ab9de01f4df9ab7d890bcf3fbc9136" title="Propagate the call to Uses table." alt="" coords="235,5,410,46"/><area shape="rect" id="node3" href="class_p_k_b_controller.html#a6544b441bc3609e08476d96dc7e63a0e" title="Propagate the call to Uses table." alt="" coords="235,70,410,111"/><area shape="rect" id="node4" href="class_p_k_b_controller.html#a2f9cb6df2b5a9f728e2fa1668fef1a34" title="Propagate the call to UsesP table." alt="" coords="235,135,410,177"/><area shape="rect" id="node5" href="class_p_k_b_controller.html#ac4098fec7ddf461d0443f654056dcc94" title="Propagate the call to Calls table." alt="" coords="230,201,415,228"/><area shape="rect" id="node6" href="class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431" title="Add all program line that is a call statement to result list." alt="" coords="233,252,412,279"/><area shape="rect" id="node8" href="class_p_k_b_controller.html#a564da27461e46f8bad746b674901ae5a" title="Propagate the call to UsesP table." alt="" coords="248,303,397,329"/><area shape="rect" id="node9" href="class_p_k_b_controller.html#a3899818c88ba771728c68ecc45c6fcd1" title="Propagate the call to Uses table." alt="" coords="241,353,404,380"/><area shape="rect" id="node10" href="class_p_k_b_controller.html#a1d2ba733d653b383095093cc13391e27" title="Propagate the call to UsesP table." alt="" coords="237,404,409,431"/><area shape="rect" id="node11" href="class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="237,455,409,481"/><area shape="rect" id="node7" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers." alt="" coords="464,245,675,286"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="add9a616e381c362288f89ee0a287f239"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DesignExtractor::completeCallCFG </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Complete call configuration. </p>
+<dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013/2/15 </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_add9a616e381c362288f89ee0a287f239_cgraph.png" border="0" usemap="#class_design_extractor_add9a616e381c362288f89ee0a287f239_cgraph" alt=""/></div>
+<map name="class_design_extractor_add9a616e381c362288f89ee0a287f239_cgraph" id="class_design_extractor_add9a616e381c362288f89ee0a287f239_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#a0a9c546aaafc2ba40cdb2143252ec0aa" title="Propagate the call to Design Extractor." alt="" coords="230,12,397,39"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -235,6 +335,15 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_ac726aa0f4d7683e0b516f6375d5cbed2_cgraph.png" border="0" usemap="#class_design_extractor_ac726aa0f4d7683e0b516f6375d5cbed2_cgraph" alt=""/></div>
+<map name="class_design_extractor_ac726aa0f4d7683e0b516f6375d5cbed2_cgraph" id="class_design_extractor_ac726aa0f4d7683e0b516f6375d5cbed2_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers." alt="" coords="280,5,491,46"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a9c91fa47243801752d9f3b26c2fee431"></a>
@@ -259,6 +368,24 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_a9c91fa47243801752d9f3b26c2fee431_cgraph.png" border="0" usemap="#class_design_extractor_a9c91fa47243801752d9f3b26c2fee431_cgraph" alt=""/></div>
+<map name="class_design_extractor_a9c91fa47243801752d9f3b26c2fee431_cgraph" id="class_design_extractor_a9c91fa47243801752d9f3b26c2fee431_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers." alt="" coords="232,5,443,46"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_a9c91fa47243801752d9f3b26c2fee431_icgraph.png" border="0" usemap="#class_design_extractor_a9c91fa47243801752d9f3b26c2fee431_icgraph" alt=""/></div>
+<map name="class_design_extractor_a9c91fa47243801752d9f3b26c2fee431_icgraph" id="class_design_extractor_a9c91fa47243801752d9f3b26c2fee431_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="232,5,424,32"/><area shape="rect" id="node3" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="241,56,415,83"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -310,6 +437,15 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_af29dfb20bcfbc7fb188adffd8bfd39c6_cgraph.png" border="0" usemap="#class_design_extractor_af29dfb20bcfbc7fb188adffd8bfd39c6_cgraph" alt=""/></div>
+<map name="class_design_extractor_af29dfb20bcfbc7fb188adffd8bfd39c6_cgraph" id="class_design_extractor_af29dfb20bcfbc7fb188adffd8bfd39c6_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers." alt="" coords="216,5,427,46"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ace811652940cd0c9b203466d718da76c"></a>
@@ -334,6 +470,15 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_ace811652940cd0c9b203466d718da76c_cgraph.png" border="0" usemap="#class_design_extractor_ace811652940cd0c9b203466d718da76c_cgraph" alt=""/></div>
+<map name="class_design_extractor_ace811652940cd0c9b203466d718da76c_cgraph" id="class_design_extractor_ace811652940cd0c9b203466d718da76c_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers." alt="" coords="237,5,448,46"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -360,9 +505,18 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_design_extractor_a38b674ccd8bb996d7c67984f01c174b8_cgraph.png" border="0" usemap="#class_design_extractor_a38b674ccd8bb996d7c67984f01c174b8_cgraph" alt=""/></div>
+<map name="class_design_extractor_a38b674ccd8bb996d7c67984f01c174b8_cgraph" id="class_design_extractor_a38b674ccd8bb996d7c67984f01c174b8_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26" title="Get the table of preprocessed program. Easier for preprocessor to travers." alt="" coords="243,5,453,46"/></map>
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="a4fcba7f9091b7f4f04f9551afe30ee3d"></a>
+<a class="anchor" id="a8e530b086371a01f9011f461d18f2aff"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -383,6 +537,12 @@ Private Attributes</h2></td></tr>
           <td></td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>expr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PatternQueryType&#160;</td>
+          <td class="paramname"><em>queryType</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -473,7 +633,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_design_extractor.html">DesignExtractor</a></li>
-    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
+    <li class="footer">Generated on Tue Feb 19 2013 15:01:03 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

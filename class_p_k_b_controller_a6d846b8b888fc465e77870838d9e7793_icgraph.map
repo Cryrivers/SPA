@@ -1,0 +1,7 @@
+<map id="PKBController::getVarIndex" name="PKBController::getVarIndex">
+<area shape="rect" id="node2" href="$class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="235,73,387,114"/>
+<area shape="rect" id="node6" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="435,135,578,177"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="435,5,578,46"/>
+<area shape="rect" id="node5" href="$class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37" title="get the select clause of the query" alt="" coords="435,70,578,111"/>
+<area shape="rect" id="node4" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="627,70,770,111"/>
+</map>

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['dependency',['dependency',['../class_query_variable.html#a2d2654a5ee1ad0b1818805a5bfdf0ac4',1,'QueryVariable']]],
+  ['deprecated_20list',['Deprecated List',['../deprecated.html',1,'']]],
   ['design',['Design',['../class_design.html',1,'']]],
   ['designextractor',['DesignExtractor',['../class_design_extractor.html',1,'DesignExtractor'],['../class_design_extractor.html#ab43568887023f04b5ea405cc7dfbeea8',1,'DesignExtractor::DesignExtractor()']]],
   ['designextractor_2ecpp',['DesignExtractor.cpp',['../_design_extractor_8cpp.html',1,'']]],

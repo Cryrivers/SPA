@@ -113,25 +113,30 @@ $(document).ready(function(){initNavTree('_proc_table_8h_source.html','');});
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;SPAType.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">using namespace </span>std;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="code" href="class_proc_table.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_proc_table.html" title="Store the information of all procedures and provide funtions for retrieving information of procedures...">ProcTable</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="code" href="class_proc_table.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_proc_table.html" title="Store the information of all procedures and provide functions for retrieving information of procedure...">ProcTable</a></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//int size = 0;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;vector&lt;string&gt; procedures;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;VAR_INDEX addProc(STRING procName);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;STRING getProcName(VAR_INDEX ind);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;VAR_INDEX getProcIndex(STRING procName);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;STRING_LIST getAllProcName(VAR_INDEX_LIST inds);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;STRING_LIST getAllProcName();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;vector&lt;string&gt; procedureNames;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;STMT_LIST startStmts;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;STMT_LIST endStmts;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;PROC_INDEX addProc(STRING procName, STMT start, STMT end);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;STRING getProcName(PROC_INDEX ind);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;PROC_INDEX getProcIndex(STRING procName);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;STRING_LIST getAllProcName(PROC_INDEX_LIST inds);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;STRING_LIST getAllProcName();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;STMT getProcStart(PROC_INDEX ind);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;STMT getProcEnd(PROC_INDEX ind);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">int</span> size();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d33bcfb0cd6530259be5990e622e7b2b.html">SPA</a></li><li class="navelem"><a class="el" href="dir_5fc8ab4af506cd4fa559bebce489ceea.html">SPA</a></li><li class="navelem"><b>ProcTable.h</b></li>
-    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
+    <li class="footer">Generated on Tue Feb 19 2013 15:01:02 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

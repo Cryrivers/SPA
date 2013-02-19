@@ -1,0 +1,4 @@
+<map id="PKBController::getAllCallers" name="PKBController::getAllCallers">
+<area shape="rect" id="node2" href="$class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="240,5,432,32"/>
+<area shape="rect" id="node3" href="$class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="249,56,423,83"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="PKBController::createInstance" name="PKBController::createInstance">
+<area shape="rect" id="node2" href="$class_a_s_t.html#a17dd2291ffc6aad76c9c023c1a36fb60" title="Query if AST Contains the specific tree." alt="" coords="297,5,420,32"/>
+<area shape="rect" id="node3" href="$class_a_s_t.html#a79e511c7dd486683ec16ed935596c5aa" title="Match while loop." alt="" coords="283,56,435,83"/>
+<area shape="rect" id="node4" href="$class_a_s_t.html#a41ccb8870a14fba0866889ca76f4a40f" title="Match if branch." alt="" coords="289,107,428,133"/>
+<area shape="rect" id="node5" href="$class_design_extractor.html#ab43568887023f04b5ea405cc7dfbeea8" title="Construct DesignExtractor object containing AST object and PKBController object." alt="" coords="251,157,467,184"/>
+<area shape="rect" id="node6" href="$class_parser.html#a167a551127b86054e7382d9d563d869c" title="Constructor of Parser. Developers need to specify an AST object. All the parsing result will directly..." alt="" coords="305,208,412,235"/>
+<area shape="rect" id="node7" href="$class_parser.html#a47e4377402ad1398757c68ed2f92f4d8" title="Parse a program, build Abstract Syntax Tree of the program. Parser also finds Parent, Uses, Modifies and Calls relation in the program and add them to respective tables." alt="" coords="309,259,409,285"/>
+<area shape="rect" id="node8" href="$class_query_preprocessor.html#a50e8467985e1b2d7fe63f8a874059b91" title="Constructor." alt="" coords="287,310,430,351"/>
+</map>

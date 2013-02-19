@@ -25,7 +25,7 @@ var class_query_preprocessor =
     [ "dicClause", "class_query_preprocessor.html#a9e86971eeb765c6e9e6c27d6812b6742", null ],
     [ "dicDesignEntity", "class_query_preprocessor.html#ac534761ed85cd8a98e7bbe398ec94c91", null ],
     [ "dicRelationRef", "class_query_preprocessor.html#a74b1cc1ca92132c7a49371cd6c675d64", null ],
-    [ "mergeFlag", "class_query_preprocessor.html#a0aae7683680f802e5a83c9171e73e19b", null ],
+    [ "mergeFlag", "class_query_preprocessor.html#a4963e38e38ea5e63b573e2ccf6be545c", null ],
     [ "pkb", "class_query_preprocessor.html#aea7a0bc659a2e72807608ec4dd6b4536", null ],
     [ "queryClaTable", "class_query_preprocessor.html#ac58197019543cf779b8fd1bbb3d2115b", null ],
     [ "queryTarTable", "class_query_preprocessor.html#a74bb9d70d4caf1015e688b6f33f7981a", null ],

@@ -1,0 +1,4 @@
+<map id="QueryEvaluator::evaluateClause" name="QueryEvaluator::evaluateClause">
+<area shape="rect" id="node2" href="$class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="219,5,384,46"/>
+<area shape="rect" id="node3" href="$class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="432,12,597,39"/>
+</map>

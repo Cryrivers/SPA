@@ -1,0 +1,7 @@
+<map id="ASTNode::getSibling" name="ASTNode::getSibling">
+<area shape="rect" id="node2" href="$class_a_s_t.html#a17dd2291ffc6aad76c9c023c1a36fb60" title="Query if AST Contains the specific tree." alt="" coords="209,5,332,32"/>
+<area shape="rect" id="node3" href="$class_a_s_t_node.html#ac8750b89a9f5e76c550f7cc878a68712" title="Adds a existing ASTNode to this one as a child ASTNode." alt="" coords="405,56,539,83"/>
+<area shape="rect" id="node5" href="$class_a_s_t_node.html#af7d6d63178333b47891337a7a2b31d99" title="Add a existing ASTNode to this one as its sibling." alt="" coords="198,107,343,133"/>
+<area shape="rect" id="node4" href="$class_a_s_t_node.html#a1dc16ab600c8bac334b25ecd2517c835" title="Creates a child ASTNode of this one." alt="" coords="601,56,751,83"/>
+<area shape="rect" id="node6" href="$class_a_s_t_node.html#a0d91c8d5c9c70f35fa4531771917f528" title="Creates a new ASTNode which is the sibling of this ASTNode." alt="" coords="392,107,552,133"/>
+</map>

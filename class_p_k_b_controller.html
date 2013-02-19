@@ -114,6 +114,13 @@ $(document).ready(function(){initNavTree('class_p_k_b_controller.html','');});
 <div class="title">PKBController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for PKBController:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller__coll__graph.png" border="0" usemap="#_p_k_b_controller_coll__map" alt="Collaboration graph"/></div>
+<map name="_p_k_b_controller_coll__map" id="_p_k_b_controller_coll__map">
+<area shape="rect" id="node4" href="class_design_extractor.html" title="{DesignExtractor\n||+ DesignExtractor()\l+ ~DesignExtractor()\l+ completeCallCFG()\l+ addNext()\l+ addModifies()\l+ addUses()\l+ getAllStmt()\l+ getAllAssignment()\l+ getAllWhile()\l+ getAllIf()\l+ getAllCall()\l+ getAllConstant()\l+ pattern()\l&#45; assignPattern()\l&#45; whilePattern()\l&#45; ifPattern()\l}" alt="" coords="859,1355,1003,1653"/><area shape="rect" id="node2" href="class_c_f_g.html" title="{CFG\n|&#45; _CFGBlocks\l|+ CFG()\l+ ~CFG()\l+ addToCFG()\l+ getCFGNodeByStmtNumber()\l}" alt="" coords="325,529,531,650"/><area shape="rect" id="node3" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and..." alt="" coords="555,382,708,797"/><area shape="rect" id="node5" href="class_a_s_t.html" title="{AST\n||+ AST()\l+ ~AST()\l+ getRoot()\l+ buildSubtree()\l+ buildAssignmentSubtree()\l+ containSubtree()\l+ containTree()\l+ matchWhileLoop()\l+ matchIfBranch()\l+ calculateHashcode()\l&#45; _operatorPrecedence()\l&#45; _calcHashcode()\l&#45; _containTree()\l}" alt="" coords="5,463,187,716"/><area shape="rect" id="node6" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node." alt="" coords="113,5,260,317"/><area shape="rect" id="node7" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc..." alt="" coords="733,470,891,709"/><area shape="rect" id="node8" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt..." alt="" coords="915,470,1081,709"/><area shape="rect" id="node9" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb..." alt="" coords="1107,426,1275,753"/><area shape="rect" id="node10" href="class_var_table.html" title="Store the information of all variables and provide funtions for retrieving information of variables..." alt="" coords="1299,514,1428,665"/><area shape="rect" id="node11" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc..." alt="" coords="1453,470,1629,709"/><area shape="rect" id="node12" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt..." alt="" coords="1653,470,1803,709"/><area shape="rect" id="node13" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe..." alt="" coords="1827,426,1989,753"/><area shape="rect" id="node14" href="class_proc_table.html" title="Store the information of all procedures and provide functions for retrieving information of procedure..." alt="" coords="2013,485,2149,694"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -123,6 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab8bea69350b07812ccf15e4d02236ef4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8bea69350b07812ccf15e4d02236ef4"></a>
 <a class="el" href="class_a_s_t.html">AST</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getAST</b> ()</td></tr>
 <tr class="separator:ab8bea69350b07812ccf15e4d02236ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a337090f2cd2dfe5d01061672590da856"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a337090f2cd2dfe5d01061672590da856"></a>
+<a class="el" href="class_c_f_g.html">CFG</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getCFG</b> ()</td></tr>
+<tr class="separator:a337090f2cd2dfe5d01061672590da856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8669c80fd550b2722c71da84874ca6c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a8669c80fd550b2722c71da84874ca6c4">addFollows</a> (STMT stmt1, STMT stmt2)</td></tr>
 <tr class="memdesc:a8669c80fd550b2722c71da84874ca6c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">For <a class="el" href="class_parser.html" title="Implements SIMPLE parser class.">Parser</a> to add relation Follows(stmt1,stmt2) to <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a> table.  <a href="#a8669c80fd550b2722c71da84874ca6c4">More...</a><br/></td></tr>
 <tr class="separator:a8669c80fd550b2722c71da84874ca6c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,6 +163,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6928ee2303002df8468e076381504b6e"><td class="memItemLeft" align="right" valign="top">VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a6928ee2303002df8468e076381504b6e">getAllModifiesSecond</a> ()</td></tr>
 <tr class="memdesc:a6928ee2303002df8468e076381504b6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table.  <a href="#a6928ee2303002df8468e076381504b6e">More...</a><br/></td></tr>
 <tr class="separator:a6928ee2303002df8468e076381504b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb10a0f51cde290b40ce61557d920468"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#acb10a0f51cde290b40ce61557d920468">addModifiesP</a> (PROC_INDEX proc, VAR_INDEX var)</td></tr>
+<tr class="memdesc:acb10a0f51cde290b40ce61557d920468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> table.  <a href="#acb10a0f51cde290b40ce61557d920468">More...</a><br/></td></tr>
+<tr class="separator:acb10a0f51cde290b40ce61557d920468"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623c8a419b9a3f8299a7e7f505746c29"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a623c8a419b9a3f8299a7e7f505746c29">modifiesP</a> (PROC_INDEX_LIST *ps_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memdesc:a623c8a419b9a3f8299a7e7f505746c29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> table.  <a href="#a623c8a419b9a3f8299a7e7f505746c29">More...</a><br/></td></tr>
+<tr class="separator:a623c8a419b9a3f8299a7e7f505746c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e85531f1fc9621e86760d6e6311adde"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a3e85531f1fc9621e86760d6e6311adde">getAllModifiesPFirst</a> ()</td></tr>
+<tr class="memdesc:a3e85531f1fc9621e86760d6e6311adde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> table.  <a href="#a3e85531f1fc9621e86760d6e6311adde">More...</a><br/></td></tr>
+<tr class="separator:a3e85531f1fc9621e86760d6e6311adde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d1eed91fc9ff8b34978505ad2d9eac"><td class="memItemLeft" align="right" valign="top">VAR_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ab1d1eed91fc9ff8b34978505ad2d9eac">getAllModifiesPSecond</a> ()</td></tr>
+<tr class="memdesc:ab1d1eed91fc9ff8b34978505ad2d9eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> table.  <a href="#ab1d1eed91fc9ff8b34978505ad2d9eac">More...</a><br/></td></tr>
+<tr class="separator:ab1d1eed91fc9ff8b34978505ad2d9eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3899818c88ba771728c68ecc45c6fcd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a3899818c88ba771728c68ecc45c6fcd1">addUses</a> (STMT stmt, VAR_INDEX var)</td></tr>
 <tr class="memdesc:a3899818c88ba771728c68ecc45c6fcd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table.  <a href="#a3899818c88ba771728c68ecc45c6fcd1">More...</a><br/></td></tr>
 <tr class="separator:a3899818c88ba771728c68ecc45c6fcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,6 +187,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6544b441bc3609e08476d96dc7e63a0e"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a6544b441bc3609e08476d96dc7e63a0e">getAllUsesSecond</a> ()</td></tr>
 <tr class="memdesc:a6544b441bc3609e08476d96dc7e63a0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table.  <a href="#a6544b441bc3609e08476d96dc7e63a0e">More...</a><br/></td></tr>
 <tr class="separator:a6544b441bc3609e08476d96dc7e63a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d2ba733d653b383095093cc13391e27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a1d2ba733d653b383095093cc13391e27">addUsesP</a> (PROC_INDEX proc, VAR_INDEX var)</td></tr>
+<tr class="memdesc:a1d2ba733d653b383095093cc13391e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a> table.  <a href="#a1d2ba733d653b383095093cc13391e27">More...</a><br/></td></tr>
+<tr class="separator:a1d2ba733d653b383095093cc13391e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a564da27461e46f8bad746b674901ae5a"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a564da27461e46f8bad746b674901ae5a">usesP</a> (PROC_INDEX_LIST *ps_ptr, VAR_INDEX_LIST *vs_ptr, int arg)</td></tr>
+<tr class="memdesc:a564da27461e46f8bad746b674901ae5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a> table.  <a href="#a564da27461e46f8bad746b674901ae5a">More...</a><br/></td></tr>
+<tr class="separator:a564da27461e46f8bad746b674901ae5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f9cb6df2b5a9f728e2fa1668fef1a34"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a2f9cb6df2b5a9f728e2fa1668fef1a34">getAllUsesPFirst</a> ()</td></tr>
+<tr class="memdesc:a2f9cb6df2b5a9f728e2fa1668fef1a34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a> table.  <a href="#a2f9cb6df2b5a9f728e2fa1668fef1a34">More...</a><br/></td></tr>
+<tr class="separator:a2f9cb6df2b5a9f728e2fa1668fef1a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0902a030595a9ea7fad86181e3b461c1"><td class="memItemLeft" align="right" valign="top">STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a0902a030595a9ea7fad86181e3b461c1">getAllUsesPSecond</a> ()</td></tr>
+<tr class="memdesc:a0902a030595a9ea7fad86181e3b461c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a> table.  <a href="#a0902a030595a9ea7fad86181e3b461c1">More...</a><br/></td></tr>
+<tr class="separator:a0902a030595a9ea7fad86181e3b461c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f368c0e6ea009ffe4b9612e1fc3198e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a8f368c0e6ea009ffe4b9612e1fc3198e">addCalls</a> (STMT stmt, PROC_INDEX caller, PROC_INDEX callee)</td></tr>
+<tr class="memdesc:a8f368c0e6ea009ffe4b9612e1fc3198e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> table.  <a href="#a8f368c0e6ea009ffe4b9612e1fc3198e">More...</a><br/></td></tr>
+<tr class="separator:a8f368c0e6ea009ffe4b9612e1fc3198e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af11e2ad504be3667434454570ee98f11"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#af11e2ad504be3667434454570ee98f11">calls</a> (PROC_INDEX_LIST *callers_ptr, PROC_INDEX_LIST *callees_ptr, int arg)</td></tr>
+<tr class="memdesc:af11e2ad504be3667434454570ee98f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> table.  <a href="#af11e2ad504be3667434454570ee98f11">More...</a><br/></td></tr>
+<tr class="separator:af11e2ad504be3667434454570ee98f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cdb64e6aaa57a21ce57834188c2bc8b"><td class="memItemLeft" align="right" valign="top">PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a9cdb64e6aaa57a21ce57834188c2bc8b">getCallee</a> (STMT stmt)</td></tr>
+<tr class="memdesc:a9cdb64e6aaa57a21ce57834188c2bc8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> table.  <a href="#a9cdb64e6aaa57a21ce57834188c2bc8b">More...</a><br/></td></tr>
+<tr class="separator:a9cdb64e6aaa57a21ce57834188c2bc8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4098fec7ddf461d0443f654056dcc94"><td class="memItemLeft" align="right" valign="top">PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ac4098fec7ddf461d0443f654056dcc94">getAllCallers</a> ()</td></tr>
+<tr class="memdesc:ac4098fec7ddf461d0443f654056dcc94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> table.  <a href="#ac4098fec7ddf461d0443f654056dcc94">More...</a><br/></td></tr>
+<tr class="separator:ac4098fec7ddf461d0443f654056dcc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87aa702bb10263d5b7ac9dc6a18bd9d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87aa702bb10263d5b7ac9dc6a18bd9d5"></a>
+PROC_INDEX_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>getAllCallees</b> ()</td></tr>
+<tr class="separator:a87aa702bb10263d5b7ac9dc6a18bd9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b62af6e627d5f5ff6753074a2433af3"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a2b62af6e627d5f5ff6753074a2433af3">addVar</a> (STRING varName)</td></tr>
 <tr class="memdesc:a2b62af6e627d5f5ff6753074a2433af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Var table.  <a href="#a2b62af6e627d5f5ff6753074a2433af3">More...</a><br/></td></tr>
 <tr class="separator:a2b62af6e627d5f5ff6753074a2433af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,9 +229,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1c405dce05559bd727f25f0f4fe5079"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ad1c405dce05559bd727f25f0f4fe5079">getAllVarName</a> ()</td></tr>
 <tr class="memdesc:ad1c405dce05559bd727f25f0f4fe5079"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Var table.  <a href="#ad1c405dce05559bd727f25f0f4fe5079">More...</a><br/></td></tr>
 <tr class="separator:ad1c405dce05559bd727f25f0f4fe5079"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ec5fb1acd81802c744c21b8f43ef364"><td class="memItemLeft" align="right" valign="top">PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a1ec5fb1acd81802c744c21b8f43ef364">addProc</a> (STRING procName)</td></tr>
-<tr class="memdesc:a1ec5fb1acd81802c744c21b8f43ef364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Proc table.  <a href="#a1ec5fb1acd81802c744c21b8f43ef364">More...</a><br/></td></tr>
-<tr class="separator:a1ec5fb1acd81802c744c21b8f43ef364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3e6a6d0d1dcf0a1417349cd2a10a5c7"><td class="memItemLeft" align="right" valign="top">PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ac3e6a6d0d1dcf0a1417349cd2a10a5c7">addProc</a> (STRING procName, STMT, STMT)</td></tr>
+<tr class="memdesc:ac3e6a6d0d1dcf0a1417349cd2a10a5c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Proc table.  <a href="#ac3e6a6d0d1dcf0a1417349cd2a10a5c7">More...</a><br/></td></tr>
+<tr class="separator:ac3e6a6d0d1dcf0a1417349cd2a10a5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25a56c45105d5e0593afebf72b9112f0"><td class="memItemLeft" align="right" valign="top">STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a25a56c45105d5e0593afebf72b9112f0">getProcName</a> (PROC_INDEX ind)</td></tr>
 <tr class="memdesc:a25a56c45105d5e0593afebf72b9112f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to Proc table.  <a href="#a25a56c45105d5e0593afebf72b9112f0">More...</a><br/></td></tr>
 <tr class="separator:a25a56c45105d5e0593afebf72b9112f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,9 +253,21 @@ vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getC
 <tr class="memitem:a013b38d04094fcce85b1104e9e0061ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a013b38d04094fcce85b1104e9e0061ed"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>addAssignmentNode</b> (<a class="el" href="class_a_s_t_node.html">ASTNode</a> *node)</td></tr>
 <tr class="separator:a013b38d04094fcce85b1104e9e0061ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d61d4853aeba776d0b81d748a01e5e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a4d61d4853aeba776d0b81d748a01e5e4">addWhileLoopNode</a> (<a class="el" href="class_a_s_t_node.html">ASTNode</a> *node)</td></tr>
+<tr class="memdesc:a4d61d4853aeba776d0b81d748a01e5e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a while loop node.  <a href="#a4d61d4853aeba776d0b81d748a01e5e4">More...</a><br/></td></tr>
+<tr class="separator:a4d61d4853aeba776d0b81d748a01e5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af37f6f46ba84d6a26781ad3a9e56c4df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#af37f6f46ba84d6a26781ad3a9e56c4df">addIfBranchNode</a> (<a class="el" href="class_a_s_t_node.html">ASTNode</a> *node)</td></tr>
+<tr class="memdesc:af37f6f46ba84d6a26781ad3a9e56c4df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds if branch node.  <a href="#af37f6f46ba84d6a26781ad3a9e56c4df">More...</a><br/></td></tr>
+<tr class="separator:af37f6f46ba84d6a26781ad3a9e56c4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb8200e1b1a101ea9a201b80aa7323a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb8200e1b1a101ea9a201b80aa7323a1"></a>
 vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getAssignmentTable</b> ()</td></tr>
 <tr class="separator:adb8200e1b1a101ea9a201b80aa7323a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4af28fc25bcd04c2f887bd636629e79"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ad4af28fc25bcd04c2f887bd636629e79">getWhileTable</a> ()</td></tr>
+<tr class="memdesc:ad4af28fc25bcd04c2f887bd636629e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets while table.  <a href="#ad4af28fc25bcd04c2f887bd636629e79">More...</a><br/></td></tr>
+<tr class="separator:ad4af28fc25bcd04c2f887bd636629e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bf0fbfa127efae9f32f66d87eddc6b5"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#a8bf0fbfa127efae9f32f66d87eddc6b5">getIfBranchTable</a> ()</td></tr>
+<tr class="memdesc:a8bf0fbfa127efae9f32f66d87eddc6b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets if branch table.  <a href="#a8bf0fbfa127efae9f32f66d87eddc6b5">More...</a><br/></td></tr>
+<tr class="separator:a8bf0fbfa127efae9f32f66d87eddc6b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabb3a080ffa5913e52f518a961c93c26"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="structstmt_detail.html">statement</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#aabb3a080ffa5913e52f518a961c93c26">getPreprocessedProgram</a> ()</td></tr>
 <tr class="memdesc:aabb3a080ffa5913e52f518a961c93c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the table of preprocessed program. Easier for preprocessor to travers.  <a href="#aabb3a080ffa5913e52f518a961c93c26">More...</a><br/></td></tr>
 <tr class="separator:aabb3a080ffa5913e52f518a961c93c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,9 +295,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setPreprocessedProgra
 <tr class="memitem:a79dd75709166f4b5e14a988c1c986c58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79dd75709166f4b5e14a988c1c986c58"></a>
 BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><b>getAllProc</b> (vector&lt; int &gt; *)</td></tr>
 <tr class="separator:a79dd75709166f4b5e14a988c1c986c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8f6b3467a4975dd76d085e665285373"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#ad8f6b3467a4975dd76d085e665285373">pattern</a> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, int)</td></tr>
-<tr class="memdesc:ad8f6b3467a4975dd76d085e665285373"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#ad8f6b3467a4975dd76d085e665285373">More...</a><br/></td></tr>
-<tr class="separator:ad8f6b3467a4975dd76d085e665285373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd80fd592099b748eec3148174a2974c"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#abd80fd592099b748eec3148174a2974c">pattern</a> (vector&lt; int &gt; *, vector&lt; int &gt; *, string, PatternQueryType, int)</td></tr>
+<tr class="memdesc:abd80fd592099b748eec3148174a2974c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#abd80fd592099b748eec3148174a2974c">More...</a><br/></td></tr>
+<tr class="separator:abd80fd592099b748eec3148174a2974c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa38fa8177c8f198b69501573fac2d941"><td class="memItemLeft" align="right" valign="top">BOOLEAN&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_k_b_controller.html#aa38fa8177c8f198b69501573fac2d941">with</a> (STMT_LIST *st1s_ptr, STMT_LIST *st2s_ptr, int arg1, int arg2, int arg)</td></tr>
+<tr class="memdesc:aa38fa8177c8f198b69501573fac2d941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor.  <a href="#aa38fa8177c8f198b69501573fac2d941">More...</a><br/></td></tr>
+<tr class="separator:aa38fa8177c8f198b69501573fac2d941"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cbfa9cc2fe478b223345945adc45f9f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cbfa9cc2fe478b223345945adc45f9f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>completePKB</b> ()</td></tr>
 <tr class="separator:a5cbfa9cc2fe478b223345945adc45f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -252,6 +316,21 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aab08992e94b86081c14dde8a598f07c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab08992e94b86081c14dde8a598f07c5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
 <tr class="separator:aab08992e94b86081c14dde8a598f07c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a159a1553a7ec398a92c4b5601f07691c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a159a1553a7ec398a92c4b5601f07691c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>build_proc_var</b> ()</td></tr>
+<tr class="separator:a159a1553a7ec398a92c4b5601f07691c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6c7fd92f1106255a00baa768df8d76e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6c7fd92f1106255a00baa768df8d76e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>build_proc_call</b> ()</td></tr>
+<tr class="separator:ae6c7fd92f1106255a00baa768df8d76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14268359c39bc27e8e094ecdb07a9084"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14268359c39bc27e8e094ecdb07a9084"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>build_var_call</b> ()</td></tr>
+<tr class="separator:a14268359c39bc27e8e094ecdb07a9084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b563bcc61825d7aeaa490e1dabdd286"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b563bcc61825d7aeaa490e1dabdd286"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>build_call_call</b> ()</td></tr>
+<tr class="separator:a8b563bcc61825d7aeaa490e1dabdd286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a953d52d1757ce447db12d10d6c730bc7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a953d52d1757ce447db12d10d6c730bc7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>build_stmt_const</b> ()</td></tr>
+<tr class="separator:a953d52d1757ce447db12d10d6c730bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -264,9 +343,18 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a34d090366a3e993da258549245700b6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34d090366a3e993da258549245700b6c"></a>
 <a class="el" href="class_modifies.html">Modifies</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_modifies</b></td></tr>
 <tr class="separator:a34d090366a3e993da258549245700b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66ef83310229220655f503ed0454f1fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66ef83310229220655f503ed0454f1fe"></a>
+<a class="el" href="class_modifies_p.html">ModifiesP</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_modifiesP</b></td></tr>
+<tr class="separator:a66ef83310229220655f503ed0454f1fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ac893ba288c1d6708132b314b350f17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ac893ba288c1d6708132b314b350f17"></a>
 <a class="el" href="class_uses.html">Uses</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_uses</b></td></tr>
 <tr class="separator:a3ac893ba288c1d6708132b314b350f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f973e6855d9ec4235f3892962c1e7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9f973e6855d9ec4235f3892962c1e7c"></a>
+<a class="el" href="class_uses_p.html">UsesP</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_usesP</b></td></tr>
+<tr class="separator:ad9f973e6855d9ec4235f3892962c1e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c6824b03c9544a8825c025b974725f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c6824b03c9544a8825c025b974725f5"></a>
+<a class="el" href="class_calls.html">Calls</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_calls</b></td></tr>
+<tr class="separator:a2c6824b03c9544a8825c025b974725f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a2d8b205de069165ced03a049ef99d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a2d8b205de069165ced03a049ef99d6"></a>
 <a class="el" href="class_var_table.html">VarTable</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_varTable</b></td></tr>
 <tr class="separator:a2a2d8b205de069165ced03a049ef99d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -276,6 +364,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aa0a93c9382621f062414532754b5efca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0a93c9382621f062414532754b5efca"></a>
 <a class="el" href="class_a_s_t.html">AST</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_ast</b></td></tr>
 <tr class="separator:aa0a93c9382621f062414532754b5efca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af39318f25755249fb6510995838d2e8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af39318f25755249fb6510995838d2e8f"></a>
+<a class="el" href="class_c_f_g.html">CFG</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_cfg</b></td></tr>
+<tr class="separator:af39318f25755249fb6510995838d2e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4acb06186bc992832e34154be33d425e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4acb06186bc992832e34154be33d425e"></a>
 <a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_astNode</b></td></tr>
 <tr class="separator:a4acb06186bc992832e34154be33d425e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -291,8 +382,64 @@ vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_con
 <tr class="memitem:aa9e8ee573909fec5fc992c7798f3aa46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9e8ee573909fec5fc992c7798f3aa46"></a>
 vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_assignmentTable</b></td></tr>
 <tr class="separator:aa9e8ee573909fec5fc992c7798f3aa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91657f8cee585b74395f2e2cb5876e76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91657f8cee585b74395f2e2cb5876e76"></a>
+vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_whileLoopTable</b></td></tr>
+<tr class="separator:a91657f8cee585b74395f2e2cb5876e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ad8351f42fdd8b76669155bd4581a8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ad8351f42fdd8b76669155bd4581a8b"></a>
+vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>_ifBranchTable</b></td></tr>
+<tr class="separator:a0ad8351f42fdd8b76669155bd4581a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf5607d3ce3fd0f4592bde71d207d1b0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf5607d3ce3fd0f4592bde71d207d1b0"></a>
+<a class="el" href="class_follows.html">Follows</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_proc_var</b></td></tr>
+<tr class="separator:aaf5607d3ce3fd0f4592bde71d207d1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024a950877387db40ba8ef87c34955b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a024a950877387db40ba8ef87c34955b5"></a>
+<a class="el" href="class_modifies.html">Modifies</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_call_call</b></td></tr>
+<tr class="separator:a024a950877387db40ba8ef87c34955b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a480a59e2a9a7ce2719a7d2158873bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a480a59e2a9a7ce2719a7d2158873bd"></a>
+<a class="el" href="class_parent.html">Parent</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_proc_call</b></td></tr>
+<tr class="separator:a0a480a59e2a9a7ce2719a7d2158873bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af775ce7cbbb774e728517fe14d2b7997"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af775ce7cbbb774e728517fe14d2b7997"></a>
+<a class="el" href="class_parent.html">Parent</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_var_call</b></td></tr>
+<tr class="separator:af775ce7cbbb774e728517fe14d2b7997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8568bad42f05ba67bb19d73c8b6f2a2a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8568bad42f05ba67bb19d73c8b6f2a2a"></a>
+<a class="el" href="class_follows.html">Follows</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_stmt_const</b></td></tr>
+<tr class="separator:a8568bad42f05ba67bb19d73c8b6f2a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8f368c0e6ea009ffe4b9612e1fc3198e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addCalls </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>caller</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>callee</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a8669c80fd550b2722c71da84874ca6c4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -322,6 +469,32 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 </div>
 </div>
+<a class="anchor" id="af37f6f46ba84d6a26781ad3a9e56c4df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addIfBranchNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds if branch node. </p>
+<dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013/2/19</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">node</td><td>If non-null, the node. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ae45e870e969ee9d5da02dbafb0d264c3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -348,6 +521,53 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_ae45e870e969ee9d5da02dbafb0d264c3_icgraph.png" border="0" usemap="#class_p_k_b_controller_ae45e870e969ee9d5da02dbafb0d264c3_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_ae45e870e969ee9d5da02dbafb0d264c3_icgraph" id="class_p_k_b_controller_ae45e870e969ee9d5da02dbafb0d264c3_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="235,5,427,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="acb10a0f51cde290b40ce61557d920468"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addModifiesP </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>var</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_acb10a0f51cde290b40ce61557d920468_icgraph.png" border="0" usemap="#class_p_k_b_controller_acb10a0f51cde290b40ce61557d920468_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_acb10a0f51cde290b40ce61557d920468_icgraph" id="class_p_k_b_controller_acb10a0f51cde290b40ce61557d920468_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="245,5,437,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -380,7 +600,7 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 </div>
 </div>
-<a class="anchor" id="a1ec5fb1acd81802c744c21b8f43ef364"></a>
+<a class="anchor" id="ac3e6a6d0d1dcf0a1417349cd2a10a5c7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -388,8 +608,24 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
           <td class="memname">VAR_INDEX PKBController::addProc </td>
           <td>(</td>
           <td class="paramtype">STRING&#160;</td>
-          <td class="paramname"><em>procName</em></td><td>)</td>
+          <td class="paramname"><em>procName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -426,6 +662,53 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a3899818c88ba771728c68ecc45c6fcd1_icgraph.png" border="0" usemap="#class_p_k_b_controller_a3899818c88ba771728c68ecc45c6fcd1_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a3899818c88ba771728c68ecc45c6fcd1_icgraph" id="class_p_k_b_controller_a3899818c88ba771728c68ecc45c6fcd1_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="217,5,391,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a1d2ba733d653b383095093cc13391e27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addUsesP </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>proc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>var</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a1d2ba733d653b383095093cc13391e27_icgraph.png" border="0" usemap="#class_p_k_b_controller_a1d2ba733d653b383095093cc13391e27_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a1d2ba733d653b383095093cc13391e27_icgraph" id="class_p_k_b_controller_a1d2ba733d653b383095093cc13391e27_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="227,5,402,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a2b62af6e627d5f5ff6753074a2433af3"></a>
@@ -444,6 +727,32 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to Var table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4d61d4853aeba776d0b81d748a01e5e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PKBController::addWhileLoopNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_a_s_t_node.html">ASTNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a while loop node. </p>
+<dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013/2/19</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>If non-null, the node. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -468,6 +777,50 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="af11e2ad504be3667434454570ee98f11"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::calls </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>callers_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">PROC_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>callees_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_af11e2ad504be3667434454570ee98f11_icgraph.png" border="0" usemap="#class_p_k_b_controller_af11e2ad504be3667434454570ee98f11_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_af11e2ad504be3667434454570ee98f11_icgraph" id="class_p_k_b_controller_af11e2ad504be3667434454570ee98f11_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="192,5,357,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="405,5,571,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="619,12,784,39"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -500,6 +853,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a2ad81eda5417c9bb5cefe8d0000a142b_icgraph.png" border="0" usemap="#class_p_k_b_controller_a2ad81eda5417c9bb5cefe8d0000a142b_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a2ad81eda5417c9bb5cefe8d0000a142b_icgraph" id="class_p_k_b_controller_a2ad81eda5417c9bb5cefe8d0000a142b_icgraph">
+<area shape="rect" id="node2" href="class_a_s_t.html#a17dd2291ffc6aad76c9c023c1a36fb60" title="Query if AST Contains the specific tree." alt="" coords="297,5,420,32"/><area shape="rect" id="node3" href="class_a_s_t.html#a79e511c7dd486683ec16ed935596c5aa" title="Match while loop." alt="" coords="283,56,435,83"/><area shape="rect" id="node4" href="class_a_s_t.html#a41ccb8870a14fba0866889ca76f4a40f" title="Match if branch." alt="" coords="289,107,428,133"/><area shape="rect" id="node5" href="class_design_extractor.html#ab43568887023f04b5ea405cc7dfbeea8" title="Construct DesignExtractor object containing AST object and PKBController object." alt="" coords="251,157,467,184"/><area shape="rect" id="node6" href="class_parser.html#a167a551127b86054e7382d9d563d869c" title="Constructor of Parser. Developers need to specify an AST object. All the parsing result will directly..." alt="" coords="305,208,412,235"/><area shape="rect" id="node7" href="class_parser.html#a47e4377402ad1398757c68ed2f92f4d8" title="Parse a program, build Abstract Syntax Tree of the program. Parser also finds Parent, Uses, Modifies and Calls relation in the program and add them to respective tables." alt="" coords="309,259,409,285"/><area shape="rect" id="node8" href="class_query_preprocessor.html#a50e8467985e1b2d7fe63f8a874059b91" title="Constructor." alt="" coords="287,310,430,351"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -536,6 +898,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to follows table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a5f88ed6963a8854908686082117d9936_icgraph.png" border="0" usemap="#class_p_k_b_controller_a5f88ed6963a8854908686082117d9936_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a5f88ed6963a8854908686082117d9936_icgraph" id="class_p_k_b_controller_a5f88ed6963a8854908686082117d9936_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="205,5,371,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="419,5,584,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="632,12,797,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a2e425eee23e66745d62b9eb6d4d41dea"></a>
@@ -571,6 +942,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to follows table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a2e425eee23e66745d62b9eb6d4d41dea_icgraph.png" border="0" usemap="#class_p_k_b_controller_a2e425eee23e66745d62b9eb6d4d41dea_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a2e425eee23e66745d62b9eb6d4d41dea_icgraph" id="class_p_k_b_controller_a2e425eee23e66745d62b9eb6d4d41dea_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="229,5,395,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="443,5,608,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="656,12,821,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a3f41b496a8aef3e16b04353c359c65a4"></a>
@@ -589,6 +969,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a3f41b496a8aef3e16b04353c359c65a4_icgraph.png" border="0" usemap="#class_p_k_b_controller_a3f41b496a8aef3e16b04353c359c65a4_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a3f41b496a8aef3e16b04353c359c65a4_icgraph" id="class_p_k_b_controller_a3f41b496a8aef3e16b04353c359c65a4_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="269,5,443,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="491,5,656,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -609,6 +998,42 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a0a9c546aaafc2ba40cdb2143252ec0aa_icgraph.png" border="0" usemap="#class_p_k_b_controller_a0a9c546aaafc2ba40cdb2143252ec0aa_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a0a9c546aaafc2ba40cdb2143252ec0aa_icgraph" id="class_p_k_b_controller_a0a9c546aaafc2ba40cdb2143252ec0aa_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#add9a616e381c362288f89ee0a287f239" title="Complete call configuration." alt="" coords="221,5,397,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="223,71,396,97"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="445,71,611,97"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ac4098fec7ddf461d0443f654056dcc94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST PKBController::getAllCallers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_ac4098fec7ddf461d0443f654056dcc94_icgraph.png" border="0" usemap="#class_p_k_b_controller_ac4098fec7ddf461d0443f654056dcc94_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_ac4098fec7ddf461d0443f654056dcc94_icgraph" id="class_p_k_b_controller_ac4098fec7ddf461d0443f654056dcc94_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="240,5,432,32"/><area shape="rect" id="node3" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="249,56,423,83"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a7e30f188c2015b809e3b79e4eb3932ef"></a>
@@ -627,6 +1052,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a7e30f188c2015b809e3b79e4eb3932ef_icgraph.png" border="0" usemap="#class_p_k_b_controller_a7e30f188c2015b809e3b79e4eb3932ef_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a7e30f188c2015b809e3b79e4eb3932ef_icgraph" id="class_p_k_b_controller_a7e30f188c2015b809e3b79e4eb3932ef_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="251,5,424,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="472,5,637,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -647,6 +1081,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a50723c23dfd18f3c56fed0fcd22adae0_icgraph.png" border="0" usemap="#class_p_k_b_controller_a50723c23dfd18f3c56fed0fcd22adae0_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a50723c23dfd18f3c56fed0fcd22adae0_icgraph" id="class_p_k_b_controller_a50723c23dfd18f3c56fed0fcd22adae0_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="205,5,379,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="427,5,592,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ae349f43fd139e8d53cbbdcd59f813112"></a>
@@ -663,6 +1106,60 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 </div><div class="memdoc">
 
 <p>Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_ae349f43fd139e8d53cbbdcd59f813112_icgraph.png" border="0" usemap="#class_p_k_b_controller_ae349f43fd139e8d53cbbdcd59f813112_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_ae349f43fd139e8d53cbbdcd59f813112_icgraph" id="class_p_k_b_controller_ae349f43fd139e8d53cbbdcd59f813112_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="248,12,440,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3e85531f1fc9621e86760d6e6311adde"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST PKBController::getAllModifiesPFirst </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a3e85531f1fc9621e86760d6e6311adde_icgraph.png" border="0" usemap="#class_p_k_b_controller_a3e85531f1fc9621e86760d6e6311adde_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a3e85531f1fc9621e86760d6e6311adde_icgraph" id="class_p_k_b_controller_a3e85531f1fc9621e86760d6e6311adde_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="248,12,440,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab1d1eed91fc9ff8b34978505ad2d9eac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VAR_INDEX_LIST PKBController::getAllModifiesPSecond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
 </div>
@@ -683,6 +1180,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a6928ee2303002df8468e076381504b6e_icgraph.png" border="0" usemap="#class_p_k_b_controller_a6928ee2303002df8468e076381504b6e_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a6928ee2303002df8468e076381504b6e_icgraph" id="class_p_k_b_controller_a6928ee2303002df8468e076381504b6e_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="248,12,440,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="afdf4ead26e3e4097d0806705f4f684cc"></a>
@@ -701,6 +1207,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to Proc table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_afdf4ead26e3e4097d0806705f4f684cc_icgraph.png" border="0" usemap="#class_p_k_b_controller_afdf4ead26e3e4097d0806705f4f684cc_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_afdf4ead26e3e4097d0806705f4f684cc_icgraph" id="class_p_k_b_controller_afdf4ead26e3e4097d0806705f4f684cc_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="261,5,435,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="483,5,648,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -739,6 +1254,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a49a72cd623a3561d4bb12352d2fa64de_icgraph.png" border="0" usemap="#class_p_k_b_controller_a49a72cd623a3561d4bb12352d2fa64de_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a49a72cd623a3561d4bb12352d2fa64de_icgraph" id="class_p_k_b_controller_a49a72cd623a3561d4bb12352d2fa64de_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="227,5,400,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="448,5,613,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a52ab9de01f4df9ab7d890bcf3fbc9136"></a>
@@ -755,6 +1279,60 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 </div><div class="memdoc">
 
 <p>Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a52ab9de01f4df9ab7d890bcf3fbc9136_icgraph.png" border="0" usemap="#class_p_k_b_controller_a52ab9de01f4df9ab7d890bcf3fbc9136_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a52ab9de01f4df9ab7d890bcf3fbc9136_icgraph" id="class_p_k_b_controller_a52ab9de01f4df9ab7d890bcf3fbc9136_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="230,12,405,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2f9cb6df2b5a9f728e2fa1668fef1a34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST PKBController::getAllUsesPFirst </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a2f9cb6df2b5a9f728e2fa1668fef1a34_icgraph.png" border="0" usemap="#class_p_k_b_controller_a2f9cb6df2b5a9f728e2fa1668fef1a34_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a2f9cb6df2b5a9f728e2fa1668fef1a34_icgraph" id="class_p_k_b_controller_a2f9cb6df2b5a9f728e2fa1668fef1a34_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="230,12,405,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a0902a030595a9ea7fad86181e3b461c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT_LIST PKBController::getAllUsesPSecond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
 </div>
@@ -775,6 +1353,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a6544b441bc3609e08476d96dc7e63a0e_icgraph.png" border="0" usemap="#class_p_k_b_controller_a6544b441bc3609e08476d96dc7e63a0e_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a6544b441bc3609e08476d96dc7e63a0e_icgraph" id="class_p_k_b_controller_a6544b441bc3609e08476d96dc7e63a0e_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="230,12,405,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ab16b995c7865fe6d482619b5e593b42b"></a>
@@ -793,6 +1380,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to Var table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_ab16b995c7865fe6d482619b5e593b42b_icgraph.png" border="0" usemap="#class_p_k_b_controller_ab16b995c7865fe6d482619b5e593b42b_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_ab16b995c7865fe6d482619b5e593b42b_icgraph" id="class_p_k_b_controller_ab16b995c7865fe6d482619b5e593b42b_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="253,5,427,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="475,5,640,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -831,6 +1427,63 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_adb8d2a46ca64352212086f40d8a31986_icgraph.png" border="0" usemap="#class_p_k_b_controller_adb8d2a46ca64352212086f40d8a31986_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_adb8d2a46ca64352212086f40d8a31986_icgraph" id="class_p_k_b_controller_adb8d2a46ca64352212086f40d8a31986_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="232,5,405,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="453,5,619,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a9cdb64e6aaa57a21ce57834188c2bc8b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PROC_INDEX PKBController::getCallee </td>
+          <td>(</td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>stmt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8bf0fbfa127efae9f32f66d87eddc6b5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; * PKBController::getIfBranchTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets if branch table. </p>
+<dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013/2/19</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>null if it fails, else if branch table. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a8bf0fbfa127efae9f32f66d87eddc6b5_icgraph.png" border="0" usemap="#class_p_k_b_controller_a8bf0fbfa127efae9f32f66d87eddc6b5_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a8bf0fbfa127efae9f32f66d87eddc6b5_icgraph" id="class_p_k_b_controller_a8bf0fbfa127efae9f32f66d87eddc6b5_icgraph">
+<area shape="rect" id="node2" href="class_a_s_t.html#a41ccb8870a14fba0866889ca76f4a40f" title="Match if branch." alt="" coords="232,12,371,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="aabb3a080ffa5913e52f518a961c93c26"></a>
@@ -848,6 +1501,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Get the table of preprocessed program. Easier for preprocessor to travers. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_aabb3a080ffa5913e52f518a961c93c26_icgraph.png" border="0" usemap="#class_p_k_b_controller_aabb3a080ffa5913e52f518a961c93c26_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_aabb3a080ffa5913e52f518a961c93c26_icgraph" id="class_p_k_b_controller_aabb3a080ffa5913e52f518a961c93c26_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#ace811652940cd0c9b203466d718da76c" title="Add all program line that is a statement to result list." alt="" coords="285,5,469,32"/><area shape="rect" id="node3" href="class_design_extractor.html#ac726aa0f4d7683e0b516f6375d5cbed2" title="Add all program line that is an assignment to result list." alt="" coords="265,56,490,83"/><area shape="rect" id="node4" href="class_design_extractor.html#a38b674ccd8bb996d7c67984f01c174b8" title="Add all program line that is a while to result list." alt="" coords="283,107,472,133"/><area shape="rect" id="node5" href="class_design_extractor.html#af29dfb20bcfbc7fb188adffd8bfd39c6" title="Add all program line that is an if to result list." alt="" coords="296,157,459,184"/><area shape="rect" id="node6" href="class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431" title="Add all program line that is a call statement to result list." alt="" coords="288,208,467,235"/><area shape="rect" id="node7" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="539,183,731,209"/><area shape="rect" id="node8" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="547,233,722,260"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -867,6 +1529,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to Proc table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a9652a236717ec3621fbd36a28c7c167e_icgraph.png" border="0" usemap="#class_p_k_b_controller_a9652a236717ec3621fbd36a28c7c167e_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a9652a236717ec3621fbd36a28c7c167e_icgraph" id="class_p_k_b_controller_a9652a236717ec3621fbd36a28c7c167e_icgraph">
+<area shape="rect" id="node2" href="class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="243,73,395,114"/><area shape="rect" id="node6" href="class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="443,135,586,177"/><area shape="rect" id="node3" href="class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="443,5,586,46"/><area shape="rect" id="node5" href="class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37" title="get the select clause of the query" alt="" coords="443,70,586,111"/><area shape="rect" id="node4" href="class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="635,70,778,111"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -906,6 +1577,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to Var table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a6d846b8b888fc465e77870838d9e7793_icgraph.png" border="0" usemap="#class_p_k_b_controller_a6d846b8b888fc465e77870838d9e7793_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a6d846b8b888fc465e77870838d9e7793_icgraph" id="class_p_k_b_controller_a6d846b8b888fc465e77870838d9e7793_icgraph">
+<area shape="rect" id="node2" href="class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="235,73,387,114"/><area shape="rect" id="node6" href="class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="435,135,578,177"/><area shape="rect" id="node3" href="class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="435,5,578,46"/><area shape="rect" id="node5" href="class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37" title="get the select clause of the query" alt="" coords="435,70,578,111"/><area shape="rect" id="node4" href="class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="627,70,770,111"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="afc3210a870161b785cdec1eefaf7b896"></a>
@@ -924,6 +1604,35 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to Var table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad4af28fc25bcd04c2f887bd636629e79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; * PKBController::getWhileTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets while table. </p>
+<dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013/2/19</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>null if it fails, else the while table. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_ad4af28fc25bcd04c2f887bd636629e79_icgraph.png" border="0" usemap="#class_p_k_b_controller_ad4af28fc25bcd04c2f887bd636629e79_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_ad4af28fc25bcd04c2f887bd636629e79_icgraph" id="class_p_k_b_controller_ad4af28fc25bcd04c2f887bd636629e79_icgraph">
+<area shape="rect" id="node2" href="class_a_s_t.html#a79e511c7dd486683ec16ed935596c5aa" title="Match while loop." alt="" coords="248,5,400,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -960,6 +1669,59 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt...">Modifies</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a13f5e8929ad62c8efd2632d1b8ed7275_icgraph.png" border="0" usemap="#class_p_k_b_controller_a13f5e8929ad62c8efd2632d1b8ed7275_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a13f5e8929ad62c8efd2632d1b8ed7275_icgraph" id="class_p_k_b_controller_a13f5e8929ad62c8efd2632d1b8ed7275_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="213,5,379,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="427,5,592,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="640,12,805,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a623c8a419b9a3f8299a7e7f505746c29"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::modifiesP </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>ps_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>vs_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a623c8a419b9a3f8299a7e7f505746c29_icgraph.png" border="0" usemap="#class_p_k_b_controller_a623c8a419b9a3f8299a7e7f505746c29_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a623c8a419b9a3f8299a7e7f505746c29_icgraph" id="class_p_k_b_controller_a623c8a419b9a3f8299a7e7f505746c29_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="224,5,416,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="237,57,403,98"/><area shape="rect" id="node4" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="464,57,629,98"/><area shape="rect" id="node5" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="677,64,843,91"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="ae5c9a1ae31abf3e5c9db5e7894a0b204"></a>
@@ -994,6 +1756,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_ae5c9a1ae31abf3e5c9db5e7894a0b204_icgraph.png" border="0" usemap="#class_p_k_b_controller_ae5c9a1ae31abf3e5c9db5e7894a0b204_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_ae5c9a1ae31abf3e5c9db5e7894a0b204_icgraph" id="class_p_k_b_controller_ae5c9a1ae31abf3e5c9db5e7894a0b204_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="203,5,368,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="416,5,581,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="629,12,795,39"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -1030,9 +1801,18 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a2686b34e1df29188f2b392d9bb18be41_icgraph.png" border="0" usemap="#class_p_k_b_controller_a2686b34e1df29188f2b392d9bb18be41_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a2686b34e1df29188f2b392d9bb18be41_icgraph" id="class_p_k_b_controller_a2686b34e1df29188f2b392d9bb18be41_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="227,5,419,32"/><area shape="rect" id="node3" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="235,56,410,83"/><area shape="rect" id="node4" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="240,107,405,149"/><area shape="rect" id="node5" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="467,107,632,149"/><area shape="rect" id="node6" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="680,115,845,141"/></map>
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="ad8f6b3467a4975dd76d085e665285373"></a>
+<a class="anchor" id="abd80fd592099b748eec3148174a2974c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1057,6 +1837,12 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">PatternQueryType&#160;</td>
+          <td class="paramname"><em>queryType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>arg</em>&#160;</td>
         </tr>
@@ -1070,6 +1856,15 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 
 <p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_abd80fd592099b748eec3148174a2974c_icgraph.png" border="0" usemap="#class_p_k_b_controller_abd80fd592099b748eec3148174a2974c_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_abd80fd592099b748eec3148174a2974c_icgraph" id="class_p_k_b_controller_abd80fd592099b748eec3148174a2974c_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="205,5,371,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="419,5,584,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="632,12,797,39"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -1106,6 +1901,115 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <p>Propagate the call to <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> table. </p>
 <dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_adffa1fd32d39d021d4c2f6fb4a2e39d4_icgraph.png" border="0" usemap="#class_p_k_b_controller_adffa1fd32d39d021d4c2f6fb4a2e39d4_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_adffa1fd32d39d021d4c2f6fb4a2e39d4_icgraph" id="class_p_k_b_controller_adffa1fd32d39d021d4c2f6fb4a2e39d4_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="195,5,360,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="408,5,573,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="621,12,787,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a564da27461e46f8bad746b674901ae5a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::usesP </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>ps_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">VAR_INDEX_LIST *&#160;</td>
+          <td class="paramname"><em>vs_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a> table. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_a564da27461e46f8bad746b674901ae5a_icgraph.png" border="0" usemap="#class_p_k_b_controller_a564da27461e46f8bad746b674901ae5a_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_a564da27461e46f8bad746b674901ae5a_icgraph" id="class_p_k_b_controller_a564da27461e46f8bad746b674901ae5a_icgraph">
+<area shape="rect" id="node2" href="class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="203,5,378,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="208,57,373,98"/><area shape="rect" id="node4" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="427,57,592,98"/><area shape="rect" id="node5" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="640,64,805,91"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa38fa8177c8f198b69501573fac2d941"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOLEAN PKBController::with </td>
+          <td>(</td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st1s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT_LIST *&#160;</td>
+          <td class="paramname"><em>st2s_ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Propagate the call to <a class="el" href="class_design.html" title="Handles Pattern, With and getAll* queries and complete Modifies and Uses table.">Design</a> Extractor. </p>
+<dl class="section author"><dt>Author</dt><dd>Yue Cong </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_k_b_controller_aa38fa8177c8f198b69501573fac2d941_icgraph.png" border="0" usemap="#class_p_k_b_controller_aa38fa8177c8f198b69501573fac2d941_icgraph" alt=""/></div>
+<map name="class_p_k_b_controller_aa38fa8177c8f198b69501573fac2d941_icgraph" id="class_p_k_b_controller_aa38fa8177c8f198b69501573fac2d941_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="189,5,355,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="403,5,568,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="616,12,781,39"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
@@ -1118,7 +2022,7 @@ vector&lt; <a class="el" href="class_a_s_t_node.html">ASTNode</a> * &gt; *&#160;
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_p_k_b_controller.html">PKBController</a></li>
-    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
+    <li class="footer">Generated on Tue Feb 19 2013 15:01:04 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -1,0 +1,30 @@
+<map id="QueryPreprocessor::parse" name="QueryPreprocessor::parse">
+<area shape="rect" id="node2" href="$class_query_preprocessor.html#a881270b46049507564a33ba68e04f06b" title="Trim space, &#39;;&#39;, &#39;\n&#39;." alt="" coords="634,170,777,211"/>
+<area shape="rect" id="node4" href="$class_query_preprocessor.html#a8f0fda61f89dc0296ef60ba4ae68f105" title="split the declartion part from query" alt="" coords="198,27,341,69"/>
+<area shape="rect" id="node5" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="198,287,341,329"/>
+<area shape="rect" id="node15" href="$class_query_preprocessor.html#a16884e7c24b6e2879dc8ae1d49b179a3" title="split the result clause part from query" alt="" coords="198,111,341,153"/>
+<area shape="rect" id="node17" href="$class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37" title="get the select clause of the query" alt="" coords="198,919,341,961"/>
+<area shape="rect" id="node20" href="$class_query_preprocessor.html#a8386398ca7580e07b0f2d962e07cd8f1" title="split the declartion part from query" alt="" coords="198,199,341,241"/>
+<area shape="rect" id="node21" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="198,683,341,725"/>
+<area shape="rect" id="node29" href="$class_query_preprocessor.html#a0360a7ff0680055b4568077f2e83fc31" title="QueryPreprocessor::\lsetDependency" alt="" coords="198,985,341,1026"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#a36d78a7b445cc88398c370acb25decff" title="Trim the char from string." alt="" coords="857,177,1021,204"/>
+<area shape="rect" id="node6" href="$class_query_preprocessor.html#a709f0d33cbb680e4f754d2a55964b9be" title="Used for matching the first word of the input string to the given dictionary." alt="" coords="405,229,547,270"/>
+<area shape="rect" id="node7" href="$class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435" title="QueryValidator::isSynonym" alt="" coords="848,665,1029,692"/>
+<area shape="rect" id="node11" href="$class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="400,919,552,961"/>
+<area shape="rect" id="node8" href="$class_query_validator.html#a6fd95a27146673bffb9303f053110971" title="QueryValidator::isIndent" alt="" coords="1078,741,1239,768"/>
+<area shape="rect" id="node9" href="$class_query_validator.html#a4e022d85107d74e26e7ae6254d3fe08a" title="QueryValidator::isLetter" alt="" coords="1289,741,1447,768"/>
+<area shape="rect" id="node10" href="$class_query_validator.html#a02b3aca4fd564ea07d9f0b651c62eef4" title="QueryValidator::isDigit" alt="" coords="1292,811,1444,837"/>
+<area shape="rect" id="node12" href="$class_p_k_b_controller.html#a6d846b8b888fc465e77870838d9e7793" title="Propagate the call to Var table." alt="" coords="615,923,796,949"/>
+<area shape="rect" id="node13" href="$class_p_k_b_controller.html#a9652a236717ec3621fbd36a28c7c167e" title="Propagate the call to Proc table." alt="" coords="611,981,799,1008"/>
+<area shape="rect" id="node14" href="$class_query_validator.html#a76e03097047ff0278c875113b7e97ef4" title="QueryValidator::isInteger" alt="" coords="623,868,788,895"/>
+<area shape="rect" id="node16" href="$class_query_preprocessor.html#aff26bed4c571104d8c3cb6183da0fb78" title="Used for find the next word in the input string that match any given word in the given dictionary..." alt="" coords="405,111,547,153"/>
+<area shape="rect" id="node18" href="$class_query_preprocessor.html#a55bbe743f102ce34bb276b7e2ff4feb0" title="Used for matching the next matching word of the input string from the given dictionary." alt="" coords="405,1102,547,1143"/>
+<area shape="rect" id="node19" href="$class_query_preprocessor.html#af0d531e35590b42c05b3c46cda43b2b0" title="Used to get attribute of type b.a." alt="" coords="401,1037,551,1078"/>
+<area shape="rect" id="node22" href="$class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1" title="QueryValidator::isRef" alt="" coords="403,767,549,793"/>
+<area shape="rect" id="node24" href="$class_query_preprocessor.html#ab2d69d54aad9dd61109a669f3347e87d" title="Used to cut the relation." alt="" coords="405,397,547,438"/>
+<area shape="rect" id="node25" href="$class_query_validator.html#a7511f7d7905ce02d91ac6ccbd76511e4" title="QueryValidator::isVarRef" alt="" coords="623,513,788,540"/>
+<area shape="rect" id="node26" href="$class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e" title="QueryValidator::isStmtRef" alt="" coords="389,665,563,692"/>
+<area shape="rect" id="node27" href="$class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4" title="QueryValidator::isLineRef" alt="" coords="391,716,561,743"/>
+<area shape="rect" id="node28" href="$class_query_validator.html#ae2013e77f9084cf95d2ef3fa9a2e2e3a" title="QueryValidator::isEntRef" alt="" coords="623,564,788,591"/>
+<area shape="rect" id="node23" href="$class_query_validator.html#a209d8bdf73afb7cc47524d0c6ed67d7d" title="QueryValidator::isAttrRef" alt="" coords="622,817,789,844"/>
+</map>

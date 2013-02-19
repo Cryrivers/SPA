@@ -113,48 +113,58 @@ $(document).ready(function(){initNavTree('class_query_evaluator.html','');});
 <div class="title">QueryEvaluator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Evaluates PQL query given a query tree.  
+ <a href="class_query_evaluator.html#details">More...</a></p>
+<div class="dynheader">
+Collaboration diagram for QueryEvaluator:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator__coll__graph.png" border="0" usemap="#_query_evaluator_coll__map" alt="Collaboration graph"/></div>
+<map name="_query_evaluator_coll__map" id="_query_evaluator_coll__map">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html" title="{PKBController\n|&#45; _preprocessedProgram\l&#45; _constTable\l&#45; _assignmentTable\l&#45; _whileLoopTable\l&#45; _ifBranchTable\l|+ ~PKBController()\l+ astGetRoot()\l+ getAST()\l+ getCFG()\l+ addFollows()\l+ follows()\l+ followsStar()\l+ addParent()\l+ parent()\l+ parentStar()\land 51 more...\l+ createInstance()\l&#45; init()\l&#45; PKBController()\l&#45; build_proc_var()\l&#45; build_proc_call()\l&#45; build_var_call()\l&#45; build_call_call()\l&#45; build_stmt_const()\l}" alt="" coords="917,891,1080,1291"/><area shape="rect" id="node5" href="class_design_extractor.html" title="{DesignExtractor\n||+ DesignExtractor()\l+ ~DesignExtractor()\l+ completeCallCFG()\l+ addNext()\l+ addModifies()\l+ addUses()\l+ getAllStmt()\l+ getAllAssignment()\l+ getAllWhile()\l+ getAllIf()\l+ getAllCall()\l+ getAllConstant()\l+ pattern()\l&#45; assignPattern()\l&#45; whilePattern()\l&#45; ifPattern()\l}" alt="" coords="789,1362,933,1659"/><area shape="rect" id="node3" href="class_c_f_g.html" title="{CFG\n|&#45; _CFGBlocks\l|+ CFG()\l+ ~CFG()\l+ addToCFG()\l+ getCFGNodeByStmtNumber()\l}" alt="" coords="325,529,531,650"/><area shape="rect" id="node4" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and..." alt="" coords="555,382,708,797"/><area shape="rect" id="node6" href="class_a_s_t.html" title="{AST\n||+ AST()\l+ ~AST()\l+ getRoot()\l+ buildSubtree()\l+ buildAssignmentSubtree()\l+ containSubtree()\l+ containTree()\l+ matchWhileLoop()\l+ matchIfBranch()\l+ calculateHashcode()\l&#45; _operatorPrecedence()\l&#45; _calcHashcode()\l&#45; _containTree()\l}" alt="" coords="5,463,187,716"/><area shape="rect" id="node7" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node." alt="" coords="113,5,260,317"/><area shape="rect" id="node8" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc..." alt="" coords="733,470,891,709"/><area shape="rect" id="node9" href="class_modifies.html" title="Store all &#39;Modifies&#39; relations for statements (call them &#39;Modifies&#39; relation) in the form (stmt..." alt="" coords="915,470,1081,709"/><area shape="rect" id="node10" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb..." alt="" coords="1107,426,1275,753"/><area shape="rect" id="node11" href="class_var_table.html" title="Store the information of all variables and provide funtions for retrieving information of variables..." alt="" coords="1299,514,1428,665"/><area shape="rect" id="node12" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc..." alt="" coords="1453,470,1629,709"/><area shape="rect" id="node13" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt..." alt="" coords="1653,470,1803,709"/><area shape="rect" id="node14" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe..." alt="" coords="1827,426,1989,753"/><area shape="rect" id="node15" href="class_proc_table.html" title="Store the information of all procedures and provide functions for retrieving information of procedure..." alt="" coords="2013,485,2149,694"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a78c3bd348eaec772e2f7028c5150635d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78c3bd348eaec772e2f7028c5150635d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> (vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt;, vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt;, int, list&lt; string &gt; &amp;)</td></tr>
-<tr class="separator:a78c3bd348eaec772e2f7028c5150635d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab14dd1a3f552424cd80bca384e247cf4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4">evaluate</a> (vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt;, vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt;, vector&lt; <a class="el" href="class_query_target.html">QueryTarget</a> &gt;, list&lt; string &gt; &amp;)</td></tr>
+<tr class="memdesc:ab14dd1a3f552424cd80bca384e247cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Public method to call for evaluating query.  <a href="#ab14dd1a3f552424cd80bca384e247cf4">More...</a><br/></td></tr>
+<tr class="separator:ab14dd1a3f552424cd80bca384e247cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ae3bb3117228391b62fdda806e4d83bda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3bb3117228391b62fdda806e4d83bda"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>optimise</b> ()</td></tr>
-<tr class="separator:ae3bb3117228391b62fdda806e4d83bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af29e9b47ce7f5bfce2feda2da3c658a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af29e9b47ce7f5bfce2feda2da3c658a7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>evaluateQuery</b> ()</td></tr>
+<tr class="memitem:af29e9b47ce7f5bfce2feda2da3c658a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7">evaluateQuery</a> ()</td></tr>
+<tr class="memdesc:af29e9b47ce7f5bfce2feda2da3c658a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates query by querying clauses one at a time.  <a href="#af29e9b47ce7f5bfce2feda2da3c658a7">More...</a><br/></td></tr>
 <tr class="separator:af29e9b47ce7f5bfce2feda2da3c658a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58963816c3e7e93282940aa574aeb5e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58963816c3e7e93282940aa574aeb5e9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>evaluateClause</b> (<a class="el" href="class_query_clause.html">QueryClause</a>)</td></tr>
+<tr class="memitem:a58963816c3e7e93282940aa574aeb5e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9">evaluateClause</a> (<a class="el" href="class_query_clause.html">QueryClause</a>)</td></tr>
+<tr class="memdesc:a58963816c3e7e93282940aa574aeb5e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a given query clause, supports relation type <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a>, ParentT, <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>, FollowsT, ModifiesS, <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a>, UsesS, <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a>, <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a>, CallsT, Pattern, With.  <a href="#a58963816c3e7e93282940aa574aeb5e9">More...</a><br/></td></tr>
 <tr class="separator:a58963816c3e7e93282940aa574aeb5e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3fb0ebf2ce9082b30b95e6a0a98e1e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3fb0ebf2ce9082b30b95e6a0a98e1e3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getVectors</b> (vector&lt; int &gt; *, vector&lt; int &gt; *, int, int, int *)</td></tr>
+<tr class="memitem:ab3fb0ebf2ce9082b30b95e6a0a98e1e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3">getVectors</a> (vector&lt; int &gt; *, vector&lt; int &gt; *, int, int, int *)</td></tr>
+<tr class="memdesc:ab3fb0ebf2ce9082b30b95e6a0a98e1e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses.  <a href="#ab3fb0ebf2ce9082b30b95e6a0a98e1e3">More...</a><br/></td></tr>
 <tr class="separator:ab3fb0ebf2ce9082b30b95e6a0a98e1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addd7802495d0a71956b26daa7269d66f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="addd7802495d0a71956b26daa7269d66f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getOtherVector</b> (vector&lt; int &gt; *, int, int *, vector&lt; int &gt; *)</td></tr>
-<tr class="separator:addd7802495d0a71956b26daa7269d66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a966a12bb48eeb31db47a5f2beb989f82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a966a12bb48eeb31db47a5f2beb989f82"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>getVector</b> (vector&lt; int &gt; *, int, int *)</td></tr>
 <tr class="separator:a966a12bb48eeb31db47a5f2beb989f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4744338de935c601d1cf3066be514e0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4744338de935c601d1cf3066be514e0a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>intersect</b> (vector&lt; int &gt; *, vector&lt; int &gt; *, int, int, int)</td></tr>
+<tr class="memitem:a4744338de935c601d1cf3066be514e0a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#a4744338de935c601d1cf3066be514e0a">intersect</a> (vector&lt; int &gt; *, vector&lt; int &gt; *, int, int, int)</td></tr>
+<tr class="memdesc:a4744338de935c601d1cf3066be514e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper for performing intersection with the dependency map.  <a href="#a4744338de935c601d1cf3066be514e0a">More...</a><br/></td></tr>
 <tr class="separator:a4744338de935c601d1cf3066be514e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8be4ccdb6dae1107118ba0671cde31a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8be4ccdb6dae1107118ba0671cde31a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>intersectDependencyMap</b> (vector&lt; int &gt; *, int)</td></tr>
-<tr class="separator:ad8be4ccdb6dae1107118ba0671cde31a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa5c6c9fdcad6eef30710a399e1a5f4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5c6c9fdcad6eef30710a399e1a5f4d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>cartesianProduct</b> (vector&lt; int &gt; *, vector&lt; int &gt; *)</td></tr>
+<tr class="memitem:a9f4a00b3bac768933118da51d4ea7d79"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#a9f4a00b3bac768933118da51d4ea7d79">intersectDependencyMap</a> (int, int, vector&lt; int &gt; *)</td></tr>
+<tr class="memdesc:a9f4a00b3bac768933118da51d4ea7d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new.  <a href="#a9f4a00b3bac768933118da51d4ea7d79">More...</a><br/></td></tr>
+<tr class="separator:a9f4a00b3bac768933118da51d4ea7d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9fc0930710c911cf762756fdbf0559c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#aa9fc0930710c911cf762756fdbf0559c">intersectDependencyMapPair</a> (int, int, vector&lt; int &gt; *, int, vector&lt; int &gt; *)</td></tr>
+<tr class="memdesc:aa9fc0930710c911cf762756fdbf0559c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables either already exist or are new.  <a href="#aa9fc0930710c911cf762756fdbf0559c">More...</a><br/></td></tr>
+<tr class="separator:aa9fc0930710c911cf762756fdbf0559c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5c6c9fdcad6eef30710a399e1a5f4d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#afa5c6c9fdcad6eef30710a399e1a5f4d">cartesianProduct</a> (vector&lt; int &gt; *, vector&lt; int &gt; *)</td></tr>
+<tr class="memdesc:afa5c6c9fdcad6eef30710a399e1a5f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform cartesian product of 2 vectors.  <a href="#afa5c6c9fdcad6eef30710a399e1a5f4d">More...</a><br/></td></tr>
 <tr class="separator:afa5c6c9fdcad6eef30710a399e1a5f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdc6c04988016e9be07c0648ab34a632"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdc6c04988016e9be07c0648ab34a632"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getResult</b> (list&lt; string &gt; &amp;, int)</td></tr>
-<tr class="separator:afdc6c04988016e9be07c0648ab34a632"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e8a5c113d9d61672d0b0f19f873bab1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e8a5c113d9d61672d0b0f19f873bab1"></a>
-vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>removeDuplicates</b> (vector&lt; int &gt;)</td></tr>
+<tr class="memitem:a0546ce6672687980b0b41cb18807e132"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132">getResult</a> (list&lt; string &gt; &amp;)</td></tr>
+<tr class="memdesc:a0546ce6672687980b0b41cb18807e132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable.  <a href="#a0546ce6672687980b0b41cb18807e132">More...</a><br/></td></tr>
+<tr class="separator:a0546ce6672687980b0b41cb18807e132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e8a5c113d9d61672d0b0f19f873bab1"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#a7e8a5c113d9d61672d0b0f19f873bab1">removeDuplicates</a> (vector&lt; int &gt;)</td></tr>
+<tr class="memdesc:a7e8a5c113d9d61672d0b0f19f873bab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes duplicate elements in vector.  <a href="#a7e8a5c113d9d61672d0b0f19f873bab1">More...</a><br/></td></tr>
 <tr class="separator:a7e8a5c113d9d61672d0b0f19f873bab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2133a0d177173897980b97d188ccd375"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_query_evaluator.html#a2133a0d177173897980b97d188ccd375">getWithType</a> (int)</td></tr>
+<tr class="memdesc:a2133a0d177173897980b97d188ccd375"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch enum (for with) from Query Preprocessor to its <a class="el" href="class_p_k_b.html" title="Interface between PKB and Parser, PKB and Query Processor.">PKB</a> equivalent.  <a href="#a2133a0d177173897980b97d188ccd375">More...</a><br/></td></tr>
+<tr class="separator:a2133a0d177173897980b97d188ccd375"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -167,13 +177,647 @@ vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt;&#16
 <tr class="memitem:a5fe2bab9cee740ffbc368597aa223a4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fe2bab9cee740ffbc368597aa223a4f"></a>
 vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>qVariableList</b></td></tr>
 <tr class="separator:a5fe2bab9cee740ffbc368597aa223a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab997a957ca0c61df77b1aac243b718d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab997a957ca0c61df77b1aac243b718d2"></a>
-map&lt; int, vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>dependencymap</b></td></tr>
-<tr class="separator:ab997a957ca0c61df77b1aac243b718d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a696eea4ade9a3f40c5d2314db6a55a7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a696eea4ade9a3f40c5d2314db6a55a7b"></a>
+vector&lt; <a class="el" href="class_query_target.html">QueryTarget</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>qTargetList</b></td></tr>
+<tr class="separator:a696eea4ade9a3f40c5d2314db6a55a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad5697e04633e49922ac78972b4c3090"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad5697e04633e49922ac78972b4c3090"></a>
+map&lt; int, map&lt; int, vector<br class="typebreak"/>
+&lt; int &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>dependencymap</b></td></tr>
+<tr class="separator:aad5697e04633e49922ac78972b4c3090"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Evaluates PQL query given a query tree. </p>
+<dl class="section author"><dt>Author</dt><dd>Ong Zhen Ming </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="afa5c6c9fdcad6eef30710a399e1a5f4d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::cartesianProduct </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vec1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vec2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform cartesian product of 2 vectors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec1,:</td><td>1st vector; vec2: 2nd vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if both vectors are not empty, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_afa5c6c9fdcad6eef30710a399e1a5f4d_icgraph.png" border="0" usemap="#class_query_evaluator_afa5c6c9fdcad6eef30710a399e1a5f4d_icgraph" alt=""/></div>
+<map name="class_query_evaluator_afa5c6c9fdcad6eef30710a399e1a5f4d_icgraph" id="class_query_evaluator_afa5c6c9fdcad6eef30710a399e1a5f4d_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3" title="Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses..." alt="" coords="224,12,405,39"/><area shape="rect" id="node3" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="453,5,619,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="667,5,832,46"/><area shape="rect" id="node5" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="880,12,1045,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab14dd1a3f552424cd80bca384e247cf4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::evaluate </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_query_clause.html">QueryClause</a> &gt;&#160;</td>
+          <td class="paramname"><em>qcl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_query_variable.html">QueryVariable</a> &gt;&#160;</td>
+          <td class="paramname"><em>qvl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_query_target.html">QueryTarget</a> &gt;&#160;</td>
+          <td class="paramname"><em>qtl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">list&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Public method to call for evaluating query. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">qcl,:</td><td>list of query clause; qvl: list of query variables; qtl: list of query target. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">r,:</td><td>results are stored in this list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if query evaluation is successful, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_ab14dd1a3f552424cd80bca384e247cf4_cgraph.png" border="0" usemap="#class_query_evaluator_ab14dd1a3f552424cd80bca384e247cf4_cgraph" alt=""/></div>
+<map name="class_query_evaluator_ab14dd1a3f552424cd80bca384e247cf4_cgraph" id="class_query_evaluator_ab14dd1a3f552424cd80bca384e247cf4_cgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="223,433,388,474"/><area shape="rect" id="node22" href="class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="219,575,392,601"/><area shape="rect" id="node3" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="465,357,631,398"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3" title="Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses..." alt="" coords="709,35,891,61"/><area shape="rect" id="node7" href="class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204" title="Propagate the call to Parent table." alt="" coords="726,85,874,112"/><area shape="rect" id="node8" href="class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="714,136,886,163"/><area shape="rect" id="node9" href="class_p_k_b_controller.html#a5f88ed6963a8854908686082117d9936" title="Propagate the call to follows table." alt="" coords="725,187,875,213"/><area shape="rect" id="node10" href="class_p_k_b_controller.html#a2e425eee23e66745d62b9eb6d4d41dea" title="Propagate the call to follows table." alt="" coords="713,237,887,264"/><area shape="rect" id="node11" href="class_p_k_b_controller.html#a13f5e8929ad62c8efd2632d1b8ed7275" title="Propagate the call to Modifies table." alt="" coords="720,288,880,315"/><area shape="rect" id="node12" href="class_p_k_b_controller.html#a623c8a419b9a3f8299a7e7f505746c29" title="Propagate the call to ModifiesP table." alt="" coords="715,339,885,365"/><area shape="rect" id="node13" href="class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4" title="Propagate the call to Uses table." alt="" coords="730,389,870,416"/><area shape="rect" id="node14" href="class_p_k_b_controller.html#a564da27461e46f8bad746b674901ae5a" title="Propagate the call to UsesP table." alt="" coords="725,440,875,467"/><area shape="rect" id="node15" href="class_p_k_b_controller.html#af11e2ad504be3667434454570ee98f11" title="Propagate the call to Calls table." alt="" coords="731,491,869,517"/><area shape="rect" id="node16" href="class_p_k_b_controller.html#abd80fd592099b748eec3148174a2974c" title="Propagate the call to Design Extractor." alt="" coords="724,541,876,568"/><area shape="rect" id="node17" href="class_p_k_b_controller.html#aa38fa8177c8f198b69501573fac2d941" title="Propagate the call to Design Extractor." alt="" coords="733,592,867,619"/><area shape="rect" id="node18" href="class_query_evaluator.html#a2133a0d177173897980b97d188ccd375" title="Switch enum (for with) from Query Preprocessor to its PKB equivalent." alt="" coords="705,643,895,669"/><area shape="rect" id="node19" href="class_query_evaluator.html#a4744338de935c601d1cf3066be514e0a" title="Wrapper for performing intersection with the dependency map." alt="" coords="716,693,884,720"/><area shape="rect" id="node5" href="class_query_evaluator.html#a7e8a5c113d9d61672d0b0f19f873bab1" title="Removes duplicate elements in vector." alt="" coords="945,5,1165,32"/><area shape="rect" id="node6" href="class_query_evaluator.html#afa5c6c9fdcad6eef30710a399e1a5f4d" title="Perform cartesian product of 2 vectors." alt="" coords="969,57,1140,98"/><area shape="rect" id="node20" href="class_query_evaluator.html#aa9fc0930710c911cf762756fdbf0559c" title="Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables ..." alt="" coords="971,653,1139,694"/><area shape="rect" id="node21" href="class_query_evaluator.html#a9f4a00b3bac768933118da51d4ea7d79" title="Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new." alt="" coords="971,718,1139,759"/><area shape="rect" id="node23" href="class_p_k_b_controller.html#ab16b995c7865fe6d482619b5e593b42b" title="Propagate the call to Var table." alt="" coords="449,423,647,449"/><area shape="rect" id="node24" href="class_p_k_b_controller.html#afdf4ead26e3e4097d0806705f4f684cc" title="Propagate the call to Proc table." alt="" coords="445,473,651,500"/><area shape="rect" id="node25" href="class_p_k_b_controller.html#a3f41b496a8aef3e16b04353c359c65a4" title="Propagate the call to Design Extractor." alt="" coords="441,524,655,551"/><area shape="rect" id="node26" href="class_p_k_b_controller.html#adb8d2a46ca64352212086f40d8a31986" title="Propagate the call to Design Extractor." alt="" coords="459,575,637,601"/><area shape="rect" id="node27" href="class_p_k_b_controller.html#a50723c23dfd18f3c56fed0fcd22adae0" title="Propagate the call to Design Extractor." alt="" coords="473,625,623,652"/><area shape="rect" id="node28" href="class_p_k_b_controller.html#a0a9c546aaafc2ba40cdb2143252ec0aa" title="Propagate the call to Design Extractor." alt="" coords="465,676,631,703"/><area shape="rect" id="node29" href="class_p_k_b_controller.html#a7e30f188c2015b809e3b79e4eb3932ef" title="Propagate the call to Design Extractor." alt="" coords="449,727,647,753"/><area shape="rect" id="node30" href="class_p_k_b_controller.html#a49a72cd623a3561d4bb12352d2fa64de" title="Propagate the call to Design Extractor." alt="" coords="461,777,635,804"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a58963816c3e7e93282940aa574aeb5e9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::evaluateClause </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_query_clause.html">QueryClause</a>&#160;</td>
+          <td class="paramname"><em>qc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Evaluates a given query clause, supports relation type <a class="el" href="class_parent.html" title="Store all &#39;Parent&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numbe...">Parent</a>, ParentT, <a class="el" href="class_follows.html" title="Store all &#39;Follows&#39; relations in the form (stmt1, stmt2) where &#39;stmt1&#39; and &#39;stmt2&#39; are statement numb...">Follows</a>, FollowsT, ModifiesS, <a class="el" href="class_modifies_p.html" title="Store all &#39;Modifies&#39; relations for procedures (call them &#39;ModifiesP&#39; relation) in the form (proc...">ModifiesP</a>, UsesS, <a class="el" href="class_uses_p.html" title="Store all &#39;Uses&#39; relations for procedures (call them &#39;UsesP&#39; relation) in the form (proc...">UsesP</a>, <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a>, CallsT, Pattern, With. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">qc,:</td><td>query clause. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if evaluation is successful, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a58963816c3e7e93282940aa574aeb5e9_cgraph.png" border="0" usemap="#class_query_evaluator_a58963816c3e7e93282940aa574aeb5e9_cgraph" alt=""/></div>
+<map name="class_query_evaluator_a58963816c3e7e93282940aa574aeb5e9_cgraph" id="class_query_evaluator_a58963816c3e7e93282940aa574aeb5e9_cgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3" title="Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses..." alt="" coords="224,35,405,61"/><area shape="rect" id="node5" href="class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204" title="Propagate the call to Parent table." alt="" coords="241,85,389,112"/><area shape="rect" id="node6" href="class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="229,136,401,163"/><area shape="rect" id="node7" href="class_p_k_b_controller.html#a5f88ed6963a8854908686082117d9936" title="Propagate the call to follows table." alt="" coords="239,187,390,213"/><area shape="rect" id="node8" href="class_p_k_b_controller.html#a2e425eee23e66745d62b9eb6d4d41dea" title="Propagate the call to follows table." alt="" coords="227,237,402,264"/><area shape="rect" id="node9" href="class_p_k_b_controller.html#a13f5e8929ad62c8efd2632d1b8ed7275" title="Propagate the call to Modifies table." alt="" coords="235,288,395,315"/><area shape="rect" id="node10" href="class_p_k_b_controller.html#a623c8a419b9a3f8299a7e7f505746c29" title="Propagate the call to ModifiesP table." alt="" coords="230,339,399,365"/><area shape="rect" id="node11" href="class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4" title="Propagate the call to Uses table." alt="" coords="245,389,385,416"/><area shape="rect" id="node12" href="class_p_k_b_controller.html#a564da27461e46f8bad746b674901ae5a" title="Propagate the call to UsesP table." alt="" coords="240,440,389,467"/><area shape="rect" id="node13" href="class_p_k_b_controller.html#af11e2ad504be3667434454570ee98f11" title="Propagate the call to Calls table." alt="" coords="245,491,384,517"/><area shape="rect" id="node14" href="class_p_k_b_controller.html#abd80fd592099b748eec3148174a2974c" title="Propagate the call to Design Extractor." alt="" coords="239,541,391,568"/><area shape="rect" id="node15" href="class_p_k_b_controller.html#aa38fa8177c8f198b69501573fac2d941" title="Propagate the call to Design Extractor." alt="" coords="247,592,382,619"/><area shape="rect" id="node16" href="class_query_evaluator.html#a2133a0d177173897980b97d188ccd375" title="Switch enum (for with) from Query Preprocessor to its PKB equivalent." alt="" coords="219,643,410,669"/><area shape="rect" id="node17" href="class_query_evaluator.html#a4744338de935c601d1cf3066be514e0a" title="Wrapper for performing intersection with the dependency map." alt="" coords="231,693,399,720"/><area shape="rect" id="node3" href="class_query_evaluator.html#a7e8a5c113d9d61672d0b0f19f873bab1" title="Removes duplicate elements in vector." alt="" coords="459,5,679,32"/><area shape="rect" id="node4" href="class_query_evaluator.html#afa5c6c9fdcad6eef30710a399e1a5f4d" title="Perform cartesian product of 2 vectors." alt="" coords="484,57,655,98"/><area shape="rect" id="node18" href="class_query_evaluator.html#aa9fc0930710c911cf762756fdbf0559c" title="Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables ..." alt="" coords="485,653,653,694"/><area shape="rect" id="node19" href="class_query_evaluator.html#a9f4a00b3bac768933118da51d4ea7d79" title="Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new." alt="" coords="485,718,653,759"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a58963816c3e7e93282940aa574aeb5e9_icgraph.png" border="0" usemap="#class_query_evaluator_a58963816c3e7e93282940aa574aeb5e9_icgraph" alt=""/></div>
+<map name="class_query_evaluator_a58963816c3e7e93282940aa574aeb5e9_icgraph" id="class_query_evaluator_a58963816c3e7e93282940aa574aeb5e9_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="219,5,384,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="432,12,597,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af29e9b47ce7f5bfce2feda2da3c658a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::evaluateQuery </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Evaluates query by querying clauses one at a time. </p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if evaluation is successful, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_af29e9b47ce7f5bfce2feda2da3c658a7_cgraph.png" border="0" usemap="#class_query_evaluator_af29e9b47ce7f5bfce2feda2da3c658a7_cgraph" alt=""/></div>
+<map name="class_query_evaluator_af29e9b47ce7f5bfce2feda2da3c658a7_cgraph" id="class_query_evaluator_af29e9b47ce7f5bfce2feda2da3c658a7_cgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="219,357,384,398"/><area shape="rect" id="node3" href="class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3" title="Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses..." alt="" coords="437,35,619,61"/><area shape="rect" id="node6" href="class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204" title="Propagate the call to Parent table." alt="" coords="454,85,602,112"/><area shape="rect" id="node7" href="class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="442,136,614,163"/><area shape="rect" id="node8" href="class_p_k_b_controller.html#a5f88ed6963a8854908686082117d9936" title="Propagate the call to follows table." alt="" coords="453,187,603,213"/><area shape="rect" id="node9" href="class_p_k_b_controller.html#a2e425eee23e66745d62b9eb6d4d41dea" title="Propagate the call to follows table." alt="" coords="441,237,615,264"/><area shape="rect" id="node10" href="class_p_k_b_controller.html#a13f5e8929ad62c8efd2632d1b8ed7275" title="Propagate the call to Modifies table." alt="" coords="448,288,608,315"/><area shape="rect" id="node11" href="class_p_k_b_controller.html#a623c8a419b9a3f8299a7e7f505746c29" title="Propagate the call to ModifiesP table." alt="" coords="443,339,613,365"/><area shape="rect" id="node12" href="class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4" title="Propagate the call to Uses table." alt="" coords="458,389,598,416"/><area shape="rect" id="node13" href="class_p_k_b_controller.html#a564da27461e46f8bad746b674901ae5a" title="Propagate the call to UsesP table." alt="" coords="453,440,603,467"/><area shape="rect" id="node14" href="class_p_k_b_controller.html#af11e2ad504be3667434454570ee98f11" title="Propagate the call to Calls table." alt="" coords="459,491,597,517"/><area shape="rect" id="node15" href="class_p_k_b_controller.html#abd80fd592099b748eec3148174a2974c" title="Propagate the call to Design Extractor." alt="" coords="452,541,604,568"/><area shape="rect" id="node16" href="class_p_k_b_controller.html#aa38fa8177c8f198b69501573fac2d941" title="Propagate the call to Design Extractor." alt="" coords="461,592,595,619"/><area shape="rect" id="node17" href="class_query_evaluator.html#a2133a0d177173897980b97d188ccd375" title="Switch enum (for with) from Query Preprocessor to its PKB equivalent." alt="" coords="433,643,623,669"/><area shape="rect" id="node18" href="class_query_evaluator.html#a4744338de935c601d1cf3066be514e0a" title="Wrapper for performing intersection with the dependency map." alt="" coords="444,693,612,720"/><area shape="rect" id="node4" href="class_query_evaluator.html#a7e8a5c113d9d61672d0b0f19f873bab1" title="Removes duplicate elements in vector." alt="" coords="673,5,893,32"/><area shape="rect" id="node5" href="class_query_evaluator.html#afa5c6c9fdcad6eef30710a399e1a5f4d" title="Perform cartesian product of 2 vectors." alt="" coords="697,57,868,98"/><area shape="rect" id="node19" href="class_query_evaluator.html#aa9fc0930710c911cf762756fdbf0559c" title="Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables ..." alt="" coords="699,653,867,694"/><area shape="rect" id="node20" href="class_query_evaluator.html#a9f4a00b3bac768933118da51d4ea7d79" title="Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new." alt="" coords="699,718,867,759"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_af29e9b47ce7f5bfce2feda2da3c658a7_icgraph.png" border="0" usemap="#class_query_evaluator_af29e9b47ce7f5bfce2feda2da3c658a7_icgraph" alt=""/></div>
+<map name="class_query_evaluator_af29e9b47ce7f5bfce2feda2da3c658a7_icgraph" id="class_query_evaluator_af29e9b47ce7f5bfce2feda2da3c658a7_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="219,12,384,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a0546ce6672687980b0b41cb18807e132"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::getResult </td>
+          <td>(</td>
+          <td class="paramtype">list&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">result,:</td><td>results are stored in this list, duplicates allowed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if target list contain exactly 1 element, result obtained is not empty, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a0546ce6672687980b0b41cb18807e132_cgraph.png" border="0" usemap="#class_query_evaluator_a0546ce6672687980b0b41cb18807e132_cgraph" alt=""/></div>
+<map name="class_query_evaluator_a0546ce6672687980b0b41cb18807e132_cgraph" id="class_query_evaluator_a0546ce6672687980b0b41cb18807e132_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#ab16b995c7865fe6d482619b5e593b42b" title="Propagate the call to Var table." alt="" coords="235,5,434,32"/><area shape="rect" id="node3" href="class_p_k_b_controller.html#afdf4ead26e3e4097d0806705f4f684cc" title="Propagate the call to Proc table." alt="" coords="231,56,438,83"/><area shape="rect" id="node4" href="class_p_k_b_controller.html#a3f41b496a8aef3e16b04353c359c65a4" title="Propagate the call to Design Extractor." alt="" coords="227,107,442,133"/><area shape="rect" id="node5" href="class_p_k_b_controller.html#adb8d2a46ca64352212086f40d8a31986" title="Propagate the call to Design Extractor." alt="" coords="245,157,424,184"/><area shape="rect" id="node6" href="class_p_k_b_controller.html#a50723c23dfd18f3c56fed0fcd22adae0" title="Propagate the call to Design Extractor." alt="" coords="259,208,410,235"/><area shape="rect" id="node7" href="class_p_k_b_controller.html#a0a9c546aaafc2ba40cdb2143252ec0aa" title="Propagate the call to Design Extractor." alt="" coords="251,259,418,285"/><area shape="rect" id="node8" href="class_p_k_b_controller.html#a7e30f188c2015b809e3b79e4eb3932ef" title="Propagate the call to Design Extractor." alt="" coords="236,309,433,336"/><area shape="rect" id="node9" href="class_p_k_b_controller.html#a49a72cd623a3561d4bb12352d2fa64de" title="Propagate the call to Design Extractor." alt="" coords="248,360,421,387"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a0546ce6672687980b0b41cb18807e132_icgraph.png" border="0" usemap="#class_query_evaluator_a0546ce6672687980b0b41cb18807e132_icgraph" alt=""/></div>
+<map name="class_query_evaluator_a0546ce6672687980b0b41cb18807e132_icgraph" id="class_query_evaluator_a0546ce6672687980b0b41cb18807e132_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="227,5,392,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab3fb0ebf2ce9082b30b95e6a0a98e1e3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::getVectors </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vecA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vecB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">a,:</td><td>1st query variable index; b: 2nd query variable index. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">vecA,:</td><td>vector corresponding to a; vecB: vector corresponding to b; arg: the dependency of a and b. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if vectors could be obtained, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_ab3fb0ebf2ce9082b30b95e6a0a98e1e3_cgraph.png" border="0" usemap="#class_query_evaluator_ab3fb0ebf2ce9082b30b95e6a0a98e1e3_cgraph" alt=""/></div>
+<map name="class_query_evaluator_ab3fb0ebf2ce9082b30b95e6a0a98e1e3_cgraph" id="class_query_evaluator_ab3fb0ebf2ce9082b30b95e6a0a98e1e3_cgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a7e8a5c113d9d61672d0b0f19f873bab1" title="Removes duplicate elements in vector." alt="" coords="235,5,455,32"/><area shape="rect" id="node3" href="class_query_evaluator.html#afa5c6c9fdcad6eef30710a399e1a5f4d" title="Perform cartesian product of 2 vectors." alt="" coords="260,57,431,98"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_ab3fb0ebf2ce9082b30b95e6a0a98e1e3_icgraph.png" border="0" usemap="#class_query_evaluator_ab3fb0ebf2ce9082b30b95e6a0a98e1e3_icgraph" alt=""/></div>
+<map name="class_query_evaluator_ab3fb0ebf2ce9082b30b95e6a0a98e1e3_icgraph" id="class_query_evaluator_ab3fb0ebf2ce9082b30b95e6a0a98e1e3_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="235,5,400,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="448,5,613,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="661,12,827,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2133a0d177173897980b97d188ccd375"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int QueryEvaluator::getWithType </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Switch enum (for with) from Query Preprocessor to its <a class="el" href="class_p_k_b.html" title="Interface between PKB and Parser, PKB and Query Processor.">PKB</a> equivalent. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t,:</td><td>Query Preprocessor enum. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>equivalent <a class="el" href="class_p_k_b.html" title="Interface between PKB and Parser, PKB and Query Processor.">PKB</a> enum. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a2133a0d177173897980b97d188ccd375_icgraph.png" border="0" usemap="#class_query_evaluator_a2133a0d177173897980b97d188ccd375_icgraph" alt=""/></div>
+<map name="class_query_evaluator_a2133a0d177173897980b97d188ccd375_icgraph" id="class_query_evaluator_a2133a0d177173897980b97d188ccd375_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="245,5,411,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="459,5,624,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="672,12,837,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a4744338de935c601d1cf3066be514e0a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::intersect </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vecA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vecB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wrapper for performing intersection with the dependency map. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vecA,:</td><td>vector corresponding to a; vecB: vector corresponding to b; a: 1st query variable index; b: 2nd query variable index; arg: the dependency of a and b. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if intersection is successful, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a4744338de935c601d1cf3066be514e0a_cgraph.png" border="0" usemap="#class_query_evaluator_a4744338de935c601d1cf3066be514e0a_cgraph" alt=""/></div>
+<map name="class_query_evaluator_a4744338de935c601d1cf3066be514e0a_cgraph" id="class_query_evaluator_a4744338de935c601d1cf3066be514e0a_cgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#aa9fc0930710c911cf762756fdbf0559c" title="Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables ..." alt="" coords="221,5,389,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#a9f4a00b3bac768933118da51d4ea7d79" title="Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new." alt="" coords="221,70,389,111"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a4744338de935c601d1cf3066be514e0a_icgraph.png" border="0" usemap="#class_query_evaluator_a4744338de935c601d1cf3066be514e0a_icgraph" alt=""/></div>
+<map name="class_query_evaluator_a4744338de935c601d1cf3066be514e0a_icgraph" id="class_query_evaluator_a4744338de935c601d1cf3066be514e0a_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="221,5,387,46"/><area shape="rect" id="node3" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="435,5,600,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="648,12,813,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f4a00b3bac768933118da51d4ea7d79"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::intersectDependencyMap </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dep,:</td><td>dependency of v; v: query variable index; vec: vector corresponding to v. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if intersection is successful, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a9f4a00b3bac768933118da51d4ea7d79_icgraph.png" border="0" usemap="#class_query_evaluator_a9f4a00b3bac768933118da51d4ea7d79_icgraph" alt=""/></div>
+<map name="class_query_evaluator_a9f4a00b3bac768933118da51d4ea7d79_icgraph" id="class_query_evaluator_a9f4a00b3bac768933118da51d4ea7d79_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a4744338de935c601d1cf3066be514e0a" title="Wrapper for performing intersection with the dependency map." alt="" coords="221,12,389,39"/><area shape="rect" id="node3" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="437,5,603,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="651,5,816,46"/><area shape="rect" id="node5" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="864,12,1029,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa9fc0930710c911cf762756fdbf0559c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QueryEvaluator::intersectDependencyMapPair </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vecA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; int &gt; *&#160;</td>
+          <td class="paramname"><em>vecB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables either already exist or are new. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dep,:</td><td>dependency of a and b; a: 1st query variable index; vecA: vector corresponding to a; b: 2nd query variable index; vecB: vector corresponding to b. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE if intersection is successful, FALSE otherwise </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_aa9fc0930710c911cf762756fdbf0559c_icgraph.png" border="0" usemap="#class_query_evaluator_aa9fc0930710c911cf762756fdbf0559c_icgraph" alt=""/></div>
+<map name="class_query_evaluator_aa9fc0930710c911cf762756fdbf0559c_icgraph" id="class_query_evaluator_aa9fc0930710c911cf762756fdbf0559c_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#a4744338de935c601d1cf3066be514e0a" title="Wrapper for performing intersection with the dependency map." alt="" coords="221,12,389,39"/><area shape="rect" id="node3" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="437,5,603,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="651,5,816,46"/><area shape="rect" id="node5" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="864,12,1029,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7e8a5c113d9d61672d0b0f19f873bab1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; QueryEvaluator::removeDuplicates </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; int &gt;&#160;</td>
+          <td class="paramname"><em>vec</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes duplicate elements in vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vec,:</td><td>vector to remove duplicates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector that does not contain duplicate. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_query_evaluator_a7e8a5c113d9d61672d0b0f19f873bab1_icgraph.png" border="0" usemap="#class_query_evaluator_a7e8a5c113d9d61672d0b0f19f873bab1_icgraph" alt=""/></div>
+<map name="class_query_evaluator_a7e8a5c113d9d61672d0b0f19f873bab1_icgraph" id="class_query_evaluator_a7e8a5c113d9d61672d0b0f19f873bab1_icgraph">
+<area shape="rect" id="node2" href="class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3" title="Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses..." alt="" coords="275,12,456,39"/><area shape="rect" id="node3" href="class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="504,5,669,46"/><area shape="rect" id="node4" href="class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="717,5,883,46"/><area shape="rect" id="node5" href="class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="931,12,1096,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_query_evaluator_8h_source.html">QueryEvaluator.h</a></li>
-<li>SPA/SPA/QueryEvaluator.cpp</li>
+<li>SPA/SPA/<a class="el" href="_query_evaluator_8cpp.html">QueryEvaluator.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -181,7 +825,7 @@ map&lt; int, vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign=
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_query_evaluator.html">QueryEvaluator</a></li>
-    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
+    <li class="footer">Generated on Tue Feb 19 2013 15:01:05 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

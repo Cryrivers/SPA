@@ -1,0 +1,5 @@
+<map id="PKBController::getAllCall" name="PKBController::getAllCall">
+<area shape="rect" id="node2" href="$class_design_extractor.html#add9a616e381c362288f89ee0a287f239" title="Complete call configuration." alt="" coords="221,5,397,46"/>
+<area shape="rect" id="node3" href="$class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="223,71,396,97"/>
+<area shape="rect" id="node4" href="$class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="445,71,611,97"/>
+</map>

@@ -117,6 +117,22 @@ $(document).ready(function(){initNavTree('_query_data_type_8h.html','');});
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
 <code>#include &lt;string&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
+<code>#include &quot;stdafx.h&quot;</code><br/>
+<code>#include &quot;SPAType.h&quot;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for QueryDataType.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="_query_data_type_8h__incl.png" border="0" usemap="#_s_p_a_2_s_p_a_2_query_data_type_8h" alt=""/></div>
+<map name="_s_p_a_2_s_p_a_2_query_data_type_8h" id="_s_p_a_2_s_p_a_2_query_data_type_8h">
+<area shape="rect" id="node5" href="stdafx_8h_source.html" title="stdafx.h" alt="" coords="333,80,400,107"/><area shape="rect" id="node10" href="_s_p_a_type_8h_source.html" title="SPAType.h" alt="" coords="152,80,240,107"/><area shape="rect" id="node6" href="targetver_8h_source.html" title="targetver.h" alt="" coords="248,155,331,181"/></map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="_query_data_type_8h__dep__incl.png" border="0" usemap="#_s_p_a_2_s_p_a_2_query_data_type_8hdep" alt=""/></div>
+<map name="_s_p_a_2_s_p_a_2_query_data_type_8hdep" id="_s_p_a_2_s_p_a_2_query_data_type_8hdep">
+<area shape="rect" id="node2" href="_query_validator_8h.html" title="Header file for query validator." alt="" coords="353,80,535,107"/><area shape="rect" id="node3" href="_query_pre_processor_8h.html" title="Header file for query preprocessor." alt="" coords="226,155,435,181"/><area shape="rect" id="node8" href="_query_validator_8cpp.html" title="Query validator." alt="" coords="460,155,655,181"/><area shape="rect" id="node4" href="_query_evaluator_8h_source.html" title="SPA/SPA/QueryEvaluator.h" alt="" coords="13,229,195,256"/><area shape="rect" id="node7" href="_query_pre_processor_8cpp.html" title="Query Preprocessor." alt="" coords="219,229,441,256"/><area shape="rect" id="node6" href="_query_processor_8h_source.html" title="SPA/SPA/QueryProcessor.h" alt="" coords="305,304,495,331"/><area shape="rect" id="node5" href="_query_evaluator_8cpp.html" title="SPA/SPA/QueryEvaluator.cpp" alt="" coords="5,304,203,331"/></map>
+</div>
 </div>
 <p><a href="_query_data_type_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -157,35 +173,36 @@ Enumerations</h2></td></tr>
 <br/>
 &#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a05879eb97445c2bb43bdecc9ee10edad">KT_KNOWN_VARIABLE</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a7e32efbefe1c20a7574d5775324a4f92">KT_KNOWN_PROCEDURE</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa58dc25a3c38c2dd0445d4c92008d1d5">KT_KNOWN_CONSTANT</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa29d06f2432c059eafa395d594b12ec1">KT_CONSTANT_INTEGER</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad414d4bd9101b05bacf0b53d4d550b44">KT_CONSTANT_STRING</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a4db56e7dd69be36ebcf7b4d28f841f45">AT_STMT_NUM</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad414d4bd9101b05bacf0b53d4d550b44">KT_CONSTANT_STRING</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a4db56e7dd69be36ebcf7b4d28f841f45">AT_STMT_NUM</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a0c4e168004697db31ac9f0d25be5e276">AT_VAR_NAME</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab75a3c50619b937e216da86a9539ce8a">AT_PROC_NAME</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a913edc19fb26b89879089ba831005d21">AT_CALL_PROC_NAME</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7add02b5497a9e461c095f0126d0fb2e9a">AT_VALUE</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a913edc19fb26b89879089ba831005d21">AT_CALL_PROC_NAME</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7add02b5497a9e461c095f0126d0fb2e9a">AT_VALUE</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a966145c645dfce66621bd4b56a4ce444">AT_PROCTABLEINDEX</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aedc1afeeed32a1c449d8d1aeed30126f">RT_MODIFIESP</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a013135b286b2bcf478ec4c035654bd42">RT_MODIFIESS</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2fdaa55697ba88d6fa30ebbc33c51ad1">RT_USESP</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a013135b286b2bcf478ec4c035654bd42">RT_MODIFIESS</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2fdaa55697ba88d6fa30ebbc33c51ad1">RT_USESP</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a767a54dcc166e347b2eab51ffbcb5543">RT_USESS</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a42d3c832dc584e126a67d35c6ad97e7d">RT_CALLS</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab47313cd2ce5cab9fdcd1cc5f2b6aad4">RT_CALLST</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad76cd9f3e3d3f1108d4c5dc3e7ca4db2">RT_PARENT</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab47313cd2ce5cab9fdcd1cc5f2b6aad4">RT_CALLST</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad76cd9f3e3d3f1108d4c5dc3e7ca4db2">RT_PARENT</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8063b8a270d703182bf37025291fae4e">RT_PARENTT</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa083a1f5dfcd6e73196aa4f12b58c38d">RT_FOLLOWS</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7af42f84a236b358f4488523806ad2cf45">RT_FOLLOWST</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8503b5b1e737fd892d2854ad7155cac6">RT_NEXT</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7af42f84a236b358f4488523806ad2cf45">RT_FOLLOWST</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8503b5b1e737fd892d2854ad7155cac6">RT_NEXT</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7abe4064400717a03457ed23c0817c84b7">RT_NEXTT</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8e006da57f312363ec95a614dda2c7be">RT_AFFECTS</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ac7002cc4a62f7fe396cee93cc52663e5">RT_AFFECTST</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a3bbd874e3dbeca11d51437f1685c5273">CT_PATTERN</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ac7002cc4a62f7fe396cee93cc52663e5">RT_AFFECTST</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a3bbd874e3dbeca11d51437f1685c5273">CT_PATTERN</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a467246de9c0d4187f128a79f2a54b41e">CT_WITH</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2fd6f336d08340583bd620a7f5694c90">ERROR</a>
 <br/>
@@ -277,6 +294,9 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7a7e32efbefe1c20a7574d5775324a4f92"></a>KT_KNOWN_PROCEDURE</em>&nbsp;</td><td class="fielddoc">
 <p>used in relation of form "INDENT" </p>
 </td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7aa58dc25a3c38c2dd0445d4c92008d1d5"></a>KT_KNOWN_CONSTANT</em>&nbsp;</td><td class="fielddoc">
+<p>constant c.vlaue=3 </p>
+</td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7aa29d06f2432c059eafa395d594b12ec1"></a>KT_CONSTANT_INTEGER</em>&nbsp;</td><td class="fielddoc">
 <p>integer for with and especially for calls </p>
 </td></tr>
@@ -314,7 +334,7 @@ Enumerations</h2></td></tr>
 <p>Relation: <a class="el" href="class_uses.html" title="Store all &#39;Uses&#39; relations for statements (call them &#39;Uses&#39; relation) in the form (stmt...">Uses</a> (stmt, variable) </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7a42d3c832dc584e126a67d35c6ad97e7d"></a>RT_CALLS</em>&nbsp;</td><td class="fielddoc">
-<p>Relation: Calls (procedure 1, procedure 2) </p>
+<p>Relation: <a class="el" href="class_calls.html" title="Store all &#39;Calls&#39; relations in the form (stmt, caller, callee) where &#39;stmt&#39; is a statement number and...">Calls</a> (procedure 1, procedure 2) </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7ab47313cd2ce5cab9fdcd1cc5f2b6aad4"></a>RT_CALLST</em>&nbsp;</td><td class="fielddoc">
 <p>Relation: Calls* (procedure 1, procedure 2) </p>
@@ -332,7 +352,7 @@ Enumerations</h2></td></tr>
 <p>Relation: Follows* (stmt 1, stmt 2) </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7a8503b5b1e737fd892d2854ad7155cac6"></a>RT_NEXT</em>&nbsp;</td><td class="fielddoc">
-<p>Relation: Next (prog_line 1, prog_line 2) </p>
+<p>Relation: <a class="el" href="class_next.html" title="Store all &#39;Next&#39; relations in the form (stmt1, stmt2) where both &#39;stmt1&#39; and &#39;stmt2&#39; are statement nu...">Next</a> (prog_line 1, prog_line 2) </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7abe4064400717a03457ed23c0817c84b7"></a>RT_NEXTT</em>&nbsp;</td><td class="fielddoc">
 <p>Relation: Next* (prog_line 1, prog_line 2) </p>
@@ -362,7 +382,7 @@ Enumerations</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d33bcfb0cd6530259be5990e622e7b2b.html">SPA</a></li><li class="navelem"><a class="el" href="dir_5fc8ab4af506cd4fa559bebce489ceea.html">SPA</a></li><li class="navelem"><a class="el" href="_query_data_type_8h.html">QueryDataType.h</a></li>
-    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
+    <li class="footer">Generated on Tue Feb 19 2013 15:01:03 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

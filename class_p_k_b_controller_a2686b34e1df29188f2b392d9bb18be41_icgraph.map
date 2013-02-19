@@ -1,0 +1,7 @@
+<map id="PKBController::parentStar" name="PKBController::parentStar">
+<area shape="rect" id="node2" href="$class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="227,5,419,32"/>
+<area shape="rect" id="node3" href="$class_design_extractor.html#a28bff702b2741582aa75bc88b87c302a" title="Complete Uses table Combine parent table and previous uses table(only for assignment)" alt="" coords="235,56,410,83"/>
+<area shape="rect" id="node4" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="240,107,405,149"/>
+<area shape="rect" id="node5" href="$class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="467,107,632,149"/>
+<area shape="rect" id="node6" href="$class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="680,115,845,141"/>
+</map>

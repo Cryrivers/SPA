@@ -1,0 +1,4 @@
+<map id="PKBController::getAllProcName" name="PKBController::getAllProcName">
+<area shape="rect" id="node2" href="$class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="261,5,435,32"/>
+<area shape="rect" id="node3" href="$class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="483,5,648,32"/>
+</map>

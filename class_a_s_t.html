@@ -113,6 +113,13 @@ $(document).ready(function(){initNavTree('class_a_s_t.html','');});
 <div class="title">AST Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for AST:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_a_s_t__coll__graph.png" border="0" usemap="#_a_s_t_coll__map" alt="Collaboration graph"/></div>
+<map name="_a_s_t_coll__map" id="_a_s_t_coll__map">
+<area shape="rect" id="node2" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node." alt="" coords="23,5,169,317"/></map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -131,6 +138,12 @@ vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>cont
 <tr class="memitem:a17dd2291ffc6aad76c9c023c1a36fb60"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_t.html#a17dd2291ffc6aad76c9c023c1a36fb60">containTree</a> (<a class="el" href="class_a_s_t_node.html">ASTNode</a> *tree)</td></tr>
 <tr class="memdesc:a17dd2291ffc6aad76c9c023c1a36fb60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query if <a class="el" href="class_a_s_t.html">AST</a> Contains the specific tree.  <a href="#a17dd2291ffc6aad76c9c023c1a36fb60">More...</a><br/></td></tr>
 <tr class="separator:a17dd2291ffc6aad76c9c023c1a36fb60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79e511c7dd486683ec16ed935596c5aa"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_t.html#a79e511c7dd486683ec16ed935596c5aa">matchWhileLoop</a> (VAR_INDEX ind)</td></tr>
+<tr class="memdesc:a79e511c7dd486683ec16ed935596c5aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Match while loop.  <a href="#a79e511c7dd486683ec16ed935596c5aa">More...</a><br/></td></tr>
+<tr class="separator:a79e511c7dd486683ec16ed935596c5aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ccb8870a14fba0866889ca76f4a40f"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_t.html#a41ccb8870a14fba0866889ca76f4a40f">matchIfBranch</a> (VAR_INDEX ind)</td></tr>
+<tr class="memdesc:a41ccb8870a14fba0866889ca76f4a40f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Match if branch.  <a href="#a41ccb8870a14fba0866889ca76f4a40f">More...</a><br/></td></tr>
+<tr class="separator:a41ccb8870a14fba0866889ca76f4a40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaebedffee7d5ee9c043fc1c31ec6c0d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_s_t.html#aaebedffee7d5ee9c043fc1c31ec6c0d7">calculateHashcode</a> ()</td></tr>
 <tr class="memdesc:aaebedffee7d5ee9c043fc1c31ec6c0d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cacalculates every <a class="el" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node.">ASTNode</a>'s Hashcode in this <a class="el" href="class_a_s_t.html">AST</a>.  <a href="#aaebedffee7d5ee9c043fc1c31ec6c0d7">More...</a><br/></td></tr>
 <tr class="separator:aaebedffee7d5ee9c043fc1c31ec6c0d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -198,6 +211,15 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>vector of integer containing the statement numbers of the statments that contains the specific tree. </dd></dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_a_s_t_a17dd2291ffc6aad76c9c023c1a36fb60_cgraph.png" border="0" usemap="#class_a_s_t_a17dd2291ffc6aad76c9c023c1a36fb60_cgraph" alt=""/></div>
+<map name="class_a_s_t_a17dd2291ffc6aad76c9c023c1a36fb60_cgraph" id="class_a_s_t_a17dd2291ffc6aad76c9c023c1a36fb60_cgraph">
+<area shape="rect" id="node2" href="class_a_s_t_node.html#ac132be149375fbdc3e87b522ad4301f7" title="Gets the first child of this ASTNode." alt="" coords="199,5,350,32"/><area shape="rect" id="node3" href="class_a_s_t_node.html#a2a6f237501e9a44a1eaf50695446e3d9" title="Gets this ASTNode&#39;s next sibling." alt="" coords="203,56,346,83"/><area shape="rect" id="node4" href="class_p_k_b_controller.html#a2ad81eda5417c9bb5cefe8d0000a142b" title="Create only once the PKBController object. If PKBController object exists, return the object..." alt="" coords="176,107,373,133"/><area shape="rect" id="node5" href="class_a_s_t_node.html#a64a02c13cd3175e600aa8e055f05178e" title="Calculates the Hashcode for this object. Hashcode is a string containing all details of a node..." alt="" coords="194,157,355,184"/><area shape="rect" id="node6" href="class_a_s_t_node.html#af847a76978610e128f6d2cec903f5cdf" title="Gets the type of current ASTNode." alt="" coords="194,208,355,235"/><area shape="rect" id="node7" href="class_a_s_t_node.html#ac553a005168caf9703e05a181df61529" title="Gets node value." alt="" coords="191,259,358,285"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="acc1a0efce9b143a98fc3b9f7d6caeac1"></a>
@@ -218,6 +240,87 @@ Private Attributes</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2013/1/29</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>null if it fails, else the root <a class="el" href="class_a_s_t_node.html" title="Implements the basic element of AST which is AST Node.">ASTNode</a> object. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_a_s_t_acc1a0efce9b143a98fc3b9f7d6caeac1_icgraph.png" border="0" usemap="#class_a_s_t_acc1a0efce9b143a98fc3b9f7d6caeac1_icgraph" alt=""/></div>
+<map name="class_a_s_t_acc1a0efce9b143a98fc3b9f7d6caeac1_icgraph" id="class_a_s_t_acc1a0efce9b143a98fc3b9f7d6caeac1_icgraph">
+<area shape="rect" id="node2" href="class_parser.html#a167a551127b86054e7382d9d563d869c" title="Constructor of Parser. Developers need to specify an AST object. All the parsing result will directly..." alt="" coords="155,5,261,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a41ccb8870a14fba0866889ca76f4a40f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; * AST::matchIfBranch </td>
+          <td>(</td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>ind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Match if branch. </p>
+<dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013/2/19</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ind</td><td>The ind.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>null if it fails, else. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_a_s_t_a41ccb8870a14fba0866889ca76f4a40f_cgraph.png" border="0" usemap="#class_a_s_t_a41ccb8870a14fba0866889ca76f4a40f_cgraph" alt=""/></div>
+<map name="class_a_s_t_a41ccb8870a14fba0866889ca76f4a40f_cgraph" id="class_a_s_t_a41ccb8870a14fba0866889ca76f4a40f_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#a2ad81eda5417c9bb5cefe8d0000a142b" title="Create only once the PKBController object. If PKBController object exists, return the object..." alt="" coords="192,5,389,32"/><area shape="rect" id="node3" href="class_p_k_b_controller.html#a8bf0fbfa127efae9f32f66d87eddc6b5" title="Gets if branch table." alt="" coords="202,57,379,98"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a79e511c7dd486683ec16ed935596c5aa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; int &gt; * AST::matchWhileLoop </td>
+          <td>(</td>
+          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramname"><em>ind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Match while loop. </p>
+<dl class="section author"><dt>Author</dt><dd>Wang Zhongliang </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2013/2/19</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ind</td><td>The ind.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>null if it fails, else. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_a_s_t_a79e511c7dd486683ec16ed935596c5aa_cgraph.png" border="0" usemap="#class_a_s_t_a79e511c7dd486683ec16ed935596c5aa_cgraph" alt=""/></div>
+<map name="class_a_s_t_a79e511c7dd486683ec16ed935596c5aa_cgraph" id="class_a_s_t_a79e511c7dd486683ec16ed935596c5aa_cgraph">
+<area shape="rect" id="node2" href="class_p_k_b_controller.html#a2ad81eda5417c9bb5cefe8d0000a142b" title="Create only once the PKBController object. If PKBController object exists, return the object..." alt="" coords="205,5,403,32"/><area shape="rect" id="node3" href="class_p_k_b_controller.html#ad4af28fc25bcd04c2f887bd636629e79" title="Gets while table." alt="" coords="207,56,401,83"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
@@ -230,7 +333,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_a_s_t.html">AST</a></li>
-    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
+    <li class="footer">Generated on Tue Feb 19 2013 15:01:03 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

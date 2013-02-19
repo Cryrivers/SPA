@@ -1,0 +1,4 @@
+<map id="QueryPreprocessor::extractRelation" name="QueryPreprocessor::extractRelation">
+<area shape="rect" id="node2" href="$class_query_preprocessor.html#a881270b46049507564a33ba68e04f06b" title="Trim space, &#39;;&#39;, &#39;\n&#39;." alt="" coords="198,5,341,46"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#a36d78a7b445cc88398c370acb25decff" title="Trim the char from string." alt="" coords="390,12,554,39"/>
+</map>

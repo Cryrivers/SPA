@@ -1,0 +1,21 @@
+<map id="QueryEvaluator::evaluateQuery" name="QueryEvaluator::evaluateQuery">
+<area shape="rect" id="node2" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="219,357,384,398"/>
+<area shape="rect" id="node3" href="$class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3" title="Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses..." alt="" coords="437,35,619,61"/>
+<area shape="rect" id="node6" href="$class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204" title="Propagate the call to Parent table." alt="" coords="454,85,602,112"/>
+<area shape="rect" id="node7" href="$class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="442,136,614,163"/>
+<area shape="rect" id="node8" href="$class_p_k_b_controller.html#a5f88ed6963a8854908686082117d9936" title="Propagate the call to follows table." alt="" coords="453,187,603,213"/>
+<area shape="rect" id="node9" href="$class_p_k_b_controller.html#a2e425eee23e66745d62b9eb6d4d41dea" title="Propagate the call to follows table." alt="" coords="441,237,615,264"/>
+<area shape="rect" id="node10" href="$class_p_k_b_controller.html#a13f5e8929ad62c8efd2632d1b8ed7275" title="Propagate the call to Modifies table." alt="" coords="448,288,608,315"/>
+<area shape="rect" id="node11" href="$class_p_k_b_controller.html#a623c8a419b9a3f8299a7e7f505746c29" title="Propagate the call to ModifiesP table." alt="" coords="443,339,613,365"/>
+<area shape="rect" id="node12" href="$class_p_k_b_controller.html#adffa1fd32d39d021d4c2f6fb4a2e39d4" title="Propagate the call to Uses table." alt="" coords="458,389,598,416"/>
+<area shape="rect" id="node13" href="$class_p_k_b_controller.html#a564da27461e46f8bad746b674901ae5a" title="Propagate the call to UsesP table." alt="" coords="453,440,603,467"/>
+<area shape="rect" id="node14" href="$class_p_k_b_controller.html#af11e2ad504be3667434454570ee98f11" title="Propagate the call to Calls table." alt="" coords="459,491,597,517"/>
+<area shape="rect" id="node15" href="$class_p_k_b_controller.html#abd80fd592099b748eec3148174a2974c" title="Propagate the call to Design Extractor." alt="" coords="452,541,604,568"/>
+<area shape="rect" id="node16" href="$class_p_k_b_controller.html#aa38fa8177c8f198b69501573fac2d941" title="Propagate the call to Design Extractor." alt="" coords="461,592,595,619"/>
+<area shape="rect" id="node17" href="$class_query_evaluator.html#a2133a0d177173897980b97d188ccd375" title="Switch enum (for with) from Query Preprocessor to its PKB equivalent." alt="" coords="433,643,623,669"/>
+<area shape="rect" id="node18" href="$class_query_evaluator.html#a4744338de935c601d1cf3066be514e0a" title="Wrapper for performing intersection with the dependency map." alt="" coords="444,693,612,720"/>
+<area shape="rect" id="node4" href="$class_query_evaluator.html#a7e8a5c113d9d61672d0b0f19f873bab1" title="Removes duplicate elements in vector." alt="" coords="673,5,893,32"/>
+<area shape="rect" id="node5" href="$class_query_evaluator.html#afa5c6c9fdcad6eef30710a399e1a5f4d" title="Perform cartesian product of 2 vectors." alt="" coords="697,57,868,98"/>
+<area shape="rect" id="node19" href="$class_query_evaluator.html#aa9fc0930710c911cf762756fdbf0559c" title="Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables ..." alt="" coords="699,653,867,694"/>
+<area shape="rect" id="node20" href="$class_query_evaluator.html#a9f4a00b3bac768933118da51d4ea7d79" title="Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new." alt="" coords="699,718,867,759"/>
+</map>

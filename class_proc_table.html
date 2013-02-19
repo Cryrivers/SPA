@@ -113,37 +113,59 @@ $(document).ready(function(){initNavTree('class_proc_table.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Store the information of all procedures and provide funtions for retrieving information of procedures.  
+<p>Store the information of all procedures and provide functions for retrieving information of procedures.  
  <a href="class_proc_table.html#details">More...</a></p>
+<div class="dynheader">
+Collaboration diagram for ProcTable:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_proc_table__coll__graph.png" border="0" usemap="#_proc_table_coll__map" alt="Collaboration graph"/></div>
+<map name="_proc_table_coll__map" id="_proc_table_coll__map">
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a74c237ef109380f8f39e1a88b61a0c6d"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#a74c237ef109380f8f39e1a88b61a0c6d">addProc</a> (STRING procName)</td></tr>
-<tr class="memdesc:a74c237ef109380f8f39e1a88b61a0c6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the procedure as given by the name 'procName' is not in the procedure table, add it into the table and return its assigned index in the table. Otherwise, return its index.  <a href="#a74c237ef109380f8f39e1a88b61a0c6d">More...</a><br/></td></tr>
-<tr class="separator:a74c237ef109380f8f39e1a88b61a0c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a415700fb31a12fe473ce32c864a3b2b7"><td class="memItemLeft" align="right" valign="top">STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#a415700fb31a12fe473ce32c864a3b2b7">getProcName</a> (VAR_INDEX ind)</td></tr>
-<tr class="memdesc:a415700fb31a12fe473ce32c864a3b2b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the procedure that has the given index. If no procedure has the given index, exception.  <a href="#a415700fb31a12fe473ce32c864a3b2b7">More...</a><br/></td></tr>
-<tr class="separator:a415700fb31a12fe473ce32c864a3b2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae46657037c2248bb7a845ed3270d2566"><td class="memItemLeft" align="right" valign="top">VAR_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#ae46657037c2248bb7a845ed3270d2566">getProcIndex</a> (STRING procName)</td></tr>
+<tr class="memitem:a65b67e0a5e8c95fc3bd83cb07ec445c7"><td class="memItemLeft" align="right" valign="top">PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#a65b67e0a5e8c95fc3bd83cb07ec445c7">addProc</a> (STRING procName, STMT start, STMT end)</td></tr>
+<tr class="memdesc:a65b67e0a5e8c95fc3bd83cb07ec445c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the procedure as given by the name 'procName' is not in the procedure table, add it into the table and return its assigned index in the table. Otherwise, return its index.  <a href="#a65b67e0a5e8c95fc3bd83cb07ec445c7">More...</a><br/></td></tr>
+<tr class="separator:a65b67e0a5e8c95fc3bd83cb07ec445c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b558540767a9119e44db5006102f13"><td class="memItemLeft" align="right" valign="top">STRING&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#a76b558540767a9119e44db5006102f13">getProcName</a> (PROC_INDEX ind)</td></tr>
+<tr class="memdesc:a76b558540767a9119e44db5006102f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the name of the procedure that has the given index. If no procedure has the given index, exception.  <a href="#a76b558540767a9119e44db5006102f13">More...</a><br/></td></tr>
+<tr class="separator:a76b558540767a9119e44db5006102f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae46657037c2248bb7a845ed3270d2566"><td class="memItemLeft" align="right" valign="top">PROC_INDEX&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#ae46657037c2248bb7a845ed3270d2566">getProcIndex</a> (STRING procName)</td></tr>
 <tr class="memdesc:ae46657037c2248bb7a845ed3270d2566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the procedure that has the given name. If no procedure has the given name, return -1.  <a href="#ae46657037c2248bb7a845ed3270d2566">More...</a><br/></td></tr>
 <tr class="separator:ae46657037c2248bb7a845ed3270d2566"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac17c2cc7db468c8b043c8bc1c5cd23b7"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#ac17c2cc7db468c8b043c8bc1c5cd23b7">getAllProcName</a> (VAR_INDEX_LIST inds)</td></tr>
-<tr class="memdesc:ac17c2cc7db468c8b043c8bc1c5cd23b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">For each index from the given list of procedure indices, add the corresponding procedure name into a result list. If any index is invalid, throw an exception.  <a href="#ac17c2cc7db468c8b043c8bc1c5cd23b7">More...</a><br/></td></tr>
-<tr class="separator:ac17c2cc7db468c8b043c8bc1c5cd23b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3792320eff2227af5d136aad17ca13be"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#a3792320eff2227af5d136aad17ca13be">getAllProcName</a> (PROC_INDEX_LIST inds)</td></tr>
+<tr class="memdesc:a3792320eff2227af5d136aad17ca13be"><td class="mdescLeft">&#160;</td><td class="mdescRight">For each index from the given list of procedure indices, add the corresponding procedure name into a result list. If any index is invalid, throw an exception.  <a href="#a3792320eff2227af5d136aad17ca13be">More...</a><br/></td></tr>
+<tr class="separator:a3792320eff2227af5d136aad17ca13be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc05a8b64fd6320cfc40547ca9fda14b"><td class="memItemLeft" align="right" valign="top">STRING_LIST&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#adc05a8b64fd6320cfc40547ca9fda14b">getAllProcName</a> ()</td></tr>
 <tr class="memdesc:adc05a8b64fd6320cfc40547ca9fda14b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the names of all procedures.  <a href="#adc05a8b64fd6320cfc40547ca9fda14b">More...</a><br/></td></tr>
 <tr class="separator:adc05a8b64fd6320cfc40547ca9fda14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5701ba1aac3a0a12b99642fb19b3df43"><td class="memItemLeft" align="right" valign="top">STMT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#a5701ba1aac3a0a12b99642fb19b3df43">getProcStart</a> (PROC_INDEX ind)</td></tr>
+<tr class="memdesc:a5701ba1aac3a0a12b99642fb19b3df43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the start statement of the procedure that has the given index. If no procedure has the given index, exception.  <a href="#a5701ba1aac3a0a12b99642fb19b3df43">More...</a><br/></td></tr>
+<tr class="separator:a5701ba1aac3a0a12b99642fb19b3df43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb793dd0763baf8f2e2f2d16d2e55c5b"><td class="memItemLeft" align="right" valign="top">STMT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_proc_table.html#acb793dd0763baf8f2e2f2d16d2e55c5b">getProcEnd</a> (PROC_INDEX ind)</td></tr>
+<tr class="memdesc:acb793dd0763baf8f2e2f2d16d2e55c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the end statement of the procedure that has the given index. If no procedure has the given index, exception.  <a href="#acb793dd0763baf8f2e2f2d16d2e55c5b">More...</a><br/></td></tr>
+<tr class="separator:acb793dd0763baf8f2e2f2d16d2e55c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cfd2fd71d2b0058547d6f0d7f157154"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cfd2fd71d2b0058547d6f0d7f157154"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> ()</td></tr>
+<tr class="separator:a2cfd2fd71d2b0058547d6f0d7f157154"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a424d68867fbe709b2be8a3f39d0e39ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a424d68867fbe709b2be8a3f39d0e39ca"></a>
-vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>procedures</b></td></tr>
-<tr class="separator:a424d68867fbe709b2be8a3f39d0e39ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6eff81118f7bd9b32837308c0dcc7df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6eff81118f7bd9b32837308c0dcc7df"></a>
+vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>procedureNames</b></td></tr>
+<tr class="separator:aa6eff81118f7bd9b32837308c0dcc7df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad597ece87f59b5f06f0663001e2cbc4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad597ece87f59b5f06f0663001e2cbc4b"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>startStmts</b></td></tr>
+<tr class="separator:ad597ece87f59b5f06f0663001e2cbc4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9225ac3e264ddd35a7e028bddb2007cf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9225ac3e264ddd35a7e028bddb2007cf"></a>
+STMT_LIST&#160;</td><td class="memItemRight" valign="bottom"><b>endStmts</b></td></tr>
+<tr class="separator:a9225ac3e264ddd35a7e028bddb2007cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Store the information of all procedures and provide funtions for retrieving information of procedures. </p>
+<div class="textblock"><p>Store the information of all procedures and provide functions for retrieving information of procedures. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a74c237ef109380f8f39e1a88b61a0c6d"></a>
+<a class="anchor" id="a65b67e0a5e8c95fc3bd83cb07ec445c7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -151,8 +173,24 @@ vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pro
           <td class="memname">PROC_INDEX ProcTable::addProc </td>
           <td>(</td>
           <td class="paramtype">STRING&#160;</td>
-          <td class="paramname"><em>procName</em></td><td>)</td>
+          <td class="paramname"><em>procName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">STMT&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -166,16 +204,25 @@ vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pro
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>PROC_INDEX. </dd></dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_proc_table_a65b67e0a5e8c95fc3bd83cb07ec445c7_cgraph.png" border="0" usemap="#class_proc_table_a65b67e0a5e8c95fc3bd83cb07ec445c7_cgraph" alt=""/></div>
+<map name="class_proc_table_a65b67e0a5e8c95fc3bd83cb07ec445c7_cgraph" id="class_proc_table_a65b67e0a5e8c95fc3bd83cb07ec445c7_cgraph">
+<area shape="rect" id="node2" href="class_proc_table.html#ae46657037c2248bb7a845ed3270d2566" title="Return the index of the procedure that has the given name. If no procedure has the given name..." alt="" coords="190,5,354,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="ac17c2cc7db468c8b043c8bc1c5cd23b7"></a>
+<a class="anchor" id="a3792320eff2227af5d136aad17ca13be"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">STRING_LIST ProcTable::getAllProcName </td>
           <td>(</td>
-          <td class="paramtype">VAR_INDEX_LIST&#160;</td>
+          <td class="paramtype">PROC_INDEX_LIST&#160;</td>
           <td class="paramname"><em>inds</em></td><td>)</td>
           <td></td>
         </tr>
@@ -211,6 +258,31 @@ vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pro
 
 </div>
 </div>
+<a class="anchor" id="acb793dd0763baf8f2e2f2d16d2e55c5b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT ProcTable::getProcEnd </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>ind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the end statement of the procedure that has the given index. If no procedure has the given index, exception. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ind</td><td>The index of the procedure.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>STMT. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ae46657037c2248bb7a845ed3270d2566"></a>
 <div class="memitem">
 <div class="memproto">
@@ -234,16 +306,25 @@ vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pro
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>PROC_INDEX. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_proc_table_ae46657037c2248bb7a845ed3270d2566_icgraph.png" border="0" usemap="#class_proc_table_ae46657037c2248bb7a845ed3270d2566_icgraph" alt=""/></div>
+<map name="class_proc_table_ae46657037c2248bb7a845ed3270d2566_icgraph" id="class_proc_table_ae46657037c2248bb7a845ed3270d2566_icgraph">
+<area shape="rect" id="node2" href="class_proc_table.html#a65b67e0a5e8c95fc3bd83cb07ec445c7" title="If the procedure as given by the name &#39;procName&#39; is not in the procedure table, add it into the table..." alt="" coords="219,5,355,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
-<a class="anchor" id="a415700fb31a12fe473ce32c864a3b2b7"></a>
+<a class="anchor" id="a76b558540767a9119e44db5006102f13"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">STRING ProcTable::getProcName </td>
           <td>(</td>
-          <td class="paramtype">VAR_INDEX&#160;</td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
           <td class="paramname"><em>ind</em></td><td>)</td>
           <td></td>
         </tr>
@@ -261,6 +342,31 @@ vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pro
 
 </div>
 </div>
+<a class="anchor" id="a5701ba1aac3a0a12b99642fb19b3df43"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STMT ProcTable::getProcStart </td>
+          <td>(</td>
+          <td class="paramtype">PROC_INDEX&#160;</td>
+          <td class="paramname"><em>ind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the start statement of the procedure that has the given index. If no procedure has the given index, exception. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ind</td><td>The index of the procedure.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>STMT. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SPA/SPA/<a class="el" href="_proc_table_8h_source.html">ProcTable.h</a></li>
 <li>SPA/SPA/<a class="el" href="_proc_table_8cpp.html">ProcTable.cpp</a></li>
@@ -271,7 +377,7 @@ vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pro
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_proc_table.html">ProcTable</a></li>
-    <li class="footer">Generated on Mon Feb 4 2013 00:04:18 for SPA by
+    <li class="footer">Generated on Tue Feb 19 2013 15:01:04 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

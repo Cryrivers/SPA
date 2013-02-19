@@ -1,0 +1,6 @@
+<map id="QueryPreprocessor::getClauses" name="QueryPreprocessor::getClauses">
+<area shape="rect" id="node2" href="$class_query_preprocessor.html#a881270b46049507564a33ba68e04f06b" title="Trim space, &#39;;&#39;, &#39;\n&#39;." alt="" coords="198,5,341,46"/>
+<area shape="rect" id="node4" href="$class_query_preprocessor.html#a709f0d33cbb680e4f754d2a55964b9be" title="Used for matching the first word of the input string to the given dictionary." alt="" coords="198,70,341,111"/>
+<area shape="rect" id="node5" href="$class_query_preprocessor.html#aff26bed4c571104d8c3cb6183da0fb78" title="Used for find the next word in the input string that match any given word in the given dictionary..." alt="" coords="198,135,341,177"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#a36d78a7b445cc88398c370acb25decff" title="Trim the char from string." alt="" coords="390,12,554,39"/>
+</map>

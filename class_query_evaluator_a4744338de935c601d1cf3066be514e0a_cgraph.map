@@ -1,0 +1,4 @@
+<map id="QueryEvaluator::intersect" name="QueryEvaluator::intersect">
+<area shape="rect" id="node2" href="$class_query_evaluator.html#aa9fc0930710c911cf762756fdbf0559c" title="Perform intersection with the dependency map for variable pair. Map is not empty. Incoming variables ..." alt="" coords="221,5,389,46"/>
+<area shape="rect" id="node3" href="$class_query_evaluator.html#a9f4a00b3bac768933118da51d4ea7d79" title="Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new." alt="" coords="221,70,389,111"/>
+</map>

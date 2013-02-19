@@ -19,6 +19,7 @@ var _query_data_type_8h =
       [ "KT_STMT_NUM", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a17d778c5358b866461564c8ccbdae97e", null ],
       [ "KT_KNOWN_VARIABLE", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a05879eb97445c2bb43bdecc9ee10edad", null ],
       [ "KT_KNOWN_PROCEDURE", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a7e32efbefe1c20a7574d5775324a4f92", null ],
+      [ "KT_KNOWN_CONSTANT", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa58dc25a3c38c2dd0445d4c92008d1d5", null ],
       [ "KT_CONSTANT_INTEGER", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa29d06f2432c059eafa395d594b12ec1", null ],
       [ "KT_CONSTANT_STRING", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad414d4bd9101b05bacf0b53d4d550b44", null ],
       [ "AT_STMT_NUM", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a4db56e7dd69be36ebcf7b4d28f841f45", null ],

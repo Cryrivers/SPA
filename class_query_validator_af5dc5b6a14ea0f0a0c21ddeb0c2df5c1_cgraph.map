@@ -1,0 +1,8 @@
+<map id="QueryValidator::isRef" name="QueryValidator::isRef">
+<area shape="rect" id="node2" href="$class_query_validator.html#a209d8bdf73afb7cc47524d0c6ed67d7d" title="QueryValidator::isAttrRef" alt="" coords="201,5,367,32"/>
+<area shape="rect" id="node7" href="$class_query_validator.html#a76e03097047ff0278c875113b7e97ef4" title="QueryValidator::isInteger" alt="" coords="424,107,589,133"/>
+<area shape="rect" id="node3" href="$class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435" title="QueryValidator::isSynonym" alt="" coords="416,56,597,83"/>
+<area shape="rect" id="node4" href="$class_query_validator.html#a6fd95a27146673bffb9303f053110971" title="QueryValidator::isIndent" alt="" coords="646,56,807,83"/>
+<area shape="rect" id="node5" href="$class_query_validator.html#a4e022d85107d74e26e7ae6254d3fe08a" title="QueryValidator::isLetter" alt="" coords="857,56,1015,83"/>
+<area shape="rect" id="node6" href="$class_query_validator.html#a02b3aca4fd564ea07d9f0b651c62eef4" title="QueryValidator::isDigit" alt="" coords="860,107,1012,133"/>
+</map>

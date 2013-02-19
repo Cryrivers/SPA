@@ -1,0 +1,7 @@
+<map id="ASTNode::createSibling" name="ASTNode::createSibling">
+<area shape="rect" id="node2" href="$class_a_s_t_node.html#a9d3cf2a01f25c631805030458dfa2ef0" title="Creates a new ASTNode with specific node type and value." alt="" coords="214,56,365,83"/>
+<area shape="rect" id="node5" href="$class_a_s_t_node.html#af7d6d63178333b47891337a7a2b31d99" title="Add a existing ASTNode to this one as its sibling." alt="" coords="217,107,362,133"/>
+<area shape="rect" id="node3" href="$class_a_s_t_node.html#abc7ea24000fa4c9108d98d8361af06d4" title="Sets the type of ASTNode." alt="" coords="417,5,578,32"/>
+<area shape="rect" id="node4" href="$class_a_s_t_node.html#a548db93f5fb07720f91fe42826670762" title="Sets ASTNode&#39;s custom value. The custom value can be ProcIndex, VarIndex, constant, etc." alt="" coords="414,56,581,83"/>
+<area shape="rect" id="node6" href="$class_a_s_t_node.html#a2a6f237501e9a44a1eaf50695446e3d9" title="Gets this ASTNode&#39;s next sibling." alt="" coords="426,107,569,133"/>
+</map>
