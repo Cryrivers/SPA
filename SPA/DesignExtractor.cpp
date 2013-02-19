@@ -350,17 +350,171 @@ BOOLEAN DesignExtractor::getAllConstant(vector<int> *result)
  *
  * \param [out]	True or False	If there is no item in a or b, return false. else return true.
  */
-BOOLEAN DesignExtractor::pattern(vector<int> *a, vector<int> *b, string expr,PatternQueryType queryType, int arg)
+BOOLEAN DesignExtractor::pattern(vector<int>* a, vector<int>* b, string expr, PatternQueryType queryType,int arg)
+{
+	switch(queryType){
+	case PATTERN_ASSIGN_NO_UNDERSCORE:
+		return assignPattern(a,b,expr, arg, 0);
+		break;
+	case PATTERN_ASSIGN_UNDERSCORE_ONLY:
+	case PATTERN_ASSIGN_WITH_UNDERSCORE:
+		return assignPattern(a, b, expr, arg, 1);
+		break;
+	case PATTERN_IF:
+		return ifPattern(a, b, expr, arg);
+		break;
+	case PATTERN_WHILE:
+		return whilePattern(a, b, expr, arg);
+		break;
+	default:
+		break;
+	}
+	return false;
+}
+
+BOOLEAN DesignExtractor::whilePattern(vector<int> *a, vector<int> *b, string expr, int arg){
+	if (arg == 0)
+	{
+		if(b->size() == 0)
+		{
+
+		}
+		else if (b->size() == 1)
+		{
+
+		}
+	}
+	else if (arg == 1)
+	{
+		if (a->size() == 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() == 0 && b->size() > 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() > 0)
+		{
+		}
+	}
+	else if (arg == 2)
+	{
+		if (a->size() == 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() == 0 && b->size() ==1)
+		{
+		}
+		else if (a->size() > 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() == 1)
+		{
+		}
+	}
+	else if (arg == 3)
+	{
+		if (a->size() == 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() == 0 && b->size() > 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() > 0)
+		{
+		}
+	}
+	else
+	{
+		printf("wrong input format");
+		exit(1);
+	}
+	return false;
+}
+
+BOOLEAN DesignExtractor::ifPattern(vector<int> *a, vector<int> *b, string expr, int arg){
+	if (arg == 0)
+	{
+		if(b->size() == 0)
+		{
+
+		}
+		else if (b->size() == 1)
+		{
+
+		}
+	}
+	else if (arg == 1)
+	{
+		if (a->size() == 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() == 0 && b->size() > 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() > 0)
+		{
+		}
+	}
+	else if (arg == 2)
+	{
+		if (a->size() == 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() == 0 && b->size() ==1)
+		{
+		}
+		else if (a->size() > 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() == 1)
+		{
+		}
+	}
+	else if (arg == 3)
+	{
+		if (a->size() == 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() == 0 && b->size() > 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() == 0)
+		{
+		}
+		else if (a->size() > 0 && b->size() > 0)
+		{
+		}
+	}
+	else
+	{
+		printf("wrong input format");
+		exit(1);
+	}
+	return false;
+}
+
+BOOLEAN DesignExtractor::assignPattern(vector<int> *a, vector<int> *b, string expr, int arg, int flag)
 {
 	ASTNode *tree;
 	vector<ASTNode *> *assign = _pkb->getAssignmentTable();
 
 	vector<int> *temp = new vector<int>();
-	int flag = 0, i = 0, flag2 = 0;
+	int i = 0, flag2 = 0;
+	/*
 	if (expr!="" && expr[0] == '"') {
 		expr = expr.substr(1, expr.size()-2);
 		flag = 1;
 	}
+	*/
 	if (arg == 0) {
 		if ((b->size() == 0)) {
 			if(expr == ""){
