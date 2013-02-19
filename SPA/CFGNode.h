@@ -11,6 +11,8 @@ public:
 	STMT getStartStatement();
 	STMT getEndStatement();
 	void addEdge(CFGNode* nextPath);
+	void connectTo(CFGNode* nextPath);
+	void connectBackTo(CFGNode* prevPath);
 	void popLastEdge();
 	int getEdgeSize();
 	bool containStatement(STMT stmtNumber);

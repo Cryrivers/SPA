@@ -89,8 +89,10 @@ STMT CFGNode::getEndStatement()
 /**
  * \fn	void CFGNode::addEdge( CFGNode* nextPath )
  *
- * \brief	Adds an edge. 
- *
+ * \brief	Adds an edge.
+ * \deprecated 
+ * \see connectTo
+ * \see connectBackTo			   
  * \author	Wang Zhongliang
  * \date	2013/2/5
  *
@@ -186,4 +188,36 @@ void CFGNode::popLastEdge()
 {
 	assert(_edges.size() > 0);
 	_edges.pop_back();
+}
+
+/**
+ * \fn	void CFGNode::connectTo( CFGNode* nextPath )
+ *
+ * \brief	Connects to.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/19
+ *
+ * \param [in,out]	nextPath	If non-null, full pathname of the next file.
+ */
+
+void CFGNode::connectTo( CFGNode* nextPath )
+{
+	this->addEdge(nextPath);
+}
+
+/**
+ * \fn	void CFGNode::connectBackTo( CFGNode* prevPath )
+ *
+ * \brief	Connects a back to.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/19
+ *
+ * \param [in,out]	prevPath	If non-null, full pathname of the previous file.
+ */
+
+void CFGNode::connectBackTo( CFGNode* prevPath )
+{
+	prevPath->connect(this);
 }
