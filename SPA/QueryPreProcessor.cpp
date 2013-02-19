@@ -983,21 +983,22 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				qc.variable2 = ib;
 				trim_all(element[2]); 
 				if(element[2].find("_")==0){
-					if(element[2].find_last_of("_")!=0){
-						element[2].substr(2);
-						element[2].substr(0, element[2].size()-3);
-						qc.variable3=element[2];
-						qc.patternType=PATTERN_ASSIGN_NO_UNDERSCORE;
-					}else if(element[2].size()==1){
+					if(element[2].size()==1){
+						element[2] = "";
 						qc.variable3=element[2];
 						qc.patternType=PATTERN_ASSIGN_UNDERSCORE_ONLY;
+					}else if(element[2].find_last_of("_")== element[2].size()-1){
+						element[2] = element[2].substr(2);
+						element[2] = element[2].substr(0, element[2].size()-2);
+						qc.variable3=element[2];
+						qc.patternType=PATTERN_ASSIGN_WITH_UNDERSCORE;
 					}else{
 						 return false;
 					}
 				}else if(element[2].find("\"")==0){
 					if(element[2].find_last_of("\"")!=0){ 
-						element[2].substr(1);
-						element[2].substr(0, element[2].size()-2);
+						element[2] = element[2].substr(1);
+						element[2] = element[2].substr(0, element[2].size()-1);
 						qc.variable3=element[2];
 						qc.patternType=PATTERN_ASSIGN_NO_UNDERSCORE;
 					}else{
@@ -1021,7 +1022,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				qc.variable1 = ia;
 				qc.variable2 = ib;
 				qc.patternType=PATTERN_WHILE;
-				qc.variable3=element[2];
+				qc.variable3="";
 				queryClaTable.push_back(qc); 
 				return true;
 			}else if(queryVarTable[ia].variableType==DT_IF){
@@ -1036,7 +1037,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				qc.relationType=CT_PATTERN;
 				qc.variable1 = ia;
 				qc.variable2 = ib;
-				qc.variable3 = element[2]; 
+				qc.variable3 = ""; 
 				qc.patternType=PATTERN_IF;
 				queryClaTable.push_back(qc);
 				return true;
