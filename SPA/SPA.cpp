@@ -51,7 +51,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 	
-	string query("assign a; Select a pattern a(\"y\", _)");
+	string query("assign a; stmt s;Select a pattern a(_,_\"k*e\"_) such that Follows*(s,a)");
 	processor->evaluate(query,result);
 
 	while(result.size()>0)

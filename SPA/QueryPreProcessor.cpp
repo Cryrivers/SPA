@@ -1008,7 +1008,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 					return false;
 				}
 				queryClaTable.push_back(qc); 
-				return true;
+				continue;
 			}else if(queryVarTable[ia].variableType==DT_WHILE){
 				if(!qv.isVarRef(element[1])){
 					cout<<"@setupClaTable(): Variable1 not VarRef. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
@@ -1024,7 +1024,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				qc.patternType=PATTERN_WHILE;
 				qc.variable3="";
 				queryClaTable.push_back(qc); 
-				return true;
+				continue;
 			}else if(queryVarTable[ia].variableType==DT_IF){
 				if(!qv.isVarRef(element[1])){
 					cout<<"@setupClaTable(): Variable1 not VarRef. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
@@ -1040,7 +1040,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				qc.variable3 = ""; 
 				qc.patternType=PATTERN_IF;
 				queryClaTable.push_back(qc);
-				return true;
+				continue;
 			}else{
 				cout<<"@setupClaTable(): Pattern has to work on assign,if,while Got:"<<queryVarTable[ia].variableType<<endl;
 				return false;
