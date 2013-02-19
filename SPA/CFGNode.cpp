@@ -219,5 +219,5 @@ void CFGNode::connectTo( CFGNode* nextPath )
 
 void CFGNode::connectBackTo( CFGNode* prevPath )
 {
-	prevPath->connect(this);
+	prevPath->connectTo(this);
 }

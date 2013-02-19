@@ -438,22 +438,48 @@ BOOLEAN DesignExtractor::whilePattern(vector<int> *a, vector<int> *b, string exp
 }
 
 BOOLEAN DesignExtractor::ifPattern(vector<int> *a, vector<int> *b, string expr, int arg){
+	vector<ASTNode *> *ifBranch = _pkb->getIfBranchTable();
+	vector<int> *temp = new vector<int>();
+	int i = 0, flag2 = 0;
 	if (arg == 0)
 	{
+		//case 1a
 		if(b->size() == 0)
 		{
-
+			getAllIf(temp);
+			if (temp->size() == 0)
+			{
+				delete(temp);
+				return  false;
+			}
+			delete(temp);
+			return true;
 		}
+		//case 1b
 		else if (b->size() == 1)
 		{
-
+			temp = _pkb->getAST()->matchIfBranch(b->at(0));
+			if (temp->size() == 0)
+			{
+				delete(temp);
+				return false;
+			}
+			delete(temp);
+			return true;
 		}
 	}
 	else if (arg == 1)
 	{
+		//case 2a
 		if (a->size() == 0 && b->size() == 0)
 		{
+			for(int j = 0; j < ifBranch->size(); j++){
+				b->push_back(ifBranch->at(j)->getNodeValue());
+			}
+			if(b->size() == 0) return false;
+			return true;
 		}
+		//case 2b
 		else if (a->size() > 0 && b->size() == 0)
 		{
 		}
@@ -539,12 +565,12 @@ BOOLEAN DesignExtractor::assignPattern(vector<int> *a, vector<int> *b, string ex
 					}
 				}
 			}else{
-			tree = _pkb->getAST()->buildAssignmentSubtree(b->at(0), expr);
-			if (flag == 0) {
-				temp = _pkb->getAST()->containTree(tree);
-			}else {
-				temp = _pkb->getAST()->containSubtree(tree);
-			}
+				tree = _pkb->getAST()->buildAssignmentSubtree(b->at(0), expr);
+				if (flag == 0) {
+					temp = _pkb->getAST()->containTree(tree);
+				}else {
+					temp = _pkb->getAST()->containSubtree(tree);
+				}
 			}
 			if (temp->size() == 0) {
 				return(false);

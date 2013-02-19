@@ -20,7 +20,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
-	ifstream myfile("../SampleCode/CS3202-Test1Code.c");
+	ifstream myfile("../SampleCode/CS3201RegressionTestCode.c");
 	if (myfile.is_open())
 	{
 	int i=1;
@@ -51,7 +51,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 	
-	string query("call c; Select c such that Modifies(c,\"y\")");
+	string query("assign a; variable v; stmt s;Select v such that Modifies(s, v) pattern a(v, _\"w\"_)");
 	processor->evaluate(query,result);
 
 	while(result.size()>0)
@@ -74,11 +74,11 @@ int _tmain(int argc, _TCHAR *argv[])
 	}
 	}
 	*/
-	getchar();
+	//getchar();
 	//string a("a=a+10+20+30+z");
 	//regex m("/([0-9]+)/g");
 	//smatch result;
 	//regex_match(a,result,m);
-	//getchar();
+	getchar();
 	return(0);
 }
