@@ -27,7 +27,7 @@ BOOLEAN Next::isNextStar(STMT stmt1, STMT stmt2)
 	else {
 		STMT_LIST links; // the link between predecessor and successor
 		links = getNextSecond(stmt1);
-		STMT_LIST* visitedNodes;
+		STMT_LIST* visitedNodes = new STMT_LIST();
 		BOOLEAN result = isNextStarHelper(links, stmt2, visitedNodes);
 		delete visitedNodes;
 		return result;
@@ -89,7 +89,7 @@ STMT_LIST Next::getNextSecond(STMT stmt1)
 
 STMT_LIST Next::getNextStarFirst(STMT stmt2)
 {
-	STMT_LIST* visitedNodes;
+	STMT_LIST* visitedNodes = new STMT_LIST();
 	STMT_LIST result = getNextStarFirstHelper(stmt2, visitedNodes);
 	delete visitedNodes;
 	return result;
@@ -125,7 +125,7 @@ STMT_LIST Next::getNextStarFirstHelper(STMT stmt2, STMT_LIST* visitedNodes)
 
 STMT_LIST Next::getNextStarSecond(STMT stmt1)
 {
-	STMT_LIST* visitedNodes;
+	STMT_LIST* visitedNodes = new STMT_LIST();
 	STMT_LIST result = getNextStarSecondHelper(stmt1, visitedNodes);
 	delete visitedNodes;
 	return result;
