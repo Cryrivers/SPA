@@ -24,6 +24,8 @@ public:
 	ASTNode* buildAssignmentSubtree(int varIndex, string expression);
 	vector<int>* containSubtree(ASTNode* tree);
 	vector<int>* containTree(ASTNode* tree);
+	vector<int>* matchWhileLoop(VAR_INDEX ind);
+	vector<int>* matchIfBranch(VAR_INDEX ind);
 	void calculateHashcode();
 };
 

@@ -318,3 +318,50 @@ bool AST::_containTree( ASTNode* container, ASTNode* object )
 
 	return false;
 }
+
+/**
+ * \fn	vector<int>* AST::matchWhileLoop( VAR_INDEX ind )
+ *
+ * \brief	Match while loop.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/19
+ *
+ * \param	ind	The ind.
+ *
+ * \return	null if it fails, else.
+ */
+
+vector<int>* AST::matchWhileLoop( VAR_INDEX ind )
+{
+	vector<int>* result  = new vector<int>();
+	vector<ASTNode*>* whileTable = PKBController::createInstance()->getWhileTable();
+	for(std::vector<ASTNode*>::iterator it = whileTable->begin(); it != whileTable->end();++it)
+		if((*it)->getNodeValue() == ind)
+			result->push_back((*it)->getStmtNumber());
+	return(result);
+}
+
+/**
+ * \fn	vector<int>* AST::matchIfBranch( VAR_INDEX ind )
+ *
+ * \brief	Match if branch.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/19
+ *
+ * \param	ind	The ind.
+ *
+ * \return	null if it fails, else.
+ */
+
+vector<int>* AST::matchIfBranch( VAR_INDEX ind )
+{
+	vector<int>* result  = new vector<int>();
+	vector<ASTNode*>* ifTable = PKBController::createInstance()->getIfBranchTable();
+	for(std::vector<ASTNode*>::iterator it = ifTable->begin(); it != ifTable->end();++it)
+		if((*it)->getNodeValue() == ind)
+			result->push_back((*it)->getStmtNumber());
+	return(result);
+}
+
