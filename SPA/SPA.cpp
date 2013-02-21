@@ -33,6 +33,8 @@ int _tmain(int argc, _TCHAR *argv[])
 				cout<<"     "<<line<<endl;
 			}else if(line.find("else")<line.size()){
 				cout<<"     "<<line<<endl;
+			}else if(line.find("}")<line.size()){
+				cout<<"     "<<line<<endl;
 			}else if(line.size()<2){
 				cout<<"     "<<line<<endl;
 			}else{
@@ -51,12 +53,24 @@ int _tmain(int argc, _TCHAR *argv[])
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 	
-	string query("assign a; stmt s;Select a pattern a(_,_\"k*e\"_) such that Follows*(s,a)");
+	string query("assign a1,a2,a3; stmt s1,s2,s3,s4; if f; while w; call c; procedure p1, p2; variable v1, v2, v3; constant c1,c2; prog_line pg1, pg2;");
+	query += "Select <v2,s3.stmt#,boolean> such that Modifies(a2,\"x\") with a3.stmt#=s1.stmt# and v1.varName=v2.varName";
+	query += " and p1.procName=v1.varName and s2.stmt#=s3.stmt# and s2.stmt#=f.stmt#";
+	query += " and s1.stmt#=3 and c1.value=3 and c1.value=c2.value and v1.varName=\"x\"";
+	query += " and c.procName=\"First\" and pg1=s4.stmt# and pg1=pg2 and 1=1 and a1.stmt#=a1.stmt#";				 
+	query += " pattern a1(v1, _) and a1(v1,_\"x+y\"_) and f(v2,_,_) and w(v3,_) "; 
+	query += " such that Parent(2,3) and Follows(w, a3) and Follows*(w,f) and Parent*(s3, s4)";
+	query += " and Parent(_,_) and Affects*(_,_)";
+	query += " ";
+	query += " ";
+	query += " ";
+	query += " ";
+	query += " ";
 	processor->evaluate(query,result);
 
 	while(result.size()>0)
 	{
-		cout << result.front() << ", ";
+		cout << result.front() << "; ";
 		result.pop_front();
 	}
 	cout << endl;

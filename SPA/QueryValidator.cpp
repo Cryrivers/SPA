@@ -114,6 +114,8 @@ bool QueryValidator::isRef(string str){
 		return true;
 	}else if(isInteger(str)){
 		return true;
+	}else if(isSynonym(str)){
+		return true;
 	}else if(str.find("\"")<=str.size()){
 		str = str.substr(str.find("\"")+1);
 		if(str.find("\"")<=str.size()){

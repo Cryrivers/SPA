@@ -18,6 +18,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "stdafx.h"
 #include "SPAType.h"
 using namespace std;
@@ -35,8 +36,9 @@ using namespace std;
 enum Type{
 	//Types for design entities
 	DT_PROCEDURE,		/**< design entity: procedure*/
-	DT_STMTLST, 		/**< design entity: stmtLst*/
+	DT_STMTLST, 		/**< design entity: stmtLst*/ 
 	DT_STMT, 			/**< design entity: stmt*/
+	DT_PROGLINE, 			/**< design entity: stmt*/
 	DT_ASSIGN, 			/**< design entity: assign part of stmt*/
 	DT_CALL, 			/**< design entity: call   part of stmt*/
 	DT_WHILE, 			/**< design entity: while  part of stmt*/
@@ -98,6 +100,7 @@ public:
 	string origin;		/**< used to indecate the original string, testing use*/
 	int dependency;		/**< used to indecate the dependency among variables*/
 	int countAppear;	/**< helper to count dependency*/
+	int mapTo;
 };
 /********************************************//**
  * @class QueryTarget

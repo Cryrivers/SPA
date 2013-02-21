@@ -42,10 +42,10 @@ QueryPreprocessor::QueryPreprocessor(void){
 	dicRelationRef[10] = "Calls*";
 	dicRelationRef[11] = "Calls";
 	dicAttribute[0] = ".procName";
-	dicAttribute[1] =".varName";
-	dicAttribute[2] =".value";
-	dicAttribute[3] =".stmt#";
-	dicAttribute[4] =".prog_line#";
+	dicAttribute[1] = ".varName";
+	dicAttribute[2] = ".value";
+	dicAttribute[3] = ".stmt#";
+	dicAttribute[4] = ".prog_line#";
 }
 /********************************************//**
  * @brief  Destructor
@@ -181,14 +181,14 @@ vector<string> QueryPreprocessor::getTargets(string& str){
 	vector<string> result;
 	trim_all(str);
 	if(str.find("Select ")!=0){
-		cout<<"@getTargets: Cannot find select clause. Got["<<str<<"]. "<<endl;
+		if(DEBUGMODE) cout<<"@getTargets: Cannot find select clause. Got["<<str<<"]. "<<endl;
 		return result;
 	}
 	str = str.substr(7);
 	//split select
 	int next = findNextIndexFrom(str, dicClause, 4);
 	if(next == -1){
-		cout<<"@getTargets: No clause. Got["<<str<<"]. "<<endl;
+		if(DEBUGMODE) cout<<"@getTargets: No clause. Got["<<str<<"]. "<<endl;
 		return result;
 	}
 	string target = str.substr(0, next);
@@ -244,7 +244,7 @@ vector<string> QueryPreprocessor::getClauses(string& str){
 			}
 		}else if(dicClause[index]=="and "){
 			if(currentClause==-1){
-				cout<<"@getClauses: No previous deaclearation for and, got ["<<local<<"].";
+				if(DEBUGMODE) cout<<"@getClauses: No previous deaclearation for and, got ["<<local<<"].";
 				result.clear();
 				return result;
 			}else{ 
@@ -270,6 +270,20 @@ vector<string> QueryPreprocessor::getClauses(string& str){
 	}
 	return result;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /********************************************//**
  * @brief  Used to cut the relation
  * @param str string
@@ -307,18 +321,18 @@ vector<string> QueryPreprocessor::extractRelation(string str){
  * @see Type
  ***********************************************/
 Type QueryPreprocessor::getAttributeOfVariable(int b, int a){ 
-		if(dicAttribute[a]==".procName"&&queryVarTable[b].variableType==DT_PROCEDURE){
+		if(dicAttribute[a]==".procName"&&(queryVarTable[b].variableType==DT_PROCEDURE||queryVarTable[b].variableType==KT_KNOWN_PROCEDURE)){
 			return AT_PROC_NAME;
 		}else if(dicAttribute[a]==".procName"&&queryVarTable[b].variableType==DT_CALL){
-			return AT_CALL_PROC_NAME;
-		}else if(dicAttribute[a]==".varName"&&queryVarTable[b].variableType==DT_VARIABLE){
+			return AT_PROC_NAME;
+		}else if(dicAttribute[a]==".varName"&&(queryVarTable[b].variableType==DT_VARIABLE||queryVarTable[b].variableType==KT_KNOWN_VARIABLE)){
 			return AT_VAR_NAME;
-		}else if(dicAttribute[a]==".value"&&queryVarTable[b].variableType==DT_CONSTANT){
+		}else if(dicAttribute[a]==".value"&&(queryVarTable[b].variableType==KT_KNOWN_CONSTANT||queryVarTable[b].variableType==DT_CONSTANT)){
 			return AT_VALUE;
-		}else if(dicAttribute[a]==".stmt#"&&(queryVarTable[b].variableType==DT_STMT||queryVarTable[b].variableType==DT_ASSIGN||queryVarTable[b].variableType==DT_CALL||queryVarTable[b].variableType==DT_WHILE||queryVarTable[b].variableType==DT_IF)){
+		}else if(dicAttribute[a]==".stmt#"&&(queryVarTable[b].variableType==DT_STMT||queryVarTable[b].variableType==DT_ASSIGN||queryVarTable[b].variableType==DT_CALL||queryVarTable[b].variableType==DT_WHILE||queryVarTable[b].variableType==DT_IF||queryVarTable[b].variableType==KT_STMT_NUM)){
 			return AT_STMT_NUM;
 		}else{  
-			cout<<"@getAttributeOfVariable: Not match. Got["<<b<<"] ["<<dicAttribute[a]<<"]"<<endl;
+			//if(DEBUGMODE) cout<<"@getAttributeOfVariable: Not match. Got["<<b<<"] ["<<dicAttribute[a]<<"]"<<endl;
 			return ERROR;
 		}		
 }
@@ -369,6 +383,58 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 	//a7 1 must be stmt
 	//a7 2 must be var 
 	//a7 2 must be proc
+	
+	if(a1!=0||a0!=0){
+		//================================
+		//return the index in the var table
+		//================================
+		for(int i = 0; i< size; i++){
+			if(queryVarTable[i].origin==str){
+				if(a7==1){
+					if(queryVarTable[i].variableType==DT_ASSIGN){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_CALL){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_IF){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_WHILE){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_STMT){
+						return i;
+					}else if(queryVarTable[i].variableType==KT_STMT_NUM){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_UNDERSCORE){
+						return i;
+					}else{
+						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not stmt."<<endl;
+						return -1;
+					}
+				}else if(a7==2){
+					if(queryVarTable[i].variableType==DT_VARIABLE){
+						return i;
+					}else if(queryVarTable[i].variableType==KT_KNOWN_VARIABLE){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_UNDERSCORE){
+						return i;
+					}else{
+						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
+						return -1;
+					}
+				}else if(a7==3){
+					if(queryVarTable[i].variableType==DT_PROCEDURE){
+						return i;
+					}else if(queryVarTable[i].variableType==KT_KNOWN_PROCEDURE){
+						return i;
+					}else{
+						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
+						return -1;
+					}
+				}else{
+					return i;
+				}
+			}
+		}
+	}
 	if((str=="BOOLEAN"||str=="boolean")&&a2!=0){ 
 		QueryVariable var; 
 		var.variableType=DT_BOOLEAN;
@@ -376,6 +442,7 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 		var.content=-1;
 		var.origin=str;
 		var.countAppear=0;
+		var.mapTo=size;
 		queryVarTable.push_back(var);
 		return size;
 	}
@@ -394,7 +461,8 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 				var.content=inV;
 				var.origin=str;	
 				var.dependency=-1; 
-				var.countAppear=0;
+				var.countAppear=0;	  
+				var.mapTo=size;
 				queryVarTable.push_back(var); 
 				return size;
 			}else if(a4!=0&&inP>=0){ 
@@ -403,10 +471,11 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 				var.origin=str;
 				var.dependency=-1; 
 				var.countAppear=0;
+				var.mapTo=size;
 				queryVarTable.push_back(var); 
 				return size;
 			}else{
-				cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not in pkb."<<a3<<";"<<inV<<";"<<a4<<";"<<inP<<endl;
+				//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not in pkb."<<a3<<";"<<inV<<";"<<a4<<";"<<inP<<endl;
 			}
 		} 
 	}
@@ -421,6 +490,7 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 		var.content=-1;
 		var.origin=str;
 		var.countAppear=0;
+		var.mapTo=queryVarTable.size();
 		queryVarTable.push_back(var);
 		return size;
 	}
@@ -435,52 +505,12 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 		var.content=atoi(str.c_str());
 		var.origin=str;
 		var.countAppear=0;
+		var.mapTo=queryVarTable.size();
 		queryVarTable.push_back(var);
 		return size;
 	}
-	if(a1!=0||a0!=0){
-		//================================
-		//return the index in the var table
-		//================================
-		for(int i = 0; i< size; i++){
-			if(queryVarTable[i].origin==str){
-				if(a7==1){
-					if(queryVarTable[i].variableType==DT_ASSIGN){
-						return i;
-					}else if(queryVarTable[i].variableType==DT_CALL){
-						return i;
-					}else if(queryVarTable[i].variableType==DT_IF){
-						return i;
-					}else if(queryVarTable[i].variableType==DT_WHILE){
-						return i;
-					}else if(queryVarTable[i].variableType==DT_STMT){
-						return i;
-					}else{
-						cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not stmt."<<endl;
-						return -1;
-					}
-				}else if(a7==2){
-					if(queryVarTable[i].variableType==DT_VARIABLE){
-						return i;
-					}else{
-						cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
-						return -1;
-					}
-				}else if(a7==3){
-					if(queryVarTable[i].variableType==DT_PROCEDURE){
-						return i;
-					}else{
-						cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
-						return -1;
-					}
-				}else{
-					return i;
-				}
-			}
-		}
-	}
 	if(a0==0){
-		cout<<"@getIndexFromVarTable: Variable ["<<str<<"] not declared."<<endl;
+		//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Variable ["<<str<<"] not declared."<<endl;
 	}
 	return -1;
 }
@@ -512,7 +542,7 @@ bool QueryPreprocessor::setupVarTable(vector<string> declares){
 			//================================
 			//The declares is not in the design entity dictionar
 			//================================
-			cout<<"@setupVarTable(): Design entity type not found, recieve:["<<declares[i]<<"]"<<endl;
+			if(DEBUGMODE) cout<<"@setupVarTable(): Design entity type not found, recieve:["<<declares[i]<<"]"<<endl;
 			return false;
 		}else{ 
 			//================================
@@ -534,13 +564,13 @@ bool QueryPreprocessor::setupVarTable(vector<string> declares){
 			}else if(dicDesignEntity[p]=="constant "){
 				var=DT_CONSTANT;
 			}else if(dicDesignEntity[p]=="prog_line "){
-				var=DT_STMT;
+				var=DT_PROGLINE;
 			}else if(dicDesignEntity[p]=="stmtLst "){
 				var=DT_STMTLST;
 			}else if(dicDesignEntity[p]=="procedure "){
 				var=DT_PROCEDURE;
 			}else{
-				cout<<"@setupVarTable: Design entity not exist. Got:["<<declares[i]<<"]"<<endl;
+				if(DEBUGMODE) cout<<"@setupVarTable: Design entity not exist. Got:["<<declares[i]<<"]"<<endl;
 				return false;
 			}
 			string sub=declares[i].substr(declares[i].find(" "));
@@ -550,12 +580,12 @@ bool QueryPreprocessor::setupVarTable(vector<string> declares){
 				//Only one variable is declared
 				//================================
 				if(!qv.isSynonym(sub)){
-					cout<<"@setupVarTable: Declared variable is not a synonym, recieve:["<<sub<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupVarTable: Declared variable is not a synonym, recieve:["<<sub<<"]"<<endl;
 					return false;
 				}
 				int index = getIndexFromVarTable(sub, 1,0,0,0,0,0,0,0);
 				if(index!=-1){
-					cout<<"@setupVarTable: Duplicate variable at index"<<index<<", recieve:["<<sub<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupVarTable: Duplicate variable at index"<<index<<", recieve:["<<sub<<"]"<<endl;
 					return false;
 				}  
 				QueryVariable newvar;
@@ -564,6 +594,7 @@ bool QueryPreprocessor::setupVarTable(vector<string> declares){
 				newvar.content=-1;
 				newvar.origin=sub; 
 				newvar.countAppear=0;
+				newvar.mapTo=queryVarTable.size();
 				queryVarTable.push_back(newvar);
 			}else{
 				//================================
@@ -573,12 +604,12 @@ bool QueryPreprocessor::setupVarTable(vector<string> declares){
 					string front = sub.substr(0, sub.find(","));
 					trim_all(front); 
 					if(!qv.isSynonym(front)){
-						cout<<"@setupVarTable: Declared variable is not a synonym, recieve:["<<front<<"]"<<endl;
+						if(DEBUGMODE) cout<<"@setupVarTable: Declared variable is not a synonym, recieve:["<<front<<"]"<<endl;
 						return false;
 					} 
 					int index = getIndexFromVarTable(front, 1,0,0,0,0,0,0,0);
 					if(index!=-1){
-						cout<<"@setupVarTable: Dupulicate variable at index"<<index<<", recieve:["<<front<<"]"<<endl;
+						if(DEBUGMODE) cout<<"@setupVarTable: Dupulicate variable at index"<<index<<", recieve:["<<front<<"]"<<endl;
 						return false;
 					}
 					QueryVariable newvar;
@@ -587,17 +618,18 @@ bool QueryPreprocessor::setupVarTable(vector<string> declares){
 					newvar.content=-1;
 					newvar.origin=front;
 					newvar.countAppear=0;
+					newvar.mapTo=queryVarTable.size();
 					queryVarTable.push_back(newvar);
 					sub = sub.substr(sub.find(",")+1);
 					trim_all(sub);
 				} 
 				if(!qv.isSynonym(sub)){
-					cout<<"@setupVarTable: Declared variable is not a synonym, recieve:["<<sub<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupVarTable: Declared variable is not a synonym, recieve:["<<sub<<"]"<<endl;
 					return false;
 				}
 				int index = getIndexFromVarTable(sub, 1,0,0,0,0,0,0,0);
 				if(index!=-1){
-					cout<<"@setupVarTable: Dupulicate variable at index"<<index<<", recieve:["<<sub<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupVarTable: Dupulicate variable at index"<<index<<", recieve:["<<sub<<"]"<<endl;
 					return false;
 				}
 				QueryVariable newvar;
@@ -605,7 +637,8 @@ bool QueryPreprocessor::setupVarTable(vector<string> declares){
 				newvar.dependency=-1;
 				newvar.origin=sub;
 				newvar.content=-1;
-				newvar.countAppear=0;
+				newvar.countAppear=0;	 
+				newvar.mapTo=queryVarTable.size();
 				queryVarTable.push_back(newvar);
 			}
 		}
@@ -645,19 +678,19 @@ bool QueryPreprocessor::setupTarTable(vector<string> tarTable){
 			tarTable[i] = tarTable[i].substr(0, tarTable[i].find("."));
 			int index = getIndexFromVarTable(tarTable[i], 0,1,1,0,0,0,0,0);
 			if(index==-1){
-				cout<<"@setupTarTable: Variable not declared. Got["<<tarTable[i]<<"]"<<endl;
+				if(DEBUGMODE) cout<<"@setupTarTable: Variable not declared. Got["<<tarTable[i]<<"]"<<endl;
 				return false;
 			}
 			QueryTarget newTarget;
 			newTarget.varIndex=index;
 			newTarget.hasAttribute=true;
-			int index2 = getIndexOfNextFrom(attrib, dicAttribute, DICATTRIBUTESIZE);
-			if(index2==-1){
-				cout<<"@setupTarTable: Attribute not exist. Got["<<tarTable[i]<<"]"<<endl;
+			int attribu = getIndexOfNextFrom(attrib, dicAttribute, DICATTRIBUTESIZE);
+			if(attribu == -1){
+				if(DEBUGMODE) cout<<"@setupTarTable: Attribute not exist. Got["<<tarTable[i]<<"]"<<endl;
 				return false;
 			}  
 
-			Type newType= getAttributeOfVariable(index, index2);
+			Type newType= getAttributeOfVariable(index, attribu);
 			if(newType==ERROR){
 				return false;
 			}
@@ -670,7 +703,7 @@ bool QueryPreprocessor::setupTarTable(vector<string> tarTable){
 			//================================
 			int index = getIndexFromVarTable(tarTable[i], 0,1,1,0,0,0,0,0);
 			if(index==-1){
-				cout<<"@setupTarTable: Variable not declared. Got["<<tarTable[i]<<"]"<<endl;
+				if(DEBUGMODE) cout<<"@setupTarTable: Variable not declared. Got["<<tarTable[i]<<"]"<<endl;
 				return false;
 			}
 			QueryTarget newTarget;
@@ -682,248 +715,184 @@ bool QueryPreprocessor::setupTarTable(vector<string> tarTable){
 	}
 	return true;
 } 
-/********************************************//**
- * @brief
- * @param claTable vector<string> 
- *    elements in this vector is alraedy well formed
- * @details 
- * example:  if a, b stmt c, d \n
- * Cases: \n\n
- *	1.with: \n\n
- *		Example: attrRef '=' ref | synonym '=' ref-pl \n\n
- *		Process: \n
- *			1. get attribute or constant on both side \n
- *			2. validate the exsitence of attri and variable \n
- *			3. optimise results \n\n
- *		Validates: \n
- *			1. Type on the left should be attrRef or synonym \n
- *			2. The content along the equal sign should be comparable \n\n
- *		Optimise: \n
- *			1. merge single variable like proc.procName="sth"  \n
- *				proc->kownn_proc, pkb index into origin \n
- *				var ->known_var, pkb index into origin \n
- *				stmt->stmt_num, integer into origin \n
- *				call.stmtnumber->kownn_proc, pkb index into origin \n 
- *			2. constant.value \n
- *			3. calls with string will create a new known proc variable \n
- *			4. if the case of p.procname=q.procname make a flag for this!! mergeFlag = 1 \n\n 
- *	2.pattern: \n\n
- *		Process: \n
- *			1. sort out three different cases \n
- *			2. validate the exsitence of attri and variable \n
- *			3. optimise results \n\n
- *		Validates: \n
- *			1. The first argument is either assign, while, if \n 
- *			2. Match the following case:\n 
- *				assign( varRef, expression-spec | '_' ) \n 
- *				while( varRef, '_' ) \n 
- *				if( varRef, '_' ',' '_' ) \n\n 
- *		Optimise: \n
- *			Currently none \n\n 
- *	3.such that: \n\n
- *		Process: \n
- *			Just validate and insert into claTable
- *		Validates: \n
- *			Relation is "Parent*", "Parent", "Follows*", "Follows" \n
- *				var1 must be stmtRef \n
- *				var2 must be stmtRef \n
- *				var1 must be stmt or '_' \n
- *				var2 must be stmt or '_' \n
- *				cannot be the same, except when '_' \n
- *				integer argument means statement number \n\n		
- *			Relation is "Modifies", "Uses" \n
- *				var1 must be entRef \n
- *				var2 must be varRef \n
- *				var1 must be stmt or procedure \n
- *				var2 must be variable or '_' \n
- *				integer argument means statement number \n\n
- *			Relation is "Affects*", "Affects" \n
- *				var1 must be stmtRef \n
- *				var2 must be stmtRef \n
- *				var1 must be assign or '_' \n
- *				var2 must be assign or '_' \n
- *				cannot be the same, except when '_' \n
- *				integer argument means statement number \n\n
- *			Relation is "Next*", "Next" \n
- *				var1 must be lineRef \n
- *				var2 must be lineRef \n
- *				var1 must be stmt or stmt number or '_' \n
- *				var2 must be stmt or stmt number or '_' \n
- *				integer arguments mean program line numbers \n\n
- *			Relation is "Call*", "Call" \n
- *				var1 must be entRef \n
- *				var2 must be entRef \n
- *				var1 must be procedure or '_' \n
- *				var2 must be procedure or '_' \n\n
- *				cannot be the same (no recusive), except when '_' \n
- *		Optimise: \n
- *			Currently none \n\n 
- * @note The and clause is already handled by getClauses()
- * @see Type
- * @see getClauses
- * @see QueryClause
- * @return The complitance of this function, true for done, false for error
- ***********************************************/ 
+   
+
+void QueryPreprocessor::changeMapTo(int from, int to){
+	  for(int i=0; i<queryVarTable.size(); i++){
+		  if(queryVarTable[i].mapTo==from){
+			 queryVarTable[i].mapTo=to; 
+		  }
+	  }
+}
+
 bool QueryPreprocessor::setupClaTable(vector<string> claTable){ 
 	for(unsigned int i=0; i<claTable.size(); i++){
-		//cout<<queryClaTable.size()<<"  "<<claTable[i]<<endl;
+		//if(DEBUGMODE) cout<<queryClaTable.size()<<"  "<<claTable[i]<<endl;
 		if(claTable[i].find("with ")==0){
 			claTable[i] = claTable[i].substr(5);
-			if(claTable[i].find("=")>claTable[i].size()){
-				cout<<"@setupClaTable: No equality found in \"with\". Got ["<<claTable[i]<<"]"<<endl;
-				return false;
-			}
-			//split left and right
+		//split left and right
 			string front = claTable[i].substr(0, claTable[i].find("="));
 			string back = claTable[i].substr(claTable[i].find("=")+1);
-			trim_all(front);
-			trim_all(back);
-			//split attribute   
+			trim_all(front);	trim_all(back);
+		//create new query variable
 			QueryClause qc;
 			qc.index=queryClaTable.size();
 			qc.relationType=CT_WITH;
 			if(qv.isRef(front)&&qv.isRef(back)){
-				//===========================
-				//ref '=' ref
-				//===========================
 				int frontAttribute = getIndexOfNextFrom(front, dicAttribute, DICATTRIBUTESIZE); 
 				int backAttribute = getIndexOfNextFrom(back, dicAttribute, DICATTRIBUTESIZE);  
+		//Both have attribute
 				if(frontAttribute != -1 && backAttribute != -1){
-					//===========================
-					//both have attribute
-					//===========================
 					front = front.substr(0, front.find("."));
 					back = back.substr(0, back.find("."));
-					//===========================
-					//both exist
-					//===========================
 					int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,0,0);
 					int ib = getIndexFromVarTable(back, 0,1,0,0,0,0,0,0);
-					if(ia==-1||ib==-1){
-						cout<<"@setupClaTable: Variable not exist! Got["<<front<<"], ["<<back<<"]"<<endl;
-						return false;
-					} 
-					qc.variable1 = ia;
-					//===========================
-					//attribute type right
-					//===========================
-					Type ta = getAttributeOfVariable(frontAttribute, ia);
-					if(ta==ERROR){
-						cout<<"@setupClaTable: Variable does not own this attribute! Got["<<front<<"], ["<<frontAttribute<<"]"<<endl;
-						return false;
-					} 
-					qc.attribute1 = ta;
+			//all ia ib is the real one!!
+					if(ia==-1||ib==-1)	return false;  	  
+					ia = queryVarTable[ia].mapTo;
+					ib = queryVarTable[ib].mapTo;
+					qc.variable1 = ia; 
 					qc.variable2 = ib;
-					Type tb = getAttributeOfVariable(backAttribute, ib);
-					if(tb==ERROR){
-						cout<<"@setupClaTable: Variable does not own this attribute! Got["<<back<<"], ["<<backAttribute<<"]"<<endl;
-						return false;
-					} 
+					Type ta = getAttributeOfVariable(ia, frontAttribute);
+					Type tb = getAttributeOfVariable(ib, backAttribute);
+					if(ta==ERROR||tb==ERROR)	return false; 
+					qc.attribute1 = ta;
 					qc.attribute2 = tb;
-					//===========================
-					//Same attribute
-					//check if type is the same
-					//
-					//note for the stmt=if
-					//===========================
-					if(ta==tb){
-						if(queryVarTable[ia].variableType!=KT_STMT_NUM&&queryVarTable[ib].variableType!=KT_STMT_NUM){
-							 if(queryVarTable[ia].variableType!=queryVarTable[ia].variableType){
+
+			//Attribute	the same
+					if(ta==tb){	
+						if(ta==AT_STMT_NUM){
+							if(queryVarTable[ia].variableType==queryVarTable[ib].variableType){
+								changeMapTo(ia, ib);
+							}else if(queryVarTable[ia].variableType==DT_STMT&&queryVarTable[ib].variableType!=DT_STMT){
+								changeMapTo(ia, ib);
+							}else if(queryVarTable[ia].variableType!=DT_STMT&&queryVarTable[ib].variableType==DT_STMT){
+								changeMapTo(ib, ia);
+							}else
 								return false;
-							 }
-						}						 
-						mergeFlag.push_back(ia);
-						mergeFlag.push_back(ib);
-						continue;
-					}
-					//===========================
-					//Comparable
-					//===========================
-					if((ta==AT_PROC_NAME||ta==AT_CALL_PROC_NAME||ta==AT_VAR_NAME)&&(tb==AT_PROC_NAME||tb==AT_CALL_PROC_NAME||tb==AT_VAR_NAME)){
-						queryClaTable.push_back(qc);
-						continue;
-					}else if((ta==AT_STMT_NUM)&&(tb==AT_STMT_NUM)){
-						queryClaTable.push_back(qc);
-						continue;
+						}else{ 	 
+							if(queryVarTable[ia].variableType==KT_STMT_NUM||queryVarTable[ia].variableType==KT_KNOWN_VARIABLE||queryVarTable[ia].variableType==KT_KNOWN_PROCEDURE||queryVarTable[ia].variableType==KT_KNOWN_CONSTANT){
+								changeMapTo(ib, ia);
+							}else{
+								changeMapTo(ia, ib);
+							}
+						}
 					}else{
-						cout<<"@setupClaTable: Attribute not comparable! Got["<<ta<<"], ["<<tb<<"]"<<endl;
-						return false;
-					}					
-				}else if((frontAttribute != -1 && backAttribute == -1)||(frontAttribute == -1 && backAttribute != -1)){
+			//Attribute not the same but comparable
+						if(!((ta==AT_PROC_NAME||ta==AT_CALL_PROC_NAME||ta==AT_VAR_NAME)&&(tb==AT_PROC_NAME||tb==AT_CALL_PROC_NAME||tb==AT_VAR_NAME)))
+							return false;
+					} 
+					queryClaTable.push_back(qc);   
+					continue;
+				}
+		//only one of it has attribute
+				else if((frontAttribute != -1 && backAttribute == -1)||(frontAttribute == -1 && backAttribute != -1)){
+			//swap front and back to a.b=c
 					if(frontAttribute == -1 && backAttribute != -1){
-						int tmpt = backAttribute;
+						int tmpt = frontAttribute;
 						frontAttribute = backAttribute;
 						backAttribute = tmpt;
-						string tmp = back;
+						string tmp = front;
 						front = back;
-						back = tmp;
+						back = tmp;	 
 					}
-					//===========================
-					//back has no attribute
-					//===========================
 					front = front.substr(0, front.find(".")); 
-					int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,0,0); 
-					if(ia==-1){
-						cout<<"@setupClaTable: Variable not exist! Got["<<front<<"], ["<<back<<"]"<<endl;
-						return false;
-					} 
-					//===========================
-					//front match back type
-					//===========================
+					int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,0,0); 	
+					int ib = getIndexFromVarTable(back, 0,1,0,0,0,0,0,0);
+					if(ia==-1)	return false;
+					ia = queryVarTable[ia].mapTo;
+					if(ib!=-1){
+			//progline
+					   if(queryVarTable[queryVarTable[ib].mapTo].content!=-1){
+							string intStr = static_cast<ostringstream*>( &(ostringstream() << queryVarTable[queryVarTable[ia].mapTo].content) )->str();
+							back=string(string(intStr));
+					   }else{
+							changeMapTo(queryVarTable[ib].mapTo, ia);
+					   }
+					}
+			//front attrib match back type
 					if(qv.isInteger(back)){
-						if(getAttributeOfVariable(frontAttribute, ia)==AT_STMT_NUM){
-							//===========================
-							//front will add in back as stmt number
-							//
-							//is match accordingly.
-							//===========================
+						if(getAttributeOfVariable(ia, frontAttribute)==AT_STMT_NUM){
 							queryVarTable[ia].content=atoi(back.c_str());
-							queryVarTable[ia].variableType=KT_STMT_NUM;
-						}else if(getAttributeOfVariable(frontAttribute, ia)==AT_VALUE){	 
-							//===========================
-							//front will add in back as known constant
-							//===========================
+					//check if that stmt has type
+							if(queryVarTable[ia].variableType==DT_ASSIGN){
+								STMT_LIST st;
+								pkb->getAllAssignment(&st);
+								int cou=0;
+								for(cou; cou<st.size(); cou++){					 
+									if(st[cou]==queryVarTable[ia].content){
+										 queryVarTable[ia].variableType=KT_STMT_NUM;
+										 break;
+									}
+								}
+								if(cou==st.size())
+									return false;
+							}else if(queryVarTable[ia].variableType==DT_CALL){ 
+								STMT_LIST st;
+								pkb->getAllCall(&st);
+								int cou=0;
+								for(cou; cou<st.size(); cou++){					 
+									if(st[cou]==queryVarTable[ia].content){
+										 queryVarTable[ia].variableType=KT_STMT_NUM;
+										 break;
+									}
+								}
+								if(cou==st.size())
+									return false;
+							}else if(queryVarTable[ia].variableType==DT_WHILE){	
+								STMT_LIST st;
+								pkb->getAllWhile(&st);
+								int cou=0;
+								for(cou; cou<st.size(); cou++){					 
+									if(st[cou]==queryVarTable[ia].content){
+										 queryVarTable[ia].variableType=KT_STMT_NUM;
+										 break;
+									}
+								}
+								if(cou==st.size())
+									return false;
+							}else if(queryVarTable[ia].variableType==DT_IF){  
+								STMT_LIST st;
+								pkb->getAllIf(&st);
+								int cou=0;
+								for(cou; cou<st.size(); cou++){					 
+									if(st[cou]==queryVarTable[ia].content){
+										 queryVarTable[ia].variableType=KT_STMT_NUM;
+										 break;
+									}
+								}
+								if(cou==st.size())
+									return false;
+							}		  
+						}else if(getAttributeOfVariable(ia, frontAttribute)==AT_VALUE){	 
 							queryVarTable[ia].content=atoi(back.c_str());
 							queryVarTable[ia].variableType=KT_KNOWN_CONSTANT;
-						}else{
-							cout<<"@setupClaTable: Variable ["<<queryVarTable[ia].origin<<"] attribute not of type integer."<<endl;
-							return false;
-						}
+						}else
+							return false;  
+						discardClause++;  
+						continue;
 					}else if(back.find("\"")<back.size()){
 						back = back.substr(back.find("\"")+1);
 						if(back.find("\"")<=back.size()){
 							back = back.substr(0,back.find("\""));
-							if(qv.isSynonym(back)){
-								//===========================
-								//back is now confirmed to be a IDENT, therefore front will have
-								//string as value which has to be a call or variable or proc
-								//===========================
-								if(getAttributeOfVariable(frontAttribute,ia)==AT_VAR_NAME){ 
-									//=========================== 
-									//change variable to known variable
-									//=========================== 
+							if(qv.isSynonym(back)){	
+								Type frontAttr=getAttributeOfVariable(ia, frontAttribute);
+								if(frontAttr==ERROR) return false;
+								if(frontAttr==AT_VAR_NAME){ 	  
 									int inV = pkb->getVarIndex(back);
-									if(inV<0){
-										cout<<"@getIndexFromVarTable: Variable ["<<back<<"] not in pkb."<<endl;
-										return false;
-									}
+									if(inV<0) return false;  
 									queryVarTable[ia].variableType=KT_KNOWN_VARIABLE; 	
-									queryVarTable[ia].content=inV;
-								}else if(getAttributeOfVariable(frontAttribute,ia)==AT_PROC_NAME&&queryVarTable[ia].variableType==DT_CALL){
-									//=========================== 
-									//create known proc for call
-									//=========================== 
+									queryVarTable[ia].content=inV; 
+								}else if(frontAttr==AT_PROC_NAME&&queryVarTable[ia].variableType==DT_CALL){
 									int inP = pkb->getProcIndex(back);
-									if(inP<0){
-										cout<<"@getIndexFromVarTable: Procedure ["<<back<<"] not in pkb."<<endl;
-										return false;
-									} 
+									if(inP<0) return false;	   
 									QueryVariable var;
 									var.variableType=KT_KNOWN_PROCEDURE;
 									var.content=inP;
 									var.origin=back;
 									var.countAppear=0;
 									var.dependency=-1;
+									var.mapTo=queryVarTable.size();
 									queryVarTable.push_back(var);
 
 									qc.variable1=ia;
@@ -931,53 +900,56 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 									qc.variable2=queryVarTable.size()-1;
 									qc.attribute2=AT_PROCTABLEINDEX;
 									queryClaTable.push_back(qc);
-									return true;
-								}else if(getAttributeOfVariable(frontAttribute,ia)==AT_PROC_NAME){
-									//=========================== 
-									//change to known proc
-									//=========================== 
+									continue;
+								}else if(frontAttr==AT_PROC_NAME){	 
 									int inP = pkb->getProcIndex(back);
-									if(inP<0){
-										cout<<"@getIndexFromVarTable: Procedure ["<<back<<"] not in pkb."<<endl;
-										return false;
-									}
+									if(inP<0) return false; 
 									queryVarTable[ia].variableType=KT_KNOWN_PROCEDURE; 
 									queryVarTable[ia].content=inP; 
 								}
 							}
 						}													
 					}
+					discardClause++;
+					continue;
 				}else if(frontAttribute == -1 && backAttribute == -1){
 					if(front!=back){
-						cout<<"@setupClaTable: \"with\" return false! Got["<<front<<"="<<back<<"]"<<endl;
-						return false;
+						int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,0,0); 	
+						int ib = getIndexFromVarTable(back, 0,1,0,0,0,0,0,0);
+						if(ia==-1||ib==-1)	return false; 
+						if(queryVarTable[ia].variableType!=DT_PROGLINE||queryVarTable[ib].variableType!=DT_PROGLINE)
+							return false;
+						if(queryVarTable[ia].mapTo!=ia)
+							changeMapTo(queryVarTable[ib].mapTo, queryVarTable[ia].mapTo);
+						else
+							changeMapTo(queryVarTable[ia].mapTo, queryVarTable[ib].mapTo);
 					}
+					discardClause++; 
+					continue;
 				}else{
-					cout<<"@setupClaTable: Unkown ref! Got["<<front<<"], ["<<back<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupClaTable: Unkown ref! Got["<<front<<"], ["<<back<<"]"<<endl;
 					return false;
 				}
 			}else{
-				cout<<"@setupClaTable: with clause fromat wrong. Got[with "<<front<<"="<<back<<"]"<<endl;
+				if(DEBUGMODE) cout<<"@setupClaTable: with clause fromat wrong. Got[with "<<front<<"="<<back<<"]"<<endl;
 				return false;
 			}
 		}else if(claTable[i].find("pattern ")==0){
 			claTable[i] = claTable[i].substr(8);
 			vector<string> element = extractRelation(claTable[i]);
 			int ia = getIndexFromVarTable(element[0], 0,1,0,0,0,0,0,1);
-			if(ia==-1){
-				cout<<"@setupClaTable(): assign|if|while not exist. Got["<<element[0]<<"]"<<endl;
-			}
+			if(ia==-1)
+				return false;
+			ia = queryVarTable[ia].mapTo; 
 			QueryClause qc;
 			qc.index=queryClaTable.size();
 			if(queryVarTable[ia].variableType==DT_ASSIGN){
-				if(!qv.isVarRef(element[1])){
-					cout<<"@setupClaTable(): Variable1 not VarRef. a:["<<element[1]<<"]"<<endl;
+				if(!qv.isVarRef(element[1]))	
 					return false;
-				}
 				int ib = getIndexFromVarTable(element[1], 0,1,0,1,0,1,0,2);
-				if(ib==-1){
+				if(ib==-1)
 					return false;
-				} 
+				ib = queryVarTable[ib].mapTo;
 				qc.relationType=CT_PATTERN;
 				qc.variable1 = ia;
 				qc.variable2 = ib;
@@ -1010,14 +982,12 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				queryClaTable.push_back(qc); 
 				continue;
 			}else if(queryVarTable[ia].variableType==DT_WHILE){
-				if(!qv.isVarRef(element[1])){
-					cout<<"@setupClaTable(): Variable1 not VarRef. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
-					return false;
-				}
+				if(!qv.isVarRef(element[1]))	return false;
 				int ib = getIndexFromVarTable(element[1], 0,1,0,1,0,1,0,2);
 				if(ib==-1){
 					return false;
-				} 
+				} 						  
+				ib = queryVarTable[ib].mapTo;
 				qc.relationType=CT_PATTERN;
 				qc.variable1 = ia;
 				qc.variable2 = ib;
@@ -1026,14 +996,10 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				queryClaTable.push_back(qc); 
 				continue;
 			}else if(queryVarTable[ia].variableType==DT_IF){
-				if(!qv.isVarRef(element[1])){
-					cout<<"@setupClaTable(): Variable1 not VarRef. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
-					return false;
-				}
+				if(!qv.isVarRef(element[1]))	return false;
 				int ib = getIndexFromVarTable(element[1], 0,1,0,1,0,1,0,2);
-				if(ib==-1){
-					return false;
-				} 
+				if(ib==-1)	return false;	
+				ib = queryVarTable[ib].mapTo;
 				qc.relationType=CT_PATTERN;
 				qc.variable1 = ia;
 				qc.variable2 = ib;
@@ -1042,7 +1008,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				queryClaTable.push_back(qc);
 				continue;
 			}else{
-				cout<<"@setupClaTable(): Pattern has to work on assign,if,while Got:"<<queryVarTable[ia].variableType<<endl;
+				if(DEBUGMODE) cout<<"@setupClaTable(): Pattern has to work on assign,if,while Got:"<<queryVarTable[ia].variableType<<endl;
 				return false;
 			}
 		}else{
@@ -1052,7 +1018,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 			claTable[i] = claTable[i].substr(10); 
 			vector<string> element = extractRelation(claTable[i]);
 			if(element.size()!=3){
-				cout<<"@setupClaTable: the format of relation is wrong, recieve: ["<<claTable[i]<<"]"<<endl;
+				if(DEBUGMODE) cout<<"@setupClaTable: the format of relation is wrong, recieve: ["<<claTable[i]<<"]"<<endl;
 				return false;
 			}
 			int m = getIndexOfFirstFrom(element[0], dicRelationRef, DICRELATIONREFSIZE); 
@@ -1075,12 +1041,12 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				//cannot be the same, except when '_'
 				//integer argument means statement number
 				//================================ 
-				if(element[1]==element[2]&&(element[1]!="_"||element[2]!="_")){
-					cout<<"@setupClaTable(): Variable cannot be the same for Parent and Follows a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+				if(element[1]==element[2]&&element[1]!="_"){
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable cannot be the same for Parent and Follows a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}
 				if(!qv.isStmtRef(element[1])||!qv.isStmtRef(element[2])){
-					cout<<"@setupClaTable(): Variable not right for Parent, Follows: a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable not right for Parent, Follows: a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}
 				int ia = getIndexFromVarTable(element[1], 0,1,0,0,0,1,1,1);
@@ -1114,7 +1080,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				ia = getIndexFromVarTable(element[1], 0,1,0,0,1,0,1,0);  
 				ib = getIndexFromVarTable(element[2], 0,1,0,1,0,1,0,2);
 				if(ia==-1||ib==-1){
-					cout<<"@setupClaTable(): Variable not exist: a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable not exist: a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}  
 				if(m==4){
@@ -1123,7 +1089,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 					}else if(queryVarTable[ia].variableType!=DT_VARIABLE&&queryVarTable[ia].variableType!=KT_KNOWN_VARIABLE){
 						qc.relationType=RT_MODIFIESS;
 					}else{
-						cout<<"@setupClaTable(): Var1 of Modifies cannot be variable"<<endl;
+						if(DEBUGMODE) cout<<"@setupClaTable(): Var1 of Modifies cannot be variable"<<endl;
 						return false;
 					}
 				}else if(m==5){
@@ -1132,7 +1098,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 					}else if(queryVarTable[ia].variableType!=DT_VARIABLE&&queryVarTable[ia].variableType!=KT_KNOWN_VARIABLE){
 						qc.relationType=RT_USESS;
 					}else{
-						cout<<"@setupClaTable(): Var1 of Modifies cannot be variable"<<endl;
+						if(DEBUGMODE) cout<<"@setupClaTable(): Var1 of Modifies cannot be variable"<<endl;
 						return false;
 					}
 				}
@@ -1150,12 +1116,12 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				//cannot be the same, except when '_'
 				//integer argument means statement number
 				//================================ 
-				if(element[1]==element[2]&&(element[1]!="_"||element[2]!="_")){
-					cout<<"@setupClaTable(): Variable cannot be the same for Affect. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+				if(element[1]==element[2]&&element[1]!="_"){
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable cannot be the same for Affect. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}
 				if(!qv.isStmtRef(element[1])||!qv.isStmtRef(element[2])){
-					cout<<"@setupClaTable(): Variable right for Affect. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable right for Affect. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}
 				int ia = getIndexFromVarTable(element[1], 0,1,0,0,0,1,1,1);
@@ -1163,12 +1129,12 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				if(ia==-1||ib==-1){
 					return false;
 				} 
-				if(queryVarTable[ia].variableType!=DT_ASSIGN||queryVarTable[ia].variableType!=DT_UNDERSCORE){
-					cout<<"@setupClaTable(): Variable 1 not assign: ["<<ia<<"]"<<endl;
+				if(queryVarTable[ia].variableType!=DT_ASSIGN&&queryVarTable[ia].variableType!=DT_UNDERSCORE){
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable 1 not assign: ["<<ia<<"]"<<endl;
 					return false;
 				}
-				if(queryVarTable[ib].variableType!=DT_ASSIGN||queryVarTable[ib].variableType!=DT_UNDERSCORE){
-					cout<<"@setupClaTable(): Variable 2 not assign: ["<<ib<<"]"<<endl;
+				if(queryVarTable[ib].variableType!=DT_ASSIGN&&queryVarTable[ib].variableType!=DT_UNDERSCORE){
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable 2 not assign: ["<<ib<<"]"<<endl;
 					return false;
 				}
 				if(m==6){
@@ -1190,7 +1156,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				//integer arguments mean program line numbers
 				//================================ 
 				if(!qv.isLineRef(element[1])||!qv.isLineRef(element[2])){
-					cout<<"@setupClaTable(): Variable not right for Next. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable not right for Next. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}
 				int ia = getIndexFromVarTable(element[1], 0,1,0,0,0,1,1,0);
@@ -1217,7 +1183,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				//cannot be the same (no recusive), except when '_'
 				//================================ 
 				if(!qv.isEntRef(element[1])||!qv.isEntRef(element[2])){
-					cout<<"@setupClaTable(): Variable not right for Calls. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable not right for Calls. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}
 				int ia = getIndexFromVarTable(element[1], 0,1,0,0,1,1,0,3);
@@ -1233,13 +1199,47 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 				qc.variable1 = ia;
 				qc.variable2 = ib;
 			}else{
-				cout<<"@setupClaTable(): Unknow relation. a:["<<element[0]<<endl;
+				if(DEBUGMODE) cout<<"@setupClaTable(): Unknow relation. a:["<<element[0]<<endl;
 			} 
 			queryClaTable.push_back(qc);
 		}
 	}
 	return true;
 } 
+bool  QueryPreprocessor::makeOptimize(){
+	//merge
+	for(int i=0; i<queryClaTable.size(); i++){
+		if(queryClaTable[i].relationType==CT_PATTERN){
+			continue;
+		}else if(queryVarTable[queryClaTable[i].variable1].mapTo==queryVarTable[queryClaTable[i].variable2].mapTo){
+			if(queryClaTable[i].relationType!=RT_NEXT&&queryClaTable[i].relationType!=RT_NEXTT){
+				if(queryVarTable[queryClaTable[i].variable1].variableType!=DT_UNDERSCORE){
+					queryClaTable[i].index=-1;
+					mergedClause++;
+				}
+			}
+		}
+	}
+	if(!DEBUGMODE){
+	//change select target to mapTo target
+		for(int i=0; i<queryTarTable.size(); i++){
+			if(queryVarTable[queryTarTable[i].varIndex].mapTo!=queryTarTable[i].varIndex){
+				 queryTarTable[i].varIndex=queryVarTable[queryTarTable[i].varIndex].mapTo;
+			}
+		}
+	//remove unused clause 
+		for (vector<QueryClause>::iterator it=queryClaTable.begin();it!=queryClaTable.end();){
+			if(it->index==-1) 
+				it = queryClaTable.erase(it);
+			else 
+				++it;
+		}
+		for(int i=0; i<queryClaTable.size(); i++){
+			 queryClaTable[i].index=i;
+		}
+	}
+	return true;
+}
 /********************************************//**
  * @brief 
  * @details
@@ -1255,24 +1255,24 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
  * @return The complitance of this function, true for done, false for error
  ***********************************************/
 bool QueryPreprocessor::setDependency(){
-	if(queryVarTable.size()==0||queryTarTable.size()<0){
-		return false;
-	}
-
-
 	//set appearer count
 	for(int i = 0; i<(int)queryVarTable.size(); i++){ 
 		for(int j = 0; j<(int)queryClaTable.size(); j++){
 			if(queryClaTable[j].variable1==i||queryClaTable[j].variable2==i){
-				queryVarTable[i].countAppear++;
+				queryVarTable[queryVarTable[i].mapTo].countAppear++;
 			}
 		}
 	}
 	for(int i = 0; i<(int)queryVarTable.size(); i++){ 
-		if((queryVarTable[i].variableType==KT_STMT_NUM)||(queryVarTable[i].variableType==DT_UNDERSCORE)||(queryVarTable[i].variableType==KT_KNOWN_VARIABLE)||(queryVarTable[i].variableType==KT_KNOWN_PROCEDURE)){
-			continue;
-		}else if(queryVarTable[i].countAppear>1&&queryVarTable[i].dependency==-1){
-			queryVarTable[i].dependency=i;
+		if(queryVarTable[i].mapTo==i){
+			if((queryVarTable[i].variableType==KT_STMT_NUM)||(queryVarTable[i].variableType==DT_UNDERSCORE)
+				||(queryVarTable[i].variableType==KT_KNOWN_VARIABLE)||(queryVarTable[i].variableType==KT_KNOWN_PROCEDURE)
+				||(queryVarTable[i].variableType==DT_STMTLST)||(queryVarTable[i].variableType==DT_CONSTANT)
+				||(queryVarTable[i].variableType==KT_KNOWN_CONSTANT)){
+				continue;
+			}else if(queryVarTable[i].countAppear>1&&queryVarTable[i].dependency==-1){
+				queryVarTable[i].dependency=i;
+			}
 		}
 	}
 	//set variables that has dependency
@@ -1281,9 +1281,9 @@ bool QueryPreprocessor::setDependency(){
 			int a = queryClaTable[j].variable1;
 			int b = queryClaTable[j].variable2;
 			if(i==a||i==b){
-				if(queryVarTable[a].dependency!=-1&&queryVarTable[b].dependency!=-1){
-					queryVarTable[a].dependency=a;
-					queryVarTable[b].dependency=a;
+				if(queryVarTable[queryVarTable[a].mapTo].dependency!=-1&&queryVarTable[queryVarTable[b].mapTo].dependency!=-1){
+					queryVarTable[queryVarTable[a].mapTo].dependency=a;
+					queryVarTable[queryVarTable[b].mapTo].dependency=a;
 				}
 			}
 		} 
@@ -1298,49 +1298,45 @@ bool QueryPreprocessor::setDependency(){
  *		1	false	if the boolean needs to return false instead of none
  *		-1	error	just not pass the validation
  ***********************************************/
-//    called by the query processor
-//
-//
 int QueryPreprocessor::parse(string query){
 	queryVarTable.clear();
 	queryTarTable.clear();
 	queryClaTable.clear();
 	trim_all(query);
-	mergeFlag.clear();
+	mergedClause=0;
+	discardClause=0;
 	while(true){
 		//=======================================>>Stage 1 Declare
 		vector<string> declares = getDeclares(query);
-		if(declares.size()<=0){
+		if((declares.size()<=0)||(!setupVarTable(declares)))	
 			break;
-		} 
-		if(!setupVarTable(declares)){
-			break;
-		}
+		declares.clear();
 		//=======================================>>Stage 2 Select
 		vector<string> targets = getTargets(query);
-		if(targets.size()<=0){
+		if((targets.size()<=0)||(!setupTarTable(targets)))		
 			break;
-		}
-		if(!setupTarTable(targets)){
-			break;
-		}
+		targets.clear();
 		//=======================================>>Stage 3 Clause
 		vector<string> clauses = getClauses(query); 
-		if(clauses.size()<=0){
+		if((clauses.size()<=0)||(!setupClaTable(clauses)))		
+			break;		
+		//=======================================>>Stage 5 Dependency
+		if(!makeOptimize())		
 			break;
-		}
-		cout<<endl;
-		if(!setupClaTable(clauses)){
-			break;
-		}
 		//=======================================>>Stage 4 Dependency
-		if(!setDependency()){
+		if(!setDependency())	
 			break;
+		if(DEBUGMODE||PRINTTABLE){
+			printf("QP: parsed: %2d, merged: %2d, discard: %2d, result: %2d.\n", clauses.size(), mergedClause, discardClause, queryClaTable.size()); 
+			QueryPreprocessorDebug qpd;
+			qpd.printQueryVariableTable(queryVarTable);
+			qpd.printTargetVariableTable(queryTarTable);
+			qpd.printQueryClauseTable(queryClaTable);
 		}
-		cout<<"@parse: succeed!\n"<<endl;
+		clauses.clear();
 		return 0;
 	}
-	cout<<"@parse: return false, interrupted!"<<endl;
+	if(DEBUGMODE||PRINTTABLE) cout<<"false"<<endl;
 	return -1;
 } 
 /********************************************//**

@@ -1,11 +1,8 @@
 #pragma once
 #ifndef QUERYPREPROCESSOR_H
-/**
- * include guards\n
- * Explain in wiki: 
- * <a href="http://en.wikipedia.org/wiki/Include%5Fguard">link</a>
- */
 #define QUERYPREPROCESSOR_H
+#define DEBUGMODE 0
+#define PRINTTABLE 0
 #define DICCLAUSESIZE 4			/**< contain: "such that", "and", "pattern", "with"*/
 #define DICDESIGNENTITYSIZE 10	/**< contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
 #define DICRELATIONREFSIZE 12	/**< contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls"*/
@@ -38,8 +35,9 @@
  ***********************************************/
 class QueryPreprocessor{  
 private:
-	/**@brief Used for merge same query variables. @see setupClaTable*/
-	vector<int> mergeFlag;		
+	/**@brief Used for merge same query variables. @see setupClaTable*/	  
+	int mergedClause;  
+	int discardClause;
 	/**@brief  contain: "such that", "and", "pattern", "with"*/ 
 	string dicClause[DICCLAUSESIZE];		
 	/**@brief  contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
@@ -67,8 +65,10 @@ private:
 	Type getAttributeOfVariable (int a, int b);
 	int getIndexFromVarTable (string str, int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
 	bool setupVarTable (vector<string> declares);
-	bool setupTarTable (vector<string> tarTable);
-	bool setupClaTable (vector<string> claTable); 
+	bool setupTarTable (vector<string> targets);
+	bool setupClaTable (vector<string> clauses); 
+	void changeMapTo(int from, int to);
+	bool makeOptimize ();
 	bool setDependency ();
 public:
 	//constructor
@@ -80,5 +80,13 @@ public:
 	vector<QueryVariable> getQueryVariableTable();
 	vector<QueryTarget>   getQueryTargetTable();
 	vector<QueryClause>   getQueryClauseTable(); 
+};
+class QueryPreprocessorDebug{
+public:
+	QueryPreprocessorDebug(void);
+	char* typeToString(Type t);
+	void printQueryVariableTable (vector<QueryVariable> v);
+	void printTargetVariableTable (vector<QueryTarget> v);
+	void printQueryClauseTable (vector<QueryClause> v);
 };
 #endif

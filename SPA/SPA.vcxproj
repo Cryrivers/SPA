@@ -119,6 +119,7 @@
     <ClCompile Include="ProcTable.cpp" />
     <ClCompile Include="QueryEvaluator.cpp" />
     <ClCompile Include="QueryPreProcessor.cpp" />
+    <ClCompile Include="QueryPreprocessorDebug.cpp" />
     <ClCompile Include="QueryProcessor.cpp" />
     <ClCompile Include="QueryValidator.cpp" />
     <ClCompile Include="SPA.cpp" />
