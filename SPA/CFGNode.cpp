@@ -34,7 +34,6 @@ CFGNode::~CFGNode(void)
 
 void CFGNode::setStartStatement( STMT startStatement )
 {
-	assert(startStatement < 50);
 	_start = startStatement;
 }
 

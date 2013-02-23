@@ -260,7 +260,7 @@ procedure Main {
 		}
 	}
 	status = status + command - 48;
-	Call Buddy;
+	call Buddy;
 }
 
 procedure Buddy {
@@ -274,7 +274,7 @@ procedure Buddy {
 	e = d + z * x;
 	while i {
 		e = x - y;
-		if z {
+		if z then {
 			y = y + z;
 			i = y + 1; }
 		else {
