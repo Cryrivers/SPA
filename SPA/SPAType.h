@@ -1,8 +1,10 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <time.h> 
+#include <math.h> 
 using namespace std;
-
+#define SPA_TIME_MEASURE(r,cmd) do {clock_t __tm_t;__tm_t = clock();(cmd);__tm_t = clock() - __tm_t; printf ("============================\n");printf ("%s: %ld milliseconds.\n",(r), __tm_t);printf ("============================\n\n"); } while(0)
 typedef int STMT;
 typedef vector<int> STMT_LIST;
 typedef bool BOOLEAN;

@@ -2,6 +2,7 @@
 //
 #include "stdafx.h"
 #include "Parser.h"
+#include "SPAType.h"
 #include "AST.h"
 #include "ASTNode.h"
 #include "QueryProcessor.h"
@@ -10,8 +11,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <time.h> 
-#include <math.h> 
 
 using namespace std;
 
@@ -60,14 +59,8 @@ int _tmain(int argc, _TCHAR *argv[])
 	}else{
 		cout<<"Read error!"<<endl;
 	}
-	clock_t t;
-	int f;
-	t = clock();	
-	parser->parse(program);
-	t = clock() - t;						   				  
-	printf ("============================\n");
-	printf ("Parser %f seconds.\n", ((float)t)/CLOCKS_PER_SEC);				  
-	printf ("============================\n\n");
+	
+	SPA_TIME_MEASURE("Parser", parser->parse(program));
 
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
@@ -87,12 +80,8 @@ int _tmain(int argc, _TCHAR *argv[])
 	query += " ";
 	query += " ";
 									 
-	t = clock() - t;
-	processor->evaluate(query,result); 
-	t = clock() - t;											  
-	printf ("============================\n");
-	printf ("Processor %f seconds.\n", ((float)t)/CLOCKS_PER_SEC);						  
-	printf ("============================\n\n");
+	
+	SPA_TIME_MEASURE("Processor",processor->evaluate(query,result));
 
 	while(result.size()>0)
 	{
