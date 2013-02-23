@@ -116,7 +116,10 @@ void Parser::_parseLine()
 			sameLevelAtNext = false;
 			break;
 
-		case STMT_CLOSE_BRACKET:
+		case STMT_CLOSE_BRACKET_END_OF_PROC:
+		case STMT_CLOSE_BRACKET_END_OF_IF:
+		case STMT_CLOSE_BRACKET_END_OF_WHILE:
+
 			previousNode = _parentStackNoStmtLst.top();
 			if(previousNode->getNodeType() == AST_PROCEDURE)
 				_pkb->addProc(astCurrentProcName,astCurrentProcStart,astCurrentProcEnd);
@@ -181,10 +184,13 @@ void Parser::_preprocessProgram(string program)
 				// of code in this procedure
 				s.stmtNumber = currentStmtNumber+1;
 				s.type = STMT_PROCEDURE;
+				// sm[1] : the procedure name
 				s.extraName = sm[1];
 				//Hack: Assume the procIndex here. Add to ProcTable while generating AST
 				currentProcIndex++;
 				s.procIndex = currentProcIndex;
+				//procedure is a block, so push it into the scope stack
+				statementScope.push(preprocProgram->size());
 
 			}else if (regex_match(thisStmt, sm, whileRegex)) {
 				currentStmtNumber++;
@@ -194,6 +200,8 @@ void Parser::_preprocessProgram(string program)
 				s.extraCond = sm[1];
 				assert(currentProcIndex>-1);
 				s.procIndex = currentProcIndex;
+				//while is a block, so push it into the scope stack
+				statementScope.push(preprocProgram->size());
 
 			}else if (regex_match(thisStmt, sm, callRegex)) {
 				currentStmtNumber++;
@@ -222,6 +230,10 @@ void Parser::_preprocessProgram(string program)
 				s.extraCond = sm[1];
 				assert(currentProcIndex>-1);
 				s.procIndex = currentProcIndex;
+				//if is a block, so push it into the scope stack
+				//push twice for THEN and ELSE. Still hard to make CFG.
+				statementScope.push(preprocProgram->size());
+				statementScope.push(preprocProgram->size());
 
 			}else if (regex_match(thisStmt,sm,elseRegex)) {
 				s.stmtLine = thisStmt;
@@ -240,16 +252,38 @@ void Parser::_preprocessProgram(string program)
 			statement lb;
 			lb.type = STMT_OPEN_BRACKET;
 			lb.stmtLine = "{";
-			lb.stmtNumber = NO_STATEMENT_NUMBER;
-			lb.procIndex = NO_SPECIFIC_PROC_INDEX;
+			//Must be the first statement inside this block
+			lb.stmtNumber = currentStmtNumber + 1;
+			lb.procIndex = currentProcIndex;
 			preprocProgram->push_back(lb);
 		}else if (nearestSeparator == RIGHT_BRACKET) {
 			statement rb;
-
-			rb.type = STMT_CLOSE_BRACKET;
 			rb.stmtLine = "}";
-			rb.stmtNumber = NO_STATEMENT_NUMBER;
-			rb.procIndex = NO_SPECIFIC_PROC_INDEX;
+			//Must be the last statement inside this block
+			rb.stmtNumber = currentStmtNumber;
+			rb.procIndex = currentProcIndex;
+			//check the top scope
+			assert(statementScope.size()>0);
+			//define end of the scope
+			rb.startOfTheScope = preprocProgram->at(statementScope.top()).stmtNumber;
+			preprocProgram->at(statementScope.top()).endOfTheScope = currentStmtNumber;
+			
+			switch(preprocProgram->at(statementScope.top()).type)
+			{
+			case STMT_PROCEDURE:
+				rb.type = STMT_CLOSE_BRACKET_END_OF_PROC;
+				break;
+			case STMT_IF:
+				rb.type = STMT_CLOSE_BRACKET_END_OF_IF;
+				break;
+			case STMT_WHILE:
+				rb.type = STMT_CLOSE_BRACKET_END_OF_WHILE;
+				break;
+			default:
+				throw("Unknown Scope while preprocssing the program.");
+			}
+			statementScope.pop();
+			//push back
 			preprocProgram->push_back(rb);
 		}
 	} while (nearestSeparator != -1);

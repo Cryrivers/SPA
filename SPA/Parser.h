@@ -19,6 +19,8 @@ private:
 
 	PKBController* _pkb;
 	vector<statement>* preprocProgram;
+	//unsigned int -  the index of statement in vecotr preprocProgram
+	stack<unsigned int> statementScope;
 
 	ASTNode* previousNode;
 	bool sameLevelAtNext;

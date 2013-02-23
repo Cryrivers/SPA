@@ -38,7 +38,9 @@ enum StmtType {
 	STMT_WHILE,
 	STMT_CALL,
 	STMT_OPEN_BRACKET,
-	STMT_CLOSE_BRACKET,
+	STMT_CLOSE_BRACKET_END_OF_PROC,
+	STMT_CLOSE_BRACKET_END_OF_IF,
+	STMT_CLOSE_BRACKET_END_OF_WHILE,
 	STMT_IF,
 	STMT_ELSE,
 	STMT_PROCEDURE,
@@ -95,6 +97,13 @@ struct stmtDetail {
 	 */
 
 	StmtType type;
+
+	/**
+	 * \brief	If the type is STMT_CLOSE_BRACKET, startOfTheScope must be set to record the start of current scope.
+	 */
+
+	STMT startOfTheScope;
+	STMT endOfTheScope;
 
 	/**
 	 * \brief	The extra field for procedure name.

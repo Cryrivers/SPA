@@ -60,7 +60,8 @@ int _tmain(int argc, _TCHAR *argv[])
 		cout<<"Read error!"<<endl;
 	}
 	
-	SPA_TIME_MEASURE("Parser", parser->parse(program));
+	//SPA_TIME_MEASURE("Parser", parser->parse(program));
+	parser->parse(program);
 
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
