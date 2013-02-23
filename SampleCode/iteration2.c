@@ -1,96 +1,96 @@
 procedure Main {
-	command = 10;
-	prio = command + 5;
+	com = 10;
+	pure = com + 5;
 	call Ted;
-	ratio = command + prio * 3;
-	nprocs = prio + ration - command;
-	status = ratio * 12 + nprocs - prio;
+	ratio = com + pure * 3;
+	never = pure + ratio - com;
+	status = ratio * 12 + never - pure;
 	call See;
-	pid = command * status + nprocs - ration * prio;
-	while command {
-		command = command -1;
-		ratio = command * status + 3;
-		nprocs = ratio - command +6;
-		if nprocs then {
-			tmp = prio + status -pid * 2;
-			dll = tmp * nprocs + pid * nprocs - 1;
-			while tmp {
-				prio = dll + tmp - (ratio * pid + status) + 6 * prio;
+	pit = com * status + never - ratio * pure;
+	while com {
+		com = com -1;
+		ratio = com * status + 3;
+		never = ratio - com +6;
+		if never then {
+			temp = pure + status -pit * 2;
+			dell = temp * never + pit * never - 1;
+			while temp {
+				pure = dell + temp - (ratio * pit + status) + 6 * pure;
 				call Text;
-				order = prio + dll - tmp * prio - command + nprocs;
-				argc = order - 18;
-				if argc then {
-					front = order * pid + prio * command - 2 + nprocs;
-					argc = argc - 1;
+				idea = pure + dell - temp * pure - com + never;
+				eat = idea - 18;
+				if eat then {
+					front = idea * pit + pure * com - 2 + never;
+					eat = eat - 1;
 				}
 				else {
-					back = order * status - nprocs * dll - 38 +tmp;
-					argc = argc + 1;
+					back = idea * status - never * dell - 38 +temp;
+					eat = eat + 1;
 				}
 				call Text;
-				ratio = tmp - command;
-				pid = dll + tmp * ratio;
+				ratio = temp - com;
+				pit = dell + temp * ratio;
 			}
-			tmp = tmp + 1;
-			dll = dll - 1 * tmp + prio - status * 29;
+			temp = temp + 1;
+			dell = dell - 1 * temp + pure - status * 29;
 		}
 		else {
-			tmp = prio - pid * 4 - status;
-			dll = nprocs - tmp * 9 + (command - pid);
+			temp = pure - pit * 4 - status;
+			dell = never - temp * 9 + (com - pit);
 			call Text;
-			pid = status + 23 - 7 * prio - tmp;
-			while dll {
-				prio = 84 + tmp * pid - procs * ratio;
+			pit = status + 23 - 7 * pure - temp;
+			while dell {
+				pure = 84 + temp * pit - procs * ratio;
 				call See;
-				order = tmp * dll - prio + status -ratio + 48;
-				argc = 15;
-				while argc {
-					left = pid - order - status * 5 + nprocs - tmp;
+				idea = temp * dell - pure + status -ratio + 48;
+				eat = 15;
+				while eat {
+					left = pit - idea - status * 5 + never - temp;
 					if left then {
-						plain = status - 25 + pid * nprocs;
-						right = pid*nproc + ratio*pid+status;
+						plain = status - 25 + pit * never;
+						right = pit*never + ratio*pit+status;
 						while right {
-							top = command - pid * tmp * dll;
+							top = com - pit * temp * dell;
 							if top then {
 								top = top - 75;
-								below = tmp * dll + pid * nprocs;
+								below = temp * dell + pit * never;
 								call See;
 								right = right - 22;
 							}
 							else {
 								top = top - 35;
 								call Text;
-								below = ratio *pid +status -63;
+								below = ratio *pit +status -63;
 								right = right -11;
 							}
-							command =top+pid*nprocs-tmp*dll;
+							com =top+pit*never-temp*dell;
 							left = left + 8;
-							order = command - pid + 25;
-							prio = ratio * pid +status - tmp*dll;
+							idea = com - pit + 25;
+							pure = ratio * pit +status - temp*dell;
 						}
 						call Ted;
 					}
 					else {
-						salt = (command -pid) +order - 15;
-						slim = pid - nprocs + tmp*dll +left;
+						salt = (com -pit) +idea - 15;
+						slim = pit - never + temp*dell +left;
 						fat = slim * 7;
 						if fat then {
 							call Ted;
-							top = command + (ratio*pid+status);
+							top = com + (ratio*pit+status);
 							if slim then {
-								red = pid * nprocs;
-								orange = red + prio;
-								yellow = orange - ratio +tmp*dll;
-								green = prio+order-argc;
-								indigo = ratio * pid +status - red;
-								blue = indigo+ green +pid*nprocs;
-								violet= blue+(prio+order-argc);
+								red = pit * never;
+								orange = red + pure;
+								yellow = orange - ratio +temp*dell;
+								green = pure+idea-eat;
+								indigo = ratio * pit +status - red;
+								blue = indigo+ green +pit*never;
+								violet= blue+(pure+idea-eat);
 							}
 							else {
-								red=pid - nprocs;
-								orange=red-prio+tmp*dll;
-								yellow=red*orange-command;
-								green=status +pid -front;
+								red=pit - never;
+								orange=red-pure+temp*dell;
+								yellow=red*orange-com;
+								green=status +pit -front;
 								indigo= slim+fat-salt;
 								blue=salt+slim-fat;
 								violet=slim-fat-salt;
@@ -102,49 +102,49 @@ procedure Main {
 							fat = fat - 23;
 							slim = slim + 22;
 							if slim then {
-								red = ratio*pid+status;
+								red = ratio*pit+status;
 								orange = red + salt;
-								yellow = red - ratio +tmp*dll;
-								green = prio+order-argc+salt;
+								yellow = red - ratio +temp*dell;
+								green = pure+idea-eat+salt;
 								indigo = ratio +status - orange;
-								blue = indigo+ green +pid*nprocs;
-								violet= yellow+(prio+order-argc);
+								blue = indigo+ green +pit*never;
+								violet= yellow+(pure+idea-eat);
 							}
 							else {
-								red=pid - salt * fat;
-								orange=red-argc+tmp*dll + front;
+								red=pit - salt * fat;
+								orange=red-eat+temp*dell + front;
 								yellow=red*orange-back;
 								green=left +yellow -front;
 								indigo= back+plain-salt;
-								blue=salt*plain- order;
-								violet=argc + back - front * left;
+								blue=salt*plain- idea;
+								violet=eat + back - front * left;
 							}
 							warm=red*orange*yellow;
 							cold=green*indigo*blue*violet;
 						}
 						left = warm *6 + cold * 3;
-						plain = left + argc;
+						plain = left + eat;
 					}
-					argc = argc - 1;
+					eat = eat - 1;
 				}
-				prio = left + argc;
-				dll = dll - 2;
-				tmp = dll - (prio +order-argc);
-				if tmp then {
-					fass=pid * status +(command-pid);
-					fos= slim + salt;
+				pure = left + eat;
+				dell = dell - 2;
+				temp = dell - (pure +idea-eat);
+				if temp then {
+					fass=pit * status +(com-pit);
+					science= slim + salt;
 					sde=right + back;
-					foe=plain * front;
-					soc=prio+order-argc;
+					engin=plain * front;
+					soc=pure+idea-eat;
 					while fass {
-						tmp = nprocs - prio * status;
-						ratio = command + order;
-						while fos {
-							pid = pid - front;
+						temp = never - pure * status;
+						ratio = com + idea;
+						while science {
+							pit = pit - front;
 							while sde {
-								dll = plain - fat * left;
-								while foe {
-									foe = foe -1;
+								dell = plain - fat * left;
+								while engin {
+									engin = engin -1;
 									while soc {
 										warm = 10+cold; 
 										soc = soc - 1;
@@ -153,28 +153,28 @@ procedure Main {
 								}
 								sde = sde - 1;
 							}
-							fos = fos - 1;
+							science = science - 1;
 						}
-						tmp = ratio + 48;
+						temp = ratio + 48;
 						fass = fass - 3;
 					}
-					tmp = ratio * pid + status + (command - pid);
+					temp = ratio * pit + status + (com - pit);
 				}
 				else {
-					fass=pid * warm +(command-pid);
-					fos= slim + cold +6;
+					fass=pit * warm +(com-pit);
+					science= slim + cold +6;
 					sde=right + back - 48 - salt;
-					foe=plain * front - 74 + green;
-					soc=prio+order-argc+23;
+					engin=plain * front - 74 + green;
+					soc=pure+idea-eat+23;
 					if fass then {
-						tmp = nprocs - prio * status;
-						ratio = command + order;
-						if fos then {
-							pid = pid - front;
+						temp = never - pure * status;
+						ratio = com + idea;
+						if science then {
+							pit = pit - front;
 							if sde then {
-								dll = plain - fat * left;
-								if foe then {
-									foe = foe -1;
+								dell = plain - fat * left;
+								if engin then {
+									engin = engin -1;
 									if soc then {
 										warm = cold*plain; 
 										soc = soc - 1;
@@ -186,9 +186,9 @@ procedure Main {
 									call Ted;
 								}
 								else {
-									foe = foe + 1;
+									engin = engin + 1;
 									if soc then {
-										warm = argc*plain; 
+										warm = eat*plain; 
 										soc = soc + 1;
 									}
 									else {
@@ -200,35 +200,35 @@ procedure Main {
 								sde = sde - 1;
 							}
 							else {
-								dll = slim * plain +front -back;
+								dell = slim * plain +front -back;
 								if soc then {
-									command=pid*nprocs-3;
+									com=pit*never-3;
 									soc = fass+15; }
 								else {
-									ratio = ratio*pid-23+status;
+									ratio = ratio*pit-23+status;
 									soc = sde * 74; }
 								sde = sde + 5;
 							}
-							fos = fos - 1;
+							science = science - 1;
 						}
 						else {
-							tmp = ratio + 48;
+							temp = ratio + 48;
 							while sde {
-								dll = plain - pid * left +sde;
-								if foe then {
-									foe = foe -10;
+								dell = plain - pit * left +sde;
+								if engin then {
+									engin = engin -10;
 									while soc {
 										warm = cold*plain;
 										salt = warm*48;
 										slim = salt + 63;
-										fat = slim+(command-pid);
+										fat = slim+(com-pit);
 										soc = soc - 1;
 									}
 								}
 								else {
-									foe = foe + 11;
+									engin = engin + 11;
 									if soc then {
-										warm = argc+plain;
+										warm = eat+plain;
 										salt=warm+22;
 										slim=salt-63; 
 										soc = soc + 1; }
@@ -240,74 +240,76 @@ procedure Main {
 								}
 								sde = sde - 3;
 							}
-							fos = fos - 1;
+							science = science - 1;
 						}
 						fass = fass + 23;
 					}
 					else {
-						tmp = ratio * pid + status + (command - pid);
+						temp = ratio * pit + status + (com - pit);
 					}
-					tmp = prio +order -argc + (command-pid);
+					temp = pure +idea -eat + (com-pit);
 				}
-				argc = warm + cold * plain -salt;
+				eat = warm + cold * plain -salt;
 				call Ted;
 			}
-			dll = argc + (ratio*pid +status);
-			def = 99 -dll;
-			while def {
-				dll = 1 + tmp; }
-			dll = dll + 74;
+			dell = eat + (ratio*pit +status);
+			dear = 99 -dell;
+			while dear {
+				dell = 1 + temp; }
+			dell = dell + 74;
 		}
 	}
-	status = status + command - 48;
+	status = status + com - 48;
 	call Buddy;
 }
 
 procedure Buddy {
-	z = 10;
-	x = z + 5;
-	y = x * z + 4;
-	d = x + y * 12;
+	pit = 10;
+	pure = pit + 5;
+	temp = pure * pit + 4;
+	dell = pure + temp * 12;
 	call See;
-	d = d + z + x;
+	dell = dell + pit + pure;
 	call Ted;
-	e = d + z * x;
-	while i {
-		e = x - y;
-		if z then {
-			y = y + z;
-			i = y + 1; }
-		else {
-			x = y + z;
-			call Ted;
-			i = i - 1;
+	eat = dell + pit * pure;
+	while idea {
+		eat = pure - temp;
+		if pit then {
+			temp = temp + pit;
+			idea = temp + 1; 
 		}
-		x = y + z;
+		else {
+			pure = temp + pit;
+			call Ted;
+			idea = idea - 1;
+		}
+		pure = temp + pit;
 	}
 	call Text;
 }
 
 procedure Text {
-	while i {
-		z = y*3 + 2*x;
+	while idea {
+		pit = temp*3 + 2*pure;
 		call See;
-		i = i - 1;
+		idea = idea - 1;
 	}
-	y = y + z + i;
+	temp = temp + pit + idea;
 }
 
 procedure Ted {
-	while d {
-		z = x + z; }
-	x = z + x;
+	while dell {
+		pit = pure + pit; }
+	pure = pit + pure;
 }
 
 procedure See {
-	while e {
-		if i then {
-			y = z + 1; }
+	while eat {
+		if idea then {
+			temp = pit + 1; }
 		else {
-			z = z * x + y + e * d;
+			call Ted;
+			pit = pit * pure + temp + eat * dell;
 		}
 	}
 }
