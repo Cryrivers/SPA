@@ -40,8 +40,6 @@ Parser::Parser(AST *ast)
 	sameLevelAtNext = true;
 	previousNode = ASTNode::createNode(AST_ANY,0);
 	previousNode->setStmtNumber(0);
-	_currentCFGNode = NULL;
-	_previousCFGNode = NULL;
 }
 
 
@@ -55,71 +53,20 @@ void Parser::_parseLine()
 	string astCurrentProcName;
 	STMT astCurrentProcStart;
 	STMT astCurrentProcEnd;
-	//CFG Related
-	CFGNode* ifNode;
-	CFGNode* whileNode;
-	CFGNode* callNode;
-	CFGNode* topCFGNode;
 
 	statement s;
 
 	for (vector<statement>::iterator it = preprocProgram->begin(); it != preprocProgram->end(); ++it) {
 		ASTNode* currentASTNode;
-
-		if(_currentCFGNode == NULL && it->stmtNumber >0)
-		{
-			_currentCFGNode = new CFGNode();
-			_currentCFGNode->setStartStatement(it->stmtNumber);
-		}
-
-		if(_currentCFGNode != NULL)
-		{
-			if(_currentCFGNode->getStartStatement()==-1 && it->stmtNumber >0)
-			{
-				_currentCFGNode->setStartStatement(it->stmtNumber);
-			}
-		}
-
 		switch (it->type) {
 
 		case STMT_CALL:
 			astCurrentProcEnd = it->stmtNumber;
-			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
-				_pkb->getCFG()->addToCFG(_currentCFGNode);
-			_previousCFGNode = _currentCFGNode;
-			callNode = new CFGNode();
-			callNode->setCFGType(CFG_CALL_STATEMENT);
-			callNode->setStartStatement(it->stmtNumber);
-			callNode->setEndStatement(it->stmtNumber);
-			_previousCFGNode->addEdge(callNode);
-			//TODO: CallNode should add edge to the procedure
-			_previousCFGNode = callNode;
-			_currentCFGNode = new CFGNode();
-			callNode->addEdge(_currentCFGNode);
-			_pkb->getCFG()->addToCFG(callNode);
 			_buildCallAST(&*it);
 			break;
 
 		case STMT_IF:
 			astCurrentProcEnd = it->stmtNumber;
-			//Ensure to add a valid CFGNode
-			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
-			_pkb->getCFG()->addToCFG(_currentCFGNode);
-			
-			_previousCFGNode = _currentCFGNode;
-
-			ifNode=new CFGNode();
-			ifNode->setCFGType(CFG_IF_STATEMENT);
-			ifNode->setStartStatement(it->stmtNumber);
-			ifNode->setEndStatement(it->stmtNumber);
-
-			_previousCFGNode->addEdge(ifNode);
-			_cfgStack.push(ifNode);
-			_cfgStack.push(ifNode); //Push twice to connect it to Else Block
-			_currentCFGNode = new CFGNode();
-			ifNode->addEdge(_currentCFGNode);
-			_pkb->getCFG()->addToCFG(ifNode);
-
 			_buildIfAST(&*it);
 			break;
 
@@ -136,7 +83,6 @@ void Parser::_parseLine()
 		case STMT_ASSIGNMENT:
 			astCurrentProcEnd = it->stmtNumber;
 			currentASTNode = _buildAssignmentAST(&*it);
-			_currentCFGNode->setEndStatement(it->stmtNumber);
 			if(sameLevelAtNext)
 			{
 				if(previousNode->getStmtNumber()>0)
@@ -151,23 +97,6 @@ void Parser::_parseLine()
 
 		case STMT_WHILE:
 			astCurrentProcEnd = it->stmtNumber;
-			//Ensure to add a valid CFGNode
-			if(_currentCFGNode->getStartStatement()!=-1 && _currentCFGNode->getEndStatement()!=-1)
-				_pkb->getCFG()->addToCFG(_currentCFGNode);
-			
-			_previousCFGNode = _currentCFGNode;
-			
-			whileNode=new CFGNode();
-			whileNode->setCFGType(CFG_WHILE_STATEMENT);
-			whileNode->setStartStatement(it->stmtNumber);
-			whileNode->setEndStatement(it->stmtNumber);
-
-			_previousCFGNode->addEdge(whileNode);
-			_cfgStack.push(whileNode);
-			_currentCFGNode = new CFGNode();
-			whileNode->addEdge(_currentCFGNode);
-			_pkb->getCFG()->addToCFG(whileNode);
-
 			currentASTNode = _buildWhileLoopAST(&*it);
 			if(sameLevelAtNext)
 			{
@@ -188,57 +117,6 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_CLOSE_BRACKET:
-			
-			//Remove empty and invalid CFGNode and do rollback, if any.
-			//This currently applies to WHILE-LOOP case
-			assert(_currentCFGNode != NULL);
-			if(_currentCFGNode->getStartStatement() < 0 || _currentCFGNode->getEndStatement() < 0)
-			{
-				_previousCFGNode->popLastEdge();
-				free(_currentCFGNode);
-				_currentCFGNode = _previousCFGNode;
-			}
-			else
-			{
-				_pkb->getCFG()->addToCFG(_currentCFGNode);
-			}
-
-			//Start normal CFG parsing procedure
-			if(_cfgStack.size()>0)
-			{
-
-				topCFGNode = _cfgStack.top();
-
-				if(topCFGNode->getCFGType() == CFG_WHILE_STATEMENT)
-				{
-					_currentCFGNode->addEdge(topCFGNode);
-					_cfgStack.pop();
-					_previousCFGNode =  _currentCFGNode;
-					_currentCFGNode = new CFGNode();
-					_previousCFGNode -> addEdge(_currentCFGNode);
-				}
-				else if(topCFGNode->getCFGType() == CFG_IF_STATEMENT)
-				{
-					topCFGNode->addEdge(_currentCFGNode);
-					_cfgStack.pop();
-					//Connect IF Block and Else Block to Next Block
-					if(_previousCFGNode->getCFGType() == CFG_NORMAL_BLOCK && 
-						_previousCFGNode->getStartStatement()>0 && _previousCFGNode->getEndStatement()>0)
-					{
-						CFGNode* newNode = new CFGNode();
-						_previousCFGNode->addEdge(newNode);
-						_currentCFGNode-> addEdge(newNode);
-						_currentCFGNode = newNode;
-					}
-					else
-					{
-						_previousCFGNode = _currentCFGNode;
-						_currentCFGNode = new CFGNode();
-					}
-				}
-				
-			}
-			
 			previousNode = _parentStackNoStmtLst.top();
 			if(previousNode->getNodeType() == AST_PROCEDURE)
 				_pkb->addProc(astCurrentProcName,astCurrentProcStart,astCurrentProcEnd);
