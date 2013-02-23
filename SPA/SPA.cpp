@@ -13,6 +13,19 @@
 
 using namespace std;
 
+string trim(string str, char del){
+	string::size_type pos = str.find_last_not_of(del);
+	if(pos != string::npos) {
+		str.erase(pos + 1);
+		pos = str.find_first_not_of(del);
+		if(pos != string::npos) 
+			str.erase(0, pos);
+	}
+	else 
+		str.erase(str.begin(), str.end());
+	return str;
+} 
+
 int _tmain(int argc, _TCHAR *argv[])
 {
 	AST    *ast = new AST();
@@ -20,7 +33,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
-	ifstream myfile("../SampleCode/CS3201RegressionTestCode.c");
+	ifstream myfile("../SampleCode/iteration2.c");
 	if (myfile.is_open())
 	{
 	int i=1;
@@ -33,9 +46,7 @@ int _tmain(int argc, _TCHAR *argv[])
 				cout<<"     "<<line<<endl;
 			}else if(line.find("else")<line.size()){
 				cout<<"     "<<line<<endl;
-			}else if(line.find("}")<line.size()){
-				cout<<"     "<<line<<endl;
-			}else if(line.size()<2){
+			}else if(trim(line,'\t').size()<2){
 				cout<<"     "<<line<<endl;
 			}else{
 				printf("%3d. ", i);
