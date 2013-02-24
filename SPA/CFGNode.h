@@ -10,14 +10,13 @@ public:
 	void setEndStatement(STMT endStatement);
 	STMT getStartStatement();
 	STMT getEndStatement();
-	void addEdge(CFGNode* nextPath);
 	void connectTo(CFGNode* nextPath);
 	void connectBackTo(CFGNode* prevPath);
-	void popLastEdge();
 	int getEdgeSize();
 	bool containStatement(STMT stmtNumber);
 	CFGType getCFGType();
 	void setCFGType(CFGType type);
+	vector<CFGNode*> getNextEdges();
 private:
 	int _start;
 	int _end;

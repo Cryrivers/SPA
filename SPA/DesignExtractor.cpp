@@ -916,26 +916,6 @@ BOOLEAN DesignExtractor::assignPattern(vector<int> *a, vector<int> *b, string ex
 }
 
 /**
- * \fn	void DesignExtractor::completeCallCFG()
- *
- * \brief	Complete call configuration.
- *
- * \author	Wang Zhongliang
- * \date	2013/2/15
- */
-void DesignExtractor::completeCallCFG()
-{
-	//Link "Call CFG Node" to the respective Procedure Block
-	STMT_LIST* callStats = new STMT_LIST();
-	_pkb->getAllCall(callStats);
-	for(STMT_LIST::iterator it = callStats->begin(); it!= callStats->end();++it)
-	{
-
-	}
-	delete(callStats);
-}
-
-/**
  * \fn	void DesignExtractor::addNext()
  *
  * \brief	Adds next.

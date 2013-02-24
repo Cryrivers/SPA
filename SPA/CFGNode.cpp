@@ -86,28 +86,6 @@ STMT CFGNode::getEndStatement()
 }
 
 /**
- * \fn	void CFGNode::addEdge( CFGNode* nextPath )
- *
- * \brief	Adds an edge.
- * \deprecated 
- * \see connectTo
- * \see connectBackTo			   
- * \author	Wang Zhongliang
- * \date	2013/2/5
- *
- * \param [in]	nextPath	If non-null, the edge connecting to next CFGNode.
- */
-
-void CFGNode::addEdge( CFGNode* nextPath )
-{
-	//In case of duplicates
-	for (vector<CFGNode*>::iterator it = _edges.begin(); it != _edges.end(); ++it)
-		if(*it == nextPath) return;
-
-	_edges.push_back(nextPath);
-}
-
-/**
  * \fn	int CFGNode::getEdgeSize()
  *
  * \brief	Gets the number of next possible paths (edges).
@@ -175,21 +153,6 @@ void CFGNode::setCFGType( CFGType type )
 }
 
 /**
- * \fn	void CFGNode::popLastEdge()
- *
- * \brief	Pops the last edge.
- *
- * \author	Wang Zhongliang
- * \date	2013/2/6
- */
-
-void CFGNode::popLastEdge()
-{
-	assert(_edges.size() > 0);
-	_edges.pop_back();
-}
-
-/**
  * \fn	void CFGNode::connectTo( CFGNode* nextPath )
  *
  * \brief	Connects to.
@@ -202,7 +165,11 @@ void CFGNode::popLastEdge()
 
 void CFGNode::connectTo( CFGNode* nextPath )
 {
-	this->addEdge(nextPath);
+	//In case of duplicates
+	for (vector<CFGNode*>::iterator it = _edges.begin(); it != _edges.end(); ++it)
+		if(*it == nextPath) return;
+
+	_edges.push_back(nextPath);
 }
 
 /**
@@ -219,4 +186,9 @@ void CFGNode::connectTo( CFGNode* nextPath )
 void CFGNode::connectBackTo( CFGNode* prevPath )
 {
 	prevPath->connectTo(this);
+}
+
+vector<CFGNode*> CFGNode::getNextEdges()
+{
+	return _edges;
 }

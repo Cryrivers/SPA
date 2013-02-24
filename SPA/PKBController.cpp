@@ -874,8 +874,8 @@ void PKBController::build_proc_call(){
 	for(int i = 0; i < _procTable->size(); i++){
 		for (int j = 0; j < _a->size(); j++)
 		{
-			if(i == _calls->getCallee(_a->at(i))){
-				_proc_call->addParent(i, _a->at(i));
+			if(i == _calls->getCallee(_a->at(j))){
+				_proc_call->addParent(i, _a->at(j));
 			}
 		}
 	}

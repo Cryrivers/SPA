@@ -34,7 +34,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
-	ifstream myfile("../SampleCode/iteration2.c");
+	ifstream myfile("../SampleCode/sampleCode00.c");
 	if (myfile.is_open())
 	{
 	int i=1;
@@ -60,9 +60,8 @@ int _tmain(int argc, _TCHAR *argv[])
 		cout<<"Read error!"<<endl;
 	}
 	
-	//SPA_TIME_MEASURE("Parser", parser->parse(program));
-	parser->parse(program);
-
+	SPA_TIME_MEASURE("Parser", parser->parse(program));
+	
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 	
