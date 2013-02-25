@@ -3,6 +3,7 @@
 #include "ASTNode.h"
 #include "PKBController.h"
 #include "SPAType.h"
+#include <stack>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ class DesignExtractor
 private:
 AST* _ast;
 PKBController* _pkb;
-
+inline IfPreprocessingPhase getParsingPhase(stack<IfPreprocessingPhase> &s);
 public:
 DesignExtractor(void);
 ~DesignExtractor(void);

@@ -5,6 +5,7 @@
  */
 
 #include "StdAfx.h"
+#include <assert.h>
 #include "CFG.h"
 
 
@@ -30,6 +31,7 @@ CFG::~CFG(void)
 
 void CFG::addToCFG( CFGNode* cfgnode )
 {
+	assert(cfgnode->getStartStatement() <= cfgnode->getEndStatement());
 	_CFGBlocks.push_back(cfgnode);
 }
 

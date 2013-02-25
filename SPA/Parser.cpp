@@ -40,7 +40,6 @@ Parser::Parser(AST *ast)
 	sameLevelAtNext = true;
 	previousASTNode = ASTNode::createNode(AST_ANY,0);
 	previousASTNode->setStmtNumber(0);
-	preprocessingStatus = PREPROCESS_NON_IF;
 }
 
 
@@ -70,7 +69,10 @@ void Parser::_parseLine()
 
 		case STMT_IF:
 			assert(currentCFGNode != NULL);
-			_pkb->getCFG()->addToCFG(currentCFGNode);
+			if(currentCFGNode->isValidCFGNode())
+				_pkb->getCFG()->addToCFG(currentCFGNode);
+			else
+				delete currentCFGNode;
 			currentCFGNode = new CFGNode();
 			currentCFGNode->setStartStatement(it->stmtNumber);
 			currentCFGNode->setEndStatement(it->stmtNumber);
@@ -116,7 +118,10 @@ void Parser::_parseLine()
 
 		case STMT_WHILE:
 			assert(currentCFGNode != NULL);
-			_pkb->getCFG()->addToCFG(currentCFGNode);
+			if(currentCFGNode->isValidCFGNode())
+				_pkb->getCFG()->addToCFG(currentCFGNode);
+			else
+				delete currentCFGNode;
 			currentCFGNode = new CFGNode();
 			currentCFGNode->setStartStatement(it->stmtNumber);
 			currentCFGNode->setEndStatement(it->stmtNumber);
@@ -278,8 +283,7 @@ void Parser::_preprocessProgram(string program)
 				//push twice for THEN and ELSE. Still hard to make CFG.
 				statementScope.push(preprocProgram->size());
 				statementScope.push(preprocProgram->size());
-				preprocessingStatus = PREPROCESS_THEN;
-
+				preprocessingStatusStk.push(PREPROCESS_THEN);
 			}else if (regex_match(thisStmt,sm,elseRegex)) {
 				s.stmtLine = thisStmt;
 				s.stmtNumber = NO_STATEMENT_NUMBER;
@@ -319,17 +323,17 @@ void Parser::_preprocessProgram(string program)
 				rb.type = STMT_CLOSE_BRACKET_END_OF_PROC;
 				break;
 			case STMT_IF:
-				if(preprocessingStatus == PREPROCESS_THEN)
+				if(_preprocessingStatus() == PREPROCESS_THEN)
 				{
 					preprocProgram->at(statementScope.top()).midOfTheScope = currentStmtNumber;
 					rb.type = STMT_CLOSE_BRACKET_END_OF_THEN;
-					preprocessingStatus = PREPROCESS_ELSE;
+					preprocessingStatusStk.top() = PREPROCESS_ELSE;
 				}
-				else if (preprocessingStatus == PREPROCESS_ELSE)
+				else if (_preprocessingStatus() == PREPROCESS_ELSE)
 				{
 					preprocProgram->at(statementScope.top()).endOfTheScope = currentStmtNumber;
 					rb.type = STMT_CLOSE_BRACKET_END_OF_ELSE;
-					preprocessingStatus = PREPROCESS_NON_IF;
+					preprocessingStatusStk.pop();
 				}
 				else
 				{
@@ -644,4 +648,12 @@ PROC_INDEX Parser::_findAssumedProcIndexByName( string name )
 
 	throw("No Specific Procedure Name Found");
 	return -1;
+}
+
+IfPreprocessingPhase Parser::_preprocessingStatus()
+{
+	if(preprocessingStatusStk.size()>0)
+		return preprocessingStatusStk.top();
+	else
+		return PREPROCESS_NON_IF;
 }

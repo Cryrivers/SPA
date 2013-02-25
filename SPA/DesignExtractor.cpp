@@ -939,7 +939,8 @@ void DesignExtractor::addNext()
 
 void DesignExtractor::connectCFG()
 {
-	IfPreprocessingPhase phase = PREPROCESS_NON_IF;
+	stack<IfPreprocessingPhase> phaseStack;
+
 	CFG* cfg = _pkb->getCFG();
 	stack<statement> scope;
 	vector<statement>* preprocProgram  = _pkb->getPreprocessedProgram();
@@ -962,7 +963,7 @@ void DesignExtractor::connectCFG()
 		if(it->type ==  STMT_IF)
 		{
 			scope.push(*it);
-			phase = PREPROCESS_THEN;
+			phaseStack.push(PREPROCESS_THEN);
 			//Connect If Block
 			CFGNode* ifNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* thenNodeStart = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
@@ -972,11 +973,11 @@ void DesignExtractor::connectCFG()
 		}
 		else if (it->type == STMT_CLOSE_BRACKET_END_OF_THEN)
 		{
-			phase = PREPROCESS_ELSE;
+			phaseStack.top() = PREPROCESS_ELSE;
 		}
 		else if (it->type == STMT_CLOSE_BRACKET_END_OF_ELSE)
 		{
-			phase = PREPROCESS_NON_IF;
+			phaseStack.pop();
 			scope.pop();
 		}
 		else if(it->type == STMT_WHILE)
@@ -1003,7 +1004,7 @@ void DesignExtractor::connectCFG()
 			CFGNode* afterWhileBlock = cfg->getCFGNodeByStmtNumber(it->endOfTheScope + 1);
 			if(afterWhileBlock != NULL)
 			{
-				if(phase == PREPROCESS_NON_IF || phase == PREPROCESS_ELSE)
+				if(getParsingPhase(phaseStack) == PREPROCESS_NON_IF || getParsingPhase(phaseStack) == PREPROCESS_ELSE)
 				{
 					if(afterWhileBlock->getProcIndex() == it->procIndex)
 					{
@@ -1017,9 +1018,9 @@ void DesignExtractor::connectCFG()
 			//Connect this to next
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
-			if(phase == PREPROCESS_NON_IF || 
-				phase == PREPROCESS_ELSE ||
-				(phase == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)))
+			if(getParsingPhase(phaseStack) == PREPROCESS_NON_IF || 
+				getParsingPhase(phaseStack) == PREPROCESS_ELSE ||
+				(getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)))
 			{
 				if(nextNode != NULL)
 				{
@@ -1033,4 +1034,12 @@ void DesignExtractor::connectCFG()
 			}
 		}
 	}
+}
+
+IfPreprocessingPhase DesignExtractor::getParsingPhase( stack<IfPreprocessingPhase> &s )
+{
+	if(s.size()>0)
+		return s.top();
+	else
+		return PREPROCESS_NON_IF;
 }

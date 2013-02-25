@@ -21,7 +21,7 @@ private:
 	vector<statement>* preprocProgram;
 	//unsigned int - the index of statement in vector preprocProgram
 	stack<unsigned int> statementScope;
-	IfPreprocessingPhase preprocessingStatus;
+	stack<IfPreprocessingPhase> preprocessingStatusStk;
 
 	ASTNode* previousASTNode;
 	bool sameLevelAtNext;
@@ -43,6 +43,7 @@ private:
 	void _parseLine();
 	void _preprocessProgram(string program);
 	PROC_INDEX _findAssumedProcIndexByName(string name);
+	IfPreprocessingPhase _preprocessingStatus();
 
 public:
 	Parser(AST* ast);
