@@ -55,3 +55,19 @@ CFGNode* CFG::getCFGNodeByStmtNumber( STMT stmtNumber )
 			return *it;
 	return NULL;
 }
+
+/**
+ * \fn	vector<CFGNode*> CFG::getAllCFGNodes()
+ *
+ * \brief	Get a copy of all CFGNodes
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/26
+ *
+ * \return	null if it fails, else all configuration nodes.
+ */
+
+vector<CFGNode*> CFG::getAllCFGNodes()
+{
+	return _CFGBlocks;
+}

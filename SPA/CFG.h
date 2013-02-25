@@ -8,6 +8,7 @@ public:
 	~CFG(void);
 	void addToCFG(CFGNode* cfgnode);
 	CFGNode* getCFGNodeByStmtNumber(STMT stmtNumber);
+	vector<CFGNode*> getAllCFGNodes();
 private:
 	vector<CFGNode*> _CFGBlocks;
 };

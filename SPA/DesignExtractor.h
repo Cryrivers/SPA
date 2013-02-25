@@ -3,6 +3,7 @@
 #include "ASTNode.h"
 #include "PKBController.h"
 #include "SPAType.h"
+#include "CFGNode.h"
 #include <stack>
 
 using namespace std;

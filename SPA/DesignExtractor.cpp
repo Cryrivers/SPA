@@ -926,6 +926,24 @@ BOOLEAN DesignExtractor::assignPattern(vector<int> *a, vector<int> *b, string ex
 void DesignExtractor::addNext()
 {
 	//Going thru CFG to add next is easier to implement
+	vector<CFGNode*> nodes = _pkb->getCFG()->getAllCFGNodes();
+	for(vector<CFGNode*>::iterator it = nodes.begin(); it != nodes.end();++it)
+	{
+		CFGNode* c = *it;
+		vector<CFGNode*> edges = c->getNextEdges();
+
+		for(int i = c->getStartStatement(); i< c->getEndStatement(); i++)
+		{
+			//Add Next to Table
+			//Next(i,i+1)
+		}
+
+		for(vector<CFGNode*>::iterator n = edges.begin(); n!= edges.end(); ++n)
+		{
+			//Add Next (c.end, n.start)
+		}
+	}
+	
 }
 
 /**
