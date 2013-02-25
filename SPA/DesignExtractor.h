@@ -19,6 +19,7 @@ public:
 DesignExtractor(void);
 ~DesignExtractor(void);
 
+void connectCFG();
 void addNext();
 void addModifies();
 void addUses();

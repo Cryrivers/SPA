@@ -19,10 +19,11 @@ private:
 
 	PKBController* _pkb;
 	vector<statement>* preprocProgram;
-	//unsigned int -  the index of statement in vecotr preprocProgram
+	//unsigned int - the index of statement in vector preprocProgram
 	stack<unsigned int> statementScope;
+	IfPreprocessingPhase preprocessingStatus;
 
-	ASTNode* previousNode;
+	ASTNode* previousASTNode;
 	bool sameLevelAtNext;
 
 	AST* _ast;

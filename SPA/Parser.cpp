@@ -38,8 +38,9 @@ Parser::Parser(AST *ast)
 	_pkb = PKBController::createInstance();
 	preprocProgram = _pkb->getPreprocessedProgram();
 	sameLevelAtNext = true;
-	previousNode = ASTNode::createNode(AST_ANY,0);
-	previousNode->setStmtNumber(0);
+	previousASTNode = ASTNode::createNode(AST_ANY,0);
+	previousASTNode->setStmtNumber(0);
+	preprocessingStatus = PREPROCESS_NON_IF;
 }
 
 
@@ -50,23 +51,34 @@ Parser::~Parser(void)
 
 void Parser::_parseLine()
 {
-	string astCurrentProcName;
-	STMT astCurrentProcStart;
-	STMT astCurrentProcEnd;
-
+	CFGNode* currentCFGNode = NULL;
 	statement s;
-
 	for (vector<statement>::iterator it = preprocProgram->begin(); it != preprocProgram->end(); ++it) {
 		ASTNode* currentASTNode;
 		switch (it->type) {
 
 		case STMT_CALL:
-			astCurrentProcEnd = it->stmtNumber;
+			assert(currentCFGNode != NULL);
+			if(!currentCFGNode->isValidCFGNode())
+			{
+				currentCFGNode->setProcIndex(it->procIndex);
+				currentCFGNode->setStartStatement(it->stmtNumber);
+			}
+			currentCFGNode->setEndStatement(it->stmtNumber);
 			_buildCallAST(&*it);
 			break;
 
 		case STMT_IF:
-			astCurrentProcEnd = it->stmtNumber;
+			assert(currentCFGNode != NULL);
+			_pkb->getCFG()->addToCFG(currentCFGNode);
+			currentCFGNode = new CFGNode();
+			currentCFGNode->setStartStatement(it->stmtNumber);
+			currentCFGNode->setEndStatement(it->stmtNumber);
+			currentCFGNode->setProcIndex(it->procIndex);
+			currentCFGNode->setCFGType(CFG_IF_STATEMENT);
+			_pkb->getCFG()->addToCFG(currentCFGNode);
+			currentCFGNode = NULL;
+
 			_buildIfAST(&*it);
 			break;
 
@@ -75,54 +87,86 @@ void Parser::_parseLine()
 			break;
 
 		case STMT_PROCEDURE:
-			astCurrentProcName = it->extraName;
-			astCurrentProcStart = it->stmtNumber;
+			if(currentCFGNode != NULL) delete currentCFGNode;
+			_pkb->addProc(it->extraName,it->stmtNumber,it->endOfTheScope);
 			_buildProcedureAST(&*it);
 			break;
 
 		case STMT_ASSIGNMENT:
-			astCurrentProcEnd = it->stmtNumber;
+			assert(currentCFGNode != NULL);
+			if(!currentCFGNode->isValidCFGNode())
+			{
+				currentCFGNode->setProcIndex(it->procIndex);
+				currentCFGNode->setStartStatement(it->stmtNumber);
+			}
+			currentCFGNode->setEndStatement(it->stmtNumber);
+
 			currentASTNode = _buildAssignmentAST(&*it);
 			if(sameLevelAtNext)
 			{
-				if(previousNode->getStmtNumber()>0)
-				_pkb->addFollows(previousNode->getStmtNumber(), currentASTNode->getStmtNumber());
+				if(previousASTNode->getStmtNumber()>0)
+				_pkb->addFollows(previousASTNode->getStmtNumber(), currentASTNode->getStmtNumber());
 			}
 			else
 			{
 				sameLevelAtNext = true;
 			}
-			previousNode = currentASTNode;
+			previousASTNode = currentASTNode;
 			break;
 
 		case STMT_WHILE:
-			astCurrentProcEnd = it->stmtNumber;
+			assert(currentCFGNode != NULL);
+			_pkb->getCFG()->addToCFG(currentCFGNode);
+			currentCFGNode = new CFGNode();
+			currentCFGNode->setStartStatement(it->stmtNumber);
+			currentCFGNode->setEndStatement(it->stmtNumber);
+			currentCFGNode->setProcIndex(it->procIndex);
+			currentCFGNode->setCFGType(CFG_WHILE_STATEMENT);
+			_pkb->getCFG()->addToCFG(currentCFGNode);
+			currentCFGNode = NULL;
+
 			currentASTNode = _buildWhileLoopAST(&*it);
 			if(sameLevelAtNext)
 			{
-				if(previousNode->getStmtNumber()>0)
-					_pkb->addFollows(previousNode->getStmtNumber(), currentASTNode->getStmtNumber());
+				if(previousASTNode->getStmtNumber()>0)
+					_pkb->addFollows(previousASTNode->getStmtNumber(), currentASTNode->getStmtNumber());
 			}
 			else
 			{
 				sameLevelAtNext = true;
 			}
-			previousNode = currentASTNode;
+			previousASTNode = currentASTNode;
 			break; 
 
 		case STMT_OPEN_BRACKET:
+			//New CFG Node & set start of the CFG
+			currentCFGNode = new CFGNode();
+			currentCFGNode->setStartStatement(it->stmtNumber);
+			currentCFGNode->setProcIndex(it->procIndex);
+			currentCFGNode->setCFGType(CFG_NORMAL_BLOCK);
+
 			_parentStack.push(_newParent);
 			_parentStackNoStmtLst.push(_newParentNoStmtLst);
 			sameLevelAtNext = false;
 			break;
 
 		case STMT_CLOSE_BRACKET_END_OF_PROC:
-		case STMT_CLOSE_BRACKET_END_OF_IF:
+		case STMT_CLOSE_BRACKET_END_OF_THEN:
+		case STMT_CLOSE_BRACKET_END_OF_ELSE:
 		case STMT_CLOSE_BRACKET_END_OF_WHILE:
 
-			previousNode = _parentStackNoStmtLst.top();
-			if(previousNode->getNodeType() == AST_PROCEDURE)
-				_pkb->addProc(astCurrentProcName,astCurrentProcStart,astCurrentProcEnd);
+
+			assert(currentCFGNode != NULL);
+			
+			if(currentCFGNode->isValidCFGNode())
+				_pkb->getCFG()->addToCFG(currentCFGNode);
+			else
+				delete currentCFGNode;
+			
+			//Will leak 1 object
+			currentCFGNode = new CFGNode();
+
+			previousASTNode = _parentStackNoStmtLst.top();	
 			_parentStack.pop();
 			_parentStackNoStmtLst.pop();
 			sameLevelAtNext = true;
@@ -234,6 +278,7 @@ void Parser::_preprocessProgram(string program)
 				//push twice for THEN and ELSE. Still hard to make CFG.
 				statementScope.push(preprocProgram->size());
 				statementScope.push(preprocProgram->size());
+				preprocessingStatus = PREPROCESS_THEN;
 
 			}else if (regex_match(thisStmt,sm,elseRegex)) {
 				s.stmtLine = thisStmt;
@@ -267,14 +312,29 @@ void Parser::_preprocessProgram(string program)
 			//define end of the scope
 			rb.startOfTheScope = preprocProgram->at(statementScope.top()).stmtNumber;
 			preprocProgram->at(statementScope.top()).endOfTheScope = currentStmtNumber;
-			
+
 			switch(preprocProgram->at(statementScope.top()).type)
 			{
 			case STMT_PROCEDURE:
 				rb.type = STMT_CLOSE_BRACKET_END_OF_PROC;
 				break;
 			case STMT_IF:
-				rb.type = STMT_CLOSE_BRACKET_END_OF_IF;
+				if(preprocessingStatus == PREPROCESS_THEN)
+				{
+					preprocProgram->at(statementScope.top()).midOfTheScope = currentStmtNumber;
+					rb.type = STMT_CLOSE_BRACKET_END_OF_THEN;
+					preprocessingStatus = PREPROCESS_ELSE;
+				}
+				else if (preprocessingStatus == PREPROCESS_ELSE)
+				{
+					preprocProgram->at(statementScope.top()).endOfTheScope = currentStmtNumber;
+					rb.type = STMT_CLOSE_BRACKET_END_OF_ELSE;
+					preprocessingStatus = PREPROCESS_NON_IF;
+				}
+				else
+				{
+					throw ("Error occurred while preprocessing IF Scope.");
+				}
 				break;
 			case STMT_WHILE:
 				rb.type = STMT_CLOSE_BRACKET_END_OF_WHILE;
@@ -488,10 +548,10 @@ ASTNode* Parser::_buildIfAST(statement* s)
 
 ASTNode* Parser::_buildElseAST(statement* s)
 {
-	ASTNode *stmtLstNode = previousNode->createChild(AST_STATEMENT_LIST, NULL);
+	ASTNode *stmtLstNode = previousASTNode->createChild(AST_STATEMENT_LIST, NULL);
 	_newParent = stmtLstNode;
-	_newParentNoStmtLst = previousNode;
-	return(previousNode);
+	_newParentNoStmtLst = previousASTNode;
+	return(previousASTNode);
 }
 
 ASTNode* Parser::_buildCallAST( statement* s )

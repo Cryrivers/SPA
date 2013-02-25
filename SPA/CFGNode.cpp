@@ -13,7 +13,9 @@ CFGNode::CFGNode(void)
 	//TODO: Fix Coding standards later
 	_start = -1;
 	_end = -1;
+	_procIndex = -1;
 	_type = CFG_NORMAL_BLOCK;
+	_pairNode = NULL;
 }
 
 
@@ -165,6 +167,8 @@ void CFGNode::setCFGType( CFGType type )
 
 void CFGNode::connectTo( CFGNode* nextPath )
 {
+	//Not sure if a CFGNode is next to itself, but make this assertion now.
+	assert(nextPath != this);
 	//In case of duplicates
 	for (vector<CFGNode*>::iterator it = _edges.begin(); it != _edges.end(); ++it)
 		if(*it == nextPath) return;
@@ -191,4 +195,30 @@ void CFGNode::connectBackTo( CFGNode* prevPath )
 vector<CFGNode*> CFGNode::getNextEdges()
 {
 	return _edges;
+}
+
+bool CFGNode::isValidCFGNode()
+{
+	if(_start != -1 && _end != -1 && _procIndex != -1) return true;
+	return false;
+}
+
+PROC_INDEX CFGNode::getProcIndex()
+{
+	return _procIndex;
+}
+
+void CFGNode::setProcIndex( PROC_INDEX procIndex )
+{
+	_procIndex = procIndex;
+}
+
+void CFGNode::setPairedCFGNode( CFGNode* cfgNode )
+{
+	_pairNode = cfgNode;
+}
+
+CFGNode* CFGNode::getPairedCFGNode()
+{
+	return _pairNode;
 }

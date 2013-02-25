@@ -14,13 +14,20 @@ public:
 	void connectBackTo(CFGNode* prevPath);
 	int getEdgeSize();
 	bool containStatement(STMT stmtNumber);
+	bool isValidCFGNode();
 	CFGType getCFGType();
 	void setCFGType(CFGType type);
 	vector<CFGNode*> getNextEdges();
+	void setProcIndex(PROC_INDEX procIndex);
+	PROC_INDEX getProcIndex();
+	void setPairedCFGNode(CFGNode* cfgNode);
+	CFGNode* getPairedCFGNode();
 private:
 	int _start;
 	int _end;
+	PROC_INDEX _procIndex;
 	vector<CFGNode*> _edges;
 	CFGType _type;
+	CFGNode* _pairNode;
 };
 

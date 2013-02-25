@@ -927,3 +927,110 @@ void DesignExtractor::addNext()
 {
 	//Going thru CFG to add next is easier to implement
 }
+
+/**
+ * \fn	void DesignExtractor::connectCFG()
+ *
+ * \brief	Connects the CFG after Parser splits them.
+ *
+ * \author	Wang Zhongliang
+ * \date	2013/2/25
+ */
+
+void DesignExtractor::connectCFG()
+{
+	IfPreprocessingPhase phase = PREPROCESS_NON_IF;
+	CFG* cfg = _pkb->getCFG();
+	stack<statement> scope;
+	vector<statement>* preprocProgram  = _pkb->getPreprocessedProgram();
+	//Find all paired nodes first.
+	// e.g. ELSE CFG Block has a paired node (which is its THEN block)
+	// Which means these two paired blocks share the same Next relation.
+	for(vector<statement>::iterator it =  preprocProgram->begin(); it != preprocProgram->end(); ++it)
+	{
+		if(it->type == STMT_IF)
+		{
+			CFGNode* thenNodeEnd = cfg->getCFGNodeByStmtNumber(it->midOfTheScope);
+			CFGNode* elseNodeEnd = cfg->getCFGNodeByStmtNumber(it->endOfTheScope);
+			elseNodeEnd->setPairedCFGNode(thenNodeEnd);
+		}
+	}
+
+	// Start connecting CFG now
+	for(vector<statement>::iterator it =  preprocProgram->begin(); it != preprocProgram->end(); ++it)
+	{
+		if(it->type ==  STMT_IF)
+		{
+			scope.push(*it);
+			phase = PREPROCESS_THEN;
+			//Connect If Block
+			CFGNode* ifNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
+			CFGNode* thenNodeStart = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
+			CFGNode* elseNodeStart = cfg->getCFGNodeByStmtNumber(it->midOfTheScope+1);
+			ifNode->connectTo(thenNodeStart);
+			ifNode->connectTo(elseNodeStart);
+		}
+		else if (it->type == STMT_CLOSE_BRACKET_END_OF_THEN)
+		{
+			phase = PREPROCESS_ELSE;
+		}
+		else if (it->type == STMT_CLOSE_BRACKET_END_OF_ELSE)
+		{
+			phase = PREPROCESS_NON_IF;
+			scope.pop();
+		}
+		else if(it->type == STMT_WHILE)
+		{
+			//Connect While Block
+			CFGNode* whileNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
+			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
+			if(nextNode != NULL)
+				if(nextNode != whileNode && nextNode->getProcIndex() == whileNode->getProcIndex())
+					whileNode->connectTo(nextNode);
+
+			CFGNode* whileBlockEnd =  cfg->getCFGNodeByStmtNumber(it->endOfTheScope);
+			whileBlockEnd->connectTo(whileNode);
+			if(whileBlockEnd->getPairedCFGNode()!=NULL)
+			{
+				//When adding the relationship to its paired node.
+				//it must ensure that this while loop is paired node's parents.
+				//there's trick to detect that. using StmtNumber
+				if(it->stmtNumber < whileBlockEnd->getPairedCFGNode()->getStartStatement())
+					whileBlockEnd->getPairedCFGNode()->connectTo(whileNode);
+			}
+			
+			//Connect to next statement, if any.
+			CFGNode* afterWhileBlock = cfg->getCFGNodeByStmtNumber(it->endOfTheScope + 1);
+			if(afterWhileBlock != NULL)
+			{
+				if(phase == PREPROCESS_NON_IF || phase == PREPROCESS_ELSE)
+				{
+					if(afterWhileBlock->getProcIndex() == it->procIndex)
+					{
+						whileBlockEnd->connectTo(afterWhileBlock);
+					}
+				}
+			}
+		}
+		else if (it->type == STMT_ASSIGNMENT || it->type == STMT_CALL)
+		{
+			//Connect this to next
+			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
+			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
+			if(phase == PREPROCESS_NON_IF || 
+				phase == PREPROCESS_ELSE ||
+				(phase == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)))
+			{
+				if(nextNode != NULL)
+				{
+					if(nextNode != thisNode && nextNode->getProcIndex() == thisNode->getProcIndex())
+					{
+						thisNode->connectTo(nextNode);
+						if(thisNode->getPairedCFGNode()!=NULL)
+							thisNode->getPairedCFGNode()->connectTo(nextNode);
+					}
+				}
+			}
+		}
+	}
+}

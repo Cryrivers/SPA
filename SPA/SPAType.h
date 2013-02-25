@@ -39,7 +39,8 @@ enum StmtType {
 	STMT_CALL,
 	STMT_OPEN_BRACKET,
 	STMT_CLOSE_BRACKET_END_OF_PROC,
-	STMT_CLOSE_BRACKET_END_OF_IF,
+	STMT_CLOSE_BRACKET_END_OF_THEN,
+	STMT_CLOSE_BRACKET_END_OF_ELSE,
 	STMT_CLOSE_BRACKET_END_OF_WHILE,
 	STMT_IF,
 	STMT_ELSE,
@@ -47,11 +48,16 @@ enum StmtType {
 	STMT_NONE
 };
 
+/**
+ * \enum	CFGType
+ * \deprecated
+ * \brief	Values that represent CFGType.
+ */
+
 enum CFGType{
 	CFG_NORMAL_BLOCK,
 	CFG_IF_STATEMENT,
 	CFG_WHILE_STATEMENT,
-	CFG_CALL_STATEMENT
 };
 
 enum WithType{
@@ -103,6 +109,17 @@ struct stmtDetail {
 	 */
 
 	STMT startOfTheScope;
+
+	/**
+	 * \brief	If the type is IF, midOfScope must be set to recoard the end of THEN block.
+	 */
+
+	STMT midOfTheScope;
+
+	/**
+	 * \brief	If the type is PROC, WHILE or IF, startOfTheScope must be set to record the end of current scope.
+	 */
+
 	STMT endOfTheScope;
 
 	/**
@@ -151,4 +168,11 @@ enum PatternQueryType
 	PATTERN_ASSIGN_UNDERSCORE_ONLY,
 	PATTERN_ASSIGN_WITH_UNDERSCORE,
 	PATTERN_ASSIGN_NO_UNDERSCORE
+};
+
+enum IfPreprocessingPhase
+{
+	PREPROCESS_THEN,
+	PREPROCESS_ELSE,
+	PREPROCESS_NON_IF
 };
