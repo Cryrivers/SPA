@@ -405,6 +405,8 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 						return i;
 					}else if(queryVarTable[i].variableType==DT_UNDERSCORE){
 						return i;
+					}else if(queryVarTable[i].variableType==DT_PROGLINE){
+						return i;
 					}else{
 						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not stmt."<<endl;
 						return -1;
@@ -863,7 +865,9 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 								}
 								if(cou==st.size())
 									return false;
-							}		  
+							}else if(queryVarTable[ia].variableType==DT_STMT){
+							   queryVarTable[ia].variableType=KT_STMT_NUM;
+							}
 						}else if(getAttributeOfVariable(ia, frontAttribute)==AT_VALUE){	 
 							queryVarTable[ia].content=atoi(back.c_str());
 							queryVarTable[ia].variableType=KT_KNOWN_CONSTANT;
