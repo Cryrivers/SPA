@@ -84,6 +84,9 @@ public:
 	STMT_LIST getAllNextFirst();
 	STMT_LIST getAllNextSecond();
 
+	//affect api
+	BOOLEAN affects(STMT_LIST*, STMT_LIST*, int);
+	BOOLEAN affectsStar(STMT_LIST*, STMT_LIST*, int);
 
 	//vartable api
 	VAR_INDEX addVar(STRING varName);

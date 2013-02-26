@@ -1001,3 +1001,13 @@ STMT_LIST PKBController::getAllNextSecond()
 {
 	return _next->getAllNextSecond();
 }
+
+BOOLEAN PKBController::affects( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg)
+{
+	return _designExtractor->affects(st1s_ptr, st2s_ptr, arg);
+}
+
+BOOLEAN PKBController::affectsStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg)
+{
+	return _designExtractor->affectsStar(st1s_ptr, st2s_ptr, arg);
+}
