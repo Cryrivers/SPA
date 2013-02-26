@@ -8,6 +8,7 @@
 #include "ModifiesP.h"
 #include "Uses.h"
 #include "UsesP.h"
+#include "Next.h"
 #include "VarTable.h"
 #include "ASTNode.h"
 #include "AST.h"
@@ -76,6 +77,14 @@ public:
 	PROC_INDEX_LIST getAllCallers();
 	PROC_INDEX_LIST getAllCallees();
 
+	//next api
+	void addNext(STMT stmt1, STMT stmt2);
+	BOOLEAN next(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
+	BOOLEAN nextStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
+	STMT_LIST getAllNextFirst();
+	STMT_LIST getAllNextSecond();
+
+
 	//vartable api
 	VAR_INDEX addVar(STRING varName);
 	STRING getVarName(VAR_INDEX ind);
@@ -124,6 +133,7 @@ private:
 	Uses* _uses;
 	UsesP* _usesP;
 	Calls* _calls;
+	Next* _next;
 	VarTable* _varTable;
 	ProcTable* _procTable;
 	AST* _ast;

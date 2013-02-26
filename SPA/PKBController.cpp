@@ -812,6 +812,7 @@ void PKBController::init()
 	_uses = new Uses();
 	_usesP = new UsesP();
 	_calls = new Calls();
+	_next = new Next();
 	_varTable = new VarTable();
 	_procTable = new ProcTable();
 	_constTable = new vector<int>();
@@ -974,4 +975,29 @@ vector<ASTNode*>* PKBController::getIfBranchTable()
 vector<ASTNode*>* PKBController::getWhileTable()
 {
 	return _whileLoopTable;
+}
+
+void PKBController::addNext( STMT stmt1, STMT stmt2 )
+{
+	_next->addNext(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::next( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )
+{
+	return _next->next(st1s_ptr, st2s_ptr, arg);
+}
+
+BOOLEAN PKBController::nextStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )
+{
+	return _next->nextStar(st1s_ptr, st2s_ptr, arg);
+}
+
+STMT_LIST PKBController::getAllNextFirst()
+{
+	return _next->getAllNextFirst();
+}
+
+STMT_LIST PKBController::getAllNextSecond()
+{
+	return _next->getAllNextSecond();
 }
