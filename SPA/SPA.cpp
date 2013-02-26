@@ -66,7 +66,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	list<string> result;
 	
 	string query("assign a1,a2,a3; stmt s1,s2,s3,s4; if f; while w; call c; procedure p1, p2; variable v1, v2, v3; constant c1,c2; prog_line pg1, pg2;");
-	query += "Select <v2,s3.stmt#,boolean> such that Modifies(a2,\"soc\")";
+	query += "Select pg1 with pg1=s1.stmt#";
 	query += " with a3.stmt#=s1.stmt# and v1.varName=v2.varName";
 	query += " and p1.procName=v1.varName and s2.stmt#=s3.stmt# and s2.stmt#=f.stmt#";
 	query += " and c1.value=3 and c1.value=c2.value and v1.varName=\"soc\"";
@@ -79,7 +79,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	query += " ";
 	query += " ";
 	query += " ";
-									 
+								 
 	
 	SPA_TIME_MEASURE("Processor",processor->evaluate(query,result));
 
