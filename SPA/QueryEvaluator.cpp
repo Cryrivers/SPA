@@ -318,11 +318,6 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 			
 			vec->push_back(qv.content);
 			break;
-		
-		// invalid types, should not appear in relations
-		case KT_CONSTANT_INTEGER:		
-		case KT_CONSTANT_STRING:	
-			break;
 
 	}
 	
@@ -783,8 +778,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 				// invalid types, should not appear in target
 				case DT_UNDERSCORE:		
 				case DT_STMTLST: 			
-				case KT_CONSTANT_INTEGER:		
-				case KT_CONSTANT_STRING:	
+
 					break;
 
 			}
