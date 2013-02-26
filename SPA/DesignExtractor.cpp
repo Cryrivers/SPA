@@ -1033,6 +1033,7 @@ void DesignExtractor::connectCFG()
 			//Connect this to next
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
+			//BUG: Should consider scope while PREPROCESS_ELSE
 			if(getParsingPhase(phaseStack) == PREPROCESS_NON_IF || 
 				getParsingPhase(phaseStack) == PREPROCESS_ELSE ||
 				(getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)))
