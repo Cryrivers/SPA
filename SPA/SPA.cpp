@@ -34,7 +34,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
-	ifstream myfile("../SampleCode/iteration2.c");
+	ifstream myfile("../SampleCode/SampleCodeCFG.c");
 	if (myfile.is_open())
 	{
 	int i=1;

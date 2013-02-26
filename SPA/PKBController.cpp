@@ -743,6 +743,7 @@ void PKBController::completePKB(){
 	_designExtractor->connectCFG();
 	_designExtractor->addModifies();
 	_designExtractor->addUses();
+	_designExtractor->addNext();
 	build_call_call();
 	build_proc_call();
 	build_proc_var();
