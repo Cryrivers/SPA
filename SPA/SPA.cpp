@@ -65,7 +65,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 	
-	/*
+	
 	string query("assign a1,a2,a3; stmt s1,s2,s3,s4; if f; while w; call c; procedure p1, p2; variable v1, v2, v3; constant c1,c2; prog_line pg1, pg2;");
 /*	query += "Select pg1 with pg1=s1.stmt#";
 	query += " with a3.stmt#=s1.stmt# and v1.varName=v2.varName";
@@ -81,8 +81,6 @@ int _tmain(int argc, _TCHAR *argv[])
 	query += " ";
 	query += " ";
 	query += " ";
-	*/
-	string query("stmt s; while w; Select s such that Parent* (w, 10)");						 
 	
 	SPA_TIME_MEASURE("Processor",processor->evaluate(query,result));
 

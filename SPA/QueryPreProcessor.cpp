@@ -867,6 +867,9 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 									return false;
 							}else if(queryVarTable[ia].variableType==DT_STMT){
 							   queryVarTable[ia].variableType=KT_STMT_NUM;
+							} else{
+								cout<<"This should really not happen!"<<endl;
+								return false;
 							}
 						}else if(getAttributeOfVariable(ia, frontAttribute)==AT_VALUE){	 
 							queryVarTable[ia].content=atoi(back.c_str());
