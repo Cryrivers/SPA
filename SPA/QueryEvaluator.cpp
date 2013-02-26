@@ -69,7 +69,7 @@ bool QueryEvaluator::evaluateQuery()
 
 /**
  * \fn		QueryEvaluator::evaluateClause(QueryClause qc)
- * \brief	Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With.  
+ * \brief	Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next NextT Pattern, With.  
  * \param [in]	qc: query clause. 
  * \return 	TRUE if evaluation is successful, FALSE otherwise
  */
@@ -137,14 +137,29 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 				return false; // can't find relation
 			break;
 		
-		/*
 		case RT_CALLST:
 		
 			if (!pkb->callsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
-		*/
 		
+		case RT_NEXT:
+			
+			if (!pkb->next(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+			
+		case RT_NEXTT:
+			
+			if (!pkb->nextStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+			
+		case RT_AFFECTS:
+		case RT_AFFECTST:
+			
+			break;
+			
 		case CT_PATTERN:
 			
 			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
