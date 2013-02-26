@@ -283,7 +283,8 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 			break;
 
 		// no restriction on the following types, leave vector empty
-		case DT_STMT: 		
+		case DT_STMT:
+		case DT_PROGLINE:
 		case DT_VARIABLE: 	
 		case DT_PROCEDURE:	
 		case DT_UNDERSCORE:		
@@ -298,6 +299,7 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 		case KT_STMT_NUM:			
 		case KT_KNOWN_VARIABLE:		
 		case KT_KNOWN_PROCEDURE:	
+		case KT_KNOWN_CONSTANT:	
 			
 			vec->push_back(qv.content);
 			break;
@@ -749,7 +751,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 					break;
 
 				case DT_STMT: 		
-					
+				case DT_PROGLINE:
+				
 					if (!pkb->getAllStmt(&vecI))
 						return false;
 					break;
@@ -758,6 +761,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 				case KT_STMT_NUM:			
 				case KT_KNOWN_VARIABLE:		
 				case KT_KNOWN_PROCEDURE:	
+				case KT_KNOWN_CONSTANT:
+					
 					break;
 		
 				// invalid types, should not appear in target
