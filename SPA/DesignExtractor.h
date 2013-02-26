@@ -32,10 +32,17 @@ BOOLEAN getAllIf(STMT_LIST*);
 BOOLEAN getAllCall(STMT_LIST*);
 BOOLEAN getAllConstant(vector<int> *);
 BOOLEAN pattern(vector<int>*, vector<int>*, string,PatternQueryType, int);
+BOOLEAN affects(STMT_LIST*, STMT_LIST*, int);
+BOOLEAN affectsStar(STMT_LIST*, STMT_LIST*, int);
 
 private:
 	BOOLEAN assignPattern(vector<int>*, vector<int>*, string, int, int);
 	BOOLEAN whilePattern(vector<int>*, vector<int>*, string, int);
 	BOOLEAN ifPattern(vector<int>*, vector<int>*, string, int);
+	BOOLEAN affects00(STMT_LIST*, STMT_LIST*);
+	BOOLEAN affects01(STMT_LIST*, STMT_LIST*);
+	BOOLEAN affects10(STMT_LIST*, STMT_LIST*);
+	BOOLEAN affects11(STMT_LIST*, STMT_LIST*);
+	BOOLEAN isAffects(STMT, STMT);
 };
 

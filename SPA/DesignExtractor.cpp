@@ -8,6 +8,8 @@
 #include "DesignExtractor.h"
 #include "SPAType.h"
 #include "ASTNode.h"
+#include "Utility.h"
+#include <queue>
 #include <string>
 
 /**
@@ -135,7 +137,7 @@ void DesignExtractor::addUses()
 BOOLEAN DesignExtractor::getAllStmt(STMT_LIST *result)
 {
 	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
-		if (_pkb->getPreprocessedProgram()->at(i).stmtNumber != 0) {
+		if (_pkb->getPreprocessedProgram()->at(i).stmtNumber > 0) {
 			result->push_back(_pkb->getPreprocessedProgram()->at(i).stmtNumber);
 		}
 	}
@@ -1055,4 +1057,154 @@ IfPreprocessingPhase DesignExtractor::getParsingPhase( stack<IfPreprocessingPhas
 		return s.top();
 	else
 		return PREPROCESS_NON_IF;
+}
+
+BOOLEAN DesignExtractor::isAffects(int first, int second)
+{
+	STMT_LIST* firstStmt = new STMT_LIST;
+	STMT_LIST* secondStmt = new STMT_LIST;
+	STMT_LIST* temp = new STMT_LIST;
+	STMT_LIST* nextStmts = new STMT_LIST;
+	VAR_INDEX_LIST* var = new VAR_INDEX_LIST;
+	vector<CFGNode*> cfg = _pkb->getCFG()->getAllCFGNodes();
+	CFGNode* firstNode = _pkb->getCFG()->getCFGNodeByStmtNumber(first);
+	CFGNode* secondNode = _pkb->getCFG()->getCFGNodeByStmtNumber(second);
+	CFGNode* current;
+	CFGNode* nextNode;
+	vector<int> visitedNode;
+	queue<int>	rest;
+	vector<int> route;
+	int nodeIndex, noModifiesInMiddle;
+
+	firstStmt->push_back(first);
+	secondStmt->push_back(second);
+	if(!_pkb->nextStar(firstStmt, secondStmt, 0)) return false;
+	if(!(_pkb->modifies(firstStmt, var, 1)&& _pkb->uses(secondStmt, var, 0))) return false;
+
+	rest.push(indexOf(cfg, firstNode));
+	visitedNode.push_back(indexOf(cfg, firstNode));
+
+	//if at same node. special case
+	if(firstNode == secondNode){
+		if(first < second){
+			for(int i = first+1; i < second; i++){
+				temp->clear();
+				temp->push_back(i);
+				if (_pkb->modifies(temp, var, 0)) return false;
+				
+			}
+			return true;
+		}else{
+			for (int i = first+1; i < firstNode->getEndStatement(); i++)
+			{
+				temp->clear();
+				temp->push_back(i);
+				if (_pkb->modifies(temp, var, 0)) return false;
+				
+			}
+			for (int i = firstNode->getStartStatement(); i < second; i++)
+			{
+				temp->clear();
+				temp->push_back(i);
+				if (_pkb->modifies(temp, var, 0)) return false;
+				
+			}
+			visitedNode.erase(visitedNode.begin());//cannot judge whether isAffect is true. allow visit firstNode again
+		}
+	}
+
+	while(rest.size()!=0){
+		nodeIndex = rest.front();
+		rest.pop();
+		current = _pkb->getCFG()->getCFGNodeByStmtNumber(nodeIndex);
+		if (second > current->getStartStatement() && second < current->getEndStatement())
+		{
+			noModifiesInMiddle = 1;
+			for (int i = current->getStartStatement(); i < second; i++)
+			{
+				temp->clear();
+				temp->push_back(i);
+				if (_pkb->modifies(temp, var, 0))
+				{
+					noModifiesInMiddle = 0;
+					break;
+				}
+			}
+			if(noModifiesInMiddle) return true;
+		}
+		else
+		{
+			temp->clear();
+			temp->push_back(current->getEndStatement());
+			_pkb->next(temp, nextStmts, 1);
+			for (int i = 0; i < nextStmts->size(); i++)
+			{
+				nextNode = _pkb->getCFG()->getCFGNodeByStmtNumber(nextStmts->at(i));
+				noModifiesInMiddle = 1;
+				for (int j = nextNode->getStartStatement(); j < nextNode->getEndStatement(); j++)
+				{
+					temp->clear();
+					temp->push_back(j);
+					if(_pkb->modifies(temp, var, 0))
+					{
+						noModifiesInMiddle = 0;
+						break;
+					}
+				}
+				if (noModifiesInMiddle == 1) rest.push(indexOf(cfg, nextNode));
+			}
+		}
+	}
+	return true;
+}
+
+BOOLEAN DesignExtractor::affects00( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
+{
+	VAR_INDEX_LIST* var = new VAR_INDEX_LIST;
+
+	for (int i = 0; i < st1s_ptr->size(); i++)
+	{
+		for (int j = 0; j < st2s_ptr->size(); j++)
+		{	
+			if(isAffects(st1s_ptr->at(i),st2s_ptr->at(j))) return true;
+		}
+	}
+	return false;
+}
+
+BOOLEAN DesignExtractor::affects01( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
+{
+	return false;
+}
+
+BOOLEAN DesignExtractor::affects10( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
+{
+	return false;
+}
+
+BOOLEAN DesignExtractor::affects11( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
+{
+	return false;
+}
+
+BOOLEAN DesignExtractor::affects( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg)
+{
+	switch (arg)
+	{
+	case 0:
+		return affects00(st1s_ptr, st2s_ptr);
+	case 1:
+		return affects01(st1s_ptr, st2s_ptr);
+	case 2:
+		return affects10(st1s_ptr, st2s_ptr);
+	case 3:
+		return affects11(st1s_ptr, st2s_ptr);
+	default:
+		return false;
+	}
+}
+
+BOOLEAN DesignExtractor::affectsStar( STMT_LIST*, STMT_LIST*, int )
+{
+	return false;
 }

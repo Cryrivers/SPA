@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "CFGNode.h"
 using namespace std;
 
 int indexOf(vector<int>, int); //{
@@ -8,3 +9,5 @@ int indexOf(vector<int>, int); //{
 //}
 //return -1;
 //}
+int indexOf(vector<CFGNode*>, CFGNode*);
+StmtType getTypeOfStmt(STMT);
