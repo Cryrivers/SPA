@@ -781,8 +781,14 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 						}
 					}else{
 			//Attribute not the same but comparable
-						if(!((ta==AT_PROC_NAME||ta==AT_CALL_PROC_NAME||ta==AT_VAR_NAME)&&(tb==AT_PROC_NAME||tb==AT_CALL_PROC_NAME||tb==AT_VAR_NAME)))
+						if((ta==AT_PROC_NAME||ta==AT_CALL_PROC_NAME||ta==AT_VAR_NAME)&&(tb==AT_PROC_NAME||tb==AT_CALL_PROC_NAME||tb==AT_VAR_NAME)){
+
+						}else if((ta==AT_STMT_NUM||ta==AT_VALUE)&&(ta==AT_STMT_NUM||ta==AT_VALUE)){
+
+						}else{
 							return false;
+						}
+							
 					} 
 					queryClaTable.push_back(qc);   
 					continue;
@@ -1345,7 +1351,13 @@ int QueryPreprocessor::parse(string query){
 		clauses.clear();
 		return 0;
 	}
-	if(DEBUGMODE||PRINTTABLE) cout<<"false"<<endl;
+	if(DEBUGMODE||PRINTTABLE) cout<<"false"<<endl;		
+	if(DEBUGMODE||PRINTTABLE){
+			QueryPreprocessorDebug qpd;
+			qpd.printQueryVariableTable(queryVarTable);
+			qpd.printTargetVariableTable(queryTarTable);
+			qpd.printQueryClauseTable(queryClaTable);
+		}
 	return -1;
 } 
 /********************************************//**
