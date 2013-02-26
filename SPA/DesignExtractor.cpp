@@ -135,7 +135,7 @@ void DesignExtractor::addUses()
 BOOLEAN DesignExtractor::getAllStmt(STMT_LIST *result)
 {
 	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
-		if (_pkb->getPreprocessedProgram()->at(i).stmtNumber != 0) {
+		if (_pkb->getPreprocessedProgram()->at(i).stmtNumber > 0) {
 			result->push_back(_pkb->getPreprocessedProgram()->at(i).stmtNumber);
 		}
 	}

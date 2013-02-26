@@ -405,6 +405,8 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 						return i;
 					}else if(queryVarTable[i].variableType==DT_UNDERSCORE){
 						return i;
+					}else if(queryVarTable[i].variableType==DT_PROGLINE){
+						return i;
 					}else{
 						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not stmt."<<endl;
 						return -1;
