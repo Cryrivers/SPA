@@ -405,6 +405,8 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 						return i;
 					}else if(queryVarTable[i].variableType==DT_UNDERSCORE){
 						return i;
+					}else if(queryVarTable[i].variableType==DT_PROGLINE){
+						return i;
 					}else{
 						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not stmt."<<endl;
 						return -1;
@@ -914,10 +916,12 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 					continue;
 				}else if(frontAttribute == -1 && backAttribute == -1){
 					if(front!=back){
-						int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,0,0); 	
-						int ib = getIndexFromVarTable(back, 0,1,0,0,0,0,0,0);
+						int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,1,0); 	
+						int ib = getIndexFromVarTable(back, 0,1,0,0,0,0,1,0);
 						if(ia==-1||ib==-1)	return false; 
-						if(queryVarTable[ia].variableType!=DT_PROGLINE||queryVarTable[ib].variableType!=DT_PROGLINE)
+						if(queryVarTable[ia].variableType!=DT_PROGLINE&&queryVarTable[ia].variableType!=KT_STMT_NUM)
+							return false;
+						if(queryVarTable[ib].variableType!=DT_PROGLINE&&queryVarTable[ib].variableType!=KT_STMT_NUM)
 							return false;
 						if(queryVarTable[ia].mapTo!=ia)
 							changeMapTo(queryVarTable[ib].mapTo, queryVarTable[ia].mapTo);

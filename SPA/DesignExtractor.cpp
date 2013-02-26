@@ -935,15 +935,10 @@ void DesignExtractor::addNext()
 		vector<CFGNode*> edges = c->getNextEdges();
 
 		for(int i = c->getStartStatement(); i< c->getEndStatement(); i++)
-		{
-			//Add Next to Table
-			//Next(i,i+1)
-		}
+			_pkb->addNext(i,i+1);
 
 		for(vector<CFGNode*>::iterator n = edges.begin(); n!= edges.end(); ++n)
-		{
-			//Add Next (c.end, n.start)
-		}
+			_pkb->addNext(c->getEndStatement(),(*n)->getStartStatement());
 	}
 	
 }

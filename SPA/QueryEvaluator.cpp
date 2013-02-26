@@ -69,7 +69,7 @@ bool QueryEvaluator::evaluateQuery()
 
 /**
  * \fn		QueryEvaluator::evaluateClause(QueryClause qc)
- * \brief	Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With.  
+ * \brief	Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next NextT Pattern, With.  
  * \param [in]	qc: query clause. 
  * \return 	TRUE if evaluation is successful, FALSE otherwise
  */
@@ -137,14 +137,29 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 				return false; // can't find relation
 			break;
 		
-		/*
 		case RT_CALLST:
 		
 			if (!pkb->callsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
-		*/
 		
+		case RT_NEXT:
+			
+			if (!pkb->next(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+			
+		case RT_NEXTT:
+			
+			if (!pkb->nextStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+			
+		case RT_AFFECTS:
+		case RT_AFFECTST:
+			
+			break;
+			
 		case CT_PATTERN:
 			
 			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
@@ -283,7 +298,8 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 			break;
 
 		// no restriction on the following types, leave vector empty
-		case DT_STMT: 		
+		case DT_STMT:
+		case DT_PROGLINE:
 		case DT_VARIABLE: 	
 		case DT_PROCEDURE:	
 		case DT_UNDERSCORE:		
@@ -298,6 +314,7 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 		case KT_STMT_NUM:			
 		case KT_KNOWN_VARIABLE:		
 		case KT_KNOWN_PROCEDURE:	
+		case KT_KNOWN_CONSTANT:	
 			
 			vec->push_back(qv.content);
 			break;
@@ -749,7 +766,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 					break;
 
 				case DT_STMT: 		
-					
+				case DT_PROGLINE:
+				
 					if (!pkb->getAllStmt(&vecI))
 						return false;
 					break;
@@ -758,6 +776,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 				case KT_STMT_NUM:			
 				case KT_KNOWN_VARIABLE:		
 				case KT_KNOWN_PROCEDURE:	
+				case KT_KNOWN_CONSTANT:
+					
 					break;
 		
 				// invalid types, should not appear in target
