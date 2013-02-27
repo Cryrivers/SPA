@@ -11,6 +11,7 @@
 #include "Utility.h"
 #include <queue>
 #include <string>
+#include <assert.h>
 
 /**
  * \fn	DesignExtractor::DesignExtractor(void)
@@ -1035,8 +1036,8 @@ void DesignExtractor::connectCFG()
 			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
 			//BUG: Should consider scope while PREPROCESS_ELSE
 			if(getParsingPhase(phaseStack) == PREPROCESS_NON_IF || 
-				getParsingPhase(phaseStack) == PREPROCESS_ELSE ||
-				(getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)))
+				(getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
+				(getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
 			{
 				if(nextNode != NULL)
 				{
@@ -1047,6 +1048,27 @@ void DesignExtractor::connectCFG()
 							thisNode->getPairedCFGNode()->connectTo(nextNode);
 					}
 				}
+			}
+			else if(getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() > 1)
+			{
+				statement parent = scope.top();
+				scope.top();
+				statement grand_parent = scope.top();
+				scope.push(parent);
+				assert(grand_parent.type == STMT_IF);
+				if(it->stmtNumber < grand_parent.midOfTheScope)
+				{
+					if(nextNode != NULL)
+					{
+						if(nextNode != thisNode && nextNode->getProcIndex() == thisNode->getProcIndex())
+						{
+							thisNode->connectTo(nextNode);
+							if(thisNode->getPairedCFGNode()!=NULL)
+								thisNode->getPairedCFGNode()->connectTo(nextNode);
+						}
+					}
+				}
+
 			}
 		}
 	}
