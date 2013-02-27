@@ -976,6 +976,7 @@ void DesignExtractor::connectCFG()
 	// Start connecting CFG now
 	for(vector<statement>::iterator it =  preprocProgram->begin(); it != preprocProgram->end(); ++it)
 	{
+		int sm = it->stmtNumber;
 		if(it->type ==  STMT_IF)
 		{
 			scope.push(*it);
@@ -1034,7 +1035,7 @@ void DesignExtractor::connectCFG()
 			//Connect this to next
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
-			//BUG: Should consider scope while PREPROCESS_ELSE
+			
 			if(__getParsingPhase(phaseStack) == PREPROCESS_NON_IF || 
 				(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
 				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
@@ -1043,16 +1044,37 @@ void DesignExtractor::connectCFG()
 			}
 			else if(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() > 1)
 			{
+				//Get Grand_Parent Node
 				statement parent = scope.top();
-				scope.top();
+				scope.pop();
 				statement grand_parent = scope.top();
 				scope.push(parent);
 				assert(grand_parent.type == STMT_IF);
-				if(it->stmtNumber < grand_parent.midOfTheScope)
-				{
-					__smartConnectThisCFGToNext(nextNode, thisNode);
-				}
+				
+				//Get Grand_Parent State
+				IfPreprocessingPhase parent_state = phaseStack.top();
+				phaseStack.pop();
+				IfPreprocessingPhase grand_parent_state = phaseStack.top();
+				phaseStack.push(parent_state);
 
+				if(grand_parent_state == PREPROCESS_THEN)
+				{
+					if(it->stmtNumber < grand_parent.midOfTheScope)
+					{
+						__smartConnectThisCFGToNext(nextNode, thisNode);
+					}
+				}
+				else if(grand_parent_state == PREPROCESS_ELSE)
+				{
+					if(it->stmtNumber < grand_parent.endOfTheScope)
+					{
+						__smartConnectThisCFGToNext(nextNode, thisNode);
+					}
+				}
+				else
+				{
+					throw("Error while smart-connecting nested IF CFG.");
+				}
 			}
 		}
 	}
