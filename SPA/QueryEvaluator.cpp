@@ -767,12 +767,21 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 						return false;
 					break;
 			
-				// Known Constants, to consider?
+				// Known Variables
 				case KT_STMT_NUM:			
-				case KT_KNOWN_VARIABLE:		
-				case KT_KNOWN_PROCEDURE:	
 				case KT_KNOWN_CONSTANT:
+				
+					result.push_back(to_string(static_cast<long long>(qv.content)));
+					break;
 					
+				case KT_KNOWN_VARIABLE:	
+					
+					result.push_back(pkb->getVarName(qv.content));					
+					break;
+					
+				case KT_KNOWN_PROCEDURE:	
+					
+					result.push_back(pkb->getProcName(qv.content));					
 					break;
 		
 				// invalid types, should not appear in target
