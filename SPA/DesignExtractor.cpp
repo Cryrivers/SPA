@@ -1020,7 +1020,7 @@ void DesignExtractor::connectCFG()
 			CFGNode* afterWhileBlock = cfg->getCFGNodeByStmtNumber(it->endOfTheScope + 1);
 			if(afterWhileBlock != NULL)
 			{
-				if(getParsingPhase(phaseStack) == PREPROCESS_NON_IF || getParsingPhase(phaseStack) == PREPROCESS_ELSE)
+				if(__getParsingPhase(phaseStack) == PREPROCESS_NON_IF || __getParsingPhase(phaseStack) == PREPROCESS_ELSE)
 				{
 					if(afterWhileBlock->getProcIndex() == it->procIndex)
 					{
@@ -1035,21 +1035,13 @@ void DesignExtractor::connectCFG()
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
 			//BUG: Should consider scope while PREPROCESS_ELSE
-			if(getParsingPhase(phaseStack) == PREPROCESS_NON_IF || 
-				(getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
-				(getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
+			if(__getParsingPhase(phaseStack) == PREPROCESS_NON_IF || 
+				(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
+				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
 			{
-				if(nextNode != NULL)
-				{
-					if(nextNode != thisNode && nextNode->getProcIndex() == thisNode->getProcIndex())
-					{
-						thisNode->connectTo(nextNode);
-						if(thisNode->getPairedCFGNode()!=NULL)
-							thisNode->getPairedCFGNode()->connectTo(nextNode);
-					}
-				}
+				__smartConnectThisCFGToNext(nextNode, thisNode);
 			}
-			else if(getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() > 1)
+			else if(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() > 1)
 			{
 				statement parent = scope.top();
 				scope.top();
@@ -1058,23 +1050,27 @@ void DesignExtractor::connectCFG()
 				assert(grand_parent.type == STMT_IF);
 				if(it->stmtNumber < grand_parent.midOfTheScope)
 				{
-					if(nextNode != NULL)
-					{
-						if(nextNode != thisNode && nextNode->getProcIndex() == thisNode->getProcIndex())
-						{
-							thisNode->connectTo(nextNode);
-							if(thisNode->getPairedCFGNode()!=NULL)
-								thisNode->getPairedCFGNode()->connectTo(nextNode);
-						}
-					}
+					__smartConnectThisCFGToNext(nextNode, thisNode);
 				}
 
 			}
 		}
 	}
 }
+void DesignExtractor::__smartConnectThisCFGToNext( CFGNode* nextNode, CFGNode* thisNode ) 
+{
+	if(nextNode != NULL)
+	{
+		if(nextNode != thisNode && nextNode->getProcIndex() == thisNode->getProcIndex())
+		{
+			thisNode->connectTo(nextNode);
+			if(thisNode->getPairedCFGNode()!=NULL)
+				thisNode->getPairedCFGNode()->connectTo(nextNode);
+		}
+	}
+}
 
-IfPreprocessingPhase DesignExtractor::getParsingPhase( stack<IfPreprocessingPhase> &s )
+IfPreprocessingPhase DesignExtractor::__getParsingPhase( stack<IfPreprocessingPhase> &s )
 {
 	if(s.size()>0)
 		return s.top();

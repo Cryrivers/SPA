@@ -16,7 +16,9 @@ class DesignExtractor
 private:
 AST* _ast;
 PKBController* _pkb;
-inline IfPreprocessingPhase getParsingPhase(stack<IfPreprocessingPhase> &s);
+inline IfPreprocessingPhase __getParsingPhase(stack<IfPreprocessingPhase> &s);
+inline void __smartConnectThisCFGToNext( CFGNode* nextNode, CFGNode* thisNode );
+
 public:
 DesignExtractor(void);
 ~DesignExtractor(void);
