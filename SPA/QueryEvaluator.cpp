@@ -875,7 +875,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			return WITH_VARNAME;
 		
 		case AT_PROC_NAME:		
-
+		case AT_PROCTABLEINDEX:
+		
 			return WITH_PROCNAME;
 
 		case AT_CALL_PROC_NAME:		
