@@ -566,7 +566,8 @@ ASTNode* Parser::_buildCallAST( statement* s )
 
 	node->createChild(AST_PROCEDURE, _findAssumedProcIndexByName(s->extraName));
 	_pkb->addCalls(s->stmtNumber,s->procIndex,_findAssumedProcIndexByName(s->extraName));
-
+	//Update ParentTable
+	if(_parentStackNoStmtLst.top()->getStmtNumber()>0) _pkb->addParent(_parentStackNoStmtLst.top()->getStmtNumber(), s->stmtNumber);
 	return(node);
 }
 

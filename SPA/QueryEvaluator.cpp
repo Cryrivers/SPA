@@ -139,8 +139,8 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 		
 		case RT_CALLST:
 		
-			if (!pkb->callsStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
+			//if (!pkb->callsStar(&vectorA, &vectorB, arg))
+			//	return false; // can't find relation
 			break;
 		
 		case RT_NEXT:
@@ -317,11 +317,6 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 		case KT_KNOWN_CONSTANT:	
 			
 			vec->push_back(qv.content);
-			break;
-		
-		// invalid types, should not appear in relations
-		case KT_CONSTANT_INTEGER:		
-		case KT_CONSTANT_STRING:	
 			break;
 
 	}
@@ -772,19 +767,27 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 						return false;
 					break;
 			
-				// Known Constants, to consider?
+				// Known Variables
 				case KT_STMT_NUM:			
-				case KT_KNOWN_VARIABLE:		
-				case KT_KNOWN_PROCEDURE:	
 				case KT_KNOWN_CONSTANT:
+				
+					result.push_back(to_string(static_cast<long long>(qv.content)));
+					break;
 					
+				case KT_KNOWN_VARIABLE:	
+					
+					result.push_back(pkb->getVarName(qv.content));					
+					break;
+					
+				case KT_KNOWN_PROCEDURE:	
+					
+					result.push_back(pkb->getProcName(qv.content));					
 					break;
 		
 				// invalid types, should not appear in target
 				case DT_UNDERSCORE:		
 				case DT_STMTLST: 			
-				case KT_CONSTANT_INTEGER:		
-				case KT_CONSTANT_STRING:	
+
 					break;
 
 			}
@@ -872,7 +875,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			return WITH_VARNAME;
 		
 		case AT_PROC_NAME:		
-
+		case AT_PROCTABLEINDEX:
+		
 			return WITH_PROCNAME;
 
 		case AT_CALL_PROC_NAME:		

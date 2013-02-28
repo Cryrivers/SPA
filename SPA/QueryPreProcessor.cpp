@@ -781,8 +781,14 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 						}
 					}else{
 			//Attribute not the same but comparable
-						if(!((ta==AT_PROC_NAME||ta==AT_CALL_PROC_NAME||ta==AT_VAR_NAME)&&(tb==AT_PROC_NAME||tb==AT_CALL_PROC_NAME||tb==AT_VAR_NAME)))
+						if((ta==AT_PROC_NAME||ta==AT_CALL_PROC_NAME||ta==AT_VAR_NAME)&&(tb==AT_PROC_NAME||tb==AT_CALL_PROC_NAME||tb==AT_VAR_NAME)){
+
+						}else if((ta==AT_STMT_NUM||ta==AT_VALUE)&&(ta==AT_STMT_NUM||ta==AT_VALUE)){
+
+						}else{
 							return false;
+						}
+							
 					} 
 					queryClaTable.push_back(qc);   
 					continue;
@@ -865,7 +871,12 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 								}
 								if(cou==st.size())
 									return false;
-							}		  
+							}else if(queryVarTable[ia].variableType==DT_STMT){
+							   queryVarTable[ia].variableType=KT_STMT_NUM;
+							} else{
+								cout<<"This should really not happen!"<<endl;
+								return false;
+							}
 						}else if(getAttributeOfVariable(ia, frontAttribute)==AT_VALUE){	 
 							queryVarTable[ia].content=atoi(back.c_str());
 							queryVarTable[ia].variableType=KT_KNOWN_CONSTANT;
@@ -1340,7 +1351,13 @@ int QueryPreprocessor::parse(string query){
 		clauses.clear();
 		return 0;
 	}
-	if(DEBUGMODE||PRINTTABLE) cout<<"false"<<endl;
+	if(DEBUGMODE||PRINTTABLE) cout<<"false"<<endl;		
+	if(DEBUGMODE||PRINTTABLE){
+			QueryPreprocessorDebug qpd;
+			qpd.printQueryVariableTable(queryVarTable);
+			qpd.printTargetVariableTable(queryTarTable);
+			qpd.printQueryClauseTable(queryClaTable);
+		}
 	return -1;
 } 
 /********************************************//**

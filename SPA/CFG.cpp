@@ -71,3 +71,41 @@ vector<CFGNode*> CFG::getAllCFGNodes()
 {
 	return _CFGBlocks;
 }
+
+void CFG::__printDotGraphForGraphviz()
+{
+	FILE* f = fopen("../current-cfg.dot","w");
+	fprintf(f,"digraph graphname {\n");
+
+	for(vector<CFGNode*>::iterator it = _CFGBlocks.begin(); it != _CFGBlocks.end();++it)
+	{
+		CFGNode* c = *it;
+		vector<CFGNode*> edges = c->getNextEdges();
+		string label = "";
+		//Print the label
+		for(int i = c->getStartStatement(); i<= c->getEndStatement(); i++)
+		{
+			label += to_string((long long)i);
+			if(i<c->getEndStatement()) label += ",";
+		}
+		fprintf(f,"%d [label=\"%s\"]\n",__indexOf(_CFGBlocks,*it), label.c_str());
+
+		//Connect edges
+		for(vector<CFGNode*>::iterator n = edges.begin(); n!= edges.end(); ++n)
+		{
+			fprintf(f,"%d -> %d\n", __indexOf(_CFGBlocks,*it), __indexOf(_CFGBlocks,*n));
+		}
+	}
+	fprintf(f,"}");
+	fclose(f);
+}
+
+int CFG::__indexOf(vector<CFGNode*> list, CFGNode* val)
+{
+	for (int i = 0; i < list.size(); i++) {
+		if (list.at(i) == val) {
+			return(i);
+		}
+	}
+	return(-1);
+}
