@@ -67,7 +67,10 @@ void DesignExtractor::addModifies()
 		pmod.clear();
 		pvars.clear();
 	}
-	
+	stmts.clear();
+	vars.clear();
+	stmts = _pkb->getAllModifiesFirst();
+	vars = _pkb->getAllModifiesSecond();
 	for (int i = 0; i < stmts.size(); i++) {
 		child->push_back(stmts.at(i));
 		_pkb->parentStar(parents, child, 2);
@@ -114,7 +117,10 @@ void DesignExtractor::addUses()
 		pmod.clear();
 		pvars.clear();
 	}
-
+	stmts.clear();
+	vars.clear();
+	stmts = _pkb->getAllUsesFirst();
+	vars = _pkb->getAllUsesSecond();
 	for (int i = 0; i < stmts.size(); i++) {
 		child->push_back(stmts.at(i));
 		_pkb->parentStar(parents, child, 2);
