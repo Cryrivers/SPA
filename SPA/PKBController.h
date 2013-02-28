@@ -73,6 +73,7 @@ public:
 	//calls api
 	void addCalls(STMT stmt, PROC_INDEX caller, PROC_INDEX callee);
 	BOOLEAN calls(PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg);
+	BOOLEAN callsStar(PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg);
 	PROC_INDEX getCallee(STMT stmt);
 	PROC_INDEX_LIST getAllCallers();
 	PROC_INDEX_LIST getAllCallees();

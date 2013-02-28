@@ -1012,3 +1012,8 @@ BOOLEAN PKBController::affectsStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, in
 {
 	return _designExtractor->affectsStar(st1s_ptr, st2s_ptr, arg);
 }
+
+BOOLEAN PKBController::callsStar( PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg )
+{
+	return _calls->callsStar(callers_ptr, callees_ptr, arg);
+}

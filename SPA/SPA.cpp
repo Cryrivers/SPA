@@ -81,7 +81,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	query += " ";
 	query += " ";
 	*/
-	string query("stmt s; while w; Select s such that Parent* (w, 10)");						 
+	string query("variable v;Select v such that Modifies(11, v)");						 
 	
 	SPA_TIME_MEASURE("Processor",processor->evaluate(query,result));
 
