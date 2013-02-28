@@ -139,7 +139,7 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 		
 		case RT_CALLST:
 		
-			//if (!pkb->callsStar(&vectorA, &vectorB, arg))
+			if (!pkb->callsStar(&vectorA, &vectorB, arg))
 			//	return false; // can't find relation
 			break;
 		
