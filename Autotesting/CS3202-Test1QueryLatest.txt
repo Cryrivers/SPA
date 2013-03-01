@@ -6,7 +6,7 @@ Select s such that Parent (s, 22)
 19
 5000
 2 - Parent, Find Second  ::
-stmt s,;
+stmt s;
 Select s such that Parent (9, s)
 10, 11, 17
 5000
@@ -246,7 +246,7 @@ Select s with s.stmt# = c.value
 5000
 48 - procName, varName  ::
 procedure p; variable v;
-Select v with p.procName = v.variable
+Select v with p.procName = v.varName
 none
 5000
 cat: With and Relations
