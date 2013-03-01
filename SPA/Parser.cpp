@@ -557,7 +557,8 @@ ASTNode* Parser::_buildElseAST(statement* s)
 
 ASTNode* Parser::_buildCallAST( statement* s )
 {
-	ASTNode *node = ASTNode::createNode(AST_CALL,NULL);
+	//NodeValue is Callee's procIndex, no idea if callers procindex needed.
+	ASTNode *node = ASTNode::createNode(AST_CALL,_findAssumedProcIndexByName(s->extraName));
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
 

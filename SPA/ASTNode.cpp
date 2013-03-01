@@ -50,7 +50,9 @@ ASTNode *ASTNode::createNode(ASTNodeType t, int value)
 		break;
 
 	case AST_CALL:
-		node->_hashcode = "ca";
+		node->_hashcode = "%ca";
+		node->_hashcode.append(to_string(static_cast<long long>(value)));
+		node->_hashcode.append("%");
 		break;
 
 	case AST_ELSE_BRANCH:
@@ -62,23 +64,26 @@ ASTNode *ASTNode::createNode(ASTNodeType t, int value)
 		break;
 
 	case AST_PROCEDURE:
-		node->_hashcode = "pc";
+		node->_hashcode = "%pc";
 		//Unique Proc Index
 		node->_hashcode.append(to_string(static_cast<long long>(value)));
+		node->_hashcode.append("%");
 		break;
 
 	case AST_STATEMENT_LIST:
 		break;
 
 	case AST_VARIABLE:
-		node->_hashcode = "v";
+		node->_hashcode = "%v";
 		//Unique Variable Index
 		node->_hashcode.append(to_string(static_cast<long long>(value)));
+		node->_hashcode.append("%");
 		break;
 
 	case AST_CONSTANT:
-		node->_hashcode = "c";
+		node->_hashcode = "%c";
 		node->_hashcode.append(to_string(static_cast<long long>(value)));
+		node->_hashcode.append("%");
 		break;
 
 	case AST_PLUS:
@@ -98,13 +103,15 @@ ASTNode *ASTNode::createNode(ASTNodeType t, int value)
 		break;
 
 	case AST_WHILE_LOOP:
-		node->_hashcode = "wl";
+		node->_hashcode = "%wl";
 		node->_hashcode.append(to_string(static_cast<long long>(value)));
+		node->_hashcode.append("%");
 		break;
 
 	case AST_IF_BRANCH:
-		node->_hashcode = "ib";
+		node->_hashcode = "%ib";
 		node->_hashcode.append(to_string(static_cast<long long>(value)));
+		node->_hashcode.append("%");
 		break;
 
 	case AST_ANY:
