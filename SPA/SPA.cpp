@@ -34,7 +34,9 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	string program, line;
 	program = "";
+
 	ifstream myfile("../SampleCode/CS3202-Test1Code.c");
+
 	if (myfile.is_open())
 	{
 	int i=1;
@@ -61,26 +63,17 @@ int _tmain(int argc, _TCHAR *argv[])
 	}
 	
 	SPA_TIME_MEASURE("Parser", parser->parse(program));
-	PKBController::createInstance()->getCFG()->__printDotGraphForGraphviz();
 	
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 	
-	
-	//string query("assign a1,a2,a3; stmt s1,s2,s3,s4; if f; while w; call c; procedure p1, p2; variable v1, v2, v3; constant c1,c2; prog_line pg1, pg2;");
-/*	query += "Select pg1 with pg1=s1.stmt#";
-	query += " with a3.stmt#=s1.stmt# and v1.varName=v2.varName";
-	query += " and p1.procName=v1.varName and s2.stmt#=s3.stmt# and s2.stmt#=f.stmt#";
-	query += " and c1.value=3 and c1.value=c2.value and v1.varName=\"soc\"";
-	query += " and pg1=s4.stmt# and pg1=pg2 and 1=1 and a1.stmt#=a1.stmt#";				 
-	query += " pattern a1(v1, _) and f(v2,_,_) and w(v3,_) "; 
-	query += " such that Parent(2,3) and Follows(w, a3) and Follows*(w,f) and Parent*(s3, s4)";
-	query += " and Parent(_,_) and Affects*(_,_)";
-	*/
-
-	string query("stmt s, s1; variable v; procedure p; Select s such that Follows* (s1, s) with s1.stmt#= 1 such that Uses (s, v) and Modifies (p, v) with p.procName=\"Mary\"");
+	string query("prog_line n1; stmt s; if ifstat; while w; variable v; Select n1 such that Next (n1, s) and Parent (ifstat, s) and Modifies (w, v) and Uses (s, v)");
 	
 	SPA_TIME_MEASURE("Processor",processor->evaluate(query,result));
+
+	//Remove duplicates
+	set<string> s(result.begin(), result.end());
+	result.assign(s.begin(), s.end());
 
 	while(result.size()>0)
 	{
@@ -88,25 +81,7 @@ int _tmain(int argc, _TCHAR *argv[])
 		result.pop_front();
 	}
 	cout << endl;
-	/*
-	string query1("assign a; variable v; Select a pattern a(v,_\"((k+e)*c)+2*(5-i)\"_) such that Uses(a,v)");
-	string query2("assign a; while w; Select a such that Follows*(a,w) pattern a(_,_\"k*e\"_)");
-	string query3("assign a; stmt s;Select a pattern a(_,_\"(k*e)\"_) such that Follows*(s,a)");
-	//string query("stmt s; Select s such that Modifies(1,\"z\")");
-	for(int i = 0; i < 10; i++){ 
-	processor->evaluate(query1,result);processor->evaluate(query2, result);processor->evaluate(query3, result);
-	while(result.size()>0)
-	{
-		cout << result.front() << endl;
-		result.pop_front();
-	}
-	}
-	*/
-	//getchar();
-	//string a("a=a+10+20+30+z");
-	//regex m("/([0-9]+)/g");
-	//smatch result;
-	//regex_match(a,result,m);
+
 	getchar();
 	return(0);
 }
