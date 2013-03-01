@@ -783,7 +783,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 			//Attribute not the same but comparable
 						if((ta==AT_PROC_NAME||ta==AT_CALL_PROC_NAME||ta==AT_VAR_NAME)&&(tb==AT_PROC_NAME||tb==AT_CALL_PROC_NAME||tb==AT_VAR_NAME)){
 
-						}else if((ta==AT_STMT_NUM||ta==AT_VALUE)&&(ta==AT_STMT_NUM||ta==AT_VALUE)){
+						}else if((ta==AT_STMT_NUM||ta==AT_VALUE)&&(tb==AT_STMT_NUM||tb==AT_VALUE)){
 
 						}else{
 							return false;
@@ -848,7 +848,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 								if(cou==st.size())
 									return false;
 							}else if(queryVarTable[ia].variableType==DT_WHILE){	
-								STMT_LIST st;
+								STMT_LIST st;			  
 								pkb->getAllWhile(&st);
 								int cou=0;
 								for(cou; cou<st.size(); cou++){					 
@@ -872,14 +872,34 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 								if(cou==st.size())
 									return false;
 							}else if(queryVarTable[ia].variableType==DT_STMT){
-							   queryVarTable[ia].variableType=KT_STMT_NUM;
+								STMT_LIST st;
+								pkb->getAllStmt(&st);
+								int cou=0;
+								for(cou; cou<st.size(); cou++){					 
+									if(st[cou]==queryVarTable[ia].content){			 
+										queryVarTable[ia].variableType=KT_STMT_NUM;
+										break;
+									}
+								}
+								if(cou==st.size())
+									return false;
 							} else{
 								cout<<"This should really not happen!"<<endl;
 								return false;
 							}
 						}else if(getAttributeOfVariable(ia, frontAttribute)==AT_VALUE){	 
-							queryVarTable[ia].content=atoi(back.c_str());
-							queryVarTable[ia].variableType=KT_KNOWN_CONSTANT;
+								queryVarTable[ia].content=atoi(back.c_str());   
+								STMT_LIST st;
+								pkb->getAllConstant(&st);
+								int cou=0;
+								for(cou; cou<st.size(); cou++){					 
+									if(st[cou]==queryVarTable[ia].content){
+										 queryVarTable[ia].variableType=KT_KNOWN_CONSTANT;
+										 break;
+									}
+								}
+								if(cou==st.size())
+									return false;				  
 						}else
 							return false;  
 						discardClause++;  
@@ -922,6 +942,8 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 								}
 							}
 						}													
+					}else{
+							 return false;
 					}
 					discardClause++;
 					continue;
