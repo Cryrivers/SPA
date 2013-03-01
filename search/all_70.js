@@ -11,7 +11,6 @@ var searchData=
   ['pkb',['PKB',['../class_p_k_b.html',1,'PKB'],['../class_query_preprocessor.html#aea7a0bc659a2e72807608ec4dd6b4536',1,'QueryPreprocessor::pkb()']]],
   ['pkbcontroller',['PKBController',['../class_p_k_b_controller.html',1,'']]],
   ['pkbcontroller_2ecpp',['PKBController.cpp',['../_p_k_b_controller_8cpp.html',1,'']]],
-  ['poplastedge',['popLastEdge',['../class_c_f_g_node.html#af562f5e368e93aa784313179e7979686',1,'CFGNode']]],
   ['procindex',['procIndex',['../structstmt_detail.html#ac6646fce14fcbd9fbfb312209a8c9647',1,'stmtDetail']]],
   ['proctable',['ProcTable',['../class_proc_table.html',1,'']]],
   ['proctable_2ecpp',['ProcTable.cpp',['../_proc_table_8cpp.html',1,'']]]

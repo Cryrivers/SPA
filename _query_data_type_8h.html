@@ -117,6 +117,7 @@ $(document).ready(function(){initNavTree('_query_data_type_8h.html','');});
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
 <code>#include &lt;string&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
+<code>#include &lt;sstream&gt;</code><br/>
 <code>#include &quot;stdafx.h&quot;</code><br/>
 <code>#include &quot;SPAType.h&quot;</code><br/>
 </div><div class="textblock"><div class="dynheader">
@@ -124,7 +125,7 @@ Include dependency graph for QueryDataType.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_query_data_type_8h__incl.png" border="0" usemap="#_s_p_a_2_s_p_a_2_query_data_type_8h" alt=""/></div>
 <map name="_s_p_a_2_s_p_a_2_query_data_type_8h" id="_s_p_a_2_s_p_a_2_query_data_type_8h">
-<area shape="rect" id="node5" href="stdafx_8h_source.html" title="stdafx.h" alt="" coords="333,80,400,107"/><area shape="rect" id="node10" href="_s_p_a_type_8h_source.html" title="SPAType.h" alt="" coords="152,80,240,107"/><area shape="rect" id="node6" href="targetver_8h_source.html" title="targetver.h" alt="" coords="248,155,331,181"/></map>
+<area shape="rect" id="node6" href="stdafx_8h_source.html" title="stdafx.h" alt="" coords="450,80,517,107"/><area shape="rect" id="node11" href="_s_p_a_type_8h_source.html" title="SPAType.h" alt="" coords="203,80,291,107"/><area shape="rect" id="node7" href="targetver_8h_source.html" title="targetver.h" alt="" coords="388,155,471,181"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -159,52 +160,54 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad7df1d9c9d0de50790285c98ff7701c2">DT_PROCEDURE</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a53f44f00f1cb0ad4df4efcef4d46e073">DT_STMTLST</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a10431af5e427247be74de9a5e84a8e51">DT_STMT</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aec543b87fde7c337aa73dadf800909ca">DT_ASSIGN</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2769da84164ebe55e2400680278a4280">DT_PROGLINE</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a4a2b36085c68b9469c068a650d98fc1f">DT_CALL</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aec543b87fde7c337aa73dadf800909ca">DT_ASSIGN</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a4a2b36085c68b9469c068a650d98fc1f">DT_CALL</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab770fd69f31300169791b7e4df94e62d">DT_WHILE</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8b24caf307d3de48ded77e9684ecf762">DT_IF</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a6e36aa9ae136979e4e67b09b728bbe1e">DT_VARIABLE</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a52949bf0fa85c1c17ff674734058ffc4">DT_CONSTANT</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a6e36aa9ae136979e4e67b09b728bbe1e">DT_VARIABLE</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a52949bf0fa85c1c17ff674734058ffc4">DT_CONSTANT</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab292cbb050d170824ddb3d454e05b658">DT_BOOLEAN</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a3bd83662a1ef129993a0773971f8169e">DT_UNDERSCORE</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a17d778c5358b866461564c8ccbdae97e">KT_STMT_NUM</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a05879eb97445c2bb43bdecc9ee10edad">KT_KNOWN_VARIABLE</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a17d778c5358b866461564c8ccbdae97e">KT_STMT_NUM</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a05879eb97445c2bb43bdecc9ee10edad">KT_KNOWN_VARIABLE</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a7e32efbefe1c20a7574d5775324a4f92">KT_KNOWN_PROCEDURE</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa58dc25a3c38c2dd0445d4c92008d1d5">KT_KNOWN_CONSTANT</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa29d06f2432c059eafa395d594b12ec1">KT_CONSTANT_INTEGER</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad414d4bd9101b05bacf0b53d4d550b44">KT_CONSTANT_STRING</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa29d06f2432c059eafa395d594b12ec1">KT_CONSTANT_INTEGER</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad414d4bd9101b05bacf0b53d4d550b44">KT_CONSTANT_STRING</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a4db56e7dd69be36ebcf7b4d28f841f45">AT_STMT_NUM</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a0c4e168004697db31ac9f0d25be5e276">AT_VAR_NAME</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab75a3c50619b937e216da86a9539ce8a">AT_PROC_NAME</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a913edc19fb26b89879089ba831005d21">AT_CALL_PROC_NAME</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab75a3c50619b937e216da86a9539ce8a">AT_PROC_NAME</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a913edc19fb26b89879089ba831005d21">AT_CALL_PROC_NAME</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7add02b5497a9e461c095f0126d0fb2e9a">AT_VALUE</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a966145c645dfce66621bd4b56a4ce444">AT_PROCTABLEINDEX</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aedc1afeeed32a1c449d8d1aeed30126f">RT_MODIFIESP</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a013135b286b2bcf478ec4c035654bd42">RT_MODIFIESS</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aedc1afeeed32a1c449d8d1aeed30126f">RT_MODIFIESP</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a013135b286b2bcf478ec4c035654bd42">RT_MODIFIESS</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2fdaa55697ba88d6fa30ebbc33c51ad1">RT_USESP</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a767a54dcc166e347b2eab51ffbcb5543">RT_USESS</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a42d3c832dc584e126a67d35c6ad97e7d">RT_CALLS</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab47313cd2ce5cab9fdcd1cc5f2b6aad4">RT_CALLST</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a42d3c832dc584e126a67d35c6ad97e7d">RT_CALLS</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab47313cd2ce5cab9fdcd1cc5f2b6aad4">RT_CALLST</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad76cd9f3e3d3f1108d4c5dc3e7ca4db2">RT_PARENT</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8063b8a270d703182bf37025291fae4e">RT_PARENTT</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa083a1f5dfcd6e73196aa4f12b58c38d">RT_FOLLOWS</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7af42f84a236b358f4488523806ad2cf45">RT_FOLLOWST</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aa083a1f5dfcd6e73196aa4f12b58c38d">RT_FOLLOWS</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7af42f84a236b358f4488523806ad2cf45">RT_FOLLOWST</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8503b5b1e737fd892d2854ad7155cac6">RT_NEXT</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7abe4064400717a03457ed23c0817c84b7">RT_NEXTT</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8e006da57f312363ec95a614dda2c7be">RT_AFFECTS</a>, 
 <br/>
-&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ac7002cc4a62f7fe396cee93cc52663e5">RT_AFFECTST</a>, 
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8e006da57f312363ec95a614dda2c7be">RT_AFFECTS</a>, 
+<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ac7002cc4a62f7fe396cee93cc52663e5">RT_AFFECTST</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a3bbd874e3dbeca11d51437f1685c5273">CT_PATTERN</a>, 
 <a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a467246de9c0d4187f128a79f2a54b41e">CT_WITH</a>, 
-<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2fd6f336d08340583bd620a7f5694c90">ERROR</a>
+<br/>
+&#160;&#160;<a class="el" href="_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2fd6f336d08340583bd620a7f5694c90">ERROR</a>
 <br/>
  }</td></tr>
 <tr class="separator:a1d1cfd8ffb84e947f82999c682b666a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,6 +262,9 @@ Enumerations</h2></td></tr>
 <p>design entity: stmtLst </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7a10431af5e427247be74de9a5e84a8e51"></a>DT_STMT</em>&nbsp;</td><td class="fielddoc">
+<p>design entity: stmt </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7a2769da84164ebe55e2400680278a4280"></a>DT_PROGLINE</em>&nbsp;</td><td class="fielddoc">
 <p>design entity: stmt </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a1d1cfd8ffb84e947f82999c682b666a7aec543b87fde7c337aa73dadf800909ca"></a>DT_ASSIGN</em>&nbsp;</td><td class="fielddoc">
@@ -382,7 +388,7 @@ Enumerations</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d33bcfb0cd6530259be5990e622e7b2b.html">SPA</a></li><li class="navelem"><a class="el" href="dir_5fc8ab4af506cd4fa559bebce489ceea.html">SPA</a></li><li class="navelem"><a class="el" href="_query_data_type_8h.html">QueryDataType.h</a></li>
-    <li class="footer">Generated on Tue Feb 19 2013 15:01:03 for SPA by
+    <li class="footer">Generated on Fri Mar 1 2013 15:33:57 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

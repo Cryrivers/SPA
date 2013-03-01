@@ -1,7 +1,5 @@
 <map id="QueryValidator::isAttrRef" name="QueryValidator::isAttrRef">
 <area shape="rect" id="node2" href="$class_query_validator.html#a16f19f739c0eae7636ee05b138df05a7" title="QueryValidator::isElem" alt="" coords="222,5,378,32"/>
 <area shape="rect" id="node3" href="$class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1" title="QueryValidator::isRef" alt="" coords="227,56,373,83"/>
-<area shape="rect" id="node6" href="$class_query_validator.html#a15e17874cc766ead8630a791e21a913d" title="QueryValidator::isRefpl" alt="" coords="223,107,377,133"/>
-<area shape="rect" id="node4" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="427,49,570,90"/>
-<area shape="rect" id="node5" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="619,49,762,90"/>
+<area shape="rect" id="node4" href="$class_query_validator.html#a15e17874cc766ead8630a791e21a913d" title="QueryValidator::isRefpl" alt="" coords="223,107,377,133"/>
 </map>

@@ -1,7 +1,6 @@
 var searchData=
 [
   ['dependency',['dependency',['../class_query_variable.html#a2d2654a5ee1ad0b1818805a5bfdf0ac4',1,'QueryVariable']]],
-  ['deprecated_20list',['Deprecated List',['../deprecated.html',1,'']]],
   ['design',['Design',['../class_design.html',1,'']]],
   ['designextractor',['DesignExtractor',['../class_design_extractor.html',1,'DesignExtractor'],['../class_design_extractor.html#ab43568887023f04b5ea405cc7dfbeea8',1,'DesignExtractor::DesignExtractor()']]],
   ['designextractor_2ecpp',['DesignExtractor.cpp',['../_design_extractor_8cpp.html',1,'']]],
@@ -19,6 +18,7 @@ var searchData=
   ['dt_5fconstant',['DT_CONSTANT',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a52949bf0fa85c1c17ff674734058ffc4',1,'QueryDataType.h']]],
   ['dt_5fif',['DT_IF',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a8b24caf307d3de48ded77e9684ecf762',1,'QueryDataType.h']]],
   ['dt_5fprocedure',['DT_PROCEDURE',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad7df1d9c9d0de50790285c98ff7701c2',1,'QueryDataType.h']]],
+  ['dt_5fprogline',['DT_PROGLINE',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2769da84164ebe55e2400680278a4280',1,'QueryDataType.h']]],
   ['dt_5fstmt',['DT_STMT',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a10431af5e427247be74de9a5e84a8e51',1,'QueryDataType.h']]],
   ['dt_5fstmtlst',['DT_STMTLST',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a53f44f00f1cb0ad4df4efcef4d46e073',1,'QueryDataType.h']]],
   ['dt_5funderscore',['DT_UNDERSCORE',['../_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a3bd83662a1ef129993a0773971f8169e',1,'QueryDataType.h']]],

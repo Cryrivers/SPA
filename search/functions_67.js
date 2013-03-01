@@ -4,6 +4,7 @@ var searchData=
   ['getallcall',['getAllCall',['../class_design_extractor.html#a9c91fa47243801752d9f3b26c2fee431',1,'DesignExtractor::getAllCall()'],['../class_p_k_b_controller.html#a0a9c546aaafc2ba40cdb2143252ec0aa',1,'PKBController::getAllCall()']]],
   ['getallcallees',['getAllCallees',['../class_calls.html#aad38f0aa7b58d47fd8b86e2027063d04',1,'Calls']]],
   ['getallcallers',['getAllCallers',['../class_calls.html#a8dc1460aab98ceb74f9f5c3382be62bf',1,'Calls::getAllCallers()'],['../class_p_k_b_controller.html#ac4098fec7ddf461d0443f654056dcc94',1,'PKBController::getAllCallers()']]],
+  ['getallcfgnodes',['getAllCFGNodes',['../class_c_f_g.html#ab5b94ac83172a9e8adc067325cf29a42',1,'CFG']]],
   ['getallconstant',['getAllConstant',['../class_design_extractor.html#ad4c6d709f46b4a6a681bf8a7b6e554f3',1,'DesignExtractor::getAllConstant()'],['../class_p_k_b_controller.html#a7e30f188c2015b809e3b79e4eb3932ef',1,'PKBController::getAllConstant()']]],
   ['getallif',['getAllIf',['../class_design_extractor.html#af29dfb20bcfbc7fb188adffd8bfd39c6',1,'DesignExtractor::getAllIf()'],['../class_p_k_b_controller.html#a50723c23dfd18f3c56fed0fcd22adae0',1,'PKBController::getAllIf()']]],
   ['getallmodifiesfirst',['getAllModifiesFirst',['../class_modifies.html#ab04c57776781460bb0dc9253aa4f6e7f',1,'Modifies::getAllModifiesFirst()'],['../class_p_k_b_controller.html#ae349f43fd139e8d53cbbdcd59f813112',1,'PKBController::getAllModifiesFirst()']]],

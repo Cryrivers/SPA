@@ -1,6 +1,6 @@
 <map id="PKBController::modifiesP" name="PKBController::modifiesP">
 <area shape="rect" id="node2" href="$class_design_extractor.html#a8f6e3080e90667899715019130ef7573" title="Complete modifies table Combine parent table and previous modifies table(only for assignment)..." alt="" coords="224,5,416,32"/>
-<area shape="rect" id="node3" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="237,57,403,98"/>
+<area shape="rect" id="node3" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next NextT Pattern, With." alt="" coords="237,57,403,98"/>
 <area shape="rect" id="node4" href="$class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="464,57,629,98"/>
 <area shape="rect" id="node5" href="$class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="677,64,843,91"/>
 </map>

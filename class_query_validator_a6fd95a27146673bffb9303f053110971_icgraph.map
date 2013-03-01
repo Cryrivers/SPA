@@ -1,14 +1,13 @@
 <map id="QueryValidator::isIndent" name="QueryValidator::isIndent">
-<area shape="rect" id="node2" href="$class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435" title="QueryValidator::isSynonym" alt="" coords="216,237,397,264"/>
-<area shape="rect" id="node3" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="881,46,1023,87"/>
-<area shape="rect" id="node5" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="881,154,1023,195"/>
-<area shape="rect" id="node6" href="$class_query_validator.html#a16f19f739c0eae7636ee05b138df05a7" title="QueryValidator::isElem" alt="" coords="671,377,827,404"/>
-<area shape="rect" id="node7" href="$class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1" title="QueryValidator::isRef" alt="" coords="677,313,822,340"/>
-<area shape="rect" id="node8" href="$class_query_validator.html#a15e17874cc766ead8630a791e21a913d" title="QueryValidator::isRefpl" alt="" coords="672,453,827,480"/>
-<area shape="rect" id="node9" href="$class_query_validator.html#a209d8bdf73afb7cc47524d0c6ed67d7d" title="QueryValidator::isAttrRef" alt="" coords="449,415,615,441"/>
-<area shape="rect" id="node10" href="$class_query_validator.html#ae2013e77f9084cf95d2ef3fa9a2e2e3a" title="QueryValidator::isEntRef" alt="" coords="667,161,832,188"/>
-<area shape="rect" id="node11" href="$class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e" title="QueryValidator::isStmtRef" alt="" coords="445,212,619,239"/>
-<area shape="rect" id="node12" href="$class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4" title="QueryValidator::isLineRef" alt="" coords="447,263,617,289"/>
-<area shape="rect" id="node13" href="$class_query_validator.html#a7511f7d7905ce02d91ac6ccbd76511e4" title="QueryValidator::isVarRef" alt="" coords="449,60,615,87"/>
-<area shape="rect" id="node4" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="1073,101,1215,142"/>
+<area shape="rect" id="node2" href="$class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435" title="QueryValidator::isSynonym" alt="" coords="216,223,397,249"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="461,5,603,46"/>
+<area shape="rect" id="node5" href="$class_query_validator.html#a16f19f739c0eae7636ee05b138df05a7" title="QueryValidator::isElem" alt="" coords="667,96,823,123"/>
+<area shape="rect" id="node6" href="$class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1" title="QueryValidator::isRef" alt="" coords="673,160,818,187"/>
+<area shape="rect" id="node7" href="$class_query_validator.html#a15e17874cc766ead8630a791e21a913d" title="QueryValidator::isRefpl" alt="" coords="668,211,823,237"/>
+<area shape="rect" id="node8" href="$class_query_validator.html#a209d8bdf73afb7cc47524d0c6ed67d7d" title="QueryValidator::isAttrRef" alt="" coords="449,172,615,199"/>
+<area shape="rect" id="node9" href="$class_query_validator.html#ae2013e77f9084cf95d2ef3fa9a2e2e3a" title="QueryValidator::isEntRef" alt="" coords="449,273,615,300"/>
+<area shape="rect" id="node10" href="$class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e" title="QueryValidator::isStmtRef" alt="" coords="445,324,619,351"/>
+<area shape="rect" id="node11" href="$class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4" title="QueryValidator::isLineRef" alt="" coords="447,375,617,401"/>
+<area shape="rect" id="node12" href="$class_query_validator.html#a7511f7d7905ce02d91ac6ccbd76511e4" title="QueryValidator::isVarRef" alt="" coords="449,425,615,452"/>
+<area shape="rect" id="node4" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="674,5,817,46"/>
 </map>

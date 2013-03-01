@@ -2,7 +2,6 @@ var searchData=
 [
   ['addcalls',['addCalls',['../class_p_k_b_controller.html#a8f368c0e6ea009ffe4b9612e1fc3198e',1,'PKBController']]],
   ['addchild',['addChild',['../class_a_s_t_node.html#ac8750b89a9f5e76c550f7cc878a68712',1,'ASTNode']]],
-  ['addedge',['addEdge',['../class_c_f_g_node.html#afdde0f52b622a8b0778397c4eb5d676b',1,'CFGNode']]],
   ['addfollows',['addFollows',['../class_follows.html#a15934b299d99d274bd1e7daa13399a31',1,'Follows::addFollows()'],['../class_p_k_b_controller.html#a8669c80fd550b2722c71da84874ca6c4',1,'PKBController::addFollows()']]],
   ['addifbranchnode',['addIfBranchNode',['../class_p_k_b_controller.html#af37f6f46ba84d6a26781ad3a9e56c4df',1,'PKBController']]],
   ['addmodifies',['addModifies',['../class_design_extractor.html#a8f6e3080e90667899715019130ef7573',1,'DesignExtractor::addModifies()'],['../class_modifies.html#addef41a687768ae932be01eedfa14b26',1,'Modifies::addModifies()'],['../class_p_k_b_controller.html#ae45e870e969ee9d5da02dbafb0d264c3',1,'PKBController::addModifies()']]],

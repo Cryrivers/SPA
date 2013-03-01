@@ -1,10 +1,9 @@
 <map id="QueryPreprocessor::trim" name="QueryPreprocessor::trim">
-<area shape="rect" id="node2" href="$class_query_preprocessor.html#a881270b46049507564a33ba68e04f06b" title="Trim space, &#39;;&#39;, &#39;\n&#39;." alt="" coords="219,179,362,221"/>
-<area shape="rect" id="node3" href="$class_query_preprocessor.html#a8f0fda61f89dc0296ef60ba4ae68f105" title="split the declartion part from query" alt="" coords="603,5,746,46"/>
-<area shape="rect" id="node5" href="$class_query_preprocessor.html#a16884e7c24b6e2879dc8ae1d49b179a3" title="split the result clause part from query" alt="" coords="603,70,746,111"/>
-<area shape="rect" id="node6" href="$class_query_preprocessor.html#a8386398ca7580e07b0f2d962e07cd8f1" title="split the declartion part from query" alt="" coords="411,114,554,155"/>
-<area shape="rect" id="node7" href="$class_query_preprocessor.html#ab2d69d54aad9dd61109a669f3347e87d" title="Used to cut the relation." alt="" coords="411,179,554,221"/>
-<area shape="rect" id="node9" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="411,297,554,338"/>
-<area shape="rect" id="node8" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="603,187,746,229"/>
-<area shape="rect" id="node4" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="795,158,938,199"/>
+<area shape="rect" id="node2" href="$class_query_preprocessor.html#a881270b46049507564a33ba68e04f06b" title="Trim space, &#39;;&#39;, &#39;\n&#39;." alt="" coords="219,169,362,210"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#a8f0fda61f89dc0296ef60ba4ae68f105" title="split the declartion part from query" alt="" coords="411,5,554,46"/>
+<area shape="rect" id="node5" href="$class_query_preprocessor.html#a16884e7c24b6e2879dc8ae1d49b179a3" title="split the result clause part from query" alt="" coords="411,70,554,111"/>
+<area shape="rect" id="node6" href="$class_query_preprocessor.html#a8386398ca7580e07b0f2d962e07cd8f1" title="split the declartion part from query" alt="" coords="411,135,554,177"/>
+<area shape="rect" id="node7" href="$class_query_preprocessor.html#ab2d69d54aad9dd61109a669f3347e87d" title="Used to cut the relation." alt="" coords="411,201,554,242"/>
+<area shape="rect" id="node8" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="411,266,554,307"/>
+<area shape="rect" id="node4" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="603,135,746,177"/>
 </map>

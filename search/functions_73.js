@@ -7,7 +7,6 @@ var searchData=
   ['setnodevalue',['setNodeValue',['../class_a_s_t_node.html#a548db93f5fb07720f91fe42826670762',1,'ASTNode']]],
   ['setstartstatement',['setStartStatement',['../class_c_f_g_node.html#a84f8756cb131fc9a8d2bc40773de778f',1,'CFGNode']]],
   ['setstmtnumber',['setStmtNumber',['../class_a_s_t_node.html#a170a3a5f48a2a0a1b12f81e77289c117',1,'ASTNode']]],
-  ['setupclatable',['setupClaTable',['../class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154',1,'QueryPreprocessor']]],
-  ['setuptartable',['setupTarTable',['../class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37',1,'QueryPreprocessor']]],
+  ['setuptartable',['setupTarTable',['../class_query_preprocessor.html#a45753152de89ca739f517af306d1755d',1,'QueryPreprocessor']]],
   ['setupvartable',['setupVarTable',['../class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6',1,'QueryPreprocessor']]]
 ];

@@ -1,7 +1,7 @@
 <map id="QueryEvaluator::evaluate" name="QueryEvaluator::evaluate">
-<area shape="rect" id="node2" href="$class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="223,433,388,474"/>
-<area shape="rect" id="node22" href="$class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="219,575,392,601"/>
-<area shape="rect" id="node3" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="465,357,631,398"/>
+<area shape="rect" id="node2" href="$class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="223,458,388,499"/>
+<area shape="rect" id="node22" href="$class_query_evaluator.html#a0546ce6672687980b0b41cb18807e132" title="Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable..." alt="" coords="219,625,392,652"/>
+<area shape="rect" id="node3" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next NextT Pattern, With." alt="" coords="465,357,631,398"/>
 <area shape="rect" id="node4" href="$class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3" title="Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses..." alt="" coords="709,35,891,61"/>
 <area shape="rect" id="node7" href="$class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204" title="Propagate the call to Parent table." alt="" coords="726,85,874,112"/>
 <area shape="rect" id="node8" href="$class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="714,136,886,163"/>
@@ -28,4 +28,6 @@
 <area shape="rect" id="node28" href="$class_p_k_b_controller.html#a0a9c546aaafc2ba40cdb2143252ec0aa" title="Propagate the call to Design Extractor." alt="" coords="465,676,631,703"/>
 <area shape="rect" id="node29" href="$class_p_k_b_controller.html#a7e30f188c2015b809e3b79e4eb3932ef" title="Propagate the call to Design Extractor." alt="" coords="449,727,647,753"/>
 <area shape="rect" id="node30" href="$class_p_k_b_controller.html#a49a72cd623a3561d4bb12352d2fa64de" title="Propagate the call to Design Extractor." alt="" coords="461,777,635,804"/>
+<area shape="rect" id="node31" href="$class_p_k_b_controller.html#afc3210a870161b785cdec1eefaf7b896" title="Propagate the call to Var table." alt="" coords="456,828,640,855"/>
+<area shape="rect" id="node32" href="$class_p_k_b_controller.html#a25a56c45105d5e0593afebf72b9112f0" title="Propagate the call to Proc table." alt="" coords="453,879,643,905"/>
 </map>

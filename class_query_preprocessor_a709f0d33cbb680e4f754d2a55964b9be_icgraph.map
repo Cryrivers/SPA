@@ -1,6 +1,5 @@
 <map id="QueryPreprocessor::getIndexOfFirstFrom" name="QueryPreprocessor::getIndexOfFirstFrom">
 <area shape="rect" id="node2" href="$class_query_preprocessor.html#a8386398ca7580e07b0f2d962e07cd8f1" title="split the declartion part from query" alt="" coords="198,5,341,46"/>
 <area shape="rect" id="node4" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="198,70,341,111"/>
-<area shape="rect" id="node5" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="198,135,341,177"/>
-<area shape="rect" id="node3" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="390,70,533,111"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="390,38,533,79"/>
 </map>

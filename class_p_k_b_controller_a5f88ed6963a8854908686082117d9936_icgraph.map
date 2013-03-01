@@ -1,5 +1,5 @@
 <map id="PKBController::follows" name="PKBController::follows">
-<area shape="rect" id="node2" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="205,5,371,46"/>
+<area shape="rect" id="node2" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next NextT Pattern, With." alt="" coords="205,5,371,46"/>
 <area shape="rect" id="node3" href="$class_query_evaluator.html#af29e9b47ce7f5bfce2feda2da3c658a7" title="Evaluates query by querying clauses one at a time." alt="" coords="419,5,584,46"/>
 <area shape="rect" id="node4" href="$class_query_evaluator.html#ab14dd1a3f552424cd80bca384e247cf4" title="Public method to call for evaluating query." alt="" coords="632,12,797,39"/>
 </map>

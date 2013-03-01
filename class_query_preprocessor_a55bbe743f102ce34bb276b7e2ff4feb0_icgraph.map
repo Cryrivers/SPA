@@ -1,5 +1,4 @@
 <map id="QueryPreprocessor::getIndexOfNextFrom" name="QueryPreprocessor::getIndexOfNextFrom">
-<area shape="rect" id="node2" href="$class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37" title="get the select clause of the query" alt="" coords="198,5,341,46"/>
-<area shape="rect" id="node4" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="198,70,341,111"/>
-<area shape="rect" id="node3" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="390,38,533,79"/>
+<area shape="rect" id="node2" href="$class_query_preprocessor.html#a45753152de89ca739f517af306d1755d" title="get the select clause of the query" alt="" coords="198,5,341,46"/>
+<area shape="rect" id="node3" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="390,5,533,46"/>
 </map>

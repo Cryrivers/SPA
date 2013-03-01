@@ -8,6 +8,7 @@ var _query_data_type_8h =
       [ "DT_PROCEDURE", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ad7df1d9c9d0de50790285c98ff7701c2", null ],
       [ "DT_STMTLST", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a53f44f00f1cb0ad4df4efcef4d46e073", null ],
       [ "DT_STMT", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a10431af5e427247be74de9a5e84a8e51", null ],
+      [ "DT_PROGLINE", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a2769da84164ebe55e2400680278a4280", null ],
       [ "DT_ASSIGN", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7aec543b87fde7c337aa73dadf800909ca", null ],
       [ "DT_CALL", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7a4a2b36085c68b9469c068a650d98fc1f", null ],
       [ "DT_WHILE", "_query_data_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7ab770fd69f31300169791b7e4df94e62d", null ],

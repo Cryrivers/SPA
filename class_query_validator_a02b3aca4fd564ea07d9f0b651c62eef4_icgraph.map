@@ -1,18 +1,17 @@
 <map id="QueryValidator::isDigit" name="QueryValidator::isDigit">
-<area shape="rect" id="node2" href="$class_query_validator.html#a6fd95a27146673bffb9303f053110971" title="QueryValidator::isIndent" alt="" coords="206,267,367,293"/>
-<area shape="rect" id="node15" href="$class_query_validator.html#a76e03097047ff0278c875113b7e97ef4" title="QueryValidator::isInteger" alt="" coords="647,101,812,128"/>
-<area shape="rect" id="node3" href="$class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435" title="QueryValidator::isSynonym" alt="" coords="416,304,597,331"/>
-<area shape="rect" id="node4" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="1083,6,1226,47"/>
-<area shape="rect" id="node6" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="1083,195,1226,237"/>
-<area shape="rect" id="node7" href="$class_query_validator.html#a16f19f739c0eae7636ee05b138df05a7" title="QueryValidator::isElem" alt="" coords="870,495,1026,521"/>
-<area shape="rect" id="node8" href="$class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1" title="QueryValidator::isRef" alt="" coords="875,355,1021,381"/>
-<area shape="rect" id="node9" href="$class_query_validator.html#a15e17874cc766ead8630a791e21a913d" title="QueryValidator::isRefpl" alt="" coords="871,419,1025,445"/>
-<area shape="rect" id="node10" href="$class_query_validator.html#a209d8bdf73afb7cc47524d0c6ed67d7d" title="QueryValidator::isAttrRef" alt="" coords="646,456,813,483"/>
-<area shape="rect" id="node11" href="$class_query_validator.html#ae2013e77f9084cf95d2ef3fa9a2e2e3a" title="QueryValidator::isEntRef" alt="" coords="647,253,812,280"/>
-<area shape="rect" id="node12" href="$class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e" title="QueryValidator::isStmtRef" alt="" coords="861,152,1035,179"/>
-<area shape="rect" id="node13" href="$class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4" title="QueryValidator::isLineRef" alt="" coords="863,203,1033,229"/>
-<area shape="rect" id="node14" href="$class_query_validator.html#a7511f7d7905ce02d91ac6ccbd76511e4" title="QueryValidator::isVarRef" alt="" coords="647,304,812,331"/>
-<area shape="rect" id="node5" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="1275,71,1418,113"/>
-<area shape="rect" id="node16" href="$class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="872,35,1024,77"/>
-<area shape="rect" id="node17" href="$class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37" title="get the select clause of the query" alt="" coords="1083,71,1226,113"/>
+<area shape="rect" id="node2" href="$class_query_validator.html#a6fd95a27146673bffb9303f053110971" title="QueryValidator::isIndent" alt="" coords="206,268,367,295"/>
+<area shape="rect" id="node14" href="$class_query_validator.html#a76e03097047ff0278c875113b7e97ef4" title="QueryValidator::isInteger" alt="" coords="424,121,589,148"/>
+<area shape="rect" id="node3" href="$class_query_validator.html#a1dc2aba6f88d31030101cf9af8b2a435" title="QueryValidator::isSynonym" alt="" coords="416,305,597,332"/>
+<area shape="rect" id="node4" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="874,70,1017,111"/>
+<area shape="rect" id="node6" href="$class_query_validator.html#a16f19f739c0eae7636ee05b138df05a7" title="QueryValidator::isElem" alt="" coords="867,476,1023,503"/>
+<area shape="rect" id="node7" href="$class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1" title="QueryValidator::isRef" alt="" coords="873,324,1018,351"/>
+<area shape="rect" id="node8" href="$class_query_validator.html#a15e17874cc766ead8630a791e21a913d" title="QueryValidator::isRefpl" alt="" coords="868,400,1023,427"/>
+<area shape="rect" id="node9" href="$class_query_validator.html#a209d8bdf73afb7cc47524d0c6ed67d7d" title="QueryValidator::isAttrRef" alt="" coords="649,375,815,401"/>
+<area shape="rect" id="node10" href="$class_query_validator.html#ae2013e77f9084cf95d2ef3fa9a2e2e3a" title="QueryValidator::isEntRef" alt="" coords="649,527,815,553"/>
+<area shape="rect" id="node11" href="$class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e" title="QueryValidator::isStmtRef" alt="" coords="645,172,819,199"/>
+<area shape="rect" id="node12" href="$class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4" title="QueryValidator::isLineRef" alt="" coords="647,121,817,148"/>
+<area shape="rect" id="node13" href="$class_query_validator.html#a7511f7d7905ce02d91ac6ccbd76511e4" title="QueryValidator::isVarRef" alt="" coords="649,273,815,300"/>
+<area shape="rect" id="node5" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="1073,38,1215,79"/>
+<area shape="rect" id="node15" href="$class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="656,5,808,46"/>
+<area shape="rect" id="node16" href="$class_query_preprocessor.html#a45753152de89ca739f517af306d1755d" title="get the select clause of the query" alt="" coords="874,5,1017,46"/>
 </map>

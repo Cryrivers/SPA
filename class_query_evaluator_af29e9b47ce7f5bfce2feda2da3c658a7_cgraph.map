@@ -1,5 +1,5 @@
 <map id="QueryEvaluator::evaluateQuery" name="QueryEvaluator::evaluateQuery">
-<area shape="rect" id="node2" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Pattern, With." alt="" coords="219,357,384,398"/>
+<area shape="rect" id="node2" href="$class_query_evaluator.html#a58963816c3e7e93282940aa574aeb5e9" title="Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next NextT Pattern, With." alt="" coords="219,357,384,398"/>
 <area shape="rect" id="node3" href="$class_query_evaluator.html#ab3fb0ebf2ce9082b30b95e6a0a98e1e3" title="Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses..." alt="" coords="437,35,619,61"/>
 <area shape="rect" id="node6" href="$class_p_k_b_controller.html#ae5c9a1ae31abf3e5c9db5e7894a0b204" title="Propagate the call to Parent table." alt="" coords="454,85,602,112"/>
 <area shape="rect" id="node7" href="$class_p_k_b_controller.html#a2686b34e1df29188f2b392d9bb18be41" title="Propagate the call to Parent table." alt="" coords="442,136,614,163"/>

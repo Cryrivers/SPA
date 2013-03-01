@@ -19,6 +19,7 @@ var annotated =
     [ "QueryClause", "class_query_clause.html", "class_query_clause" ],
     [ "QueryEvaluator", "class_query_evaluator.html", "class_query_evaluator" ],
     [ "QueryPreprocessor", "class_query_preprocessor.html", "class_query_preprocessor" ],
+    [ "QueryPreprocessorDebug", "class_query_preprocessor_debug.html", "class_query_preprocessor_debug" ],
     [ "QueryProcessor", "class_query_processor.html", "class_query_processor" ],
     [ "QueryTarget", "class_query_target.html", "class_query_target" ],
     [ "QueryValidator", "class_query_validator.html", "class_query_validator" ],

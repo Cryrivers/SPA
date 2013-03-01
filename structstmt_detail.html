@@ -142,6 +142,18 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
 StmtType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstmt_detail.html#ad7cb8bf0a70dfd2096825437a9c97e34">type</a></td></tr>
 <tr class="memdesc:ad7cb8bf0a70dfd2096825437a9c97e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statement Type. <br/></td></tr>
 <tr class="separator:ad7cb8bf0a70dfd2096825437a9c97e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedc09d670a3f74c1cf026d3ec3cb2244"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aedc09d670a3f74c1cf026d3ec3cb2244"></a>
+STMT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstmt_detail.html#aedc09d670a3f74c1cf026d3ec3cb2244">startOfTheScope</a></td></tr>
+<tr class="memdesc:aedc09d670a3f74c1cf026d3ec3cb2244"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the type is STMT_CLOSE_BRACKET, startOfTheScope must be set to record the start of current scope. <br/></td></tr>
+<tr class="separator:aedc09d670a3f74c1cf026d3ec3cb2244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aeefba0e4b000dadca4997a1dd028b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1aeefba0e4b000dadca4997a1dd028b2"></a>
+STMT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstmt_detail.html#a1aeefba0e4b000dadca4997a1dd028b2">midOfTheScope</a></td></tr>
+<tr class="memdesc:a1aeefba0e4b000dadca4997a1dd028b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the type is IF, midOfScope must be set to recoard the end of THEN block. <br/></td></tr>
+<tr class="separator:a1aeefba0e4b000dadca4997a1dd028b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ac45fe0a166556cbd2813857586c9f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ac45fe0a166556cbd2813857586c9f8"></a>
+STMT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstmt_detail.html#a5ac45fe0a166556cbd2813857586c9f8">endOfTheScope</a></td></tr>
+<tr class="memdesc:a5ac45fe0a166556cbd2813857586c9f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the type is PROC, WHILE or IF, startOfTheScope must be set to record the end of current scope. <br/></td></tr>
+<tr class="separator:a5ac45fe0a166556cbd2813857586c9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab955ad85ae56d168fca3155fbbef0a41"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstmt_detail.html#ab955ad85ae56d168fca3155fbbef0a41">extraName</a></td></tr>
 <tr class="memdesc:ab955ad85ae56d168fca3155fbbef0a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">The extra field for procedure name. If a statement <b>st</b> which is a pre-processed statement object of statement "procedure foo {", Then there is:  <a href="#ab955ad85ae56d168fca3155fbbef0a41">More...</a><br/></td></tr>
 <tr class="separator:ab955ad85ae56d168fca3155fbbef0a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,7 +201,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="st
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structstmt_detail.html">stmtDetail</a></li>
-    <li class="footer">Generated on Tue Feb 19 2013 15:01:06 for SPA by
+    <li class="footer">Generated on Fri Mar 1 2013 15:34:01 for SPA by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

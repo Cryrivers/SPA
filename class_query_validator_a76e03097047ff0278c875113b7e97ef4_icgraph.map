@@ -1,10 +1,9 @@
 <map id="QueryValidator::isInteger" name="QueryValidator::isInteger">
-<area shape="rect" id="node2" href="$class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="229,26,381,67"/>
-<area shape="rect" id="node6" href="$class_query_preprocessor.html#afe7ec5cf69f1a998589d0e10fa531154" title="QueryPreprocessor::\lsetupClaTable" alt="" coords="441,135,583,177"/>
-<area shape="rect" id="node7" href="$class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1" title="QueryValidator::isRef" alt="" coords="233,143,378,169"/>
-<area shape="rect" id="node8" href="$class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e" title="QueryValidator::isStmtRef" alt="" coords="219,193,392,220"/>
-<area shape="rect" id="node9" href="$class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4" title="QueryValidator::isLineRef" alt="" coords="221,244,390,271"/>
+<area shape="rect" id="node2" href="$class_query_preprocessor.html#acd543d557bc9f6f23e06d0f067b5e988" title="Find the index of given string in queryVarTable." alt="" coords="229,37,381,78"/>
+<area shape="rect" id="node6" href="$class_query_validator.html#af5dc5b6a14ea0f0a0c21ddeb0c2df5c1" title="QueryValidator::isRef" alt="" coords="233,103,378,129"/>
+<area shape="rect" id="node7" href="$class_query_validator.html#a37914ab927abdc67f0a4732c48f2a03e" title="QueryValidator::isStmtRef" alt="" coords="219,153,392,180"/>
+<area shape="rect" id="node8" href="$class_query_validator.html#a1ea62084c436bb6cebb24bbdc4ce18b4" title="QueryValidator::isLineRef" alt="" coords="221,204,390,231"/>
 <area shape="rect" id="node3" href="$class_query_preprocessor.html#ae3271617742831c2bf018474cf4ccac6" title="insert the declared variables into the var table" alt="" coords="441,5,583,46"/>
-<area shape="rect" id="node5" href="$class_query_preprocessor.html#a4e43e334e9c8860abcb6fd1e8e145e37" title="get the select clause of the query" alt="" coords="441,70,583,111"/>
-<area shape="rect" id="node4" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="633,70,775,111"/>
+<area shape="rect" id="node5" href="$class_query_preprocessor.html#a45753152de89ca739f517af306d1755d" title="get the select clause of the query" alt="" coords="441,70,583,111"/>
+<area shape="rect" id="node4" href="$class_query_preprocessor.html#aee9b5aff1691bf42df24723183a88199" title="QueryPreprocessor::\lparse" alt="" coords="633,38,775,79"/>
 </map>
