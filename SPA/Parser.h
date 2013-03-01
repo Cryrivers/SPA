@@ -41,6 +41,9 @@ private:
 	inline int _findValidMinimumOfThree(size_t lb, size_t rb, size_t sc);
 	inline int _operatorPrecedence(char op);
 	void _parseLine();
+
+	void __addFollowsTable( ASTNode* currentASTNode );
+
 	void _preprocessProgram(string program);
 	PROC_INDEX _findAssumedProcIndexByName(string name);
 	IfPreprocessingPhase _preprocessingStatus();

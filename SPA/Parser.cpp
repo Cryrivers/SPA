@@ -64,7 +64,11 @@ void Parser::_parseLine()
 				currentCFGNode->setStartStatement(it->stmtNumber);
 			}
 			currentCFGNode->setEndStatement(it->stmtNumber);
-			_buildCallAST(&*it);
+			
+			currentASTNode = _buildCallAST(&*it);
+			__addFollowsTable(currentASTNode);
+			previousASTNode =  currentASTNode;
+			
 			break;
 
 		case STMT_IF:
@@ -104,15 +108,8 @@ void Parser::_parseLine()
 			currentCFGNode->setEndStatement(it->stmtNumber);
 
 			currentASTNode = _buildAssignmentAST(&*it);
-			if(sameLevelAtNext)
-			{
-				if(previousASTNode->getStmtNumber()>0)
-				_pkb->addFollows(previousASTNode->getStmtNumber(), currentASTNode->getStmtNumber());
-			}
-			else
-			{
-				sameLevelAtNext = true;
-			}
+			__addFollowsTable(currentASTNode);
+
 			previousASTNode = currentASTNode;
 			break;
 
@@ -657,4 +654,17 @@ IfPreprocessingPhase Parser::_preprocessingStatus()
 		return preprocessingStatusStk.top();
 	else
 		return PREPROCESS_NON_IF;
+}
+
+void Parser::__addFollowsTable( ASTNode* currentASTNode )
+{
+	if(sameLevelAtNext)
+	{
+		if(previousASTNode->getStmtNumber()>0)
+			_pkb->addFollows(previousASTNode->getStmtNumber(), currentASTNode->getStmtNumber());
+	}
+	else
+	{
+		sameLevelAtNext = true;
+	}
 }
