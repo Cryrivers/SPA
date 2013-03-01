@@ -1,7 +1,7 @@
 #pragma once
 #ifndef QUERYPREPROCESSOR_H
 #define QUERYPREPROCESSOR_H
-#define DEBUGMODE 1
+#define DEBUGMODE 0 /**<===== do not change  */
 #define PRINTTABLE 1
 #define DICCLAUSESIZE 4			/**< contain: "such that", "and", "pattern", "with"*/
 #define DICDESIGNENTITYSIZE 10	/**< contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/

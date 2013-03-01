@@ -1307,21 +1307,27 @@ bool QueryPreprocessor::setDependency(){
 				||(queryVarTable[i].variableType==DT_STMTLST)||(queryVarTable[i].variableType==DT_CONSTANT)
 				||(queryVarTable[i].variableType==KT_KNOWN_CONSTANT)){
 				continue;
-			}else if(queryVarTable[i].countAppear>1&&queryVarTable[i].dependency==-1){
+			}else if(queryVarTable[i].countAppear>=1&&queryVarTable[i].dependency==-1){
 				queryVarTable[i].dependency=i;
 			}
 		}
 	}
-	//set variables that has dependency
+	//match variables that has dependency
 	for(int i = 0; i<(int)queryVarTable.size(); i++){ 
+		if(queryVarTable[i].dependency==-1){
+			continue;
+		}
 		for(int j = 0; j<(int)queryClaTable.size(); j++){
-			int a = queryClaTable[j].variable1;
-			int b = queryClaTable[j].variable2;
-			if(i==a||i==b){
-				if(queryVarTable[queryVarTable[a].mapTo].dependency!=-1&&queryVarTable[queryVarTable[b].mapTo].dependency!=-1){
-					queryVarTable[queryVarTable[a].mapTo].dependency=a;
-					queryVarTable[queryVarTable[b].mapTo].dependency=a;
-				}
+			int left = queryClaTable[j].variable1;
+			int right = queryClaTable[j].variable2;	 		  
+		//if right and left not match than match right away
+		//if any part match i, match right away
+			if(left==i&&queryVarTable[right].dependency!=-1){
+				 queryVarTable[right].dependency=queryVarTable[i].dependency;
+			}else if(right==i&&queryVarTable[left].dependency!=-1){							   
+				 queryVarTable[left].dependency=queryVarTable[i].dependency;
+			}else if(queryVarTable[left].dependency!=-1&&queryVarTable[right].dependency!=-1){
+				 queryVarTable[left].dependency=queryVarTable[right].dependency;
 			}
 		} 
 	}

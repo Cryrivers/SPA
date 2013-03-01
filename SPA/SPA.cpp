@@ -78,7 +78,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	query += " and Parent(_,_) and Affects*(_,_)";
 	*/
 
-	string query("procedure p; Select p such that Calls* (p, \"John\")");
+	string query("stmt s, s1; variable v; procedure p; Select s such that Follows* (s1, s) with s1.stmt#= 1 such that Uses (s, v) and Modifies (p, v) with p.procName=\"Mary\"");
 	
 	SPA_TIME_MEASURE("Processor",processor->evaluate(query,result));
 
