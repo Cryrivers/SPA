@@ -717,8 +717,9 @@ bool QueryPreprocessor::setupTarTable(vector<string> tarTable){
 	}
 	return true;
 } 
-   
-
+/********************************************//** 
+ * Unify the mapTo field of QueryVariable
+ ***********************************************/ 
 void QueryPreprocessor::changeMapTo(int from, int to){
 	  for(int i=0; i<queryVarTable.size(); i++){
 		  if(queryVarTable[i].mapTo==from){
@@ -726,7 +727,88 @@ void QueryPreprocessor::changeMapTo(int from, int to){
 		  }
 	  }
 }
-
+/********************************************//**
+ * @brief
+ * @param claTable vector<string> 
+ *    elements in this vector is alraedy well formed
+ * @details 
+ * example:  if a, b stmt c, d \n
+ * Cases: \n\n
+ *	1.with: \n\n
+ *		Example: attrRef '=' ref | synonym '=' ref-pl \n\n
+ *		Process: \n
+ *			1. get attribute or constant on both side \n
+ *			2. validate the exsitence of attri and variable \n
+ *			3. optimise results \n\n
+ *		Validates: \n
+ *			1. Type on the left should be attrRef or synonym \n
+ *			2. The content along the equal sign should be comparable \n\n
+ *		Optimise: \n
+ *			1. merge single variable like proc.procName="sth"  \n
+ *				proc->kownn_proc, pkb index into origin \n
+ *				var ->known_var, pkb index into origin \n
+ *				stmt->stmt_num, integer into origin \n
+ *				call.stmtnumber->kownn_proc, pkb index into origin \n 
+ *			2. constant.value \n
+ *			3. calls with string will create a new known proc variable \n
+ *			4. if the case of p.procname=q.procname make a flag for this!! mergeFlag = 1 \n\n 
+ *	2.pattern: \n\n
+ *		Process: \n
+ *			1. sort out three different cases \n
+ *			2. validate the exsitence of attri and variable \n
+ *			3. optimise results \n\n
+ *		Validates: \n
+ *			1. The first argument is either assign, while, if \n 
+ *			2. Match the following case:\n 
+ *				assign( varRef, expression-spec | '_' ) \n 
+ *				while( varRef, '_' ) \n 
+ *				if( varRef, '_' ',' '_' ) \n\n 
+ *		Optimise: \n
+ *			Currently none \n\n 
+ *	3.such that: \n\n
+ *		Process: \n
+ *			Just validate and insert into claTable
+ *		Validates: \n
+ *			Relation is "Parent*", "Parent", "Follows*", "Follows" \n
+ *				var1 must be stmtRef \n
+ *				var2 must be stmtRef \n
+ *				var1 must be stmt or '_' \n
+ *				var2 must be stmt or '_' \n
+ *				cannot be the same, except when '_' \n
+ *				integer argument means statement number \n\n		
+ *			Relation is "Modifies", "Uses" \n
+ *				var1 must be entRef \n
+ *				var2 must be varRef \n
+ *				var1 must be stmt or procedure \n
+ *				var2 must be variable or '_' \n
+ *				integer argument means statement number \n\n
+ *			Relation is "Affects*", "Affects" \n
+ *				var1 must be stmtRef \n
+ *				var2 must be stmtRef \n
+ *				var1 must be assign or '_' \n
+ *				var2 must be assign or '_' \n
+ *				cannot be the same, except when '_' \n
+ *				integer argument means statement number \n\n
+ *			Relation is "Next*", "Next" \n
+ *				var1 must be lineRef \n
+ *				var2 must be lineRef \n
+ *				var1 must be stmt or stmt number or '_' \n
+ *				var2 must be stmt or stmt number or '_' \n
+ *				integer arguments mean program line numbers \n\n
+ *			Relation is "Call*", "Call" \n
+ *				var1 must be entRef \n
+ *				var2 must be entRef \n
+ *				var1 must be procedure or '_' \n
+ *				var2 must be procedure or '_' \n\n
+ *				cannot be the same (no recusive), except when '_' \n
+ *		Optimise: \n
+ *			Currently none \n\n 
+ * @note The and clause is already handled by getClauses()
+ * @see Type
+ * @see getClauses
+ * @see QueryClause
+ * @return The complitance of this function, true for done, false for error
+ ***********************************************/ 
 bool QueryPreprocessor::setupClaTable(vector<string> claTable){ 
 	for(unsigned int i=0; i<claTable.size(); i++){
 		//if(DEBUGMODE) cout<<queryClaTable.size()<<"  "<<claTable[i]<<endl;
@@ -1242,26 +1324,48 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
 		}
 	}
 	return true;
-} 
+} 	   
+/********************************************//**
+ * @brief 
+ * @details
+ * Process: \n
+ *		1. merge same variables with p1.procName=p2.procName \n
+ *		
+ *		
+ * @return The complitance of this function, true for done, false for error
+ ***********************************************/
 bool  QueryPreprocessor::makeOptimize(){
 	//merge
 	for(int i=0; i<queryClaTable.size(); i++){
 		if(queryClaTable[i].relationType==CT_PATTERN){
 			continue;
+		}else if(queryClaTable[i].relationType==CT_WITH){
+			if(queryVarTable[queryClaTable[i].variable1].mapTo==queryVarTable[queryClaTable[i].variable2].mapTo){		  
+				queryClaTable[i].index=-1;
+				mergedClause++;	    
+			}
 		}else if(queryVarTable[queryClaTable[i].variable1].mapTo==queryVarTable[queryClaTable[i].variable2].mapTo){
 			if(queryClaTable[i].relationType!=RT_NEXT&&queryClaTable[i].relationType!=RT_NEXTT){
 				if(queryVarTable[queryClaTable[i].variable1].variableType!=DT_UNDERSCORE){
-					queryClaTable[i].index=-1;
-					mergedClause++;
+					return false;
 				}
 			}
 		}
 	}
-	if(!DEBUGMODE){
+	//if(!DEBUGMODE){					   
 	//change select target to mapTo target
 		for(int i=0; i<queryTarTable.size(); i++){
 			if(queryVarTable[queryTarTable[i].varIndex].mapTo!=queryTarTable[i].varIndex){
 				 queryTarTable[i].varIndex=queryVarTable[queryTarTable[i].varIndex].mapTo;
+			}
+		}
+	//change clause to mapTo target
+		for(int i=0; i<queryClaTable.size(); i++){	 
+			if(queryVarTable[queryClaTable[i].variable1].mapTo!=queryClaTable[i].variable1){
+				 queryClaTable[i].variable1=queryVarTable[queryClaTable[i].variable1].mapTo;
+			}
+			if(queryVarTable[queryClaTable[i].variable2].mapTo!=queryClaTable[i].variable2){
+				 queryClaTable[i].variable2=queryVarTable[queryClaTable[i].variable2].mapTo;
 			}
 		}
 	//remove unused clause 
@@ -1274,21 +1378,19 @@ bool  QueryPreprocessor::makeOptimize(){
 		for(int i=0; i<queryClaTable.size(); i++){
 			 queryClaTable[i].index=i;
 		}
-	}
+	//}
 	return true;
 }
 /********************************************//**
  * @brief 
  * @details
- * Process: \n
- *		1. merge same variables with p1.procName=p2.procName \n
- *		2. count appearance \n
- *		3. set dependency \n
+ * Process: \n													  
+ *		1. count appearance \n
+ *		2. set dependency \n
+ *		3. sort to groups \n
  * Philosophy: \n
  *		
  *		
- * @todo merge
- * @todo The judging of dependency is bot too simple, needs to improve
  * @return The complitance of this function, true for done, false for error
  ***********************************************/
 bool QueryPreprocessor::setDependency(){
@@ -1335,7 +1437,6 @@ bool QueryPreprocessor::setDependency(){
 }
 /********************************************//**
  * @param query string free format, can be anything 
- * @todo comfirm the return type of BOOLEAN
  * @return
  *		0	suceed	definitly success
  *		1	false	if the boolean needs to return false instead of none
@@ -1379,7 +1480,7 @@ int QueryPreprocessor::parse(string query){
 		clauses.clear();
 		return 0;
 	}
-	if(DEBUGMODE||PRINTTABLE) cout<<"false"<<endl;		
+	cout<<"false"<<endl;		
 	if(DEBUGMODE||PRINTTABLE){
 			QueryPreprocessorDebug qpd;
 			qpd.printQueryVariableTable(queryVarTable);
@@ -1390,21 +1491,18 @@ int QueryPreprocessor::parse(string query){
 } 
 /********************************************//**
  *  getter for queryVarTable 
- * @todo confirm is it better to pass by pointer?
  ***********************************************/
 vector<QueryVariable> QueryPreprocessor::getQueryVariableTable(){
 	return queryVarTable;
 }
 /********************************************//**
  *  getter for queryTarTable 
- * @todo confirm is it better to pass by pointer?
  ***********************************************/
 vector<QueryTarget> QueryPreprocessor::getQueryTargetTable(){
 	return queryTarTable;
 }
 /********************************************//**
  *  getter for queryClaTable 
- * @todo confirm is it better to pass by pointer?
  ***********************************************/
 vector<QueryClause> QueryPreprocessor::getQueryClauseTable(){
 	return queryClaTable;
