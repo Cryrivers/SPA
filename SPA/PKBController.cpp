@@ -675,10 +675,10 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 	case WITH_VARNAME:
 		switch(arg2){
 		case WITH_CALLPROCNAME:
-			_var_call->parent(st1s_ptr, st2s_ptr, arg);
+			return _var_call->parent(st1s_ptr, st2s_ptr, arg);
 			break;
 		case WITH_PROCNAME:
-			_proc_var->follows(st2s_ptr, st1s_ptr, arg);
+			return _proc_var->follows(st2s_ptr, st1s_ptr, arg);
 			break;
 		default:
 			break;
@@ -688,10 +688,10 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_CALLPROCNAME:
-			_proc_call->parent(st1s_ptr, st2s_ptr, arg);
+			return _proc_call->parent(st1s_ptr, st2s_ptr, arg);
 			break;
 		case WITH_VARNAME:
-			_proc_var->follows(st1s_ptr,st2s_ptr,arg);
+			return _proc_var->follows(st1s_ptr,st2s_ptr,arg);
 			break;
 		default:
 			break;
@@ -701,13 +701,13 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_VARNAME:
-			_var_call->parent(st2s_ptr, st1s_ptr, arg);
+			return _var_call->parent(st2s_ptr, st1s_ptr, arg);
 			break;
 		case WITH_PROCNAME:
-			_proc_call->parent(st2s_ptr, st1s_ptr, arg);
+			return _proc_call->parent(st2s_ptr, st1s_ptr, arg);
 			break;
 		case WITH_CALLPROCNAME:
-			_call_call->modifies(st1s_ptr, st2s_ptr, arg);
+			return _call_call->modifies(st1s_ptr, st2s_ptr, arg);
 			break;
 		default:
 			break;
@@ -717,7 +717,7 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_VALUE:
-			_stmt_const->follows(st1s_ptr, st2s_ptr, arg);
+			return _stmt_const->follows(st1s_ptr, st2s_ptr, arg);
 			break;
 		default:
 			break;
@@ -727,7 +727,7 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_STMTNUMBER:
-			_stmt_const->follows(st2s_ptr, st1s_ptr, arg);
+			return _stmt_const->follows(st2s_ptr, st1s_ptr, arg);
 			break;
 		default:
 			break;
@@ -903,12 +903,12 @@ void PKBController::build_var_call(){
 
 void PKBController::build_stmt_const(){
 	vector<int> *stmtlist = new vector<int>();
-	getAllAssignment(stmtlist);
+	getAllStmt(stmtlist);
 	for (int i = 0; i < _constTable->size(); i++)
 	{
-		if (_constTable->at(i)<stmtlist->size()&&_constTable->at(i)!=0)
+		if (_constTable->at(i)<stmtlist->size()&&_constTable->at(i)>0)
 		{
-			_var_call->addParent(_constTable->at(i), _constTable->at(i));
+			_stmt_const->addFollows(_constTable->at(i), _constTable->at(i));
 		}
 	}
 	delete(stmtlist);
