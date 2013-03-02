@@ -537,7 +537,7 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
  * @see QueryVariable
  * @return The complitance of this function, true for done, false for error
  ***********************************************/ 
-bool QueryPreprocessor::setupVarTable(vector<string> declares){ 
+BOOLEAN QueryPreprocessor::setupVarTable(vector<string> declares){ 
 	for(unsigned int i=0; i<declares.size(); i++){
 		int p = getIndexOfFirstFrom(declares[i], dicDesignEntity, DICDESIGNENTITYSIZE); 
 		if(p==-1){
@@ -670,7 +670,7 @@ bool QueryPreprocessor::setupVarTable(vector<string> declares){
  * @see Type
  * @return The complitance of this function, true for done, false for error
  ***********************************************/  
-bool QueryPreprocessor::setupTarTable(vector<string> tarTable){
+BOOLEAN QueryPreprocessor::setupTarTable(vector<string> tarTable){
 	for(unsigned int i = 0; i<tarTable.size(); i++){
 		if(tarTable[i].find(".")<tarTable[i].size()){
 			//================================
@@ -809,7 +809,7 @@ void QueryPreprocessor::changeMapTo(int from, int to){
  * @see QueryClause
  * @return The complitance of this function, true for done, false for error
  ***********************************************/ 
-bool QueryPreprocessor::setupClaTable(vector<string> claTable){ 
+BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){ 
 	for(unsigned int i=0; i<claTable.size(); i++){
 		//if(DEBUGMODE) cout<<queryClaTable.size()<<"  "<<claTable[i]<<endl;
 		if(claTable[i].find("with ")==0){
@@ -1334,7 +1334,7 @@ bool QueryPreprocessor::setupClaTable(vector<string> claTable){
  *		
  * @return The complitance of this function, true for done, false for error
  ***********************************************/
-bool  QueryPreprocessor::makeOptimize(){
+BOOLEAN  QueryPreprocessor::makeOptimize(){
 	//merge
 	for(int i=0; i<queryClaTable.size(); i++){
 		if(queryClaTable[i].relationType==CT_PATTERN){
@@ -1393,7 +1393,7 @@ bool  QueryPreprocessor::makeOptimize(){
  *		
  * @return The complitance of this function, true for done, false for error
  ***********************************************/
-bool QueryPreprocessor::setDependency(){
+BOOLEAN QueryPreprocessor::setDependency(){
 	//set appearer count
 	for(int i = 0; i<(int)queryVarTable.size(); i++){ 
 		for(int j = 0; j<(int)queryClaTable.size(); j++){

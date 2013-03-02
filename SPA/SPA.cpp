@@ -69,7 +69,7 @@ int _tmain(int argc, _TCHAR *argv[])
 
 	const int querySize = 4;
 	string query[querySize];	
-	string declares("stmt s1,s2,s3,s4,s5,s6; variable v1, v2; procedure p1,p2; while w;");				  			 
+	string declares("stmt s1,s2,s3,s4,s5,s6; variable v1, v2; procedure p1,p2; while w; ");				  			 
 	query[0]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s3,s4) ";	
 	query[1]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s3,s4) with s4.stmt#=w.stmt#";	
 	query[2]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s4,s5) and Parent*(s5,s6) ";	
@@ -77,10 +77,11 @@ int _tmain(int argc, _TCHAR *argv[])
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
-		cout<<"Query"<<i+1<<":\n "<<query[i]<<"\n"<<endl;
+		cout<<"Query"<<i+1<<":\n"<<query[i]<<"\n"<<endl;
 		SPA_TIME_MEASURE("Processor",processor->evaluate(query[i],result));
 		set<string> s(result.begin(), result.end());
 		result.assign(s.begin(), s.end());
+		cout<<"Result"<<i+1<<":"<<endl;
 		while(result.size()>0)
 		{
 			cout << result.front() << "; ";
