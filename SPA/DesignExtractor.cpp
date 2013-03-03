@@ -499,14 +499,67 @@ BOOLEAN DesignExtractor::whilePattern(vector<int> *a, vector<int> *b, string exp
 		//4b
 		else if (a->size() == 0 && b->size() > 0)
 		{
+			for (int i = 0; i < b->size(); i++)
+			{
+				temp->push_back(b->at(i));
+			}
+			b->clear();
+			for (int i = 0; i < whileLoop->size(); i++)
+			{
+				for (int j = 0; j < temp->size(); j++)
+				{
+					if(whileLoop->at(i)->getChildren()->getNodeValue() == temp->at(j)){
+						a->push_back(whileLoop->at(i)->getStmtNumber());
+						b->push_back(temp->at(j));
+						break;
+					}
+				}
+			}
+			if (a->size() == 0) return false;
+			return true;
 		}
 		//4c
 		else if (a->size() > 0 && b->size() == 0)
 		{
+			int i = 0;
+			while (i < a->size()){
+				flag = 0;
+				for (int j = 0; j < whileLoop->size(); j++)
+				{
+					if (a->at(i) == whileLoop->at(j)->getStmtNumber())
+					{
+						b->push_back(whileLoop->at(j)->getChildren()->getStmtNumber());
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if (flag == 0) a->erase(a->begin() + i);
+			}
+			if(a->size() == 0) return false;
+			return true;
 		}
 		//4d
 		else if (a->size() > 0 && b->size() > 0)
 		{
+			int i = 0;
+			while (i < a->size())
+			{
+				flag = 0;
+				for (int j = 0; j < whileLoop->size(); j++)
+				{
+					if (a->at(i) == whileLoop->at(j)->getStmtNumber() && b->at(i) == whileLoop->at(j)->getChildren()->getNodeValue())
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if (flag == 0) {
+					a->erase(a->begin() + i);
+					b->erase(b->begin() + i);
+				}
+			}
 		}
 	}
 	else
@@ -520,19 +573,14 @@ BOOLEAN DesignExtractor::whilePattern(vector<int> *a, vector<int> *b, string exp
 BOOLEAN DesignExtractor::ifPattern(vector<int> *a, vector<int> *b, string expr, int arg){
 	vector<ASTNode *> *ifBranch = _pkb->getIfBranchTable();
 	vector<int> *temp = new vector<int>();
-	int i = 0, flag2 = 0;
+	int i = 0, flag = 0;
 	if (arg == 0)
 	{
 		//case 1a
 		if(b->size() == 0)
 		{
-			getAllIf(temp);
-			if (temp->size() == 0)
-			{
-				delete(temp);
+			if (ifBranch->size() == 0)
 				return  false;
-			}
-			delete(temp);
 			return true;
 		}
 		//case 1b
@@ -559,45 +607,153 @@ BOOLEAN DesignExtractor::ifPattern(vector<int> *a, vector<int> *b, string expr, 
 			if(b->size() == 0) return false;
 			return true;
 		}
-		//case 2b
+		//2b
 		else if (a->size() > 0 && b->size() == 0)
 		{
+			for (int j = 0; j < a->size(); j++){
+				for(int i = 0; i < ifBranch->size(); i++){
+					if(ifBranch->at(i)->getStmtNumber() == a->at(j)){
+						b->push_back(ifBranch->at(i)->getChildren()->getNodeValue());
+						break;
+					}
+				}
+			}
+			if(b->size() == 0) return false;
+			return true;
 		}
+		//2c
 		else if (a->size() == 0 && b->size() > 0)
 		{
+			return true;
 		}
+		//2d
 		else if (a->size() > 0 && b->size() > 0)
 		{
+			return true;
 		}
 	}
 	else if (arg == 2)
 	{
+		//3a
 		if (a->size() == 0 && b->size() == 0)
 		{
+			for(int i = 0; i < ifBranch->size(); i++){
+				a->push_back(ifBranch->at(i)->getStmtNumber());
+			}
+			if(a->size() == 0) return false;
+			return true;
 		}
+		//3b
 		else if (a->size() == 0 && b->size() ==1)
 		{
+			for(int i = 0; i < ifBranch->size(); i++){
+				if(ifBranch->at(i)->getChildren()->getNodeValue() == b->at(i))
+					a->push_back(ifBranch->at(i)->getStmtNumber());
+			}
+			if(a->size() == 0) return false;
+			return true;
 		}
+		//3c
 		else if (a->size() > 0 && b->size() == 0)
 		{
+			return true;
 		}
+		//3d
 		else if (a->size() > 0 && b->size() == 1)
 		{
+			int i = 0;
+			while (i < a->size())
+			{
+				flag = 0;
+				for(int j = 0; j < ifBranch->size(); j++){
+					if (ifBranch->at(j)->getChildren()->getNodeValue() == b->at(0))
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if(flag == 0) a->erase(a->begin()+i);
+			}
 		}
 	}
 	else if (arg == 3)
 	{
+		//4a
 		if (a->size() == 0 && b->size() == 0)
 		{
+			for (int i = 0; i < ifBranch->size(); i++)
+			{
+				a->push_back(ifBranch->at(i)->getStmtNumber());
+				b->push_back(ifBranch->at(i)->getChildren()->getNodeValue());
+			}
+			if(a->size() == 0) return false;
+			return true;
 		}
+		//4b
 		else if (a->size() == 0 && b->size() > 0)
 		{
+			for (int i = 0; i < b->size(); i++)
+			{
+				temp->push_back(b->at(i));
+			}
+			b->clear();
+			for (int i = 0; i < ifBranch->size(); i++)
+			{
+				for (int j = 0; j < temp->size(); j++)
+				{
+					if(ifBranch->at(i)->getChildren()->getNodeValue() == temp->at(j)){
+						a->push_back(ifBranch->at(i)->getStmtNumber());
+						b->push_back(temp->at(j));
+						break;
+					}
+				}
+			}
+			if (a->size() == 0) return false;
+			return true;
 		}
+		//4c
 		else if (a->size() > 0 && b->size() == 0)
 		{
+			int i = 0;
+			while (i < a->size()){
+				flag = 0;
+				for (int j = 0; j < ifBranch->size(); j++)
+				{
+					if (a->at(i) == ifBranch->at(j)->getStmtNumber())
+					{
+						b->push_back(ifBranch->at(j)->getChildren()->getStmtNumber());
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if (flag == 0) a->erase(a->begin() + i);
+			}
+			if(a->size() == 0) return false;
+			return true;
 		}
+		//4d
 		else if (a->size() > 0 && b->size() > 0)
 		{
+			int i = 0;
+			while (i < a->size())
+			{
+				flag = 0;
+				for (int j = 0; j < ifBranch->size(); j++)
+				{
+					if (a->at(i) == ifBranch->at(j)->getStmtNumber() && b->at(i) == ifBranch->at(j)->getChildren()->getNodeValue())
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if (flag == 0) {
+					a->erase(a->begin() + i);
+					b->erase(b->begin() + i);
+				}
+			}
 		}
 	}
 	else
