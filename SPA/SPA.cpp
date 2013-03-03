@@ -35,7 +35,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	string program, line;
 	program = "";
 
-	ifstream myfile("../SampleCode/CS3202Test2Code.c");
+	ifstream myfile("../SampleCode/CS3201RegressionTestCode.c");
 
 	if (myfile.is_open())
 	{
@@ -67,7 +67,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
 
-
+	/*
 	const int querySize = 4;
 	string query[querySize];	
 	string declares("stmt s1,s2,s3,s4,s5,s6; variable v1, v2; procedure p1,p2; while w; ");				  			 
@@ -75,7 +75,10 @@ int _tmain(int argc, _TCHAR *argv[])
 	query[1]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s3,s4) with s4.stmt#=w.stmt#";	
 	query[2]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s4,s5) and Parent*(s5,s6) ";	
 	query[3]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s4,s5) and Parent*(s5,s6) with s3.stmt#=s4.stmt# ";									  
-
+	*/
+	const int querySize = 1;
+	string query[querySize];
+	query[0] = "assign a; variable v; stmt s;Select v such that Modifies(s, v) pattern a(v, _\"w\"_)";
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
