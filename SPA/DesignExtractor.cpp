@@ -472,7 +472,7 @@ BOOLEAN DesignExtractor::whilePattern(vector<int> *a, vector<int> *b, string exp
 			{
 				flag = 0;
 				for(int j = 0; j < whileLoop->size(); j++){
-					if (whileLoop->at(j)->getChildren()->getNodeValue() == b->at(0))
+					if (whileLoop->at(j)->getStmtNumber() == a->at(i) && whileLoop->at(j)->getChildren()->getNodeValue() == b->at(0))
 					{
 						i++;
 						flag = 1;
@@ -481,6 +481,8 @@ BOOLEAN DesignExtractor::whilePattern(vector<int> *a, vector<int> *b, string exp
 				}
 				if(flag == 0) a->erase(a->begin()+i);
 			}
+			if(a->size() == 0) return false;
+			return true;
 		}
 	}
 	else if (arg == 3)
