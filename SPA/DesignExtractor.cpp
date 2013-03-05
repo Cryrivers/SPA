@@ -666,7 +666,7 @@ BOOLEAN DesignExtractor::ifPattern(vector<int> *a, vector<int> *b, string expr, 
 			{
 				flag = 0;
 				for(int j = 0; j < ifBranch->size(); j++){
-					if (ifBranch->at(j)->getChildren()->getNodeValue() == b->at(0))
+					if (ifBranch->at(j)->getStmtNumber() == a->at(i) && ifBranch->at(j)->getChildren()->getNodeValue() == b->at(0))
 					{
 						i++;
 						flag = 1;
@@ -675,6 +675,8 @@ BOOLEAN DesignExtractor::ifPattern(vector<int> *a, vector<int> *b, string expr, 
 				}
 				if(flag == 0) a->erase(a->begin()+i);
 			}
+			if(a->size() == 0) return false;
+			return true;
 		}
 	}
 	else if (arg == 3)

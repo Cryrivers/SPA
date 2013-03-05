@@ -35,7 +35,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	string program, line;
 	program = "";
 
-	ifstream myfile("../SampleCode/CS3201RegressionTestCode.c");
+	ifstream myfile("../SampleCode/CS3202Test1Code.c");
 
 	if (myfile.is_open())
 	{
@@ -78,7 +78,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	*/
 	const int querySize = 1;
 	string query[querySize];
-	query[0] = "assign a; variable v; stmt s;Select v such that Modifies(s, v) pattern a(v, _\"w\"_)";
+	query[0] = "if ifstat; constant c;Select BOOLEAN pattern ifstat (\"i\", _, _) with c.value = 10";
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
