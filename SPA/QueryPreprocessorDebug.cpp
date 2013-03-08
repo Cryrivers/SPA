@@ -129,3 +129,27 @@ void QueryPreprocessorDebug::printQueryClauseTable(vector<QueryClause> v){
 		}
 	}
 }
+void QueryPreprocessorDebug::printClauseTable(map<int, vector<QueryClause>> v){	
+	map<int, vector<QueryClause>>::iterator it = v.begin();
+
+	cout<<"\nClauseTable:"<<endl;
+	for (it=v.begin(); it!=v.end(); ++it){
+		printf("Dependency group: [%2d]\n", it->first);
+		vector<QueryClause> t = it->second;
+		for(int i = 0; i< (int) t.size(); i++){
+			if(t[i].index==-1){
+				printf("     Rel[%-10s] Var1[%2d] Var2[%2d]\n",typeToString(t[i].relationType), t[i].variable1, t[i].variable2);
+			}else{
+				printf("%3d. Rel[%-10s] Var1[%2d] Var2[%2d] ",
+					t[i].index, typeToString(t[i].relationType), t[i].variable1, t[i].variable2); 
+				if(typeToString(t[i].attribute1)!=""){
+					printf("Attr1[%15s] Attr2[%15s] ",typeToString(t[i].attribute1),typeToString(t[i].attribute2));
+				}
+				if(t[i].patternType>=0){
+					printf("Typ3[%d] Var3[%s] ", t[i].patternType, t[i].variable3.c_str());
+				}					  
+				cout<<"\n";
+			}
+		}	
+	}
+}

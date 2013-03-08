@@ -16,8 +16,9 @@
  * @version 2.01
  ***********************************************/
 #include <iostream>
-#include <string>
+#include <string>	
 #include <vector>
+#include <map>
 #include <sstream>
 #include "stdafx.h"
 #include "SPAType.h"

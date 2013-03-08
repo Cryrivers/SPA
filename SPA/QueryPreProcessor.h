@@ -2,7 +2,7 @@
 #ifndef QUERYPREPROCESSOR_H
 #define QUERYPREPROCESSOR_H
 #define DEBUGMODE 0 /**<===== do not change  */
-#define PRINTTABLE 0
+#define PRINTTABLE 1
 #define DICCLAUSESIZE 4			/**< contain: "such that", "and", "pattern", "with"*/
 #define DICDESIGNENTITYSIZE 10	/**< contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
 #define DICRELATIONREFSIZE 12	/**< contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls"*/
@@ -52,7 +52,8 @@ private:
 	PKBController* pkb;
 	vector<QueryVariable> queryVarTable;	/**< @see QueryVariable*/
 	vector<QueryTarget>   queryTarTable;	/**< @see QueryTarget*/
-	vector<QueryClause>   queryClaTable;	/**< @see QueryClause*/
+	vector<QueryClause>   queryClaTable;	/**< @see QueryClause*/	   
+	map<int, vector<QueryClause>> clasueTable;
 	int getIndexOfFirstFrom (string b, string a[], int size);
 	int getIndexOfNextFrom (string b, string a[], int size);
 	int findNextIndexFrom (string b, string a[], int size);
@@ -80,6 +81,7 @@ public:
 	vector<QueryVariable> getQueryVariableTable();
 	vector<QueryTarget>   getQueryTargetTable();
 	vector<QueryClause>   getQueryClauseTable(); 
+	map<int, vector<QueryClause>> getClauseTable();
 };
 class QueryPreprocessorDebug{
 public:
@@ -88,5 +90,6 @@ public:
 	void printQueryVariableTable (vector<QueryVariable> v);
 	void printTargetVariableTable (vector<QueryTarget> v);
 	void printQueryClauseTable (vector<QueryClause> v);
+	void printClauseTable(map<int, vector<QueryClause>> v);
 };
 #endif

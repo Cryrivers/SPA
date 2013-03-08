@@ -1387,10 +1387,7 @@ BOOLEAN  QueryPreprocessor::makeOptimize(){
  * Process: \n													  
  *		1. count appearance \n
  *		2. set dependency \n
- *		3. sort to groups \n
- * Philosophy: \n
- *		
- *		
+ *		3. sort to groups \n	
  * @return The complitance of this function, true for done, false for error
  ***********************************************/
 BOOLEAN QueryPreprocessor::setDependency(){
@@ -1409,7 +1406,7 @@ BOOLEAN QueryPreprocessor::setDependency(){
 				||(queryVarTable[i].variableType==DT_STMTLST)||(queryVarTable[i].variableType==DT_CONSTANT)
 				||(queryVarTable[i].variableType==KT_KNOWN_CONSTANT)){
 				continue;
-			}else if(queryVarTable[i].countAppear>=1&&queryVarTable[i].dependency==-1){
+			}else if(queryVarTable[i].countAppear>1&&queryVarTable[i].dependency==-1){
 				queryVarTable[i].dependency=i;
 			}
 		}
@@ -1432,6 +1429,36 @@ BOOLEAN QueryPreprocessor::setDependency(){
 				 queryVarTable[left].dependency=queryVarTable[right].dependency;
 			}
 		} 
+	}											
+	for(int j = 0; j<queryClaTable.size(); j++){   
+		int var1Dep = queryVarTable[queryClaTable[j].variable1].dependency;
+		int var2Dep = queryVarTable[queryClaTable[j].variable2].dependency;
+
+		if(var1Dep==-1&&var2Dep==-1){
+			if(clasueTable.count(var1Dep)>0){
+				clasueTable.find(var1Dep)->second.push_back(queryClaTable[j]);
+			}else{
+				vector<QueryClause> newVector;
+				newVector.push_back(queryClaTable[j]);
+				clasueTable.insert(pair<int, vector<QueryClause>>(var1Dep, newVector));
+			}
+		}else if(var1Dep!=-1){		  
+			if(clasueTable.count(var1Dep)>0){
+				clasueTable.find(var1Dep)->second.push_back(queryClaTable[j]);
+			}else{
+				vector<QueryClause> newVector;
+				newVector.push_back(queryClaTable[j]);					
+				clasueTable.insert(pair<int, vector<QueryClause>>(var1Dep, newVector));
+			}
+		}else if(var2Dep!=-1){	 
+			if(clasueTable.count(var2Dep)>0){
+				clasueTable.find(var2Dep)->second.push_back(queryClaTable[j]);
+			}else{											   
+				vector<QueryClause> newVector;
+				newVector.push_back(queryClaTable[j]);				 
+				clasueTable.insert(pair<int, vector<QueryClause>>(var2Dep, newVector));
+			}
+		}
 	}
 	return true;
 }
@@ -1444,8 +1471,9 @@ BOOLEAN QueryPreprocessor::setDependency(){
  ***********************************************/
 int QueryPreprocessor::parse(string query){
 	queryVarTable.clear();
-	queryTarTable.clear();
+	queryTarTable.clear();	 
 	queryClaTable.clear();
+	clasueTable.clear();
 	trim_all(query);
 	mergedClause=0;
 	discardClause=0;
@@ -1475,7 +1503,7 @@ int QueryPreprocessor::parse(string query){
 			QueryPreprocessorDebug qpd;
 			qpd.printQueryVariableTable(queryVarTable);
 			qpd.printTargetVariableTable(queryTarTable);
-			qpd.printQueryClauseTable(queryClaTable);
+			qpd.printClauseTable(clasueTable);
 		}
 		clauses.clear();
 		return 0;
@@ -1500,11 +1528,17 @@ vector<QueryVariable> QueryPreprocessor::getQueryVariableTable(){
  ***********************************************/
 vector<QueryTarget> QueryPreprocessor::getQueryTargetTable(){
 	return queryTarTable;
-}
+}  
 /********************************************//**
  *  getter for queryClaTable 
  ***********************************************/
 vector<QueryClause> QueryPreprocessor::getQueryClauseTable(){
 	return queryClaTable;
+}
+/********************************************//**
+ *  getter for clauseTable 
+ ***********************************************/
+map<int, vector<QueryClause>> QueryPreprocessor::getClauseTable(){
+	return clasueTable;
 }
 
