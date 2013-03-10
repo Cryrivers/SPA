@@ -430,11 +430,44 @@ BOOLEAN DesignExtractor::whilePattern(vector<int> *a, vector<int> *b, string exp
 		//2c
 		else if (a->size() == 0 && b->size() > 0)
 		{
+			int i = 0;
+			while (i < b->size())
+			{
+				flag = 0;
+				for (int j = 0; j < whileLoop->size(); j++)
+				{
+					if (b->at(i) == whileLoop->at(j)->getChildren()->getNodeValue())
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if(flag == 0) b->erase(b->begin() + i);
+			}
+			if(b->size() == 0) return false;
 			return true;
 		}
 		//2d
 		else if (a->size() > 0 && b->size() > 0)
 		{
+			int i = 0;
+			vector<int> temp = *a;
+			while (i < b->size())
+			{
+				flag = 0;
+				for (int j = 0; j < whileLoop->size(); j++)
+				{
+					if (indexOf(temp, whileLoop->at(j)->getStmtNumber()) >= 0 && b->at(i) == whileLoop->at(j)->getChildren()->getNodeValue())
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if(flag == 0) b->erase(b->begin() + i);
+			}
+			if(b->size() == 0) return false;
 			return true;
 		}
 	}
@@ -462,6 +495,22 @@ BOOLEAN DesignExtractor::whilePattern(vector<int> *a, vector<int> *b, string exp
 		//3c
 		else if (a->size() > 0 && b->size() == 0)
 		{
+			int i = 0;
+			while (i < a->size())
+			{
+				flag = 0;
+				for (int j = 0; j < whileLoop->size(); j ++ )
+				{
+					if (a->at(i) == whileLoop->at(j)->getStmtNumber())
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if (flag == 0) a->erase(a->begin()+i);
+			}
+			if (a->size() == 0) return false;
 			return true;
 		}
 		//3d
@@ -626,11 +675,44 @@ BOOLEAN DesignExtractor::ifPattern(vector<int> *a, vector<int> *b, string expr, 
 		//2c
 		else if (a->size() == 0 && b->size() > 0)
 		{
+			int i = 0;
+			while (i < b->size())
+			{
+				flag = 0;
+				for (int j = 0; j < ifBranch->size(); j++)
+				{
+					if (b->at(i) == ifBranch->at(j)->getChildren()->getNodeValue())
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if(flag == 0) b->erase(b->begin() + i);
+			}
+			if(b->size() == 0) return false;
 			return true;
 		}
 		//2d
 		else if (a->size() > 0 && b->size() > 0)
 		{
+			int i = 0;
+			vector<int> temp = *a;
+			while (i < b->size())
+			{
+				flag = 0;
+				for (int j = 0; j < ifBranch->size(); j++)
+				{
+					if (indexOf(temp, ifBranch->at(j)->getStmtNumber()) >= 0 && b->at(i) == ifBranch->at(j)->getChildren()->getNodeValue())
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if(flag == 0) b->erase(b->begin() + i);
+			}
+			if(b->size() == 0) return false;
 			return true;
 		}
 	}
@@ -658,6 +740,22 @@ BOOLEAN DesignExtractor::ifPattern(vector<int> *a, vector<int> *b, string expr, 
 		//3c
 		else if (a->size() > 0 && b->size() == 0)
 		{
+			int i = 0;
+			while (i < a->size())
+			{
+				flag = 0;
+				for (int j = 0; j < ifBranch->size(); j ++ )
+				{
+					if (a->at(i) == ifBranch->at(j)->getStmtNumber())
+					{
+						i++;
+						flag = 1;
+						break;
+					}
+				}
+				if (flag == 0) a->erase(a->begin()+i);
+			}
+			if (a->size() == 0) return false;
 			return true;
 		}
 		//3d
