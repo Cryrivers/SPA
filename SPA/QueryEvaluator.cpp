@@ -26,7 +26,7 @@ QueryEvaluator::~QueryEvaluator(void)
  * \param [out]	r: results are stored in this list.
  * \return 	TRUE if query evaluation is successful, FALSE otherwise
  */
-bool QueryEvaluator::evaluate(vector<QueryClause> qcl, vector<QueryVariable> qvl, vector<QueryTarget> qtl, list<string>& r)
+bool QueryEvaluator::evaluate(map<int, vector<QueryClause>> qcl, vector<QueryVariable> qvl, vector<QueryTarget> qtl, list<string>& r)
 {
 	// prepare new query, initialise data members 
 	qClauseList = qcl;
@@ -59,9 +59,12 @@ bool QueryEvaluator::optimise()
  */
 bool QueryEvaluator::evaluateQuery() 
 {
-	for (vector<QueryClause>::iterator it = qClauseList.begin(); it != qClauseList.end(); ++it) {
-		if (!evaluateClause(*it)) {
-			return false; // query clause evaluated to false
+	
+	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
+		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
+			if (!evaluateClause(*vit)) {
+				return false; // query clause evaluated to false
+			}
 		}
 	}
 	return true;

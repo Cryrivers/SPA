@@ -16,7 +16,7 @@ using namespace std;
 class QueryEvaluator
 {
 	PKBController* pkb;
-	vector<QueryClause> qClauseList;
+	map<int, vector<QueryClause>> qClauseList;
 	vector<QueryVariable> qVariableList;
 	vector<QueryTarget> qTargetList;
 	map<int, map<int, vector<int>>> dependencymap;
@@ -39,7 +39,7 @@ public:
 	QueryEvaluator(void);
 	~QueryEvaluator(void);
 	
-	bool evaluate(vector<QueryClause>, vector<QueryVariable>, vector<QueryTarget>, list<string>&);
+	bool evaluate(map<int, vector<QueryClause>>, vector<QueryVariable>, vector<QueryTarget>, list<string>&);
 };
 
 #endif
