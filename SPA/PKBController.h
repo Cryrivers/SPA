@@ -102,6 +102,8 @@ public:
 	PROC_INDEX getProcIndex(STRING procName);
 	STRING_LIST getAllProcName(PROC_INDEX_LIST inds);
 	STRING_LIST getAllProcName();
+	STMT getProcStart(PROC_INDEX ind);
+	STMT getProcEnd(PROC_INDEX ind);
 
 	//additional api
 	void addConstant(int value);

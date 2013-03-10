@@ -1017,3 +1017,13 @@ BOOLEAN PKBController::callsStar( PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST*
 {
 	return _calls->callsStar(callers_ptr, callees_ptr, arg);
 }
+
+STMT PKBController::getProcEnd( PROC_INDEX ind )
+{
+	return _procTable->getProcEnd(ind);
+}
+
+STMT PKBController::getProcStart( PROC_INDEX ind )
+{
+	return _procTable->getProcStart(ind);
+}

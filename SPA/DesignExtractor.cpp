@@ -1375,7 +1375,26 @@ void DesignExtractor::connectCFG()
 				(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
 				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
 			{
-				__smartConnectThisCFGToNext(nextNode, thisNode);
+				if(!CFG_BIP_ENABLED || it->type == STMT_ASSIGNMENT)
+				{
+					__smartConnectThisCFGToNext(nextNode, thisNode);
+				}
+				else
+				{
+					assert(it->type == STMT_CALL);
+					PROC_INDEX calleeIndex = _pkb->getProcIndex(it->extraName);
+					STMT calleeStart = _pkb->getProcStart(calleeIndex);
+					STMT calleeEnd = _pkb->getProcEnd(calleeIndex);
+					CFGNode* calleeStartNode = cfg->getCFGNodeByStmtNumber(calleeStart);
+					CFGNode* calleeEndNode = cfg->getCFGNodeByStmtNumber(calleeEnd);
+					thisNode->connectTo(calleeStartNode);
+					if(nextNode->getProcIndex() == thisNode->getProcIndex())
+					{
+						calleeEndNode->connectTo(nextNode);
+						if(calleeEndNode->getPairedCFGNode() != NULL)
+							calleeEndNode->getPairedCFGNode()->connectTo(nextNode);
+					}
+				}
 			}
 			else if(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() > 1)
 			{
