@@ -664,6 +664,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 		QueryVariable qv;
 		QueryTarget qt;
 		vector<int> vecI;
+		vector<int> vecTemp;
 		vector<string> vecS;
 		int v, dep;
 
@@ -694,6 +695,25 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 						result.push_back(vecS[i]);
 					}
 					break;
+
+				case DT_CALL:	
+				// target is of type call
+					
+					if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+					// target attribute type is procName
+						
+						for (int i = 0; i < dependencymap[dep][v].size(); i++) {
+						// gets the procTable index of the call stmt 
+							vecTemp.push_back(pkb->getCallee(dependencymap[dep][v][i])); 
+						}
+						
+						vecS = pkb->getAllProcName(vecTemp); 
+						for (int i = 0; i < vecS.size(); i++) {
+							result.push_back(vecS[i]);
+						}
+						break; // break only if it is call.procName
+					
+					}
 
 				default:
 				// target is not of type variable or procedure
@@ -772,6 +792,16 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			
 				// Known Variables
 				case KT_STMT_NUM:			
+					
+					if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+					// target is of type call.procName
+						
+						// gets the call stmt procTable index, then its procName
+						result.push_back(pkb->getProcName(pkb->getCallee(qv.content)));					
+						break; // break only if it is call.procName
+					
+					}
+
 				case KT_KNOWN_CONSTANT:
 				
 					result.push_back(to_string(static_cast<long long>(qv.content)));
@@ -797,10 +827,27 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 			switch (qv.variableType) {
 				
+				case DT_CALL: 
+					
+					if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+					// target attribute type is procName
+						
+						for (int i = 0; i < vecI.size(); i++) {
+						// gets the procTable index of the call stmt 
+							vecTemp.push_back(pkb->getCallee(vecI[i])); 
+						}
+						
+						vecS = pkb->getAllProcName(vecTemp); 
+						for (int i = 0; i < vecS.size(); i++) {
+							result.push_back(vecS[i]);
+						}
+						break; // break only if it is call.procName
+					
+					}
+
 				case DT_ASSIGN: 	
 				case DT_WHILE: 		
 				case DT_IF:			
-				case DT_CALL: 		
 				case DT_CONSTANT:	
 				case DT_STMT: 		
 					

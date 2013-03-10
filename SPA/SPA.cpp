@@ -70,13 +70,13 @@ int _tmain(int argc, _TCHAR *argv[])
 	
 	const int querySize = 4;
 	string query[querySize];	
-	string declares("stmt s1,s2,s3,s4,s5,s6; variable v1, v2; procedure p1,p2; while w; ");				  			 
-	query[0]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s5,s6) ";	
-	query[1]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s3,s4) with s4.stmt#=w.stmt#";	
-	query[2]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s4,s5) and Parent*(s5,s6) ";	
-	query[3]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s4,s5) and Parent*(s5,s6) with s3.stmt#=s4.stmt# ";									  
+	string declares("call c; stmt s1,s2,s3,s4,s5,s6; variable v1, v2; procedure p1,p2; while w; ");				  			 
+	query[0]=declares+"Select c such that Calls(p2,p1) with p1.procName = c.procName and p2.procName = \"Main\" ";	
+	//query[1]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s3,s4) with s4.stmt#=w.stmt#";	
+	//query[2]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s4,s5) and Parent*(s5,s6) ";	
+	//query[3]=declares+"Select s1 such that Parent*(s1,s2) and Parent*(s2,s3) and Parent*(s4,s5) and Parent*(s5,s6) with s3.stmt#=s4.stmt# ";									  
 	
-	for(int i=0; i<querySize; i++){						 						 
+	for(int i=0; i<1; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
 		cout<<"Query"<<i+1<<":\n"<<query[i]<<"\n"<<endl;
 		SPA_TIME_MEASURE("Processor",processor->evaluate(query[i],result));
