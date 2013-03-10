@@ -58,13 +58,31 @@ void Parser::_parseLine()
 
 		case STMT_CALL:
 			assert(currentCFGNode != NULL);
-			if(!currentCFGNode->isValidCFGNode())
+
+			if(CFG_BIP_ENABLED)
 			{
-				currentCFGNode->setProcIndex(it->procIndex);
+				if(currentCFGNode->isValidCFGNode())
+					_pkb->getCFG()->addToCFG(currentCFGNode);
+				else
+					delete currentCFGNode;
+				currentCFGNode = new CFGNode();
 				currentCFGNode->setStartStatement(it->stmtNumber);
+				currentCFGNode->setEndStatement(it->stmtNumber);
+				currentCFGNode->setProcIndex(it->procIndex);
+				currentCFGNode->setCFGType(CFG_BIP_CALL_STATEMENT);
+				_pkb->getCFG()->addToCFG(currentCFGNode);
+				currentCFGNode = new CFGNode();
 			}
-			currentCFGNode->setEndStatement(it->stmtNumber);
-			
+			else
+			{
+				if(!currentCFGNode->isValidCFGNode())
+				{
+					currentCFGNode->setProcIndex(it->procIndex);
+					currentCFGNode->setStartStatement(it->stmtNumber);
+				}
+				currentCFGNode->setEndStatement(it->stmtNumber);
+			}
+
 			currentASTNode = _buildCallAST(&*it);
 			__addFollowsTable(currentASTNode);
 			previousASTNode =  currentASTNode;
