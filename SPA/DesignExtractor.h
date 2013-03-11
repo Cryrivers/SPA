@@ -49,5 +49,6 @@ private:
 	STMT_LIST getAffectsFirst(STMT);
 	STMT_LIST getAffectsFirstHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST);
 	STMT_LIST getAffectsSecond(STMT);
+	STMT_LIST getAffectsSecondHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST);
 };
 

@@ -1571,11 +1571,13 @@ STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2)
 		VAR_INDEX_LIST vars; vars.push_back(var); //need a list to query Modifies relation
 		bool carryOn = true; //indicate whether to proceed to previous CFGNode
 		
-		for(int k=stmt2-1; k>=start; k--) {
+		for(int k=stmt2-1; k>=start; k--) { //statements 'start' to 'stmt2-1' are either assign or call
 			STMT_LIST temp1; 
 			temp1.push_back(k);
 			if(_pkb->modifies(&temp1, &vars, 0)) { //means statement k modifies variable var
-				result.push_back(k);
+				if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT) {
+					result.push_back(k);
+				}
 				carryOn = false;
 				break;
 			}
@@ -1619,15 +1621,22 @@ STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*
 				visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
 
 				bool carryOn = true; //indicate whether to proceed to previous CFGNode
-				int end1 = currentNode->getEndStatement();
-				int start1 = currentNode->getStartStatement();
-				for(int k=end1; k>=start1; k--) {
-					STMT_LIST temp1; 
-					temp1.push_back(k);
-					if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
-						resultLst.push_back(k);
-						carryOn = false;
-						break;
+
+				if(currentNode->getCFGType() == CFG_IF_STATEMENT || currentNode->getCFGType() == CFG_WHILE_STATEMENT) {
+					//this node is if or while, go to previous CFGNode directly
+				} else {
+					int end1 = currentNode->getEndStatement();
+					int start1 = currentNode->getStartStatement();
+					for(int k=end1; k>=start1; k--) {
+						STMT_LIST temp1; 
+						temp1.push_back(k);
+						if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+							if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT) {
+								resultLst.push_back(k);
+							}
+							carryOn = false;
+							break;
+						}
 					}
 				}
 
@@ -1642,6 +1651,108 @@ STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*
 		return(resultLst);
 	}
 }
+
+STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1)
+{
+	vector<CFGNode*>* visitedNodes = new vector<CFGNode*>();
+	STMT_LIST stmt1s;
+	stmt1s.push_back(stmt1);
+	VAR_INDEX_LIST modifiedVar;
+	_pkb->modifies(&stmt1s, &modifiedVar, 1); //get the variable modified by stmt1
+
+	CFGNode* startNode = _pkb->getCFG()->getCFGNodeByStmtNumber(stmt1); //get the CFGNode that contains stmt1
+	STMT end = startNode->getEndStatement(); //the end statement of this CFGNode
+
+	STMT_LIST result;
+
+	//one and only one variable can be modified by an assign statement, so size of modifiedVar must be 1
+	//only need to check Affects for this single variable 'var' inside modifiedVar
+
+	bool carryOn = true; //indicate whether to proceed to next CFGNode
+		
+	for(int k=stmt1+1; k<=end; k++) { //statements 'stmt+1' to 'end' are either assign or call
+		STMT_LIST temp1; 
+		temp1.push_back(k);
+
+		if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT && _pkb->uses(&temp1, &modifiedVar, 0) ) {
+			result.push_back(k);
+		}
+		if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken, should not move to nextNode
+			carryOn = false;
+			break;
+		}
+	}
+
+	if(carryOn) { //should proceed to next CFGNode
+		STMT_LIST temp = getAffectsSecondHelper(startNode, visitedNodes, modifiedVar);
+		for(int j=0; j<temp.size(); j++) {
+			result.push_back(temp.at(j));
+		}
+		//visitedNodes->clear();
+	}
+ 
+	delete visitedNodes;
+	return result;
+}
+
+STMT_LIST DesignExtractor::getAffectsSecondHelper(CFGNode* node1, vector<CFGNode*>* visitedNodes, VAR_INDEX_LIST modifiedVar)
+{
+	STMT_LIST resultLst;
+	vector<CFGNode*> next_nodes;
+	STMT_LIST next_stmts;
+	STMT_LIST stmt1s; 
+	stmt1s.push_back(node1->getEndStatement());
+
+	_pkb->next(&stmt1s, &next_stmts, 1);
+	
+	if (next_stmts.size() == 0) { // no more successor, base case, stop and return
+		return(resultLst);
+	}else {
+		int next_stmts_size = next_stmts.size();
+		for(int i=0; i<next_stmts_size; i++) {
+			next_nodes.push_back(_pkb->getCFG()->getCFGNodeByStmtNumber(next_stmts.at(i)));
+		}
+		for (int i = 0; i < next_stmts_size; i++) { // loop through each next CFGNode
+			CFGNode* currentNode = next_nodes.at(i);
+			if(indexOf((*visitedNodes), currentNode) >= 0){
+				//current successor has been visited, do not visit it again
+			} else {
+				visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+
+				bool carryOn = true; //indicate whether to proceed to next CFGNode
+
+				if(currentNode->getCFGType() == CFG_IF_STATEMENT || currentNode->getCFGType() == CFG_WHILE_STATEMENT) {
+					//this node is if or while, go to next CFGNode directly
+				} else {
+					int start1 = currentNode->getStartStatement();
+					int end1 = currentNode->getEndStatement();
+					for(int k=start1; k<=end1; k++) {
+						STMT_LIST temp1; 
+						temp1.push_back(k);
+
+						if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT && _pkb->uses(&temp1, &modifiedVar, 0) ) {
+							resultLst.push_back(k);
+						}
+						if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken, should not move to nextNode
+							carryOn = false;
+							break;
+						}
+					}
+				}
+
+				if(carryOn) { //should proceed to next CFGNode
+					STMT_LIST temp = getAffectsFirstHelper(currentNode, visitedNodes, modifiedVar);
+					for(int j=0; j<temp.size(); j++) { //combine results for all variables
+						resultLst.push_back(temp.at(j));
+					}
+				}
+			}
+		}
+		return(resultLst);
+	}
+}
+
+
 
 BOOLEAN DesignExtractor::affects00( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
 {
