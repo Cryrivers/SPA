@@ -1553,6 +1553,96 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 	return true;
 }
 
+STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2)
+{
+	vector<CFGNode*>* visitedNodes = new vector<CFGNode*>();
+	STMT_LIST stmt2s;
+	stmt2s.push_back(stmt2);
+	VAR_INDEX_LIST usedVars;
+	_pkb->uses(&stmt2s, &usedVars, 1); //get variables used by stmt2
+
+	CFGNode* endNode = _pkb->getCFG()->getCFGNodeByStmtNumber(stmt2); //get the CFGNode that contains stmt2
+	STMT start = endNode->getStartStatement(); //the start statement of this CFGNode
+
+	STMT_LIST result;
+
+	for(int i=0; i<usedVars.size(); i++) { //for each variable used by stmt2, find all statements that Affects this var
+		VAR_INDEX var = usedVars.at(i); //choose one variable used by stmt2
+		VAR_INDEX_LIST vars; vars.push_back(var); //need a list to query Modifies relation
+		bool carryOn = true; //indicate whether to proceed to previous CFGNode
+		
+		for(int k=stmt2-1; k>=start; k--) {
+			STMT_LIST temp1; 
+			temp1.push_back(k);
+			if(_pkb->modifies(&temp1, &vars, 0)) { //means statement k modifies variable var
+				result.push_back(k);
+				carryOn = false;
+				break;
+			}
+		}
+
+		if(carryOn) { //should proceed to previous CFGNode
+			STMT_LIST temp = getAffectsFirstHelper(endNode, visitedNodes, vars);
+			for(int j=0; j<temp.size(); j++) { //combine results for all variables
+				result.push_back(temp.at(j));
+			}
+			visitedNodes->clear();
+		}
+	}
+ 
+	delete visitedNodes;
+	return result;
+}
+
+STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes, VAR_INDEX_LIST usedVar)
+{
+	STMT_LIST resultLst;
+	vector<CFGNode*> prev_nodes;
+	STMT_LIST prev_stmts;
+	STMT_LIST stmt2s; 
+	stmt2s.push_back(node2->getStartStatement());
+
+	_pkb->next(&prev_stmts, &stmt2s, 2);
+	
+	if (prev_stmts.size() == 0) { // no more predecessor, base case, stop and return
+		return(resultLst);
+	}else {
+		int prev_stmts_size = prev_stmts.size();
+		for(int i=0; i<prev_stmts_size; i++) {
+			prev_nodes.push_back(_pkb->getCFG()->getCFGNodeByStmtNumber(prev_stmts.at(i)));
+		}
+		for (int i = 0; i < prev_stmts_size; i++) { // loop through each previous CFGNode
+			CFGNode* currentNode = prev_nodes.at(i);
+			if(indexOf((*visitedNodes), currentNode) >= 0){
+				//current predecessor has been visited, do not visit it again
+			} else {
+				visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
+
+				bool carryOn = true; //indicate whether to proceed to previous CFGNode
+				int end1 = currentNode->getEndStatement();
+				int start1 = currentNode->getStartStatement();
+				for(int k=end1; k>=start1; k--) {
+					STMT_LIST temp1; 
+					temp1.push_back(k);
+					if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+						resultLst.push_back(k);
+						carryOn = false;
+						break;
+					}
+				}
+
+				if(carryOn) { //should proceed to previous CFGNode
+					STMT_LIST temp = getAffectsFirstHelper(currentNode, visitedNodes, usedVar);
+					for(int j=0; j<temp.size(); j++) { //combine results for all variables
+						resultLst.push_back(temp.at(j));
+					}
+				}
+			}
+		}
+		return(resultLst);
+	}
+}
+
 BOOLEAN DesignExtractor::affects00( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
 {
 	VAR_INDEX_LIST* var = new VAR_INDEX_LIST;
