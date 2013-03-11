@@ -324,7 +324,7 @@ Type QueryPreprocessor::getAttributeOfVariable(int b, int a){
 		if(dicAttribute[a]==".procName"&&(queryVarTable[b].variableType==DT_PROCEDURE||queryVarTable[b].variableType==KT_KNOWN_PROCEDURE)){
 			return AT_PROC_NAME;
 		}else if(dicAttribute[a]==".procName"&&queryVarTable[b].variableType==DT_CALL){
-			return AT_PROC_NAME;
+			return AT_CALL_PROC_NAME;
 		}else if(dicAttribute[a]==".varName"&&(queryVarTable[b].variableType==DT_VARIABLE||queryVarTable[b].variableType==KT_KNOWN_VARIABLE)){
 			return AT_VAR_NAME;
 		}else if(dicAttribute[a]==".value"&&(queryVarTable[b].variableType==KT_KNOWN_CONSTANT||queryVarTable[b].variableType==DT_CONSTANT)){
