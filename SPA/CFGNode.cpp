@@ -174,22 +174,7 @@ void CFGNode::connectTo( CFGNode* nextPath )
 		if(*it == nextPath) return;
 
 	_edges.push_back(nextPath);
-}
-
-/**
- * \fn	void CFGNode::connectBackTo( CFGNode* prevPath )
- *
- * \brief	Connects a back to.
- *
- * \author	Wang Zhongliang
- * \date	2013/2/19
- *
- * \param [in,out]	prevPath	If non-null, full pathname of the previous file.
- */
-
-void CFGNode::connectBackTo( CFGNode* prevPath )
-{
-	prevPath->connectTo(this);
+	nextPath->addBacktraceEdges(this);
 }
 
 vector<CFGNode*> CFGNode::getNextEdges()
@@ -221,4 +206,20 @@ void CFGNode::setPairedCFGNode( CFGNode* cfgNode )
 CFGNode* CFGNode::getPairedCFGNode()
 {
 	return _pairNode;
+}
+
+void CFGNode::addBacktraceEdges( CFGNode* prevPath )
+{
+	//Not sure if a CFGNode is next to itself, but make this assertion now.
+	assert(prevPath != this);
+	//In case of duplicates
+	for (vector<CFGNode*>::iterator it = _edges.begin(); it != _edges.end(); ++it)
+		if(*it == prevPath) return;
+
+	_backtrace_edges.push_back(prevPath);
+}
+
+vector<CFGNode*> CFGNode::getPrevEdges()
+{
+	return _backtrace_edges;
 }
