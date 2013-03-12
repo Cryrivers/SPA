@@ -696,8 +696,7 @@ BOOLEAN QueryPreprocessor::setupTarTable(vector<string> tarTable){
 			if(newType==ERROR){
 				return false;
 			}
-			newTarget.attributeType=newType;
-			queryVarTable[index].countAppear++;
+			newTarget.attributeType=newType;	   
 			queryTarTable.push_back(newTarget);
 		}else{
 			//================================
@@ -710,8 +709,7 @@ BOOLEAN QueryPreprocessor::setupTarTable(vector<string> tarTable){
 			}
 			QueryTarget newTarget;
 			newTarget.varIndex=index;
-			newTarget.hasAttribute=false;
-			queryVarTable[index].countAppear++;
+			newTarget.hasAttribute=false;			 
 			queryTarTable.push_back(newTarget);
 		} 
 	}
@@ -1395,6 +1393,13 @@ BOOLEAN QueryPreprocessor::setDependency(){
 	for(int i = 0; i<(int)queryVarTable.size(); i++){ 
 		for(int j = 0; j<(int)queryClaTable.size(); j++){
 			if(queryClaTable[j].variable1==i||queryClaTable[j].variable2==i){
+				queryVarTable[queryVarTable[i].mapTo].countAppear++;
+			}
+		}
+	}
+	for(int i = 0; i<(int)queryVarTable.size(); i++){ 
+		for(int j = 0; j<(int)queryTarTable.size(); j++){
+			if(queryTarTable[j].varIndex==i){
 				queryVarTable[queryVarTable[i].mapTo].countAppear++;
 			}
 		}

@@ -2,7 +2,7 @@
 #ifndef QUERYPREPROCESSOR_H
 #define QUERYPREPROCESSOR_H
 #define DEBUGMODE 0 /**<===== do not change  */
-#define PRINTTABLE 0
+#define PRINTTABLE 1
 #define DICCLAUSESIZE 4			/**< contain: "such that", "and", "pattern", "with"*/
 #define DICDESIGNENTITYSIZE 10	/**< contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
 #define DICRELATIONREFSIZE 12	/**< contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls"*/
