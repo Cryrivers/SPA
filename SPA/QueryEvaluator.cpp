@@ -770,7 +770,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			case DT_CALL:	
 			// target is of type call
 					
-				if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target attribute type is procName
 						
 					for (int i = 0; i < dependencymap[dep][v].size(); i++) {
@@ -864,7 +864,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			// Known Variables
 			case KT_STMT_NUM:			
 					
-				if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target is of type call.procName
 						
 					// gets the call stmt procTable index, then its procName
@@ -900,7 +900,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 				
 			case DT_CALL: 
 					
-				if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target attribute type is procName
 						
 					for (int i = 0; i < vecI.size(); i++) {
