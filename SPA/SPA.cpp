@@ -40,7 +40,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	string program, line;
 	program = "";
 
-	ifstream myfile("../SampleCode/CS3202Test2Code.c");
+	ifstream myfile("../SampleCode/CS3202Test1Code.c");
 
 	if (myfile.is_open())
 	{
@@ -73,14 +73,15 @@ int _tmain(int argc, _TCHAR *argv[])
 	list<string> result;
 
 	
-	const int querySize = 4;
+	const int querySize = 1;
 	string query[querySize];	
-	string declares("call c; stmt s1,s2,s3,s4,s5,s6; procedure p1,p2; while w; ");				  			 
-	query[0]=declares+"Select c such that Calls(p2,p1) with p1.procName = c.procName and p2.procName = \"Main\" ";										  
-	query[1]=declares+"Select w such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,w)";	
-	query[3]=declares+"Select s6 such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,s6)";	
-	query[2]=declares+"Select s6 such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,s6) with s6.stmt#=w.stmt#";								  
-	
+	string declares("call c; stmt s1,s2,s3,s4,s5,s6; procedure p1,p2; while w; prog_line n1,n2 ");				  			 
+	//query[0]=declares+"Select c such that Calls(p2,p1) with p1.procName = c.procName and p2.procName = \"Main\" ";										  
+	//query[1]=declares+"Select w such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,w)";	
+	//query[3]=declares+"Select s6 such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,s6)";	
+	//query[2]=declares+"Select s6 such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,s6) with s6.stmt#=w.stmt#";								  
+	query[0]="prog_line n; Select n such that Next* (10, n) ";
+
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
 		cout<<"Query"<<i+1<<":\n"<<query[i]<<"\n"<<endl;
