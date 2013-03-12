@@ -978,9 +978,9 @@ vector<ASTNode*>* PKBController::getWhileTable()
 	return _whileLoopTable;
 }
 
-void PKBController::addNext( STMT stmt1, STMT stmt2 )
+void PKBController::addNext( STMT stmt1, STMT stmt2, CFGBipType bipType)
 {
-	_next->addNext(stmt1, stmt2);
+	_next->addNext(stmt1, stmt2, bipType);
 }
 
 BOOLEAN PKBController::next( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )

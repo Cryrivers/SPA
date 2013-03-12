@@ -62,6 +62,12 @@ enum CFGType{
 	CFG_BIP_CALL_STATEMENT
 };
 
+enum CFGBipType {
+	CFG_BIP_NORMAL,
+	CFG_BIP_CALL,
+	CFG_BIP_RETURN
+};
+
 enum WithType{
 	WITH_VARNAME,
 	WITH_PROCNAME,

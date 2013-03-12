@@ -156,25 +156,15 @@ void Next::getNextStarSecondHelper(STMT stmt1, STMT_LIST* resultLst)
 	}
 }
 
-/**
- * \fn	void Next::addNext(STMT stmt1, STMT stmt2);
- *
- * \brief	Add a new 'Next' relation in the form (stmt1, stmt2) both 'stmt1' and 'stmt2' are statement numbers. If the relation already exists, do nothing.
- * 
- *
- * \param	stmt1	The statement number of the statement that is before the other in the relation Next.
- * \param	stmt2	The statement number of the statement that is after the other in the relation Next.
- *
- * \return	void.
- */
-void Next::addNext(STMT stmt1, STMT stmt2)
+void Next::addNext( STMT stmt1, STMT stmt2, CFGBipType bipType )
 {
 	if(isNext(stmt1, stmt2)) {
-	// Next(stmt1, stmt2) already in the table, do nothing
+		// Next(stmt1, stmt2) already in the table, do nothing
 	} else {
-	// Next(stmt1, stmt2) not in the table, add in
-	stmt1s.push_back(stmt1);
-	stmt2s.push_back(stmt2);
+		// Next(stmt1, stmt2) not in the table, add in
+		stmt1s.push_back(stmt1);
+		stmt2s.push_back(stmt2);
+		stmtBipType.push_back(bipType);
 	}
 }
 
