@@ -20,6 +20,7 @@ class QueryEvaluator
 	vector<QueryVariable> qVariableList;
 	vector<QueryTarget> qTargetList;
 	map<int, map<int, vector<int>>> dependencymap;
+	map<int, map<int, vector<string>>> targetmap;
 	
 	bool evaluateQuery();
 	bool evaluateClause(QueryClause);
@@ -31,6 +32,7 @@ class QueryEvaluator
 	bool intersectDependencyMapPair(int, int, vector<int>*, int, vector<int>*);
 	bool cartesianProduct(vector<int>*, vector<int>*);
 	bool getResult(list<string>&);
+	bool getTarget(QueryTarget);
 
 	vector<int> removeDuplicates(vector<int>);
 	int getWithType(int);

@@ -653,214 +653,282 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 /**
  * \fn		QueryEvaluator::getResult(list<string>& result)
- * \brief	Gets the result. Currently does not support tuples and attributes i.e. only 1 target variable. 
+ * \brief	Gets the result.  
  * \param [out]	result: results are stored in this list, duplicates allowed. 
  * \return 	TRUE if target list contain exactly 1 element, result obtained is not empty, FALSE otherwise
  */
  bool QueryEvaluator::getResult(list<string>& result) {
+
+	vector<pair<int, int>> QTLDepVarList; // first int is dependency and second int is varIndex
+	map<int, int> repetitionMap;
+	int resultSize = 1;
+
+	// populate the target map + QTLDepVar + repetitionMap + resultSize
+	for (int i = 0; i < qTargetList.size(); i++) {
+		
+		QueryTarget qt = qTargetList.at(i);
+		int qvIndex = qt.varIndex;
+		int dep = qVariableList[qvIndex].dependency;
+		int targetSize;
+
+		if (!getTarget(qt))
+			return false; // return false if target has no values
+		
+		// sets the size of the target
+		targetSize = targetmap[dep][qvIndex].size(); 
+
+		// push the target's dependency and varIndex into the list
+		QTLDepVarList.push_back(make_pair(dep, qvIndex)); 
+
+		// updates new dep value if dep = -1
+		if (dep == -1) 
+			dep *= qvIndex; 
+
+		// populate repetitionMap
+		if (repetitionMap.count(dep) == 0) { 
+		// repetitionMap does not contain dep yet
+			
+			for (map<int, int>::iterator it = repetitionMap.begin(); it != repetitionMap.end(); ++it) {
+				(*it).second *= targetSize;
+			}
+
+			resultSize *= targetSize;
+			repetitionMap[dep] = 1;
+
+		} // do nothing if repetitionMap already contain dep (i.e. same dep as earlier targets)
+		
+	}
 	
-	if (qTargetList.size() == 1) {
+	// make use of repetitionMap to populate results
+	for (int i = 1; i <= resultSize; i++) {
 		
-		QueryVariable qv;
-		QueryTarget qt;
-		vector<int> vecI;
-		vector<int> vecTemp;
-		vector<string> vecS;
-		int v, dep;
+		string r = "";
 
-		qt = qTargetList.at(0);
-		v = qt.varIndex;
-		qv = qVariableList.at(v);
-		dep = qv.dependency;
-		
-		if (dep >= 0 && dependencymap[dep].count(v) == 1) {
-		// variable is in dependency map (dependent)
-
-			switch (qv.variableType) {
-				
-				case DT_VARIABLE: 	
-				// target is of type variable
-					
-					vecS = pkb->getAllVarName(dependencymap[dep][v]); 
-					for (int i = 0; i < vecS.size(); i++) {
-						result.push_back(vecS[i]);
-					}
-					break;
-
-				case DT_PROCEDURE:	
-				// target is of type procedure
-					
-					vecS = pkb->getAllProcName(dependencymap[dep][v]); 
-					for (int i = 0; i < vecS.size(); i++) {
-						result.push_back(vecS[i]);
-					}
-					break;
-
-				case DT_CALL:	
-				// target is of type call
-					
-					if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
-					// target attribute type is procName
-						
-						for (int i = 0; i < dependencymap[dep][v].size(); i++) {
-						// gets the procTable index of the call stmt 
-							vecTemp.push_back(pkb->getCallee(dependencymap[dep][v][i])); 
-						}
-						
-						vecS = pkb->getAllProcName(vecTemp); 
-						for (int i = 0; i < vecS.size(); i++) {
-							result.push_back(vecS[i]);
-						}
-						break; // break only if it is call.procName
-					
-					}
-
-				default:
-				// target is not of type variable or procedure
-					
-					for (vector<int>::iterator it = dependencymap[dep][v].begin(); it != dependencymap[dep][v].end(); ++it) {
-						result.push_back(to_string(static_cast<long long>(*it)));
-					}
-					break;
-					
-			}
-
-		} else {
-		// variable is not in dependency map (independent)
-		
-			switch (qv.variableType) {
-				
-				case DT_VARIABLE: 	
-				// target is of type variable
-					
-					vecS = pkb->getAllVarName();
-					for (int i = 0; i < vecS.size(); i++) {
-						result.push_back(vecS[i]);
-					}
-					break;
-
-				case DT_PROCEDURE:	
-				// target is of type procedure
-					
-					vecS = pkb->getAllProcName();
-					for (int i = 0; i < vecS.size(); i++) {
-						result.push_back(vecS[i]);
-					}
-					break;
-
-				case DT_BOOLEAN:	
-					
-					result.push_back("TRUE");
-					break;
-				
-				case DT_ASSIGN: 	
+		for (int j = 0; j < QTLDepVarList.size(); j++) {
 			
-					if (!pkb->getAllAssignment(&vecI))
-						return false;
-					break;
-		
-				case DT_WHILE: 		
+			int dep = QTLDepVarList[i].first;
+			int qvIndex = QTLDepVarList[i].second;
+			int rep = repetitionMap[dep];
+			vector<string> tvalues = targetmap[dep][qvIndex];
 			
-					if (!pkb->getAllWhile(&vecI))
-						return false;
-					break;
-		
-				case DT_IF:			
-		
-					if (!pkb->getAllIf(&vecI))
-						return false;
-					break;
+			int index = (i%(resultSize/(rep*tvalues.size())))/rep;
 
-				case DT_CALL: 		
-
-					if (!pkb->getAllCall(&vecI))
-						return false;
-					break;
+			r += tvalues[index] + " ";
 		
-				case DT_CONSTANT:	
-			
-					if (!pkb->getAllConstant(&vecI))
-						return false;
-					break;
+		}
 
-				case DT_STMT: 		
-				case DT_PROGLINE:
+		result.push_back(r);
+
+	}
+
+	return true;
+
+ }	
+		
+
+ /**
+ * \fn		QueryEvaluator::getTarget(QueryTarget qt)
+ * \brief	Given a query target, populates the targetmap with the appropriate results.
+ * \param [in]	qt: the query target given. 
+ * \return 	TRUE if targetmap is populated, FALSE otherwise
+ */
+ bool QueryEvaluator::getTarget(QueryTarget qt) {
+		
+	QueryVariable qv;
+	vector<int> vecI;
+	vector<int> vecTemp;
+	vector<string> vecS;
+	int v, dep;
+
+	v = qt.varIndex;
+	qv = qVariableList.at(v);
+	dep = qv.dependency;
+		
+	if (dep >= 0 && dependencymap[dep].count(v) == 1) {
+	// variable is in dependency map (dependent)
+
+		switch (qv.variableType) {
 				
-					if (!pkb->getAllStmt(&vecI))
-						return false;
-					break;
-			
-				// Known Variables
-				case KT_STMT_NUM:			
+			case DT_VARIABLE: 	
+			// target is of type variable
 					
-					if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
-					// target is of type call.procName
+				vecS = pkb->getAllVarName(dependencymap[dep][v]); 
+				for (int i = 0; i < vecS.size(); i++) {
+					targetmap[dep][v].push_back(vecS[i]);
+				}
+				break;
+
+			case DT_PROCEDURE:	
+			// target is of type procedure
+					
+				vecS = pkb->getAllProcName(dependencymap[dep][v]); 
+				for (int i = 0; i < vecS.size(); i++) {
+					targetmap[dep][v].push_back(vecS[i]);
+				}
+				break;
+
+			case DT_CALL:	
+			// target is of type call
+					
+				if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+				// target attribute type is procName
 						
-						// gets the call stmt procTable index, then its procName
-						result.push_back(pkb->getProcName(pkb->getCallee(qv.content)));					
-						break; // break only if it is call.procName
-					
+					for (int i = 0; i < dependencymap[dep][v].size(); i++) {
+					// gets the procTable index of the call stmt 
+						vecTemp.push_back(pkb->getCallee(dependencymap[dep][v][i])); 
 					}
-
-				case KT_KNOWN_CONSTANT:
-				
-					result.push_back(to_string(static_cast<long long>(qv.content)));
-					break;
-					
-				case KT_KNOWN_VARIABLE:	
-					
-					result.push_back(pkb->getVarName(qv.content));					
-					break;
-					
-				case KT_KNOWN_PROCEDURE:	
-					
-					result.push_back(pkb->getProcName(qv.content));					
-					break;
-		
-				// invalid types, should not appear in target
-				case DT_UNDERSCORE:		
-				case DT_STMTLST: 			
-
-					break;
-
-			}
-
-			switch (qv.variableType) {
-				
-				case DT_CALL: 
-					
-					if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
-					// target attribute type is procName
 						
-						for (int i = 0; i < vecI.size(); i++) {
-						// gets the procTable index of the call stmt 
-							vecTemp.push_back(pkb->getCallee(vecI[i])); 
-						}
-						
-						vecS = pkb->getAllProcName(vecTemp); 
-						for (int i = 0; i < vecS.size(); i++) {
-							result.push_back(vecS[i]);
-						}
-						break; // break only if it is call.procName
-					
+					vecS = pkb->getAllProcName(vecTemp); 
+					for (int i = 0; i < vecS.size(); i++) {
+						targetmap[dep][v].push_back(vecS[i]);
 					}
-
-				case DT_ASSIGN: 	
-				case DT_WHILE: 		
-				case DT_IF:			
-				case DT_CONSTANT:	
-				case DT_STMT: 		
+					break; // break only if it is call.procName
 					
-					for (int i = 0; i < vecI.size(); i++) 
-						result.push_back(to_string(static_cast<long long>(vecI[i])));
-					break;
-			}
+				}
+
+			default:
+			// target is not of type variable or procedure
+					
+				for (vector<int>::iterator it = dependencymap[dep][v].begin(); it != dependencymap[dep][v].end(); ++it) {
+					targetmap[dep][v].push_back(to_string(static_cast<long long>(*it)));
+				}
+				break;
+					
+		}
+
+	} else {
+	// variable is not in dependency map (independent)
+		
+		switch (qv.variableType) {
+				
+			case DT_VARIABLE: 	
+			// target is of type variable
+					
+				vecS = pkb->getAllVarName();
+				for (int i = 0; i < vecS.size(); i++) {
+					targetmap[dep][v].push_back(vecS[i]);
+				}
+				break;
+
+			case DT_PROCEDURE:	
+			// target is of type procedure
+					
+				vecS = pkb->getAllProcName();
+				for (int i = 0; i < vecS.size(); i++) {
+					targetmap[dep][v].push_back(vecS[i]);
+				}
+				break;
+
+			case DT_BOOLEAN:	
+					
+				targetmap[dep][v].push_back("TRUE");
+				break;
+				
+			case DT_ASSIGN: 	
+			
+				if (!pkb->getAllAssignment(&vecI))
+					return false;
+				break;
+		
+			case DT_WHILE: 		
+			
+				if (!pkb->getAllWhile(&vecI))
+					return false;
+				break;
+		
+			case DT_IF:			
+		
+				if (!pkb->getAllIf(&vecI))
+					return false;
+				break;
+
+			case DT_CALL: 		
+
+				if (!pkb->getAllCall(&vecI))
+					return false;
+				break;
+		
+			case DT_CONSTANT:	
+			
+				if (!pkb->getAllConstant(&vecI))
+					return false;
+				break;
+
+			case DT_STMT: 		
+			case DT_PROGLINE:
+				
+				if (!pkb->getAllStmt(&vecI))
+					return false;
+				break;
+			
+			// Known Variables
+			case KT_STMT_NUM:			
+					
+				if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+				// target is of type call.procName
+						
+					// gets the call stmt procTable index, then its procName
+					targetmap[dep][v].push_back(pkb->getProcName(pkb->getCallee(qv.content)));					
+					break; // break only if it is call.procName
+					
+				}
+
+			case KT_KNOWN_CONSTANT:
+				
+				targetmap[dep][v].push_back(to_string(static_cast<long long>(qv.content)));
+				break;
+					
+			case KT_KNOWN_VARIABLE:	
+					
+				targetmap[dep][v].push_back(pkb->getVarName(qv.content));					
+				break;
+					
+			case KT_KNOWN_PROCEDURE:	
+					
+				targetmap[dep][v].push_back(pkb->getProcName(qv.content));					
+				break;
+		
+			// invalid types, should not appear in target
+			case DT_UNDERSCORE:		
+			case DT_STMTLST: 			
+
+				break;
 
 		}
-	
-	} else // size not 1, cant handle now
-		return false;
-	
+
+		switch (qv.variableType) {
+				
+			case DT_CALL: 
+					
+				if (qt.hasAttribute == true && qt.attributeType == AT_PROC_NAME) {
+				// target attribute type is procName
+						
+					for (int i = 0; i < vecI.size(); i++) {
+					// gets the procTable index of the call stmt 
+						vecTemp.push_back(pkb->getCallee(vecI[i])); 
+					}
+						
+					vecS = pkb->getAllProcName(vecTemp); 
+					for (int i = 0; i < vecS.size(); i++) {
+						targetmap[dep][v].push_back(vecS[i]);
+					}
+					break; // break only if it is call.procName
+					
+				}
+
+			case DT_ASSIGN: 	
+			case DT_WHILE: 		
+			case DT_IF:			
+			case DT_CONSTANT:	
+			case DT_STMT: 		
+					
+				for (int i = 0; i < vecI.size(); i++) 
+					targetmap[dep][v].push_back(to_string(static_cast<long long>(vecI[i])));
+				break;
+		}
+
+	}
+
 	return true;
 }
 
