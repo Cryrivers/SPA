@@ -706,12 +706,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 		for (int j = 0; j < QTLDepVarList.size(); j++) {
 			
-			int dep = QTLDepVarList[i].first;
-			int qvIndex = QTLDepVarList[i].second;
+			int dep = QTLDepVarList[j].first;
+			int qvIndex = QTLDepVarList[j].second;
 			int rep = repetitionMap[dep];
 			vector<string> tvalues = targetmap[dep][qvIndex];
 			
-			int index = (i%(resultSize/(rep*tvalues.size())))/rep;
+			int index = (i%(rep*tvalues.size()))/rep;
 
 			r += tvalues[index] + " ";
 		
