@@ -79,7 +79,7 @@ public:
 	PROC_INDEX_LIST getAllCallees();
 
 	//next api
-	void addNext(STMT stmt1, STMT stmt2);
+	void addNext(STMT stmt1, STMT stmt2, CFGBipType bipType);
 	BOOLEAN next(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 	BOOLEAN nextStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 	STMT_LIST getAllNextFirst();

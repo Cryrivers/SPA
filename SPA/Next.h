@@ -9,6 +9,8 @@ class Next
 {
 STMT_LIST stmt1s;
 STMT_LIST stmt2s;
+vector<CFGBipType> stmtBipType;
+
 BOOLEAN isNext(STMT stmt1, STMT stmt2);
 BOOLEAN isNextStar(STMT stmt1, STMT stmt2);
 BOOLEAN isNextStarHelper(STMT_LIST links, STMT stmt2, STMT_LIST* visitedNodes);
@@ -30,7 +32,7 @@ BOOLEAN nextStar_10(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 BOOLEAN nextStar_11(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 
 public:
-void addNext(STMT stmt1, STMT stmt2);
+void addNext(STMT stmt1, STMT stmt2, CFGBipType bipType);
 BOOLEAN next(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 BOOLEAN nextStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 STMT_LIST getAllNextFirst();

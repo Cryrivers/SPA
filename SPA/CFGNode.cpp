@@ -16,6 +16,7 @@ CFGNode::CFGNode(void)
 	_procIndex = -1;
 	_type = CFG_NORMAL_BLOCK;
 	_pairNode = NULL;
+	_bipType = CFG_BIP_NORMAL;
 }
 
 
@@ -222,4 +223,14 @@ void CFGNode::addBacktraceEdges( CFGNode* prevPath )
 vector<CFGNode*> CFGNode::getPrevEdges()
 {
 	return _backtrace_edges;
+}
+
+CFGBipType CFGNode::getBipType()
+{
+	return _bipType;
+}
+
+void CFGNode::setBipType( CFGBipType type )
+{
+	_bipType =  type;
 }

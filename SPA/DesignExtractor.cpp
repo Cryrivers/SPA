@@ -1271,10 +1271,10 @@ void DesignExtractor::addNext()
 		vector<CFGNode*> edges = c->getNextEdges();
 
 		for(int i = c->getStartStatement(); i< c->getEndStatement(); i++)
-			_pkb->addNext(i,i+1);
+			_pkb->addNext(i,i+1,c->getBipType());
 
 		for(vector<CFGNode*>::iterator n = edges.begin(); n!= edges.end(); ++n)
-			_pkb->addNext(c->getEndStatement(),(*n)->getStartStatement());
+			_pkb->addNext(c->getEndStatement(),(*n)->getStartStatement(),c->getBipType());
 	}
 	
 }
@@ -1388,11 +1388,16 @@ void DesignExtractor::connectCFG()
 					CFGNode* calleeStartNode = cfg->getCFGNodeByStmtNumber(calleeStart);
 					CFGNode* calleeEndNode = cfg->getCFGNodeByStmtNumber(calleeEnd);
 					thisNode->connectTo(calleeStartNode);
+					thisNode->setBipType(CFG_BIP_CALL);
 					if(nextNode->getProcIndex() == thisNode->getProcIndex())
 					{
 						calleeEndNode->connectTo(nextNode);
+						calleeEndNode->setBipType(CFG_BIP_RETURN);
 						if(calleeEndNode->getPairedCFGNode() != NULL)
+						{
 							calleeEndNode->getPairedCFGNode()->connectTo(nextNode);
+							calleeEndNode->getPairedCFGNode()->setBipType(CFG_BIP_RETURN);
+						}
 					}
 				}
 			}

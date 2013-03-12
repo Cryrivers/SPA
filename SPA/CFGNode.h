@@ -22,9 +22,12 @@ public:
 	PROC_INDEX getProcIndex();
 	void setPairedCFGNode(CFGNode* cfgNode);
 	CFGNode* getPairedCFGNode();
+	CFGBipType getBipType();
+	void setBipType(CFGBipType type);
 protected:
 	void addBacktraceEdges(CFGNode* prevPath);
 private:
+	CFGBipType _bipType;
 	int _start;
 	int _end;
 	PROC_INDEX _procIndex;
