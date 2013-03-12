@@ -1553,8 +1553,11 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 	return true;
 }
 
-STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2)
-{
+STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2, BOOLEAN exhaustive)
+{ 
+	//if exhaustive is true, the function finds all assignments that affect stmt2.
+	//if exhaustive is false, the function stops once one assignment is found.
+
 	vector<CFGNode*>* visitedNodes = new vector<CFGNode*>();
 	STMT_LIST stmt2s;
 	stmt2s.push_back(stmt2);
@@ -1577,6 +1580,9 @@ STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2)
 			if(_pkb->modifies(&temp1, &vars, 0)) { //means statement k modifies variable var
 				if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT) {
 					result.push_back(k);
+					if(!exhaustive) {
+						return result;
+					}	
 				}
 				carryOn = false;
 				break;
@@ -1584,9 +1590,11 @@ STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2)
 		}
 
 		if(carryOn) { //should proceed to previous CFGNode
-			STMT_LIST temp = getAffectsFirstHelper(endNode, visitedNodes, vars);
+			STMT_LIST temp = getAffectsFirstHelper(endNode, visitedNodes, vars, exhaustive);
 			for(int j=0; j<temp.size(); j++) { //combine results for all variables
 				result.push_back(temp.at(j));
+				if(!exhaustive)
+					return result;
 			}
 			visitedNodes->clear();
 		}
@@ -1596,7 +1604,7 @@ STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2)
 	return result;
 }
 
-STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes, VAR_INDEX_LIST usedVar)
+STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes, VAR_INDEX_LIST usedVar, BOOLEAN exhaustive)
 {
 	STMT_LIST resultLst;
 	vector<CFGNode*> prev_nodes;
@@ -1634,6 +1642,8 @@ STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*
 						if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
 							if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT) {
 								resultLst.push_back(k);
+								if(!exhaustive)
+									return resultLst;
 							}
 							carryOn = false;
 							break;
@@ -1642,9 +1652,11 @@ STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*
 				}
 
 				if(carryOn) { //should proceed to previous CFGNode
-					STMT_LIST temp = getAffectsFirstHelper(currentNode, visitedNodes, usedVar);
+					STMT_LIST temp = getAffectsFirstHelper(currentNode, visitedNodes, usedVar, exhaustive);
 					for(int j=0; j<temp.size(); j++) { //combine results for all variables
 						resultLst.push_back(temp.at(j));
+						if(!exhaustive)
+							return resultLst;
 					}
 				}
 			}
@@ -1653,8 +1665,11 @@ STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*
 	}
 }
 
-STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1)
+STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1, BOOLEAN exhaustive)
 {
+	//if exhaustive is true, the function finds all assignments affected by stmt1.
+	//if exhaustive is false, the function stops once one assignment is found.
+
 	vector<CFGNode*>* visitedNodes = new vector<CFGNode*>();
 	STMT_LIST stmt1s;
 	stmt1s.push_back(stmt1);
@@ -1677,6 +1692,9 @@ STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1)
 
 		if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT && _pkb->uses(&temp1, &modifiedVar, 0) ) {
 			result.push_back(k);
+			if(!exhaustive) {
+				return result;
+			}	
 		}
 		if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken, should not move to nextNode
 			carryOn = false;
@@ -1685,9 +1703,11 @@ STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1)
 	}
 
 	if(carryOn) { //should proceed to next CFGNode
-		STMT_LIST temp = getAffectsSecondHelper(startNode, visitedNodes, modifiedVar);
+		STMT_LIST temp = getAffectsSecondHelper(startNode, visitedNodes, modifiedVar, exhaustive);
 		for(int j=0; j<temp.size(); j++) {
 			result.push_back(temp.at(j));
+			if(!exhaustive)
+				return result;
 		}
 		//visitedNodes->clear();
 	}
@@ -1696,7 +1716,7 @@ STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1)
 	return result;
 }
 
-STMT_LIST DesignExtractor::getAffectsSecondHelper(CFGNode* node1, vector<CFGNode*>* visitedNodes, VAR_INDEX_LIST modifiedVar)
+STMT_LIST DesignExtractor::getAffectsSecondHelper(CFGNode* node1, vector<CFGNode*>* visitedNodes, VAR_INDEX_LIST modifiedVar, BOOLEAN exhaustive)
 {
 	STMT_LIST resultLst;
 	vector<CFGNode*> next_nodes;
@@ -1734,6 +1754,8 @@ STMT_LIST DesignExtractor::getAffectsSecondHelper(CFGNode* node1, vector<CFGNode
 
 						if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT && _pkb->uses(&temp1, &modifiedVar, 0) ) {
 							resultLst.push_back(k);
+							if(!exhaustive)
+								return resultLst;
 						}
 						if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken, should not move to nextNode
 							carryOn = false;
@@ -1743,9 +1765,11 @@ STMT_LIST DesignExtractor::getAffectsSecondHelper(CFGNode* node1, vector<CFGNode
 				}
 
 				if(carryOn) { //should proceed to next CFGNode
-					STMT_LIST temp = getAffectsFirstHelper(currentNode, visitedNodes, modifiedVar);
+					STMT_LIST temp = getAffectsFirstHelper(currentNode, visitedNodes, modifiedVar, exhaustive);
 					for(int j=0; j<temp.size(); j++) { //combine results for all variables
 						resultLst.push_back(temp.at(j));
+						if(!exhaustive)
+							return resultLst;
 					}
 				}
 			}
@@ -1756,33 +1780,237 @@ STMT_LIST DesignExtractor::getAffectsSecondHelper(CFGNode* node1, vector<CFGNode
 
 
 
-BOOLEAN DesignExtractor::affects00( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
+BOOLEAN DesignExtractor::affects00( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 {
-	VAR_INDEX_LIST* var = new VAR_INDEX_LIST;
+	int size1 = st1s_p->size();
+	int size2 = st2s_p->size();
 
-	for (int i = 0; i < st1s_ptr->size(); i++)
-	{
-		for (int j = 0; j < st2s_ptr->size(); j++)
-		{	
-			if(isAffects(st1s_ptr->at(i),st2s_ptr->at(j))) return true;
+	if(size1==0 && size2==0) { //case 1a
+		STMT_LIST allAssign;
+		getAllAssignment(&allAssign);
+		int size = allAssign.size();
+		for(int i=0; i<size; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(allAssign.at(i), false); //exhaustive is false, stops once one assign found
+			if(affectedAssigns.size()>0) //one pair of a1, a2 satisfy Affects(a1,a2)
+				return true;
+		}
+		return false;
+	} else if(size1==0 && size2>0) { //case 1b
+		for(int i=0; i<size2; i++) {
+			STMT_LIST affectAssigns = getAffectsFirst(st2s_p->at(i), false);
+			if(affectAssigns.size()>0)
+				return true;
+		}
+		return false;
+	} else if(size1>0 && size2==0) { //case 1c
+		for(int i=0; i<size1; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(st1s_p->at(i), false);
+			if(affectedAssigns.size()>0)
+				return true;
+		}
+		return false;
+	} else { //case 1d
+		for (int i = 0; i < size1; i++)
+		{
+			for (int j = 0; j < size2; j++)
+			{	
+				if(isAffects(st1s_p->at(i),st2s_p->at(j))) return true;
+			}
+		}
+		return false;
+	}
+}
+
+BOOLEAN DesignExtractor::affects01( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
+{
+	int size1 = st1s_p->size();
+	int size2 = st2s_p->size();
+
+	if(size1==0 && size2==0) { //case 2a
+		STMT_LIST allAssign;
+		getAllAssignment(&allAssign);
+		int size = allAssign.size();
+		for(int i=0; i<size; i++) {
+			STMT_LIST affectAssigns = getAffectsFirst(allAssign.at(i), false); //exhaustive is false, check for existence
+			if(affectAssigns.size()>0)
+				st2s_p->push_back(allAssign.at(i));
+		}
+	} else if(size1==0 && size2>0) { //case 2c
+		int index = 0;
+		for (int i = 0; i < size2; i++) {
+			STMT_LIST affectAssigns = getAffectsFirst(st2s_p->at(index), false);
+			if(affectAssigns.size()==0) {
+				st2s_p->erase(st2s_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	} else if(size1>0 && size2==0) { //case 2b
+		for (int i = 0; i < size1; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(st1s_p->at(i), true);
+			for (int j = 0; j < affectedAssigns.size(); j++) {
+				st2s_p->push_back(affectedAssigns.at(j));
+			}
+		}
+	} else { //case 2d
+		int index = 0;
+		for (int i = 0; i < size2; i++) {
+			BOOLEAN noMatch = true;
+			for (int j = 0; j < size1; j++) {
+				if (isAffects(st1s_p->at(j), st2s_p->at(index))) {
+					noMatch = false;
+					break;
+				}
+			}
+			if (noMatch) {
+				st2s_p->erase(st2s_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
 		}
 	}
-	return false;
+
+	if (st2s_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
 }
 
-BOOLEAN DesignExtractor::affects01( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
+BOOLEAN DesignExtractor::affects10( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 {
-	return false;
+	int size1 = st1s_p->size();
+	int size2 = st2s_p->size();
+
+	if(size1==0 && size2==0) { //case 3a
+		STMT_LIST allAssign;
+		getAllAssignment(&allAssign);
+		int size = allAssign.size();
+		for(int i=0; i<size; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(allAssign.at(i), false); //exhaustive is false, check for existence
+			if(affectedAssigns.size()>0)
+				st1s_p->push_back(allAssign.at(i));
+		}
+	} else if(size1==0 && size2>0) { //case 3b
+		for (int i = 0; i < size2; i++) {
+			STMT_LIST affectAssigns = getAffectsFirst(st2s_p->at(i), true);
+			for (int j = 0; j < affectAssigns.size(); j++) {
+				st1s_p->push_back(affectAssigns.at(j));
+			}
+		}	
+	} else if(size1>0 && size2==0) { //case 3c
+		int index = 0;
+		for (int i = 0; i < size1; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(st1s_p->at(index), false);
+			if(affectedAssigns.size()==0) {
+				st1s_p->erase(st1s_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	} else { //case 3d
+		int index = 0;
+		for (int i = 0; i < size1; i++) {
+			BOOLEAN noMatch = true;
+			for (int j = 0; j < size2; j++) {
+				if (isAffects(st1s_p->at(index), st2s_p->at(j))) {
+					noMatch = false;
+					break;
+				}
+			}
+			if (noMatch) {
+				st1s_p->erase(st1s_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	}
+
+	if (st1s_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
 }
 
-BOOLEAN DesignExtractor::affects10( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
+BOOLEAN DesignExtractor::affects11( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 {
-	return false;
-}
+	int size1 = st1s_p->size();
+	int size2 = st2s_p->size();
 
-BOOLEAN DesignExtractor::affects11( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr)
-{
-	return false;
+	if ((size1 == 0) && (size2 == 0)) { //case 4a
+		if(affects10(st1s_p,st2s_p))
+			return affects11(st1s_p,st2s_p);
+		else
+			return false;
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 4b
+		vector<int> st2s_copy;
+		for (int i = 0; i < size2; i++) {
+			st2s_copy.push_back(st2s_p->at(i));
+		}
+		st2s_p->clear();
+
+		for (int i = 0; i < size2; i++) {
+			int currentEleSt2s = st2s_copy.at(i);
+			vector<int> temp = getAffectsFirst(currentEleSt2s,true);
+			int tempSize = temp.size();
+			if (tempSize == 0) {
+				//do not fill in vector
+			}else {
+				for (int j = 0; j < tempSize; j++) {
+					st1s_p->push_back(temp.at(j));
+					st2s_p->push_back(currentEleSt2s);
+				}
+			}
+		}
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 4c
+		vector<int> st1s_copy;
+		for (int i = 0; i < size1; i++) {
+			st1s_copy.push_back(st1s_p->at(i));
+		}
+		st1s_p->clear();
+
+		for (int i = 0; i < size1; i++) {
+			int currentEleSt1s = st1s_copy.at(i);
+			vector<int> temp = getAffectsSecond(currentEleSt1s, true);
+			int tempSize = temp.size();
+			if (tempSize == 0) {
+				//do not fill in vector
+			}else {
+				for (int j = 0; j < tempSize; j++) {
+					st1s_p->push_back(currentEleSt1s);
+					st2s_p->push_back(temp.at(j));
+				}
+			}
+		}
+	}else {           //size1!=0 && size2!=0, case 4d
+		if (size1 == size2) { //case 4d
+			int index = 0;
+			for (int i = 0; i < size1; i++) {
+				if (isAffects(st1s_p->at(index), st2s_p->at(index))) {
+					index++;
+				}else {
+					st1s_p->erase(st1s_p->begin() + index);
+					st2s_p->erase(st2s_p->begin() + index);
+				}
+			}
+		}else {  //exception
+			throw "arg is 11, but sizes of both vectors are not the same.";
+		}
+	}
+	if (st1s_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
 }
 
 BOOLEAN DesignExtractor::affects( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg)

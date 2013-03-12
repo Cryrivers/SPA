@@ -46,9 +46,9 @@ private:
 	BOOLEAN affects10(STMT_LIST*, STMT_LIST*);
 	BOOLEAN affects11(STMT_LIST*, STMT_LIST*);
 	BOOLEAN isAffects(STMT, STMT);
-	STMT_LIST getAffectsFirst(STMT);
-	STMT_LIST getAffectsFirstHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST);
-	STMT_LIST getAffectsSecond(STMT);
-	STMT_LIST getAffectsSecondHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST);
+	STMT_LIST getAffectsFirst(STMT, BOOLEAN);
+	STMT_LIST getAffectsFirstHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST, BOOLEAN);
+	STMT_LIST getAffectsSecond(STMT, BOOLEAN);
+	STMT_LIST getAffectsSecondHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST, BOOLEAN);
 };
 
