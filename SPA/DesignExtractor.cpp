@@ -2005,9 +2005,373 @@ BOOLEAN DesignExtractor::affects( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int 
 	}
 }
 
-BOOLEAN DesignExtractor::affectsStar( STMT_LIST*, STMT_LIST*, int )
+BOOLEAN DesignExtractor::isAffectsStar(STMT stmt1, STMT stmt2)
 {
-	return false;
+	STMT_LIST visited; //the visited stmt list
+	BOOLEAN result = false; //result initialised to false
+
+	isAffectsStarHelper(stmt1, stmt2, &visited, &result);
+	return result;
+}
+
+void DesignExtractor::isAffectsStarHelper(STMT stmt1, STMT stmt2, STMT_LIST* visited_p, BOOLEAN* result_p)
+{
+	STMT_LIST directAffectedLst = getAffectsSecond(stmt1, true);
+
+	if (directAffectedLst.size() == 0) { // no more successor, base case, stop and return
+		return;
+	}else {
+		int directAffectedLstSize = directAffectedLst.size();
+		for (int i = 0; i < directAffectedLstSize; i++) { // loop through each direct successor
+			int currentSecond = directAffectedLst.at(i);
+			if(indexOf((*visited_p), currentSecond) >= 0){
+				//current successor has been visited, do not visit it again
+			} else {
+				visited_p->push_back(currentSecond); //add this successor into visited list
+				if(currentSecond == stmt2) { //match found, set result to be true and stop
+					(*result_p) = true;
+					return;
+				}
+				isAffectsStarHelper(currentSecond,stmt2, visited_p, result_p); // let this successor check all its direct/indirect successors
+				if((*result_p) == true)
+					return;
+			}
+		}
+	}
+}
+
+STMT_LIST DesignExtractor::getAffectsStarFirst(STMT stmt2, BOOLEAN exhaustive)
+{
+	STMT_LIST resultLst; //the result list as well as visited stmt list
+
+	if(!exhaustive) { //stop once one result is found
+		STMT_LIST directAffectsLst = getAffectsFirst(stmt2, false);
+		int size = directAffectsLst.size();
+		if(size == 0) { //no direct Affects result, which means no Affects* result
+			return resultLst;
+		} else { //Affects result found, which also satisfy Affects*, since search is non-exhaustive, add one result and return
+			resultLst.push_back(directAffectsLst.at(0));
+			return resultLst;
+		}
+	} else { //find all results
+		getAffectsStarFirstHelper(stmt2, &resultLst);
+		return resultLst;
+	}
+}
+
+void DesignExtractor::getAffectsStarFirstHelper(STMT stmt2, STMT_LIST* resultLst_p)
+{
+	STMT_LIST directAffectLst = getAffectsFirst(stmt2, true);
+
+	if (directAffectLst.size() == 0) { // no more predecessor, base case, stop and return
+		return;
+	}else {
+		int directAffectLstSize = directAffectLst.size();
+		for (int i = 0; i < directAffectLstSize; i++) { // loop through each direct predecessor
+			int currentFirst = directAffectLst.at(i);
+			if(indexOf((*resultLst_p), currentFirst) >= 0){
+				//current predecessor is in the result list, which means it has been visited, do not visit it again
+			} else {
+				resultLst_p->push_back(currentFirst); //add this predecessor into result list
+				getAffectsStarFirstHelper(currentFirst, resultLst_p); // let this predecessor find all its direct/indirect predecessors
+			}
+		}
+	}
+}
+
+STMT_LIST DesignExtractor::getAffectsStarSecond(STMT stmt1, BOOLEAN exhaustive)
+{
+	STMT_LIST resultLst; //the result list as well as visited stmt list
+
+	if(!exhaustive) { //stop once one result is found
+		STMT_LIST directAffectedLst = getAffectsSecond(stmt1, false);
+		int size = directAffectedLst.size();
+		if(size == 0) { //no direct Affects result, which means no Affects* result
+			return resultLst;
+		} else { //Affects result found, which also satisfy Affects*, since search is non-exhaustive, add one result and return
+			resultLst.push_back(directAffectedLst.at(0));
+			return resultLst;
+		}
+	} else { //find all results
+		getAffectsStarSecondHelper(stmt1, &resultLst);
+		return resultLst;
+	}
+}
+
+void DesignExtractor::getAffectsStarSecondHelper(STMT stmt1, STMT_LIST* resultLst_p)
+{
+	STMT_LIST directAffectedLst = getAffectsSecond(stmt1, true);
+
+	if (directAffectedLst.size() == 0) { // no more successor, base case, stop and return
+		return;
+	}else {
+		int directAffectedLstSize = directAffectedLst.size();
+		for (int i = 0; i < directAffectedLstSize; i++) { // loop through each direct successor
+			int currentSecond = directAffectedLst.at(i);
+			if(indexOf((*resultLst_p), currentSecond) >= 0){
+				//current successor is in the result list, which means it has been visited, do not visit it again
+			} else {
+				resultLst_p->push_back(currentSecond); //add this successor into result list
+				getAffectsStarSecondHelper(currentSecond, resultLst_p); // let this successor find all its direct/indirect successors
+			}
+		}
+	}
+}
+
+BOOLEAN DesignExtractor::affectsStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg)
+{
+	switch (arg)
+	{
+	case 0:
+		return affectsStar00(st1s_ptr, st2s_ptr);
+	case 1:
+		return affectsStar01(st1s_ptr, st2s_ptr);
+	case 2:
+		return affectsStar10(st1s_ptr, st2s_ptr);
+	case 3:
+		return affectsStar11(st1s_ptr, st2s_ptr);
+	default:
+		throw "arg is invalid.";
+	}
+}
+
+BOOLEAN DesignExtractor::affectsStar00( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
+{
+	int size1 = st1s_p->size();
+	int size2 = st2s_p->size();
+
+	if(size1==0 && size2==0) { //case 1a
+		STMT_LIST allAssign;
+		getAllAssignment(&allAssign);
+		int size = allAssign.size();
+		for(int i=0; i<size; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(allAssign.at(i), false); //exhaustive is false, stops once one assign found
+			if(affectedAssigns.size()>0) //one pair of a1, a2 satisfy Affects(a1,a2)
+				return true;
+		}
+		return false;
+	} else if(size1==0 && size2>0) { //case 1b
+		for(int i=0; i<size2; i++) {
+			STMT_LIST affectAssigns = getAffectsFirst(st2s_p->at(i), false);
+			if(affectAssigns.size()>0)
+				return true;
+		}
+		return false;
+	} else if(size1>0 && size2==0) { //case 1c
+		for(int i=0; i<size1; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(st1s_p->at(i), false);
+			if(affectedAssigns.size()>0)
+				return true;
+		}
+		return false;
+	} else { //case 1d
+		for (int i = 0; i < size1; i++)
+		{
+			for (int j = 0; j < size2; j++)
+			{	
+				if(isAffectsStar(st1s_p->at(i),st2s_p->at(j))) return true;
+			}
+		}
+		return false;
+	}
+}
+
+BOOLEAN DesignExtractor::affectsStar01( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
+{
+	int size1 = st1s_p->size();
+	int size2 = st2s_p->size();
+
+	if(size1==0 && size2==0) { //case 2a
+		STMT_LIST allAssign;
+		getAllAssignment(&allAssign);
+		int size = allAssign.size();
+		for(int i=0; i<size; i++) {
+			STMT_LIST affectAssigns = getAffectsFirst(allAssign.at(i), false); //exhaustive is false, check for existence
+			if(affectAssigns.size()>0)
+				st2s_p->push_back(allAssign.at(i));
+		}
+	} else if(size1==0 && size2>0) { //case 2c
+		int index = 0;
+		for (int i = 0; i < size2; i++) {
+			STMT_LIST affectAssigns = getAffectsFirst(st2s_p->at(index), false);
+			if(affectAssigns.size()==0) {
+				st2s_p->erase(st2s_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	} else if(size1>0 && size2==0) { //case 2b
+		for (int i = 0; i < size1; i++) {
+			STMT_LIST affectedAssigns = getAffectsStarSecond(st1s_p->at(i), true);
+			for (int j = 0; j < affectedAssigns.size(); j++) {
+				st2s_p->push_back(affectedAssigns.at(j));
+			}
+		}
+	} else { //case 2d
+		int index = 0;
+		for (int i = 0; i < size2; i++) {
+			BOOLEAN noMatch = true;
+			for (int j = 0; j < size1; j++) {
+				if (isAffectsStar(st1s_p->at(j), st2s_p->at(index))) {
+					noMatch = false;
+					break;
+				}
+			}
+			if (noMatch) {
+				st2s_p->erase(st2s_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	}
+
+	if (st2s_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
+}
+
+BOOLEAN DesignExtractor::affectsStar10( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
+{
+	int size1 = st1s_p->size();
+	int size2 = st2s_p->size();
+
+	if(size1==0 && size2==0) { //case 3a
+		STMT_LIST allAssign;
+		getAllAssignment(&allAssign);
+		int size = allAssign.size();
+		for(int i=0; i<size; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(allAssign.at(i), false); //exhaustive is false, check for existence
+			if(affectedAssigns.size()>0)
+				st1s_p->push_back(allAssign.at(i));
+		}
+	} else if(size1==0 && size2>0) { //case 3b
+		for (int i = 0; i < size2; i++) {
+			STMT_LIST affectAssigns = getAffectsStarFirst(st2s_p->at(i), true);
+			for (int j = 0; j < affectAssigns.size(); j++) {
+				st1s_p->push_back(affectAssigns.at(j));
+			}
+		}	
+	} else if(size1>0 && size2==0) { //case 3c
+		int index = 0;
+		for (int i = 0; i < size1; i++) {
+			STMT_LIST affectedAssigns = getAffectsSecond(st1s_p->at(index), false);
+			if(affectedAssigns.size()==0) {
+				st1s_p->erase(st1s_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	} else { //case 3d
+		int index = 0;
+		for (int i = 0; i < size1; i++) {
+			BOOLEAN noMatch = true;
+			for (int j = 0; j < size2; j++) {
+				if (isAffectsStar(st1s_p->at(index), st2s_p->at(j))) {
+					noMatch = false;
+					break;
+				}
+			}
+			if (noMatch) {
+				st1s_p->erase(st1s_p->begin() + index);
+				// index remain the same
+			}else {
+				// do not remove the element
+				index++;
+			}
+		}
+	}
+
+	if (st1s_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
+}
+
+BOOLEAN DesignExtractor::affectsStar11( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
+{
+	int size1 = st1s_p->size();
+	int size2 = st2s_p->size();
+
+	if ((size1 == 0) && (size2 == 0)) { //case 4a
+		STMT_LIST allAssigns;
+		getAllAssignment(&allAssigns);
+		for(int i=0; i<allAssigns.size(); i++) {
+			int current = allAssigns.at(i);
+			STMT_LIST affectedAssigns = getAffectsStarSecond(current, true);
+			for(int j=0; j<affectedAssigns.size(); j++) {
+				st1s_p->push_back(current);
+				st2s_p->push_back(affectedAssigns.at(j));
+			}
+		}
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 4b
+		vector<int> st2s_copy;
+		for (int i = 0; i < size2; i++) {
+			st2s_copy.push_back(st2s_p->at(i));
+		}
+		st2s_p->clear();
+
+		for (int i = 0; i < size2; i++) {
+			int currentEleSt2s = st2s_copy.at(i);
+			vector<int> temp = getAffectsStarFirst(currentEleSt2s,true);
+			int tempSize = temp.size();
+			if (tempSize == 0) {
+				//do not fill in vector
+			}else {
+				for (int j = 0; j < tempSize; j++) {
+					st1s_p->push_back(temp.at(j));
+					st2s_p->push_back(currentEleSt2s);
+				}
+			}
+		}
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 4c
+		vector<int> st1s_copy;
+		for (int i = 0; i < size1; i++) {
+			st1s_copy.push_back(st1s_p->at(i));
+		}
+		st1s_p->clear();
+
+		for (int i = 0; i < size1; i++) {
+			int currentEleSt1s = st1s_copy.at(i);
+			vector<int> temp = getAffectsStarSecond(currentEleSt1s, true);
+			int tempSize = temp.size();
+			if (tempSize == 0) {
+				//do not fill in vector
+			}else {
+				for (int j = 0; j < tempSize; j++) {
+					st1s_p->push_back(currentEleSt1s);
+					st2s_p->push_back(temp.at(j));
+				}
+			}
+		}
+	}else {           //size1!=0 && size2!=0, case 4d
+		if (size1 == size2) { //case 4d
+			int index = 0;
+			for (int i = 0; i < size1; i++) {
+				if (isAffectsStar(st1s_p->at(index), st2s_p->at(index))) {
+					index++;
+				}else {
+					st1s_p->erase(st1s_p->begin() + index);
+					st2s_p->erase(st2s_p->begin() + index);
+				}
+			}
+		}else {  //exception
+			throw "arg is 11, but sizes of both vectors are not the same.";
+		}
+	}
+	if (st1s_p->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
 }
 
 

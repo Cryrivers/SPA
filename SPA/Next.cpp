@@ -72,7 +72,6 @@ STMT_LIST Next::getNextFirst(STMT stmt2)
 	return (resultLst);
 }
 
-
 STMT_LIST Next::getNextSecond(STMT stmt1)
 {
 	vector<int> resultLst;
@@ -86,57 +85,6 @@ STMT_LIST Next::getNextSecond(STMT stmt1)
 	}
 	return (resultLst);
 }
-
-/*
-STMT_LIST Next::getNextStarFirst(STMT stmt2)
-{
-	STMT_LIST* visitedNodes = new STMT_LIST();
-	STMT_LIST result = getNextStarFirstHelper(stmt2, visitedNodes);
-	
-	cout<<"-------------------------------------------------"<<endl;
-	cout<<"visitedNodes are: ";
-	for(int i=0; i<visitedNodes->size(); i++)
-		cout<<(visitedNodes->at(i))<<" ";
-	cout<<endl;
-	cout<<"result list is: ";
-	for(int i=0; i<result.size(); i++)
-		cout<<(result.at(i))<<" ";
-	cout<<endl;
-	cout<<"--------------------------------------------------"<<endl;
-	
-	delete visitedNodes;
-	return result;
-}
-
-STMT_LIST Next::getNextStarFirstHelper(STMT stmt2, STMT_LIST* visitedNodes)
-{
-	STMT_LIST resultLst;
-	STMT_LIST directFirstLst = getNextFirst(stmt2);
-
-	if (directFirstLst.size() == 0) { // no more predecessor, base case, stop and return
-		return(resultLst);
-	}else {
-		int directFirstLstSize = directFirstLst.size();
-		for (int i = 0; i < directFirstLstSize; i++) { // loop through each direct predecessor
-			int currentFirst = directFirstLst.at(i);
-			if(indexOf((*visitedNodes), currentFirst) >= 0){
-				//current predecessor has been visited, do not visit it again
-			} else {
-				visitedNodes->push_back(currentFirst); //mark current predecessor as visited to avoid re-visit
-				resultLst.push_back(currentFirst);     // add in this predecessor
-				STMT_LIST temp = getNextStarFirstHelper(currentFirst, visitedNodes); // let this predecessor find all its direct/indirect predecessors
-				if (temp.size() != 0) {                // this predecessor is not the start
-					for (int j = 0; j < temp.size(); j++) { // add all its predecessor as own predecessor
-						resultLst.push_back(temp.at(j));
-					}
-				}
-			}
-		}
-		return(resultLst);
-	}
-}
-*/
-
 
 STMT_LIST Next::getNextStarFirst(STMT stmt2)
 {
@@ -172,56 +120,6 @@ void Next::getNextStarFirstHelper(STMT stmt2, STMT_LIST* resultLst)
 		}
 	}
 }
-
-/*
-STMT_LIST Next::getNextStarSecond(STMT stmt1)
-{
-	STMT_LIST* visitedNodes = new STMT_LIST();
-	STMT_LIST result = getNextStarSecondHelper(stmt1, visitedNodes);
-	
-	cout<<"-------------------------------------------------"<<endl;
-	cout<<"visitedNodes are: ";
-	for(int i=0; i<visitedNodes->size(); i++)
-		cout<<(visitedNodes->at(i))<<" ";
-	cout<<endl;
-	cout<<"result list is: ";
-	for(int i=0; i<result.size(); i++)
-		cout<<(result.at(i))<<" ";
-	cout<<endl;
-	cout<<"--------------------------------------------------"<<endl;
-	
-	delete visitedNodes;
-	return result;
-}
-
-STMT_LIST Next::getNextStarSecondHelper(STMT stmt1, STMT_LIST* visitedNodes)
-{
-	STMT_LIST resultLst;
-	STMT_LIST directSecondLst = getNextSecond(stmt1);
-
-	if (directSecondLst.size() == 0) { // no more successor, base case, stop and return
-		return(resultLst);
-	}else {
-		int directSecondLstSize = directSecondLst.size();
-		for (int i = 0; i < directSecondLstSize; i++) { // loop through each direct successor
-			int currentSecond = directSecondLst.at(i);
-			if(indexOf((*visitedNodes), currentSecond) >= 0){
-				//current successor has been visited, do not visit it again
-			} else {
-				visitedNodes->push_back(currentSecond); //mark current successor as visited to avoid re-visit
-				resultLst.push_back(currentSecond);     // add in this successor
-				STMT_LIST temp = getNextStarSecondHelper(currentSecond, visitedNodes); // let this successor find all its direct/indirect successor
-				if (temp.size() != 0) {                // this successor is not the end
-					for (int j = 0; j < temp.size(); j++) { // add all its successor as own successor
-						resultLst.push_back(temp.at(j));
-					}
-				}
-			}
-		}
-		return(resultLst);
-	}
-}
-*/
 
 STMT_LIST Next::getNextStarSecond(STMT stmt1)
 {
@@ -363,7 +261,6 @@ BOOLEAN Next::next(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg)
 	}
 }
 
-
 BOOLEAN Next::next_00(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 {
 	int size1 = st1s_p->size();
@@ -404,7 +301,6 @@ BOOLEAN Next::next_00(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 		return(false);
 	}
 }
-
 
 BOOLEAN Next::next_01(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 {
@@ -551,7 +447,6 @@ BOOLEAN Next::next_10(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 		return(false);
 	}
 }
-
 
 BOOLEAN Next::next_11(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 {
@@ -969,3 +864,112 @@ STMT_LIST Next::getAllNextSecond()
 {
 	return(stmt2s);
 }
+
+
+
+
+
+
+
+
+
+//The following codes are old codes, which might be used when new codes are wrong.
+/*
+STMT_LIST Next::getNextStarFirst(STMT stmt2)
+{
+	STMT_LIST* visitedNodes = new STMT_LIST();
+	STMT_LIST result = getNextStarFirstHelper(stmt2, visitedNodes);
+	
+	cout<<"-------------------------------------------------"<<endl;
+	cout<<"visitedNodes are: ";
+	for(int i=0; i<visitedNodes->size(); i++)
+		cout<<(visitedNodes->at(i))<<" ";
+	cout<<endl;
+	cout<<"result list is: ";
+	for(int i=0; i<result.size(); i++)
+		cout<<(result.at(i))<<" ";
+	cout<<endl;
+	cout<<"--------------------------------------------------"<<endl;
+	
+	delete visitedNodes;
+	return result;
+}
+
+STMT_LIST Next::getNextStarFirstHelper(STMT stmt2, STMT_LIST* visitedNodes)
+{
+	STMT_LIST resultLst;
+	STMT_LIST directFirstLst = getNextFirst(stmt2);
+
+	if (directFirstLst.size() == 0) { // no more predecessor, base case, stop and return
+		return(resultLst);
+	}else {
+		int directFirstLstSize = directFirstLst.size();
+		for (int i = 0; i < directFirstLstSize; i++) { // loop through each direct predecessor
+			int currentFirst = directFirstLst.at(i);
+			if(indexOf((*visitedNodes), currentFirst) >= 0){
+				//current predecessor has been visited, do not visit it again
+			} else {
+				visitedNodes->push_back(currentFirst); //mark current predecessor as visited to avoid re-visit
+				resultLst.push_back(currentFirst);     // add in this predecessor
+				STMT_LIST temp = getNextStarFirstHelper(currentFirst, visitedNodes); // let this predecessor find all its direct/indirect predecessors
+				if (temp.size() != 0) {                // this predecessor is not the start
+					for (int j = 0; j < temp.size(); j++) { // add all its predecessor as own predecessor
+						resultLst.push_back(temp.at(j));
+					}
+				}
+			}
+		}
+		return(resultLst);
+	}
+}
+*/
+
+/*
+STMT_LIST Next::getNextStarSecond(STMT stmt1)
+{
+	STMT_LIST* visitedNodes = new STMT_LIST();
+	STMT_LIST result = getNextStarSecondHelper(stmt1, visitedNodes);
+	
+	cout<<"-------------------------------------------------"<<endl;
+	cout<<"visitedNodes are: ";
+	for(int i=0; i<visitedNodes->size(); i++)
+		cout<<(visitedNodes->at(i))<<" ";
+	cout<<endl;
+	cout<<"result list is: ";
+	for(int i=0; i<result.size(); i++)
+		cout<<(result.at(i))<<" ";
+	cout<<endl;
+	cout<<"--------------------------------------------------"<<endl;
+	
+	delete visitedNodes;
+	return result;
+}
+
+STMT_LIST Next::getNextStarSecondHelper(STMT stmt1, STMT_LIST* visitedNodes)
+{
+	STMT_LIST resultLst;
+	STMT_LIST directSecondLst = getNextSecond(stmt1);
+
+	if (directSecondLst.size() == 0) { // no more successor, base case, stop and return
+		return(resultLst);
+	}else {
+		int directSecondLstSize = directSecondLst.size();
+		for (int i = 0; i < directSecondLstSize; i++) { // loop through each direct successor
+			int currentSecond = directSecondLst.at(i);
+			if(indexOf((*visitedNodes), currentSecond) >= 0){
+				//current successor has been visited, do not visit it again
+			} else {
+				visitedNodes->push_back(currentSecond); //mark current successor as visited to avoid re-visit
+				resultLst.push_back(currentSecond);     // add in this successor
+				STMT_LIST temp = getNextStarSecondHelper(currentSecond, visitedNodes); // let this successor find all its direct/indirect successor
+				if (temp.size() != 0) {                // this successor is not the end
+					for (int j = 0; j < temp.size(); j++) { // add all its successor as own successor
+						resultLst.push_back(temp.at(j));
+					}
+				}
+			}
+		}
+		return(resultLst);
+	}
+}
+*/
