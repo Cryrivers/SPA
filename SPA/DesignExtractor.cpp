@@ -1558,7 +1558,7 @@ STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2, BOOLEAN exhaustive)
 	//if exhaustive is true, the function finds all assignments that affect stmt2.
 	//if exhaustive is false, the function stops once one assignment is found.
 
-	vector<CFGNode*>* visitedNodes = new vector<CFGNode*>();
+	vector<CFGNode*> visitedNodes;
 	STMT_LIST stmt2s;
 	stmt2s.push_back(stmt2);
 	VAR_INDEX_LIST usedVars;
@@ -1590,17 +1590,16 @@ STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2, BOOLEAN exhaustive)
 		}
 
 		if(carryOn) { //should proceed to previous CFGNode
-			STMT_LIST temp = getAffectsFirstHelper(endNode, visitedNodes, vars, exhaustive);
+			STMT_LIST temp = getAffectsFirstHelper(endNode, &visitedNodes, vars, exhaustive);
 			for(int j=0; j<temp.size(); j++) { //combine results for all variables
 				result.push_back(temp.at(j));
 				if(!exhaustive)
 					return result;
 			}
-			visitedNodes->clear();
+			visitedNodes.clear();
 		}
 	}
  
-	delete visitedNodes;
 	return result;
 }
 
@@ -1670,7 +1669,7 @@ STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1, BOOLEAN exhaustive)
 	//if exhaustive is true, the function finds all assignments affected by stmt1.
 	//if exhaustive is false, the function stops once one assignment is found.
 
-	vector<CFGNode*>* visitedNodes = new vector<CFGNode*>();
+	vector<CFGNode*> visitedNodes;
 	STMT_LIST stmt1s;
 	stmt1s.push_back(stmt1);
 	VAR_INDEX_LIST modifiedVar;
@@ -1703,16 +1702,14 @@ STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1, BOOLEAN exhaustive)
 	}
 
 	if(carryOn) { //should proceed to next CFGNode
-		STMT_LIST temp = getAffectsSecondHelper(startNode, visitedNodes, modifiedVar, exhaustive);
+		STMT_LIST temp = getAffectsSecondHelper(startNode, &visitedNodes, modifiedVar, exhaustive);
 		for(int j=0; j<temp.size(); j++) {
 			result.push_back(temp.at(j));
 			if(!exhaustive)
 				return result;
 		}
-		//visitedNodes->clear();
 	}
  
-	delete visitedNodes;
 	return result;
 }
 
@@ -1947,10 +1944,16 @@ BOOLEAN DesignExtractor::affects11( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 	int size2 = st2s_p->size();
 
 	if ((size1 == 0) && (size2 == 0)) { //case 4a
-		if(affects10(st1s_p,st2s_p))
-			return affects11(st1s_p,st2s_p);
-		else
-			return false;
+		STMT_LIST allAssigns;
+		getAllAssignment(&allAssigns);
+		for(int i=0; i<allAssigns.size(); i++) {
+			int current = allAssigns.at(i);
+			STMT_LIST affectedAssigns = getAffectsSecond(current, true);
+			for(int j=0; j<affectedAssigns.size(); j++) {
+				st1s_p->push_back(current);
+				st2s_p->push_back(affectedAssigns.at(j));
+			}
+		}
 	}else if (size1 == 0) {  //size1==0 && size2!=0, case 4b
 		vector<int> st2s_copy;
 		for (int i = 0; i < size2; i++) {
