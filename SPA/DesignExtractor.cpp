@@ -1600,20 +1600,21 @@ STMT_LIST DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*
 {
 	STMT_LIST resultLst;
 	vector<CFGNode*> prev_nodes;
-	STMT_LIST prev_stmts;
-	STMT_LIST stmt2s; 
-	stmt2s.push_back(node2->getStartStatement());
+	//STMT_LIST prev_stmts;
+	//STMT_LIST stmt2s; 
+	//stmt2s.push_back(node2->getStartStatement());
 
-	_pkb->next(&prev_stmts, &stmt2s, 2);
+	//_pkb->next(&prev_stmts, &stmt2s, 2);
+	prev_nodes = node2->getPrevEdges();
 	
-	if (prev_stmts.size() == 0) { // no more predecessor, base case, stop and return
+	if (prev_nodes.size() == 0) { // no more predecessor, base case, stop and return
 		return(resultLst);
 	}else {
-		int prev_stmts_size = prev_stmts.size();
-		for(int i=0; i<prev_stmts_size; i++) {
-			prev_nodes.push_back(_pkb->getCFG()->getCFGNodeByStmtNumber(prev_stmts.at(i)));
-		}
-		for (int i = 0; i < prev_stmts_size; i++) { // loop through each previous CFGNode
+		int prev_nodes_size = prev_nodes.size();
+		//for(int i=0; i<prev_nodes_size; i++) {
+			//prev_nodes.push_back(_pkb->getCFG()->getCFGNodeByStmtNumber(prev_stmts.at(i)));
+		//}
+		for (int i = 0; i < prev_nodes_size; i++) { // loop through each previous CFGNode
 			CFGNode* currentNode = prev_nodes.at(i);
 			if(indexOf((*visitedNodes), currentNode) >= 0){
 				//current predecessor has been visited, do not visit it again
@@ -1699,20 +1700,21 @@ STMT_LIST DesignExtractor::getAffectsSecondHelper(CFGNode* node1, vector<CFGNode
 {
 	STMT_LIST resultLst;
 	vector<CFGNode*> next_nodes;
-	STMT_LIST next_stmts;
-	STMT_LIST stmt1s; 
-	stmt1s.push_back(node1->getEndStatement());
+	//STMT_LIST next_stmts;
+	//STMT_LIST stmt1s; 
+	//stmt1s.push_back(node1->getEndStatement());
 
-	_pkb->next(&stmt1s, &next_stmts, 1);
+	//_pkb->next(&stmt1s, &next_stmts, 1);
+	next_nodes = node1->getNextEdges();
 	
-	if (next_stmts.size() == 0) { // no more successor, base case, stop and return
+	if (next_nodes.size() == 0) { // no more successor, base case, stop and return
 		return(resultLst);
 	}else {
-		int next_stmts_size = next_stmts.size();
-		for(int i=0; i<next_stmts_size; i++) {
-			next_nodes.push_back(_pkb->getCFG()->getCFGNodeByStmtNumber(next_stmts.at(i)));
-		}
-		for (int i = 0; i < next_stmts_size; i++) { // loop through each next CFGNode
+		int next_nodes_size = next_nodes.size();
+		//for(int i=0; i<next_nodes_size; i++) {
+			//next_nodes.push_back(_pkb->getCFG()->getCFGNodeByStmtNumber(next_stmts.at(i)));
+		//}
+		for (int i = 0; i < next_nodes_size; i++) { // loop through each next CFGNode
 			CFGNode* currentNode = next_nodes.at(i);
 			if(indexOf((*visitedNodes), currentNode) >= 0){
 				//current successor has been visited, do not visit it again
