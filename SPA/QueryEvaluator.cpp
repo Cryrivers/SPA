@@ -225,6 +225,8 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 			*vecA = dependencymap[depA][a]; // get vector a
 			*vecB = dependencymap[depB][b]; // get vector b
 			
+			removeDuplicatesPair(*vecA, *vecB);
+			
 			// no need for cartesian product as both must belong to the same dependency
 			return true;
 		
@@ -363,6 +365,7 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 	switch (arg) {
 		case 3: // store both vecA and vecB
 
+			removeDuplicatesPair(*vecA, *vecB);
 			dep = qVariableList.at(a).dependency; // a and b must be of the same dependency
 			
 			if (dependencymap.count(dep) == 1) { 
@@ -384,6 +387,7 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 
 		case 2: // store only vecA
 		
+			*vecA = removeDuplicates(*vecA);
 			dep = qVariableList.at(a).dependency;
 			
 			if (dependencymap.count(dep) == 1) { 
@@ -404,6 +408,7 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 
 		case 1: // store only vecB
 			
+			*vecB = removeDuplicates(*vecB);
 			dep = qVariableList.at(b).dependency;
 			
 			if (dependencymap.count(dep) == 1) { 
@@ -466,7 +471,8 @@ bool QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec) {
 				for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
 					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin() + index);
 				}
-			}
+			} // do nothing if matched
+
 		}
 
 		if (dependencymap[dep][v].empty()) // intersection is null
@@ -541,7 +547,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 				for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
 					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin() + index);
 				}
-			}
+			} // do nothing if matched
+
 		}
 
 		if (dependencymap[dep][a].empty()) // intersection is null
@@ -736,8 +743,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 	return true;
 
- }	
-		
+ }			
 
  /**
  * \fn		QueryEvaluator::getTarget(QueryTarget qt)
@@ -985,6 +991,32 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
  vector<int> QueryEvaluator::removeDuplicates(vector<int> vec) {
 	set<int> s(vec.begin(), vec.end());
 	return vector<int> (s.begin(), s.end());
+}
+
+/**
+ * \fn		QueryEvaluator::removeDuplicatesPair(vector<int>* vecA, vector<int>* vecB)
+ * \brief	Removes duplicate pair elements in the vectors. 
+ * \param [in] vecA: first vector
+ *		  [in] vecB: second vector
+ * \return 	true.
+ */
+ bool QueryEvaluator::removeDuplicatesPair(vector<int>* vecA, vector<int>* vecB) {
+	
+	set<pair<int, int>> s;
+	
+	for (int i = 0; i < vecA->size(); i++) {
+		s.insert(make_pair(vecA->at(i), vecB->at(i)));
+	}
+
+	vecA->clear();
+	vecB->clear();
+
+	for (set<pair<int, int>>::iterator it = s.begin(); it != s.end(); ++it) {
+		vecA->push_back((*it).first);
+		vecB->push_back((*it).second);
+	}
+	
+	return true;
 }
 
 /**

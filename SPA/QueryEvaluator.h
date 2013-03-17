@@ -27,14 +27,17 @@ class QueryEvaluator
 
 	bool getVectors(vector<int>*, vector<int>*, QueryClause, int*);
 	bool getVector(vector<int>*, int, int*, int);
+	
 	bool intersect(vector<int>*, vector<int>*, int, int, int);
 	bool intersectDependencyMap(int, int, vector<int>*);
 	bool intersectDependencyMapPair(int, int, vector<int>*, int, vector<int>*);
-	bool cartesianProduct(vector<int>*, vector<int>*);
+	
 	bool getResult(list<string>&);
 	bool getTarget(QueryTarget);
 
 	vector<int> removeDuplicates(vector<int>);
+	bool removeDuplicatesPair(vector<int>*, vector<int>*);
+	bool cartesianProduct(vector<int>*, vector<int>*);
 	int getWithType(int);
 
 public:
