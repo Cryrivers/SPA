@@ -720,7 +720,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	}
 	
 	// make use of repetitionMap to populate results
-	for (int i = 1; i <= resultSize; i++) {
+	for (int i = 0; i < resultSize; i++) {
 		
 		string r = "";
 
@@ -729,17 +729,20 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			int dep = QTLDepVarList[j].first;
 			int qvIndex = QTLDepVarList[j].second;
 			int rep = repetitionMap[(dep == -1 ? dep*qvIndex : dep)];
-			vector<string> tvalues = targetmap[dep][qvIndex];
-			
-			int index = (i%(rep*tvalues.size()))/rep;
+			int index = (i%(rep*targetmap[dep][qvIndex].size()))/rep;
 
-			r += tvalues[index] + " ";
+			r += targetmap[dep][qvIndex][index] + " ";
 		
 		}
 
 		result.push_back(r);
 
 	}
+	
+	
+	/*for (int i = 0; i < targetmap[2][0].size(); i++) {
+		result.push_back(targetmap[2][0][i]);
+	}*/
 
 	return true;
 
