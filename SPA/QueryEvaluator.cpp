@@ -81,7 +81,7 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 	vector<int> vectorA, vectorB;
 	int arg;
 
-	if (!getVectors(&vectorA, &vectorB, qc.variable1, qc.variable2, &arg))
+	if (!getVectors(&vectorA, &vectorB, qc, &arg))
 		return false; // unable to get vectors
 
 	switch (qc.relationType) {
@@ -159,8 +159,15 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 			break;
 			
 		case RT_AFFECTS:
+
+			if (!pkb->affects(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
 		case RT_AFFECTST:
 			
+			if (!pkb->affectsStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
 			break;
 			
 		case CT_PATTERN:
@@ -184,19 +191,20 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 }
 
 /**
- * \fn		QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int b, int *arg)
- * \brief	Retrieves 2 vectors and dependency corresponding to the 2 variables a, b for querying clauses.  
- * \param [in]	a: 1st query variable index;
- *				b: 2nd query variable index.
- * \param [out]	vecA: vector corresponding to a;
- *				vecB: vector corresponding to b;
- *				arg:  the dependency of a and b. 
+ * \fn		QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB,  QueryClause qc, int *arg)
+ * \brief	Retrieves 2 vectors and dependency corresponding to the 2 variables a, b in the querying clause.  
+ * \param [in]	qc: query clause;
+ *		  [out]	vecA: vector corresponding to a;
+ *		  [out]	vecB: vector corresponding to b;
+ *		  [out]	arg:  the dependency of a and b. 
  * \return 	TRUE if vectors could be obtained, FALSE otherwise
  */
-bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int b, int *arg) {
+bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClause qc, int *arg) {
 	
-	int argA, argB, depA, depB;
+	int a, b, argA, argB, depA, depB;
 	
+	a = qc.variable1;
+	b = qc.variable2;
 	depA = qVariableList.at(a).dependency; 
 	depB = qVariableList.at(b).dependency;
 	argA = 0;
@@ -223,7 +231,7 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 		case 2: // only a is found in dependency map
 
 			*vecA = removeDuplicates(dependencymap[depA][a]); // get vector a
-			if (!getVector(vecB, b, &argB)) // get vector b 
+			if (!getVector(vecB, b, &argB, qc.relationType)) // get vector b 
 				return false;
 			if (argB == 1 && !vecB->empty() && !cartesianProduct(vecA, vecB)) // perform cartesian product if vecB is dependent and not empty
 				return false;
@@ -233,7 +241,7 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 		case 1: // only b is found in dependency map
 			
 			*vecB = removeDuplicates(dependencymap[depB][b]); // get vector b
-			if (!getVector(vecA, a, &argA)) // get vector a
+			if (!getVector(vecA, a, &argA, qc.relationType)) // get vector a
 				return false;
 			if (argA == 1 && !vecA->empty() && !cartesianProduct(vecA, vecB)) // perform cartesian product if vecA is dependent and not empty
 				return false;
@@ -242,9 +250,9 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 
 		case 0: // both a and b are not found in dependency map
 			
-			if (!getVector(vecA, a, &argA)) // get vector a
+			if (!getVector(vecA, a, &argA, qc.relationType)) // get vector a
 				return false;
-			if (!getVector(vecB, b, &argB)) // get vector b
+			if (!getVector(vecB, b, &argB, qc.relationType)) // get vector b
 				return false;
 			*arg = 2*argA + argB;
 			// if arg = 3 (both dependent) and vecA and vecB are both not empty, do cartesian product 
@@ -257,14 +265,15 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 }
  
 /**
- * \fn		QueryEvaluator::getVectorsgetVector(vector<int>* vec, int v, int *arg)
- * \brief	Fills up vector vec given query variable v. Currently, v does not appear in dependency map.  
+ * \fn		QueryEvaluator::getVector(vector<int>* vec, int v, int *arg, int rel)
+ * \brief	Fills up vector vec given query variable v and its relation. Currently, v does not appear in dependency map.  
  * \param [in]	v: query variable index.
- * \param [out]	vec: vector corresponding to v;
- *				arg:  the dependency of v. 
+ *		  [in]	rel: the relation we are evaluating	
+ *		  [out]	vec: vector corresponding to v;
+ *		  [out]	arg:  the dependency of v. 
  * \return 	TRUE if vector could be obtained, FALSE otherwise
  */
- bool QueryEvaluator::getVector(vector<int>* vec, int v, int *arg) {
+ bool QueryEvaluator::getVector(vector<int>* vec, int v, int *arg, int rel) {
 	
 	QueryVariable qv = qVariableList.at(v);
 
@@ -272,10 +281,14 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, int a, int
 		
 		case DT_ASSIGN: 	
 			
-			if (!pkb->getAllAssignment(vec))
-				return false;
+			if (rel != RT_AFFECTS && rel != RT_AFFECTST) {
+			// do not get all assignments if relation is affects or affects*
+				
+				if (!pkb->getAllAssignment(vec))
+					return false;		
+			}
 			break;
-		
+
 		case DT_WHILE: 		
 			
 			if (!pkb->getAllWhile(vec))

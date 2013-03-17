@@ -25,8 +25,8 @@ class QueryEvaluator
 	bool evaluateQuery();
 	bool evaluateClause(QueryClause);
 
-	bool getVectors(vector<int>*, vector<int>*, int, int, int*);
-	bool getVector(vector<int>*, int, int*);
+	bool getVectors(vector<int>*, vector<int>*, QueryClause, int*);
+	bool getVector(vector<int>*, int, int*, int);
 	bool intersect(vector<int>*, vector<int>*, int, int, int);
 	bool intersectDependencyMap(int, int, vector<int>*);
 	bool intersectDependencyMapPair(int, int, vector<int>*, int, vector<int>*);
