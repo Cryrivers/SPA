@@ -225,7 +225,7 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 			*vecA = dependencymap[depA][a]; // get vector a
 			*vecB = dependencymap[depB][b]; // get vector b
 			
-			removeDuplicatesPair(*vecA, *vecB);
+			removeDuplicatesPair(vecA, vecB);
 			
 			// no need for cartesian product as both must belong to the same dependency
 			return true;
@@ -365,7 +365,7 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 	switch (arg) {
 		case 3: // store both vecA and vecB
 
-			removeDuplicatesPair(*vecA, *vecB);
+			removeDuplicatesPair(vecA, vecB);
 			dep = qVariableList.at(a).dependency; // a and b must be of the same dependency
 			
 			if (dependencymap.count(dep) == 1) { 
