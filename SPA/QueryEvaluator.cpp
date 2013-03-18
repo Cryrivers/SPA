@@ -33,6 +33,7 @@ bool QueryEvaluator::evaluate(map<int, vector<QueryClause>> qcl, vector<QueryVar
 	qVariableList = qvl;
 	qTargetList = qtl;
 	dependencymap.clear();
+	targetmap.clear();
 
 	//optimise();
 	
