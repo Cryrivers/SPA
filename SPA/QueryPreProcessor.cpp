@@ -1246,13 +1246,39 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				if(ia==-1||ib==-1){
 					return false;
 				} 
-				if(queryVarTable[ia].variableType!=DT_ASSIGN&&queryVarTable[ia].variableType!=DT_UNDERSCORE){
+				if(queryVarTable[ia].variableType!=DT_ASSIGN&&queryVarTable[ia].variableType!=DT_UNDERSCORE&&queryVarTable[ia].variableType!=KT_STMT_NUM){
 					if(DEBUGMODE) cout<<"@setupClaTable(): Variable 1 not assign: ["<<ia<<"]"<<endl;
 					return false;
+				} else if (queryVarTable[ia].variableType==KT_STMT_NUM){
+					STMT_LIST st;
+					pkb->getAllAssignment(&st);
+					int cou=0;
+					for(cou; cou<st.size(); cou++){					 
+						if(st[cou]==queryVarTable[ia].content){			 
+							break;
+						}
+					}
+					if(cou==st.size()) {
+						if(DEBUGMODE) cout<<"@setupClaTable(): Variable 1 not assign: ["<<ia<<"]"<<endl;
+						return false;
+					}
 				}
-				if(queryVarTable[ib].variableType!=DT_ASSIGN&&queryVarTable[ib].variableType!=DT_UNDERSCORE){
+				if(queryVarTable[ib].variableType!=DT_ASSIGN&&queryVarTable[ib].variableType!=DT_UNDERSCORE&&queryVarTable[ib].variableType!=KT_STMT_NUM){
 					if(DEBUGMODE) cout<<"@setupClaTable(): Variable 2 not assign: ["<<ib<<"]"<<endl;
 					return false;
+				}  else if (queryVarTable[ib].variableType==KT_STMT_NUM){
+					STMT_LIST st;
+					pkb->getAllAssignment(&st);
+					int cou=0;
+					for(cou; cou<st.size(); cou++){					 
+						if(st[cou]==queryVarTable[ib].content){			 
+							break;
+						}
+					}
+					if(cou==st.size()) {
+						if(DEBUGMODE) cout<<"@setupClaTable(): Variable 1 not assign: ["<<ib<<"]"<<endl;
+						return false;
+					}
 				}
 				if(m==6){
 					qc.relationType=RT_AFFECTST;
