@@ -731,7 +731,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			int rep = repetitionMap[(dep == -1 ? dep*qvIndex : dep)];
 			int index = (i%(rep*targetmap[dep][qvIndex].size()))/rep;
 
-			r += targetmap[dep][qvIndex][index] + " ";
+			r += (j == 0 ? "" : " ") + targetmap[dep][qvIndex][index];
 		
 		}
 
@@ -942,7 +942,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			case DT_WHILE: 		
 			case DT_IF:			
 			case DT_CONSTANT:	
-			case DT_STMT: 		
+			case DT_STMT:
+			case DT_PROGLINE:
 					
 				for (int i = 0; i < vecI.size(); i++) 
 					targetmap[dep][v].push_back(to_string(static_cast<long long>(vecI[i])));
