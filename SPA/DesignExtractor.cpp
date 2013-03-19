@@ -1634,7 +1634,7 @@ void DesignExtractor::getAffectsFirstHelper(CFGNode* node2, vector<CFGNode*>* vi
 						STMT_LIST temp1; 
 						temp1.push_back(k);
 						if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
-							if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT) {
+							if(getTypeOfStmt(k) == STMT_ASSIGNMENT) {
 								resultLst_p->push_back(k);
 								if(!exhaustive)
 									return;
