@@ -1374,17 +1374,11 @@ void DesignExtractor::connectCFG()
 					whileBlockEnd->getPairedCFGNode()->connectTo(whileNode);
 			}
 			
-			//Connect to next statement, if any.
+			//Connect while statement to next statement, if any.
 			CFGNode* afterWhileBlock = cfg->getCFGNodeByStmtNumber(it->endOfTheScope + 1);
 			if(afterWhileBlock != NULL)
 			{
-				if(__getParsingPhase(phaseStack) == PREPROCESS_NON_IF || __getParsingPhase(phaseStack) == PREPROCESS_ELSE)
-				{
-					if(afterWhileBlock->getProcIndex() == it->procIndex)
-					{
-						whileBlockEnd->connectTo(afterWhileBlock);
-					}
-				}
+				whileNode->connectTo(afterWhileBlock);
 			}
 		}
 		else if (it->type == STMT_ASSIGNMENT || it->type == STMT_CALL)
@@ -1393,7 +1387,7 @@ void DesignExtractor::connectCFG()
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
 			
-			if(__getParsingPhase(phaseStack) == PREPROCESS_NON_IF || 
+			if(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK || 
 				(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
 				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
 			{
@@ -1478,7 +1472,7 @@ IfPreprocessingPhase DesignExtractor::__getParsingPhase( stack<IfPreprocessingPh
 	if(s.size()>0)
 		return s.top();
 	else
-		return PREPROCESS_NON_IF;
+		return PREPROCESS_NORMAL_BLOCK;
 }
 
 BOOLEAN DesignExtractor::isAffects(int first, int second)

@@ -672,7 +672,7 @@ IfPreprocessingPhase Parser::_preprocessingStatus()
 	if(preprocessingStatusStk.size()>0)
 		return preprocessingStatusStk.top();
 	else
-		return PREPROCESS_NON_IF;
+		return PREPROCESS_NORMAL_BLOCK;
 }
 
 void Parser::__addFollowsTable( ASTNode* currentASTNode )
