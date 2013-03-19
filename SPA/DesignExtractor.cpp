@@ -1572,7 +1572,7 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 		else
 		{
 			noModifiesInMiddle = 1;
-			for (int i = current->getStartStatement(); i < current->getEndStatement(); i++)
+			for (int i = current->getStartStatement(); i <= current->getEndStatement(); i++)
 			{
 				temp->clear();
 				temp->push_back(i);
