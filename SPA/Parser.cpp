@@ -356,6 +356,7 @@ void Parser::_preprocessProgram(string program)
 				}
 				break;
 			case STMT_WHILE:
+				preprocProgram->at(statementScope.top()).endOfTheScope = currentStmtNumber;
 				rb.type = STMT_CLOSE_BRACKET_END_OF_WHILE;
 				break;
 			default:

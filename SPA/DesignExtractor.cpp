@@ -1345,6 +1345,11 @@ void DesignExtractor::connectCFG()
 			ifNode->connectTo(thenNodeStart);
 			ifNode->connectTo(elseNodeStart);
 		}
+		else if (it->type == STMT_CLOSE_BRACKET_END_OF_WHILE)
+		{
+			phaseStack.pop();
+			scope.pop();
+		}
 		else if (it->type == STMT_CLOSE_BRACKET_END_OF_THEN)
 		{
 			phaseStack.top() = PREPROCESS_ELSE;
@@ -1356,6 +1361,8 @@ void DesignExtractor::connectCFG()
 		}
 		else if(it->type == STMT_WHILE)
 		{
+			phaseStack.push(PREPROCESS_WHILE);
+			scope.push(*it);
 			//Connect While Block
 			CFGNode* whileNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
@@ -1389,6 +1396,7 @@ void DesignExtractor::connectCFG()
 			
 			if(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK || 
 				(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
+				(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && (it->stmtNumber < scope.top().endOfTheScope)) ||
 				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
 			{
 				if(!CFG_BIP_ENABLED || it->type == STMT_ASSIGNMENT)
@@ -1424,7 +1432,7 @@ void DesignExtractor::connectCFG()
 				scope.pop();
 				statement grand_parent = scope.top();
 				scope.push(parent);
-				assert(grand_parent.type == STMT_IF);
+				assert(grand_parent.type == STMT_IF || grand_parent.type == STMT_WHILE);
 				
 				//Get Grand_Parent State
 				IfPreprocessingPhase parent_state = phaseStack.top();
@@ -1439,7 +1447,7 @@ void DesignExtractor::connectCFG()
 						__smartConnectThisCFGToNext(nextNode, thisNode);
 					}
 				}
-				else if(grand_parent_state == PREPROCESS_ELSE)
+				else if(grand_parent_state == PREPROCESS_ELSE || grand_parent_state == PREPROCESS_WHILE)
 				{
 					if(it->stmtNumber < grand_parent.endOfTheScope)
 					{
