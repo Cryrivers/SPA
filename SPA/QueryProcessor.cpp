@@ -9,6 +9,8 @@ QueryProcessor::~QueryProcessor(void){
 
 void QueryProcessor::evaluate(string query, list<string>& results){
 	if (qPre.parse(query) == 0) {
-		qEval.evaluate(qPre.getClauseTable(), qPre.getQueryVariableTable(), qPre.getQueryTargetTable(), results);
+		if (!qEval.evaluate(qPre.getClauseTable(), qPre.getQueryVariableTable(), qPre.getQueryTargetTable(), results))
+			if (qPre.getQueryVariableTable().at(qPre.getQueryTargetTable().at(0).varIndex).variableType == DT_BOOLEAN)
+				 results.push_back("false");
 	}
 }

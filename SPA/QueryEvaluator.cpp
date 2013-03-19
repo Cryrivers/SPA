@@ -844,7 +844,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 			case DT_BOOLEAN:	
 					
-				targetmap[dep][v].push_back("TRUE");
+				targetmap[dep][v].push_back("true");
 				break;
 				
 			case DT_ASSIGN: 	
