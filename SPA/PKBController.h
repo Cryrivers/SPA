@@ -33,6 +33,7 @@ public:
 	ASTNode* astGetRoot();
 	AST* getAST();
 	CFG* getCFG();
+	CFG* getCFGBip();
 
 	//follows api
 	void addFollows(STMT stmt1, STMT stmt2);
@@ -144,6 +145,7 @@ private:
 	ProcTable* _procTable;
 	AST* _ast;
 	CFG* _cfg;
+	CFG* _cfgbip;
 	ASTNode* _astNode;
 	DesignExtractor* _designExtractor;
 	vector<statement>* _preprocessedProgram;

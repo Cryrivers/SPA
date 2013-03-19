@@ -766,6 +766,7 @@ PKBController::~PKBController()
 	delete(_procTable);
 	delete(_ast);
 	delete(_cfg);
+	delete(_cfgbip);
 	delete(_preprocessedProgram);
 	delete(_designExtractor);
 	delete(_constTable);
@@ -822,6 +823,7 @@ void PKBController::init()
 	_ifBranchTable = new vector<ASTNode *>();
 	_ast = new AST();
 	_cfg = new CFG();
+	_cfgbip = new CFG();
 	_designExtractor = new DesignExtractor();
 	_preprocessedProgram = new vector<statement>();
 	//with
@@ -840,6 +842,11 @@ void PKBController::setPreprocessedProgram( vector<statement>* p )
 CFG* PKBController::getCFG()
 {
 	return _cfg;
+}
+
+CFG* PKBController::getCFGBip()
+{
+	return _cfgbip;
 }
 
 void PKBController::build_proc_var(){
