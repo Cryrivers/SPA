@@ -1766,7 +1766,7 @@ void DesignExtractor::getAffectsSecondHelper(CFGNode* node1, vector<CFGNode*>* v
 						STMT_LIST temp1; 
 						temp1.push_back(k);
 
-						if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT && _pkb->uses(&temp1, &modifiedVar, 0) ) {
+						if(getTypeOfStmt(k) == STMT_ASSIGNMENT && _pkb->uses(&temp1, &modifiedVar, 0) ) {
 							resultLst_p->push_back(k);
 							if(!exhaustive)
 								return;
