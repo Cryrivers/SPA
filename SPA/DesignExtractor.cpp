@@ -199,6 +199,28 @@ BOOLEAN DesignExtractor::getAllWhile(STMT_LIST *result)
 }
 
 /**
+ * \fn	BOOLEAN DesignExtractor::getAllStmtList(STMT_LIST *result)
+ *
+ * \brief	Add all program line that is the first statement of a statement list.
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	True or False	If there is no item in result list, return false. else return true.
+ */
+BOOLEAN DesignExtractor::getAllStmtList(STMT_LIST *result)
+{
+	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
+		if (_pkb->getPreprocessedProgram()->at(i).type == STMT_OPEN_BRACKET) {
+			result->push_back(_pkb->getPreprocessedProgram()->at(i+1).stmtNumber);
+		}
+	}
+	if (result->size() == 0) {
+		return(false);
+	}
+	return(true);
+}
+
+/**
  * \fn	BOOLEAN DesignExtractor::getAllIf(STMT_LIST *result)
  *
  * \brief	Add all program line that is an if to result list
@@ -1352,17 +1374,11 @@ void DesignExtractor::connectCFG()
 					whileBlockEnd->getPairedCFGNode()->connectTo(whileNode);
 			}
 			
-			//Connect to next statement, if any.
+			//Connect while statement to next statement, if any.
 			CFGNode* afterWhileBlock = cfg->getCFGNodeByStmtNumber(it->endOfTheScope + 1);
 			if(afterWhileBlock != NULL)
 			{
-				if(__getParsingPhase(phaseStack) == PREPROCESS_NON_IF || __getParsingPhase(phaseStack) == PREPROCESS_ELSE)
-				{
-					if(afterWhileBlock->getProcIndex() == it->procIndex)
-					{
-						whileBlockEnd->connectTo(afterWhileBlock);
-					}
-				}
+				whileNode->connectTo(afterWhileBlock);
 			}
 		}
 		else if (it->type == STMT_ASSIGNMENT || it->type == STMT_CALL)
@@ -1371,7 +1387,7 @@ void DesignExtractor::connectCFG()
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
 			
-			if(__getParsingPhase(phaseStack) == PREPROCESS_NON_IF || 
+			if(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK || 
 				(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
 				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
 			{
@@ -1456,7 +1472,7 @@ IfPreprocessingPhase DesignExtractor::__getParsingPhase( stack<IfPreprocessingPh
 	if(s.size()>0)
 		return s.top();
 	else
-		return PREPROCESS_NON_IF;
+		return PREPROCESS_NORMAL_BLOCK;
 }
 
 BOOLEAN DesignExtractor::isAffects(int first, int second)
@@ -1502,21 +1518,36 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 				if (_pkb->modifies(temp, var, 0)) return false;
 				
 			}
-			for (int i = firstNode->getStartStatement(); i < second; i++)
+			for (int i = firstNode->getStartStatement()+1; i < second; i++)
 			{
 				temp->clear();
 				temp->push_back(i);
 				if (_pkb->modifies(temp, var, 0)) return false;
 				
 			}
-			visitedNode.erase(visitedNode.begin());//cannot judge whether isAffect is true. allow visit firstNode again
 		}
+	}
+
+	for (int i = first+1; i <= firstNode->getEndStatement(); i++)
+	{
+		temp->clear();
+		temp->push_back(i);
+		if(_pkb->modifies(temp, var, 0)) return false;
+	}
+	nextStmts->clear();
+	temp->clear();
+	temp->push_back(current->getEndStatement());
+	_pkb->next(temp,nextStmts,1);
+	for (int i = 0; i < nextStmts->size(); i++)
+	{
+		rest.push(indexOf(cfg, _pkb->getCFG()->getCFGNodeByStmtNumber(nextStmts->at(i))));	
 	}
 
 	while(rest.size()!=0){
 		nodeIndex = rest.front();
 		rest.pop();
-		current = _pkb->getCFG()->getCFGNodeByStmtNumber(nodeIndex);
+		visitedNode.push_back(nodeIndex);
+		current =cfg.at(nodeIndex);
 		if (second > current->getStartStatement() && second < current->getEndStatement())
 		{
 			noModifiesInMiddle = 1;
@@ -1534,24 +1565,28 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 		}
 		else
 		{
-			temp->clear();
-			temp->push_back(current->getEndStatement());
-			_pkb->next(temp, nextStmts, 1);
-			for (int i = 0; i < nextStmts->size(); i++)
+			noModifiesInMiddle = 1;
+			for (int i = current->getStartStatement(); i <= current->getEndStatement(); i++)
 			{
-				nextNode = _pkb->getCFG()->getCFGNodeByStmtNumber(nextStmts->at(i));
-				noModifiesInMiddle = 1;
-				for (int j = nextNode->getStartStatement(); j < nextNode->getEndStatement(); j++)
+				temp->clear();
+				temp->push_back(i);
+				if(_pkb->modifies(temp, var,0))
 				{
-					temp->clear();
-					temp->push_back(j);
-					if(_pkb->modifies(temp, var, 0))
-					{
-						noModifiesInMiddle = 0;
-						break;
-					}
+					noModifiesInMiddle = 0;
+					break;
 				}
-				if (noModifiesInMiddle == 1) rest.push(indexOf(cfg, nextNode));
+			}
+			if (noModifiesInMiddle == 1)
+			{
+				temp->clear();
+				temp->push_back(current->getEndStatement());
+				_pkb->next(temp, nextStmts, 1);
+				for (int i = 0; i < nextStmts->size(); i++)
+				{
+					nextNode = _pkb->getCFG()->getCFGNodeByStmtNumber(nextStmts->at(i));
+					if(indexOf(visitedNode,indexOf(cfg,nextNode)) < 0)
+						rest.push(indexOf(cfg, nextNode));
+				}
 			}
 		}
 	}

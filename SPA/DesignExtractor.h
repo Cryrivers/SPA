@@ -33,6 +33,7 @@ BOOLEAN getAllWhile(STMT_LIST*);
 BOOLEAN getAllIf(STMT_LIST*);
 BOOLEAN getAllCall(STMT_LIST*);
 BOOLEAN getAllConstant(vector<int> *);
+BOOLEAN getAllStmtList(vector<int> *);
 BOOLEAN pattern(vector<int>*, vector<int>*, string,PatternQueryType, int);
 BOOLEAN affects(STMT_LIST*, STMT_LIST*, int);
 BOOLEAN affectsStar(STMT_LIST*, STMT_LIST*, int);

@@ -27,7 +27,17 @@ StmtType getTypeOfStmt(STMT st){
 	vector<statement>* program = PKBController::createInstance()->getPreprocessedProgram();
 	for (int i = 0; i < program->size(); i++)
 	{
-		if (program->at(i).stmtNumber == st) return program->at(i).type;
+		if (program->at(i).stmtNumber == st)
+		{
+			StmtType t = program->at(i).type;
+			if(t == STMT_ASSIGNMENT ||
+			   t == STMT_CALL ||
+			   t == STMT_IF ||
+			   t == STMT_WHILE)
+			{
+				return program->at(i).type;
+			}
+		}
 	}
 	return STMT_NONE;
 }
