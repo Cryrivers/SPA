@@ -50,6 +50,7 @@ Parser::~Parser(void)
 
 void Parser::_parseLine()
 {
+	CFGNode* currentCFGBipNode = NULL;
 	CFGNode* currentCFGNode = NULL;
 	statement s;
 	for (vector<statement>::iterator it = preprocProgram->begin(); it != preprocProgram->end(); ++it) {
@@ -58,30 +59,29 @@ void Parser::_parseLine()
 
 		case STMT_CALL:
 			assert(currentCFGNode != NULL);
+			assert(currentCFGBipNode != NULL);
 
-			if(CFG_BIP_ENABLED)
-			{
-				if(currentCFGNode->isValidCFGNode())
-					_pkb->getCFG()->addToCFG(currentCFGNode);
-				else
-					delete currentCFGNode;
-				currentCFGNode = new CFGNode();
-				currentCFGNode->setStartStatement(it->stmtNumber);
-				currentCFGNode->setEndStatement(it->stmtNumber);
-				currentCFGNode->setProcIndex(it->procIndex);
-				currentCFGNode->setCFGType(CFG_BIP_CALL_STATEMENT);
-				_pkb->getCFG()->addToCFG(currentCFGNode);
-				currentCFGNode = new CFGNode();
-			}
+			
+			//Logic for CFG Bip Node
+			if(currentCFGBipNode->isValidCFGNode())
+				_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
 			else
+				delete currentCFGBipNode;
+			currentCFGBipNode = new CFGNode();
+			currentCFGBipNode->setStartStatement(it->stmtNumber);
+			currentCFGBipNode->setEndStatement(it->stmtNumber);
+			currentCFGBipNode->setProcIndex(it->procIndex);
+			currentCFGBipNode->setCFGType(CFG_BIP_CALL_STATEMENT);
+			_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
+			currentCFGBipNode = new CFGNode();
+		
+			//Logic for CFG Node
+			if(!currentCFGNode->isValidCFGNode())
 			{
-				if(!currentCFGNode->isValidCFGNode())
-				{
-					currentCFGNode->setProcIndex(it->procIndex);
-					currentCFGNode->setStartStatement(it->stmtNumber);
-				}
-				currentCFGNode->setEndStatement(it->stmtNumber);
+				currentCFGNode->setProcIndex(it->procIndex);
+				currentCFGNode->setStartStatement(it->stmtNumber);
 			}
+			currentCFGNode->setEndStatement(it->stmtNumber);
 
 			currentASTNode = _buildCallAST(&*it);
 			__addFollowsTable(currentASTNode);
@@ -91,10 +91,17 @@ void Parser::_parseLine()
 
 		case STMT_IF:
 			assert(currentCFGNode != NULL);
+			assert(currentCFGBipNode != NULL);
+			if(currentCFGBipNode->isValidCFGNode())
+				_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
+			else
+				delete currentCFGBipNode;
+
 			if(currentCFGNode->isValidCFGNode())
 				_pkb->getCFG()->addToCFG(currentCFGNode);
 			else
 				delete currentCFGNode;
+			
 			currentCFGNode = new CFGNode();
 			currentCFGNode->setStartStatement(it->stmtNumber);
 			currentCFGNode->setEndStatement(it->stmtNumber);
@@ -102,6 +109,14 @@ void Parser::_parseLine()
 			currentCFGNode->setCFGType(CFG_IF_STATEMENT);
 			_pkb->getCFG()->addToCFG(currentCFGNode);
 			currentCFGNode = NULL;
+
+			currentCFGBipNode = new CFGNode();
+			currentCFGBipNode->setStartStatement(it->stmtNumber);
+			currentCFGBipNode->setEndStatement(it->stmtNumber);
+			currentCFGBipNode->setProcIndex(it->procIndex);
+			currentCFGBipNode->setCFGType(CFG_IF_STATEMENT);
+			_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
+			currentCFGBipNode = NULL;
 
 			_buildIfAST(&*it);
 			break;
@@ -112,18 +127,29 @@ void Parser::_parseLine()
 
 		case STMT_PROCEDURE:
 			if(currentCFGNode != NULL) delete currentCFGNode;
+			if(currentCFGBipNode != NULL) delete currentCFGBipNode;
+
 			_pkb->addProc(it->extraName,it->stmtNumber,it->endOfTheScope);
 			_buildProcedureAST(&*it);
 			break;
 
 		case STMT_ASSIGNMENT:
 			assert(currentCFGNode != NULL);
+			assert(currentCFGBipNode != NULL);
+
 			if(!currentCFGNode->isValidCFGNode())
 			{
 				currentCFGNode->setProcIndex(it->procIndex);
 				currentCFGNode->setStartStatement(it->stmtNumber);
 			}
 			currentCFGNode->setEndStatement(it->stmtNumber);
+
+			if(!currentCFGBipNode->isValidCFGNode())
+			{
+				currentCFGBipNode->setProcIndex(it->procIndex);
+				currentCFGBipNode->setStartStatement(it->stmtNumber);
+			}
+			currentCFGBipNode->setEndStatement(it->stmtNumber);
 
 			currentASTNode = _buildAssignmentAST(&*it);
 			__addFollowsTable(currentASTNode);
@@ -133,6 +159,8 @@ void Parser::_parseLine()
 
 		case STMT_WHILE:
 			assert(currentCFGNode != NULL);
+			assert(currentCFGBipNode != NULL);
+
 			if(currentCFGNode->isValidCFGNode())
 				_pkb->getCFG()->addToCFG(currentCFGNode);
 			else
@@ -144,6 +172,19 @@ void Parser::_parseLine()
 			currentCFGNode->setCFGType(CFG_WHILE_STATEMENT);
 			_pkb->getCFG()->addToCFG(currentCFGNode);
 			currentCFGNode = NULL;
+
+			if(currentCFGBipNode->isValidCFGNode())
+				_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
+			else
+				delete currentCFGBipNode;
+			currentCFGBipNode = new CFGNode();
+			currentCFGBipNode->setStartStatement(it->stmtNumber);
+			currentCFGBipNode->setEndStatement(it->stmtNumber);
+			currentCFGBipNode->setProcIndex(it->procIndex);
+			currentCFGBipNode->setCFGType(CFG_WHILE_STATEMENT);
+			_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
+			currentCFGBipNode = NULL;
+
 
 			currentASTNode = _buildWhileLoopAST(&*it);
 			if(sameLevelAtNext)
@@ -164,6 +205,12 @@ void Parser::_parseLine()
 			currentCFGNode->setStartStatement(it->stmtNumber);
 			currentCFGNode->setProcIndex(it->procIndex);
 			currentCFGNode->setCFGType(CFG_NORMAL_BLOCK);
+			
+			//New CFG Bip Node & set start of the CFG
+			currentCFGBipNode = new CFGNode();
+			currentCFGBipNode->setStartStatement(it->stmtNumber);
+			currentCFGBipNode->setProcIndex(it->procIndex);
+			currentCFGBipNode->setCFGType(CFG_NORMAL_BLOCK);
 
 			_parentStack.push(_newParent);
 			_parentStackNoStmtLst.push(_newParentNoStmtLst);
@@ -177,14 +224,21 @@ void Parser::_parseLine()
 
 
 			assert(currentCFGNode != NULL);
+			assert(currentCFGBipNode != NULL);
 			
 			if(currentCFGNode->isValidCFGNode())
 				_pkb->getCFG()->addToCFG(currentCFGNode);
 			else
 				delete currentCFGNode;
+
+			if(currentCFGBipNode->isValidCFGNode())
+				_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
+			else
+				delete currentCFGBipNode;
 			
 			//Will leak 1 object
 			currentCFGNode = new CFGNode();
+			currentCFGBipNode = new CFGNode();
 
 			previousASTNode = _parentStackNoStmtLst.top();	
 			_parentStack.pop();

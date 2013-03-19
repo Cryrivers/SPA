@@ -1310,11 +1310,10 @@ void DesignExtractor::addNext()
  * \date	2013/2/25
  */
 
-void DesignExtractor::connectCFG()
+void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 {
 	stack<IfPreprocessingPhase> phaseStack;
 
-	CFG* cfg = _pkb->getCFG();
 	stack<statement> scope;
 	vector<statement>* preprocProgram  = _pkb->getPreprocessedProgram();
 	//Find all paired nodes first.
@@ -1399,7 +1398,7 @@ void DesignExtractor::connectCFG()
 				(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && (it->stmtNumber < scope.top().endOfTheScope)) ||
 				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
 			{
-				if(!CFG_BIP_ENABLED || it->type == STMT_ASSIGNMENT)
+				if(!bipEnabled || it->type == STMT_ASSIGNMENT)
 				{
 					__smartConnectThisCFGToNext(nextNode, thisNode);
 				}

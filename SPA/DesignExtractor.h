@@ -4,6 +4,7 @@
 #include "PKBController.h"
 #include "SPAType.h"
 #include "CFGNode.h"
+#include "CFG.h"
 #include <stack>
 
 using namespace std;
@@ -23,7 +24,7 @@ public:
 DesignExtractor(void);
 ~DesignExtractor(void);
 
-void connectCFG();
+void connectCFG(CFG* cfg, bool bipEnabled);
 void addNext();
 void addModifies();
 void addUses();
