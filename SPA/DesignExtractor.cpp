@@ -199,6 +199,28 @@ BOOLEAN DesignExtractor::getAllWhile(STMT_LIST *result)
 }
 
 /**
+ * \fn	BOOLEAN DesignExtractor::getAllStmtList(STMT_LIST *result)
+ *
+ * \brief	Add all program line that is the first statement of a statement list.
+ *
+ * \author	Yue Cong
+ *
+ * \param [out]	True or False	If there is no item in result list, return false. else return true.
+ */
+BOOLEAN DesignExtractor::getAllStmtList(STMT_LIST *result)
+{
+	for (int i = 0; i < _pkb->getPreprocessedProgram()->size(); i++) {
+		if (_pkb->getPreprocessedProgram()->at(i).type == STMT_OPEN_BRACKET) {
+			result->push_back(_pkb->getPreprocessedProgram()->at(i+1).stmtNumber);
+		}
+	}
+	if (result->size() == 0) {
+		return(false);
+	}
+	return(true);
+}
+
+/**
  * \fn	BOOLEAN DesignExtractor::getAllIf(STMT_LIST *result)
  *
  * \brief	Add all program line that is an if to result list
