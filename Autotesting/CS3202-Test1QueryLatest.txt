@@ -278,7 +278,7 @@ Select s such that Follows* (s1, s) with s1.stmt#= 1 such that Uses (s, v) and M
 54 - Pattern_and_With  ::
 if ifstat; constant c;
 Select BOOLEAN pattern ifstat ("i", _, _) with c.value = 10
-TRUE
+true
 5000
 cat: Next
 55 - Next, Find_Second  ::
@@ -327,12 +327,12 @@ cat: Affects
 63 - Description  ::
 assign a1, a2;
 Select BOOLEAN such that Affects (1, 2)
-TRUE
+true
 5000
 64 - Description  ::
 assign a1, a2;
 Select BOOLEAN such that Affects (1,3)
-TRUE
+true
 5000
 65 - Description  ::
 assign a1, a2;
@@ -342,7 +342,7 @@ false
 66 - Description  ::
 assign a1, a2;
 Select BOOLEAN such that Affects (2, 6)
-TRUE
+true
 5000
 67 - Description  ::
 assign a1, a2;
@@ -352,17 +352,17 @@ none
 68 - Description  ::
 assign a1, a2;
 Select BOOLEAN such that Affects (3, 12)
-FALSE
+false
 5000
 69 - Description  ::
 assign a1, a2;
 Select BOOLEAN such that Affects (3, 13)
-FALSE
+false
 5000
 70 - Description  ::
 assign a1, a2;
 Select BOOLEAN such that Affects (16, 21)
-FALSE
+false
 5000
 71 - Description  ::
 assign a1;
@@ -388,32 +388,32 @@ cat: AffectStar
 75 - Affects_Star  ::
 assign a1, a2;
 Select BOOLEAN such that Affects* (1, 2)
-TRUE
+true
 5000
 76 - Affects_Star  ::
 assign a1, a2;
 Select BOOLEAN such that Affects* (1, 3)
-TRUE
+true
 5000
 77 - Affects_Star  ::
 assign a1, a2;
 Select BOOLEAN such that Affects* (1, 6)
-TRUE
+true
 5000
 78 - Affects_Star  ::
 assign a1, a2;
 Select BOOLEAN such that Affects* (1, 8)
-TRUE
+true
 5000
 79 - Affects_Star  ::
 assign a1, a2;
 Select BOOLEAN such that Affects* (11, 14)
-FALSE
+false
 5000
 80 - Affects_Star  ::
 assign a1, a2;
 Select BOOLEAN such that Affects* (20, 20)
-FALSE
+false
 5000
 81 - Affects_Star  ::
 assign a1;
