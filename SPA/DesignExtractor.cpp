@@ -1552,6 +1552,7 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 	while(rest.size()!=0){
 		nodeIndex = rest.front();
 		rest.pop();
+		visitedNode.push_back(nodeIndex);
 		current =cfg.at(nodeIndex);
 		if (second > current->getStartStatement() && second < current->getEndStatement())
 		{
@@ -1589,7 +1590,8 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 				for (int i = 0; i < nextStmts->size(); i++)
 				{
 					nextNode = _pkb->getCFG()->getCFGNodeByStmtNumber(nextStmts->at(i));
-					rest.push(indexOf(cfg, nextNode));
+					if(indexOf(visitedNode,indexOf(cfg,nextNode)) < 0)
+						rest.push(indexOf(cfg, nextNode));
 				}
 			}
 		}
