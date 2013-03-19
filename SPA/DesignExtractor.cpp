@@ -1502,21 +1502,35 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 				if (_pkb->modifies(temp, var, 0)) return false;
 				
 			}
-			for (int i = firstNode->getStartStatement(); i < second; i++)
+			for (int i = firstNode->getStartStatement()+1; i < second; i++)
 			{
 				temp->clear();
 				temp->push_back(i);
 				if (_pkb->modifies(temp, var, 0)) return false;
 				
 			}
-			visitedNode.erase(visitedNode.begin());//cannot judge whether isAffect is true. allow visit firstNode again
 		}
+	}
+
+	for (int i = first+1; i <= firstNode->getEndStatement(); i++)
+	{
+		temp->clear();
+		temp->push_back(i);
+		if(_pkb->modifies(temp, var, 0)) return false;
+	}
+	nextStmts->clear();
+	temp->clear();
+	temp->push_back(current->getEndStatement());
+	_pkb->next(temp,nextStmts,1);
+	for (int i = 0; i < nextStmts->size(); i++)
+	{
+		rest.push(indexOf(cfg, _pkb->getCFG()->getCFGNodeByStmtNumber(nextStmts->at(i))));	
 	}
 
 	while(rest.size()!=0){
 		nodeIndex = rest.front();
 		rest.pop();
-		current = _pkb->getCFG()->getCFGNodeByStmtNumber(nodeIndex);
+		current =cfg.at(nodeIndex);
 		if (second > current->getStartStatement() && second < current->getEndStatement())
 		{
 			noModifiesInMiddle = 1;
@@ -1534,24 +1548,27 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 		}
 		else
 		{
-			temp->clear();
-			temp->push_back(current->getEndStatement());
-			_pkb->next(temp, nextStmts, 1);
-			for (int i = 0; i < nextStmts->size(); i++)
+			noModifiesInMiddle = 1;
+			for (int i = current->getStartStatement(); i < current->getEndStatement(); i++)
 			{
-				nextNode = _pkb->getCFG()->getCFGNodeByStmtNumber(nextStmts->at(i));
-				noModifiesInMiddle = 1;
-				for (int j = nextNode->getStartStatement(); j < nextNode->getEndStatement(); j++)
+				temp->clear();
+				temp->push_back(i);
+				if(_pkb->modifies(temp, var,0))
 				{
-					temp->clear();
-					temp->push_back(j);
-					if(_pkb->modifies(temp, var, 0))
-					{
-						noModifiesInMiddle = 0;
-						break;
-					}
+					noModifiesInMiddle = 0;
+					break;
 				}
-				if (noModifiesInMiddle == 1) rest.push(indexOf(cfg, nextNode));
+			}
+			if (noModifiesInMiddle == 1)
+			{
+				temp->clear();
+				temp->push_back(current->getEndStatement());
+				_pkb->next(temp, nextStmts, 1);
+				for (int i = 0; i < nextStmts->size(); i++)
+				{
+					nextNode = _pkb->getCFG()->getCFGNodeByStmtNumber(nextStmts->at(i));
+					rest.push(indexOf(cfg, nextNode));
+				}
 			}
 		}
 	}
