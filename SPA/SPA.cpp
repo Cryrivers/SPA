@@ -73,15 +73,40 @@ int _tmain(int argc, _TCHAR *argv[])
 	list<string> result;
 
 	
-	const int querySize = 1;
+	const int querySize = 10;
 	string query[querySize];	
 	//string declares("call c; stmt s1,s2,s3,s4,s5,s6; procedure p1,p2; while w; prog_line n1,n2; variable v;");				  			 
 	//query[0]=declares+"Select c such that Calls(p2,p1) with p1.procName = c.procName and p2.procName = \"Main\" ";										  
 	//query[1]=declares+"Select w such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,w)";	
 	//query[3]=declares+"Select s6 such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,s6)";	
 	//query[2]=declares+"Select s6 such that Parent(s1,s2) and Parent(s2,s3) and Parent(s3,s4) and Parent(s4,s5) and Parent(s5,s6) with s6.stmt#=w.stmt#";								  
-	query[0]="assign a1, a2;Select BOOLEAN such that Affects(3, 12)";
-
+	/*
+	query[0]="Select BOOLEAN such that Affects (1, 2)"; //t
+	query[1]="Select BOOLEAN such that Affects (1,3)"; //t
+	query[2]="Select BOOLEAN such that Affects (1,5)"; //f
+	query[3]="Select BOOLEAN such that Affects (2, 6)"; //t
+	query[4]="Select BOOLEAN such that Affects (2, 8)"; //f
+	query[5]="Select BOOLEAN such that Affects (3, 12)"; //f
+	query[6]="Select BOOLEAN such that Affects (3, 13)"; //f
+	query[7]="Select BOOLEAN such that Affects (16, 21)"; //f
+	query[8]="assign a1;Select a1 such that Affects (a1, 1)"; //none
+	query[9]="assign a1;Select a1 such that Affects (a1, 10)"; //12, 17
+	query[10]="assign a2;Select a2 such that Affects (1, a2)"; //2, 3
+	query[11]="assign a2;Select a2 such that Affects (13, a2)"; //16
+	*/
+	
+	query[0]="assign a2;Select a2 such that Affects* (20, a2)"; //none
+	query[1]="Select BOOLEAN such that Affects* (1, 2)"; //true
+	query[2]="Select BOOLEAN such that Affects* (1, 3)"; //true
+	query[3]="Select BOOLEAN such that Affects* (1, 6)"; //true
+	query[4]="Select BOOLEAN such that Affects* (1, 8)"; //true
+	query[5]="Select BOOLEAN such that Affects* (11, 14)"; //false
+	query[6]="Select BOOLEAN such that Affects* (20, 20)"; //false
+	query[7]="assign a1;Select a1 such that Affects* (a1, 12)"; //12
+	query[8]="assign a1;Select a1 such that Affects* (a1, 26)"; //25
+	query[9]="assign a2;Select a2 such that Affects* (6, a2)"; //8
+	//query[1]="";
+	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
 		cout<<"Query"<<i+1<<":\n"<<query[i]<<"\n"<<endl;

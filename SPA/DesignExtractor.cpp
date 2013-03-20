@@ -1625,7 +1625,7 @@ STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2, BOOLEAN exhaustive)
 			STMT_LIST temp1; 
 			temp1.push_back(k);
 			if(_pkb->modifies(&temp1, &vars, 0)) { //means statement k modifies variable var
-				if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT) {
+				if(getTypeOfStmt(k) == STMT_ASSIGNMENT) {
 					results.push_back(k);
 					if(!exhaustive) {
 						return results;
@@ -1723,7 +1723,7 @@ STMT_LIST DesignExtractor::getAffectsSecond(STMT stmt1, BOOLEAN exhaustive)
 		STMT_LIST temp1; 
 		temp1.push_back(k);
 
-		if(_pkb->getPreprocessedProgram()->at(k).type == STMT_ASSIGNMENT && _pkb->uses(&temp1, &modifiedVar, 0) ) {
+		if(getTypeOfStmt(k) == STMT_ASSIGNMENT && _pkb->uses(&temp1, &modifiedVar, 0) ) {
 			results.push_back(k);
 			if(!exhaustive) {
 				return results;
