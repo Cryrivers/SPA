@@ -214,7 +214,7 @@ void CFGNode::addBacktraceEdges( CFGNode* prevPath )
 	//Not sure if a CFGNode is next to itself, but make this assertion now.
 	assert(prevPath != this);
 	//In case of duplicates
-	for (vector<CFGNode*>::iterator it = _edges.begin(); it != _edges.end(); ++it)
+	for (vector<CFGNode*>::iterator it = _backtrace_edges.begin(); it != _backtrace_edges.end(); ++it)
 		if(*it == prevPath) return;
 
 	_backtrace_edges.push_back(prevPath);
