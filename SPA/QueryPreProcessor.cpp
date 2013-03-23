@@ -1511,7 +1511,7 @@ int QueryPreprocessor::parse(string query){
 	while(true){
 		//=======================================>>Stage 1 Declare
 		vector<string> declares = getDeclares(query);
-		if((declares.size()<=0)||(!setupVarTable(declares)))	
+		if(!setupVarTable(declares))
 			break;
 		declares.clear();
 		//=======================================>>Stage 2 Select
@@ -1521,7 +1521,7 @@ int QueryPreprocessor::parse(string query){
 		targets.clear();
 		//=======================================>>Stage 3 Clause
 		vector<string> clauses = getClauses(query); 
-		if((clauses.size()<=0)||(!setupClaTable(clauses)))		
+		if(!setupClaTable(clauses))	
 			break;		
 		//=======================================>>Stage 5 Dependency
 		if(!makeOptimize())		
@@ -1538,9 +1538,9 @@ int QueryPreprocessor::parse(string query){
 		}
 		clauses.clear();
 		return 0;
-	}
-	cout<<"false"<<endl;		
-	if(DEBUGMODE||PRINTTABLE){
+	}	
+	if(DEBUGMODE||PRINTTABLE){	
+			cout<<"false"<<endl;	
 			QueryPreprocessorDebug qpd;
 			qpd.printQueryVariableTable(queryVarTable);
 			qpd.printTargetVariableTable(queryTarTable);
