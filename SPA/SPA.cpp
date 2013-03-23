@@ -40,7 +40,8 @@ int _tmain(int argc, _TCHAR *argv[])
 	string program, line;
 	program = "";
 
-	ifstream myfile("../SampleCode/CS3202Test1Code.c");
+	//ifstream myfile("../SampleCode/CS3202Test1Code.c");
+	ifstream myfile("../SampleCode/AffectsStar.c");
 
 	if (myfile.is_open())
 	{
@@ -73,7 +74,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	list<string> result;
 
 	
-	const int querySize = 10;
+	const int querySize = 3;
 	string query[querySize];	
 	//string declares("call c; stmt s1,s2,s3,s4,s5,s6; procedure p1,p2; while w; prog_line n1,n2; variable v;");				  			 
 	//query[0]=declares+"Select c such that Calls(p2,p1) with p1.procName = c.procName and p2.procName = \"Main\" ";										  
@@ -95,7 +96,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	query[11]="assign a2;Select a2 such that Affects (13, a2)"; //16
 	*/
 	
-	
+	/*
 	query[0]="Select BOOLEAN such that Affects* (1, 2)"; //true
 	query[1]="Select BOOLEAN such that Affects* (1, 3)"; //true
 	query[2]="Select BOOLEAN such that Affects* (1, 6)"; //true
@@ -106,9 +107,11 @@ int _tmain(int argc, _TCHAR *argv[])
 	query[7]="assign a1;Select a1 such that Affects* (a1, 12)"; //12
 	query[8]="assign a2;Select a2 such that Affects* (6, a2)"; //8
 	query[9]="assign a2;Select a2 such that Affects* (20, a2)"; //none
-	/**/
+	*/
 	//query[0]="";
-	//query[0]="Select BOOLEAN such that Affects* (4, 2)"; //true
+	query[0]="Select BOOLEAN such that Affects* (4, 2)"; //true
+	query[1]="Select BOOLEAN such that Affects (2, 4)"; //true
+	query[2]="Select BOOLEAN such that Affects (2, 3)"; //false
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
