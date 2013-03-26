@@ -190,7 +190,7 @@ bool QueryValidator::isEntRef(string str){
 		}													
 	}
 	return false;
-}
+}		
 /********************************************//**
  * Auxiliary grammar rule: synonym | '_' | INTEGER
  * @param str string
@@ -202,6 +202,21 @@ bool QueryValidator::isStmtRef(string str){
 	if (isInteger(str)) {
 		return true;
 	}else if(str=="_"){
+		return true;
+	}else if(isSynonym(str)){
+		return true;
+	}
+	return false;
+}
+/********************************************//**
+ * Auxiliary grammar rule: synonym | '_' | INTEGER
+ * @param str string
+ * @see isInteger
+ * @see isSynonym
+ * @return boolean
+ ***********************************************/
+bool QueryValidator::isNodeRef(string str){
+	if (isInteger(str)) {
 		return true;
 	}else if(isSynonym(str)){
 		return true;

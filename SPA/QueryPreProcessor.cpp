@@ -415,7 +415,7 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 					}else if(queryVarTable[i].variableType==DT_PROGLINE){
 						return i;
 					}else{
-						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not stmt."<<endl;
+						if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not stmt."<<endl;
 						return -1;
 					}
 				}else if(a7==2){
@@ -426,7 +426,7 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 					}else if(queryVarTable[i].variableType==DT_UNDERSCORE){
 						return i;
 					}else{
-						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
+						if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
 						return -1;
 					}
 				}else if(a7==3){
@@ -434,8 +434,19 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 						return i;
 					}else if(queryVarTable[i].variableType==KT_KNOWN_PROCEDURE){
 						return i;
+					}else if(queryVarTable[i].variableType==DT_UNDERSCORE){
+						return i;
 					}else{
-						//if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
+						if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
+						return -1;
+					}
+				}else if(a7==4){
+					if(queryVarTable[i].variableType==DT_STMTLST){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_UNDERSCORE){
+						return i;
+					}else{
+						if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
 						return -1;
 					}
 				}else{
@@ -678,7 +689,7 @@ BOOLEAN QueryPreprocessor::setupVarTable(vector<string> declares){
  * @return The complitance of this function, true for done, false for error
  ***********************************************/  
 BOOLEAN QueryPreprocessor::setupTarTable(vector<string> tarTable){
-	for(unsigned int i = 0; i<tarTable.size(); i++){
+	for(unsigned int i = 0; i<tarTable.size(); i++){   
 		if(tarTable[i].find(".")<tarTable[i].size()){
 			//================================
 			//If the target contains attribute
@@ -1110,24 +1121,47 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				int ib = getIndexFromVarTable(element[1], 0,1,0,1,0,1,0,2);
 				if(ib==-1){
 					return false;
-				} 						  
+				} 	
+				int stmlst = getIndexFromVarTable(element[2], 0,1,0,1,0,1,0,4);
+				if(stmlst==-1){
+					return false;
+				}
 				ib = queryVarTable[ib].mapTo;
 				qc.relationType=CT_PATTERN;
 				qc.variable1 = ia;
 				qc.variable2 = ib;
 				qc.patternType=PATTERN_WHILE;
-				qc.variable3="";
+				qc.variable3 = "";	   
+				qc.variable4 = stmlst;
+				qc.variable5 = stmlst;
 				queryClaTable.push_back(qc); 
 				continue;
 			}else if(queryVarTable[ia].variableType==DT_IF){
 				if(!qv.isVarRef(element[1]))	return false;
 				int ib = getIndexFromVarTable(element[1], 0,1,0,1,0,1,0,2);
-				if(ib==-1)	return false;	
+				if(ib==-1)	return false;		
+																		  
+				string var1 = element[2].substr(0,element[2].find(","));
+				string var2 = element[2].substr(element[2].find(",")+1);	 
+				trim_all(var1);
+				trim_all(var2);
+							
+				int stmlst1 = getIndexFromVarTable(var1, 0,1,0,1,0,1,0,4);   
+				int stmlst2 = getIndexFromVarTable(var2, 0,1,0,1,0,1,0,4);
+												   
+				if(stmlst1==-1||stmlst2==-1){
+					return false;
+				}
+				if(queryVarTable[stmlst1].variableType!=DT_UNDERSCORE&&stmlst1==stmlst2){
+					return false;
+				}
 				ib = queryVarTable[ib].mapTo;
 				qc.relationType=CT_PATTERN;
 				qc.variable1 = ia;
 				qc.variable2 = ib;
-				qc.variable3 = ""; 
+				qc.variable3 = ""; 	  
+				qc.variable4 = stmlst1;
+				qc.variable5 = stmlst2;
 				qc.patternType=PATTERN_IF;
 				queryClaTable.push_back(qc);
 				continue;
@@ -1153,7 +1187,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 			//   .variable1 .variable2 and 
 			//   .relationType to clauseTable
 			//================================
-			if(m==0||m==1||m==2||m==3||m==12||m==13||m==14){
+			if(m==0||m==1||m==2||m==3){
 				//================================
 				//Relation is "Parent*", "Parent", "Follows*", "Follows"
 				//
@@ -1230,7 +1264,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				qc.variable2 = ib;
 			}else if(m==6||m==7||m==15||m==16){
 				//================================
-				//Relation is "Affects*", "Affects"
+				//Relation is "Affects*", "Affects", "AffectsBip*", "AffectsBip"
 				//
 				// 
 				//var1 must be stmtRef
@@ -1291,12 +1325,16 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 					qc.relationType=RT_AFFECTST;
 				}else if(m==7){
 					qc.relationType=RT_AFFECTS;
+				}else if(m==15){
+					qc.relationType=RT_AFFECTSBIPT;
+				}else if(m==16){
+					qc.relationType=RT_AFFECTSBIP;
 				}
 				qc.variable1 = ia;
 				qc.variable2 = ib;
 			}else if(m==8||m==9||m==17||m==18){
 				//================================
-				//Relation is "Next*", "Next"
+				//Relation is "Next*", "Next", "NextBip*", "NextBip"
 				//
 				//
 				//var1 must be lineRef
@@ -1322,6 +1360,10 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 					qc.relationType=RT_NEXTT;
 				}else if(m==9){
 					qc.relationType=RT_NEXT;
+				}else if(m==17){
+					qc.relationType=RT_NEXTBIPT;
+				}else if(m==18){
+					qc.relationType=RT_NEXTBIP;
 				}
 				qc.variable1 = ia;
 				qc.variable2 = ib;
@@ -1350,6 +1392,40 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				}else if(m==11){
 					qc.relationType=RT_CALLS;
 				}
+				qc.variable1 = ia;
+				qc.variable2 = ib;
+			}else if(m==12||m==13||m==14){
+				//================================
+				//Relation is "Contains*", "Contains", "Sibling"
+				//
+				//
+				//var1 must be nodeRef
+				//var2 must be nodeRef
+				//var1 must be stmt or stmt num
+				//var2 must be stmt or stmt num
+				//cannot be the same 
+				//integer argument means statement number
+				//================================ 
+				if(element[1]==element[2]){
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable cannot be the same for Contain and Sibling a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+					return false;
+				}
+				if(!qv.isNodeRef(element[1])||!qv.isNodeRef(element[2])){
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable not right for Contain and Sibling: a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+					return false;
+				}
+				int ia = getIndexFromVarTable(element[1], 0,1,0,0,0,0,1,1);
+				int ib = getIndexFromVarTable(element[2], 0,1,0,0,0,0,1,1);
+				if(ia==-1||ib==-1){
+					return false;
+				}  
+				if(m==12){
+					qc.relationType=RT_CONTAINST;
+				}else if(m==13){
+					qc.relationType=RT_CONTAINS;
+				}else if(m==14){
+					qc.relationType=RT_SIBLING;
+				} 
 				qc.variable1 = ia;
 				qc.variable2 = ib;
 			}else{
@@ -1429,7 +1505,7 @@ BOOLEAN QueryPreprocessor::setDependency(){
 	//set appearer count
 	for(int i = 0; i<(int)queryVarTable.size(); i++){ 
 		for(int j = 0; j<(int)queryClaTable.size(); j++){
-			if(queryClaTable[j].variable1==i||queryClaTable[j].variable2==i){
+			if(queryClaTable[j].variable1==i||queryClaTable[j].variable2==i||queryClaTable[j].variable4==i||queryClaTable[j].variable5==i){
 				queryVarTable[queryVarTable[i].mapTo].countAppear++;
 			}
 		}

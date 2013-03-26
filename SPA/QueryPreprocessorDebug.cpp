@@ -145,8 +145,10 @@ void QueryPreprocessorDebug::printClauseTable(map<int, vector<QueryClause>> v){
 				if(typeToString(t[i].attribute1)!=""){
 					printf("Attr1[%15s] Attr2[%15s] ",typeToString(t[i].attribute1),typeToString(t[i].attribute2));
 				}
-				if(t[i].patternType>=0){
-					printf("Typ3[%d] Var3[%s] ", t[i].patternType, t[i].variable3.c_str());
+				if(t[i].patternType>=0){													  
+					printf("Typ3[%2d] Var3[%s] ", t[i].patternType, t[i].variable3.c_str());
+					printf("Var4[%2d] ", t[i].variable4);
+					printf("Var5[%2d] ", t[i].variable5);
 				}					  
 				cout<<"\n";
 			}

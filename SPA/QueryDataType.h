@@ -78,8 +78,15 @@ enum Type{
 	RT_FOLLOWST,		/**< Relation: Follows* (stmt 1, stmt 2)*/
 	RT_NEXT,			/**< Relation: Next (prog_line 1, prog_line 2)*/
 	RT_NEXTT,			/**< Relation: Next* (prog_line 1, prog_line 2)*/
-	RT_AFFECTS,			/**< Relation: Affects (assign 1, assign2)*/
-	RT_AFFECTST,		/**< Relation: Affects* (assign 1, assign2)*/
+	RT_AFFECTS,			/**< Relation: Affects (assign 1, assign2)*/	 
+	RT_AFFECTST,		/**< Relation: Affects* (assign 1, assign2)*/ 
+	RT_CONTAINST,	
+	RT_CONTAINS,	
+	RT_SIBLING,	 
+	RT_AFFECTSBIPT,	
+	RT_AFFECTSBIP,
+	RT_NEXTBIPT,	
+	RT_NEXTBIP,	
 	//Types for other clauses
 	CT_PATTERN,			/**< assign|if|while (entRef, expression-spec|'_')*/
 	CT_WITH,			/**< with attriRef = attriRef*/
@@ -130,8 +137,10 @@ public:
 	int variable1;		/**< var1 in relation*/
 	Type attribute1;	/**< only set if used in with clause*/
 	int variable2;		/**< var2 in relation*/
-	Type attribute2;	/**< only set if used in with clause*/
+	Type attribute2;	/**< only set if used in with clause*/ 
 	string variable3;	/**< expr in pattern*/
+	int variable4;	/**< expr in if and while*/
+	int variable5;	/**< expr in if*/
 	PatternQueryType patternType;	/**< differenciate assign, if and while*/
 };
 

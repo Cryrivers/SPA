@@ -58,8 +58,9 @@ public:
 	bool isSynonym(string str);
 	bool isStmtRef(string str);
 	bool isEntRef(string str);
-	bool isLineRef(string str);
+	bool isLineRef(string str);	
 	bool isVarRef(string str);
+	bool isNodeRef(string str);
 	bool isExprSpec(string str);
 };
 #endif
