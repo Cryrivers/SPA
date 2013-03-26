@@ -833,6 +833,10 @@ void PKBController::init()
 	_call_call = new Modifies();
 	_var_call = new Parent();
 	_stmt_const = new Follows();
+	//operators
+	_plus = new Operators();
+	_minus = new Operators();
+	_multiply = new Operators();
 }
 
 void PKBController::setPreprocessedProgram( vector<statement>* p )
@@ -1042,4 +1046,19 @@ STMT PKBController::getProcEnd( PROC_INDEX ind )
 STMT PKBController::getProcStart( PROC_INDEX ind )
 {
 	return _procTable->getProcStart(ind);
+}
+
+void PKBController::addPlusOperator( int ASTNodeId )
+{
+	_plus->addOperatorByASTNodeId(ASTNodeId);
+}
+
+void PKBController::addMinusOperator( int ASTNodeId )
+{
+	_minus->addOperatorByASTNodeId(ASTNodeId);
+}
+
+void PKBController::addMultiplyOperator( int ASTNodeId )
+{
+	_multiply->addOperatorByASTNodeId(ASTNodeId);
 }

@@ -16,6 +16,7 @@
 #include "Calls.h"
 #include "ProcTable.h"
 #include "CFG.h"
+#include "Operators.h"
 
 class DesignExtractor;
 class AST;
@@ -34,6 +35,11 @@ public:
 	AST* getAST();
 	CFG* getCFG();
 	CFG* getCFGBip();
+
+	//operator api
+	void addPlusOperator(int ASTNodeId);
+	void addMinusOperator(int ASTNodeId);
+	void addMultiplyOperator(int ASTNodeId);
 
 	//follows api
 	void addFollows(STMT stmt1, STMT stmt2);
@@ -161,6 +167,11 @@ private:
 	Parent* _proc_call;
 	Parent* _var_call;
 	Follows* _stmt_const;
+
+	//operator table
+	Operators* _plus;
+	Operators* _minus;
+	Operators* _multiply;
 
 	PKBController();
 	void build_proc_var();

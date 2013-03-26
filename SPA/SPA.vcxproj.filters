@@ -123,6 +123,9 @@
     <ClInclude Include="Next.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
+    <ClInclude Include="Operators.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -199,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="QueryPreprocessorDebug.cpp">
       <Filter>Source Files\Query Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files\PKB</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

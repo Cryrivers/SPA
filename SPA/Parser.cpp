@@ -566,6 +566,19 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 				operatorNode = ASTNode::createNode(AST_UNKNOWN, NULL);
 			}
 			_ast->setASTNodeIndex(operatorNode);
+			//Add the index to Operator Table
+			switch(operatorNode->getNodeType())
+			{
+				case AST_PLUS:
+					_pkb->addPlusOperator(operatorNode->getId());
+					break;
+				case AST_MINUS:
+					_pkb->addMinusOperator(operatorNode->getId());
+					break;
+				case AST_MULTIPLY:
+					_pkb->addMultiplyOperator(operatorNode->getId());
+					break;
+			}
 			operatorNode->addChild(leftOperand);
 			operatorNode->addChild(rightOperand);
 			variableStack.push(operatorNode);
