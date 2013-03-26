@@ -10,6 +10,7 @@ private:
 ASTNode(void);
 ASTNodeType _nodeType;
 int _nodeValue;
+int _id;
 ASTNode* _siblings;
 ASTNode* _children;
 int _stmtNumber;
@@ -41,6 +42,9 @@ void setStmtNumber(int number);
 
 string getHashcode();
 string appendHashcode(string hashCode);
+
+int getId();
+void setId(int id);
 
 void markHashcodeComputed();
 bool isHashcodeComputed();

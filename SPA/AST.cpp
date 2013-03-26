@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "AST.h"
+#include <assert.h>
 
 using namespace std;
 
 AST::AST(void)
 {
 	this->_root = ASTNode::createNode(AST_PROGRAM, NULL);
+	this->setASTNodeIndex(_root);
 }
 
 
@@ -363,5 +365,13 @@ vector<int>* AST::matchIfBranch( VAR_INDEX ind )
 		if((*it)->getNodeValue() == ind)
 			result->push_back((*it)->getStmtNumber());
 	return(result);
+}
+
+void AST::setASTNodeIndex( ASTNode* node )
+{
+	assert(node->getNodeType() != AST_ANY);
+	assert(node->getNodeType() != AST_UNKNOWN);
+	_astIndex.push_back(node);
+	node->setId(_astIndex.size() - 1);
 }
 

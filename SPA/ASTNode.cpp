@@ -407,3 +407,14 @@ bool ASTNode::isHashcodeComputed()
 {
 	return hashCodeComputed;
 }
+
+int ASTNode::getId()
+{
+	return _id;
+}
+
+void ASTNode::setId( int id )
+{
+	assert(id>=0);
+	_id = id;
+}

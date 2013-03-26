@@ -16,6 +16,7 @@ private:
 	inline int _operatorPrecedence(char op);
 	string _calcHashcode(ASTNode* node);
 	bool _containTree(ASTNode* container, ASTNode* object);
+	vector<ASTNode*> _astIndex;
 public:
 	AST(void);
 	~AST(void);
@@ -27,5 +28,7 @@ public:
 	vector<int>* matchWhileLoop(VAR_INDEX ind);
 	vector<int>* matchIfBranch(VAR_INDEX ind);
 	void calculateHashcode();
+	void setASTNodeIndex(ASTNode* node);
+	ASTNode* getASTNodeById(int id);
 };
 
