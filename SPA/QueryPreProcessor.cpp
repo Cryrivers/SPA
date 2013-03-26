@@ -27,8 +27,11 @@ QueryPreprocessor::QueryPreprocessor(void){
 	dicDesignEntity[5] ="constant ";
 	dicDesignEntity[6] ="prog_line ";
 	dicDesignEntity[7] ="call ";
-	dicDesignEntity[8] ="if ";
+	dicDesignEntity[8] ="if ";		  
 	dicDesignEntity[9] ="procedure ";
+	dicDesignEntity[10] ="plus ";
+	dicDesignEntity[11] ="minus ";
+	dicDesignEntity[12] ="times "; 		 
 	dicRelationRef[0] = "Parent*";
 	dicRelationRef[1] = "Parent";
 	dicRelationRef[2] = "Follows*";
@@ -276,21 +279,7 @@ vector<string> QueryPreprocessor::getClauses(string& str){
 		}
 	}
 	return result;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}			   
 /********************************************//**
  * @brief  Used to cut the relation
  * @param str string
@@ -449,6 +438,31 @@ int QueryPreprocessor::getIndexFromVarTable(string str, int a0, int a1, int a2, 
 						if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not var."<<endl;
 						return -1;
 					}
+				}else if(a7==5){
+					if(queryVarTable[i].variableType==DT_ASSIGN){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_CALL){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_IF){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_WHILE){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_STMT){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_PROCEDURE){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_VARIABLE){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_PROGLINE){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_STMTLST){
+						return i;
+					}else if(queryVarTable[i].variableType==DT_CONSTANT){
+						return i;
+					}else{
+						if(DEBUGMODE) cout<<"@getIndexFromVarTable: Query variable ["<<str<<"] not stmt."<<endl;
+						return -1;
+					}
 				}else{
 					return i;
 				}
@@ -589,6 +603,12 @@ BOOLEAN QueryPreprocessor::setupVarTable(vector<string> declares){
 				var=DT_STMTLST;
 			}else if(dicDesignEntity[p]=="procedure "){
 				var=DT_PROCEDURE;
+			}else if(dicDesignEntity[p]=="plus "){
+				var=DT_PLUS;
+			}else if(dicDesignEntity[p]=="minus "){
+				var=DT_MINUS;
+			}else if(dicDesignEntity[p]=="times "){
+				var=DT_TIMES;
 			}else{
 				if(DEBUGMODE) cout<<"@setupVarTable: Design entity not exist. Got:["<<declares[i]<<"]"<<endl;
 				return false;
@@ -696,7 +716,7 @@ BOOLEAN QueryPreprocessor::setupTarTable(vector<string> tarTable){
 			//================================
 			string attrib = tarTable[i].substr(tarTable[i].find("."));
 			tarTable[i] = tarTable[i].substr(0, tarTable[i].find("."));
-			int index = getIndexFromVarTable(tarTable[i], 0,1,1,0,0,0,0,0);
+			int index = getIndexFromVarTable(tarTable[i], 0,1,1,0,0,0,0,5);
 			if(index==-1){
 				if(DEBUGMODE) cout<<"@setupTarTable: Variable not declared. Got["<<tarTable[i]<<"]"<<endl;
 				return false;
@@ -720,7 +740,7 @@ BOOLEAN QueryPreprocessor::setupTarTable(vector<string> tarTable){
 			//================================
 			//Single target
 			//================================
-			int index = getIndexFromVarTable(tarTable[i], 0,1,1,0,0,0,0,0);
+			int index = getIndexFromVarTable(tarTable[i], 0,1,1,0,0,0,0,5);
 			if(index==-1){
 				if(DEBUGMODE) cout<<"@setupTarTable: Variable not declared. Got["<<tarTable[i]<<"]"<<endl;
 				return false;
@@ -1414,8 +1434,8 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 					if(DEBUGMODE) cout<<"@setupClaTable(): Variable not right for Contain and Sibling: a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}
-				int ia = getIndexFromVarTable(element[1], 0,1,0,0,0,0,1,1);
-				int ib = getIndexFromVarTable(element[2], 0,1,0,0,0,0,1,1);
+				int ia = getIndexFromVarTable(element[1], 0,1,0,0,0,0,1,0);
+				int ib = getIndexFromVarTable(element[2], 0,1,0,0,0,0,1,0);
 				if(ia==-1||ib==-1){
 					return false;
 				}  

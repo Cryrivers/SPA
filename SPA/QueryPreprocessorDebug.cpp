@@ -28,6 +28,12 @@ char* QueryPreprocessorDebug::typeToString(Type t){
 			return "boolean";
 		case DT_UNDERSCORE:
 			return "underscore";
+		case DT_PLUS:
+			return "plus";
+		case DT_MINUS:
+			return "minus";
+		case DT_TIMES:
+			return "times";
 		case KT_STMT_NUM:
 			return "stmt_num";
 		case KT_KNOWN_VARIABLE:
@@ -86,6 +92,20 @@ char* QueryPreprocessorDebug::typeToString(Type t){
 			return "known_const";
 		case DT_PROGLINE:
 			return "prog_line";
+		case RT_CONTAINST:
+			return "Contains*";
+		case RT_CONTAINS:
+			return "Contains";
+		case RT_SIBLING:
+			return "Sibling";
+		case RT_AFFECTSBIPT:
+			return "AffectBip*";
+		case RT_AFFECTSBIP:
+			return "AffectBip";
+		case RT_NEXTBIPT:
+			return "NextBip*";
+		case RT_NEXTBIP:
+			return "NextBip";
 	}	  
 	return "";
 }

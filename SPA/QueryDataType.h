@@ -46,8 +46,11 @@ enum Type{
 	DT_IF,				/**< design entity: if     part of stmt*/
 	DT_VARIABLE, 		/**< design entity: variable*/
 	DT_CONSTANT,		/**< design entity: constant*/
-	DT_BOOLEAN,			/**< special type: boolean*/
+	DT_BOOLEAN,			/**< special type: boolean*/  
 	DT_UNDERSCORE,		/**< special type: '_'*/
+	DT_PLUS,		 
+	DT_TIMES,		 
+	DT_MINUS,
 	//Types for Known (Fixed) Variables
 	KT_STMT_NUM,			/**< integers used in relation*/
 	KT_KNOWN_VARIABLE,		/**< used in relation of form "INDENT"*/
@@ -59,16 +62,13 @@ enum Type{
 	AT_STMT_NUM,		/**< stmt.stmt#: INTEGER*/
 	AT_VAR_NAME,		/**< variable.varName: NAME*/
 	AT_PROC_NAME,		/**< procedure.procName: NAME*/
-	
 	AT_CALL_PROC_NAME,	/**< call.procName: NAME*/
-	AT_VALUE,			/**< used for constant.value
-*/	
+	AT_VALUE,			/**< used for constant.value*/	
 	AT_PROCTABLEINDEX,	/**< used for calls in with clause*/
 	//Types for design entity relationships
 	RT_MODIFIESP,		/**< Relation: Modifies (procedure, variable)*/	
 	RT_MODIFIESS,		/**< Relation: Modifies (stmt, variable)*/
 	RT_USESP,			/**< Relation: Uses (procedure, variable)*/
-	
 	RT_USESS,			/**< Relation: Uses (stmt, variable)*/
 	RT_CALLS,			/**< Relation: Calls (procedure 1, procedure 2)*/
 	RT_CALLST,			/**< Relation: Calls* (procedure 1, procedure 2)*/

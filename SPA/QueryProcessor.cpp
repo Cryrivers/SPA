@@ -13,7 +13,11 @@ void QueryProcessor::evaluate(string query, list<string>& results){
 			if (qPre.getQueryVariableTable().at(qPre.getQueryTargetTable().at(0).varIndex).variableType == DT_BOOLEAN)
 				results.push_back("false");
 	}else{
-		if (qPre.getQueryVariableTable().at(qPre.getQueryTargetTable().at(0).varIndex).variableType == DT_BOOLEAN)
-			results.push_back("false");
+		try{
+			if (qPre.getQueryVariableTable().at(qPre.getQueryTargetTable().at(0).varIndex).variableType == DT_BOOLEAN)
+				results.push_back("false");
+		}catch (...){
+			
+		}		  
 	}
 }
