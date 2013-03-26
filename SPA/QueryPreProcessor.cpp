@@ -1298,6 +1298,10 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				//var2 must be stmt or stmt number or '_'
 				//integer arguments mean program line numbers
 				//================================ 
+				if(element[1]==element[2]&&element[1]!="_"&&m==9){
+					if(DEBUGMODE) cout<<"@setupClaTable(): Variable cannot be the same for Parent and Follows a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
+					return false;
+				}
 				if(!qv.isLineRef(element[1])||!qv.isLineRef(element[2])){
 					if(DEBUGMODE) cout<<"@setupClaTable(): Variable not right for Next. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;

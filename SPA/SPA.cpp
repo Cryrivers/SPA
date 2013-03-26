@@ -109,7 +109,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	query[9]="assign a2;Select a2 such that Affects* (20, a2)"; //none
 	*/
 	//query[0]="";
-	query[0]="Select BOOLEAN such that Affects* (4, 2)"; //true
+	query[0]="Select BOOLEAN such that Next* (2, 1)"; //true
 	query[1]="Select BOOLEAN such that Affects (2, 4)"; //true
 	query[2]="Select BOOLEAN such that Affects (2, 3)"; //false
 	
