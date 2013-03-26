@@ -5,7 +5,7 @@
 #define PRINTTABLE 0
 #define DICCLAUSESIZE 4			/**< contain: "such that", "and", "pattern", "with"*/
 #define DICDESIGNENTITYSIZE 10	/**< contain: "stmt", "assign", "while", "variable", "constant", "prog_line", "call", "if", "stmtlst", "procedure"*/
-#define DICRELATIONREFSIZE 12	/**< contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls"*/
+#define DICRELATIONREFSIZE 19	/**< contain: "Parent*", "Parent", "Follows*", "Follows", "Modifies", "Uses", "Affects*", "Affects", "Next*", "Next", "Calls*", "Calls"*/
 #define DICATTRIBUTESIZE 5		/**< contain: "procName", "varName", "value", "stmt#", "prog_line#", "procName"*/
 #include "PKBController.h"
 /********************************************//**

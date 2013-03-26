@@ -39,8 +39,15 @@ QueryPreprocessor::QueryPreprocessor(void){
 	dicRelationRef[7] = "Affects";
 	dicRelationRef[8] = "Next*";
 	dicRelationRef[9] = "Next";
-	dicRelationRef[10] = "Calls*";
+	dicRelationRef[10] = "Calls*"; 
 	dicRelationRef[11] = "Calls";
+	dicRelationRef[12] = "Contains*";
+	dicRelationRef[13] = "Contains";
+	dicRelationRef[14] = "Sibling";	  
+	dicRelationRef[15] = "AffectsBip*";
+	dicRelationRef[16] = "AffectsBip";
+	dicRelationRef[17] = "NextBip*";
+	dicRelationRef[18] = "NextBip";
 	dicAttribute[0] = ".procName";
 	dicAttribute[1] = ".varName";
 	dicAttribute[2] = ".value";
@@ -1146,7 +1153,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 			//   .variable1 .variable2 and 
 			//   .relationType to clauseTable
 			//================================
-			if(m==0||m==1||m==2||m==3){
+			if(m==0||m==1||m==2||m==3||m==12||m==13||m==14){
 				//================================
 				//Relation is "Parent*", "Parent", "Follows*", "Follows"
 				//
@@ -1221,7 +1228,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				}
 				qc.variable1 = ia;
 				qc.variable2 = ib;
-			}else if(m==6||m==7){
+			}else if(m==6||m==7||m==15||m==16){
 				//================================
 				//Relation is "Affects*", "Affects"
 				//
@@ -1287,7 +1294,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				}
 				qc.variable1 = ia;
 				qc.variable2 = ib;
-			}else if(m==8||m==9){
+			}else if(m==8||m==9||m==17||m==18){
 				//================================
 				//Relation is "Next*", "Next"
 				//
@@ -1298,7 +1305,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				//var2 must be stmt or stmt number or '_'
 				//integer arguments mean program line numbers
 				//================================ 
-				if(element[1]==element[2]&&element[1]!="_"&&m==9){
+				if(element[1]==element[2]&&element[1]!="_"&&(m==9||m==18)){
 					if(DEBUGMODE) cout<<"@setupClaTable(): Variable cannot be the same for Parent and Follows a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
 				}
