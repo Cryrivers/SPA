@@ -998,7 +998,15 @@ BOOLEAN PKBController::next( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )
 
 BOOLEAN PKBController::nextStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )
 {
-	return _next->nextStar(st1s_ptr, st2s_ptr, arg);
+	if ((arg == 3) && (st1s_ptr->size() == 0) && (st2s_ptr->size() == 0)) {
+		if (_next->nextStar(st1s_ptr, st2s_ptr, 2)) {
+			return(_next->nextStar(st1s_ptr, st2s_ptr, 3));
+		}else {
+			return(false);
+		}
+	}else {
+		return(_next->nextStar(st1s_ptr, st2s_ptr, arg));
+	}
 }
 
 STMT_LIST PKBController::getAllNextFirst()
