@@ -428,7 +428,7 @@ BOOLEAN NextBip::isNextBipStar(STMT stmt1, STMT stmt2)
 
 void NextBip::isNextBipStarHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>* visitedNodes, stack<STMT>* callStack, BOOLEAN* result)
 {
-	if(node1->getBipType() == CFG_BIP_CALL) { //call node
+	if(node1->getBipType() == CFG_BIP_IN) { //call node
 		callStack->push(node1->getStartStatement()); //push to call stack
 		CFGNode* next_node = node1->getNextEdges().at(0); //there will be exactly one next node
 		if(indexOf((*visitedNodes), next_node) >= 0) {
@@ -588,7 +588,7 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visited
 	if(prev_nodes.size() == 0)
 		return;
 
-	if(prev_nodes.at(0)->getBipType() == CFG_BIP_RETURN) { //jump to return nodes
+	if(prev_nodes.at(0)->getBipType() == CFG_BIP_OUT) { //jump to return nodes
 		for(int i=0; i<prev_nodes.size(); i++) {
 			callStack->push(node2->getStartStatement() - 1); //push to call stack
 			CFGNode* current_node = prev_nodes.at(i);
@@ -605,7 +605,7 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visited
 	} else { //within same proc OR jump back to caller
 		BOOLEAN jumpToCaller = false;
 		for(int i=0; i<prev_nodes.size(); i++) {
-			if(prev_nodes.at(i)->getBipType() == CFG_BIP_CALL) { //jump back to caller
+			if(prev_nodes.at(i)->getBipType() == CFG_BIP_IN) { //jump back to caller
 				jumpToCaller = true;
 				break;
 			}
@@ -724,7 +724,7 @@ STMT_LIST NextBip::getNextBipStarSecond(STMT stmt1)
 
 void NextBip::getNextBipStarSecondHelper(CFGNode* node1,vector<CFGNode*>* visitedNodes, stack<STMT>* callStack, STMT_LIST* result)
 {
-	if(node1->getBipType() == CFG_BIP_CALL) { //call node
+	if(node1->getBipType() == CFG_BIP_IN) { //call node
 		callStack->push(node1->getStartStatement()); //push to call stack
 		CFGNode* next_node = node1->getNextEdges().at(0); //there will be exactly one next node
 		if(indexOf((*visitedNodes), next_node) >= 0) {

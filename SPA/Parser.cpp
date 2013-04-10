@@ -71,7 +71,7 @@ void Parser::_parseLine()
 			currentCFGBipNode->setStartStatement(it->stmtNumber);
 			currentCFGBipNode->setEndStatement(it->stmtNumber);
 			currentCFGBipNode->setProcIndex(it->procIndex);
-			currentCFGBipNode->setCFGType(CFG_BIP_CALL_STATEMENT);
+			currentCFGBipNode->setCFGType(CFG_CALL_STATEMENT);
 			_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
 			currentCFGBipNode = new CFGNode();
 		

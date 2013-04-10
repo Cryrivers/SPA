@@ -1411,15 +1411,15 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 					CFGNode* calleeStartNode = cfg->getCFGNodeByStmtNumber(calleeStart);
 					CFGNode* calleeEndNode = cfg->getCFGNodeByStmtNumber(calleeEnd);
 					thisNode->connectTo(calleeStartNode);
-					thisNode->setBipType(CFG_BIP_CALL);
+					thisNode->setBipType(CFG_BIP_IN);
 					if(nextNode->getProcIndex() == thisNode->getProcIndex())
 					{
 						calleeEndNode->connectTo(nextNode);
-						calleeEndNode->setBipType(CFG_BIP_RETURN);
+						calleeEndNode->setBipType(CFG_BIP_OUT);
 						if(calleeEndNode->getPairedCFGNode() != NULL)
 						{
 							calleeEndNode->getPairedCFGNode()->connectTo(nextNode);
-							calleeEndNode->getPairedCFGNode()->setBipType(CFG_BIP_RETURN);
+							calleeEndNode->getPairedCFGNode()->setBipType(CFG_BIP_OUT);
 						}
 					}
 				}
