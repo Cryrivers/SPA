@@ -56,6 +56,21 @@ CFGNode* CFG::getCFGNodeByStmtNumber( STMT stmtNumber )
 	return NULL;
 }
 
+CFGNode* CFG::getNextCFGNodeByCurrentStmtNumber( STMT stmtNumber )
+{
+	for(vector<CFGNode*>::iterator it = _CFGBlocks.begin(); it != _CFGBlocks.end();++it)
+	{	
+		if((*it)->containStatement(stmtNumber))
+		{
+			if(it != _CFGBlocks.end() - 1)
+				return *(++it);
+			else
+				return NULL;
+		}
+	}
+	return NULL;
+}
+
 /**
  * \fn	vector<CFGNode*> CFG::getAllCFGNodes()
  *
@@ -83,12 +98,19 @@ void CFG::__printDotGraphForGraphviz()
 		vector<CFGNode*> edges = c->getNextEdges();
 		string label = "";
 		//Print the label
-		for(int i = c->getStartStatement(); i<= c->getEndStatement(); i++)
+		if(c->getCFGType() != CFG_DUMMY)
 		{
-			label += to_string((long long)i);
-			if(i<c->getEndStatement()) label += ",";
+			for(int i = c->getStartStatement(); i<= c->getEndStatement(); i++)
+			{
+				label += to_string((long long)i);
+				if(i<c->getEndStatement()) label += ",";
+			}
+			fprintf(f,"%d [label=\"%s\"]\n",__indexOf(_CFGBlocks,*it), label.c_str());
 		}
-		fprintf(f,"%d [label=\"%s\"]\n",__indexOf(_CFGBlocks,*it), label.c_str());
+		else
+		{
+			fprintf(f,"%d [label=\"Dummy %d\"]\n",__indexOf(_CFGBlocks,*it), c->getProcIndex());
+		}
 
 		//Connect edges
 		for(vector<CFGNode*>::iterator n = edges.begin(); n!= edges.end(); ++n)

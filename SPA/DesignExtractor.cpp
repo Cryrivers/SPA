@@ -1364,7 +1364,7 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 			scope.push(*it);
 			//Connect While Block
 			CFGNode* whileNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
-			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
+			CFGNode* nextNode = cfg->getNextCFGNodeByCurrentStmtNumber(it->stmtNumber);
 			if(nextNode != NULL)
 				if(nextNode != whileNode && nextNode->getProcIndex() == whileNode->getProcIndex())
 					whileNode->connectTo(nextNode);
@@ -1381,7 +1381,7 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 			}
 			
 			//Connect while statement to next statement, if any.
-			CFGNode* afterWhileBlock = cfg->getCFGNodeByStmtNumber(it->endOfTheScope + 1);
+			CFGNode* afterWhileBlock = cfg->getNextCFGNodeByCurrentStmtNumber(it->endOfTheScope);
 			if(afterWhileBlock != NULL)
 			{
 				whileNode->connectTo(afterWhileBlock);
@@ -1391,11 +1391,12 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 		{
 			//Connect this to next
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
-			CFGNode* nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
-			
+			CFGNode* nextNode = cfg->getNextCFGNodeByCurrentStmtNumber(it->stmtNumber);
+			if(nextNode == NULL) continue;
+
 			if(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK || 
 				(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
-				(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && (it->stmtNumber < scope.top().endOfTheScope)) ||
+				(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && (it->stmtNumber < scope.top().endOfTheScope) && nextNode->getCFGType() != CFG_DUMMY) ||
 				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
 			{
 				if(!bipEnabled || it->type == STMT_ASSIGNMENT)
@@ -1409,18 +1410,12 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 					STMT calleeStart = _pkb->getProcStart(calleeIndex);
 					STMT calleeEnd = _pkb->getProcEnd(calleeIndex);
 					CFGNode* calleeStartNode = cfg->getCFGNodeByStmtNumber(calleeStart);
-					CFGNode* calleeEndNode = cfg->getCFGNodeByStmtNumber(calleeEnd);
+					CFGNode* calleeEndNode = cfg->getNextCFGNodeByCurrentStmtNumber(calleeEnd);
 					thisNode->connectTo(calleeStartNode);
 					thisNode->setBipType(CFG_BIP_IN);
 					if(nextNode->getProcIndex() == thisNode->getProcIndex())
 					{
 						calleeEndNode->connectTo(nextNode);
-						calleeEndNode->setBipType(CFG_BIP_OUT);
-						if(calleeEndNode->getPairedCFGNode() != NULL)
-						{
-							calleeEndNode->getPairedCFGNode()->connectTo(nextNode);
-							calleeEndNode->getPairedCFGNode()->setBipType(CFG_BIP_OUT);
-						}
 					}
 				}
 			}

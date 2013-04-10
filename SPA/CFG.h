@@ -8,6 +8,7 @@ public:
 	~CFG(void);
 	void addToCFG(CFGNode* cfgnode);
 	CFGNode* getCFGNodeByStmtNumber(STMT stmtNumber);
+	CFGNode* getNextCFGNodeByCurrentStmtNumber(STMT stmtNumber);
 	vector<CFGNode*> getAllCFGNodes();
 	void __printDotGraphForGraphviz();
 	int __indexOf(vector<CFGNode*> list, CFGNode* val);

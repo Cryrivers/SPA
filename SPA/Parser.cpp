@@ -235,6 +235,16 @@ void Parser::_parseLine()
 				_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
 			else
 				delete currentCFGBipNode;
+
+			//Add Dummy CFG
+			if(it->type == STMT_CLOSE_BRACKET_END_OF_PROC)
+			{
+				currentCFGBipNode = new CFGNode();
+				currentCFGBipNode->setCFGType(CFG_DUMMY);
+				currentCFGBipNode->setBipType(CFG_BIP_OUT);
+				currentCFGBipNode->setProcIndex(it->procIndex);
+				_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
+			}
 			
 			//Will leak 1 object
 			currentCFGNode = new CFGNode();
