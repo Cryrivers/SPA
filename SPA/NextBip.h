@@ -5,6 +5,7 @@
 #include "Utility.h"
 #include "PKBController.h"
 #include <stack>
+#include <queue>
 using namespace std;
 
 class NextBip

@@ -1,7 +1,7 @@
 /**
- * \file	Next.cpp
- * \class	Next
- * \brief	Store all 'Next' relations in the form (stmt1, stmt2) where both 'stmt1' and 'stmt2' are statement numbers. Provide functions for query on Next relation and NextStar relation. The storage is referred as NextTable.
+ * \file	NextBip.cpp
+ * \class	NextBip
+ * \brief	Provide functions for query on NextBip relation and NextBipStar relation.
  */
 
 #include "stdafx.h"
@@ -24,15 +24,33 @@ BOOLEAN NextBip::isNextBip(STMT stmt1, STMT stmt2)
 			return true;
 		else	
 			return false;
-	} else { //node1 is IF, WHILE, or CALL, OR stmt1 is the last stmt of node1 //
-		vector<CFGNode*> nextEdges = node1->getNextEdges();
+	} else { //node1 is IF, WHILE, CALL, OR stmt1 is the last stmt of node1, need to go to the next nodes
+		vector<CFGNode*> nextEdges = node1->getNextEdges(); //go to next nodes
+
 		for(int i=0; i<nextEdges.size(); i++) { //loop through each next edge
-			if(nextEdges.at(i)->getStartStatement() == stmt2)
+			CFGNode* currentNext = nextEdges.at(i);
+			if(currentNext->getCFGType() == CFG_DUMMY) { //dummy node, special handling
+				queue<CFGNode*> dummyLinks;
+				dummyLinks.push(currentNext);
+				while(!dummyLinks.empty()) { //there are more dummy links
+					CFGNode* currentDummy = dummyLinks.front(); dummyLinks.pop(); //retrieve one dummy node and remove it from queue
+					vector<CFGNode*> temp = currentDummy->getNextEdges();
+					for(int i=0; i<temp.size(); i++) {
+						CFGNode* tempNext = temp.at(i);
+						if(tempNext->getCFGType()==CFG_DUMMY) //the next node is still a dummy node
+							dummyLinks.push(tempNext);
+						else if(tempNext->getStartStatement() == stmt2)
+							return true;
+					}
+				}
+			}
+			else if(currentNext->getStartStatement() == stmt2)
 				return true;	
 		}
-		return false;	
+		return false;
 	}
 }
+
 
 STMT_LIST NextBip::getNextBipFirst(STMT stmt2)
 {
@@ -40,15 +58,33 @@ STMT_LIST NextBip::getNextBipFirst(STMT stmt2)
 
 	CFGNode* node2 = _pkb->getCFGBip()->getCFGNodeByStmtNumber(stmt2); //get the CFGNode that contains stmt2
 	if(node2->getCFGType() == CFG_NORMAL_BLOCK && node2->getStartStatement() != stmt2) {
-		//node1 contains all assign statements and stmt1 is not the last stmt of node1, there is stmt after stmt1
+		//node2 contains all assign statements and stmt2 is not the first stmt of node2, there is stmt before stmt2
 		resultLst.push_back(stmt2-1);
-	} else { //node1 is IF, WHILE, or CALL, OR stmt1 is the last stmt of node1 //
+	} else { //node2 is IF, WHILE, CALL, OR stmt2 is the first stmt of node2, need to go to the prev nodes
 		vector<CFGNode*> prevEdges = node2->getPrevEdges();
+
 		for(int i=0; i<prevEdges.size(); i++) { //loop through each previous edge
-			resultLst.push_back(prevEdges.at(i)->getEndStatement());	
+			CFGNode* currentPrev = prevEdges.at(i);
+
+			if(currentPrev->getCFGType() == CFG_DUMMY) { //dummy node, special handling
+				queue<CFGNode*> dummyLinks;
+				dummyLinks.push(currentPrev);
+				while(!dummyLinks.empty()) { //there are more dummy links
+					CFGNode* currentDummy = dummyLinks.front(); dummyLinks.pop(); //retrieve one dummy node and remove it from queue
+					vector<CFGNode*> temp = currentDummy->getPrevEdges();
+					for(int i=0; i<temp.size(); i++) {
+						CFGNode* tempPrev = temp.at(i);
+						if(tempPrev->getCFGType()==CFG_DUMMY) //the prev node is still a dummy node
+							dummyLinks.push(tempPrev);
+						else
+							resultLst.push_back(tempPrev->getEndStatement());
+					}
+				}
+			}
+			else
+				resultLst.push_back(currentPrev->getEndStatement());	
 		}
 	}
-
 	return resultLst;
 }
 
@@ -60,13 +96,31 @@ STMT_LIST NextBip::getNextBipSecond(STMT stmt1)
 	if(node1->getCFGType() == CFG_NORMAL_BLOCK && node1->getEndStatement() != stmt1) {
 		//node1 contains all assign statements and stmt1 is not the last stmt of node1, there is stmt after stmt1
 		resultLst.push_back(stmt1+1);
-	} else { //node1 is IF, WHILE, or CALL, OR stmt1 is the last stmt of node1 //
+	} else { //node1 is IF, WHILE, or CALL, OR stmt1 is the last stmt of node1, need to go to the next nodes
 		vector<CFGNode*> nextEdges = node1->getNextEdges();
+		
 		for(int i=0; i<nextEdges.size(); i++) { //loop through each next edge
-			resultLst.push_back(nextEdges.at(i)->getStartStatement());	
+			CFGNode* currentNext = nextEdges.at(i);
+
+			if(currentNext->getCFGType() == CFG_DUMMY) { //dummy node, special handling
+				queue<CFGNode*> dummyLinks;
+				dummyLinks.push(currentNext);
+				while(!dummyLinks.empty()) { //there are more dummy links
+					CFGNode* currentDummy = dummyLinks.front(); dummyLinks.pop(); //retrieve one dummy node and remove it from queue
+					vector<CFGNode*> temp = currentDummy->getNextEdges();
+					for(int i=0; i<temp.size(); i++) {
+						CFGNode* tempNext = temp.at(i);
+						if(tempNext->getCFGType()==CFG_DUMMY) //the next node is still a dummy node
+							dummyLinks.push(tempNext);
+						else
+							resultLst.push_back(tempNext->getStartStatement());
+					}
+				}
+			}
+			else
+				resultLst.push_back(currentNext->getStartStatement());	
 		}
 	}
-
 	return resultLst;
 }
 
