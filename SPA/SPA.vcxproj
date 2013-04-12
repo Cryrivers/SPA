@@ -75,6 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AffectsBip.h" />
     <ClInclude Include="AST.h" />
     <ClInclude Include="ASTNode.h" />
     <ClInclude Include="Calls.h" />
@@ -105,6 +106,7 @@
     <ClInclude Include="VarTable.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AffectsBip.cpp" />
     <ClCompile Include="AST.cpp" />
     <ClCompile Include="ASTNode.cpp" />
     <ClCompile Include="Calls.cpp" />

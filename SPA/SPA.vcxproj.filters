@@ -129,6 +129,9 @@
     <ClInclude Include="NextBip.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
+    <ClInclude Include="AffectsBip.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -210,6 +213,9 @@
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
     <ClCompile Include="NextBip.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="AffectsBip.cpp">
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
   </ItemGroup>
