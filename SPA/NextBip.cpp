@@ -520,9 +520,11 @@ void NextBip::isNextBipStarHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>* 
 			}
 		}
 	}
-	else { //return node, which is either all-assign node or while node
+	else { //return node, which is either all-assign node or dummy node
 		vector<CFGNode*> next_nodes = node1->getNextEdges();
-		if(node1->getCFGType() == CFG_WHILE_STATEMENT) { //while node, need to traverse node within the same proc first
+
+		//after adding dummy nodes, while node cannot be a return node any more, so the following special handling is not needed
+		/*if(node1->getCFGType() == CFG_WHILE_STATEMENT) { //while node, need to traverse node within the same proc first
 			CFGNode* nodeInSameProc;
 			for (int i = 0; i < next_nodes.size(); i++) { // loop through each next CFGNode to find node within same procedure
 				CFGNode* currentNode = next_nodes.at(i);
@@ -546,11 +548,9 @@ void NextBip::isNextBipStarHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>* 
 						return;
 				}
 			}
-		}
+		}*/
 
-		//all-assign node, no next node within the same procedure.
-		//OR
-		//while node, node within the same proc is already handled and removed
+		//all-assign node OR dummy node, no next node within the same procedure.
 
 		// clear visited nodes that are within the same procedure
 		PROC_INDEX currentProc = node1->getProcIndex();
@@ -651,7 +651,8 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visited
 			} else {
 				visitedNodes->push_back(current_node); //mark current predecessor as visited to avoid re-visit
 				for(int i=current_node->getEndStatement(); i>=current_node->getStartStatement(); i--) {
-					result->push_back(i);
+					if(i != -1)
+						result->push_back(i);
 				}
 				getNextBipStarFirstHelper(current_node, visitedNodes, callStack, result);
 			}
@@ -803,16 +804,19 @@ void NextBip::getNextBipStarSecondHelper(CFGNode* node1,vector<CFGNode*>* visite
 				} else {
 					visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
 					for(int i=currentNode->getStartStatement(); i<=currentNode->getEndStatement(); i++) {
-						result->push_back(i);
+						if(i != -1) //avoid adding dummy nodes
+							result->push_back(i);
 					}
 					getNextBipStarSecondHelper(currentNode, visitedNodes, callStack, result);
 				}
 			}
 		}
 	}
-	else { //return node, which is either all-assign node or while node
+	else { //return node, which is either all-assign node or dummy node
 		vector<CFGNode*> next_nodes = node1->getNextEdges();
-		if(node1->getCFGType() == CFG_WHILE_STATEMENT) { //while node, need to traverse node within the same proc first
+
+		//after adding dummy nodes, while node cannot be a return node any more, so the following special handling is not needed
+		/*if(node1->getCFGType() == CFG_WHILE_STATEMENT) { //while node, need to traverse node within the same proc first
 			CFGNode* nodeInSameProc;
 			for (int i = 0; i < next_nodes.size(); i++) { // loop through each next CFGNode to find node within same procedure
 				CFGNode* currentNode = next_nodes.at(i);
@@ -832,11 +836,9 @@ void NextBip::getNextBipStarSecondHelper(CFGNode* node1,vector<CFGNode*>* visite
 				}
 				getNextBipStarSecondHelper(nodeInSameProc, visitedNodes, callStack, result);
 			}
-		}
+		}*/
 
-		//all-assign node, no next node within the same procedure.
-		//OR
-		//while node, node within the same proc is already handled and removed
+		//all-assign node OR dummy node, no next node within the same procedure.
 
 		// clear visited nodes that are within the same procedure
 		PROC_INDEX currentProc = node1->getProcIndex();
@@ -859,7 +861,8 @@ void NextBip::getNextBipStarSecondHelper(CFGNode* node1,vector<CFGNode*>* visite
 					} else {
 						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
 						for(int i=currentNode->getStartStatement(); i<=currentNode->getEndStatement(); i++) {
-							result->push_back(i);
+							if(i != -1)
+								result->push_back(i);
 						}
 						getNextBipStarSecondHelper(currentNode, visitedNodes, callStack, result);
 					}
@@ -881,7 +884,8 @@ void NextBip::getNextBipStarSecondHelper(CFGNode* node1,vector<CFGNode*>* visite
 					} else {
 						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
 						for(int i=currentNode->getStartStatement(); i<=currentNode->getEndStatement(); i++) {
-							result->push_back(i);
+							if(i != -1)
+								result->push_back(i);
 						}
 						getNextBipStarSecondHelper(currentNode, visitedNodes, callStack, result);
 					}
