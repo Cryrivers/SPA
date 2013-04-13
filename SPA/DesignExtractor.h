@@ -81,9 +81,15 @@ private:
 	BOOLEAN contains_01(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN contains_10(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN contains_11(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN containsStar_00(vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN containsStar_01(vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN containsStar_10(vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN containsStar_11(vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN sibling_00(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN sibling_01(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN sibling_10(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN sibling_11(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	void containsStarCase1aRecursive(ASTNode* root, ASTNodeType type, BOOLEAN* result);
+	void containsStarCase1bRecursive(ASTNode* root, ASTNodeType type, BOOLEAN* result);
 };
 

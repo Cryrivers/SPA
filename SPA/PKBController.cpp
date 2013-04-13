@@ -827,8 +827,8 @@ void PKBController::init()
 	_cfgbip = new CFG();
 	_designExtractor = new DesignExtractor();
 	_preprocessedProgram = new vector<statement>();
-	_affectsBip = AffectsBip();
-	_nextBip = NextBip();
+	_affectsBip = new AffectsBip();
+	_nextBip = new NextBip();
 	//with
 	_proc_call = new Parent();
 	_proc_var = new Follows();
@@ -1067,42 +1067,42 @@ void PKBController::addMultiplyOperator( int ASTNodeId )
 
 BOOLEAN PKBController::affectsBip( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )
 {
-	_affectsBip.affectsBip(st1s_ptr, st2s_ptr, arg);
+	_affectsBip->affectsBip(st1s_ptr, st2s_ptr, arg);
 }
 
 BOOLEAN PKBController::affectsBipStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )
 {
-	_affectsBip.affectsBipStar(st1s_ptr, st2s_ptr, arg);
+	_affectsBip->affectsBipStar(st1s_ptr, st2s_ptr, arg);
 }
 
 BOOLEAN PKBController::nextBip( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )
 {
-	_nextBip.nextBip(st1s_ptr, st2s_ptr, arg);
+	_nextBip->nextBip(st1s_ptr, st2s_ptr, arg);
 }
 
 BOOLEAN PKBController::nextBipStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg )
 {
-	_nextBip.nextBipStar(st1s_ptr, st2s_ptr,arg);
+	_nextBip->nextBipStar(st1s_ptr, st2s_ptr,arg);
 }
 
 BOOLEAN PKBController::isAffectsBip( STMT stmt1, STMT stmt2 )
 {
-	_affectsBip.isAffectsBip(stmt1,stmt2);
+	_affectsBip->isAffectsBip(stmt1,stmt2);
 }
 
 BOOLEAN PKBController::isAffectsBipStar( STMT stmt1, STMT stmt2 )
 {
-	_affectsBip.isAffectsBipStar(stmt1, stmt2);
+	_affectsBip->isAffectsBipStar(stmt1, stmt2);
 }
 
 BOOLEAN PKBController::isNextBip( STMT stmt1, STMT stmt2 )
 {
-	_nextBip.isNextBip(stmt1, stmt2);
+	_nextBip->isNextBip(stmt1, stmt2);
 }
 
 BOOLEAN PKBController::isNextBipStar( STMT stmt1, STMT stmt2 )
 {
-	_nextBip.isNextBipStar(stmt1, stmt2);
+	_nextBip->isNextBipStar(stmt1, stmt2);
 }
 
 BOOLEAN PKBController::isContains( int indexA, int indexB, ASTNodeType argA, ASTNodeType argB )

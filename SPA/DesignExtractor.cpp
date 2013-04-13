@@ -3341,6 +3341,156 @@ BOOLEAN DesignExtractor::sibling_11( vector<int>* indexAs, vector<int> *indexBs,
 	}
 }
 
+BOOLEAN DesignExtractor::containsStar( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
+{
+	switch (arg) {
+	case 0:
+		return(containsStar_00(indexAs, indexBs, argA, argB));
+
+	case 1:
+		return(containsStar_01(indexAs, indexBs, argA, argB));
+
+	case 2:
+		return(containsStar_10(indexAs, indexBs, argA, argB));
+
+	case 3:
+		return(containsStar_11(indexAs, indexBs, argA, argB));
+
+	default:
+		return false;
+	}
+}
+
+BOOLEAN DesignExtractor::containsStar_00( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB )
+{
+	int size1 = indexAs->size();
+	int size2 = indexBs->size();
+	vector<ASTNode*>* ast = _pkb->getAST()->getAllASTNodes();
+	ASTNode * a;
+	ASTNode * b;
+	bool flag = false;
+	if ((size1 == 0) && (size2 == 0)) { //case 1a
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				containsStarCase1aRecursive(b, argB, &flag);
+				if(flag == true) return true;
+			}
+		}
+		return false;
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 1b
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(*indexBs, b->getNodeValue()) >= 0)
+					{
+						return true;
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+		return false;
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 1c
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA && indexOf(*indexAs, ast->at(i)->getNodeValue()) >=0)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						return true;
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+		return false;
+	}else {  //size1!=0 && size2!=0, case 1d
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA && indexOf(*indexAs, ast->at(i)->getNodeValue())>=0)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(*indexBs, b->getNodeValue()) >= 0)
+					{
+						return true;
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+		return false;
+	}
+	return false;
+}
+
+BOOLEAN DesignExtractor::containsStar_01( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB )
+{
+
+}
+
+BOOLEAN DesignExtractor::containsStar_10( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB )
+{
+
+}
+
+BOOLEAN DesignExtractor::containsStar_11( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB )
+{
+
+}
+
+void DesignExtractor::containsStarCase1aRecursive( ASTNode* root, ASTNodeType type, BOOLEAN* result )
+{
+	ASTNode* sib, * child;
+	if (root->getNodeType() == type) 
+	{
+			*result = true;
+			return;
+	}
+	child = root->getChildren();
+	if (child != NULL) containsStarCase1aRecursive(child, type, result);
+	if (*result == true) 
+		return;
+	sib = root->getSibling();
+	if (sib != NULL) containsStarCase1aRecursive(sib, type, result);
+	if (*result == true)
+		return;
+}
+
+void DesignExtractor::containsStarCase1bRecursive( ASTNode* root, ASTNodeType type, BOOLEAN* result )
+{
+	ASTNode* sib, * child;
+	if (root->getNodeType() == type) 
+	{
+		*result = true;
+		return;
+	}
+	child = root->getChildren();
+	if (child != NULL) containsStarCase1aRecursive(child, type, result);
+	if (*result == true) 
+		return;
+	sib = root->getSibling();
+	if (sib != NULL) containsStarCase1aRecursive(sib, type, result);
+	if (*result == true)
+		return;
+}
+
+BOOLEAN DesignExtractor::isContainsStar( int indexA, int indexB, ASTNodeType argA, ASTNodeType argB )
+{
+	return false;
+}
+
 // The following codes are old codes, which might be used when new codes are wrong
 /*
 STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2, BOOLEAN exhaustive)

@@ -192,8 +192,8 @@ private:
 	CFG* _cfg;
 	CFG* _cfgbip;
 	ASTNode* _astNode;
-	AffectsBip _affectsBip;
-	NextBip _nextBip;
+	AffectsBip* _affectsBip;
+	NextBip* _nextBip;
 	DesignExtractor* _designExtractor;
 	vector<statement>* _preprocessedProgram;
 
