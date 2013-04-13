@@ -23,6 +23,8 @@
 class DesignExtractor;
 class AST;
 class CFG;
+class AffectsBip;
+class NextBip;
 
 class PKBController
 {
@@ -155,6 +157,9 @@ public:
 	BOOLEAN isContains(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN isContainsStar(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN isSibling(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN contains(vector<int>*, vector<int>*, ASTNodeType argA, ASTNodeType argB, int arg);
+	BOOLEAN containsStar(vector<int>*, vector<int>*, ASTNodeType argA, ASTNodeType argB, int arg);
+	BOOLEAN sibling(vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg);
 
 	BOOLEAN isAffects(STMT, STMT);
 	BOOLEAN isAffectsStar(STMT, STMT);

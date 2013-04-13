@@ -1084,3 +1084,123 @@ BOOLEAN PKBController::nextBipStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, in
 {
 	_nextBip.nextBipStar(st1s_ptr, st2s_ptr,arg);
 }
+
+BOOLEAN PKBController::isAffectsBip( STMT stmt1, STMT stmt2 )
+{
+	_affectsBip.isAffectsBip(stmt1,stmt2);
+}
+
+BOOLEAN PKBController::isAffectsBipStar( STMT stmt1, STMT stmt2 )
+{
+	_affectsBip.isAffectsBipStar(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isNextBip( STMT stmt1, STMT stmt2 )
+{
+	_nextBip.isNextBip(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isNextBipStar( STMT stmt1, STMT stmt2 )
+{
+	_nextBip.isNextBipStar(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isContains( int indexA, int indexB, ASTNodeType argA, ASTNodeType argB )
+{
+	_designExtractor->isContains(indexA, indexB, argA, argB);
+}
+
+BOOLEAN PKBController::isSibling( int indexA, int indexB, ASTNodeType argA, ASTNodeType argB )
+{
+	_designExtractor->isSibling(indexA, indexB, argA, argB);
+}
+
+BOOLEAN PKBController::contains( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
+{
+	_designExtractor->contains(indexAs, indexBs, argA, argB, arg);
+}
+
+BOOLEAN PKBController::sibling( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
+{
+	_designExtractor->sibling(indexAs, indexBs, argA, argB, arg);
+}
+
+BOOLEAN PKBController::isContainsStar( int indexA, int indexB, ASTNodeType argA, ASTNodeType argB )
+{
+	_designExtractor->isContainsStar(indexA, indexB, argA, argB);
+}
+
+BOOLEAN PKBController::containsStar( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
+{
+	_designExtractor->containsStar(indexAs, indexBs, argA, argB, arg);
+}
+
+BOOLEAN PKBController::isAffects( STMT st1, STMT st2)
+{
+	_designExtractor->isAffects(st1, st2);
+}
+
+BOOLEAN PKBController::isAffectsStar( STMT st1, STMT st2)
+{
+	_designExtractor->isAffectsStar(st1, st2);
+}
+
+BOOLEAN PKBController::isFollows( STMT stmt1, STMT stmt2 )
+{
+	_follows->isFollows(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isFollowsStar( STMT stmt1, STMT stmt2 )
+{
+	_follows->isFollowsStar(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isParent( STMT stmt1, STMT stmt2 )
+{
+	_parent->isParent(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isParentStar( STMT stmt1, STMT stmt2 )
+{
+	_parent->isParentStar(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isModifies( STMT stmt, VAR_INDEX var )
+{
+	_modifies->isModifies(stmt, var);
+}
+
+BOOLEAN PKBController::isModifiesP( PROC_INDEX proc, VAR_INDEX var )
+{
+	_modifiesP->isModifiesP(proc, var);
+}
+
+BOOLEAN PKBController::isUses( STMT stmt, VAR_INDEX var )
+{
+	_uses->isUses(stmt, var);
+}
+
+BOOLEAN PKBController::isUsesP( PROC_INDEX proc, VAR_INDEX var )
+{
+	_usesP->isUsesP(proc, var);
+}
+
+BOOLEAN PKBController::isNext( STMT stmt1, STMT stmt2 )
+{
+	_next->isNext(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isNextStar( STMT stmt1, STMT stmt2 )
+{
+	_next->isNextStar(stmt1, stmt2);
+}
+
+BOOLEAN PKBController::isCalls( PROC_INDEX caller, PROC_INDEX callee )
+{
+	_calls->isCalls(caller, callee);
+}
+
+BOOLEAN PKBController::isCallsStar( PROC_INDEX caller, PROC_INDEX callee )
+{
+	_calls->isCallsStar(caller, callee);
+}
