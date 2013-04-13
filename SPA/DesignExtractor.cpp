@@ -1371,10 +1371,6 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 		{
 			phaseStack.pop();
 			scope.pop();
-			if(bipEnabled)
-			{
-
-			}
 		}
 		else if(it->type == STMT_WHILE)
 		{
@@ -1410,9 +1406,10 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 			//Connect this to next
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* nextNode;
+
 			if(!bipEnabled || it->type == STMT_ASSIGNMENT)
 			{
-				nextNode = cfg->getFollowingCFGNodeByCurrentStmtNumber(it->stmtNumber);
+				nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber + 1);
 			}
 			else
 			{
