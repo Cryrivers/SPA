@@ -1294,10 +1294,6 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				//cannot be the same, except when '_'
 				//integer argument means statement number
 				//================================ 
-				if(element[1]==element[2]&&element[1]!="_"){
-					if(DEBUGMODE) cout<<"@setupClaTable(): Variable cannot be the same for Affect. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
-					return false;
-				}
 				if(!qv.isStmtRef(element[1])||!qv.isStmtRef(element[2])){
 					if(DEBUGMODE) cout<<"@setupClaTable(): Variable right for Affect. a:["<<element[1]<<"] b:["<<element[2]<<"]"<<endl;
 					return false;
@@ -1305,6 +1301,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				int ia = getIndexFromVarTable(element[1], 0,1,0,0,0,1,1,1);
 				int ib = getIndexFromVarTable(element[2], 0,1,0,0,0,1,1,1);
 				if(ia==-1||ib==-1){
+					 cout<<"@"<<endl;
 					return false;
 				} 
 				if(queryVarTable[ia].variableType!=DT_ASSIGN&&queryVarTable[ia].variableType!=DT_UNDERSCORE&&queryVarTable[ia].variableType!=KT_STMT_NUM){
@@ -1351,7 +1348,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 					qc.relationType=RT_AFFECTSBIP;
 				}
 				qc.variable1 = ia;
-				qc.variable2 = ib;
+				qc.variable2 = ib;	   
 			}else if(m==8||m==9||m==17||m==18){
 				//================================
 				//Relation is "Next*", "Next", "NextBip*", "NextBip"
@@ -1476,13 +1473,13 @@ BOOLEAN  QueryPreprocessor::makeOptimize(){
 				mergedClause++;	    
 			}
 		}else if(queryVarTable[queryClaTable[i].variable1].mapTo==queryVarTable[queryClaTable[i].variable2].mapTo){
-			if(queryClaTable[i].relationType!=RT_NEXT&&queryClaTable[i].relationType!=RT_NEXTT){
+			if(queryClaTable[i].relationType!=RT_NEXT&&queryClaTable[i].relationType!=RT_NEXTT&&queryClaTable[i].relationType!=RT_NEXTBIP&&queryClaTable[i].relationType!=RT_NEXTBIPT&&queryClaTable[i].relationType!=RT_AFFECTS&&queryClaTable[i].relationType!=RT_AFFECTST&&queryClaTable[i].relationType!=RT_AFFECTSBIP&&queryClaTable[i].relationType!=RT_AFFECTSBIPT){
 				if(queryVarTable[queryClaTable[i].variable1].variableType!=DT_UNDERSCORE){
 					return false;
 				}
 			}
 		}
-	}
+	}		
 	//if(!DEBUGMODE){					   
 	//change select target to mapTo target
 		for(int i=0; i<queryTarTable.size(); i++){
@@ -1636,6 +1633,8 @@ int QueryPreprocessor::parse(string query){
 		//=======================================>>Stage 4 Dependency
 		if(!setDependency())	
 			break;
+		
+	cout<<"finish pql"<<endl;
 		if(DEBUGMODE||PRINTTABLE){
 			printf("QP: parsed: %2d, merged: %2d, discard: %2d, result: %2d.\n", clauses.size(), mergedClause, discardClause, queryClaTable.size()); 
 			QueryPreprocessorDebug qpd;
