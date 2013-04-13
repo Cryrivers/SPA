@@ -17,7 +17,7 @@ class Modifies
 vector<int> stmts;
 vector<int> vars;
 //int size;
-BOOLEAN isModifies(STMT stmt, VAR_INDEX var);
+
 STMT_LIST getModifiesFirst(VAR_INDEX var);
 VAR_INDEX_LIST getModifiesSecond(STMT stmt);
 BOOLEAN modifies_00(STMT_LIST* sts_p, VAR_INDEX_LIST* vs_p);
@@ -27,6 +27,7 @@ BOOLEAN modifies_11(STMT_LIST* sts_p, VAR_INDEX_LIST* vs_p);
 
 public:
 void addModifies(STMT stmt, VAR_INDEX var);
+BOOLEAN isModifies(STMT stmt, VAR_INDEX var);
 BOOLEAN modifies(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr, int arg);
 STMT_LIST getAllModifiesFirst();
 VAR_INDEX_LIST getAllModifiesSecond();

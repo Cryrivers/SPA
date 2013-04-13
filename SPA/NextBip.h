@@ -15,8 +15,7 @@ class NextBip
 //vector<CFGBipType> stmtBipType;
 PKBController* _pkb;
 
-BOOLEAN isNextBip(STMT stmt1, STMT stmt2);
-BOOLEAN isNextBipStar(STMT stmt1, STMT stmt2);
+
 void isNextBipStarHelper(CFGNode*, STMT, vector<CFGNode*>*, stack<STMT>, BOOLEAN*);
 STMT_LIST getNextBipFirst(STMT stmt);
 STMT_LIST getNextBipSecond(STMT stmt);
@@ -36,6 +35,8 @@ BOOLEAN nextBipStar_11(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 public:
 NextBip(void);
 //void addNext(STMT stmt1, STMT stmt2, CFGBipType bipType);
+BOOLEAN isNextBip(STMT stmt1, STMT stmt2);
+BOOLEAN isNextBipStar(STMT stmt1, STMT stmt2);
 BOOLEAN nextBip(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 BOOLEAN nextBipStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 //STMT_LIST getAllNextFirst();
