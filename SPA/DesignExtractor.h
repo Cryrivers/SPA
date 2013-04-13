@@ -90,6 +90,10 @@ private:
 	BOOLEAN sibling_10(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN sibling_11(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	void containsStarCase1aRecursive(ASTNode* root, ASTNodeType type, BOOLEAN* result);
-	void containsStarCase1bRecursive(ASTNode* root, ASTNodeType type, BOOLEAN* result);
+	void containsStarCase1bRecursive(ASTNode* root, ASTNodeType type, vector<int> val, BOOLEAN* result);
+	void containsStarCase2aRecursive(ASTNode* root, ASTNodeType type, vector<int>* indexs);
+	void containsStarCase2bRecursive(ASTNode* root, ASTNodeType type, vector<int> vals, vector<int>* indexs);
+	void containsStarCase4aRecursive(ASTNode* root, ASTNodeType type, vector<int>* indexs, int* result);
+	void containsStarCase4bRecursive(ASTNode* root, ASTNodeType type, vector<int> vals, vector<int>* indexs, int* result);
 };
 
