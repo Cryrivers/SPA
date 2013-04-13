@@ -188,3 +188,9 @@ enum IfPreprocessingPhase
 	PREPROCESS_NORMAL_BLOCK,
 	PREPROCESS_WHILE
 };
+
+struct visitedStatus
+{
+	STMT stmtNum;
+	STMT_LIST visited;
+};
