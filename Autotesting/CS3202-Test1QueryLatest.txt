@@ -347,7 +347,7 @@ true
 67 - Description  ::
 assign a1, a2;
 Select BOOLEAN such that Affects (2, 8)
-none
+false
 5000
 68 - Description  ::
 assign a1, a2;
