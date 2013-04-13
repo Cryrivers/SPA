@@ -39,8 +39,10 @@ BOOLEAN getAllStmtList(vector<int> *);
 BOOLEAN pattern(vector<int>*, vector<int>*, string,PatternQueryType, int);
 BOOLEAN affects(STMT_LIST*, STMT_LIST*, int);
 BOOLEAN affectsStar(STMT_LIST*, STMT_LIST*, int);
-BOOLEAN contains(ASTNODE_INDEX_LIST*, ASTNODE_INDEX_LIST*, int);
-BOOLEAN containsStar(ASTNODE_INDEX_LIST*, ASTNODE_INDEX_LIST*, int);
+BOOLEAN contains(vector<int>*, vector<int>*, ASTNodeType argA, ASTNodeType argB, int arg);
+BOOLEAN containsStar(vector<int>*, vector<int>*, ASTNodeType argA, ASTNodeType argB, int arg);;
+BOOLEAN isContains(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
+BOOLEAN isContainsStar(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
 
 private:
 	BOOLEAN assignPattern(vector<int>*, vector<int>*, string, int, int);
@@ -67,11 +69,14 @@ private:
 	void getAffectsStarFirstHelper(STMT, STMT_LIST*);
 	STMT_LIST getAffectsStarSecond(STMT, BOOLEAN);
 	void getAffectsStarSecondHelper(STMT, STMT_LIST*);
-	BOOLEAN isContains(ASTNodeType indexA, ASTNodeType indexB, int argA, int argB);
-	BOOLEAN isContainsStar(ASTNodeType indexA, ASTNodeType indexB, int argA, int argB);
-	STMT_LIST getContainsFirst();
-	STMT_LIST getContainsSecond();
+
+	STMT_LIST getContainsFirst(int indexB, ASTNodeType argA, ASTNodeType argB);
+	STMT_LIST getContainsSecond(int indexA, ASTNodeType argA, ASTNodeType argB);
 	STMT_LIST getContainsStarFirst();
 	STMT_LIST getContainsStarSecond();
+	BOOLEAN contains_00(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN contains_01(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN contains_10(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN contains_11(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 };
 

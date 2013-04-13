@@ -2446,258 +2446,469 @@ BOOLEAN DesignExtractor::affectsStar11( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 	}
 }
 
-BOOLEAN DesignExtractor::isContains( ASTNodeType indexA, ASTNodeType indexB, int argA, int argB)
+BOOLEAN DesignExtractor::isContains( int indexA, int indexB, ASTNodeType argA, ASTNodeType argB)
 {
-	switch (argA) {
-	case AST_PROCEDURE:
-		switch (argB) {
-		case AST_STATEMENT_LIST:
-
-			break;
-		default:
-			break;
-		}
-		break;
-	case AST_STATEMENT_LIST:
-		switch (argB)
+	vector<ASTNode*>* ast = _pkb->getAST()->getAllASTNodes();
+	ASTNode * a;
+	ASTNode * b;
+	for (int i = 0; i < ast->size(); i++)
+	{
+		if (ast->at(i)->getNodeType() == argA && ast->at(i)->getNodeValue() == indexA)
 		{
-		case AST_ASSIGNMENT:
-
-			break;
-		case AST_WHILE_LOOP:
-
-			break;
-		case AST_IF_BRANCH:
-
-			break;
-		case AST_CALL:
-
-			break;
-		default:
+			a = ast->at(i);
 			break;
 		}
-		break;
-	case AST_ASSIGNMENT:
-		switch (argB)
-		{
-		case AST_PLUS:
-
-			break;
-		case AST_MINUS:
-
-			break;
-		case AST_MULTIPLY:
-
-			break;
-		default:
-			break;
-		}
-	case AST_WHILE_LOOP:
-		switch (argB)
-		{
-		case AST_STATEMENT_LIST:
-
-			break;
-		case AST_VARIABLE:
-
-			break;
-		default:
-			break;
-		}
-	case AST_IF_BRANCH:
-		{
-			switch (argB)
-			{
-			case AST_STATEMENT_LIST:
-
-				break;
-			case AST_VARIABLE:
-				break;
-			default:
-				break;
-			}
-		}
-	case AST_PLUS:
-		switch (argB)
-		{
-		case AST_PLUS:
-			break;
-		case AST_MINUS:
-			break;
-		case AST_MULTIPLY:
-			break;
-		case AST_VARIABLE:
-			break;
-		default:
-			break;
-		}
-		break;
-	case AST_MINUS:
-		switch (argB)
-		{
-		case AST_PLUS:
-			break;
-		case AST_MINUS:
-			break;
-		case AST_MULTIPLY:
-			break;
-		case AST_VARIABLE:
-			break;
-		default:
-			break;
-		}
-		break;
-	case AST_MULTIPLY:
-		switch (argB)
-		{
-		case AST_PLUS:
-			break;
-		case AST_MINUS:
-			break;
-		case AST_MULTIPLY:
-			break;
-		case AST_VARIABLE:
-			break;
-		default:
-			break;
-		}
-		break;
-	default:
-		break;
+	}
+	b = a->getChildren();
+	while(b != NULL)
+	{
+		if (b->getNodeType() == argB && b->getNodeValue() == indexB)
+			return true;
+		b = b->getSibling();
 	}
 	return false;
 }
 
-BOOLEAN DesignExtractor::isContainsStar( ASTNodeType indexA, ASTNodeType indexB, int argA, int argB )
+STMT_LIST DesignExtractor::getContainsFirst( int indexB, ASTNodeType argA, ASTNodeType argB )
 {
-	switch (argA) {
-	case AST_PROCEDURE:
-		switch (argB) {
-		case AST_STATEMENT_LIST:
-
-			break;
-		default:
+	vector<ASTNode*>* ast = _pkb->getAST()->getAllASTNodes();
+	vector<int> result;
+	ASTNode * a;
+	ASTNode * b;
+	for (int i = 0; i < ast->size(); i++)
+	{
+		if (ast->at(i)->getNodeType() == argB && ast->at(i)->getNodeValue() == indexB)
+		{
+			b = ast->at(i);
 			break;
 		}
-		break;
-	case AST_STATEMENT_LIST:
-		switch (argB)
+	}
+	a = b->getParentNode();
+	if (b->getNodeType() == argB)
+		result.push_back(b->getNodeValue());
+
+	return result;
+}
+
+STMT_LIST DesignExtractor::getContainsSecond( int indexA, ASTNodeType argA, ASTNodeType argB )
+{
+	vector<ASTNode*>* ast = _pkb->getAST()->getAllASTNodes();
+	vector<int> result;
+	ASTNode * a;
+	ASTNode * b;
+	for (int i = 0; i < ast->size(); i++)
+	{
+		if (ast->at(i)->getNodeType() == argA && ast->at(i)->getNodeValue() == indexA)
 		{
-		case AST_ASSIGNMENT:
-
-			break;
-		case AST_WHILE_LOOP:
-
-			break;
-		case AST_IF_BRANCH:
-
-			break;
-		case AST_CALL:
-
-			break;
-		default:
+			a = ast->at(i);
 			break;
 		}
-		break;
-	case AST_ASSIGNMENT:
-		switch (argB)
+	}
+	b = a->getChildren();
+	while(b != NULL)
+	{
+		if (b->getNodeType() == argB)
+			result.push_back(b->getNodeValue());
+		b = b->getSibling();
+	}
+	return result;
+}
+
+
+BOOLEAN DesignExtractor::contains( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
+{
+	switch (arg) {
+	case 0:
+		return(contains_00(indexAs, indexBs, argA, argB));
+
+	case 1:
+		return(contains_01(indexAs, indexBs, argA, argB));
+
+	case 2:
+		return(contains_10(indexAs, indexBs, argA, argB));
+
+	case 3:
+		return(contains_11(indexAs, indexBs, argA, argB));
+
+	default:
+		return false;
+	}
+}
+
+
+BOOLEAN DesignExtractor::contains_00(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB)
+{
+	int size1 = indexAs->size();
+	int size2 = indexBs->size();
+	vector<ASTNode*>* ast = _pkb->getAST()->getAllASTNodes();
+	ASTNode * a;
+	ASTNode * b;
+	if ((size1 == 0) && (size2 == 0)) { //case 1a
+		for (int i = 0; i < ast->size(); i++)
 		{
-		case AST_PLUS:
-
-			break;
-		case AST_MINUS:
-
-			break;
-		case AST_MULTIPLY:
-
-			break;
-		default:
-			break;
-		}
-	case AST_WHILE_LOOP:
-		switch (argB)
-		{
-		case AST_STATEMENT_LIST:
-
-			break;
-		case AST_VARIABLE:
-
-			break;
-		default:
-			break;
-		}
-	case AST_IF_BRANCH:
-		{
-			switch (argB)
+			if (ast->at(i)->getNodeType() == argA)
 			{
-			case AST_STATEMENT_LIST:
-
-				break;
-			case AST_VARIABLE:
-				break;
-			default:
-				break;
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						return true;
+					}
+					b = b->getSibling();
+				}
 			}
 		}
-	case AST_PLUS:
-		switch (argB)
+		return false;
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 1b
+		for (int i = 0; i < ast->size(); i++)
 		{
-		case AST_PLUS:
-			break;
-		case AST_MINUS:
-			break;
-		case AST_MULTIPLY:
-			break;
-		case AST_VARIABLE:
-			break;
-		default:
-			break;
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(*indexBs, b->getNodeValue()) >= 0)
+					{
+						return true;
+					}
+					b = b->getSibling();
+				}
+			}
 		}
-		break;
-	case AST_MINUS:
-		switch (argB)
+		return false;
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 1c
+		for (int i = 0; i < ast->size(); i++)
 		{
-		case AST_PLUS:
-			break;
-		case AST_MINUS:
-			break;
-		case AST_MULTIPLY:
-			break;
-		case AST_VARIABLE:
-			break;
-		default:
-			break;
+			if (ast->at(i)->getNodeType() == argA && indexOf(*indexAs, ast->at(i)->getNodeValue()) >=0)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						return true;
+					}
+					b = b->getSibling();
+				}
+			}
 		}
-		break;
-	case AST_MULTIPLY:
-		switch (argB)
+		return false;
+	}else {  //size1!=0 && size2!=0, case 1d
+		for (int i = 0; i < ast->size(); i++)
 		{
-		case AST_PLUS:
-			break;
-		case AST_MINUS:
-			break;
-		case AST_MULTIPLY:
-			break;
-		case AST_VARIABLE:
-			break;
-		default:
-			break;
+			if (ast->at(i)->getNodeType() == argA && indexOf(*indexAs, ast->at(i)->getNodeValue())>=0)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(*indexBs, ast->at(i)->getNodeValue()) >= 0)
+					{
+						return true;
+					}
+					b = b->getSibling();
+				}
+			}
 		}
-		break;
-	default:
-		break;
+		return false;
 	}
 	return false;
 }
 
 
+BOOLEAN DesignExtractor::contains_01(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB)
+{
+	int size1 = indexAs->size();
+	int size2 = indexBs->size();
+	vector<ASTNode*>* ast = _pkb->getAST()->getAllASTNodes();
+	ASTNode * a;
+	ASTNode * b;
+	vector<int> temp;
+
+	if ((size1 == 0) && (size2 == 0)) { //case 2a
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						indexBs->push_back(b->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+		if (indexBs->size() > 0)
+			return true;
+		return false;
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 2c
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA && indexOf(*indexAs,ast->at(i)->getNodeValue()) >= 0)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						indexBs->push_back(b->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+		if (indexBs->size() > 0)
+			return true;
+		return false;
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 2b, st1s_p has no duplicate
+		temp = *indexBs;
+		indexBs->clear();
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(temp, b->getNodeValue()) >= 0 )
+					{
+						indexBs->push_back(b->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+		if (indexBs->size() > 0)
+			return true;
+		return false;
+	}else {  //size1!=0 && size2!=0, case 2d
+		 /*
+		  * VectorA (a1, a2, ..., am) VectorB (b1, b2, ..., bn)
+		  * for bi from b1 to bn {
+		  * nomatch = true
+		  * for aj from a1 to am {
+		  * if isRelation(aj, bi) is true
+		  *      nomatch = false
+		  *      break
+		  * }
+		  * if (nomatch)
+		  * remove bi
+		  * }
+		  */
+		temp = *indexBs;
+		indexBs->clear();
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA && indexOf(*indexAs, ast->at(i)->getNodeValue()) >= 0)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(temp, ast->at(i)->getNodeValue()) >= 0)
+					{
+						indexBs->push_back(b->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+		if (indexBs->size() > 0)
+			return true;
+		return false;
+	}
+}
 
 
+BOOLEAN DesignExtractor::contains_10(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB)
+{
+	int size1 = indexAs->size();
+	int size2 = indexBs->size();
+	vector<ASTNode*>* ast = _pkb->getAST()->getAllASTNodes();
+	ASTNode * a;
+	ASTNode * b;
+	vector<int> temp;
+
+	if ((size1 == 0) && (size2 == 0)) { //case 3a
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						indexAs->push_back(ast->at(i)->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 3b, st2s_p has no duplicate
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(*indexBs, b->getNodeValue()) >=0 )
+					{
+						indexAs->push_back(ast->at(i)->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 3c
+		temp = *indexAs;
+		indexAs->clear();
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA && indexOf(temp, ast->at(i)->getNodeValue()) >= 0)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						indexAs->push_back(ast->at(i)->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+	}else {  //size1!=0 && size2!=0, case 3d
+		 /*
+		  * VectorA (a1, a2, ..., am) VectorB (b1, b2, ..., bn)
+		  * for ai from a1 to am {
+		  * nomatch = true
+		  * for bj from b1 to bn {
+		  * if isRelation(ai, bj) is true
+		  *      nomatch = false
+		  *      break
+		  * }
+		  * if (nomatch)
+		  * remove ai
+		  * }
+		  */
+		temp = *indexAs;
+		indexAs->clear();
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA && indexOf(temp, ast->at(i)->getNodeValue()))
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(*indexBs, b->getNodeValue()) >= 0)
+					{
+						indexAs->push_back(ast->at(i)->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+	}
+
+	if (indexAs->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
+}
 
 
+BOOLEAN DesignExtractor::contains_11(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB)
+{
+	int size1 = indexAs->size();
+	int size2 = indexBs->size();
+	vector<ASTNode*>* ast = _pkb->getAST()->getAllASTNodes();
+	ASTNode * a;
+	ASTNode * b;
+	vector<int> temp;
+	int j = 0;
 
-
-
+	if ((size1 == 0) && (size2 == 0)) { //case 4a
+		//throw "arg is 11, but both vectors are empty.";
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						indexAs->push_back(ast->at(i)->getNodeValue());
+						indexBs->push_back(b->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+	}else if (size1 == 0) {  //size1==0 && size2!=0, case 4b
+		temp = *indexBs;
+		indexBs->clear();
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB && indexOf(temp, b->getNodeValue()) >= 0)
+					{
+						indexAs->push_back(ast->at(i)->getNodeValue());
+						indexBs->push_back(b->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 4c
+		temp = *indexAs;
+		indexAs->clear();
+		for (int i = 0; i < ast->size(); i++)
+		{
+			if (ast->at(i)->getNodeType() == argA && indexOf(temp, ast->at(i)->getNodeValue()) >= 0)
+			{
+				b = ast->at(i)->getChildren();
+				while (b != NULL)
+				{
+					if (b->getNodeType() == argB)
+					{
+						indexAs->push_back(ast->at(i)->getNodeValue());
+						indexBs->push_back(b->getNodeValue());
+					}
+					b = b->getSibling();
+				}
+			}
+		}
+	}else {           //size1!=0 && size2!=0, case 4d
+		j = 0;
+		while (j < indexAs->size())
+		{
+			if (!isContains(indexAs->at(j), indexBs->at(j), argA, argB))
+			{
+				indexAs->erase(indexAs->begin()+j);
+				indexBs->erase(indexBs->begin()+j);
+			}
+			else
+			{
+				j ++;
+			}
+		}
+	}
+	if (indexAs->size() > 0) {
+		return(true);
+	}else {
+		return(false);
+	}
+}
 
 // The following codes are old codes, which might be used when new codes are wrong
 /*
