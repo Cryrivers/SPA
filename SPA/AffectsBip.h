@@ -14,9 +14,9 @@ class AffectsBip
 private:
 PKBController* _pkb;
 
-BOOLEAN isAffectsBip(STMT stmt1, STMT stmt2);
+
 void isAffectsBipHelper(CFGNode*, STMT, vector<CFGNode*>*, VAR_INDEX_LIST, int*, stack<STMT>);
-BOOLEAN isAffectsBipStar(STMT stmt1, STMT stmt2);
+
 void isAffectsBipStarHelper(STMT, STMT, STMT_LIST*, BOOLEAN*);
 STMT_LIST getAffectsBipFirst(STMT, BOOLEAN);
 void getAffectsBipFirstHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST, BOOLEAN, STMT_LIST*, stack<STMT>);
@@ -37,6 +37,8 @@ BOOLEAN affectsBipStar_11(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 
 public:
 AffectsBip(void);
+BOOLEAN isAffectsBip(STMT stmt1, STMT stmt2);
+BOOLEAN isAffectsBipStar(STMT stmt1, STMT stmt2);
 BOOLEAN affectsBip(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 BOOLEAN affectsBipStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 };

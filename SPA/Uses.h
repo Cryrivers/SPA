@@ -17,7 +17,7 @@ class Uses
 vector<int> stmts;
 vector<int> vars;
 //int size;
-BOOLEAN isUses(STMT stmt, VAR_INDEX var);
+
 STMT_LIST getUsesFirst(VAR_INDEX var);
 VAR_INDEX_LIST getUsesSecond(STMT stmt);
 BOOLEAN uses_00(STMT_LIST* sts_p, VAR_INDEX_LIST* vs_p);
@@ -27,6 +27,7 @@ BOOLEAN uses_11(STMT_LIST* sts_p, VAR_INDEX_LIST* vs_p);
 
 public:
 void addUses(STMT stmt, VAR_INDEX var);
+BOOLEAN isUses(STMT stmt, VAR_INDEX var);
 BOOLEAN uses(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr, int arg);
 STMT_LIST getAllUsesFirst();
 STMT_LIST getAllUsesSecond();

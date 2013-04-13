@@ -21,8 +21,7 @@ int getFollowsFirst(int stmt);
 int getFollowsSecond(int stmt);
 STMT_LIST getFollowsStarFirst(STMT stmt);
 STMT_LIST getFollowsStarSecond(STMT stmt);
-BOOLEAN isFollows(STMT stmt1, STMT stmt2);
-BOOLEAN isFollowsStar(STMT stmt1, STMT stmt2);
+
 BOOLEAN follows_00(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 BOOLEAN follows_01(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 BOOLEAN follows_10(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
@@ -34,6 +33,8 @@ BOOLEAN followsStar_11(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 
 public:
 void addFollows(STMT stmt1, STMT stmt2);
+BOOLEAN isFollows(STMT stmt1, STMT stmt2);
+BOOLEAN isFollowsStar(STMT stmt1, STMT stmt2);
 BOOLEAN follows(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 BOOLEAN followsStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 //void follows(STMT* stmt1_ptr, STMT* stmt2_ptr);
