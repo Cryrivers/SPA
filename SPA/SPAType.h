@@ -13,8 +13,10 @@ typedef vector<int> STMT_LIST;
 typedef bool BOOLEAN;
 typedef int VAR_INDEX;
 typedef int PROC_INDEX;
+typedef int ASTNODE_INDEX;
 typedef vector<int> VAR_INDEX_LIST;
 typedef vector<int> PROC_INDEX_LIST;
+typedef vector<int> ASTNODE_INDEX_LIST;
 typedef string STRING;
 typedef vector<string> STRING_LIST;
 

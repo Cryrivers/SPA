@@ -2416,6 +2416,248 @@ BOOLEAN DesignExtractor::affectsStar11( STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 	}
 }
 
+BOOLEAN DesignExtractor::isContains( ASTNodeType indexA, ASTNodeType indexB, int argA, int argB)
+{
+	switch (argA) {
+	case AST_PROCEDURE:
+		switch (argB) {
+		case AST_STATEMENT_LIST:
+
+			break;
+		default:
+			break;
+		}
+		break;
+	case AST_STATEMENT_LIST:
+		switch (argB)
+		{
+		case AST_ASSIGNMENT:
+
+			break;
+		case AST_WHILE_LOOP:
+
+			break;
+		case AST_IF_BRANCH:
+
+			break;
+		case AST_CALL:
+
+			break;
+		default:
+			break;
+		}
+		break;
+	case AST_ASSIGNMENT:
+		switch (argB)
+		{
+		case AST_PLUS:
+
+			break;
+		case AST_MINUS:
+
+			break;
+		case AST_MULTIPLY:
+
+			break;
+		default:
+			break;
+		}
+	case AST_WHILE_LOOP:
+		switch (argB)
+		{
+		case AST_STATEMENT_LIST:
+
+			break;
+		case AST_VARIABLE:
+
+			break;
+		default:
+			break;
+		}
+	case AST_IF_BRANCH:
+		{
+			switch (argB)
+			{
+			case AST_STATEMENT_LIST:
+
+				break;
+			case AST_VARIABLE:
+				break;
+			default:
+				break;
+			}
+		}
+	case AST_PLUS:
+		switch (argB)
+		{
+		case AST_PLUS:
+			break;
+		case AST_MINUS:
+			break;
+		case AST_MULTIPLY:
+			break;
+		case AST_VARIABLE:
+			break;
+		default:
+			break;
+		}
+		break;
+	case AST_MINUS:
+		switch (argB)
+		{
+		case AST_PLUS:
+			break;
+		case AST_MINUS:
+			break;
+		case AST_MULTIPLY:
+			break;
+		case AST_VARIABLE:
+			break;
+		default:
+			break;
+		}
+		break;
+	case AST_MULTIPLY:
+		switch (argB)
+		{
+		case AST_PLUS:
+			break;
+		case AST_MINUS:
+			break;
+		case AST_MULTIPLY:
+			break;
+		case AST_VARIABLE:
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+BOOLEAN DesignExtractor::isContainsStar( ASTNodeType indexA, ASTNodeType indexB, int argA, int argB )
+{
+	switch (argA) {
+	case AST_PROCEDURE:
+		switch (argB) {
+		case AST_STATEMENT_LIST:
+
+			break;
+		default:
+			break;
+		}
+		break;
+	case AST_STATEMENT_LIST:
+		switch (argB)
+		{
+		case AST_ASSIGNMENT:
+
+			break;
+		case AST_WHILE_LOOP:
+
+			break;
+		case AST_IF_BRANCH:
+
+			break;
+		case AST_CALL:
+
+			break;
+		default:
+			break;
+		}
+		break;
+	case AST_ASSIGNMENT:
+		switch (argB)
+		{
+		case AST_PLUS:
+
+			break;
+		case AST_MINUS:
+
+			break;
+		case AST_MULTIPLY:
+
+			break;
+		default:
+			break;
+		}
+	case AST_WHILE_LOOP:
+		switch (argB)
+		{
+		case AST_STATEMENT_LIST:
+
+			break;
+		case AST_VARIABLE:
+
+			break;
+		default:
+			break;
+		}
+	case AST_IF_BRANCH:
+		{
+			switch (argB)
+			{
+			case AST_STATEMENT_LIST:
+
+				break;
+			case AST_VARIABLE:
+				break;
+			default:
+				break;
+			}
+		}
+	case AST_PLUS:
+		switch (argB)
+		{
+		case AST_PLUS:
+			break;
+		case AST_MINUS:
+			break;
+		case AST_MULTIPLY:
+			break;
+		case AST_VARIABLE:
+			break;
+		default:
+			break;
+		}
+		break;
+	case AST_MINUS:
+		switch (argB)
+		{
+		case AST_PLUS:
+			break;
+		case AST_MINUS:
+			break;
+		case AST_MULTIPLY:
+			break;
+		case AST_VARIABLE:
+			break;
+		default:
+			break;
+		}
+		break;
+	case AST_MULTIPLY:
+		switch (argB)
+		{
+		case AST_PLUS:
+			break;
+		case AST_MINUS:
+			break;
+		case AST_MULTIPLY:
+			break;
+		case AST_VARIABLE:
+			break;
+		default:
+			break;
+		}
+		break;
+	default:
+		break;
+	}
+}
+
 
 
 
