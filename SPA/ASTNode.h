@@ -13,6 +13,7 @@ int _nodeValue;
 int _id;
 ASTNode* _siblings;
 ASTNode* _children;
+ASTNode* _parent;
 int _stmtNumber;
 string _hashcode;
 bool hashCodeComputed;
@@ -42,6 +43,9 @@ void setStmtNumber(int number);
 
 string getHashcode();
 string appendHashcode(string hashCode);
+
+void setParentNode(ASTNode* node);
+ASTNode* getParentNode();
 
 int getId();
 void setId(int id);
