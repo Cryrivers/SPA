@@ -17,6 +17,8 @@
 #include "ProcTable.h"
 #include "CFG.h"
 #include "Operators.h"
+#include "AffectsBip.h"
+#include "NextBip.h"
 
 class DesignExtractor;
 class AST;
@@ -139,6 +141,37 @@ public:
 	BOOLEAN with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,int arg2, int arg);
 	void completePKB();
 
+
+	BOOLEAN affectsBip(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
+	BOOLEAN isAffectsBip(STMT stmt1, STMT stmt2);
+	BOOLEAN affectsBipStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
+	BOOLEAN isAffectsBipStar(STMT stmt1, STMT stmt2);
+
+	BOOLEAN nextBip(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
+	BOOLEAN isNextBip(STMT stmt1, STMT stmt2);
+	BOOLEAN nextBipStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
+	BOOLEAN isNextBipStar(STMT stmt1, STMT stmt2);
+
+	BOOLEAN isContains(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN isContainsStar(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN isSibling(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
+
+	BOOLEAN isAffects(STMT, STMT);
+	BOOLEAN isAffectsStar(STMT, STMT);
+
+	BOOLEAN isFollows(STMT stmt1, STMT stmt2);
+	BOOLEAN isFollowsStar(STMT stmt1, STMT stmt2);
+	BOOLEAN isParent(STMT stmt1, STMT stmt2);
+	BOOLEAN isParentStar(STMT stmt1, STMT stmt2);
+	BOOLEAN isModifies(STMT stmt, VAR_INDEX var);
+	BOOLEAN isModifiesP(PROC_INDEX proc, VAR_INDEX var);
+	BOOLEAN isUses(STMT stmt, VAR_INDEX var);
+	BOOLEAN isUsesP(PROC_INDEX proc, VAR_INDEX var);
+	BOOLEAN isNext(STMT stmt1, STMT stmt2);
+	BOOLEAN isNextStar(STMT stmt1, STMT stmt2);
+	BOOLEAN isCalls(PROC_INDEX caller, PROC_INDEX callee);
+	BOOLEAN isCallsStar(PROC_INDEX caller, PROC_INDEX callee);
+
 private:
 	Follows* _follows;
 	Parent* _parent;
@@ -154,6 +187,8 @@ private:
 	CFG* _cfg;
 	CFG* _cfgbip;
 	ASTNode* _astNode;
+	AffectsBip _affectsBip;
+	NextBip _nextBip;
 	DesignExtractor* _designExtractor;
 	vector<statement>* _preprocessedProgram;
 

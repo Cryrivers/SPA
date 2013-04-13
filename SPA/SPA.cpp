@@ -111,7 +111,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	query[9]="assign a2;Select a2 such that Affects* (20, a2)"; //none
 	*/
 	//query[0]="";
-	query[0]="stmtLst s1,s2; if f; variable i; Select BOOLEAN such that Affects(2,2)"; 
+	query[0]="stmtLst s1,s2; if f; variable i; Select BOOLEAN such that Affects(3,3)"; 
 	query[1]="stmtLst s1; while w; variable i; Select BOOLEAN pattern w(i,_)"; 	   
 	query[2]="plus p; minus m; times t; assign a; Select a such that Contains* (m, t) "; 
 	
