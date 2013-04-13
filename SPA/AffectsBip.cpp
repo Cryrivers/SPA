@@ -12,7 +12,7 @@
 
 AffectsBip::AffectsBip(void)
 {
-	_pkb2 = PKBController::createInstance();
+	_pkb = PKBController::createInstance();
 }
 
 BOOLEAN AffectsBip::isAffectsBip(STMT stmt1, STMT stmt2)
@@ -23,9 +23,9 @@ BOOLEAN AffectsBip::isAffectsBip(STMT stmt1, STMT stmt2)
 
 	STMT_LIST stmt1s; stmt1s.push_back(stmt1);
 	VAR_INDEX_LIST modifiedVar;
-	_pkb2->modifies(&stmt1s, &modifiedVar, 1); //get the variable modified by stmt1
+	_pkb->modifies(&stmt1s, &modifiedVar, 1); //get the variable modified by stmt1
 
-	CFGNode* startNode = _pkb2->getCFGBip()->getCFGNodeByStmtNumber(stmt1); //get the CFGNode that contains stmt1, the node must be a CFG_NORMAL_BLOCK
+	CFGNode* startNode = _pkb->getCFGBip()->getCFGNodeByStmtNumber(stmt1); //get the CFGNode that contains stmt1, the node must be a CFG_NORMAL_BLOCK
 	STMT end = startNode->getEndStatement(); //the end statement of this CFGNode
 
 	//one and only one variable can be modified by an assign statement, so size of modifiedVar must be 1
@@ -35,12 +35,12 @@ BOOLEAN AffectsBip::isAffectsBip(STMT stmt1, STMT stmt2)
 		STMT_LIST temp1; temp1.push_back(k);
 
 		if(k == stmt2) {
-			if(_pkb2->uses(&temp1, &modifiedVar, 0))
+			if(_pkb->uses(&temp1, &modifiedVar, 0))
 				return true;
 			else
 				return false;
 		} else { //k is not stmt2
-			if(_pkb2->modifies(&temp1, &modifiedVar, 0))
+			if(_pkb->modifies(&temp1, &modifiedVar, 0))
 				return false;
 		}
 	}
@@ -70,7 +70,7 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 				STMT_LIST temp1; temp1.push_back(k);
 
 				if(k == stmt2) {
-					if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+					if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 						*result = 1; //true
 						return;
 					}
@@ -79,7 +79,7 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 						return;
 					}
 				} else { //k is not stmt2
-					if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+					if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
 						return;
 					}
 				}
@@ -104,7 +104,7 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 						STMT_LIST temp1; temp1.push_back(k);
 
 						if(k == stmt2) {
-							if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+							if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 								*result = 1; //true
 								return;
 							}
@@ -113,7 +113,7 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 								return;
 							}
 						} else { //k is not stmt2
-							if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+							if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
 								return;
 							}
 						}
@@ -133,9 +133,9 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 
 		// clear visited nodes that are within the same procedure
 		PROC_INDEX currentProc = node1->getProcIndex();
-		STMT stmt1 = _pkb2->getProcStart(currentProc); STMT stmt2 = _pkb2->getProcEnd(currentProc);
+		STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
 		for(int i=stmt1; i<=stmt2; i++) {
-			int index = indexOf((*visitedNodes), _pkb2->getCFGBip()->getCFGNodeByStmtNumber(i));
+			int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
 			if(index >=0)
 				visitedNodes->erase(visitedNodes->begin()+index);
 		}
@@ -157,7 +157,7 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 							STMT_LIST temp1; temp1.push_back(k);
 
 							if(k == stmt2) {
-								if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+								if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 									*result = 1; //true
 									return;
 								}
@@ -166,7 +166,7 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 									return;
 								}
 							} else { //k is not stmt2
-								if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+								if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
 									return;
 								}
 							}
@@ -198,7 +198,7 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 							STMT_LIST temp1; temp1.push_back(k);
 
 							if(k == stmt2) {
-								if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+								if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 									*result = 1; //true
 									return;
 								}
@@ -207,7 +207,7 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 									return;
 								}
 							} else { //k is not stmt2
-								if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+								if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
 									return;
 								}
 							}
@@ -234,9 +234,9 @@ STMT_LIST AffectsBip::getAffectsBipFirst(STMT stmt2, BOOLEAN exhaustive)
 
 	STMT_LIST stmt2s; stmt2s.push_back(stmt2);
 	VAR_INDEX_LIST usedVars;
-	_pkb2->uses(&stmt2s, &usedVars, 1); //get variables used by stmt2
+	_pkb->uses(&stmt2s, &usedVars, 1); //get variables used by stmt2
 
-	CFGNode* endNode = _pkb2->getCFGBip()->getCFGNodeByStmtNumber(stmt2); //get the CFGNode that contains stmt2. The node must be all-assign node
+	CFGNode* endNode = _pkb->getCFGBip()->getCFGNodeByStmtNumber(stmt2); //get the CFGNode that contains stmt2. The node must be all-assign node
 	STMT start = endNode->getStartStatement();
 
 	for(int i=0; i<usedVars.size(); i++) { //for each variable used by stmt2, find all statements that AffectsBip this var
@@ -245,7 +245,7 @@ STMT_LIST AffectsBip::getAffectsBipFirst(STMT stmt2, BOOLEAN exhaustive)
 		bool carryOn = true; //indicate whether to proceed to previous CFGNode
 		for(int k=stmt2-1; k>=start; k--) { //statements 'start' to 'stmt2-1' are assigns
 			STMT_LIST temp1; temp1.push_back(k);
-			if(_pkb2->modifies(&temp1, &vars, 0)) { //means statement k modifies variable var
+			if(_pkb->modifies(&temp1, &vars, 0)) { //means statement k modifies variable var
 				results.push_back(k);
 				if(!exhaustive)
 					return results;
@@ -266,7 +266,7 @@ STMT_LIST AffectsBip::getAffectsBipFirst(STMT stmt2, BOOLEAN exhaustive)
 	return results;
 }
 
-void getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
+void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
 	VAR_INDEX_LIST usedVar, BOOLEAN exhaustive, STMT_LIST* results_p, stack<STMT> callStack)
 {
 	vector<CFGNode*> prev_nodes = node2->getPrevEdges();
@@ -289,7 +289,7 @@ void getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
 					int end1 = current_node->getEndStatement(); int start1 = current_node->getStartStatement();
 					for(int k=end1; k>=start1; k--) {
 						STMT_LIST temp1; temp1.push_back(k);
-						if(_pkb2->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+						if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
 							results_p->push_back(k);
 							if(!exhaustive)
 								return;
@@ -330,7 +330,7 @@ void getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
 						int end1 = currentNode->getEndStatement(); int start1 = currentNode->getStartStatement();
 						for(int k=end1; k>=start1; k--) {
 							STMT_LIST temp1; temp1.push_back(k);
-							if(_pkb2->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+							if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
 								results_p->push_back(k);
 								if(!exhaustive)
 									return;
@@ -371,7 +371,7 @@ void getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
 						int end1 = nodeInSameProc->getEndStatement(); int start1 = nodeInSameProc->getStartStatement();
 						for(int k=end1; k>=start1; k--) {
 							STMT_LIST temp1; temp1.push_back(k);
-							if(_pkb2->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+							if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
 								results_p->push_back(k);
 								if(!exhaustive)
 									return;
@@ -396,9 +396,9 @@ void getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
 
 			// clear visited nodes that are within the same procedure before jump back
 			PROC_INDEX currentProc = node2->getProcIndex();
-			STMT stmt1 = _pkb2->getProcStart(currentProc); STMT stmt2 = _pkb2->getProcEnd(currentProc);
+			STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
 			for(int i=stmt1; i<=stmt2; i++) {
-				int index = indexOf((*visitedNodes), _pkb2->getCFGBip()->getCFGNodeByStmtNumber(i));
+				int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
 				if(index >=0)
 					visitedNodes->erase(visitedNodes->begin()+index);
 			}
@@ -418,7 +418,7 @@ void getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
 							int end1 = currentNode->getEndStatement(); int start1 = currentNode->getStartStatement();
 							for(int k=end1; k>=start1; k--) {
 								STMT_LIST temp1; temp1.push_back(k);
-								if(_pkb2->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+								if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
 									results_p->push_back(k);
 									if(!exhaustive)
 										return;
@@ -455,7 +455,7 @@ void getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
 							int end1 = currentNode->getEndStatement(); int start1 = currentNode->getStartStatement();
 							for(int k=end1; k>=start1; k--) {
 								STMT_LIST temp1; temp1.push_back(k);
-								if(_pkb2->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+								if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
 									results_p->push_back(k);
 									if(!exhaustive)
 										return;
@@ -486,9 +486,9 @@ STMT_LIST AffectsBip::getAffectsBipSecond(STMT stmt1, BOOLEAN exhaustive)
 
 	STMT_LIST stmt1s; stmt1s.push_back(stmt1);
 	VAR_INDEX_LIST modifiedVar;
-	_pkb2->modifies(&stmt1s, &modifiedVar, 1); //get the variable modified by stmt1
+	_pkb->modifies(&stmt1s, &modifiedVar, 1); //get the variable modified by stmt1
 
-	CFGNode* startNode = _pkb2->getCFGBip()->getCFGNodeByStmtNumber(stmt1); //get the CFGNode that contains stmt1, the node must be a CFG_NORMAL_BLOCK
+	CFGNode* startNode = _pkb->getCFGBip()->getCFGNodeByStmtNumber(stmt1); //get the CFGNode that contains stmt1, the node must be a CFG_NORMAL_BLOCK
 	STMT end = startNode->getEndStatement(); //the end statement of this CFGNode
 
 	//one and only one variable can be modified by an assign statement, so size of modifiedVar must be 1
@@ -499,12 +499,12 @@ STMT_LIST AffectsBip::getAffectsBipSecond(STMT stmt1, BOOLEAN exhaustive)
 	for(int k=stmt1+1; k<=end; k++) { //statements 'stmt+1' to 'end' are assign statements
 		STMT_LIST temp1; temp1.push_back(k);
 
-		if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+		if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 			results.push_back(k);
 			if(!exhaustive)
 				return results;
 		}
-		if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
+		if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
 			carryOn = false;
 			break;
 		}
@@ -537,12 +537,12 @@ void AffectsBip::getAffectsBipSecondHelper(CFGNode* node1, vector<CFGNode*>* vis
 				int start1 = next_node->getStartStatement(); int end1 = next_node->getEndStatement();
 				for(int k=start1; k<=end1; k++) {
 					STMT_LIST temp1; temp1.push_back(k);
-					if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+					if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 						results_p->push_back(k);
 						if(!exhaustive)
 							return;
 					}
-					if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
+					if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
 						carryOn = false;
 						break;
 					}
@@ -575,12 +575,12 @@ void AffectsBip::getAffectsBipSecondHelper(CFGNode* node1, vector<CFGNode*>* vis
 						int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
 						for(int k=start1; k<=end1; k++) {
 							STMT_LIST temp1; temp1.push_back(k);
-							if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+							if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 								results_p->push_back(k);
 								if(!exhaustive)
 									return;
 							}
-							if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
+							if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
 								carryOn = false;
 								break;
 							}
@@ -603,9 +603,9 @@ void AffectsBip::getAffectsBipSecondHelper(CFGNode* node1, vector<CFGNode*>* vis
 
 		// clear visited nodes that are within the same procedure
 		PROC_INDEX currentProc = node1->getProcIndex();
-		STMT stmt1 = _pkb2->getProcStart(currentProc); STMT stmt2 = _pkb2->getProcEnd(currentProc);
+		STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
 		for(int i=stmt1; i<=stmt2; i++) {
-			int index = indexOf((*visitedNodes), _pkb2->getCFGBip()->getCFGNodeByStmtNumber(i));
+			int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
 			if(index >=0)
 				visitedNodes->erase(visitedNodes->begin()+index);
 		}
@@ -629,12 +629,12 @@ void AffectsBip::getAffectsBipSecondHelper(CFGNode* node1, vector<CFGNode*>* vis
 							int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
 							for(int k=start1; k<=end1; k++) {
 								STMT_LIST temp1; temp1.push_back(k);
-								if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+								if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 									results_p->push_back(k);
 									if(!exhaustive)
 										return;
 								}
-								if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
+								if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
 									carryOn = false;
 									break;
 								}
@@ -672,12 +672,12 @@ void AffectsBip::getAffectsBipSecondHelper(CFGNode* node1, vector<CFGNode*>* vis
 							int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
 							for(int k=start1; k<=end1; k++) {
 								STMT_LIST temp1; temp1.push_back(k);
-								if(_pkb2->uses(&temp1, &modifiedVar, 0)) {
+								if(_pkb->uses(&temp1, &modifiedVar, 0)) {
 									results_p->push_back(k);
 									if(!exhaustive)
 										return;
 								}
-								if(_pkb2->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
+								if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
 									carryOn = false;
 									break;
 								}
@@ -788,7 +788,7 @@ BOOLEAN AffectsBip::affectsBip_00(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 
 	if(size1==0 && size2==0) { //case 1a
 		STMT_LIST allAssign;
-		_pkb2->getAllAssignment(&allAssign);
+		_pkb->getAllAssignment(&allAssign);
 		int size = allAssign.size();
 		for(int i=0; i<size; i++) {
 			STMT_LIST affectedBipAssigns = getAffectsBipSecond(allAssign.at(i), false); //exhaustive is false, stops once one assign found
@@ -829,7 +829,7 @@ BOOLEAN AffectsBip::affectsBip_01(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 
 	if(size1==0 && size2==0) { //case 2a
 		STMT_LIST allAssign;
-		_pkb2->getAllAssignment(&allAssign);
+		_pkb->getAllAssignment(&allAssign);
 		int size = allAssign.size();
 		for(int i=0; i<size; i++) {
 			STMT_LIST affectBipAssigns = getAffectsBipFirst(allAssign.at(i), false); //exhaustive is false, check for existence
@@ -889,7 +889,7 @@ BOOLEAN AffectsBip::affectsBip_10(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 
 	if(size1==0 && size2==0) { //case 3a
 		STMT_LIST allAssign;
-		_pkb2->getAllAssignment(&allAssign);
+		_pkb->getAllAssignment(&allAssign);
 		int size = allAssign.size();
 		for(int i=0; i<size; i++) {
 			STMT_LIST affectedBipAssigns = getAffectsBipSecond(allAssign.at(i), false); //exhaustive is false, check for existence
@@ -949,7 +949,7 @@ BOOLEAN AffectsBip::affectsBip_11(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 
 	if ((size1 == 0) && (size2 == 0)) { //case 4a
 		STMT_LIST allAssigns;
-		_pkb2->getAllAssignment(&allAssigns);
+		_pkb->getAllAssignment(&allAssigns);
 		for(int i=0; i<allAssigns.size(); i++) {
 			int current = allAssigns.at(i);
 			STMT_LIST affectedBipAssigns = getAffectsBipSecond(current, true);
@@ -1236,7 +1236,7 @@ BOOLEAN AffectsBip::affectsBipStar_00(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 
 	if(size1==0 && size2==0) { //case 1a
 		STMT_LIST allAssign;
-		_pkb2->getAllAssignment(&allAssign);
+		_pkb->getAllAssignment(&allAssign);
 		int size = allAssign.size();
 		for(int i=0; i<size; i++) {
 			STMT_LIST affectedBipAssigns = getAffectsBipSecond(allAssign.at(i), false); //exhaustive is false, stops once one assign found
@@ -1277,7 +1277,7 @@ BOOLEAN AffectsBip::affectsBipStar_01(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 
 	if(size1==0 && size2==0) { //case 2a
 		STMT_LIST allAssign;
-		_pkb2->getAllAssignment(&allAssign);
+		_pkb->getAllAssignment(&allAssign);
 		int size = allAssign.size();
 		for(int i=0; i<size; i++) {
 			STMT_LIST affectBipAssigns = getAffectsBipFirst(allAssign.at(i), false); //exhaustive is false, check for existence
@@ -1337,7 +1337,7 @@ BOOLEAN AffectsBip::affectsBipStar_10(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 
 	if(size1==0 && size2==0) { //case 3a
 		STMT_LIST allAssign;
-		_pkb2->getAllAssignment(&allAssign);
+		_pkb->getAllAssignment(&allAssign);
 		int size = allAssign.size();
 		for(int i=0; i<size; i++) {
 			STMT_LIST affectedBipAssigns = getAffectsBipSecond(allAssign.at(i), false); //exhaustive is false, check for existence
@@ -1397,7 +1397,7 @@ BOOLEAN AffectsBip::affectsBipStar_11(STMT_LIST* st1s_p, STMT_LIST* st2s_p)
 
 	if ((size1 == 0) && (size2 == 0)) { //case 4a
 		STMT_LIST allAssigns;
-		_pkb2->getAllAssignment(&allAssigns);
+		_pkb->getAllAssignment(&allAssigns);
 		for(int i=0; i<allAssigns.size(); i++) {
 			int current = allAssigns.at(i);
 			STMT_LIST affectedBipAssigns = getAffectsBipStarSecond(current, true);

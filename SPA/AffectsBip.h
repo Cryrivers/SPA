@@ -12,14 +12,14 @@ using namespace std;
 class AffectsBip
 {
 private:
-PKBController* _pkb2;
+PKBController* _pkb;
 
 BOOLEAN isAffectsBip(STMT stmt1, STMT stmt2);
 void isAffectsBipHelper(CFGNode*, STMT, vector<CFGNode*>*, VAR_INDEX_LIST, int*, stack<STMT>);
 BOOLEAN isAffectsBipStar(STMT stmt1, STMT stmt2);
 void isAffectsBipStarHelper(STMT, STMT, STMT_LIST*, BOOLEAN*);
 STMT_LIST getAffectsBipFirst(STMT, BOOLEAN);
-void AffectsBip::getAffectsBipFirstHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST, BOOLEAN, STMT_LIST*, stack<STMT>);
+void getAffectsBipFirstHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST, BOOLEAN, STMT_LIST*, stack<STMT>);
 STMT_LIST getAffectsBipSecond(STMT, BOOLEAN);
 void getAffectsBipSecondHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST, BOOLEAN, STMT_LIST*, stack<STMT>);
 STMT_LIST getAffectsBipStarFirst(STMT, BOOLEAN);
