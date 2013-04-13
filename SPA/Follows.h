@@ -37,6 +37,9 @@ BOOLEAN isFollows(STMT stmt1, STMT stmt2);
 BOOLEAN isFollowsStar(STMT stmt1, STMT stmt2);
 BOOLEAN follows(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 BOOLEAN followsStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
+int size(){
+	return stmt1s.size();
+}
 //void follows(STMT* stmt1_ptr, STMT* stmt2_ptr);
 //BOOLEAN followsStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr);
 

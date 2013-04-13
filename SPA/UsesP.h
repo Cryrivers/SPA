@@ -31,6 +31,9 @@ BOOLEAN isUsesP(PROC_INDEX proc, VAR_INDEX var);
 BOOLEAN usesP(PROC_INDEX_LIST* ps_ptr, VAR_INDEX_LIST* vs_ptr, int arg);
 PROC_INDEX_LIST getAllUsesPFirst();
 PROC_INDEX_LIST getAllUsesPSecond();
+int size() {
+	return procs.size();
+}
 };
 
 

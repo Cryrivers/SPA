@@ -31,6 +31,9 @@ BOOLEAN isModifiesP(PROC_INDEX proc, VAR_INDEX var);
 BOOLEAN modifiesP(PROC_INDEX_LIST* ps_ptr, VAR_INDEX_LIST* vs_ptr, int arg);
 PROC_INDEX_LIST getAllModifiesPFirst();
 VAR_INDEX_LIST getAllModifiesPSecond();
+int size() {
+	return procs.size();
+}
 };
 
 

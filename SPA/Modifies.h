@@ -31,6 +31,9 @@ BOOLEAN isModifies(STMT stmt, VAR_INDEX var);
 BOOLEAN modifies(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr, int arg);
 STMT_LIST getAllModifiesFirst();
 VAR_INDEX_LIST getAllModifiesSecond();
+int size() {
+	return stmts.size();
+}
 };
 
 

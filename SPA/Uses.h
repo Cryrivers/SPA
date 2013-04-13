@@ -31,6 +31,9 @@ BOOLEAN isUses(STMT stmt, VAR_INDEX var);
 BOOLEAN uses(STMT_LIST* sts_ptr, VAR_INDEX_LIST* vs_ptr, int arg);
 STMT_LIST getAllUsesFirst();
 STMT_LIST getAllUsesSecond();
+int size() {
+	return stmts.size();
+}
 };
 
 

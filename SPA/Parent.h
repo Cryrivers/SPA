@@ -37,6 +37,9 @@ BOOLEAN isParent(STMT stmt1, STMT stmt2);
 BOOLEAN isParentStar(STMT stmt1, STMT stmt2);
 BOOLEAN parent(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 BOOLEAN parentStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
+int size() {
+	return stmt1s.size();
+}
 //void parent(STMT* stmt1_ptr, STMT* stmt2_ptr);
 //BOOLEAN parentStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr);
 

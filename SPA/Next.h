@@ -38,6 +38,9 @@ BOOLEAN next(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 BOOLEAN nextStar(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, int arg);
 STMT_LIST getAllNextFirst();
 STMT_LIST getAllNextSecond();
+int size() {
+	return stmt1s.size();
+}
 };
 
 
