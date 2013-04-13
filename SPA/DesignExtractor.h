@@ -11,6 +11,7 @@ using namespace std;
 
 class PKBController;
 class AST;
+class CFG;
 
 class DesignExtractor
 {

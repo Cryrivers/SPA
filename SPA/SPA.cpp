@@ -57,6 +57,8 @@ int _tmain(int argc, _TCHAR *argv[])
 				cout<<"     "<<line<<endl;
 			}else if(_trim(_trim(_trim(line,'\t'),'}'), ' ').size()<1){
 				cout<<"     "<<line<<endl;
+			}else if(_trim(_trim(_trim(line,'\t'),'{'), ' ').size()<1){
+				cout<<"     "<<line<<endl;
 			}else{
 				printf("%3d. ", i);
 				cout<<line<<endl;
