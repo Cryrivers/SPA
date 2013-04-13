@@ -365,7 +365,8 @@ void Parser::_preprocessProgram(string program)
 				preprocessingStatusStk.push(PREPROCESS_THEN);
 			}else if (regex_match(thisStmt,sm,elseRegex)) {
 				s.stmtLine = thisStmt;
-				s.stmtNumber = NO_STATEMENT_NUMBER;
+				//HACK: Assume its statement number.
+				s.stmtNumber = currentStmtNumber;
 				s.type = STMT_ELSE;
 				assert(currentProcIndex>-1);
 				s.procIndex = currentProcIndex;
@@ -638,7 +639,7 @@ ASTNode* Parser::_buildIfAST(statement* s)
 	_parentStack.top()->addChild(node);
 
 	node->createChild(AST_VARIABLE, _pkb->addVar(s->extraCond));
-	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST, NULL);
+	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST,s->stmtNumber + 1);
 	_ast->setASTNodeIndex(stmtLstNode);
 
 	_newParent = stmtLstNode;
@@ -652,7 +653,7 @@ ASTNode* Parser::_buildIfAST(statement* s)
 
 ASTNode* Parser::_buildElseAST(statement* s)
 {
-	ASTNode *stmtLstNode = previousASTNode->createChild(AST_STATEMENT_LIST, NULL);
+	ASTNode *stmtLstNode = previousASTNode->createChild(AST_STATEMENT_LIST, s->stmtNumber+1);
 	_ast->setASTNodeIndex(stmtLstNode);
 	_newParent = stmtLstNode;
 	_newParentNoStmtLst = previousASTNode;
@@ -682,7 +683,7 @@ ASTNode *Parser::_buildWhileLoopAST(statement *s)
 	_parentStack.top()->addChild(node);
 	//0 is the index in varTable
 	node->createChild(AST_VARIABLE, _pkb->addVar(s->extraCond));
-	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST, NULL);
+	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST, s->stmtNumber + 1);
 	_ast->setASTNodeIndex(stmtLstNode);
 
 	_newParent = stmtLstNode;
@@ -702,7 +703,7 @@ ASTNode *Parser::_buildProcedureAST(statement *s)
 	_ast->setASTNodeIndex(node);
 
 	_parentStack.top()->addChild(node);
-	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST, NULL);
+	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST, s->stmtNumber);
 	_ast->setASTNodeIndex(stmtLstNode);
 
 	_newParent = stmtLstNode;
