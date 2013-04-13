@@ -1565,6 +1565,7 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 	}
 	nextStmts->clear();
 	temp->clear();
+	current = firstNode;
 	temp->push_back(current->getEndStatement());
 	_pkb->next(temp,nextStmts,1);
 	for (int i = 0; i < nextStmts->size(); i++)
