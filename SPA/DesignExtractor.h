@@ -11,6 +11,7 @@ using namespace std;
 
 class PKBController;
 class AST;
+class CFG;
 
 class DesignExtractor
 {
@@ -38,6 +39,8 @@ BOOLEAN getAllStmtList(vector<int> *);
 BOOLEAN pattern(vector<int>*, vector<int>*, string,PatternQueryType, int);
 BOOLEAN affects(STMT_LIST*, STMT_LIST*, int);
 BOOLEAN affectsStar(STMT_LIST*, STMT_LIST*, int);
+BOOLEAN contains(ASTNODE_INDEX_LIST*, ASTNODE_INDEX_LIST*, int);
+BOOLEAN containsStar(ASTNODE_INDEX_LIST*, ASTNODE_INDEX_LIST*, int);
 
 private:
 	BOOLEAN assignPattern(vector<int>*, vector<int>*, string, int, int);
@@ -64,5 +67,11 @@ private:
 	void getAffectsStarFirstHelper(STMT, STMT_LIST*);
 	STMT_LIST getAffectsStarSecond(STMT, BOOLEAN);
 	void getAffectsStarSecondHelper(STMT, STMT_LIST*);
+	BOOLEAN isContains(ASTNodeType indexA, ASTNodeType indexB, int argA, int argB);
+	BOOLEAN isContainsStar(ASTNodeType indexA, ASTNodeType indexB, int argA, int argB);
+	STMT_LIST getContainsFirst();
+	STMT_LIST getContainsSecond();
+	STMT_LIST getContainsStarFirst();
+	STMT_LIST getContainsStarSecond();
 };
 

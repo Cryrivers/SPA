@@ -375,3 +375,8 @@ void AST::setASTNodeIndex( ASTNode* node )
 	node->setId(_astIndex.size() - 1);
 }
 
+vector<ASTNode*>* AST::getAllASTNodes()
+{
+	return &_astIndex;
+}
+

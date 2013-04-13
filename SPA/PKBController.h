@@ -20,6 +20,7 @@
 
 class DesignExtractor;
 class AST;
+class CFG;
 
 class PKBController
 {

@@ -56,7 +56,7 @@ CFGNode* CFG::getCFGNodeByStmtNumber( STMT stmtNumber )
 	return NULL;
 }
 
-CFGNode* CFG::getNextCFGNodeByCurrentStmtNumber( STMT stmtNumber )
+CFGNode* CFG::getFollowingCFGNodeByCurrentStmtNumber( STMT stmtNumber )
 {
 	for(vector<CFGNode*>::iterator it = _CFGBlocks.begin(); it != _CFGBlocks.end();++it)
 	{	
@@ -130,4 +130,37 @@ int CFG::__indexOf(vector<CFGNode*> list, CFGNode* val)
 		}
 	}
 	return(-1);
+}
+
+CFGNode* CFG::getBipDummyNodeByProcIndex( PROC_INDEX index )
+{
+	for(vector<CFGNode*>::iterator it = _CFGBlocks.begin(); it != _CFGBlocks.end();++it)
+	{	
+		if((*it)->getCFGType() == CFG_DUMMY && (*it)->getProcIndex() == index)
+			return (*it);
+	}
+	return NULL;
+}
+
+CFGNode* CFG::getNextCFGNodeByCurrentStatement(statement s, bool bipEnabled )
+{
+	CFGNode* nextNode;
+
+	STMT_LIST first;
+	first.push_back(s.stmtNumber);
+	STMT_LIST result;
+
+	PKBController::createInstance()->next(&first, &result, 1);
+	if(result.empty())
+	{
+		if(bipEnabled)
+		nextNode = this->getBipDummyNodeByProcIndex(s.procIndex);
+	}
+	else
+	{
+		assert(result.size() == 1);
+		nextNode = this->getCFGNodeByStmtNumber(result.at(0));
+	}
+
+	return nextNode;
 }

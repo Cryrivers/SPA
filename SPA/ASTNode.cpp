@@ -14,6 +14,7 @@ ASTNode::ASTNode(void)
 	_stmtNumber = 0;
 	_children = NULL;
 	_siblings = NULL;
+	_parent = NULL;
 	hashCodeComputed = false;
 }
 
@@ -215,6 +216,7 @@ ASTNode *ASTNode::getChildren()
 
 void ASTNode::addChild(ASTNode *node)
 {
+	node->setParentNode(this);
 	if (_children == NULL) {
 		_children = node;
 	}else {
@@ -244,7 +246,7 @@ void ASTNode::addChild(ASTNode *node)
 ASTNode *ASTNode::createChild(ASTNodeType t, int value)
 {
 	ASTNode *i = ASTNode::createNode(t, value);
-
+	i->setParentNode(this);
 	this->addChild(i);
 	return(i);
 }
@@ -284,6 +286,8 @@ void ASTNode::addSibling(ASTNode *node)
 	while (i->getSibling() != NULL) {
 		i = i->getSibling();
 	}
+
+	node->setParentNode(this->_parent);
 	i->_siblings = node;
 }
 
@@ -304,7 +308,7 @@ void ASTNode::addSibling(ASTNode *node)
 ASTNode *ASTNode::createSibling(ASTNodeType t, int value)
 {
 	ASTNode *i = ASTNode::createNode(t, value);
-
+	i->setParentNode(_parent);
 	this->addSibling(i);
 	return(i);
 }
@@ -417,4 +421,15 @@ void ASTNode::setId( int id )
 {
 	assert(id>=0);
 	_id = id;
+}
+
+void ASTNode::setParentNode( ASTNode* node )
+{
+	_parent = node;
+}
+
+ASTNode* ASTNode::getParentNode()
+{
+	assert(_parent != NULL);
+	return _parent;
 }

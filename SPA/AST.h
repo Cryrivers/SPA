@@ -30,5 +30,6 @@ public:
 	void calculateHashcode();
 	void setASTNodeIndex(ASTNode* node);
 	ASTNode* getASTNodeById(int id);
+	vector<ASTNode*>* getAllASTNodes();
 };
 
