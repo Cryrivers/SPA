@@ -1473,7 +1473,7 @@ BOOLEAN  QueryPreprocessor::makeOptimize(){
 				mergedClause++;	    
 			}
 		}else if(queryVarTable[queryClaTable[i].variable1].mapTo==queryVarTable[queryClaTable[i].variable2].mapTo){
-			if(queryClaTable[i].relationType!=RT_NEXT&&queryClaTable[i].relationType!=RT_NEXTT&&queryClaTable[i].relationType!=RT_NEXTBIP&&queryClaTable[i].relationType!=RT_NEXTBIPT&&queryClaTable[i].relationType!=RT_AFFECTS&&queryClaTable[i].relationType!=RT_AFFECTST&&queryClaTable[i].relationType!=RT_AFFECTSBIP&&queryClaTable[i].relationType!=RT_AFFECTSBIPT){
+			if(queryClaTable[i].relationType!=RT_NEXTT&&queryClaTable[i].relationType!=RT_NEXTBIPT&&queryClaTable[i].relationType!=RT_AFFECTS&&queryClaTable[i].relationType!=RT_AFFECTST&&queryClaTable[i].relationType!=RT_AFFECTSBIP&&queryClaTable[i].relationType!=RT_AFFECTSBIPT){
 				if(queryVarTable[queryClaTable[i].variable1].variableType!=DT_UNDERSCORE){
 					return false;
 				}
