@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "CFGNode.h"
+#include "ASTNode.h"
 using namespace std;
 
 int indexOf(vector<int>, int); //{
@@ -10,4 +11,5 @@ int indexOf(vector<int>, int); //{
 //return -1;
 //}
 int indexOf(vector<CFGNode*>, CFGNode*);
+int indexOf(vector<ASTNode*>, ASTNode*);
 StmtType getTypeOfStmt(STMT);

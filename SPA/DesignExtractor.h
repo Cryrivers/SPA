@@ -40,9 +40,11 @@ BOOLEAN pattern(vector<int>*, vector<int>*, string,PatternQueryType, int);
 BOOLEAN affects(STMT_LIST*, STMT_LIST*, int);
 BOOLEAN affectsStar(STMT_LIST*, STMT_LIST*, int);
 BOOLEAN contains(vector<int>*, vector<int>*, ASTNodeType argA, ASTNodeType argB, int arg);
-BOOLEAN containsStar(vector<int>*, vector<int>*, ASTNodeType argA, ASTNodeType argB, int arg);;
+BOOLEAN containsStar(vector<int>*, vector<int>*, ASTNodeType argA, ASTNodeType argB, int arg);
+BOOLEAN sibling(vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg);
 BOOLEAN isContains(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
 BOOLEAN isContainsStar(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
+BOOLEAN isSibling(int indexA, int indexB, ASTNodeType argA, ASTNodeType argB);
 
 private:
 	BOOLEAN assignPattern(vector<int>*, vector<int>*, string, int, int);
@@ -78,5 +80,9 @@ private:
 	BOOLEAN contains_01(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN contains_10(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 	BOOLEAN contains_11(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN sibling_00(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN sibling_01(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN sibling_10(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
+	BOOLEAN sibling_11(vector<int>* indexAs, vector<int> *indexBs, ASTNodeType argA, ASTNodeType argB);
 };
 
