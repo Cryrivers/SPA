@@ -1,7 +1,7 @@
 22
 cat: Single Relation ModifiesS 00 - b and c left out
 1 - Case a - both empty ::
-procedure p; variable v; stmt s
+procedure p; variable v; stmt s;
 Select p such that Modifies(s, v)
 Main, Buddy, Text, Ted, See
 5000
@@ -44,7 +44,7 @@ Select s such that Modifies(s, "eat")
 5000
 cat: Single Relation ModifiesP 00 - a and d left out 
 9 - Case b -  vecA empty, vecB >= 1 ::
-constant c; procedure p
+constant c; procedure p;
 Select c such that Modifies(p, "dear")
 10, 5, 3, 12, 1, 6, 2, 18, 38, 29, 4, 9, 23, 7, 84, 48, 15, 25, 75, 22, 35, 63, 11, 8, 74, 99
 5000
@@ -77,7 +77,7 @@ Main, Buddy, Ted, Text, See
 5000
 cat: Single Relation UsesS 00 - a and c left out
 15 - Case b -  vecA empty, vecB >= 1 ::
-stmt s; call c
+stmt s; call c;
 Select c such that Uses(s, "idea")
 3, 7, 18, 26, 33, 37, 50, 53, 60, 65, 127, 152, 159, 188, 195, 202, 207, 209, 217, 220, 223, 232
 5000
