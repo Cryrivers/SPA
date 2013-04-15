@@ -63,11 +63,171 @@ bool QueryEvaluator::evaluateQuery()
 	
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
 		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
-			if (!evaluateClause(*vit)) {
-				return false; // query clause evaluated to false
+			if (vit->variable1 == vit->variable2) {
+				
+				if (!evaluateReflexiveClause(*vit)) 
+					return false; // query clause evaluated to false
+				
+			} else {
+				
+				if (!evaluateClause(*vit)) 
+					return false; // query clause evaluated to false
+				
 			}
 		}
 	}
+	return true;
+}
+
+/**
+ * \fn		QueryEvaluator::evaluateReflexiveClause(QueryClause qc)
+ * \brief	Evaluates a given reflexive query clause, supports relation type NextT, Affects, AffextsT, NextBIPT, AffectsBIP, AffectsBIPT  
+ * \param [in]	qc: query clause. 
+ * \return 	TRUE if evaluation is successful, FALSE otherwise
+ */
+bool QueryEvaluator::evaluateReflexiveClause(QueryClause qc) {
+
+	vector<int> vectorA;
+	int a, dep, inDM, arg;
+
+	a = qc.variable1;
+	dep = qVariableList.at(a).dependency; 
+	inDM = 0;
+
+	// checks if a exists in dependency map
+	if (dep >= 0 && dependencymap.count(dep) == 1)
+		inDM = dependencymap[dep].count(a);
+	
+	if (inDM) { // a exists in dependency map
+
+		vectorA = removeDuplicates(dependencymap[dep][a]);
+
+	} else { // a does not exist in dependency map
+		
+		switch (qVariableList.at(a).variableType) {
+				
+			case DT_ASSIGN: 	
+			
+				if (!pkb->getAllAssignment(&vectorA))
+					return false;
+				break;
+		
+			case DT_WHILE: 		
+			
+				if (!pkb->getAllWhile(&vectorA))
+					return false;
+				break;
+		
+			case DT_IF:			
+		
+				if (!pkb->getAllIf(&vectorA))
+					return false;
+				break;
+
+			case DT_CALL: 		
+
+				if (!pkb->getAllCall(&vectorA))
+					return false;
+				break;
+			
+			case DT_STMT: 		
+			case DT_PROGLINE:
+				
+				if (!pkb->getAllStmt(&vectorA))
+					return false;
+				break;
+			
+			case DT_UNDERSCORE:
+				
+				switch (qc.relationType) {
+			
+					case RT_NEXTT:
+					case RT_NEXTBIPT:
+						
+						if (!pkb->getAllStmt(&vectorA))
+							return false;
+						break;
+			
+					case RT_AFFECTS:
+					case RT_AFFECTST:
+					case RT_AFFECTSBIP:
+					case RT_AFFECTSBIPT:
+			
+						if (!pkb->getAllAssignment(&vectorA))
+							return false;
+						break;
+				} 
+
+				break;
+				
+			// Known Variables
+			case KT_STMT_NUM:			
+					
+				vectorA.push_back(qVariableList.at(a).content);					
+				
+				break; 
+
+			default:
+				
+				return false;
+
+		}
+	}
+
+	vector<int> vectorB (vectorA); //make copy of vectorA
+	arg = 2*dep; // update arg
+
+	switch (qc.relationType) {
+			
+		case RT_NEXTT:
+			
+			if (!pkb->nextStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+			
+		case RT_AFFECTS:
+
+			if (!pkb->affects(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+		case RT_AFFECTST:
+			
+			if (!pkb->affectsStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+		case RT_NEXTBIPT:
+		
+			if (!pkb->nextBipStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+		case RT_AFFECTSBIP:
+
+			if (!pkb->affectsBip(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+		case RT_AFFECTSBIPT:
+			
+			if (!pkb->affectsBipStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+	}
+	
+	if (dependencymap.count(dep)) { // dependency map is not empty
+
+		if (!intersectDependencyMap(dep, a, &vectorA))
+			return false; // intersection is empty set
+
+	} else { // dependency map is empty
+		
+		dependencymap[dep][a] = vectorA;
+
+	}
+
 	return true;
 }
 
@@ -214,7 +374,6 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 			if (!pkb->sibling(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
-		
 
 		case CT_PATTERN:
 			

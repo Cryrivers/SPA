@@ -23,6 +23,7 @@ class QueryEvaluator
 	map<int, map<int, vector<string>>> targetmap;
 	
 	bool evaluateQuery();
+	bool evaluateReflexiveClause(QueryClause);
 	bool evaluateClause(QueryClause);
 
 	bool getVectors(vector<int>*, vector<int>*, QueryClause, int*);
