@@ -39,6 +39,7 @@ class QueryEvaluator
 	bool removeDuplicatesPair(vector<int>*, vector<int>*);
 	bool cartesianProduct(vector<int>*, vector<int>*);
 	int getWithType(int);
+	ASTNodeType getNodeType(int);
 
 public:
 	QueryEvaluator(void);

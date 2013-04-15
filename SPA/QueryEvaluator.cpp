@@ -73,7 +73,9 @@ bool QueryEvaluator::evaluateQuery()
 
 /**
  * \fn		QueryEvaluator::evaluateClause(QueryClause qc)
- * \brief	Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next NextT Pattern, With.  
+ * \brief	Evaluates a given query clause, supports relation type Parent, ParentT, Follows, FollowsT, 
+ *			ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next, NextT, Affects, AffextsT, 
+ *			NextBIP, NextBIPT, AffectsBIP, AffectsBIPT, Contains, ContainsT, Sibling, Pattern, With.  
  * \param [in]	qc: query clause. 
  * \return 	TRUE if evaluation is successful, FALSE otherwise
  */
@@ -171,6 +173,49 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 				return false; // can't find relation
 			break;
 			
+		case RT_NEXTBIP:
+
+			if (!pkb->nextBip(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+		case RT_NEXTBIPT:
+		
+			if (!pkb->nextBipStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+		case RT_AFFECTSBIP:
+
+			if (!pkb->affectsBip(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+
+		case RT_AFFECTSBIPT:
+			
+			if (!pkb->affectsBipStar(&vectorA, &vectorB, arg))
+				return false; // can't find relation
+			break;
+		
+		case RT_CONTAINS:
+
+			if (!pkb->contains(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+
+		case RT_CONTAINST:
+
+			if (!pkb->containsStar(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+
+		case RT_SIBLING:	 
+			
+			if (!pkb->sibling(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+		
+
 		case CT_PATTERN:
 			
 			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
@@ -1059,6 +1104,72 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
  }
 
+/**
+ * \fn		QueryEvaluator::getNodeType(int t)
+ * \brief	Switch enum (for contains/containsT/sibling) from Query Preprocessor to its PKB equivalent. 
+ * \param [in] t: Query Preprocessor enum.  
+ * \return 	equivalent PKB enum.
+ */
+ ASTNodeType QueryEvaluator::getNodeType(int t) {
+
+	 switch (qVariableList[t].variableType) {
+	 
+		case DT_PROCEDURE:
+		case KT_KNOWN_PROCEDURE:
+			
+			return AST_PROCEDURE;
+
+		case DT_STMTLST:
+			
+			return AST_STATEMENT_LIST;
+
+		case DT_STMT:
+		case KT_STMT_NUM:
+		case DT_PROGLINE:
+			// TODO
+			// For now, returns assignment
+
+		case DT_ASSIGN:
+
+			return AST_ASSIGNMENT;
+
+		case DT_CALL:
+
+			return AST_CALL;
+
+		case DT_WHILE:
+
+			return AST_WHILE_LOOP;
+
+		case DT_IF:
+		
+			return AST_IF_BRANCH;
+
+		case DT_PLUS:
+
+			return AST_PLUS;
+
+		case DT_MINUS:
+
+			return AST_MINUS;
+
+		case DT_TIMES:
+
+			return AST_MULTIPLY;
+
+		case DT_VARIABLE:
+		case KT_KNOWN_VARIABLE:
+	
+			return AST_VARIABLE;
+
+		case DT_CONSTANT:
+		case KT_KNOWN_CONSTANT:
+		
+			return AST_CONSTANT;
+
+	 }
+
+ }
 
 /*int main()
 {
