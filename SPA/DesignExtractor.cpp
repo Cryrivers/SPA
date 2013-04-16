@@ -1398,7 +1398,7 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 			CFGNode* afterWhileBlock = cfg->getFollowingCFGNodeByCurrentStmtNumber(it->endOfTheScope);
 			if(afterWhileBlock != NULL)
 			{
-				whileNode->connectTo(afterWhileBlock);
+				__smartConnectThisCFGToNext(afterWhileBlock, whileNode);
 			}
 		}
 		else if (it->type == STMT_ASSIGNMENT || it->type == STMT_CALL)
