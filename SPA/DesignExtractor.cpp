@@ -1360,11 +1360,14 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 			if(bipEnabled)
 			{
 				CFGNode* current = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
-				CFGNode* next = cfg->getNextCFGNodeByCurrentStatement(*it, bipEnabled);
-				assert(next != NULL);
-				//TODO: AVOID WHILE CONNECTION
-				if(current->getCFGType() != CFG_CALL_STATEMENT)
-					current->connectTo(next);
+				vector<CFGNode*> nexts = cfg->getNextCFGNodeByCurrentStatement(*it, bipEnabled);
+				printf("CFGBip: Size: %d\n", nexts.size());
+				for(vector<CFGNode*>::iterator it = nexts.begin(); it != nexts.end(); ++it)
+				{
+					//TODO: AVOID WHILE CONNECTION
+					if(current->getCFGType() != CFG_CALL_STATEMENT)
+						__smartConnectThisCFGToNext(*it, current);
+				}
 			}
 		}
 		else if (it->type == STMT_CLOSE_BRACKET_END_OF_ELSE)
@@ -1405,81 +1408,32 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 		{
 			//Connect this to next
 			CFGNode* thisNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
-			CFGNode* nextNode;
 
 			if(!bipEnabled || it->type == STMT_ASSIGNMENT)
 			{
+				CFGNode* nextNode;
 				nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber + 1);
+
+				if(nextNode == NULL) continue;
+				__connectAssignmentAndCall(phaseStack, it, scope, nextNode, bipEnabled, thisNode, cfg);
 			}
 			else
 			{
 				//if CFG BipEnabled, should get thisNode's literal next statement. If result is empty, then
 				//get the dummy node of current proc index.
-				nextNode = cfg->getNextCFGNodeByCurrentStatement(*it, bipEnabled);
-				printf("Current: %d, Next: %d.\n", it->stmtNumber, nextNode->getStartStatement());
+				vector<CFGNode*> nextNodes;
+				nextNodes = cfg->getNextCFGNodeByCurrentStatement(*it, bipEnabled);
+				printf("CFGBip: Size: %d\n",nextNodes.size());
+				for(vector<CFGNode*>::iterator t = nextNodes.begin(); t != nextNodes.end(); ++t)
+				{
+					printf("CFGBip: Current: %d, Next: %d.\n", it->stmtNumber, (*t)->getStartStatement());
+					__connectAssignmentAndCall(phaseStack, it, scope, *t, bipEnabled, thisNode, cfg);
+				}
+
 			}
 			
-			if(nextNode == NULL) continue;
+			
 
-			if(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK || 
-				(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
-				(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && (it->stmtNumber < scope.top().endOfTheScope) && nextNode->getCFGType() != CFG_DUMMY) ||
-				(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
-			{
-				if(!bipEnabled || it->type == STMT_ASSIGNMENT)
-				{
-					__smartConnectThisCFGToNext(nextNode, thisNode);
-				}
-				else
-				{
-					assert(it->type == STMT_CALL);
-					PROC_INDEX calleeIndex = _pkb->getProcIndex(it->extraName);
-					STMT calleeStart = _pkb->getProcStart(calleeIndex);
-					STMT calleeEnd = _pkb->getProcEnd(calleeIndex);
-					CFGNode* calleeStartNode = cfg->getCFGNodeByStmtNumber(calleeStart);
-					CFGNode* calleeEndNode = cfg->getFollowingCFGNodeByCurrentStmtNumber(calleeEnd);
-					thisNode->connectTo(calleeStartNode);
-					thisNode->setBipType(CFG_BIP_IN);
-					if(nextNode->getProcIndex() == thisNode->getProcIndex())
-					{
-						calleeEndNode->connectTo(nextNode);
-					}
-				}
-			}
-			else if(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() > 1)
-			{
-				//Get Grand_Parent Node
-				statement parent = scope.top();
-				scope.pop();
-				statement grand_parent = scope.top();
-				scope.push(parent);
-				assert(grand_parent.type == STMT_IF || grand_parent.type == STMT_WHILE);
-				
-				//Get Grand_Parent State
-				IfPreprocessingPhase parent_state = phaseStack.top();
-				phaseStack.pop();
-				IfPreprocessingPhase grand_parent_state = phaseStack.top();
-				phaseStack.push(parent_state);
-
-				if(grand_parent_state == PREPROCESS_THEN)
-				{
-					if(it->stmtNumber < grand_parent.midOfTheScope)
-					{
-						__smartConnectThisCFGToNext(nextNode, thisNode);
-					}
-				}
-				else if(grand_parent_state == PREPROCESS_ELSE || grand_parent_state == PREPROCESS_WHILE)
-				{
-					if(it->stmtNumber < grand_parent.endOfTheScope)
-					{
-						__smartConnectThisCFGToNext(nextNode, thisNode);
-					}
-				}
-				else
-				{
-					throw("Error while smart-connecting nested IF CFG.");
-				}
-			}
 		}
 	}
 }
@@ -3748,6 +3702,69 @@ void DesignExtractor::containsStarCase4bRecursive( ASTNode* root, ASTNodeType ty
 	if (child != NULL) containsStarCase4bRecursive(child, type, vals,indexs, result);
 	sib = root->getSibling();
 	if (sib != NULL) containsStarCase4bRecursive(sib, type,vals,indexs, result);
+}
+
+void DesignExtractor::__connectAssignmentAndCall( stack<IfPreprocessingPhase> &phaseStack, vector<statement>::iterator &it, stack<statement> &scope, CFGNode* nextNode, bool bipEnabled, CFGNode* thisNode, CFG* cfg )
+{
+	if(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK || 
+		(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
+		(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && (it->stmtNumber < scope.top().endOfTheScope) && nextNode->getCFGType() != CFG_DUMMY) ||
+		(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() <= 1))
+	{
+		if(!bipEnabled || it->type == STMT_ASSIGNMENT)
+		{
+			__smartConnectThisCFGToNext(nextNode, thisNode);
+		}
+		else
+		{
+			assert(it->type == STMT_CALL);
+			PROC_INDEX calleeIndex = _pkb->getProcIndex(it->extraName);
+			STMT calleeStart = _pkb->getProcStart(calleeIndex);
+			STMT calleeEnd = _pkb->getProcEnd(calleeIndex);
+			CFGNode* calleeStartNode = cfg->getCFGNodeByStmtNumber(calleeStart);
+			CFGNode* calleeEndNode = cfg->getFollowingCFGNodeByCurrentStmtNumber(calleeEnd);
+			thisNode->connectTo(calleeStartNode);
+			thisNode->setBipType(CFG_BIP_IN);
+			if(nextNode->getProcIndex() == thisNode->getProcIndex())
+			{
+				calleeEndNode->connectTo(nextNode);
+			}
+		}
+	}
+	else if(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() > 1)
+	{
+		//Get Grand_Parent Node
+		statement parent = scope.top();
+		scope.pop();
+		statement grand_parent = scope.top();
+		scope.push(parent);
+		assert(grand_parent.type == STMT_IF || grand_parent.type == STMT_WHILE);
+
+		//Get Grand_Parent State
+		IfPreprocessingPhase parent_state = phaseStack.top();
+		phaseStack.pop();
+		IfPreprocessingPhase grand_parent_state = phaseStack.top();
+		phaseStack.push(parent_state);
+
+		if(grand_parent_state == PREPROCESS_THEN)
+		{
+			if(it->stmtNumber < grand_parent.midOfTheScope)
+			{
+				__smartConnectThisCFGToNext(nextNode, thisNode);
+			}
+		}
+		else if(grand_parent_state == PREPROCESS_ELSE || grand_parent_state == PREPROCESS_WHILE)
+		{
+			if(it->stmtNumber < grand_parent.endOfTheScope)
+			{
+				__smartConnectThisCFGToNext(nextNode, thisNode);
+			}
+		}
+		else
+		{
+			throw("Error while smart-connecting nested IF CFG.");
+		}
+	}
 }
 
 // The following codes are old codes, which might be used when new codes are wrong

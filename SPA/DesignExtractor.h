@@ -20,12 +20,15 @@ AST* _ast;
 PKBController* _pkb;
 inline IfPreprocessingPhase __getParsingPhase(stack<IfPreprocessingPhase> &s);
 inline void __smartConnectThisCFGToNext( CFGNode* nextNode, CFGNode* thisNode );
+inline void __connectAssignmentAndCall( stack<IfPreprocessingPhase> &phaseStack, vector<statement>::iterator &it, stack<statement> &scope, CFGNode* nextNode, bool bipEnabled, CFGNode* thisNode, CFG* cfg );
 
 public:
 DesignExtractor(void);
 ~DesignExtractor(void);
 
 void connectCFG(CFG* cfg, bool bipEnabled);
+
+
 void addNext();
 void addModifies();
 void addUses();
