@@ -1,0 +1,5 @@
+125 - Test125
+variable v1; prog_line n1;
+Select n1 such that Uses(n1,v1) and Uses("testIf",v1) and Uses(n1,"i")
+9,14,16
+5000

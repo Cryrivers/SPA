@@ -1,0 +1,72 @@
+Parameters : Autotesting\with_source.txt Autotesting\with_testcases.txt NUL
+Current: 5, Next: 6.
+Current: 12, Next: 13.
+Current: 20, Next: 21.
+Current: 27, Next: 25.
+SPA
+New Category :  with
+Evaluating query 1 - Test1
+finish pql
+Your answer: 1 2 3 4 
+Correct answer: 1 2 3 4 
+Evaluating query 2 - Test2
+Your answer: 
+Correct answer: 
+Evaluating query 3 - Test3
+finish pql
+Your answer: 3 3 1 0 1 1 1 2 3 4 0 2 1 1 
+Correct answer: 3 4 
+Missing: 
+Additional: 0 1 2 
+Evaluating query 4 - Test4
+finish pql
+Your answer: 5 12 20 27 
+Correct answer: 20 27 
+Missing: 
+Additional: 12 5 
+Evaluating query 5 - Test5
+finish pql
+Your answer: x 
+Correct answer: x 
+Evaluating query 6 - Test6
+Your answer: 
+Correct answer: 
+Evaluating query 7 - Test7
+finish pql
+Your answer: Third 
+Correct answer: Third 
+Evaluating query 8 - Test8
+finish pql
+Your answer: 1 2 4 6 9 10 11 13 14 15 17 18 19 22 23 24 26 29 30 31 
+Correct answer: 1 2 4 6 9 10 11 13 14 15 17 18 19 22 23 24 26 29 30 31 
+Evaluating query 9 - Test9
+Your answer: 
+Correct answer: 
+Evaluating query 10 - Test10
+finish pql
+Your answer: true 
+Correct answer: true 
+Evaluating query 11 - Test11
+finish pql
+Your answer: 3 16 28 
+Correct answer: 16 28 
+Missing: 
+Additional: 3 
+Evaluating query 12 - Test12
+finish pql
+Your answer: 7 8 21 25 
+Correct answer: 7 8 21 25 
+Evaluating query 13 - Test13
+Your answer: 
+Correct answer: 
+Evaluating query 14 - Test14
+finish pql
+Your answer: First Second Third 
+Correct answer: First Second Third 
+Evaluating query 15 - Test15
+finish pql
+Your answer: 3 3 1 0 1 1 1 2 3 4 0 2 1 1 
+Correct answer: 0 
+Missing: 
+Additional: 1 2 3 4 
+AutoTester Completed !
