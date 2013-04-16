@@ -1285,8 +1285,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 		case DT_STMT:
 		case KT_STMT_NUM:
 		case DT_PROGLINE:
-			// TODO
-			// For now, returns assignment
+			
+			return AST_STMT;
 
 		case DT_ASSIGN:
 
