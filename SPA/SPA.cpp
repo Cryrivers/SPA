@@ -79,7 +79,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	const int querySize = 1;
 	string query[querySize];	   
 	//query[0]="";
-	query[0]="prog_line n; constant c; Select c with 2=1";  
+	query[0]="if if; while w; Select if pattern if (\"z\", _,_)";  
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
