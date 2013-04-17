@@ -1034,7 +1034,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 									if(inV<0) return false;  
 									queryVarTable[ia].variableType=KT_KNOWN_VARIABLE; 	
 									queryVarTable[ia].content=inV; 
-								}else if(frontAttr==AT_PROC_NAME&&queryVarTable[ia].variableType==DT_CALL){
+								}else if(frontAttr==AT_CALL_PROC_NAME&&queryVarTable[ia].variableType==DT_CALL){
 									int inP = pkb->getProcIndex(back);
 									if(inP<0) return false;	   
 									QueryVariable var;
@@ -1052,7 +1052,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 									qc.attribute2=AT_PROCTABLEINDEX;
 									queryClaTable.push_back(qc);
 									continue;
-								}else if(frontAttr==AT_CALL_PROC_NAME){	 
+								}else if(frontAttr==AT_PROC_NAME){	 
 									int inP = pkb->getProcIndex(back);
 									if(inP<0) return false; 
 									queryVarTable[ia].variableType=KT_KNOWN_PROCEDURE; 
@@ -1162,11 +1162,12 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				if(!qv.isVarRef(element[1]))	return false;
 				int ib = getIndexFromVarTable(element[1], 0,1,0,1,0,1,0,2);
 				if(ib==-1)	return false;		
-																		  
+				if(element[2].find(",")>element[2].size()) return false; 													  
 				string var1 = element[2].substr(0,element[2].find(","));
 				string var2 = element[2].substr(element[2].find(",")+1);	 
 				trim_all(var1);
 				trim_all(var2);
+				if(var1==""||var2=="") return false;   
 							
 				int stmlst1 = getIndexFromVarTable(var1, 0,1,0,1,0,1,0,4);   
 				int stmlst2 = getIndexFromVarTable(var2, 0,1,0,1,0,1,0,4);
