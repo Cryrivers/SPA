@@ -36,24 +36,24 @@ QueryEvaluator::QueryEvaluator(void)
 	QCsizemap[RT_USESP] = pkb->usesPSize();
 	QCsizemap[RT_USESS] = pkb->usesSize();
 	QCsizemap[RT_CALLS] = pkb->callsSize();
-	QCsizemap[RT_CALLST] = QCsizemap[RT_CALLS]*50;
+	QCsizemap[RT_CALLST] = QCsizemap[RT_CALLS]*40;
 	QCsizemap[RT_PARENT] = pkb->parentSize();
-	QCsizemap[RT_PARENTT] = QCsizemap[RT_PARENT]*50;
+	QCsizemap[RT_PARENTT] = QCsizemap[RT_PARENT]*40;
 	QCsizemap[RT_FOLLOWS] = pkb->followsSize();
-	QCsizemap[RT_FOLLOWST] = QCsizemap[RT_FOLLOWS]*50;
+	QCsizemap[RT_FOLLOWST] = QCsizemap[RT_FOLLOWS]*40;
 	QCsizemap[RT_NEXT] = pkb->nextSize();
-	QCsizemap[RT_NEXTT] = QCsizemap[RT_NEXT]*80;
-	QCsizemap[RT_AFFECTS] = 999; //QCsizemap[RT_NEXT]*50;
-	QCsizemap[RT_AFFECTST] = 999; //QCsizemap[RT_AFFECTS]*100;
-	QCsizemap[RT_CONTAINS] = 999;
-	QCsizemap[RT_CONTAINST] = 999;//QCsizemap[RT_CONTAINS]*50;
-	QCsizemap[RT_SIBLING] = 999;
-	QCsizemap[RT_NEXTBIP] = 999; //QCsizemap[RT_NEXT]*100;
-	QCsizemap[RT_NEXTBIPT] = 999; //QCsizemap[RT_NEXTBIP]*100;
-	QCsizemap[RT_AFFECTSBIP] = 999; //QCsizemap[RT_AFFECTS]*100;
-	QCsizemap[RT_AFFECTSBIPT] = 999; //QCsizemap[RT_AFFECTSBIP]*100;
-	QCsizemap[CT_PATTERN] = 999;
-	QCsizemap[CT_WITH] = 999;
+	QCsizemap[RT_NEXTT] = QCsizemap[RT_NEXT]*50;
+	QCsizemap[RT_AFFECTS] = QCsizemap[RT_NEXT]*120;
+	QCsizemap[RT_AFFECTST] = QCsizemap[RT_AFFECTS]*80;
+	QCsizemap[RT_CONTAINS] = QCsizemap[RT_FOLLOWS];
+	QCsizemap[RT_CONTAINST] = QCsizemap[RT_CONTAINS]*40;
+	QCsizemap[RT_SIBLING] = QCsizemap[RT_FOLLOWS];
+	QCsizemap[RT_NEXTBIP] = QCsizemap[RT_NEXT]*5;
+	QCsizemap[RT_NEXTBIPT] = QCsizemap[RT_NEXTBIP]*20;
+	QCsizemap[RT_AFFECTSBIP] = QCsizemap[RT_AFFECTS]*10;
+	QCsizemap[RT_AFFECTSBIPT] = QCsizemap[RT_AFFECTSBIP]*20;
+	QCsizemap[CT_PATTERN] = QVsizemap[DT_ASSIGN];
+	QCsizemap[CT_WITH] = 10;
 
 }
 
@@ -101,7 +101,9 @@ bool QueryEvaluator::evaluate(map<int, vector<QueryClause>> qcl, vector<QueryVar
  */
 bool QueryEvaluator::optimise()
 {
-	/*map<int, vector<long long>> QCweights; // key: dep; keeps the weight of query clauses 
+	/*********************** Query Optimisation *******************************
+	
+	map<int, vector<long long>> QCweights; // key: dep; keeps the weight of query clauses 
 	long long value;
 
 	// calculate the weights of the clauses
@@ -145,11 +147,13 @@ bool QueryEvaluator::optimise()
 
 			while (!sIndexList.empty()) { // list is not empty
 				
+				bool found = false;
+				
 				for (list<int>::iterator it = sIndexList.begin(); it != sIndexList.end(); ++it) {
 			
-					if (visitedVariableSet.count((*mit).second[*it].variable1) == 1 ||
+					if (visitedVariableSet.count((*mit).second[*it].variable1) == 1 &&
 							visitedVariableSet.count((*mit).second[*it].variable2) == 1) {
-					// query clause can be selected
+					// 2 dependent can be found
 						
 						qClauseList2.push_back((*mit).second[*it]); // push qc into qClauseList2
 						
@@ -160,18 +164,46 @@ bool QueryEvaluator::optimise()
 							visitedVariableSet.insert(qc.variable2);
 						
 						sIndexList.erase(it); // remove the qcIndex from the list
+						found = true;
 						break;
 
 					}
-				}	
+				}
+
+				if (!found) { // 2 dependent cannot be found
+
+					for (list<int>::iterator it = sIndexList.begin(); it != sIndexList.end(); ++it) {
+			
+						if (visitedVariableSet.count((*mit).second[*it].variable1) == 1 ||
+								visitedVariableSet.count((*mit).second[*it].variable2) == 1) {
+						// qc can be selected
+						
+							qClauseList2.push_back((*mit).second[*it]); // push qc into qClauseList2
+						
+							// add the variables into the visitedVariableSet if they are dependent 
+							if (qVariableList[(*mit).second[*it].variable1].dependency >= 0)
+								visitedVariableSet.insert(qc.variable1);
+							if (qVariableList[(*mit).second[*it].variable2].dependency >= 0)
+								visitedVariableSet.insert(qc.variable2);
+						
+							sIndexList.erase(it); // remove the qcIndex from the list
+							break;
+
+						}
+					}
+				}
 			}
 		}
 	}	
-	*/
+	*********************** End of Query Optimisation *******************************/
+
+	/*********************** No Optimisation *******************************/
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
 		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit)
 				qClauseList2.push_back(*vit);
 	}		
+	/*********************** End of no Optimisation *******************************/
+	
 	return true;
 }
 
