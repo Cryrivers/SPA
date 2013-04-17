@@ -1037,7 +1037,15 @@ BOOLEAN PKBController::affectsStar( STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr, in
 
 BOOLEAN PKBController::callsStar( PROC_INDEX_LIST* callers_ptr, PROC_INDEX_LIST* callees_ptr, int arg )
 {
-	return _calls->callsStar(callers_ptr, callees_ptr, arg);
+	if ((arg == 3) && (callers_ptr->size() == 0) && (callees_ptr->size() == 0)) {
+		if (_calls->callsStar(callers_ptr, callees_ptr, 2)) {
+			return(_calls->callsStar(callers_ptr, callees_ptr, 3));
+		}else {
+			return(false);
+		}
+	}else {
+		return(_calls->callsStar(callers_ptr, callees_ptr, arg));
+	}
 }
 
 STMT PKBController::getProcEnd( PROC_INDEX ind )
