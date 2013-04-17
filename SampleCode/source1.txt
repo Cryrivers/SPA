@@ -1,0 +1,160 @@
+procedure Bill { 
+ z = 10; 
+ x = z + 5; 
+ y = x * z + 4; 
+ d = x + y * 12; 
+ call Carl;
+ e = d + z * x; 
+ while i {
+ e = x - y; 
+ if z then { 
+ y = y + z; 
+ i = y + 1;
+} 
+else {    
+ x = y + z; 
+ i = i - 1;
+} 
+ x = y + z;
+ y = z + 3;
+} 
+} 
+procedure Carl { 
+ n = 8; 
+ m = n - 3; 
+ r = m * n + 2; 
+ d = m + r * 7; 
+ call Daniel; 
+ d = r + n - m;
+ y = x + d - n;
+ call Jane; 
+ t = d + m * n;
+ z = t + x*3; 
+ while i {
+ t = m - n;
+ r = t + m*2;
+ x = m - n + 2;  
+ if n then { 
+ r = r + n; 
+   while r {
+     i = r - 1;
+     m = i - 1;
+} 
+ t = t+1;
+}
+else {  
+	m = r + n; 
+	i = i - 1; 
+} 
+ m = r + n; 
+} 
+ call Mary;
+} 
+procedure Daniel{
+ m = m +1;
+ r = m *2 -1;
+ d = m + r * 4; 
+ z =5;
+ y = z*2;
+ if i then {
+   x = y + z *2 -1;
+   y = x + z;
+   z = x - y +1;
+   while z {
+       y = r + n; 
+      while t {
+       x = m - 1;
+}
+       n = i - 1; 
+}
+}
+ else { 
+      i = i-1;
+      y = y+ z+i;
+      z = z*d+x;
+}
+     call John; 
+}
+procedure Jane { 
+ z = 6; 
+ x = z -1; 
+ y = x * z; 
+ d = x + y - 11;  
+ d = d + z + x; 
+ m = (d + r) * x; 
+ while i { 
+ r = x - y;
+ i = m +n; 
+ y = x * m + 4; 
+ if y then { 
+  y = y + z; 
+  i = y + 1;
+  n = x + i*5;
+  x = z *3 - z; 
+} 
+else { 
+ x = y + z;  
+ i = i - 1;
+ m = n - i*2 + r;
+ r = m + n*3; 
+} 
+ x = y*2 + z; 
+} 
+ call Mary; 
+} 
+procedure John{
+ n = m -1;
+ r = n *2 +i;
+ t = y + x * 3; 
+ z =8;
+ y = z-2;
+ if i then {
+   x = m + y *2 -1;
+   call Mary;
+   t = z - n +i;
+   while x {
+       z = y + m; 
+       x = n - (t+i);
+       n = i*3 - (r+d); 
+     }
+     }
+ else {
+   i = r+2;
+   y = x+ d-r;
+   while y {   
+      z = i*d+x;
+      y = t - i + 3;
+}
+}
+   t = r +i- n*2; 
+}
+procedure Mary { 
+ d = i + z + x; 
+ i = m + r - n*2; 
+ while i { 
+ z = y*3 + 2*x; 
+ i = i - 1; 
+ if z then {
+  x = m +(y - z);
+  y = n*z - i*m;
+  n = i - d + y*2;
+   while x { 
+    r = y + z; 
+    i = x + 1;
+    n = x + m*7;
+    x = z *3 - z; 
+} 
+}
+ else {
+     t = m + i *2;
+     r = d + m*2;
+    while z {
+     x = n - t + y;
+     z = r+i*t - (x + y); 
+}
+     y = y + z + i; 
+}
+     d = n - (m+i*2);
+}
+     t = t-1; 
+} 
