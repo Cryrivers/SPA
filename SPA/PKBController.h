@@ -177,6 +177,13 @@ public:
 	BOOLEAN isCalls(PROC_INDEX caller, PROC_INDEX callee);
 	BOOLEAN isCallsStar(PROC_INDEX caller, PROC_INDEX callee);
 
+	STMT_LIST getNextFirst(STMT stmt2) {
+		return _next->getNextFirst(stmt2);
+	};
+	STMT_LIST getNextSecond(STMT stmt1) {
+		return _next->getNextSecond(stmt1);
+	};
+
 private:
 	Follows* _follows;
 	Parent* _parent;
