@@ -305,139 +305,116 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 	switch (qc.relationType) {
 
 		case RT_PARENT:
-			
 			if (!pkb->parent(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_PARENTT:
-
 			if (!pkb->parentStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_FOLLOWS:
-			
 			if (!pkb->follows(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_FOLLOWST:
-
 			if (!pkb->followsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_MODIFIESS:
-			
 			if (!pkb->modifies(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_MODIFIESP:
-
 			if (!pkb->modifiesP(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_USESS:
-			
 			if (!pkb->uses(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_USESP:
-			
 			if (!pkb->usesP(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
-		
+
 		case RT_CALLS:
-			
 			if (!pkb->calls(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_CALLST:
-		
 			if (!pkb->callsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_NEXT:
-			
 			if (!pkb->next(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 			
 		case RT_NEXTT:
-			
 			if (!pkb->nextStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 			
 		case RT_AFFECTS:
-
 			if (!pkb->affects(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_AFFECTST:
-			
 			if (!pkb->affectsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 			
 		case RT_NEXTBIP:
-
 			if (!pkb->nextBip(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_NEXTBIPT:
-		
 			if (!pkb->nextBipStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_AFFECTSBIP:
-
 			if (!pkb->affectsBip(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_AFFECTSBIPT:
-			
 			if (!pkb->affectsBipStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_CONTAINS:
-
 			if (!pkb->contains(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case RT_CONTAINST:
-
 			if (!pkb->containsStar(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case RT_SIBLING:	 
-			
 			if (!pkb->sibling(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case CT_PATTERN:
-			
 			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
 				return false; // can't find relation
 			break;
 		
 		case CT_WITH:
-
 			if (!pkb->with(&vectorA, &vectorB, getWithType(qc.attribute1), getWithType(qc.attribute2), arg))
 				return false;
 			break;
@@ -517,31 +494,26 @@ bool QueryEvaluator::evaluateBoolean(int a, int b, Type relationType) {
 			return pkb->isAffectsBipStar(a, b);
 		/*	
 		case RT_CONTAINS:
-
 			if (!pkb->contains(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case RT_CONTAINST:
-
 			if (!pkb->containsStar(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case RT_SIBLING:	 
-			
 			if (!pkb->sibling(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case CT_PATTERN:
-			
 			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
 				return false; // can't find relation
 			break;
 		
 		case CT_WITH:
-
 			if (!pkb->with(&vectorA, &vectorB, getWithType(qc.attribute1), getWithType(qc.attribute2), arg))
 				return false;
 			break;
@@ -1131,27 +1103,15 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 		switch (qv.variableType) {
 				
-			case DT_VARIABLE: 	
-			// target is of type variable
-					
-				vecS = pkb->getAllVarName(dependencymap[dep][v]); 
-				for (int i = 0; i < vecS.size(); i++) {
-					targetmap[dep][v].push_back(vecS[i]);
-				}
+			case DT_VARIABLE: // target is of type variable	
+				targetmap[dep][v] = pkb->getAllVarName(dependencymap[dep][v]); 
 				break;
 
-			case DT_PROCEDURE:	
-			// target is of type procedure
-					
-				vecS = pkb->getAllProcName(dependencymap[dep][v]); 
-				for (int i = 0; i < vecS.size(); i++) {
-					targetmap[dep][v].push_back(vecS[i]);
-				}
+			case DT_PROCEDURE: // target is of type procedure
+				targetmap[dep][v] = pkb->getAllProcName(dependencymap[dep][v]); 
 				break;
 
-			case DT_CALL:	
-			// target is of type call
-					
+			case DT_CALL: // target is of type call	
 				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target attribute type is procName
 						
@@ -1160,17 +1120,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 						vecTemp.push_back(pkb->getCallee(dependencymap[dep][v][i])); 
 					}
 						
-					vecS = pkb->getAllProcName(vecTemp); 
-					for (int i = 0; i < vecS.size(); i++) {
-						targetmap[dep][v].push_back(vecS[i]);
-					}
+					targetmap[dep][v] = pkb->getAllProcName(vecTemp); 
 					break; // break only if it is call.procName
 					
-				}
+				} // else drops into default case
 
-			default:
-			// target is not of type variable or procedure
-					
+			default: // target is not of type variable or procedure
 				for (vector<int>::iterator it = dependencymap[dep][v].begin(); it != dependencymap[dep][v].end(); ++it) {
 					targetmap[dep][v].push_back(to_string(static_cast<long long>(*it)));
 				}
@@ -1178,74 +1133,60 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 					
 		}
 
-	} else {
-	// variable is not in dependency map (independent)
+	} else { // variable is not in dependency map (independent)
 		
 		switch (qv.variableType) {
 				
-			case DT_VARIABLE: 	
-			// target is of type variable
-					
-				vecS = pkb->getAllVarName();
-				for (int i = 0; i < vecS.size(); i++) {
-					targetmap[dep][v].push_back(vecS[i]);
-				}
+			case DT_VARIABLE: // target is of type variable
+				targetmap[dep][v] = pkb->getAllVarName();
 				break;
 
-			case DT_PROCEDURE:	
-			// target is of type procedure
-					
-				vecS = pkb->getAllProcName();
-				for (int i = 0; i < vecS.size(); i++) {
-					targetmap[dep][v].push_back(vecS[i]);
-				}
+			case DT_PROCEDURE: // target is of type procedure	
+				targetmap[dep][v] = pkb->getAllProcName();
 				break;
 
 			case DT_BOOLEAN:	
-					
 				targetmap[dep][v].push_back("true");
 				break;
 				
 			case DT_ASSIGN: 	
-			
 				if (!pkb->getAllAssignment(&vecI))
 					return false;
 				break;
 		
-			case DT_WHILE: 		
-			
+			case DT_WHILE: 					
 				if (!pkb->getAllWhile(&vecI))
 					return false;
 				break;
 		
 			case DT_IF:			
-		
 				if (!pkb->getAllIf(&vecI))
 					return false;
 				break;
 
 			case DT_CALL: 		
-
 				if (!pkb->getAllCall(&vecI))
 					return false;
 				break;
 		
 			case DT_CONSTANT:	
-			
 				if (!pkb->getAllConstant(&vecI))
 					return false;
 				break;
 
 			case DT_STMT: 		
 			case DT_PROGLINE:
-				
 				if (!pkb->getAllStmt(&vecI))
 					return false;
 				break;
 			
+			case DT_STMTLST: 
+				/*if (!pkb->getAllStmtList(&vecI))
+					return false;*/
+				break;
+				
 			// Known Variables
 			case KT_STMT_NUM:			
-					
 				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target is of type call.procName
 						
@@ -1253,35 +1194,31 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 					targetmap[dep][v].push_back(pkb->getProcName(pkb->getCallee(qv.content)));					
 					break; // break only if it is call.procName
 					
-				}
-
+				} // else drops to known constant case 
+			
 			case KT_KNOWN_CONSTANT:
-				
 				targetmap[dep][v].push_back(to_string(static_cast<long long>(qv.content)));
 				break;
 					
 			case KT_KNOWN_VARIABLE:	
-					
 				targetmap[dep][v].push_back(pkb->getVarName(qv.content));					
 				break;
 					
 			case KT_KNOWN_PROCEDURE:	
-					
 				targetmap[dep][v].push_back(pkb->getProcName(qv.content));					
 				break;
 		
 			// invalid types, should not appear in target
-			case DT_UNDERSCORE:		
-			case DT_STMTLST: 			
-
-				break;
+			case DT_UNDERSCORE:
+			case KT_CONSTANT_INTEGER:
+			case KT_CONSTANT_STRING:
+				return false;
 
 		}
 
 		switch (qv.variableType) {
 				
 			case DT_CALL: 
-					
 				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target attribute type is procName
 						
@@ -1290,13 +1227,10 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 						vecTemp.push_back(pkb->getCallee(vecI[i])); 
 					}
 						
-					vecS = pkb->getAllProcName(vecTemp); 
-					for (int i = 0; i < vecS.size(); i++) {
-						targetmap[dep][v].push_back(vecS[i]);
-					}
+					targetmap[dep][v] = pkb->getAllProcName(vecTemp); 
 					break; // break only if it is call.procName
 					
-				}
+				} // else drops into cases below
 
 			case DT_ASSIGN: 	
 			case DT_WHILE: 		
@@ -1304,7 +1238,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			case DT_CONSTANT:	
 			case DT_STMT:
 			case DT_PROGLINE:
-					
+			case DT_STMTLST: 	
 				for (int i = 0; i < vecI.size(); i++) 
 					targetmap[dep][v].push_back(to_string(static_cast<long long>(vecI[i])));
 				break;
@@ -1394,24 +1328,19 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	 switch (t) {
 	 
 		case AT_STMT_NUM:
-			
 			return WITH_STMTNUMBER;
 		
 		case AT_VAR_NAME:	
-			
 			return WITH_VARNAME;
 		
 		case AT_PROC_NAME:		
 		case AT_PROCTABLEINDEX:
-		
 			return WITH_PROCNAME;
 
 		case AT_CALL_PROC_NAME:		
-
 			return WITH_CALLPROCNAME;
 
 		case AT_VALUE:
-
 			return WITH_VALUE;
 	 
 	 }
@@ -1430,63 +1359,45 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	 
 		case DT_PROCEDURE:
 		case KT_KNOWN_PROCEDURE:
-			
 			return AST_PROCEDURE;
 
 		case DT_STMTLST:
-			
 			return AST_STATEMENT_LIST;
 
 		case DT_STMT:
 		case KT_STMT_NUM:
 		case DT_PROGLINE:
-			
 			return AST_STMT;
 
 		case DT_ASSIGN:
-
 			return AST_ASSIGNMENT;
 
 		case DT_CALL:
-
 			return AST_CALL;
 
 		case DT_WHILE:
-
 			return AST_WHILE_LOOP;
 
 		case DT_IF:
-		
 			return AST_IF_BRANCH;
 
 		case DT_PLUS:
-
 			return AST_PLUS;
 
 		case DT_MINUS:
-
 			return AST_MINUS;
 
 		case DT_TIMES:
-
 			return AST_MULTIPLY;
 
 		case DT_VARIABLE:
 		case KT_KNOWN_VARIABLE:
-	
 			return AST_VARIABLE;
 
 		case DT_CONSTANT:
 		case KT_KNOWN_CONSTANT:
-		
 			return AST_CONSTANT;
 
 	 }
 
  }
-
-/*int main()
-{
-return 0;
-}
-*/
