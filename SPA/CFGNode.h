@@ -11,6 +11,8 @@ public:
 	STMT getStartStatement();
 	STMT getEndStatement();
 	void connectTo(CFGNode* nextPath);
+	void disconnect(CFGNode* nextPath);
+	void denyNode(CFGNode* path);
 	int getEdgeSize();
 	bool containStatement(STMT stmtNumber);
 	bool isValidCFGNode();
@@ -25,12 +27,14 @@ public:
 	CFGBipType getBipType();
 	void setBipType(CFGBipType type);
 protected:
+	void removeBacktraceEdges(CFGNode* prevPath);
 	void addBacktraceEdges(CFGNode* prevPath);
 private:
 	CFGBipType _bipType;
 	int _start;
 	int _end;
 	PROC_INDEX _procIndex;
+	vector<CFGNode*> _deniedEdges;
 	vector<CFGNode*> _edges;
 	vector<CFGNode*> _backtrace_edges;
 	CFGType _type;

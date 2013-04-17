@@ -173,6 +173,9 @@ void CFGNode::connectTo( CFGNode* nextPath )
 	//In case of duplicates
 	for (vector<CFGNode*>::iterator it = _edges.begin(); it != _edges.end(); ++it)
 		if(*it == nextPath) return;
+	
+	for (vector<CFGNode*>::iterator it = _deniedEdges.begin(); it != _deniedEdges.end(); ++it)
+		if(*it == nextPath) return;
 
 	_edges.push_back(nextPath);
 	nextPath->addBacktraceEdges(this);
@@ -233,4 +236,34 @@ CFGBipType CFGNode::getBipType()
 void CFGNode::setBipType( CFGBipType type )
 {
 	_bipType =  type;
+}
+
+void CFGNode::disconnect( CFGNode* nextPath )
+{
+	for (vector<CFGNode*>::iterator it = _edges.begin(); it != _edges.end(); ++it)
+	{
+		if(*it == nextPath)
+		{
+			_edges.erase(it);
+			nextPath->removeBacktraceEdges(this);
+			return;
+		}
+	}
+}
+
+void CFGNode::removeBacktraceEdges( CFGNode* prevPath )
+{
+	for (vector<CFGNode*>::iterator it = _backtrace_edges.begin(); it != _backtrace_edges.end(); ++it)
+	{	
+		_backtrace_edges.erase(it);
+		return;
+	}
+}
+
+void CFGNode::denyNode( CFGNode* path )
+{
+	for (vector<CFGNode*>::iterator it = _deniedEdges.begin(); it != _deniedEdges.end(); ++it)
+		if(*it == path) return;
+
+	_deniedEdges.push_back(path);
 }

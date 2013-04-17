@@ -1409,6 +1409,13 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 				{	
 					__smartConnectThisCFGToNext(afterWhileBlock, whileNode);
 				}
+				else if(__getParsingPhase(phaseStack) == PREPROCESS_THEN)
+				{
+					CFGNode* outsideBlock = cfg->getCFGNodeByStmtNumber(scope.top().endOfTheScope + 1);
+					whileBlockEnd->disconnect(outsideBlock);
+					whileBlockEnd->denyNode(outsideBlock);
+					__smartConnectThisCFGToNext(outsideBlock, whileNode);
+				}
 			}
 			phaseStack.push(PREPROCESS_WHILE);
 			scope.push(*it);
