@@ -44,7 +44,10 @@ class QueryEvaluator
 
 	vector<int> removeDuplicates(vector<int>);
 	bool removeDuplicatesPair(vector<int>*, vector<int>*);
+	
 	bool cartesianProduct(vector<int>*, vector<int>*);
+	list<int> sortIndex(vector<int>);
+
 	int getWithType(int);
 	ASTNodeType getNodeType(int);
 
