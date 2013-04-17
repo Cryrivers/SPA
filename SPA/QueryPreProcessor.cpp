@@ -1052,7 +1052,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 									qc.attribute2=AT_PROCTABLEINDEX;
 									queryClaTable.push_back(qc);
 									continue;
-								}else if(frontAttr==AT_PROC_NAME){	 
+								}else if(frontAttr==AT_CALL_PROC_NAME){	 
 									int inP = pkb->getProcIndex(back);
 									if(inP<0) return false; 
 									queryVarTable[ia].variableType=KT_KNOWN_PROCEDURE; 

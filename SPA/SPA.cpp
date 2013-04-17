@@ -79,7 +79,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	const int querySize = 1;
 	string query[querySize];	   
 	//query[0]="";
-	query[0]="stmtLst s1,s2; if f; variable i; Select BOOLEAN with 1=2";  
+	query[0]="call c; Select c with c.procName=\"Daniel\"";  
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
