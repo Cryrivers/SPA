@@ -1,13 +1,13 @@
 procedure p{
-  x = y + x * 5;                         	
+  x = y + x * 5;                          
   y = c + d;                       
   c = a - b;
   d = a * b;
-  a = x;                                	
+  a = x;                                  
   b = 30 + x;                                   
-  i = x;                          	        
-  while i {		              		
-         call q;                                 
+  i = x;                                    
+  while i {                     
+        call q;                                 
         x = x - i;
         y = a + x - i;
         b = i * 2;
@@ -27,24 +27,24 @@ procedure p{
                           }
                  }
       n = n + x;
-	n = k + 3;			          
-	k = k + 1 * n + 5 - 11;	                  
-	while x {		 		  
+  n = k + 3;                
+  k = k + 1 * n + 5 - 11;                   
+  while x {         
                 x = y;
                 y = a + 2;
                 c = y + x;
                 b = y * x;
                 c = y * b;
                 l = x;
-		a = a - 1;	                  
-		while k {			  
+    a = a - 1;                    
+    while k {       
                         x = 20;
                         y = 15;
                         c = x + y - 10;
                         d = c * a;
                         i = i + c;
-			a = x;			  
-			b = c;			  
+      a = x;
+      b = c;
                         while b {
                                   x = x + 1;
                                   y = y + 2;
@@ -53,10 +53,10 @@ procedure p{
                                   a = b + c;
                                   b = y * 3;
                                }
-	                 }                               
-		a = y;                            
-		b = a + y;			  
-	        }
+                   }                               
+    a = y;                            
+    b = a + y;        
+          }
            }                         
   if y then{                                          
           y = a + 1;
@@ -70,14 +70,13 @@ procedure p{
                    c = y + x;
                    b = x * x;
                   }
-          x = a * y + z;                      	  
+          x = a * y + z;                          
           y = j+l+m;                              
           call  o;                                
-          y = y + 2 - 1;			  
+          y = y + 2 - 1;        
             }
    
      else {
-
         a = x + y;}
 }
 
@@ -173,7 +172,7 @@ procedure o {
                  y = 2 * x;
                  d = a + b + y;
                  c = d - x * a;
-               }                         
+                 }                         
        }
 
      else {
@@ -217,7 +216,3 @@ procedure t {
                      }
            }
 }
-  
-  
-
-    
