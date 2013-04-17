@@ -1340,6 +1340,7 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 	// Start connecting CFG now
 	for(vector<statement>::iterator it =  preprocProgram->begin(); it != preprocProgram->end(); ++it)
 	{
+		int sm = it->stmtNumber;
 		if(it->type ==  STMT_IF)
 		{
 			scope.push(*it);
@@ -1421,6 +1422,11 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 
 			if(afterWhileBlock != NULL)	
 			{
+				if(afterWhileBlock->getCFGType() == CFG_DUMMY && bipEnabled)
+				{
+					__smartConnectThisCFGToNext(afterWhileBlock, whileNode);
+				}
+
 				if(afterWhileBlock->getCFGType() != CFG_DUMMY)
 				{
 					if(
@@ -1454,7 +1460,9 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 				CFGNode* nextNode;
 				nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber + 1);
 
-				if(nextNode == NULL) continue;
+				if(nextNode == NULL && !bipEnabled) continue;
+				if(nextNode == NULL && bipEnabled)
+					nextNode = cfg->getBipDummyNodeByProcIndex(it->procIndex);
 				if(bipEnabled && nextNode->getProcIndex() != it->procIndex)
 					nextNode = cfg->getBipDummyNodeByProcIndex(it->procIndex);
 
