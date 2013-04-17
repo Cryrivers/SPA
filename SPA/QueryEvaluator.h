@@ -25,6 +25,7 @@ class QueryEvaluator
 	bool evaluateQuery();
 	bool evaluateReflexiveClause(QueryClause);
 	bool evaluateClause(QueryClause);
+	bool evaluateBoolean(int, int, Type); 
 
 	bool getVectors(vector<int>*, vector<int>*, QueryClause, int*);
 	bool getVector(vector<int>*, int, int*, int);

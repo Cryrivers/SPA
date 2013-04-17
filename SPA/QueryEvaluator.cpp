@@ -63,12 +63,13 @@ bool QueryEvaluator::evaluateQuery()
 	
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
 		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
-			if (vit->variable1 == vit->variable2) {
+			
+			if (vit->variable1 == vit->variable2) { // reflexive clause
 				
 				if (!evaluateReflexiveClause(*vit)) 
 					return false; // query clause evaluated to false
 				
-			} else {
+			} else { // non reflexive clause
 				
 				if (!evaluateClause(*vit)) 
 					return false; // query clause evaluated to false
@@ -92,140 +93,175 @@ bool QueryEvaluator::evaluateReflexiveClause(QueryClause qc) {
 
 	a = qc.variable1;
 	dep = qVariableList.at(a).dependency; 
-	inDM = 0;
-
-	// checks if a exists in dependency map
-	if (dep >= 0 && dependencymap.count(dep) == 1)
-		inDM = dependencymap[dep].count(a);
 	
-	if (inDM) { // a exists in dependency map
+	if (dep >= 0) { // variable is dependent
 
-		vectorA = removeDuplicates(dependencymap[dep][a]);
-
-	} else { // a does not exist in dependency map
+		inDM = 0;
 		
+		// checks if a exists in dependency map
+		if (dependencymap.count(dep) == 1)
+			inDM = dependencymap[dep].count(a);
+
+		if (inDM) { // a exists in dependency map
+
+			vectorA = removeDuplicates(dependencymap[dep][a]); //get vectorA
+
+		} else { // a does not exist in dependency map
+			
+			// get vectorA
+			switch (qVariableList.at(a).variableType) {
+				
+				case DT_ASSIGN: 	
+					if (!pkb->getAllAssignment(&vectorA))
+						return false;
+					break;
+				
+				case DT_WHILE: 		
+					if (!pkb->getAllWhile(&vectorA))
+						return false;
+					break;
+				
+				case DT_IF:			
+					if (!pkb->getAllIf(&vectorA))
+						return false;
+					break;
+				
+				case DT_CALL: 		
+					if (!pkb->getAllCall(&vectorA))
+						return false;
+					break;
+				
+				case DT_STMT: 		
+				case DT_PROGLINE:
+					if (!pkb->getAllStmt(&vectorA))
+						return false;
+					break;
+				
+				default:
+					return false;
+
+			}
+		}
+
+		vector<int> vectorB (vectorA); //make copy of vectorA
+		arg = 3; // update arg
+
+		//perform evaluation
+		switch (qc.relationType) {
+			
+			case RT_NEXTT:
+				if (!pkb->nextStar(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+			
+			case RT_AFFECTS:
+				if (!pkb->affects(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+			case RT_AFFECTST:
+				if (!pkb->affectsStar(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+			case RT_NEXTBIPT:
+				if (!pkb->nextBipStar(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+			case RT_AFFECTSBIP:
+				if (!pkb->affectsBip(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+			case RT_AFFECTSBIPT:
+				if (!pkb->affectsBipStar(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+		}
+
+		if (dependencymap.count(dep)) { // dependency map is not empty
+
+			if (!intersectDependencyMap(dep, a, &vectorA))
+				return false; // intersection is empty set
+
+		} else { // dependency map is empty
+		
+			dependencymap[dep][a] = vectorA; // push vectorA into it
+
+		}
+
+	} else { // variable is independent
+	
+		// get vectorA
 		switch (qVariableList.at(a).variableType) {
 				
 			case DT_ASSIGN: 	
-			
 				if (!pkb->getAllAssignment(&vectorA))
 					return false;
 				break;
-		
+				
 			case DT_WHILE: 		
-			
 				if (!pkb->getAllWhile(&vectorA))
 					return false;
 				break;
-		
+				
 			case DT_IF:			
-		
 				if (!pkb->getAllIf(&vectorA))
 					return false;
 				break;
-
+				
 			case DT_CALL: 		
-
 				if (!pkb->getAllCall(&vectorA))
 					return false;
 				break;
-			
+				
 			case DT_STMT: 		
 			case DT_PROGLINE:
-				
 				if (!pkb->getAllStmt(&vectorA))
 					return false;
 				break;
-			
-			case DT_UNDERSCORE:
 				
+			case DT_UNDERSCORE:
 				switch (qc.relationType) {
-			
+						
 					case RT_NEXTT:
 					case RT_NEXTBIPT:
-						
 						if (!pkb->getAllStmt(&vectorA))
 							return false;
 						break;
-			
+						
 					case RT_AFFECTS:
 					case RT_AFFECTST:
 					case RT_AFFECTSBIP:
 					case RT_AFFECTSBIPT:
-			
 						if (!pkb->getAllAssignment(&vectorA))
 							return false;
 						break;
 				} 
-
 				break;
-				
+
 			// Known Variables
-			case KT_STMT_NUM:			
-					
-				vectorA.push_back(qVariableList.at(a).content);					
-				
-				break; 
+			case KT_STMT_NUM:				
+				vectorA.push_back(qVariableList.at(a).content);	
+				break;
 
 			default:
-				
 				return false;
 
 		}
-	}
 
-	vector<int> vectorB (vectorA); //make copy of vectorA
-	arg = 2*dep; // update arg
-
-	switch (qc.relationType) {
+		// perform evaluation
+		for (int i = 0; i < vectorA.size(); i++) {
 			
-		case RT_NEXTT:
-			
-			if (!pkb->nextStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-			
-		case RT_AFFECTS:
-
-			if (!pkb->affects(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-		case RT_AFFECTST:
-			
-			if (!pkb->affectsStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-		case RT_NEXTBIPT:
+			if (evaluateBoolean(vectorA[0],vectorA[0],qc.relationType))
+				return true; // only need one to be true 
 		
-			if (!pkb->nextBipStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
+		}
 
-		case RT_AFFECTSBIP:
-
-			if (!pkb->affectsBip(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-		case RT_AFFECTSBIPT:
-			
-			if (!pkb->affectsBipStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-	}
-	
-	if (dependencymap.count(dep)) { // dependency map is not empty
-
-		if (!intersectDependencyMap(dep, a, &vectorA))
-			return false; // intersection is empty set
-
-	} else { // dependency map is empty
+		return false; // return false if all return false
 		
-		dependencymap[dep][a] = vectorA;
-
 	}
 
 	return true;
@@ -250,139 +286,116 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 	switch (qc.relationType) {
 
 		case RT_PARENT:
-			
 			if (!pkb->parent(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_PARENTT:
-
 			if (!pkb->parentStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_FOLLOWS:
-			
 			if (!pkb->follows(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_FOLLOWST:
-
 			if (!pkb->followsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_MODIFIESS:
-			
 			if (!pkb->modifies(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_MODIFIESP:
-
 			if (!pkb->modifiesP(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_USESS:
-			
 			if (!pkb->uses(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_USESP:
-			
 			if (!pkb->usesP(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
-		
+
 		case RT_CALLS:
-			
 			if (!pkb->calls(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_CALLST:
-		
 			if (!pkb->callsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_NEXT:
-			
 			if (!pkb->next(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 			
 		case RT_NEXTT:
-			
 			if (!pkb->nextStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 			
 		case RT_AFFECTS:
-
 			if (!pkb->affects(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_AFFECTST:
-			
 			if (!pkb->affectsStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 			
 		case RT_NEXTBIP:
-
 			if (!pkb->nextBip(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_NEXTBIPT:
-		
 			if (!pkb->nextBipStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_AFFECTSBIP:
-
 			if (!pkb->affectsBip(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 
 		case RT_AFFECTSBIPT:
-			
 			if (!pkb->affectsBipStar(&vectorA, &vectorB, arg))
 				return false; // can't find relation
 			break;
 		
 		case RT_CONTAINS:
-
 			if (!pkb->contains(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case RT_CONTAINST:
-
 			if (!pkb->containsStar(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case RT_SIBLING:	 
-			
 			if (!pkb->sibling(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
 				return false; // can't find relation
 			break;
 
 		case CT_PATTERN:
-			
 			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
 				return false; // can't find relation
 			break;
 		
 		case CT_WITH:
-
 			if (!pkb->with(&vectorA, &vectorB, getWithType(qc.attribute1), getWithType(qc.attribute2), arg))
 				return false;
 			break;
@@ -393,6 +406,103 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 		return false; // intersection is empty
 
 	return true;
+}
+
+/**
+ * \fn		QueryEvaluator::evaluateBoolean(int a, int b, Type relationType)
+ * \brief	Evaluates realation(a,b), supports relation type Parent, ParentT, Follows, FollowsT, 
+ *			ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next, NextT, Affects, AffextsT, 
+ *			NextBIP, NextBIPT, AffectsBIP, AffectsBIPT, but not Contains, ContainsT, Sibling, Pattern, With.  
+ * \param [in]	a: first parameter;
+ *				b: second parameter;
+ *				relationType: relation type.. 
+ * \return 	TRUE if evaluation is successful, FALSE otherwise
+ */
+bool QueryEvaluator::evaluateBoolean(int a, int b, Type relationType) {
+
+	switch (relationType) {
+
+		case RT_PARENT:
+			return pkb->isParent(a, b);
+			
+		case RT_PARENTT:
+			return pkb->isParentStar(a, b);
+			
+		case RT_FOLLOWS:
+			return pkb->isFollows(a, b);
+			
+		case RT_FOLLOWST:
+			return pkb->isFollowsStar(a, b);
+
+		case RT_MODIFIESS:
+			return pkb->isModifies(a, b);
+
+		case RT_MODIFIESP:
+			return pkb->isModifiesP(a, b);
+
+		case RT_USESS:
+			return pkb->isUses(a, b);
+
+		case RT_USESP:
+			return pkb->isUsesP(a, b);
+		
+		case RT_CALLS:
+			return pkb->isCalls(a, b);
+
+		case RT_CALLST:
+			return pkb->isCallsStar(a, b);
+
+		case RT_NEXT:
+			return pkb->isNext(a, b);
+			
+		case RT_NEXTT:
+			return pkb->isNextStar(a, b);
+			
+		case RT_AFFECTS:
+			return pkb->isAffects(a, b);
+			
+		case RT_AFFECTST:
+			return pkb->isAffectsStar(a, b);
+			
+		case RT_NEXTBIP:
+			return pkb->isNextBip(a, b);
+
+		case RT_NEXTBIPT:
+			return pkb->isNextBipStar(a, b);
+			
+		case RT_AFFECTSBIP:
+			return pkb->isAffectsBip(a, b);
+			
+		case RT_AFFECTSBIPT:
+			return pkb->isAffectsBipStar(a, b);
+		/*	
+		case RT_CONTAINS:
+			if (!pkb->contains(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+
+		case RT_CONTAINST:
+			if (!pkb->containsStar(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+
+		case RT_SIBLING:	 
+			if (!pkb->sibling(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+
+		case CT_PATTERN:
+			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
+				return false; // can't find relation
+			break;
+		
+		case CT_WITH:
+			if (!pkb->with(&vectorA, &vectorB, getWithType(qc.attribute1), getWithType(qc.attribute2), arg))
+				return false;
+			break;
+		*/
+	}
+	
 }
 
 /**
@@ -426,7 +536,6 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 	switch (*arg) {
 
 		case 3: // both a and b are found in dependency map
-			
 			*vecA = dependencymap[depA][a]; // get vector a
 			*vecB = dependencymap[depB][b]; // get vector b
 			
@@ -436,35 +545,38 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 			return true;
 		
 		case 2: // only a is found in dependency map
-
 			*vecA = removeDuplicates(dependencymap[depA][a]); // get vector a
 			if (!getVector(vecB, b, &argB, qc.relationType)) // get vector b 
 				return false;
+			
 			if (argB == 1 && !vecB->empty() && !cartesianProduct(vecA, vecB)) // perform cartesian product if vecB is dependent and not empty
 				return false;
 			*arg += argB;
+			
 			return true;
 
 		case 1: // only b is found in dependency map
-			
 			*vecB = removeDuplicates(dependencymap[depB][b]); // get vector b
 			if (!getVector(vecA, a, &argA, qc.relationType)) // get vector a
 				return false;
+			
 			if (argA == 1 && !vecA->empty() && !cartesianProduct(vecA, vecB)) // perform cartesian product if vecA is dependent and not empty
 				return false;
 			*arg += 2*argA;
+			
 			return true;
 
 		case 0: // both a and b are not found in dependency map
-			
 			if (!getVector(vecA, a, &argA, qc.relationType)) // get vector a
 				return false;
 			if (!getVector(vecB, b, &argB, qc.relationType)) // get vector b
 				return false;
+			
 			*arg = 2*argA + argB;
 			// if arg = 3 (both dependent) and vecA and vecB are both not empty, do cartesian product 
 			if (*arg == 3 && !vecA->empty() && !vecB->empty() && !cartesianProduct(vecA, vecB))
 				return false;
+			
 			return true;
 	
 	}
@@ -487,9 +599,8 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 	switch (qv.variableType) {
 		
 		case DT_ASSIGN: 	
-			
-			if (rel != RT_AFFECTS && rel != RT_AFFECTST) {
-			// do not get all assignments if relation is affects or affects*
+			if (rel != RT_AFFECTS && rel != RT_AFFECTST && rel != RT_AFFECTSBIP && rel != RT_AFFECTSBIPT) {
+			// do not get all assignments if relation is of affects type
 				
 				if (!pkb->getAllAssignment(vec))
 					return false;		
@@ -497,25 +608,21 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 			break;
 
 		case DT_WHILE: 		
-			
 			if (!pkb->getAllWhile(vec))
 				return false;
 			break;
 		
 		case DT_IF:			
-		
 			if (!pkb->getAllIf(vec))
 				return false;
 			break;
 
 		case DT_CALL: 		
-
 			if (!pkb->getAllCall(vec))
 				return false;
 			break;
 		
 		case DT_CONSTANT:	
-			
 			if (!pkb->getAllConstant(vec))
 				return false;
 			break;
@@ -523,13 +630,13 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 		// no restriction on the following types, leave vector empty
 		case DT_STMT:
 		case DT_PROGLINE:
+		case DT_STMTLST:
 		case DT_VARIABLE: 	
 		case DT_PROCEDURE:	
-		case DT_UNDERSCORE:		
+		case DT_UNDERSCORE:
 			break;
 			
 		// invalid types, should not appear in relations
-		case DT_STMTLST: 	
 		case DT_BOOLEAN:	
 			break;
 			
@@ -538,7 +645,6 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 		case KT_KNOWN_VARIABLE:		
 		case KT_KNOWN_PROCEDURE:	
 		case KT_KNOWN_CONSTANT:	
-			
 			vec->push_back(qv.content);
 			break;
 
@@ -568,19 +674,17 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 	int dep;
 
 	switch (arg) {
+		
 		case 3: // store both vecA and vecB
-
 			removeDuplicatesPair(vecA, vecB);
 			dep = qVariableList.at(a).dependency; // a and b must be of the same dependency
 			
-			if (dependencymap.count(dep) == 1) { 
-			// dependency map already exists
+			if (dependencymap.count(dep) == 1) { // dependency map already exists
 				
 				if (!intersectDependencyMapPair(dep, a, vecA, b, vecB))
 					return false; // intersection is empty set
 
-			} else { 
-			// dependency map is empty
+			} else { // dependency map is empty
 				
 				// store both vectors
 				dependencymap[dep][a] = *vecA;
@@ -591,18 +695,15 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 			break;
 
 		case 2: // store only vecA
-		
 			*vecA = removeDuplicates(*vecA);
 			dep = qVariableList.at(a).dependency;
 			
-			if (dependencymap.count(dep) == 1) { 
-			// dependency map already exists
+			if (dependencymap.count(dep) == 1) { // dependency map already exists
 				
 				if (!intersectDependencyMap(dep, a, vecA))
 					return false; // intersection is empty set
 
-			} else { 
-			// dependency map is empty
+			} else { // dependency map is empty
 				
 				// store vecA
 				dependencymap[dep][a] = *vecA;
@@ -612,18 +713,15 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 			break;
 
 		case 1: // store only vecB
-			
 			*vecB = removeDuplicates(*vecB);
 			dep = qVariableList.at(b).dependency;
 			
-			if (dependencymap.count(dep) == 1) { 
-			// dependency map already exists
+			if (dependencymap.count(dep) == 1) { // dependency map already exists
 				
 				if (!intersectDependencyMap(dep, b, vecB))
 					return false; // intersection is empty set
 
-			} else { 
-			// dependency map is empty
+			} else { // dependency map is empty
 				
 				// store vecB
 				dependencymap[dep][b] = *vecB;
@@ -641,7 +739,8 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 
 /**
  * \fn		QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec)
- * \brief	Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new. 
+ * \brief	Perform intersection with the dependency map for single variable. Map is not empty. 
+ *			Incoming variable either already exists or is new. 
  * \param [in]	dep: dependency of v;
  *				v: query variable index;
  *				vec: vector corresponding to v. 
@@ -654,6 +753,11 @@ bool QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec) {
 	if (dependencymap[dep].count(v) == 1) {
 	// variable already exists, remove rows from map
 	
+	/****************************************************************************************
+	NEW EVALUATION:
+		Convert vec to set and when checking use count
+	****************************************************************************************/
+		
 		size = dependencymap[dep][v].size();
 		index = 0;
 		
@@ -685,6 +789,11 @@ bool QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec) {
 
 	} else {
 	// variable is new, do cartesian product
+	
+	/****************************************************************************************
+	NEW EVALUATION:
+		This case will NEVER happen
+	****************************************************************************************/
 		
 		size = dependencymap[dep].begin()->second.size();
 			
@@ -729,6 +838,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	if (dependencymap[dep].count(a) == 1 && dependencymap[dep].count(b) == 1) {
 	// both variable already exists, remove rows from map
 	
+	/****************************************************************************************
+	NEW EVALUATION:
+		Iterate through the list and check Boolean, if false, remove from list.
+		At end, if map becomes empty -> return false
+	****************************************************************************************/
+		
 		size = dependencymap[dep][a].size();
 		index = 0;
 		
@@ -761,7 +876,14 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 	} else if (dependencymap[dep].count(a) == 1) {
 	// variable a exists in map
-		
+	
+	/****************************************************************************************
+	NEW EVALUATION:
+		Use a map to keep values of a (key) pointing to list of b (value)
+		a found in key -> duplicate b in it
+		a not found in key -> remove row from dependency map
+	****************************************************************************************/
+
 		size = dependencymap[dep][a].size();
 		
 		for (int i = 0; i < size; i++) {
@@ -804,7 +926,14 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 	} else if (dependencymap[dep].count(b) == 1) {
 	// variable b exists in map
-
+	
+	/****************************************************************************************
+	NEW EVALUATION:
+		Use a map to keep values of b (key) pointing to list of a (value)
+		b found in key -> duplicate a in it
+		b not found in key -> remove row from dependency map
+	****************************************************************************************/
+		
 		size = dependencymap[dep][b].size();
 		
 		for (int i = 0; i < size; i++) {
@@ -847,7 +976,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	
 	} else {
 	// both variables are new, do cartesian product
-		
+	
+	/****************************************************************************************
+	NEW EVALUATION:
+		This case will NEVER happen
+	****************************************************************************************/
+
 		size = dependencymap[dep].begin()->second.size();
 			
 		for (int j = 0; j < vecA->size(); j++) {
@@ -880,12 +1014,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
  * \fn		QueryEvaluator::getResult(list<string>& result)
  * \brief	Gets the result.  
  * \param [out]	result: results are stored in this list, duplicates allowed. 
- * \return 	TRUE if target list contain exactly 1 element, result obtained is not empty, FALSE otherwise
+ * \return 	TRUE if result list contain at least 1 element, result obtained is not empty, FALSE otherwise
  */
  bool QueryEvaluator::getResult(list<string>& result) {
 
 	vector<pair<int, int>> QTLDepVarList; // first int is dependency and second int is varIndex
-	map<int, int> repetitionMap;
+	map<int, int> repetitionMap; // key is dep, value the number of times to repeat
 	int resultSize = 1;
 
 	// populate the target map + QTLDepVar + repetitionMap + resultSize
@@ -943,11 +1077,6 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 		result.push_back(r);
 
 	}
-	
-	
-	/*for (int i = 0; i < targetmap[2][0].size(); i++) {
-		result.push_back(targetmap[2][0][i]);
-	}*/
 
 	return true;
 
@@ -976,27 +1105,15 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 		switch (qv.variableType) {
 				
-			case DT_VARIABLE: 	
-			// target is of type variable
-					
-				vecS = pkb->getAllVarName(dependencymap[dep][v]); 
-				for (int i = 0; i < vecS.size(); i++) {
-					targetmap[dep][v].push_back(vecS[i]);
-				}
+			case DT_VARIABLE: // target is of type variable	
+				targetmap[dep][v] = pkb->getAllVarName(dependencymap[dep][v]); 
 				break;
 
-			case DT_PROCEDURE:	
-			// target is of type procedure
-					
-				vecS = pkb->getAllProcName(dependencymap[dep][v]); 
-				for (int i = 0; i < vecS.size(); i++) {
-					targetmap[dep][v].push_back(vecS[i]);
-				}
+			case DT_PROCEDURE: // target is of type procedure
+				targetmap[dep][v] = pkb->getAllProcName(dependencymap[dep][v]); 
 				break;
 
-			case DT_CALL:	
-			// target is of type call
-					
+			case DT_CALL: // target is of type call	
 				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target attribute type is procName
 						
@@ -1005,17 +1122,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 						vecTemp.push_back(pkb->getCallee(dependencymap[dep][v][i])); 
 					}
 						
-					vecS = pkb->getAllProcName(vecTemp); 
-					for (int i = 0; i < vecS.size(); i++) {
-						targetmap[dep][v].push_back(vecS[i]);
-					}
+					targetmap[dep][v] = pkb->getAllProcName(vecTemp); 
 					break; // break only if it is call.procName
 					
-				}
+				} // else drops into default case
 
-			default:
-			// target is not of type variable or procedure
-					
+			default: // target is not of type variable or procedure
 				for (vector<int>::iterator it = dependencymap[dep][v].begin(); it != dependencymap[dep][v].end(); ++it) {
 					targetmap[dep][v].push_back(to_string(static_cast<long long>(*it)));
 				}
@@ -1023,74 +1135,60 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 					
 		}
 
-	} else {
-	// variable is not in dependency map (independent)
+	} else { // variable is not in dependency map (independent)
 		
 		switch (qv.variableType) {
 				
-			case DT_VARIABLE: 	
-			// target is of type variable
-					
-				vecS = pkb->getAllVarName();
-				for (int i = 0; i < vecS.size(); i++) {
-					targetmap[dep][v].push_back(vecS[i]);
-				}
+			case DT_VARIABLE: // target is of type variable
+				targetmap[dep][v] = pkb->getAllVarName();
 				break;
 
-			case DT_PROCEDURE:	
-			// target is of type procedure
-					
-				vecS = pkb->getAllProcName();
-				for (int i = 0; i < vecS.size(); i++) {
-					targetmap[dep][v].push_back(vecS[i]);
-				}
+			case DT_PROCEDURE: // target is of type procedure	
+				targetmap[dep][v] = pkb->getAllProcName();
 				break;
 
 			case DT_BOOLEAN:	
-					
 				targetmap[dep][v].push_back("true");
 				break;
 				
 			case DT_ASSIGN: 	
-			
 				if (!pkb->getAllAssignment(&vecI))
 					return false;
 				break;
 		
-			case DT_WHILE: 		
-			
+			case DT_WHILE: 					
 				if (!pkb->getAllWhile(&vecI))
 					return false;
 				break;
 		
 			case DT_IF:			
-		
 				if (!pkb->getAllIf(&vecI))
 					return false;
 				break;
 
 			case DT_CALL: 		
-
 				if (!pkb->getAllCall(&vecI))
 					return false;
 				break;
 		
 			case DT_CONSTANT:	
-			
 				if (!pkb->getAllConstant(&vecI))
 					return false;
 				break;
 
 			case DT_STMT: 		
 			case DT_PROGLINE:
-				
 				if (!pkb->getAllStmt(&vecI))
 					return false;
 				break;
 			
+			case DT_STMTLST: 
+				/*if (!pkb->getAllStmtList(&vecI))
+					return false;*/
+				break;
+				
 			// Known Variables
 			case KT_STMT_NUM:			
-					
 				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target is of type call.procName
 						
@@ -1098,35 +1196,31 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 					targetmap[dep][v].push_back(pkb->getProcName(pkb->getCallee(qv.content)));					
 					break; // break only if it is call.procName
 					
-				}
-
+				} // else drops to known constant case 
+			
 			case KT_KNOWN_CONSTANT:
-				
 				targetmap[dep][v].push_back(to_string(static_cast<long long>(qv.content)));
 				break;
 					
 			case KT_KNOWN_VARIABLE:	
-					
 				targetmap[dep][v].push_back(pkb->getVarName(qv.content));					
 				break;
 					
 			case KT_KNOWN_PROCEDURE:	
-					
 				targetmap[dep][v].push_back(pkb->getProcName(qv.content));					
 				break;
 		
 			// invalid types, should not appear in target
-			case DT_UNDERSCORE:		
-			case DT_STMTLST: 			
-
-				break;
+			case DT_UNDERSCORE:
+			case KT_CONSTANT_INTEGER:
+			case KT_CONSTANT_STRING:
+				return false;
 
 		}
 
 		switch (qv.variableType) {
 				
 			case DT_CALL: 
-					
 				if (qt.hasAttribute == true && qt.attributeType == AT_CALL_PROC_NAME) {
 				// target attribute type is procName
 						
@@ -1135,13 +1229,10 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 						vecTemp.push_back(pkb->getCallee(vecI[i])); 
 					}
 						
-					vecS = pkb->getAllProcName(vecTemp); 
-					for (int i = 0; i < vecS.size(); i++) {
-						targetmap[dep][v].push_back(vecS[i]);
-					}
+					targetmap[dep][v] = pkb->getAllProcName(vecTemp); 
 					break; // break only if it is call.procName
 					
-				}
+				} // else drops into cases below
 
 			case DT_ASSIGN: 	
 			case DT_WHILE: 		
@@ -1149,7 +1240,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			case DT_CONSTANT:	
 			case DT_STMT:
 			case DT_PROGLINE:
-					
+			case DT_STMTLST: 	
 				for (int i = 0; i < vecI.size(); i++) 
 					targetmap[dep][v].push_back(to_string(static_cast<long long>(vecI[i])));
 				break;
@@ -1239,24 +1330,19 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	 switch (t) {
 	 
 		case AT_STMT_NUM:
-			
 			return WITH_STMTNUMBER;
 		
 		case AT_VAR_NAME:	
-			
 			return WITH_VARNAME;
 		
 		case AT_PROC_NAME:		
 		case AT_PROCTABLEINDEX:
-		
 			return WITH_PROCNAME;
 
 		case AT_CALL_PROC_NAME:		
-
 			return WITH_CALLPROCNAME;
 
 		case AT_VALUE:
-
 			return WITH_VALUE;
 	 
 	 }
@@ -1275,63 +1361,45 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	 
 		case DT_PROCEDURE:
 		case KT_KNOWN_PROCEDURE:
-			
 			return AST_PROCEDURE;
 
 		case DT_STMTLST:
-			
 			return AST_STATEMENT_LIST;
 
 		case DT_STMT:
 		case KT_STMT_NUM:
 		case DT_PROGLINE:
-			
 			return AST_STMT;
 
 		case DT_ASSIGN:
-
 			return AST_ASSIGNMENT;
 
 		case DT_CALL:
-
 			return AST_CALL;
 
 		case DT_WHILE:
-
 			return AST_WHILE_LOOP;
 
 		case DT_IF:
-		
 			return AST_IF_BRANCH;
 
 		case DT_PLUS:
-
 			return AST_PLUS;
 
 		case DT_MINUS:
-
 			return AST_MINUS;
 
 		case DT_TIMES:
-
 			return AST_MULTIPLY;
 
 		case DT_VARIABLE:
 		case KT_KNOWN_VARIABLE:
-	
 			return AST_VARIABLE;
 
 		case DT_CONSTANT:
 		case KT_KNOWN_CONSTANT:
-		
 			return AST_CONSTANT;
 
 	 }
 
  }
-
-/*int main()
-{
-return 0;
-}
-*/
