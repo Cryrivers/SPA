@@ -3742,7 +3742,7 @@ void DesignExtractor::containsStarCase4bRecursive( ASTNode* root, ASTNodeType ty
 
 void DesignExtractor::__connectAssignmentAndCall( stack<IfPreprocessingPhase> &phaseStack, vector<statement>::iterator &it, stack<statement> &scope, CFGNode* nextNode, bool bipEnabled, CFGNode* thisNode, CFG* cfg )
 {
-	if(it->type == STMT_CALL)
+	if(bipEnabled && it->type == STMT_CALL)
 	{
 		assert(it->type == STMT_CALL);
 		PROC_INDEX calleeIndex = _pkb->getProcIndex(it->extraName);
