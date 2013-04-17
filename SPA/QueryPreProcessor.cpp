@@ -37,20 +37,20 @@ QueryPreprocessor::QueryPreprocessor(void){
 	dicRelationRef[2] = "Follows*";
 	dicRelationRef[3] = "Follows";
 	dicRelationRef[4] = "Modifies";
-	dicRelationRef[5] = "Uses";
-	dicRelationRef[6] = "Affects*";
-	dicRelationRef[7] = "Affects";
-	dicRelationRef[8] = "Next*";
-	dicRelationRef[9] = "Next";
-	dicRelationRef[10] = "Calls*"; 
-	dicRelationRef[11] = "Calls";
-	dicRelationRef[12] = "Contains*";
-	dicRelationRef[13] = "Contains";
-	dicRelationRef[14] = "Sibling";	  
-	dicRelationRef[15] = "AffectsBip*";
-	dicRelationRef[16] = "AffectsBip";
-	dicRelationRef[17] = "NextBip*";
-	dicRelationRef[18] = "NextBip";
+	dicRelationRef[5] = "Uses";	   
+	dicRelationRef[6] = "AffectsBip*";
+	dicRelationRef[7] = "AffectsBip";
+	dicRelationRef[8] = "Affects*";
+	dicRelationRef[9] = "Affects";	  
+	dicRelationRef[10] = "NextBip*";
+	dicRelationRef[11] = "NextBip";
+	dicRelationRef[12] = "Next*";
+	dicRelationRef[13] = "Next";
+	dicRelationRef[14] = "Calls*"; 
+	dicRelationRef[15] = "Calls";
+	dicRelationRef[16] = "Contains*";
+	dicRelationRef[17] = "Contains";
+	dicRelationRef[18] = "Sibling";	
 	dicAttribute[0] = ".procName";
 	dicAttribute[1] = ".varName";
 	dicAttribute[2] = ".value";
@@ -1282,7 +1282,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				}
 				qc.variable1 = ia;
 				qc.variable2 = ib;
-			}else if(m==6||m==7||m==15||m==16){
+			}else if(m==6||m==7||m==8||m==9){
 				//================================
 				//Relation is "Affects*", "Affects", "AffectsBip*", "AffectsBip"
 				//
@@ -1338,18 +1338,18 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 						return false;
 					}
 				}
-				if(m==6){
+				if(m==8){
 					qc.relationType=RT_AFFECTST;
-				}else if(m==7){
+				}else if(m==9){
 					qc.relationType=RT_AFFECTS;
-				}else if(m==15){
+				}else if(m==6){
 					qc.relationType=RT_AFFECTSBIPT;
-				}else if(m==16){
+				}else if(m==7){
 					qc.relationType=RT_AFFECTSBIP;
 				}
 				qc.variable1 = ia;
 				qc.variable2 = ib;	   
-			}else if(m==8||m==9||m==17||m==18){
+			}else if(m==10||m==11||m==12||m==13){
 				//================================
 				//Relation is "Next*", "Next", "NextBip*", "NextBip"
 				//
@@ -1373,18 +1373,18 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				if(ia==-1||ib==-1){
 					return false;
 				}  
-				if(m==8){
+				if(m==12){
 					qc.relationType=RT_NEXTT;
-				}else if(m==9){
+				}else if(m==13){
 					qc.relationType=RT_NEXT;
-				}else if(m==17){
+				}else if(m==10){
 					qc.relationType=RT_NEXTBIPT;
-				}else if(m==18){
+				}else if(m==11){
 					qc.relationType=RT_NEXTBIP;
 				}
 				qc.variable1 = ia;
 				qc.variable2 = ib;
-			}else if(m==10||m==11){
+			}else if(m==14||m==15){
 				//================================
 				//Relation is "Calls*", "Calls"
 				//
@@ -1404,14 +1404,14 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				if(ia==-1||ib==-1){
 					return false;
 				}  
-				if(m==10){
+				if(m==14){
 					qc.relationType=RT_CALLST;
-				}else if(m==11){
+				}else if(m==15){
 					qc.relationType=RT_CALLS;
 				}
 				qc.variable1 = ia;
 				qc.variable2 = ib;
-			}else if(m==12||m==13||m==14){
+			}else if(m==16||m==17||m==18){
 				//================================
 				//Relation is "Contains*", "Contains", "Sibling"
 				//
@@ -1436,11 +1436,11 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 				if(ia==-1||ib==-1){
 					return false;
 				}  
-				if(m==12){
+				if(m==16){
 					qc.relationType=RT_CONTAINST;
-				}else if(m==13){
+				}else if(m==17){
 					qc.relationType=RT_CONTAINS;
-				}else if(m==14){
+				}else if(m==18){
 					qc.relationType=RT_SIBLING;
 				} 
 				qc.variable1 = ia;
