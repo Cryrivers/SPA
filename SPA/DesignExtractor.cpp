@@ -3614,6 +3614,8 @@ BOOLEAN DesignExtractor::containsStar_11( vector<int>* indexAs, vector<int>* ind
 void DesignExtractor::containsStarCase1aRecursive( ASTNode* root, ASTNodeType type, BOOLEAN* result )
 {
 	ASTNode* sib, * child;
+	if (root == NULL)
+		return;
 	if (root->getNodeType() == type) 
 	{
 			*result = true;
@@ -3632,6 +3634,8 @@ void DesignExtractor::containsStarCase1aRecursive( ASTNode* root, ASTNodeType ty
 void DesignExtractor::containsStarCase1bRecursive( ASTNode* root, ASTNodeType type, vector<int> val, BOOLEAN* result )
 {
 	ASTNode* sib, * child;
+	if (root == NULL)
+		return;
 	if (root->getNodeType() == type && indexOf(val, root->getNodeValue()) >= 0) 
 	{
 		*result = true;
@@ -3669,6 +3673,7 @@ BOOLEAN DesignExtractor::isContainsStar( int indexA, int indexB, ASTNodeType arg
 void DesignExtractor::containsStarCase2aRecursive( ASTNode* root, ASTNodeType type, vector<int>* indexs)
 {
 	ASTNode* sib, * child;
+	if (root == NULL) return;
 	if (root->getNodeType() == type) 
 	{
 		indexs->push_back(root->getNodeValue());
@@ -3682,6 +3687,7 @@ void DesignExtractor::containsStarCase2aRecursive( ASTNode* root, ASTNodeType ty
 void DesignExtractor::containsStarCase2bRecursive( ASTNode* root, ASTNodeType type, vector<int> vals, vector<int>* indexs )
 {
 	ASTNode* sib, * child;
+	if (root == NULL) return;
 	if (root->getNodeType() == type && indexOf(vals, root->getNodeValue()) >= 0) 
 	{
 		indexs->push_back(root->getNodeValue());
@@ -3695,6 +3701,7 @@ void DesignExtractor::containsStarCase2bRecursive( ASTNode* root, ASTNodeType ty
 void DesignExtractor::containsStarCase4aRecursive( ASTNode* root, ASTNodeType type, vector<int>* indexs, int* result )
 {
 	ASTNode* sib, * child;
+	if (root == NULL) return;
 	if (root->getNodeType() == type) 
 	{
 		*result++;
@@ -3709,6 +3716,7 @@ void DesignExtractor::containsStarCase4aRecursive( ASTNode* root, ASTNodeType ty
 void DesignExtractor::containsStarCase4bRecursive( ASTNode* root, ASTNodeType type, vector<int> vals, vector<int>* indexs, int* result )
 {
 	ASTNode* sib, * child;
+	if (root == NULL) return;
 	if (root->getNodeType() == type && indexOf(vals, root->getNodeValue()) >= 0) 
 	{
 		*result ++;
