@@ -180,44 +180,84 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 			}
 		} else { //come from a specific label, need to jump via that label
 			int label = callStack.top(); callStack.pop();
-			int jumpTo = label + 1;
+			//int jumpTo = label + 1;
+			STMT_LIST nextStmts = _pkb->getNextSecond(label);
 
 			if (next_nodes.size() == 0) { // no more successor, base case, stop and return
 				return;
 			}else {
-				for (int i = 0; i < next_nodes.size(); i++) { // loop through each next CFGNode
-					CFGNode* currentNode = next_nodes.at(i);
-					if(currentNode->getStartStatement() != jumpTo)
-						continue;
-					if(indexOf((*visitedNodes), currentNode) >= 0){
-						//current successor has been visited, do not visit it again
-					} else {
-						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
-						int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
-						for(int k=start1; k<=end1; k++) {
-							STMT_LIST temp1; temp1.push_back(k);
+				if(nextStmts.size() == 0) {
+					for (int i = 0; i < next_nodes.size(); i++) { // loop through each next CFGNode
+						CFGNode* currentNode = next_nodes.at(i);
+						if(currentNode->getStartStatement() != -1 || currentNode->getProcIndex() != _pkb->getCFGBip()->getCFGNodeByStmtNumber(label)->getProcIndex())
+							continue;
+						if(indexOf((*visitedNodes), currentNode) >= 0){
+							//current successor has been visited, do not visit it again
+						} else {
+							visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+							int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
+							for(int k=start1; k<=end1; k++) {
+								STMT_LIST temp1; temp1.push_back(k);
 
-							if(k == stmt2) {
-								if(_pkb->uses(&temp1, &modifiedVar, 0)) {
-									*result = 1; //true
-									return;
-								}
-								else {
-									*result = 0; //false
-									return;
-								}
-							} else { //k is not stmt2
-								if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
-									return;
+								if(k == stmt2) {
+									if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+										*result = 1; //true
+										return;
+									}
+									else {
+										*result = 0; //false
+										return;
+									}
+								} else { //k is not stmt2
+									if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+										return;
+									}
 								}
 							}
-						}
 						
-						isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
-						if(*result != -1)
-							return;
+							isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
+							if(*result != -1)
+								return;
+						}
 					}
-				}
+				} else {
+					assert(nextStmts.size() == 1);
+					int jumpTo = nextStmts.at(0);
+
+					for (int i = 0; i < next_nodes.size(); i++) { // loop through each next CFGNode
+						CFGNode* currentNode = next_nodes.at(i);
+						if(currentNode->getStartStatement() != jumpTo)
+							continue;
+						if(indexOf((*visitedNodes), currentNode) >= 0){
+							//current successor has been visited, do not visit it again
+						} else {
+							visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+							int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
+							for(int k=start1; k<=end1; k++) {
+								STMT_LIST temp1; temp1.push_back(k);
+
+								if(k == stmt2) {
+									if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+										*result = 1; //true
+										return;
+									}
+									else {
+										*result = 0; //false
+										return;
+									}
+								} else { //k is not stmt2
+									if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+										return;
+									}
+								}
+							}
+						
+							isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
+							if(*result != -1)
+								return;
+						}
+					}
+				}	
 			}
 		}
 	}
@@ -273,20 +313,31 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 	if(prev_nodes.size() == 0) //no more predecessor, base case, stop and return
 		return;
 
-	if(prev_nodes.at(0)->getBipType() == CFG_BIP_OUT) { //jump to return nodes
-		for(int i=0; i<prev_nodes.size(); i++) {
-			callStack.push(node2->getStartStatement() - 1); //push to call stack
-			CFGNode* current_node = prev_nodes.at(i);
-			if(indexOf((*visitedNodes), current_node) >= 0) {
+	BOOLEAN jumpToCaller = false;
+	BOOLEAN jumpToReturnNode = false;
+	for(int i=0; i<prev_nodes.size(); i++) {
+		if(prev_nodes.at(i)->getBipType() == CFG_BIP_IN) { //jump back to caller
+			jumpToCaller = true;
+			//break;
+		}
+		if(prev_nodes.at(i)->getBipType() == CFG_BIP_OUT) { //jump to return node
+			jumpToReturnNode = true;
+			//break;
+		}
+	}
+
+	if(!jumpToCaller && !jumpToReturnNode) { //jump within the same proc
+		for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode
+			CFGNode* currentNode = prev_nodes.at(i);
+			if(indexOf((*visitedNodes), currentNode) >= 0){
 				//current predecessor has been visited, do not visit it again
 			} else {
-				visitedNodes->push_back(current_node); //mark current predecessor as visited to avoid re-visit
-
+				visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
 				bool carryOn = true; //indicate whether to proceed to previous CFGNode
-				if(current_node->getCFGType() != CFG_NORMAL_BLOCK) {
+				if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
 					//this node is if or while or call or dummy, go to previous CFGNode directly
 				} else {
-					int end1 = current_node->getEndStatement(); int start1 = current_node->getStartStatement();
+					int end1 = currentNode->getEndStatement(); int start1 = currentNode->getStartStatement();
 					for(int k=end1; k>=start1; k--) {
 						STMT_LIST temp1; temp1.push_back(k);
 						if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
@@ -301,112 +352,110 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 				}
 				
 				if(carryOn) { //should proceed to previous CFGNode
-					getAffectsBipFirstHelper(current_node, visitedNodes, usedVar, exhaustive, results_p, callStack);
+					getAffectsBipFirstHelper(currentNode, visitedNodes, usedVar, exhaustive, results_p, callStack);
 					if(!exhaustive &&results_p->size()>0)
 						return;
 				}
 			}
 		}
-	} else { //within same proc OR jump back to caller
-		BOOLEAN jumpToCaller = false;
-		for(int i=0; i<prev_nodes.size(); i++) {
-			if(prev_nodes.at(i)->getBipType() == CFG_BIP_IN) { //jump back to caller
-				jumpToCaller = true;
+	} else {
+		//jump back to caller or back to a return node, need to traverse node within the same proc first
+		CFGNode* nodeInSameProc;
+		for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode to find node within same procedure
+			CFGNode* currentNode = prev_nodes.at(i);
+			if(node2->getProcIndex() == currentNode->getProcIndex()) {
+				nodeInSameProc = currentNode;
+				prev_nodes.erase(prev_nodes.begin()+i);
 				break;
 			}
 		}
-
-		if(!jumpToCaller) { //not jump back to caller, within the same proc
-			for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode
-				CFGNode* currentNode = prev_nodes.at(i);
-				if(indexOf((*visitedNodes), currentNode) >= 0){
-					//current predecessor has been visited, do not visit it again
-				} else {
-					visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
-					bool carryOn = true; //indicate whether to proceed to previous CFGNode
-					if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
-						//this node is if or while or call or dummy, go to previous CFGNode directly
-					} else {
-						int end1 = currentNode->getEndStatement(); int start1 = currentNode->getStartStatement();
-						for(int k=end1; k>=start1; k--) {
-							STMT_LIST temp1; temp1.push_back(k);
-							if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
-								results_p->push_back(k);
-								if(!exhaustive)
-									return;
-
-								carryOn = false;
-								break;
-							}
-						}
-					}
-				
-					if(carryOn) { //should proceed to previous CFGNode
-						getAffectsBipFirstHelper(currentNode, visitedNodes, usedVar, exhaustive, results_p, callStack);
-						if(!exhaustive &&results_p->size()>0)
+		// deal with the node within same procedure first
+		if(indexOf((*visitedNodes), nodeInSameProc) >= 0){
+			//current successor has been visited, do not visit it again
+		} else {
+			visitedNodes->push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
+			bool carryOn = true; //indicate whether to proceed to previous CFGNode
+			if(nodeInSameProc->getCFGType() != CFG_NORMAL_BLOCK) {
+				//this node is if or while or call or dummy, go to previous CFGNode directly
+			} else {
+				int end1 = nodeInSameProc->getEndStatement(); int start1 = nodeInSameProc->getStartStatement();
+				for(int k=end1; k>=start1; k--) {
+					STMT_LIST temp1; temp1.push_back(k);
+					if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+						results_p->push_back(k);
+						if(!exhaustive)
 							return;
-					}
-				}
-			}
-		} else { //jump back to caller
-			if(node2->getCFGType() == CFG_WHILE_STATEMENT) { //while node, need to traverse node within the same proc first
-				CFGNode* nodeInSameProc;
-				for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode to find node within same procedure
-					CFGNode* currentNode = prev_nodes.at(i);
-					if(node2->getProcIndex() == currentNode->getProcIndex()) {
-						nodeInSameProc = currentNode;
-						prev_nodes.erase(prev_nodes.begin()+i);
+
+						carryOn = false;
 						break;
 					}
 				}
-				// deal with the node within same procedure first
-				if(indexOf((*visitedNodes), nodeInSameProc) >= 0){
-					//current successor has been visited, do not visit it again
-				} else {
-					visitedNodes->push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
-					bool carryOn = true; //indicate whether to proceed to previous CFGNode
-					if(nodeInSameProc->getCFGType() != CFG_NORMAL_BLOCK) {
-						//this node is if or while or call or dummy, go to previous CFGNode directly
-					} else {
-						int end1 = nodeInSameProc->getEndStatement(); int start1 = nodeInSameProc->getStartStatement();
-						for(int k=end1; k>=start1; k--) {
-							STMT_LIST temp1; temp1.push_back(k);
-							if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
-								results_p->push_back(k);
-								if(!exhaustive)
-									return;
-
-								carryOn = false;
-								break;
-							}
-						}
-					}
+			}
 				
-					if(carryOn) { //should proceed to previous CFGNode
-						getAffectsBipFirstHelper(nodeInSameProc, visitedNodes, usedVar, exhaustive, results_p, callStack);
-						if(!exhaustive &&results_p->size()>0)
-							return;
+			if(carryOn) { //should proceed to previous CFGNode
+				getAffectsBipFirstHelper(nodeInSameProc, visitedNodes, usedVar, exhaustive, results_p, callStack);
+				if(!exhaustive &&results_p->size()>0)
+					return;
+			}
+		}
+
+		//jump back to caller or back to return node, no prev nodes within same proc
+		for(int i=0; i<prev_nodes.size(); i++) {
+			CFGNode* currentNode = prev_nodes.at(i);
+			if(currentNode->getBipType() == CFG_BIP_OUT) { //jump to return nodes
+				STMT_LIST prevStmts = _pkb->getNextFirst(node2->getStartStatement());
+				for(int j=0; j<prevStmts.size();j++) {
+					if(_pkb->getCFGBip()->getCFGNodeByStmtNumber(prevStmts.at(j))->getCFGType() != CFG_CALL_STATEMENT) {
+						//not a call statement, do not consider
+					} else if(_pkb->getCallee(prevStmts.at(j)) != currentNode->getProcIndex()) {
+						//a call statement, but the node to jump is not inside the called procedure, still do not consider 
+					} else { //the node to jump is inside the called procedure, ready to jump
+						stack<STMT> callStackCopy = callStack;
+						callStackCopy.push(prevStmts.at(j)); //push to call stack
+						if(indexOf((*visitedNodes), currentNode) >= 0) {
+							//current predecessor has been visited, do not visit it again
+						} else {
+							visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
+
+							bool carryOn = true; //indicate whether to proceed to previous CFGNode
+							if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
+								//this node is if or while or call or dummy, go to previous CFGNode directly
+							} else {
+								int end1 = currentNode->getEndStatement(); int start1 = currentNode->getStartStatement();
+								for(int k=end1; k>=start1; k--) {
+									STMT_LIST temp1; temp1.push_back(k);
+									if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+										results_p->push_back(k);
+										if(!exhaustive)
+											return;
+
+										carryOn = false;
+										break;
+									}
+								}
+							}
+				
+							if(carryOn) { //should proceed to previous CFGNode
+								getAffectsBipFirstHelper(currentNode, visitedNodes, usedVar, exhaustive, results_p, callStackCopy);
+								if(!exhaustive &&results_p->size()>0)
+									return;
+							}
+						}			
 					}
+				}			
+			} else { //jump back to caller
+				assert(currentNode->getBipType() == CFG_BIP_IN);
+				// clear visited nodes that are within the same procedure before jump back
+				PROC_INDEX currentProc = node2->getProcIndex();
+				STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
+				for(int i=stmt1; i<=stmt2; i++) {
+					int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
+					if(index >=0)
+						visitedNodes->erase(visitedNodes->begin()+index);
 				}
-			}
 
-			//non-while, no prev node within the same procedure.
-			//OR
-			//while node, node within the same proc is already handled and removed
-
-			// clear visited nodes that are within the same procedure before jump back
-			PROC_INDEX currentProc = node2->getProcIndex();
-			STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
-			for(int i=stmt1; i<=stmt2; i++) {
-				int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
-				if(index >=0)
-					visitedNodes->erase(visitedNodes->begin()+index);
-			}
-
-			// pop call stack
-			if(callStack.empty()) { // do not come from a label, need to jump back via all labels	
-				for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode
-					CFGNode* currentNode = prev_nodes.at(i);
+				// pop call stack
+				if(callStack.empty()) { // do not come from a label, need to jump back via all labels	
 					if(indexOf((*visitedNodes), currentNode) >= 0){
 						//current successor has been visited, do not visit it again
 					} else {
@@ -435,15 +484,14 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 								return;
 						}
 					}
-				}
-			} else { //come from a specific label, need to jump via that label
-				int label = callStack.top(); callStack.pop();
-				int jumpTo = label;
+				} else { //come from a specific label, need to jump via that label
+					stack<STMT> callStackCopy = callStack;
+					int label = callStackCopy.top(); callStackCopy.pop();
+					int jumpTo = label;
 
-				for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode
-					CFGNode* currentNode = prev_nodes.at(i);
 					if(currentNode->getEndStatement() != jumpTo)
 						continue;
+
 					if(indexOf((*visitedNodes), currentNode) >= 0){
 						//current successor has been visited, do not visit it again
 					} else {
@@ -467,7 +515,7 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 						}
 				
 						if(carryOn) { //should proceed to previous CFGNode
-							getAffectsBipFirstHelper(currentNode, visitedNodes, usedVar, exhaustive, results_p, callStack);
+							getAffectsBipFirstHelper(currentNode, visitedNodes, usedVar, exhaustive, results_p, callStackCopy);
 							if(!exhaustive &&results_p->size()>0)
 								return;
 						}
@@ -651,43 +699,85 @@ void AffectsBip::getAffectsBipSecondHelper(CFGNode* node1, vector<CFGNode*>* vis
 			}
 		} else { //come from a specific label, need to jump via that label
 			int label = callStack.top(); callStack.pop();
-			int jumpTo = label + 1;
+			//int jumpTo = label + 1;
+			STMT_LIST nextStmts = _pkb->getNextSecond(label);
 
 			if (next_nodes.size() == 0) { // no more successor, base case, stop and return
 				return;
 			}else {
-				for (int i = 0; i < next_nodes.size(); i++) { // loop through each next CFGNode
-					CFGNode* currentNode = next_nodes.at(i);
-					if(currentNode->getStartStatement() != jumpTo)
-						continue;
-					if(indexOf((*visitedNodes), currentNode) >= 0){
-						//current successor has been visited, do not visit it again
-					} else {
-						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
-						bool carryOn = true;
+				if(nextStmts.size() == 0) {
+					for (int i = 0; i < next_nodes.size(); i++) { // loop through each next CFGNode
+						CFGNode* currentNode = next_nodes.at(i);
+						if(currentNode->getStartStatement() != -1 || currentNode->getProcIndex() != _pkb->getCFGBip()->getCFGNodeByStmtNumber(label)->getProcIndex())
+							continue;
+						if(indexOf((*visitedNodes), currentNode) >= 0){
+							//current successor has been visited, do not visit it again
+						} else {
+							visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+							bool carryOn = true;
 
-						if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
-							//this node is if or while or call or dummy, go to next CFGNode directly
-						} else { //this node is normal block, which contains all assign statements
-							int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
-							for(int k=start1; k<=end1; k++) {
-								STMT_LIST temp1; temp1.push_back(k);
-								if(_pkb->uses(&temp1, &modifiedVar, 0)) {
-									results_p->push_back(k);
-									if(!exhaustive)
-										return;
-								}
-								if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
-									carryOn = false;
-									break;
+							if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
+								//this node is if or while or call or dummy, go to next CFGNode directly
+							} else { //this node is normal block, which contains all assign statements
+								int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
+								for(int k=start1; k<=end1; k++) {
+									STMT_LIST temp1; temp1.push_back(k);
+									if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+										results_p->push_back(k);
+										if(!exhaustive)
+											return;
+									}
+									if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
+										carryOn = false;
+										break;
+									}
 								}
 							}
-						}
 
-						if(carryOn) { //should proceed to next CFGNode
-							getAffectsBipSecondHelper(currentNode, visitedNodes, modifiedVar, exhaustive, results_p, callStack);
-							if(!exhaustive && results_p->size() >0)
-								return;
+							if(carryOn) { //should proceed to next CFGNode
+								getAffectsBipSecondHelper(currentNode, visitedNodes, modifiedVar, exhaustive, results_p, callStack);
+								if(!exhaustive && results_p->size() >0)
+									return;
+							}
+						}
+					}
+				} else {
+					assert(nextStmts.size() == 1);
+					int jumpTo = nextStmts.at(0);
+
+					for (int i = 0; i < next_nodes.size(); i++) { // loop through each next CFGNode
+						CFGNode* currentNode = next_nodes.at(i);
+						if(currentNode->getStartStatement() != jumpTo)
+							continue;
+						if(indexOf((*visitedNodes), currentNode) >= 0){
+							//current successor has been visited, do not visit it again
+						} else {
+							visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+							bool carryOn = true;
+
+							if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
+								//this node is if or while or call or dummy, go to next CFGNode directly
+							} else { //this node is normal block, which contains all assign statements
+								int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
+								for(int k=start1; k<=end1; k++) {
+									STMT_LIST temp1; temp1.push_back(k);
+									if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+										results_p->push_back(k);
+										if(!exhaustive)
+											return;
+									}
+									if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //means statement k modifies variable var, path is broken
+										carryOn = false;
+										break;
+									}
+								}
+							}
+
+							if(carryOn) { //should proceed to next CFGNode
+								getAffectsBipSecondHelper(currentNode, visitedNodes, modifiedVar, exhaustive, results_p, callStack);
+								if(!exhaustive && results_p->size() >0)
+									return;
+							}
 						}
 					}
 				}

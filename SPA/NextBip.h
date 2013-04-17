@@ -6,6 +6,7 @@
 #include "PKBController.h"
 #include <stack>
 #include <queue>
+#include <assert.h>
 using namespace std;
 
 class NextBip
