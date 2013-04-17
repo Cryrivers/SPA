@@ -1067,8 +1067,8 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 					continue;
 				}else if(frontAttribute == -1 && backAttribute == -1){
 					if(front!=back){
-						int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,1,0); 	
-						int ib = getIndexFromVarTable(back, 0,1,0,0,0,0,1,0);
+						int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,0,0); 	
+						int ib = getIndexFromVarTable(back, 0,1,0,0,0,0,0,0);
 						if(ia==-1||ib==-1)	return false; 
 						if(queryVarTable[ia].variableType!=DT_PROGLINE&&queryVarTable[ia].variableType!=KT_STMT_NUM)
 							return false;
