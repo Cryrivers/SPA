@@ -13,8 +13,6 @@ vector<CFGBipType> stmtBipType;
 
 
 BOOLEAN isNextStarHelper(STMT_LIST links, STMT stmt2, STMT_LIST* visitedNodes);
-STMT_LIST getNextFirst(STMT stmt);
-STMT_LIST getNextSecond(STMT stmt);
 STMT_LIST getNextStarFirst(STMT stmt2);
 //STMT_LIST getNextStarFirstHelper(STMT stmt2, STMT_LIST* visitedNodes);
 void getNextStarFirstHelper(STMT stmt2, STMT_LIST* resultLst);
@@ -31,6 +29,8 @@ BOOLEAN nextStar_10(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 BOOLEAN nextStar_11(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
 
 public:
+STMT_LIST getNextFirst(STMT stmt);
+STMT_LIST getNextSecond(STMT stmt);
 void addNext(STMT stmt1, STMT stmt2, CFGBipType bipType);
 BOOLEAN isNext(STMT stmt1, STMT stmt2);
 BOOLEAN isNextStar(STMT stmt1, STMT stmt2);

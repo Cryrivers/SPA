@@ -1204,3 +1204,45 @@ BOOLEAN PKBController::isCallsStar( PROC_INDEX caller, PROC_INDEX callee )
 {
 	return _calls->isCallsStar(caller, callee);
 }
+
+int PKBController::stmtSize()
+{
+	vector<int>* temp;
+	_designExtractor->getAllStmt(temp);
+	return temp->size();
+}
+
+int PKBController::assignSize()
+{
+	vector<int>* temp;
+	_designExtractor->getAllAssignment(temp);
+	return temp->size();
+}
+
+int PKBController::whileSize()
+{
+	vector<int>* temp;
+	_designExtractor->getAllWhile(temp);
+	return temp->size();
+}
+
+int PKBController::ifSize()
+{
+	vector<int>* temp;
+	_designExtractor->getAllIf(temp);
+	return temp->size();
+}
+
+int PKBController::callSize()
+{
+	vector<int>* temp;
+	_designExtractor->getAllCall(temp);
+	return temp->size();
+}
+
+int PKBController::stmtListSize()
+{
+	vector<int>* temp;
+	_designExtractor->getAllStmtList(temp);
+	return temp->size();
+}
