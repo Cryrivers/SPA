@@ -1069,13 +1069,23 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 					if(front!=back){
 						int ia = getIndexFromVarTable(front, 0,1,0,0,0,0,1,0); 	
 						int ib = getIndexFromVarTable(back, 0,1,0,0,0,0,1,0);
-						if(ia==-1||ib==-1)	return false;  
+						if(ia==-1||ib==-1)	return false;  	
+						if(queryVarTable[ia].variableType==KT_STMT_NUM&&queryVarTable[ib].variableType==KT_STMT_NUM)
+							return false;
 						if(queryVarTable[ia].variableType!=DT_PROGLINE&&queryVarTable[ia].variableType!=KT_STMT_NUM)
 							return false;		
 						if(queryVarTable[ib].variableType!=DT_PROGLINE&&queryVarTable[ib].variableType!=KT_STMT_NUM)
+							return false;	   
+						if(queryVarTable[ia].variableType==KT_STMT_NUM){
+							 if(atoi(front.c_str())>(pkb->stmtSize()))
+								 return false;
+						}else if(queryVarTable[ib].variableType==KT_STMT_NUM){
+							   if(atoi(back.c_str())>(pkb->stmtSize()))
+								 return false;
+						}else{
+							cout<<"what the hell!"<<endl;
 							return false;
-						if(queryVarTable[ia].variableType==KT_STMT_NUM&&queryVarTable[ib].variableType==KT_STMT_NUM)
-							return false;
+						}
 						if(queryVarTable[ia].mapTo!=ia)
 							changeMapTo(queryVarTable[ib].mapTo, queryVarTable[ia].mapTo);
 						else
