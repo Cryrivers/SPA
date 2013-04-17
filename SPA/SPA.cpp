@@ -34,7 +34,7 @@ bool compare_number (std::string first, std::string second)
 
 int _tmain(int argc, _TCHAR *argv[])
 {
-	AST    *ast = new AST();
+	AST    *ast = PKBController::createInstance()->getAST();
 	Parser *parser = new Parser(ast);
 
 	string program, line;
