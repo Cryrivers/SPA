@@ -1007,12 +1007,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
  * \fn		QueryEvaluator::getResult(list<string>& result)
  * \brief	Gets the result.  
  * \param [out]	result: results are stored in this list, duplicates allowed. 
- * \return 	TRUE if target list contain exactly 1 element, result obtained is not empty, FALSE otherwise
+ * \return 	TRUE if result list contain at least 1 element, result obtained is not empty, FALSE otherwise
  */
  bool QueryEvaluator::getResult(list<string>& result) {
 
 	vector<pair<int, int>> QTLDepVarList; // first int is dependency and second int is varIndex
-	map<int, int> repetitionMap;
+	map<int, int> repetitionMap; // key is dep, value the number of times to repeat
 	int resultSize = 1;
 
 	// populate the target map + QTLDepVar + repetitionMap + resultSize
@@ -1070,11 +1070,6 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 		result.push_back(r);
 
 	}
-	
-	
-	/*for (int i = 0; i < targetmap[2][0].size(); i++) {
-		result.push_back(targetmap[2][0][i]);
-	}*/
 
 	return true;
 
