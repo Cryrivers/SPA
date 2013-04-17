@@ -79,7 +79,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	const int querySize = 1;
 	string query[querySize];	   
 	//query[0]="";
-	query[0]="call c; Select c with c.procName=\"Daniel\"";  
+	query[0]="prog_line n; constant c; Select c with 2=1";  
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
