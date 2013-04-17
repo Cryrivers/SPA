@@ -207,10 +207,11 @@ public:
 	int procTableSize(){
 		return _procTable->size();
 	}
+	/*
 	int stmtSize(){
-		vector<int> temp;
-		_designExtractor->getAllStmt(&temp);
-		return temp.size();
+		vector<int>* temp;
+		_designExtractor->getAllStmt(temp);
+		return temp->size();
 	}
 	int assignSize(){
 		vector<int> temp;
@@ -237,6 +238,7 @@ public:
 		_designExtractor->getAllStmtList(&temp);
 		return temp.size();
 	}
+	*/
 	int constSize(){
 		_constTable->size();
 	}
