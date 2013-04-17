@@ -1385,7 +1385,19 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 					whileNode->connectTo(followingNode);
 
 			CFGNode* whileBlockEnd =  cfg->getCFGNodeByStmtNumber(it->endOfTheScope);
-			whileBlockEnd->connectTo(whileNode);
+			
+			if(!bipEnabled)
+			{
+				whileBlockEnd->connectTo(whileNode);
+			}
+			else
+			{
+				if(whileBlockEnd->getCFGType() != CFG_CALL_STATEMENT)
+				{
+					whileBlockEnd->connectTo(whileNode);
+				}
+			}
+			
 			if(whileBlockEnd->getPairedCFGNode()!=NULL)
 			{
 				//When adding the relationship to its paired node.
@@ -3730,6 +3742,25 @@ void DesignExtractor::containsStarCase4bRecursive( ASTNode* root, ASTNodeType ty
 
 void DesignExtractor::__connectAssignmentAndCall( stack<IfPreprocessingPhase> &phaseStack, vector<statement>::iterator &it, stack<statement> &scope, CFGNode* nextNode, bool bipEnabled, CFGNode* thisNode, CFG* cfg )
 {
+	if(it->type == STMT_CALL)
+	{
+		assert(it->type == STMT_CALL);
+		PROC_INDEX calleeIndex = _pkb->getProcIndex(it->extraName);
+		STMT calleeStart = _pkb->getProcStart(calleeIndex);
+		STMT calleeEnd = _pkb->getProcEnd(calleeIndex);
+		CFGNode* calleeStartNode = cfg->getCFGNodeByStmtNumber(calleeStart);
+		CFGNode* calleeEndNode = cfg->getFollowingCFGNodeByCurrentStmtNumber(calleeEnd);
+		thisNode->connectTo(calleeStartNode);
+		thisNode->setBipType(CFG_BIP_IN);
+		if(nextNode->getProcIndex() == thisNode->getProcIndex())
+		{
+			if(calleeEndNode != NULL)
+			calleeEndNode->connectTo(nextNode);
+		}
+
+		return ;
+	}
+
 	if(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK || 
 		(__getParsingPhase(phaseStack) == PREPROCESS_THEN && (it->stmtNumber < scope.top().midOfTheScope)) ||
 		(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && (it->stmtNumber < scope.top().endOfTheScope) && nextNode->getCFGType() != CFG_DUMMY) ||
@@ -3738,21 +3769,6 @@ void DesignExtractor::__connectAssignmentAndCall( stack<IfPreprocessingPhase> &p
 		if(!bipEnabled || it->type == STMT_ASSIGNMENT)
 		{
 			__smartConnectThisCFGToNext(nextNode, thisNode);
-		}
-		else
-		{
-			assert(it->type == STMT_CALL);
-			PROC_INDEX calleeIndex = _pkb->getProcIndex(it->extraName);
-			STMT calleeStart = _pkb->getProcStart(calleeIndex);
-			STMT calleeEnd = _pkb->getProcEnd(calleeIndex);
-			CFGNode* calleeStartNode = cfg->getCFGNodeByStmtNumber(calleeStart);
-			CFGNode* calleeEndNode = cfg->getFollowingCFGNodeByCurrentStmtNumber(calleeEnd);
-			thisNode->connectTo(calleeStartNode);
-			thisNode->setBipType(CFG_BIP_IN);
-			if(nextNode->getProcIndex() == thisNode->getProcIndex())
-			{
-				calleeEndNode->connectTo(nextNode);
-			}
 		}
 	}
 	else if(__getParsingPhase(phaseStack) == PREPROCESS_ELSE && scope.size() > 1)
