@@ -260,7 +260,6 @@ void Parser::_parseLine()
 			cout << "Cannot build AST." << endl;
 		}
 	}
-	int end = 1;
 }
 
 void Parser::_preprocessProgram(string program)
