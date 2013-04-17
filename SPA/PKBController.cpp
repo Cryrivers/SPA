@@ -1258,3 +1258,8 @@ int PKBController::stmtListSize()
 	delete temp;
 	return size;
 }
+
+BOOLEAN PKBController::getAllStmtList( vector<int>* sts)
+{
+	return _designExtractor->getAllStmtList(sts);
+}
