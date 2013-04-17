@@ -668,7 +668,7 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*> visitedN
 		}
 	} else {
 		//jump back to caller or back to a return node, need to traverse node within the same proc first
-		CFGNode* nodeInSameProc;
+		CFGNode* nodeInSameProc = NULL;
 		for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode to find node within same procedure
 			CFGNode* currentNode = prev_nodes.at(i);
 			if(node2->getProcIndex() == currentNode->getProcIndex()) {
@@ -677,15 +677,17 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*> visitedN
 				break;
 			}
 		}
-		// deal with the node within same procedure first
-		if(indexOf((visitedNodes), nodeInSameProc) >= 0){
-			//current successor has been visited, do not visit it again
-		} else {
-			visitedNodes.push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
-			for(int i=nodeInSameProc->getEndStatement(); i>=nodeInSameProc->getStartStatement(); i--) {
-				result->push_back(i);
+		// deal with the node within same procedure first, if such node exists
+		if(nodeInSameProc != NULL) {
+			if(indexOf((visitedNodes), nodeInSameProc) >= 0){
+				//current successor has been visited, do not visit it again
+			} else {
+				visitedNodes.push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
+				for(int i=nodeInSameProc->getEndStatement(); i>=nodeInSameProc->getStartStatement(); i--) {
+					result->push_back(i);
+				}
+				getNextBipStarFirstHelper(nodeInSameProc, visitedNodes, callStack, result);
 			}
-			getNextBipStarFirstHelper(nodeInSameProc, visitedNodes, callStack, result);
 		}
 
 		//jump back to caller or back to return node, no prev nodes within same proc

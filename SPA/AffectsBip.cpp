@@ -360,7 +360,7 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*> visit
 		}
 	} else {
 		//jump back to caller or back to a return node, need to traverse node within the same proc first
-		CFGNode* nodeInSameProc;
+		CFGNode* nodeInSameProc = NULL;
 		for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode to find node within same procedure
 			CFGNode* currentNode = prev_nodes.at(i);
 			if(node2->getProcIndex() == currentNode->getProcIndex()) {
@@ -369,35 +369,38 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*> visit
 				break;
 			}
 		}
-		// deal with the node within same procedure first
-		if(indexOf((visitedNodes), nodeInSameProc) >= 0){
+		// deal with the node within same procedure first, if such node exists
+		if(nodeInSameProc != NULL) {
+			if(indexOf((visitedNodes), nodeInSameProc) >= 0){
 			//current successor has been visited, do not visit it again
-		} else {
-			visitedNodes.push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
-			bool carryOn = true; //indicate whether to proceed to previous CFGNode
-			if(nodeInSameProc->getCFGType() != CFG_NORMAL_BLOCK) {
-				//this node is if or while or call or dummy, go to previous CFGNode directly
 			} else {
-				int end1 = nodeInSameProc->getEndStatement(); int start1 = nodeInSameProc->getStartStatement();
-				for(int k=end1; k>=start1; k--) {
-					STMT_LIST temp1; temp1.push_back(k);
-					if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
-						results_p->push_back(k);
-						if(!exhaustive)
-							return;
+				visitedNodes.push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
+				bool carryOn = true; //indicate whether to proceed to previous CFGNode
+				if(nodeInSameProc->getCFGType() != CFG_NORMAL_BLOCK) {
+					//this node is if or while or call or dummy, go to previous CFGNode directly
+				} else {
+					int end1 = nodeInSameProc->getEndStatement(); int start1 = nodeInSameProc->getStartStatement();
+					for(int k=end1; k>=start1; k--) {
+						STMT_LIST temp1; temp1.push_back(k);
+						if(_pkb->modifies(&temp1, &usedVar, 0)) { //means statement k modifies variable var
+							results_p->push_back(k);
+							if(!exhaustive)
+								return;
 
-						carryOn = false;
-						break;
+							carryOn = false;
+							break;
+						}
 					}
 				}
-			}
 				
-			if(carryOn) { //should proceed to previous CFGNode
-				getAffectsBipFirstHelper(nodeInSameProc, visitedNodes, usedVar, exhaustive, results_p, callStack);
-				if(!exhaustive &&results_p->size()>0)
-					return;
+				if(carryOn) { //should proceed to previous CFGNode
+					getAffectsBipFirstHelper(nodeInSameProc, visitedNodes, usedVar, exhaustive, results_p, callStack);
+					if(!exhaustive &&results_p->size()>0)
+						return;
+				}
 			}
 		}
+		
 
 		//jump back to caller or back to return node, no prev nodes within same proc
 		for(int i=0; i<prev_nodes.size(); i++) {
