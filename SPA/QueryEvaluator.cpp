@@ -376,7 +376,7 @@ bool QueryEvaluator::evaluateReflexiveClause(QueryClause qc) {
 		// perform evaluation
 		for (int i = 0; i < vectorA.size(); i++) {
 			
-			if (evaluateBoolean(vectorA[0],vectorA[0],qc.relationType))
+			if (evaluateBoolean(vectorA[i],vectorA[i],qc.relationType))
 				return true; // only need one to be true 
 		
 		}
