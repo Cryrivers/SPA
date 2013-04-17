@@ -955,6 +955,8 @@ bool QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec) {
 bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vecA, int b, vector<int>* vecB) {
 	
 	int size, index;
+	bool match;
+	map<int, set<int>> rMap;
 	
 	if (dependencymap[dep].count(a) == 1 && dependencymap[dep].count(b) == 1) {
 	// both variable already exists, remove rows from map
@@ -968,9 +970,39 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 		size = dependencymap[dep][a].size();
 		index = 0;
 		
+		/******** Optimised Intersection ********
+		// populate r-map
+		for (int j = 0; j < vecA->size(); j++) 
+			rMap[vecA->at(j)].insert(vecB->at(j));
+
 		for (int i = 0; i < size; i++) {
 		
-			bool match = false;
+			 match = false;
+
+			if (rMap.count(dependencymap[dep][a][index])) {
+				if (rMap[dependencymap[dep][a][index]].count(dependencymap[dep][b][index])) {
+				// intersection success
+					match = true;
+					index++;
+					break;
+				}
+			}
+
+			if (!match) {
+			// found no match, remove elements
+				for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin() + index);
+				}
+			} // do nothing if matched
+
+		}
+		******** End of Optimised Intersection ********/
+		
+		/******** Old Intersection ********/
+
+		for (int i = 0; i < size; i++) {
+		
+			match = false;
 			int x = dependencymap[dep][a][index];
 			int y = dependencymap[dep][b][index];
 		
@@ -991,6 +1023,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			} // do nothing if matched
 
 		}
+		/******** End of Old Intersection ********/
 
 		if (dependencymap[dep][a].empty()) // intersection is null
 			return false;
@@ -1007,9 +1040,44 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 		size = dependencymap[dep][a].size();
 		
+		/******** Optimised Intersection ********
+		// populate r-map
+		for (int j = 0; j < vecA->size(); j++) {
+			rMap[vecA->at(j)].insert(vecB->at(j));
+		}
+		
 		for (int i = 0; i < size; i++) {
 		
-			bool match = false;
+			int x = dependencymap[dep][a][0];
+		
+			if (rMap.count(x)) {
+			// match, duplicate first elements 
+				
+				for (set<int>::iterator sit = rMap[x].begin(); sit != rMap[x].end(); sit++) {
+					
+					for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+						if ((*it).first != b) // skip variable b
+							dependencymap[dep][(*it).first].push_back(dependencymap[dep][(*it).first][0]); //always push first element
+					}
+
+					dependencymap[dep][b].push_back(*sit);
+				}
+			} 
+
+			// always remove first element at the end of each iteration
+			for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+				if ((*it).first != b) // skip variable b
+					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin());
+			}
+
+		}
+		******** End of Optimised Intersection ********/
+		
+		/******** Old Intersection ********/
+		
+		for (int i = 0; i < size; i++) {
+		
+			match = false;
 			int x = dependencymap[dep][a][0];
 			vector<int> y;
 		
@@ -1041,6 +1109,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin());
 			}
 		}
+		/******** End of Old Intersection ********/
 
 		if (dependencymap[dep][a].empty()) // intersection is null
 			return false;
@@ -1057,9 +1126,44 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 		
 		size = dependencymap[dep][b].size();
 		
+		/******** Optimised Intersection ********
+		// populate r-map
+		for (int j = 0; j < vecB->size(); j++) {
+			rMap[vecB->at(j)].insert(vecA->at(j));
+		}
+		
 		for (int i = 0; i < size; i++) {
 		
-			bool match = false;
+			int x = dependencymap[dep][b][0];
+		
+			if (rMap.count(x)) {
+			// match, duplicate first elements 
+				
+				for (set<int>::iterator sit = rMap[x].begin(); sit != rMap[x].end(); sit++) {
+					
+					for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+						if ((*it).first != a) // skip variable a
+							dependencymap[dep][(*it).first].push_back(dependencymap[dep][(*it).first][0]); //always push first element
+					}
+
+					dependencymap[dep][a].push_back(*sit);
+				}
+			} 
+
+			// always remove first element at the end of each iteration
+			for (map<int, vector<int>>::iterator it = dependencymap[dep].begin() ; it != dependencymap[dep].end(); it++) {
+				if ((*it).first != a) // skip variable a
+					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin());
+			}
+		
+		}
+		******** End of Optimised Intersection ********/
+		
+		/******** Old Intersection ********/
+
+		for (int i = 0; i < size; i++) {
+		
+			match = false;
 			int x = dependencymap[dep][b][0];
 			vector<int> y;
 		
@@ -1091,6 +1195,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 					dependencymap[dep][(*it).first].erase(dependencymap[dep][(*it).first].begin());
 			}
 		}
+		/******** End of Old Intersection ********/
 
 		if (dependencymap[dep][b].empty()) // intersection is null
 			return false;
