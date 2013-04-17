@@ -207,38 +207,12 @@ public:
 	int procTableSize(){
 		return _procTable->size();
 	}
-	/*
-	int stmtSize(){
-		vector<int>* temp;
-		_designExtractor->getAllStmt(temp);
-		return temp->size();
-	}
-	int assignSize(){
-		vector<int> temp;
-		_designExtractor->getAllAssignment(&temp);
-		return temp.size();
-	}
-	int whileSize(){
-		vector<int> temp;
-		_designExtractor->getAllWhile(&temp);
-		return temp.size();
-	}
-	int ifSize(){
-		vector<int> temp;
-		_designExtractor->getAllIf(&temp);
-		return temp.size();
-	}
-	int callSize(){
-		vector<int> temp;
-		_designExtractor->getAllCall(&temp);
-		return temp.size();
-	}
-	int stmtListSize(){
-		vector<int> temp;
-		_designExtractor->getAllStmtList(&temp);
-		return temp.size();
-	}
-	*/
+	int stmtSize();
+	int assignSize();
+	int whileSize();
+	int ifSize();
+	int callSize();
+	int stmtListSize();
 	int constSize(){
 		_constTable->size();
 	}
