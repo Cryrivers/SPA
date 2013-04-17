@@ -41,7 +41,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	program = "";
 
 	//ifstream myfile("../SampleCode/CS3202Test1Code.c");
-	ifstream myfile("../SampleCode/AffectsStar.c");
+	ifstream myfile("../SampleCode/TestSets/TestSet1/code.txt");
 
 	if (myfile.is_open())
 	{
@@ -113,7 +113,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	//query[0]="";
 	query[0]="stmtLst s1,s2; if f; variable i; Select BOOLEAN such that Affects(3,3)"; 
 	query[1]="stmtLst s1; while w; variable i; Select BOOLEAN pattern w(i,_)"; 	   
-	query[2]="procedure p; plus pl;Select p such that Contains*(p, pl)"; 
+	query[2]="Select BOOLEAN such that Affects(27, 26)"; 
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;

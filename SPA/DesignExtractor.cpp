@@ -1508,8 +1508,8 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 	if(!_pkb->nextStar(firstStmt, secondStmt, 0)) return false;
 	if(!(_pkb->modifies(firstStmt, var, 1)&& _pkb->uses(secondStmt, var, 0))) return false;
 
-	rest.push(indexOf(cfg, firstNode));
-	visitedNode.push_back(indexOf(cfg, firstNode));
+	//rest.push(indexOf(cfg, firstNode));
+	//visitedNode.push_back(indexOf(cfg, firstNode));
 
 	//if at same node. special case
 	if(firstNode == secondNode){
@@ -1517,23 +1517,23 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 			for(int i = first+1; i < second; i++){
 				temp->clear();
 				temp->push_back(i);
-				if (_pkb->modifies(temp, var, 0)) return false;
+				if (_pkb->modifies(temp, var, 0)&&(getTypeOfStmt(i) == STMT_ASSIGNMENT||getTypeOfStmt(i) == STMT_CALL)) return false;
 				
 			}
 			return true;
 		}else{
-			for (int i = first+1; i < firstNode->getEndStatement(); i++)
+			for (int i = first+1; i <= firstNode->getEndStatement(); i++)
 			{
 				temp->clear();
 				temp->push_back(i);
-				if (_pkb->modifies(temp, var, 0)) return false;
+				if (_pkb->modifies(temp, var, 0)&&(getTypeOfStmt(i) == STMT_ASSIGNMENT||getTypeOfStmt(i) == STMT_CALL)) return false;
 				
 			}
-			for (int i = firstNode->getStartStatement()+1; i < second; i++)
+			for (int i = firstNode->getStartStatement(); i < second; i++)
 			{
 				temp->clear();
 				temp->push_back(i);
-				if (_pkb->modifies(temp, var, 0)) return false;
+				if (_pkb->modifies(temp, var, 0)&&(getTypeOfStmt(i) == STMT_ASSIGNMENT||getTypeOfStmt(i) == STMT_CALL)) return false;
 				
 			}
 		}
@@ -1543,7 +1543,7 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 	{
 		temp->clear();
 		temp->push_back(i);
-		if(_pkb->modifies(temp, var, 0)) return false;
+		if(_pkb->modifies(temp, var, 0)&&(getTypeOfStmt(i) == STMT_ASSIGNMENT||getTypeOfStmt(i) == STMT_CALL)) return false;
 	}
 	nextStmts->clear();
 	temp->clear();
@@ -1567,7 +1567,7 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 			{
 				temp->clear();
 				temp->push_back(i);
-				if (_pkb->modifies(temp, var, 0))
+				if (_pkb->modifies(temp, var, 0)&&(getTypeOfStmt(i) == STMT_ASSIGNMENT||getTypeOfStmt(i) == STMT_CALL))
 				{
 					noModifiesInMiddle = 0;
 					break;
@@ -1582,7 +1582,7 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 			{
 				temp->clear();
 				temp->push_back(i);
-				if(_pkb->modifies(temp, var,0))
+				if(_pkb->modifies(temp, var,0)&&(getTypeOfStmt(i) == STMT_ASSIGNMENT||getTypeOfStmt(i) == STMT_CALL))
 				{
 					noModifiesInMiddle = 0;
 					break;
@@ -1591,6 +1591,7 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 			if (noModifiesInMiddle == 1)
 			{
 				temp->clear();
+				nextStmts->clear();
 				temp->push_back(current->getEndStatement());
 				_pkb->next(temp, nextStmts, 1);
 				for (int i = 0; i < nextStmts->size(); i++)
@@ -1602,7 +1603,7 @@ BOOLEAN DesignExtractor::isAffects(int first, int second)
 			}
 		}
 	}
-	return true;
+	return false;
 }
 
 STMT_LIST DesignExtractor::getAffectsFirst(STMT stmt2, BOOLEAN exhaustive)
