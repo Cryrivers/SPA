@@ -18,7 +18,7 @@ volatile bool TestWrapper::GlobalStop = false;
 TestWrapper::TestWrapper() {
   // create any objects here as instance variables of this class
   // as well as any initialization required for your spa program
-	ast = new AST();
+	ast = PKBController::createInstance()->getAST();
 	parser = new Parser(ast);
 	queryProcessor = new QueryProcessor();
 }
