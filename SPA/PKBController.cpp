@@ -1207,37 +1207,47 @@ BOOLEAN PKBController::isCallsStar( PROC_INDEX caller, PROC_INDEX callee )
 
 int PKBController::stmtSize()
 {
-	vector<int>* temp;
+	vector<int>* temp = new vector<int>();
 	_designExtractor->getAllStmt(temp);
-	return temp->size();
+	int size = temp->size();
+	delete temp;
+	return size;
 }
 
 int PKBController::assignSize()
 {
-	vector<int>* temp;
+	vector<int>* temp = new vector<int>();
 	_designExtractor->getAllAssignment(temp);
-	return temp->size();
+	int size = temp->size();
+	delete temp;
+	return size;
 }
 
 int PKBController::whileSize()
 {
-	vector<int>* temp;
+	vector<int>* temp = new vector<int>();
 	_designExtractor->getAllWhile(temp);
-	return temp->size();
+	int size = temp->size();
+	delete temp;
+	return size;
 }
 
 int PKBController::ifSize()
 {
-	vector<int>* temp;
+	vector<int>* temp=new vector<int>();
 	_designExtractor->getAllIf(temp);
-	return temp->size();
+	int size = temp->size();
+	delete temp;
+	return size;
 }
 
 int PKBController::callSize()
 {
-	vector<int>* temp;
+	vector<int>* temp = new vector<int>();
 	_designExtractor->getAllCall(temp);
-	return temp->size();
+	int size = temp->size();
+	delete temp;
+	return size;
 }
 
 int PKBController::stmtListSize()
