@@ -1,13 +1,13 @@
 procedure p{
-  x = y + x * 5;                          
-  y = c + d;                       
+  x = y + x * 5;
+  y = c + d;
   c = a - b;
   d = a * b;
-  a = x;                                  
-  b = 30 + x;                                   
-  i = x;                                    
-  while i {                     
-        call q;                                 
+  a = x;
+  b = 30 + x;
+  i = x;
+  while i {
+        call q;
         x = x - i;
         y = a + x - i;
         b = i * 2;
@@ -27,17 +27,17 @@ procedure p{
                           }
                  }
       n = n + x;
-  n = k + 3;                
-  k = k + 1 * n + 5 - 11;                   
-  while x {         
+  n = k + 3;
+  k = k + 1 * n + 5 - 11;
+  while x {
                 x = y;
                 y = a + 2;
                 c = y + x;
                 b = y * x;
                 c = y * b;
                 l = x;
-    a = a - 1;                    
-    while k {       
+    a = a - 1;
+    while k {
                         x = 20;
                         y = 15;
                         c = x + y - 10;
@@ -53,12 +53,12 @@ procedure p{
                                   a = b + c;
                                   b = y * 3;
                                }
-                   }                               
-    a = y;                            
-    b = a + y;        
+                   }
+    a = y;
+    b = a + y;
           }
-           }                         
-  if y then{                                          
+           }
+  if y then{
           y = a + 1;
           b = c + 2;
           c = a * b;
@@ -70,101 +70,85 @@ procedure p{
                    c = y + x;
                    b = x * x;
                   }
-          x = a * y + z;                          
-          y = j+l+m;                              
-          call  o;                                
-          y = y + 2 - 1;        
+          x = a * y + z;
+          y = j+l+m;
+          call  o;
+          y = y + 2 - 1;
             }
-   
      else {
         a = x + y;}
 }
-
-procedure q {  
-  i = i - 1;                                      
-  n = 2 * i + b;                                  
-  k = 2 * n - a;                                  
-  while n {                                       
-           n = n - i;                             
-           x = k - n;                             
-           while x {                              
-                    x = x - 2 * i;                
-                    if i then{                        
-                           x = x + 2;             
+procedure q {
+  i = i - 1;
+  n = 2 * i + b;
+  k = 2 * n - a;
+  while n {
+           n = n - i;
+           x = k - n;
+           while x {
+                    x = x - 2 * i;
+                    if i then{
+                           x = x + 2;
                          }
-
                       else {
-
                              x = x + 3;}
-                    } 
+                    }
           }
-  if k then{                                          
-        x = x + 1;                                
+  if k then{
+        x = x + 1;
        }
-
      else{
-
         x = x + 2;}
-  call s;                               
+  call s;
 }
-
 procedure s {
-  a = i + n;                                      
-  b = 2 * a - k;                                  
-  x = a + b;                                      
-  while x {                                       
-           j = 20;                                
-           l = j * 2;                             
-           m = x - j;                             
-           if m then{                                 
-                 j = 5;                           
-                 l = 50;                          
-                 m = m -10;                       
+  a = i + n;
+  b = 2 * a - k;
+  x = a + b;
+  while x {
+           j = 20;
+           l = j * 2;
+           m = x - j;
+           if m then{
+                 j = 5;
+                 l = 50;
+                 m = m -10;
               }
- 
              else {
-
                  m = m +1;}
-           while m {                              
-                    m = m -1;                    
-                    if m then{                        
-                          x = x + m - 1;          
+           while m {
+                    m = m -1;
+                    if m then{
+                          x = x + m - 1;
                          }
-
                       else {
-
                          x = x + 2;}
-                    j = j + a;                    
-                   b = j + a;                    
-                   l = l + 2 * b - 30;           
-                    x = x + 2 - 1;                
+                    j = j + a;
+                   b = j + a;
+                   l = l + 2 * b - 30;
+                    x = x + 2 - 1;
                   }
             }
-   b = b - a - 30;                                
-   if b then{                                         
-          call r;                       
+   b = b - a - 30;
+   if b then{
+          call r;
         }
-
       else {
-
          c = a + b;
         }
    if a then{
           call t;
         }
-      
       else {
-
          d = a + c;
-       }                  
+       }
 }
-
 procedure o {
-  a = x;                                          
-  b = y - 20;                                      
-  c = a + b + 30;                                 
-  d = 15;                                         
-  if b then{                                          
+  a = x;
+  b = y - 20;
+  c = a + b + 30;
+  d = 15;
+  if b then{
         call q;
         while x {
                  a = x;
@@ -172,45 +156,41 @@ procedure o {
                  y = 2 * x;
                  d = a + b + y;
                  c = d - x * a;
-                 }                         
+                 }
        }
-
      else {
-
          x = a + b;
        }
-  y = y + 1;                                      
+  y = y + 1;
 }
-
-procedure r { 
-  b = 2 * b;                                      
-  a = b - 40;                                     
-  c = d + 2 * a;                                  
-  x = c + 2 * a;                                 
-  while x {                                       
-           y = 2 + x;                             
-           a = a - y - x;                         
-           x = x + b;                             
-           c = c - 15;                            
-           y = y + d;                             
+procedure r {
+  b = 2 * b;
+  a = b - 40;
+  c = d + 2 * a;
+  x = c + 2 * a;
+  while x {
+           y = 2 + x;
+           a = a - y - x;
+           x = x + b;
+           c = c - 15;
+           y = y + d;
            }
 }
-
 procedure t {
-  b = 2 * a;                                      
-  a = x + 30;                                     
-  c = 2 + x + y + a - b;                          
-  d = y * 2 - x * 2;                              
-  while d {                                       
-            c = c - d;                            
-            while c {                             
-                      b = b - c;                  
-                      while b {                   
-                               a = b - c;         
-                               while a {          
-                               x = 30;            
-                               y = x * 2 - b;     
-                               l = 2 * y;         
+  b = 2 * a;
+  a = x + 30;
+  c = 2 + x + y + a - b;
+  d = y * 2 - x * 2;
+  while d {
+            c = c - d;
+            while c {
+                      b = b - c;
+                      while b {
+                               a = b - c;
+                               while a {
+                               x = 30;
+                               y = x * 2 - b;
+                               l = 2 * y;
                                         }
                                }
                      }
