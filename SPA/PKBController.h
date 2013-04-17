@@ -177,6 +177,70 @@ public:
 	BOOLEAN isCalls(PROC_INDEX caller, PROC_INDEX callee);
 	BOOLEAN isCallsStar(PROC_INDEX caller, PROC_INDEX callee);
 
+	int followsSize(){
+		return _follows->size();
+	}
+	int parentSize(){
+		return _parent->size();
+	}
+	int modifiesSize(){
+		return _modifies->size();
+	}
+	int usesSize(){
+		return _uses->size();
+	}
+	int modifiesPSize(){
+		return _modifiesP->size();
+	}
+	int usesPSize(){
+		return _usesP->size();
+	}
+	int nextSize(){
+		return _next->size();
+	}
+	int callsSize(){
+		return _calls->size();
+	}
+	int varTableSize(){
+		return _varTable->size();
+	}
+	int procTableSize(){
+		return _procTable->size();
+	}
+	int stmtSize(){
+		vector<int> temp;
+		_designExtractor->getAllStmt(&temp);
+		return temp.size();
+	}
+	int assignSize(){
+		vector<int> temp;
+		_designExtractor->getAllAssignment(&temp);
+		return temp.size();
+	}
+	int whileSize(){
+		vector<int> temp;
+		_designExtractor->getAllWhile(&temp);
+		return temp.size();
+	}
+	int ifSize(){
+		vector<int> temp;
+		_designExtractor->getAllIf(&temp);
+		return temp.size();
+	}
+	int callSize(){
+		vector<int> temp;
+		_designExtractor->getAllCall(&temp);
+		return temp.size();
+	}
+	int stmtListSize(){
+		vector<int> temp;
+		_designExtractor->getAllStmtList(&temp);
+		return temp.size();
+	}
+	int constSize(){
+		_constTable->size();
+	}
+
 private:
 	Follows* _follows;
 	Parent* _parent;
