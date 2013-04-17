@@ -678,6 +678,10 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 			return _var_call->parent(st1s_ptr, st2s_ptr, arg);
 			break;
 		case WITH_PROCNAME:
+			if (arg == 1)
+				arg = 2;
+			if (arg == 2)
+				arg = 1;
 			return _proc_var->follows(st2s_ptr, st1s_ptr, arg);
 			break;
 		default:
@@ -701,9 +705,17 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_VARNAME:
+			if (arg == 1)
+				arg = 2;
+			if (arg == 2)
+				arg = 1;
 			return _var_call->parent(st2s_ptr, st1s_ptr, arg);
 			break;
 		case WITH_PROCNAME:
+			if (arg == 1)
+				arg = 2;
+			if (arg == 2)
+				arg = 1;
 			return _proc_call->parent(st2s_ptr, st1s_ptr, arg);
 			break;
 		case WITH_CALLPROCNAME:
@@ -727,6 +739,10 @@ BOOLEAN PKBController::with(STMT_LIST* st1s_ptr, STMT_LIST* st2s_ptr,int arg1,in
 		switch (arg2)
 		{
 		case WITH_STMTNUMBER:
+			if (arg == 1)
+				arg = 2;
+			if (arg == 2)
+				arg = 1;
 			return _stmt_const->follows(st2s_ptr, st1s_ptr, arg);
 			break;
 		default:
