@@ -1340,7 +1340,6 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 	// Start connecting CFG now
 	for(vector<statement>::iterator it =  preprocProgram->begin(); it != preprocProgram->end(); ++it)
 	{
-		int sm = it->stmtNumber;
 		if(it->type ==  STMT_IF)
 		{
 			scope.push(*it);
@@ -1414,23 +1413,32 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 			//Connect while statement to next statement, if any.
 			CFGNode* afterWhileBlock = cfg->getFollowingCFGNodeByCurrentStmtNumber(it->endOfTheScope);
 
+			if(afterWhileBlock == NULL && bipEnabled)
+			{
+				afterWhileBlock = cfg->getBipDummyNodeByProcIndex(it->procIndex);
+				__smartConnectThisCFGToNext(afterWhileBlock, whileNode);
+			}
+
 			if(afterWhileBlock != NULL)	
 			{
-				if(
-					(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && afterWhileBlock->getEndStatement() <= scope.top().endOfTheScope) ||
-					(__getParsingPhase(phaseStack) == PREPROCESS_THEN && afterWhileBlock->getEndStatement() <= scope.top().midOfTheScope) ||
-					(__getParsingPhase(phaseStack) == PREPROCESS_ELSE) ||
-					(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK)
-				  )
-				{	
-					__smartConnectThisCFGToNext(afterWhileBlock, whileNode);
-				}
-				else if(__getParsingPhase(phaseStack) == PREPROCESS_THEN)
+				if(afterWhileBlock->getCFGType() != CFG_DUMMY)
 				{
-					CFGNode* outsideBlock = cfg->getCFGNodeByStmtNumber(scope.top().endOfTheScope + 1);
-					whileBlockEnd->disconnect(outsideBlock);
-					whileBlockEnd->denyNode(outsideBlock);
-					__smartConnectThisCFGToNext(outsideBlock, whileNode);
+					if(
+						(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && afterWhileBlock->getEndStatement() <= scope.top().endOfTheScope) ||
+						(__getParsingPhase(phaseStack) == PREPROCESS_THEN && afterWhileBlock->getEndStatement() <= scope.top().midOfTheScope) ||
+						(__getParsingPhase(phaseStack) == PREPROCESS_ELSE) ||
+						(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK)
+						)
+					{	
+						__smartConnectThisCFGToNext(afterWhileBlock, whileNode);
+					}
+					else if(__getParsingPhase(phaseStack) == PREPROCESS_THEN)
+					{
+						CFGNode* outsideBlock = cfg->getCFGNodeByStmtNumber(scope.top().endOfTheScope + 1);
+						whileBlockEnd->disconnect(outsideBlock);
+						whileBlockEnd->denyNode(outsideBlock);
+						__smartConnectThisCFGToNext(outsideBlock, whileNode);
+					}
 				}
 			}
 			phaseStack.push(PREPROCESS_WHILE);
@@ -1447,6 +1455,9 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 				nextNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber + 1);
 
 				if(nextNode == NULL) continue;
+				if(bipEnabled && nextNode->getProcIndex() != it->procIndex)
+					nextNode = cfg->getBipDummyNodeByProcIndex(it->procIndex);
+
 				__connectAssignmentAndCall(phaseStack, it, scope, nextNode, bipEnabled, thisNode, cfg);
 			}
 			else
