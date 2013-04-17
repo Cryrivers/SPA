@@ -1634,7 +1634,7 @@ int QueryPreprocessor::parse(string query){
 		if(!setDependency())	
 			break;
 		
-	cout<<"finish pql"<<endl;
+		cout<<"finish pql"<<endl;
 		if(DEBUGMODE||PRINTTABLE){
 			printf("QP: parsed: %2d, merged: %2d, discard: %2d, result: %2d.\n", clauses.size(), mergedClause, discardClause, queryClaTable.size()); 
 			QueryPreprocessorDebug qpd;
@@ -1644,9 +1644,9 @@ int QueryPreprocessor::parse(string query){
 		}
 		clauses.clear();
 		return 0;
-	}	
-	if(DEBUGMODE||PRINTTABLE){	
-			cout<<"false"<<endl;	
+	}					  
+	cout<<"false"<<endl;
+	if(DEBUGMODE||PRINTTABLE){		
 			QueryPreprocessorDebug qpd;
 			qpd.printQueryVariableTable(queryVarTable);
 			qpd.printTargetVariableTable(queryTarTable);
