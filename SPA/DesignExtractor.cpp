@@ -55,17 +55,19 @@ void DesignExtractor::addModifies()
 	PROC_INDEX_LIST pmod;
 
 	getAllCall(callNumbers);
-	for (int i = 0; i < callNumbers->size();i++)
-	{
-		pmod.push_back(callees.at(i));
-		_pkb->modifiesP(&pmod, &pvars, 1);
-		for (int j = 0; j < pvars.size(); j++)
+	for (int n = 0; n < callNumbers->size(); n++){
+		for (int i = 0; i < callNumbers->size();i++)
 		{
-			_pkb->addModifies(callNumbers->at(i), pvars.at(j));
-			_pkb->addModifiesP(callers.at(i), pvars.at(j));
+			pmod.push_back(callees.at(i));
+			_pkb->modifiesP(&pmod, &pvars, 1);
+			for (int j = 0; j < pvars.size(); j++)
+			{
+				_pkb->addModifies(callNumbers->at(i), pvars.at(j));
+				_pkb->addModifiesP(callers.at(i), pvars.at(j));
+			}
+			pmod.clear();
+			pvars.clear();
 		}
-		pmod.clear();
-		pvars.clear();
 	}
 	stmts.clear();
 	vars.clear();
@@ -105,17 +107,19 @@ void DesignExtractor::addUses()
 	PROC_INDEX_LIST pmod;
 
 	getAllCall(callNumbers);
-	for (int i = 0; i < callNumbers->size();i++)
-	{
-		pmod.push_back(callees.at(i));
-		_pkb->usesP(&pmod, &pvars, 1);
-		for (int j = 0; j < pvars.size(); j++)
+	for (int n = 0; n < callNumbers->size();n++){
+		for (int i = 0; i < callNumbers->size();i++)
 		{
-			_pkb->addUses(callNumbers->at(i), pvars.at(j));
-			_pkb->addUsesP(callers.at(i), pvars.at(j));
+			pmod.push_back(callees.at(i));
+			_pkb->usesP(&pmod, &pvars, 1);
+			for (int j = 0; j < pvars.size(); j++)
+			{
+				_pkb->addUses(callNumbers->at(i), pvars.at(j));
+				_pkb->addUsesP(callers.at(i), pvars.at(j));
+			}
+			pmod.clear();
+			pvars.clear();
 		}
-		pmod.clear();
-		pvars.clear();
 	}
 	stmts.clear();
 	vars.clear();
