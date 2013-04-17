@@ -217,7 +217,7 @@ ASTNode *AST::buildSubtree(string expression)
 				concatState = 2;
 			}else {
 				//0 refer to value in varTable
-				ASTNode *variableNode = ASTNode::createNode(AST_VARIABLE, PKBController::createInstance()->addVar(postfixValue));
+				ASTNode *variableNode = ASTNode::createNode(AST_VARIABLE, PKBController::createInstance()->getVarIndex(postfixValue));
 				variableStack.push(variableNode);
 				concatState = 0;
 				postfixValue.clear();
