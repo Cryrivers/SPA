@@ -125,6 +125,8 @@ bool QueryEvaluator::optimise()
 		
 		} else { // dependent clauses
 			
+			list<int> sIndexList = sortIndex(QCweights[mit->first]);
+			
 			for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit)
 				qClauseList2.push_back(*vit);
 
@@ -1368,6 +1370,43 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	}
 	
 	return true;
+}
+
+/**
+ * \fn		QueryEvaluator::sortedIndex(vector<int> vec)
+ * \brief	Perform cartesian product of 2 vectors. 
+ * \param 	vec: vector; 
+ * \return 	returns a list containing the index of the vector sorted by its element value non increasing
+ */
+ list<int> QueryEvaluator::sortIndex(vector<int> vec) {
+	
+	list<int> l; 
+
+	if (vec.empty())
+		return l;
+	else
+		l.push_back(0);
+
+	for (int i = 1; i < vec.size(); i++) {
+		
+		bool inserted = false;
+
+		for (list<int>::iterator it = l.begin(); it != l.end(); ++it) {
+			
+			if (vec[i] < vec[*it]) {
+				l.insert(it,i);
+				inserted = true;
+				break;
+			}
+		
+		}	
+
+		if (!inserted)
+			l.push_back(i);
+
+	}
+
+	return l;
 }
 
 /**
