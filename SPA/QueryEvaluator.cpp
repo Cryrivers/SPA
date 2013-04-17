@@ -10,7 +10,7 @@
 QueryEvaluator::QueryEvaluator(void)
 {
 	pkb = PKBController::createInstance();
-	/*
+	
 	QVsizemap[DT_PROCEDURE] = pkb->procTableSize();
 	QVsizemap[DT_STMTLST] = pkb->stmtListSize();
 	QVsizemap[DT_STMT] = pkb->stmtSize();
@@ -54,7 +54,7 @@ QueryEvaluator::QueryEvaluator(void)
 	QCsizemap[RT_AFFECTSBIPT] = 9999;
 	QCsizemap[CT_PATTERN] = 9999;
 	QCsizemap[CT_WITH] = 9999;
-	*/
+
 }
 
 
@@ -73,14 +73,17 @@ QueryEvaluator::~QueryEvaluator(void)
  */
 bool QueryEvaluator::evaluate(map<int, vector<QueryClause>> qcl, vector<QueryVariable> qvl, vector<QueryTarget> qtl, list<string>& r)
 {
+	
 	// prepare new query, initialise data members 
 	qClauseList = qcl;
 	qVariableList = qvl;
 	qTargetList = qtl;
+	
+	qClauseList2.clear();
 	dependencymap.clear();
 	targetmap.clear();
-
-	//optimise();
+	
+	optimise();
 	
 	if (!evaluateQuery()) 
 		return false; // at least one query clause failed
@@ -91,12 +94,20 @@ bool QueryEvaluator::evaluate(map<int, vector<QueryClause>> qcl, vector<QueryVar
 	return true;
 }
 
-/*
+/**
+ * \fn		QueryEvaluator::evaluateQuery()
+ * \brief	Optimises order of query clauses 
+ * \return 	TRUE 
+ */
 bool QueryEvaluator::optimise()
 {
+	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
+		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
+			qClauseList2.push_back(*vit);
+		}
+	}
 	return true;
 }
-*/	
 
 /**
  * \fn		QueryEvaluator::evaluateQuery()
@@ -106,22 +117,21 @@ bool QueryEvaluator::optimise()
 bool QueryEvaluator::evaluateQuery() 
 {
 	
-	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
-		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
+	for (vector<QueryClause>::iterator vit = qClauseList2.begin(); vit != qClauseList2.end(); ++vit) {
 			
-			if (vit->variable1 == vit->variable2) { // reflexive clause
+		if (vit->variable1 == vit->variable2) { // reflexive clause
 				
-				if (!evaluateReflexiveClause(*vit)) 
-					return false; // query clause evaluated to false
+			if (!evaluateReflexiveClause(*vit)) 
+				return false; // query clause evaluated to false
 				
-			} else { // non reflexive clause
+		} else { // non reflexive clause
 				
-				if (!evaluateClause(*vit)) 
-					return false; // query clause evaluated to false
+			if (!evaluateClause(*vit)) 
+				return false; // query clause evaluated to false
 				
-			}
 		}
 	}
+	
 	return true;
 }
 
@@ -1448,3 +1458,31 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	 }
 
  }
+
+ /**
+ * \fn		QueryEvaluator::evaluateQuery()
+ * \brief	Evaluates query by querying clauses one at a time  
+ * \return 	TRUE if evaluation is successful, FALSE otherwise
+ 
+bool QueryEvaluator::evaluateQuery() 
+{
+	
+	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
+		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
+			
+			if (vit->variable1 == vit->variable2) { // reflexive clause
+				
+				if (!evaluateReflexiveClause(*vit)) 
+					return false; // query clause evaluated to false
+				
+			} else { // non reflexive clause
+				
+				if (!evaluateClause(*vit)) 
+					return false; // query clause evaluated to false
+				
+			}
+		}
+	}
+	return true;
+}
+**/
