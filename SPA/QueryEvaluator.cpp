@@ -1271,8 +1271,8 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 				break;
 			
 			case DT_STMTLST: 
-				/*if (!pkb->getAllStmtList(&vecI))
-					return false;*/
+				if (!pkb->getAllStmtList(&vecI))
+					return false;
 				break;
 				
 			// Known Variables
