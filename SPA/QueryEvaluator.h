@@ -20,8 +20,8 @@ class QueryEvaluator
 	vector<QueryClause> qClauseList2;
 	vector<QueryVariable> qVariableList;
 	vector<QueryTarget> qTargetList;
-	map<int, int> QVsizemap;
-	map<int, int> QCsizemap;
+	map<int, long> QVsizemap;
+	map<int, long> QCsizemap;
 	map<int, map<int, vector<int>>> dependencymap;
 	map<int, map<int, vector<string>>> targetmap;
 	
@@ -46,7 +46,7 @@ class QueryEvaluator
 	bool removeDuplicatesPair(vector<int>*, vector<int>*);
 	
 	bool cartesianProduct(vector<int>*, vector<int>*);
-	list<int> sortIndex(vector<int>);
+	list<int> sortIndex(vector<long long>);
 
 	int getWithType(int);
 	ASTNodeType getNodeType(int);

@@ -22,7 +22,7 @@ QueryEvaluator::QueryEvaluator(void)
 	QVsizemap[DT_VARIABLE] = pkb->varTableSize();
 	QVsizemap[DT_CONSTANT] = pkb->constSize();
 	QVsizemap[DT_BOOLEAN] = 0; // invalid
-	QVsizemap[DT_UNDERSCORE] = -1; // special value (dependent on the relation type)
+	QVsizemap[DT_UNDERSCORE] = QVsizemap[DT_STMT]; // special value (dependent on the relation type)
 	QVsizemap[DT_PLUS] = QVsizemap[DT_ASSIGN]; // set to assign
 	QVsizemap[DT_TIMES] = QVsizemap[DT_ASSIGN]; // set to assign
 	QVsizemap[DT_MINUS] = QVsizemap[DT_ASSIGN]; // set to assign
@@ -36,24 +36,24 @@ QueryEvaluator::QueryEvaluator(void)
 	QCsizemap[RT_USESP] = pkb->usesPSize();
 	QCsizemap[RT_USESS] = pkb->usesSize();
 	QCsizemap[RT_CALLS] = pkb->callsSize();
-	QCsizemap[RT_CALLST] = QCsizemap[RT_CALLS]*QCsizemap[RT_CALLS];
+	QCsizemap[RT_CALLST] = QCsizemap[RT_CALLS]*50;
 	QCsizemap[RT_PARENT] = pkb->parentSize();
-	QCsizemap[RT_PARENTT] = 9999;
+	QCsizemap[RT_PARENTT] = QCsizemap[RT_PARENT]*50;
 	QCsizemap[RT_FOLLOWS] = pkb->followsSize();
-	QCsizemap[RT_FOLLOWST] = 9999;
+	QCsizemap[RT_FOLLOWST] = QCsizemap[RT_FOLLOWS]*50;
 	QCsizemap[RT_NEXT] = pkb->nextSize();
-	QCsizemap[RT_NEXTT] = 9999;
-	QCsizemap[RT_AFFECTS] = 9999;
-	QCsizemap[RT_AFFECTST] = 9999;
-	QCsizemap[RT_CONTAINST] = 9999;
-	QCsizemap[RT_CONTAINS] = 9999;
-	QCsizemap[RT_SIBLING] = 9999;
-	QCsizemap[RT_NEXTBIP] = 9999;
-	QCsizemap[RT_NEXTBIPT] = 9999;
-	QCsizemap[RT_AFFECTSBIP] = 9999;
-	QCsizemap[RT_AFFECTSBIPT] = 9999;
-	QCsizemap[CT_PATTERN] = 9999;
-	QCsizemap[CT_WITH] = 9999;
+	QCsizemap[RT_NEXTT] = QCsizemap[RT_NEXT]*80;
+	QCsizemap[RT_AFFECTS] = 999; //QCsizemap[RT_NEXT]*50;
+	QCsizemap[RT_AFFECTST] = 999; //QCsizemap[RT_AFFECTS]*100;
+	QCsizemap[RT_CONTAINS] = 999;
+	QCsizemap[RT_CONTAINST] = 999;//QCsizemap[RT_CONTAINS]*50;
+	QCsizemap[RT_SIBLING] = 999;
+	QCsizemap[RT_NEXTBIP] = 999; //QCsizemap[RT_NEXT]*100;
+	QCsizemap[RT_NEXTBIPT] = 999; //QCsizemap[RT_NEXTBIP]*100;
+	QCsizemap[RT_AFFECTSBIP] = 999; //QCsizemap[RT_AFFECTS]*100;
+	QCsizemap[RT_AFFECTSBIPT] = 999; //QCsizemap[RT_AFFECTSBIP]*100;
+	QCsizemap[CT_PATTERN] = 999;
+	QCsizemap[CT_WITH] = 999;
 
 }
 
@@ -101,46 +101,77 @@ bool QueryEvaluator::evaluate(map<int, vector<QueryClause>> qcl, vector<QueryVar
  */
 bool QueryEvaluator::optimise()
 {
-	map<int, vector<int>> QCweights; // keeps the weight of query clauses key: dep
-	int value;
+	/*map<int, vector<long long>> QCweights; // key: dep; keeps the weight of query clauses 
+	long long value;
 
 	// calculate the weights of the clauses
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
-		
-		if (mit->first >= 0) { // calculate weights only for dependent clauses
+	// each loop is a different dependency set
+
+		if (mit->first >= 0) { // calculate weights only for dependent sets
 			
 			for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
+				
 				value = QVsizemap[qVariableList[vit->variable1].variableType]*QVsizemap[qVariableList[vit->variable2].variableType]*QCsizemap[vit->relationType];
 				QCweights[mit->first].push_back(value);
+			
 			}
 		}
 	}
 	
+	// populate qClauseList2
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
-		
-		if (mit->first < 0) { // independent clauses
+	// each loop is a different dependency set
+
+		if (mit->first < 0) { // independent set
 			
 			for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit)
 				qClauseList2.push_back(*vit);
 		
-		} else { // dependent clauses
+		} else { // dependent set
 			
 			list<int> sIndexList = sortIndex(QCweights[mit->first]);
-			
-			for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit)
-				qClauseList2.push_back(*vit);
+			set<int> visitedVariableSet;
 
+			QueryClause qc = (*mit).second[sIndexList.front()]; // get the clause with lowest weight (front of list)
+			qClauseList2.push_back(qc); // push it into qClauseList2 
+			sIndexList.pop_front(); // pop the qcindex
+
+			// add the variables into the visitedVariableSet if they are dependent 
+			if (qVariableList[qc.variable1].dependency >= 0)
+				visitedVariableSet.insert(qc.variable1);
+			if (qVariableList[qc.variable2].dependency >= 0)
+				visitedVariableSet.insert(qc.variable2);
+
+			while (!sIndexList.empty()) { // list is not empty
+				
+				for (list<int>::iterator it = sIndexList.begin(); it != sIndexList.end(); ++it) {
+			
+					if (visitedVariableSet.count((*mit).second[*it].variable1) == 1 ||
+							visitedVariableSet.count((*mit).second[*it].variable2) == 1) {
+					// query clause can be selected
+						
+						qClauseList2.push_back((*mit).second[*it]); // push qc into qClauseList2
+						
+						// add the variables into the visitedVariableSet if they are dependent 
+						if (qVariableList[(*mit).second[*it].variable1].dependency >= 0)
+							visitedVariableSet.insert(qc.variable1);
+						if (qVariableList[(*mit).second[*it].variable2].dependency >= 0)
+							visitedVariableSet.insert(qc.variable2);
+						
+						sIndexList.erase(it); // remove the qcIndex from the list
+						break;
+
+					}
+				}	
+			}
 		}
-	
 	}	
-	
-	/*
-	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
-		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
-			qClauseList2.push_back(*vit);
-		}
-	}
 	*/
+	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
+		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit)
+				qClauseList2.push_back(*vit);
+	}		
 	return true;
 }
 
@@ -1108,64 +1139,83 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
  */
  bool QueryEvaluator::getResult(list<string>& result) {
 
-	vector<pair<int, int>> QTLDepVarList; // first int is dependency and second int is varIndex
-	map<int, int> repetitionMap; // key is dep, value the number of times to repeat
-	int resultSize = 1;
+	QueryTarget qt;
+	int qvIndex;
+	int dep;
 
-	// populate the target map + QTLDepVar + repetitionMap + resultSize
-	for (int i = 0; i < qTargetList.size(); i++) {
+	if (qTargetList.size() == 1) {
 		
-		QueryTarget qt = qTargetList.at(i);
-		int qvIndex = qt.varIndex;
-		int dep = qVariableList[qvIndex].dependency;
-		int targetSize;
-
+		qt = qTargetList.at(0);
+		qvIndex = qt.varIndex;
+		dep = qVariableList[qvIndex].dependency;
+		
 		if (!getTarget(qt))
 			return false; // return false if target has no values
+
+		for (int i = 0; i < targetmap[dep][qvIndex].size(); i++)
+			result.push_back(targetmap[dep][qvIndex][i]);
+
+	} else {
 		
-		// sets the size of the target
-		targetSize = targetmap[dep][qvIndex].size(); 
+		vector<pair<int, int>> QTLDepVarList; // first int is dependency and second int is varIndex
+		map<int, int> repetitionMap; // key is dep, value the number of times to repeat
+		int resultSize = 1;
+		int targetSize;
 
-		// push the target's dependency and varIndex into the list
-		QTLDepVarList.push_back(make_pair(dep, qvIndex)); 
+		// populate the target map + QTLDepVar + repetitionMap + resultSize
+		for (int i = 0; i < qTargetList.size(); i++) {
+		
+			qt = qTargetList.at(i);
+			qvIndex = qt.varIndex;
+			dep = qVariableList[qvIndex].dependency;
 
-		// updates new dep value if dep = -1
-		if (dep == -1) 
-			dep *= qvIndex; 
+			if (!getTarget(qt))
+				return false; // return false if target has no values
+		
+			// sets the size of the target
+			targetSize = targetmap[dep][qvIndex].size(); 
 
-		// populate repetitionMap
-		if (repetitionMap.count(dep) == 0) { 
-		// repetitionMap does not contain dep yet
+			// push the target's dependency and varIndex into the list
+			QTLDepVarList.push_back(make_pair(dep, qvIndex)); 
+
+			// updates new dep value if dep = -1
+			if (dep == -1) 
+				dep *= qvIndex; 
+
+			// populate repetitionMap
+			if (repetitionMap.count(dep) == 0) { 
+			// repetitionMap does not contain dep yet
 			
-			for (map<int, int>::iterator it = repetitionMap.begin(); it != repetitionMap.end(); ++it) {
-				(*it).second *= targetSize;
-			}
+				for (map<int, int>::iterator it = repetitionMap.begin(); it != repetitionMap.end(); ++it) {
+					(*it).second *= targetSize;
+				}
 
-			resultSize *= targetSize;
-			repetitionMap[dep] = 1;
+				resultSize *= targetSize;
+				repetitionMap[dep] = 1;
 
-		} // do nothing if repetitionMap already contain dep (i.e. same dep as earlier targets)
-		
-	}
-	
-	// make use of repetitionMap to populate results
-	for (int i = 0; i < resultSize; i++) {
-		
-		string r = "";
-
-		for (int j = 0; j < QTLDepVarList.size(); j++) {
-			
-			int dep = QTLDepVarList[j].first;
-			int qvIndex = QTLDepVarList[j].second;
-			int rep = repetitionMap[(dep == -1 ? dep*qvIndex : dep)];
-			int index = (i%(rep*targetmap[dep][qvIndex].size()))/rep;
-
-			r += (j == 0 ? "" : " ") + targetmap[dep][qvIndex][index];
+			} // do nothing if repetitionMap already contain dep (i.e. same dep as earlier targets)
 		
 		}
+	
+		// make use of repetitionMap to populate results
+		for (int i = 0; i < resultSize; i++) {
+		
+			string r = "";
 
-		result.push_back(r);
+			for (int j = 0; j < QTLDepVarList.size(); j++) {
+			
+				int dep = QTLDepVarList[j].first;
+				int qvIndex = QTLDepVarList[j].second;
+				int rep = repetitionMap[(dep == -1 ? dep*qvIndex : dep)];
+				int index = (i%(rep*targetmap[dep][qvIndex].size()))/rep;
 
+				r += (j == 0 ? "" : " ") + targetmap[dep][qvIndex][index];
+		
+			}
+
+			result.push_back(r);
+
+		}
 	}
 
 	return true;
@@ -1378,7 +1428,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
  * \param 	vec: vector; 
  * \return 	returns a list containing the index of the vector sorted by its element value non increasing
  */
- list<int> QueryEvaluator::sortIndex(vector<int> vec) {
+ list<int> QueryEvaluator::sortIndex(vector<long long> vec) {
 	
 	list<int> l; 
 
