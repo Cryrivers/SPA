@@ -118,7 +118,19 @@ void Parser::_parseLine()
 			_pkb->getCFGBip()->addToCFG(currentCFGBipNode);
 			currentCFGBipNode = NULL;
 
-			_buildIfAST(&*it);
+			currentASTNode = _buildIfAST(&*it);
+			
+			if(sameLevelAtNext)
+			{
+				if(previousASTNode->getStmtNumber()>0)
+					_pkb->addFollows(previousASTNode->getStmtNumber(), currentASTNode->getStmtNumber());
+			}
+			else
+			{
+				sameLevelAtNext = true;
+			}
+
+			previousASTNode = currentASTNode;
 			break;
 
 		case STMT_ELSE:
