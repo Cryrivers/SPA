@@ -46,7 +46,7 @@ Select c with c.procName = "Mary"
 39, 78, 86
 5000
 10 - Parent, Typed, ImplstmtLine ::
-Call c;
+call c;
 Select c with c.procName = "peiyu"
 
 5000
@@ -271,7 +271,7 @@ Select <a1, a2, a3> such that Affects* (27, a1) and Affects* (33, a2) pattern a1
 27 34 79,27 37 79,29 34 79,29 37 79,28 34 79,28 37 79,31 34 79,31 37 79,33 34 79,33 37 79,34 34 79,34 37 79,35 34 79,35 37 79,36 34 79,36 37 79,37 34 79,37 37 79,38 34 79,38 37 79
 5000
 55 - Follows, Typed, ImplstmtLine ::
-assign a1; variable v; Call Mary; procedure John;
+assign a1; variable v; call Mary; procedure John;
 Select a1 such that Follows(1, 2) with Mary.procName="Mary" and John="Fool" and v="x"
 
 5000
