@@ -34,7 +34,7 @@ bool compare_number (std::string first, std::string second)
 
 int _tmain(int argc, _TCHAR *argv[])
 {
-	AST    *ast = new AST();
+	AST    *ast = PKBController::createInstance()->getAST();
 	Parser *parser = new Parser(ast);
 
 	string program, line;
@@ -113,7 +113,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	//query[0]="";
 	query[0]="stmtLst s1,s2; if f; variable i; Select BOOLEAN such that Affects(3,3)"; 
 	query[1]="stmtLst s1; while w; variable i; Select BOOLEAN pattern w(i,_)"; 	   
-	query[2]="plus p; minus m; times t; assign a; Select a such that Contains* (m, t) "; 
+	query[2]="assign a; variable v; Select v such that Contains(a,v)"; 
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;

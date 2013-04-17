@@ -458,12 +458,13 @@ inline int Parser::_findValidMinimumOfThree(size_t lb, size_t rb, size_t sc)
 
 ASTNode *Parser::_buildAssignmentAST(statement *s)
 {
-	ASTNode *node = ASTNode::createNode(AST_ASSIGNMENT, NULL);
+	ASTNode *node = ASTNode::createNode(AST_ASSIGNMENT, s->stmtNumber);
 	_ast->setASTNodeIndex(node);
 
 	node->setStmtNumber(s->stmtNumber);
 	//0 is the index in varTable
-	node->createChild(AST_VARIABLE, _pkb->addVar(s->extraVar));
+	ASTNode* varNode = node->createChild(AST_VARIABLE, _pkb->addVar(s->extraVar));
+	_ast->setASTNodeIndex(varNode);
 
 	//add modifies
 	_pkb->addModifies(s->stmtNumber, _pkb->addVar(s->extraVar));
@@ -632,14 +633,15 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 
 ASTNode* Parser::_buildIfAST(statement* s)
 {
-	ASTNode *node = ASTNode::createNode(AST_IF_BRANCH, _pkb->addVar(s->extraCond));
+	ASTNode *node = ASTNode::createNode(AST_IF_BRANCH, s->stmtNumber);
 	_ast->setASTNodeIndex(node);
 
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
 
-	node->createChild(AST_VARIABLE, _pkb->addVar(s->extraCond));
+	ASTNode* varNode = node->createChild(AST_VARIABLE, _pkb->addVar(s->extraCond));
 	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST,s->stmtNumber + 1);
+	_ast->setASTNodeIndex(varNode);
 	_ast->setASTNodeIndex(stmtLstNode);
 
 	_newParent = stmtLstNode;
@@ -663,12 +665,15 @@ ASTNode* Parser::_buildElseAST(statement* s)
 ASTNode* Parser::_buildCallAST( statement* s )
 {
 	//NodeValue is Callee's procIndex, no idea if callers procindex needed.
-	ASTNode *node = ASTNode::createNode(AST_CALL,_findAssumedProcIndexByName(s->extraName));
+	ASTNode *node = ASTNode::createNode(AST_CALL,s->stmtNumber);
 	_ast->setASTNodeIndex(node);
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
 
-	node->createChild(AST_PROCEDURE, _findAssumedProcIndexByName(s->extraName));
+	//TODO: May change AST Type from AST_PROCEDURE to AST_CALL_PROCEDURE
+	ASTNode* procIdNode = node->createChild(AST_PROCEDURE, _findAssumedProcIndexByName(s->extraName));
+	_ast->setASTNodeIndex(procIdNode);
+
 	_pkb->addCalls(s->stmtNumber,s->procIndex,_findAssumedProcIndexByName(s->extraName));
 	//Update ParentTable
 	if(_parentStackNoStmtLst.top()->getStmtNumber()>0) _pkb->addParent(_parentStackNoStmtLst.top()->getStmtNumber(), s->stmtNumber);
@@ -677,12 +682,13 @@ ASTNode* Parser::_buildCallAST( statement* s )
 
 ASTNode *Parser::_buildWhileLoopAST(statement *s)
 {
-	ASTNode *node = ASTNode::createNode(AST_WHILE_LOOP, _pkb->addVar(s->extraCond));
+	ASTNode *node = ASTNode::createNode(AST_WHILE_LOOP, s->stmtNumber);
 	_ast->setASTNodeIndex(node);
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
 	//0 is the index in varTable
-	node->createChild(AST_VARIABLE, _pkb->addVar(s->extraCond));
+	ASTNode* varNode = node->createChild(AST_VARIABLE, _pkb->addVar(s->extraCond));
+	_ast->setASTNodeIndex(varNode);
 	ASTNode *stmtLstNode = node->createChild(AST_STATEMENT_LIST, s->stmtNumber + 1);
 	_ast->setASTNodeIndex(stmtLstNode);
 

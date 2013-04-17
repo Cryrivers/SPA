@@ -177,12 +177,54 @@ public:
 	BOOLEAN isCalls(PROC_INDEX caller, PROC_INDEX callee);
 	BOOLEAN isCallsStar(PROC_INDEX caller, PROC_INDEX callee);
 
+<<<<<<< HEAD
 	STMT_LIST getNextFirst(STMT stmt2) {
 		return _next->getNextFirst(stmt2);
 	};
 	STMT_LIST getNextSecond(STMT stmt1) {
 		return _next->getNextSecond(stmt1);
 	};
+=======
+	int followsSize(){
+		return _follows->size();
+	}
+	int parentSize(){
+		return _parent->size();
+	}
+	int modifiesSize(){
+		return _modifies->size();
+	}
+	int usesSize(){
+		return _uses->size();
+	}
+	int modifiesPSize(){
+		return _modifiesP->size();
+	}
+	int usesPSize(){
+		return _usesP->size();
+	}
+	int nextSize(){
+		return _next->size();
+	}
+	int callsSize(){
+		return _calls->size();
+	}
+	int varTableSize(){
+		return _varTable->size();
+	}
+	int procTableSize(){
+		return _procTable->size();
+	}
+	int stmtSize();
+	int assignSize();
+	int whileSize();
+	int ifSize();
+	int callSize();
+	int stmtListSize();
+	int constSize(){
+		_constTable->size();
+	}
+>>>>>>> dc4ba3b9c0da512a9ec0de795dc7b9eefc8fc3b3
 
 private:
 	Follows* _follows;

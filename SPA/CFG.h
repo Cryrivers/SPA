@@ -12,7 +12,7 @@ public:
 	void addToCFG(CFGNode* cfgnode);
 	CFGNode* getCFGNodeByStmtNumber(STMT stmtNumber);
 	CFGNode* getFollowingCFGNodeByCurrentStmtNumber(STMT stmtNumber);
-	CFGNode* getNextCFGNodeByCurrentStatement(statement s, bool bipEnabled);
+	vector<CFGNode*> getNextCFGNodeByCurrentStatement(statement s, bool bipEnabled);
 	CFGNode* getBipDummyNodeByProcIndex(PROC_INDEX index);
 	vector<CFGNode*> getAllCFGNodes();
 	void __printDotGraphForGraphviz();

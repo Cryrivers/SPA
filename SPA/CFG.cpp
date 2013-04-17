@@ -142,9 +142,10 @@ CFGNode* CFG::getBipDummyNodeByProcIndex( PROC_INDEX index )
 	return NULL;
 }
 
-CFGNode* CFG::getNextCFGNodeByCurrentStatement(statement s, bool bipEnabled )
+vector<CFGNode*> CFG::getNextCFGNodeByCurrentStatement(statement s, bool bipEnabled )
 {
 	CFGNode* nextNode;
+	vector<CFGNode*> finalResult;
 
 	STMT_LIST first;
 	first.push_back(s.stmtNumber);
@@ -154,13 +155,21 @@ CFGNode* CFG::getNextCFGNodeByCurrentStatement(statement s, bool bipEnabled )
 	if(result.empty())
 	{
 		if(bipEnabled)
-		nextNode = this->getBipDummyNodeByProcIndex(s.procIndex);
+		finalResult.push_back(this->getBipDummyNodeByProcIndex(s.procIndex));
 	}
 	else
 	{
-		assert(result.size() == 1);
-		nextNode = this->getCFGNodeByStmtNumber(result.at(0));
+		for(vector<int>::iterator it =  result.begin(); it != result.end(); ++it)
+		{
+			bool duplicated = false;
+			CFGNode* node = this->getCFGNodeByStmtNumber(*it);
+			
+			for(vector<CFGNode*>::iterator it2 = finalResult.begin(); it2 != finalResult.end(); ++it2)
+				if(node == *it2) duplicated = true;
+
+			if(!duplicated) finalResult.push_back(node);
+		}
 	}
 
-	return nextNode;
+	return finalResult;
 }
