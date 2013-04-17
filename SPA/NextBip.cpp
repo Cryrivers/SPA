@@ -625,16 +625,16 @@ STMT_LIST NextBip::getNextBipStarFirst(STMT stmt2)
 		for(int i=stmt2-1; i>=endNode->getStartStatement(); i--) {
 			result.push_back(i);
 		}
-		getNextBipStarFirstHelper(endNode, &visitedNodes, callStack, &result);
+		getNextBipStarFirstHelper(endNode, visitedNodes, callStack, &result);
 	} else { //if, while, call
 		visitedNodes.push_back(endNode);
-		getNextBipStarFirstHelper(endNode, &visitedNodes, callStack, &result);
+		getNextBipStarFirstHelper(endNode, visitedNodes, callStack, &result);
 	}
 
 	return result;
 }
 
-void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visitedNodes, stack<STMT> callStack, STMT_LIST* result)
+void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*> visitedNodes, stack<STMT> callStack, STMT_LIST* result)
 {
 	vector<CFGNode*> prev_nodes = node2->getPrevEdges();
 	if(prev_nodes.size() == 0)
@@ -656,10 +656,10 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visited
 	if(!jumpToCaller && !jumpToReturnNode) { //jump within the same proc
 		for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode
 			CFGNode* currentNode = prev_nodes.at(i);
-			if(indexOf((*visitedNodes), currentNode) >= 0){
+			if(indexOf((visitedNodes), currentNode) >= 0){
 				//current predecessor has been visited, do not visit it again
 			} else {
-				visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
+				visitedNodes.push_back(currentNode); //mark current predecessor as visited to avoid re-visit
 				for(int i=currentNode->getEndStatement(); i>=currentNode->getStartStatement(); i--) {
 					result->push_back(i);
 				}
@@ -678,10 +678,10 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visited
 			}
 		}
 		// deal with the node within same procedure first
-		if(indexOf((*visitedNodes), nodeInSameProc) >= 0){
+		if(indexOf((visitedNodes), nodeInSameProc) >= 0){
 			//current successor has been visited, do not visit it again
 		} else {
-			visitedNodes->push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
+			visitedNodes.push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
 			for(int i=nodeInSameProc->getEndStatement(); i>=nodeInSameProc->getStartStatement(); i--) {
 				result->push_back(i);
 			}
@@ -701,10 +701,10 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visited
 					} else { //the node to jump is inside the called procedure, ready to jump
 						stack<STMT> callStackCopy = callStack;
 						callStackCopy.push(prevStmts.at(j)); //push to call stack
-						if(indexOf((*visitedNodes), currentNode) >= 0) {
+						if(indexOf((visitedNodes), currentNode) >= 0) {
 							//current predecessor has been visited, do not visit it again
 						} else {
-							visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
+							visitedNodes.push_back(currentNode); //mark current predecessor as visited to avoid re-visit
 							for(int i=currentNode->getEndStatement(); i>=currentNode->getStartStatement(); i--) {
 								if(i != -1)
 									result->push_back(i);
@@ -716,24 +716,25 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visited
 			} else { //jump back to caller
 				assert(currentNode->getBipType() == CFG_BIP_IN);
 				// clear visited nodes that are within the same procedure before jump back
+				vector<CFGNode*> visitedNodesCopy = visitedNodes;
 				PROC_INDEX currentProc = node2->getProcIndex();
 				STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
 				for(int i=stmt1; i<=stmt2; i++) {
-					int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
+					int index = indexOf((visitedNodesCopy), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
 					if(index >=0)
-						visitedNodes->erase(visitedNodes->begin()+index);
+						visitedNodesCopy.erase(visitedNodesCopy.begin()+index);
 				}
 
 				// pop call stack
 				if(callStack.empty()) { // do not come from a label, need to jump back via all labels
-					if(indexOf((*visitedNodes), currentNode) >= 0){
+					if(indexOf((visitedNodesCopy), currentNode) >= 0){
 						//current successor has been visited, do not visit it again
 					} else {
-						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+						visitedNodesCopy.push_back(currentNode); //mark current successor as visited to avoid re-visit
 						for(int i=currentNode->getStartStatement(); i<=currentNode->getEndStatement(); i++) {
 							result->push_back(i);
 						}
-						getNextBipStarFirstHelper(currentNode, visitedNodes, callStack, result);
+						getNextBipStarFirstHelper(currentNode, visitedNodesCopy, callStack, result);
 					}	
 				} else { //come from a specific label, need to jump via that label
 					stack<STMT> callStackCopy = callStack;
@@ -743,14 +744,14 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*>* visited
 					if(currentNode->getEndStatement() != jumpTo)
 						continue;
 
-					if(indexOf((*visitedNodes), currentNode) >= 0){
+					if(indexOf((visitedNodesCopy), currentNode) >= 0){
 						//current successor has been visited, do not visit it again
 					} else {
-						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+						visitedNodesCopy.push_back(currentNode); //mark current successor as visited to avoid re-visit
 						for(int i=currentNode->getStartStatement(); i<=currentNode->getEndStatement(); i++) {
 							result->push_back(i);
 						}
-						getNextBipStarFirstHelper(currentNode, visitedNodes, callStackCopy, result);
+						getNextBipStarFirstHelper(currentNode, visitedNodesCopy, callStackCopy, result);
 					}				
 				}
 			}

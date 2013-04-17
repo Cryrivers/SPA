@@ -296,7 +296,7 @@ STMT_LIST AffectsBip::getAffectsBipFirst(STMT stmt2, BOOLEAN exhaustive)
 		}
 
 		if(carryOn) { //should proceed to previous CFGNode
-			getAffectsBipFirstHelper(endNode, &visitedNodes, vars, exhaustive, &results, callStack);
+			getAffectsBipFirstHelper(endNode, visitedNodes, vars, exhaustive, &results, callStack);
 			if(!exhaustive &&results.size()>0)
 				return results;
 			visitedNodes.clear();
@@ -306,7 +306,7 @@ STMT_LIST AffectsBip::getAffectsBipFirst(STMT stmt2, BOOLEAN exhaustive)
 	return results;
 }
 
-void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visitedNodes,
+void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*> visitedNodes,
 	VAR_INDEX_LIST usedVar, BOOLEAN exhaustive, STMT_LIST* results_p, stack<STMT> callStack)
 {
 	vector<CFGNode*> prev_nodes = node2->getPrevEdges();
@@ -329,10 +329,10 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 	if(!jumpToCaller && !jumpToReturnNode) { //jump within the same proc
 		for (int i = 0; i < prev_nodes.size(); i++) { // loop through each prev CFGNode
 			CFGNode* currentNode = prev_nodes.at(i);
-			if(indexOf((*visitedNodes), currentNode) >= 0){
+			if(indexOf((visitedNodes), currentNode) >= 0){
 				//current predecessor has been visited, do not visit it again
 			} else {
-				visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
+				visitedNodes.push_back(currentNode); //mark current predecessor as visited to avoid re-visit
 				bool carryOn = true; //indicate whether to proceed to previous CFGNode
 				if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
 					//this node is if or while or call or dummy, go to previous CFGNode directly
@@ -370,10 +370,10 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 			}
 		}
 		// deal with the node within same procedure first
-		if(indexOf((*visitedNodes), nodeInSameProc) >= 0){
+		if(indexOf((visitedNodes), nodeInSameProc) >= 0){
 			//current successor has been visited, do not visit it again
 		} else {
-			visitedNodes->push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
+			visitedNodes.push_back(nodeInSameProc); //mark current successor as visited to avoid re-visit
 			bool carryOn = true; //indicate whether to proceed to previous CFGNode
 			if(nodeInSameProc->getCFGType() != CFG_NORMAL_BLOCK) {
 				//this node is if or while or call or dummy, go to previous CFGNode directly
@@ -412,10 +412,10 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 					} else { //the node to jump is inside the called procedure, ready to jump
 						stack<STMT> callStackCopy = callStack;
 						callStackCopy.push(prevStmts.at(j)); //push to call stack
-						if(indexOf((*visitedNodes), currentNode) >= 0) {
+						if(indexOf((visitedNodes), currentNode) >= 0) {
 							//current predecessor has been visited, do not visit it again
 						} else {
-							visitedNodes->push_back(currentNode); //mark current predecessor as visited to avoid re-visit
+							visitedNodes.push_back(currentNode); //mark current predecessor as visited to avoid re-visit
 
 							bool carryOn = true; //indicate whether to proceed to previous CFGNode
 							if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
@@ -446,20 +446,21 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 			} else { //jump back to caller
 				assert(currentNode->getBipType() == CFG_BIP_IN);
 				// clear visited nodes that are within the same procedure before jump back
+				vector<CFGNode*> visitedNodesCopy = visitedNodes;
 				PROC_INDEX currentProc = node2->getProcIndex();
 				STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
 				for(int i=stmt1; i<=stmt2; i++) {
-					int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
+					int index = indexOf((visitedNodesCopy), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
 					if(index >=0)
-						visitedNodes->erase(visitedNodes->begin()+index);
+						visitedNodesCopy.erase(visitedNodesCopy.begin()+index);
 				}
 
 				// pop call stack
 				if(callStack.empty()) { // do not come from a label, need to jump back via all labels	
-					if(indexOf((*visitedNodes), currentNode) >= 0){
+					if(indexOf((visitedNodesCopy), currentNode) >= 0){
 						//current successor has been visited, do not visit it again
 					} else {
-						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+						visitedNodesCopy.push_back(currentNode); //mark current successor as visited to avoid re-visit
 						bool carryOn = true; //indicate whether to proceed to previous CFGNode
 						if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
 							//this node is if or while or call or dummy, go to previous CFGNode directly
@@ -479,7 +480,7 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 						}
 				
 						if(carryOn) { //should proceed to previous CFGNode
-							getAffectsBipFirstHelper(currentNode, visitedNodes, usedVar, exhaustive, results_p, callStack);
+							getAffectsBipFirstHelper(currentNode, visitedNodesCopy, usedVar, exhaustive, results_p, callStack);
 							if(!exhaustive &&results_p->size()>0)
 								return;
 						}
@@ -492,10 +493,10 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 					if(currentNode->getEndStatement() != jumpTo)
 						continue;
 
-					if(indexOf((*visitedNodes), currentNode) >= 0){
+					if(indexOf((visitedNodesCopy), currentNode) >= 0){
 						//current successor has been visited, do not visit it again
 					} else {
-						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+						visitedNodesCopy.push_back(currentNode); //mark current successor as visited to avoid re-visit
 						bool carryOn = true; //indicate whether to proceed to previous CFGNode
 						if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
 							//this node is if or while or call or dummy, go to previous CFGNode directly
@@ -515,7 +516,7 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*>* visi
 						}
 				
 						if(carryOn) { //should proceed to previous CFGNode
-							getAffectsBipFirstHelper(currentNode, visitedNodes, usedVar, exhaustive, results_p, callStackCopy);
+							getAffectsBipFirstHelper(currentNode, visitedNodesCopy, usedVar, exhaustive, results_p, callStackCopy);
 							if(!exhaustive &&results_p->size()>0)
 								return;
 						}

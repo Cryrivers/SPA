@@ -19,7 +19,7 @@ void isAffectsBipHelper(CFGNode*, STMT, vector<CFGNode*>*, VAR_INDEX_LIST, int*,
 
 void isAffectsBipStarHelper(STMT, STMT, STMT_LIST*, BOOLEAN*);
 STMT_LIST getAffectsBipFirst(STMT, BOOLEAN);
-void getAffectsBipFirstHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST, BOOLEAN, STMT_LIST*, stack<STMT>);
+void getAffectsBipFirstHelper(CFGNode*, vector<CFGNode*>, VAR_INDEX_LIST, BOOLEAN, STMT_LIST*, stack<STMT>);
 STMT_LIST getAffectsBipSecond(STMT, BOOLEAN);
 void getAffectsBipSecondHelper(CFGNode*, vector<CFGNode*>*, VAR_INDEX_LIST, BOOLEAN, STMT_LIST*, stack<STMT>);
 STMT_LIST getAffectsBipStarFirst(STMT, BOOLEAN);

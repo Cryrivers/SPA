@@ -21,7 +21,7 @@ void isNextBipStarHelper(CFGNode*, STMT, vector<CFGNode*>*, stack<STMT>, BOOLEAN
 STMT_LIST getNextBipFirst(STMT stmt);
 STMT_LIST getNextBipSecond(STMT stmt);
 STMT_LIST getNextBipStarFirst(STMT stmt2);
-void getNextBipStarFirstHelper(CFGNode*,vector<CFGNode*>*, stack<STMT>, STMT_LIST*);
+void getNextBipStarFirstHelper(CFGNode*,vector<CFGNode*>, stack<STMT>, STMT_LIST*);
 STMT_LIST getNextBipStarSecond(STMT stmt1);
 void getNextBipStarSecondHelper(CFGNode*,vector<CFGNode*>*, stack<STMT>, STMT_LIST*);
 BOOLEAN nextBip_00(STMT_LIST* st1s_p, STMT_LIST* st2s_p);
