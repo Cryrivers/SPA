@@ -101,11 +101,27 @@ bool QueryEvaluator::evaluate(map<int, vector<QueryClause>> qcl, vector<QueryVar
  */
 bool QueryEvaluator::optimise()
 {
+	map<int, vector<int>> QCweights; // keeps the weight of query clauses key: dep
+	int value;
+
+	// calculate the weights of the clauses
+	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
+		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
+			
+			if (mit->first >= 0) { // calculate weights only for dependent clauses
+				value = QVsizemap[qVariableList[vit->variable1].variableType]*QVsizemap[qVariableList[vit->variable2].variableType]*QCsizemap[vit->relationType];
+				QCweights[mit->first].push_back(value);
+			}
+		
+		}
+	}
+	
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
 		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
 			qClauseList2.push_back(*vit);
 		}
 	}
+
 	return true;
 }
 
