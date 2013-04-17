@@ -177,14 +177,14 @@ public:
 	BOOLEAN isCalls(PROC_INDEX caller, PROC_INDEX callee);
 	BOOLEAN isCallsStar(PROC_INDEX caller, PROC_INDEX callee);
 
-<<<<<<< HEAD
+
 	STMT_LIST getNextFirst(STMT stmt2) {
 		return _next->getNextFirst(stmt2);
 	};
 	STMT_LIST getNextSecond(STMT stmt1) {
 		return _next->getNextSecond(stmt1);
 	};
-=======
+
 	int followsSize(){
 		return _follows->size();
 	}
@@ -224,7 +224,7 @@ public:
 	int constSize(){
 		_constTable->size();
 	}
->>>>>>> dc4ba3b9c0da512a9ec0de795dc7b9eefc8fc3b3
+
 
 private:
 	Follows* _follows;
