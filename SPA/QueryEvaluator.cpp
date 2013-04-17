@@ -185,7 +185,7 @@ bool QueryEvaluator::evaluateQuery()
 	
 	for (vector<QueryClause>::iterator vit = qClauseList2.begin(); vit != qClauseList2.end(); ++vit) {
 			
-		if (vit->variable1 == vit->variable2) { // reflexive clause
+		if (vit->variable1 == vit->variable2 && qVariableList[vit->variable1].variableType != DT_UNDERSCORE) { // reflexive clause
 				
 			if (!evaluateReflexiveClause(*vit)) 
 				return false; // query clause evaluated to false
