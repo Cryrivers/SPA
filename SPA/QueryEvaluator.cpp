@@ -63,12 +63,13 @@ bool QueryEvaluator::evaluateQuery()
 	
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
 		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
-			if (vit->variable1 == vit->variable2) {
+			
+			if (vit->variable1 == vit->variable2) { // reflexive clause
 				
 				if (!evaluateReflexiveClause(*vit)) 
 					return false; // query clause evaluated to false
 				
-			} else {
+			} else { // non reflexive clause
 				
 				if (!evaluateClause(*vit)) 
 					return false; // query clause evaluated to false
@@ -136,26 +137,6 @@ bool QueryEvaluator::evaluateReflexiveClause(QueryClause qc) {
 						return false;
 					break;
 				
-				case DT_UNDERSCORE:
-					switch (qc.relationType) {
-						
-						case RT_NEXTT:
-						case RT_NEXTBIPT:
-							if (!pkb->getAllStmt(&vectorA))
-								return false;
-							break;
-						
-						case RT_AFFECTS:
-						case RT_AFFECTST:
-						case RT_AFFECTSBIP:
-						case RT_AFFECTSBIPT:
-							if (!pkb->getAllAssignment(&vectorA))
-								return false;
-							break;
-					} 
-
-					break;
-
 				default:
 					return false;
 
@@ -279,7 +260,7 @@ bool QueryEvaluator::evaluateReflexiveClause(QueryClause qc) {
 		
 		}
 
-		return false; // all return false
+		return false; // return false if all return false
 		
 	}
 
@@ -432,7 +413,9 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
  * \brief	Evaluates realation(a,b), supports relation type Parent, ParentT, Follows, FollowsT, 
  *			ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next, NextT, Affects, AffextsT, 
  *			NextBIP, NextBIPT, AffectsBIP, AffectsBIPT, but not Contains, ContainsT, Sibling, Pattern, With.  
- * \param [in]	a b relationType. 
+ * \param [in]	a: first parameter;
+ *				b: second parameter;
+ *				relationType: relation type.. 
  * \return 	TRUE if evaluation is successful, FALSE otherwise
  */
 bool QueryEvaluator::evaluateBoolean(int a, int b, Type relationType) {
@@ -553,7 +536,6 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 	switch (*arg) {
 
 		case 3: // both a and b are found in dependency map
-			
 			*vecA = dependencymap[depA][a]; // get vector a
 			*vecB = dependencymap[depB][b]; // get vector b
 			
@@ -563,35 +545,38 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 			return true;
 		
 		case 2: // only a is found in dependency map
-
 			*vecA = removeDuplicates(dependencymap[depA][a]); // get vector a
 			if (!getVector(vecB, b, &argB, qc.relationType)) // get vector b 
 				return false;
+			
 			if (argB == 1 && !vecB->empty() && !cartesianProduct(vecA, vecB)) // perform cartesian product if vecB is dependent and not empty
 				return false;
 			*arg += argB;
+			
 			return true;
 
 		case 1: // only b is found in dependency map
-			
 			*vecB = removeDuplicates(dependencymap[depB][b]); // get vector b
 			if (!getVector(vecA, a, &argA, qc.relationType)) // get vector a
 				return false;
+			
 			if (argA == 1 && !vecA->empty() && !cartesianProduct(vecA, vecB)) // perform cartesian product if vecA is dependent and not empty
 				return false;
 			*arg += 2*argA;
+			
 			return true;
 
 		case 0: // both a and b are not found in dependency map
-			
 			if (!getVector(vecA, a, &argA, qc.relationType)) // get vector a
 				return false;
 			if (!getVector(vecB, b, &argB, qc.relationType)) // get vector b
 				return false;
+			
 			*arg = 2*argA + argB;
 			// if arg = 3 (both dependent) and vecA and vecB are both not empty, do cartesian product 
 			if (*arg == 3 && !vecA->empty() && !vecB->empty() && !cartesianProduct(vecA, vecB))
 				return false;
+			
 			return true;
 	
 	}
@@ -614,9 +599,8 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 	switch (qv.variableType) {
 		
 		case DT_ASSIGN: 	
-			
-			if (rel != RT_AFFECTS && rel != RT_AFFECTST) {
-			// do not get all assignments if relation is affects or affects*
+			if (rel != RT_AFFECTS && rel != RT_AFFECTST && rel != RT_AFFECTSBIP && rel != RT_AFFECTSBIPT) {
+			// do not get all assignments if relation is of affects type
 				
 				if (!pkb->getAllAssignment(vec))
 					return false;		
@@ -624,25 +608,21 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 			break;
 
 		case DT_WHILE: 		
-			
 			if (!pkb->getAllWhile(vec))
 				return false;
 			break;
 		
 		case DT_IF:			
-		
 			if (!pkb->getAllIf(vec))
 				return false;
 			break;
 
 		case DT_CALL: 		
-
 			if (!pkb->getAllCall(vec))
 				return false;
 			break;
 		
 		case DT_CONSTANT:	
-			
 			if (!pkb->getAllConstant(vec))
 				return false;
 			break;
@@ -650,13 +630,13 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 		// no restriction on the following types, leave vector empty
 		case DT_STMT:
 		case DT_PROGLINE:
+		case DT_STMTLST:
 		case DT_VARIABLE: 	
 		case DT_PROCEDURE:	
-		case DT_UNDERSCORE:		
+		case DT_UNDERSCORE:
 			break;
 			
 		// invalid types, should not appear in relations
-		case DT_STMTLST: 	
 		case DT_BOOLEAN:	
 			break;
 			
@@ -665,7 +645,6 @@ bool QueryEvaluator::getVectors(vector<int>* vecA, vector<int>* vecB, QueryClaus
 		case KT_KNOWN_VARIABLE:		
 		case KT_KNOWN_PROCEDURE:	
 		case KT_KNOWN_CONSTANT:	
-			
 			vec->push_back(qv.content);
 			break;
 
@@ -695,19 +674,17 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 	int dep;
 
 	switch (arg) {
+		
 		case 3: // store both vecA and vecB
-
 			removeDuplicatesPair(vecA, vecB);
 			dep = qVariableList.at(a).dependency; // a and b must be of the same dependency
 			
-			if (dependencymap.count(dep) == 1) { 
-			// dependency map already exists
+			if (dependencymap.count(dep) == 1) { // dependency map already exists
 				
 				if (!intersectDependencyMapPair(dep, a, vecA, b, vecB))
 					return false; // intersection is empty set
 
-			} else { 
-			// dependency map is empty
+			} else { // dependency map is empty
 				
 				// store both vectors
 				dependencymap[dep][a] = *vecA;
@@ -718,18 +695,15 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 			break;
 
 		case 2: // store only vecA
-		
 			*vecA = removeDuplicates(*vecA);
 			dep = qVariableList.at(a).dependency;
 			
-			if (dependencymap.count(dep) == 1) { 
-			// dependency map already exists
+			if (dependencymap.count(dep) == 1) { // dependency map already exists
 				
 				if (!intersectDependencyMap(dep, a, vecA))
 					return false; // intersection is empty set
 
-			} else { 
-			// dependency map is empty
+			} else { // dependency map is empty
 				
 				// store vecA
 				dependencymap[dep][a] = *vecA;
@@ -739,18 +713,15 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 			break;
 
 		case 1: // store only vecB
-			
 			*vecB = removeDuplicates(*vecB);
 			dep = qVariableList.at(b).dependency;
 			
-			if (dependencymap.count(dep) == 1) { 
-			// dependency map already exists
+			if (dependencymap.count(dep) == 1) { // dependency map already exists
 				
 				if (!intersectDependencyMap(dep, b, vecB))
 					return false; // intersection is empty set
 
-			} else { 
-			// dependency map is empty
+			} else { // dependency map is empty
 				
 				// store vecB
 				dependencymap[dep][b] = *vecB;
