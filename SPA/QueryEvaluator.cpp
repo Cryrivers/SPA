@@ -92,140 +92,195 @@ bool QueryEvaluator::evaluateReflexiveClause(QueryClause qc) {
 
 	a = qc.variable1;
 	dep = qVariableList.at(a).dependency; 
-	inDM = 0;
-
-	// checks if a exists in dependency map
-	if (dep >= 0 && dependencymap.count(dep) == 1)
-		inDM = dependencymap[dep].count(a);
 	
-	if (inDM) { // a exists in dependency map
+	if (dep >= 0) { // variable is dependent
 
-		vectorA = removeDuplicates(dependencymap[dep][a]);
-
-	} else { // a does not exist in dependency map
+		inDM = 0;
 		
+		// checks if a exists in dependency map
+		if (dependencymap.count(dep) == 1)
+			inDM = dependencymap[dep].count(a);
+
+		if (inDM) { // a exists in dependency map
+
+			vectorA = removeDuplicates(dependencymap[dep][a]); //get vectorA
+
+		} else { // a does not exist in dependency map
+			
+			// get vectorA
+			switch (qVariableList.at(a).variableType) {
+				
+				case DT_ASSIGN: 	
+					if (!pkb->getAllAssignment(&vectorA))
+						return false;
+					break;
+				
+				case DT_WHILE: 		
+					if (!pkb->getAllWhile(&vectorA))
+						return false;
+					break;
+				
+				case DT_IF:			
+					if (!pkb->getAllIf(&vectorA))
+						return false;
+					break;
+				
+				case DT_CALL: 		
+					if (!pkb->getAllCall(&vectorA))
+						return false;
+					break;
+				
+				case DT_STMT: 		
+				case DT_PROGLINE:
+					if (!pkb->getAllStmt(&vectorA))
+						return false;
+					break;
+				
+				case DT_UNDERSCORE:
+					switch (qc.relationType) {
+						
+						case RT_NEXTT:
+						case RT_NEXTBIPT:
+							if (!pkb->getAllStmt(&vectorA))
+								return false;
+							break;
+						
+						case RT_AFFECTS:
+						case RT_AFFECTST:
+						case RT_AFFECTSBIP:
+						case RT_AFFECTSBIPT:
+							if (!pkb->getAllAssignment(&vectorA))
+								return false;
+							break;
+					} 
+
+					break;
+
+				default:
+					return false;
+
+			}
+		}
+
+		vector<int> vectorB (vectorA); //make copy of vectorA
+		arg = 3; // update arg
+
+		//perform evaluation
+		switch (qc.relationType) {
+			
+			case RT_NEXTT:
+				if (!pkb->nextStar(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+			
+			case RT_AFFECTS:
+				if (!pkb->affects(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+			case RT_AFFECTST:
+				if (!pkb->affectsStar(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+			case RT_NEXTBIPT:
+				if (!pkb->nextBipStar(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+			case RT_AFFECTSBIP:
+				if (!pkb->affectsBip(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+			case RT_AFFECTSBIPT:
+				if (!pkb->affectsBipStar(&vectorA, &vectorB, arg))
+					return false; // can't find relation
+				break;
+
+		}
+
+		if (dependencymap.count(dep)) { // dependency map is not empty
+
+			if (!intersectDependencyMap(dep, a, &vectorA))
+				return false; // intersection is empty set
+
+		} else { // dependency map is empty
+		
+			dependencymap[dep][a] = vectorA; // push vectorA into it
+
+		}
+
+	} else { // variable is independent
+	
+		// get vectorA
 		switch (qVariableList.at(a).variableType) {
 				
 			case DT_ASSIGN: 	
-			
 				if (!pkb->getAllAssignment(&vectorA))
 					return false;
 				break;
-		
+				
 			case DT_WHILE: 		
-			
 				if (!pkb->getAllWhile(&vectorA))
 					return false;
 				break;
-		
+				
 			case DT_IF:			
-		
 				if (!pkb->getAllIf(&vectorA))
 					return false;
 				break;
-
+				
 			case DT_CALL: 		
-
 				if (!pkb->getAllCall(&vectorA))
 					return false;
 				break;
-			
+				
 			case DT_STMT: 		
 			case DT_PROGLINE:
-				
 				if (!pkb->getAllStmt(&vectorA))
 					return false;
 				break;
-			
-			case DT_UNDERSCORE:
 				
+			case DT_UNDERSCORE:
 				switch (qc.relationType) {
-			
+						
 					case RT_NEXTT:
 					case RT_NEXTBIPT:
-						
 						if (!pkb->getAllStmt(&vectorA))
 							return false;
 						break;
-			
+						
 					case RT_AFFECTS:
 					case RT_AFFECTST:
 					case RT_AFFECTSBIP:
 					case RT_AFFECTSBIPT:
-			
 						if (!pkb->getAllAssignment(&vectorA))
 							return false;
 						break;
 				} 
-
 				break;
-				
+
 			// Known Variables
-			case KT_STMT_NUM:			
-					
-				vectorA.push_back(qVariableList.at(a).content);					
-				
-				break; 
+			case KT_STMT_NUM:				
+				vectorA.push_back(qVariableList.at(a).content);	
+				break;
 
 			default:
-				
 				return false;
 
 		}
-	}
 
-	vector<int> vectorB (vectorA); //make copy of vectorA
-	arg = 2*dep; // update arg
-
-	switch (qc.relationType) {
+		// perform evaluation
+		for (int i = 0; i < vectorA.size(); i++) {
 			
-		case RT_NEXTT:
-			
-			if (!pkb->nextStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-			
-		case RT_AFFECTS:
-
-			if (!pkb->affects(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-		case RT_AFFECTST:
-			
-			if (!pkb->affectsStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-		case RT_NEXTBIPT:
+			if (evaluateBoolean(vectorA[0],vectorA[0],qc.relationType))
+				return true; // only need one to be true 
 		
-			if (!pkb->nextBipStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
+		}
 
-		case RT_AFFECTSBIP:
-
-			if (!pkb->affectsBip(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-		case RT_AFFECTSBIPT:
-			
-			if (!pkb->affectsBipStar(&vectorA, &vectorB, arg))
-				return false; // can't find relation
-			break;
-
-	}
-	
-	if (dependencymap.count(dep)) { // dependency map is not empty
-
-		if (!intersectDependencyMap(dep, a, &vectorA))
-			return false; // intersection is empty set
-
-	} else { // dependency map is empty
+		return false; // all return false
 		
-		dependencymap[dep][a] = vectorA;
-
 	}
 
 	return true;
@@ -393,6 +448,106 @@ bool QueryEvaluator::evaluateClause(QueryClause qc) {
 		return false; // intersection is empty
 
 	return true;
+}
+
+/**
+ * \fn		QueryEvaluator::evaluateBoolean(int a, int b, Type relationType)
+ * \brief	Evaluates realation(a,b), supports relation type Parent, ParentT, Follows, FollowsT, 
+ *			ModifiesS, ModifiesP, UsesS, UsesP, Calls, CallsT, Next, NextT, Affects, AffextsT, 
+ *			NextBIP, NextBIPT, AffectsBIP, AffectsBIPT, but not Contains, ContainsT, Sibling, Pattern, With.  
+ * \param [in]	a b relationType. 
+ * \return 	TRUE if evaluation is successful, FALSE otherwise
+ */
+bool QueryEvaluator::evaluateBoolean(int a, int b, Type relationType) {
+
+	switch (relationType) {
+
+		case RT_PARENT:
+			return pkb->isParent(a, b);
+			
+		case RT_PARENTT:
+			return pkb->isParentStar(a, b);
+			
+		case RT_FOLLOWS:
+			return pkb->isFollows(a, b);
+			
+		case RT_FOLLOWST:
+			return pkb->isFollowsStar(a, b);
+
+		case RT_MODIFIESS:
+			return pkb->isModifies(a, b);
+
+		case RT_MODIFIESP:
+			return pkb->isModifiesP(a, b);
+
+		case RT_USESS:
+			return pkb->isUses(a, b);
+
+		case RT_USESP:
+			return pkb->isUsesP(a, b);
+		
+		case RT_CALLS:
+			return pkb->isCalls(a, b);
+
+		case RT_CALLST:
+			return pkb->isCallsStar(a, b);
+
+		case RT_NEXT:
+			return pkb->isNext(a, b);
+			
+		case RT_NEXTT:
+			return pkb->isNextStar(a, b);
+			
+		case RT_AFFECTS:
+			return pkb->isAffects(a, b);
+			
+		case RT_AFFECTST:
+			return pkb->isAffectsStar(a, b);
+			
+		case RT_NEXTBIP:
+			return pkb->isNextBip(a, b);
+
+		case RT_NEXTBIPT:
+			return pkb->isNextBipStar(a, b);
+			
+		case RT_AFFECTSBIP:
+			return pkb->isAffectsBip(a, b);
+			
+		case RT_AFFECTSBIPT:
+			return pkb->isAffectsBipStar(a, b);
+		/*	
+		case RT_CONTAINS:
+
+			if (!pkb->contains(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+
+		case RT_CONTAINST:
+
+			if (!pkb->containsStar(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+
+		case RT_SIBLING:	 
+			
+			if (!pkb->sibling(&vectorA, &vectorB, getNodeType(qc.variable1), getNodeType(qc.variable2), arg))
+				return false; // can't find relation
+			break;
+
+		case CT_PATTERN:
+			
+			if (!pkb->pattern(&vectorA, &vectorB, qc.variable3, qc.patternType, arg))
+				return false; // can't find relation
+			break;
+		
+		case CT_WITH:
+
+			if (!pkb->with(&vectorA, &vectorB, getWithType(qc.attribute1), getWithType(qc.attribute2), arg))
+				return false;
+			break;
+		*/
+	}
+	
 }
 
 /**
