@@ -1313,7 +1313,6 @@ void DesignExtractor::addNext()
 void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 {
 	stack<IfPreprocessingPhase> phaseStack;
-
 	stack<statement> scope;
 	vector<statement>* preprocProgram  = _pkb->getPreprocessedProgram();
 	//Find all paired nodes first.
@@ -1342,6 +1341,7 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 		{
 			scope.push(*it);
 			phaseStack.push(PREPROCESS_THEN);
+
 			//Connect If Block
 			CFGNode* ifNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* thenNodeStart = cfg->getCFGNodeByStmtNumber(it->stmtNumber+1);
@@ -1377,8 +1377,6 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 		}
 		else if(it->type == STMT_WHILE)
 		{
-			phaseStack.push(PREPROCESS_WHILE);
-			scope.push(*it);
 			//Connect While Block
 			CFGNode* whileNode = cfg->getCFGNodeByStmtNumber(it->stmtNumber);
 			CFGNode* followingNode = cfg->getFollowingCFGNodeByCurrentStmtNumber(it->stmtNumber);
@@ -1399,10 +1397,21 @@ void DesignExtractor::connectCFG(CFG* cfg, bool bipEnabled)
 			
 			//Connect while statement to next statement, if any.
 			CFGNode* afterWhileBlock = cfg->getFollowingCFGNodeByCurrentStmtNumber(it->endOfTheScope);
-			if(afterWhileBlock != NULL)
+
+			if(afterWhileBlock != NULL)	
 			{
-				__smartConnectThisCFGToNext(afterWhileBlock, whileNode);
+				if(
+					(__getParsingPhase(phaseStack) == PREPROCESS_WHILE && afterWhileBlock->getEndStatement() <= scope.top().endOfTheScope) ||
+					(__getParsingPhase(phaseStack) == PREPROCESS_THEN && afterWhileBlock->getEndStatement() <= scope.top().midOfTheScope) ||
+					(__getParsingPhase(phaseStack) == PREPROCESS_ELSE) ||
+					(__getParsingPhase(phaseStack) == PREPROCESS_NORMAL_BLOCK)
+				  )
+				{	
+					__smartConnectThisCFGToNext(afterWhileBlock, whileNode);
+				}
 			}
+			phaseStack.push(PREPROCESS_WHILE);
+			scope.push(*it);
 		}
 		else if (it->type == STMT_ASSIGNMENT || it->type == STMT_CALL)
 		{
