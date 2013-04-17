@@ -339,7 +339,7 @@ vector<int>* AST::matchWhileLoop( VAR_INDEX ind )
 	vector<int>* result  = new vector<int>();
 	vector<ASTNode*>* whileTable = PKBController::createInstance()->getWhileTable();
 	for(std::vector<ASTNode*>::iterator it = whileTable->begin(); it != whileTable->end();++it)
-		if((*it)->getNodeValue() == ind)
+		if((*it)->getChildren()->getNodeValue() == ind)
 			result->push_back((*it)->getStmtNumber());
 	return(result);
 }
@@ -362,7 +362,7 @@ vector<int>* AST::matchIfBranch( VAR_INDEX ind )
 	vector<int>* result  = new vector<int>();
 	vector<ASTNode*>* ifTable = PKBController::createInstance()->getIfBranchTable();
 	for(std::vector<ASTNode*>::iterator it = ifTable->begin(); it != ifTable->end();++it)
-		if((*it)->getNodeValue() == ind)
+		if((*it)->getChildren()->getNodeValue() == ind)
 			result->push_back((*it)->getStmtNumber());
 	return(result);
 }

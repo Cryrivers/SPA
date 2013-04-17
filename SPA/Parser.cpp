@@ -458,7 +458,7 @@ inline int Parser::_findValidMinimumOfThree(size_t lb, size_t rb, size_t sc)
 
 ASTNode *Parser::_buildAssignmentAST(statement *s)
 {
-	ASTNode *node = ASTNode::createNode(AST_ASSIGNMENT, NULL);
+	ASTNode *node = ASTNode::createNode(AST_ASSIGNMENT, s->stmtNumber);
 	_ast->setASTNodeIndex(node);
 
 	node->setStmtNumber(s->stmtNumber);
@@ -633,7 +633,7 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 
 ASTNode* Parser::_buildIfAST(statement* s)
 {
-	ASTNode *node = ASTNode::createNode(AST_IF_BRANCH, _pkb->addVar(s->extraCond));
+	ASTNode *node = ASTNode::createNode(AST_IF_BRANCH, s->stmtNumber);
 	_ast->setASTNodeIndex(node);
 
 	node->setStmtNumber(s->stmtNumber);
@@ -665,7 +665,7 @@ ASTNode* Parser::_buildElseAST(statement* s)
 ASTNode* Parser::_buildCallAST( statement* s )
 {
 	//NodeValue is Callee's procIndex, no idea if callers procindex needed.
-	ASTNode *node = ASTNode::createNode(AST_CALL,_findAssumedProcIndexByName(s->extraName));
+	ASTNode *node = ASTNode::createNode(AST_CALL,s->stmtNumber);
 	_ast->setASTNodeIndex(node);
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
@@ -682,7 +682,7 @@ ASTNode* Parser::_buildCallAST( statement* s )
 
 ASTNode *Parser::_buildWhileLoopAST(statement *s)
 {
-	ASTNode *node = ASTNode::createNode(AST_WHILE_LOOP, _pkb->addVar(s->extraCond));
+	ASTNode *node = ASTNode::createNode(AST_WHILE_LOOP, s->stmtNumber);
 	_ast->setASTNodeIndex(node);
 	node->setStmtNumber(s->stmtNumber);
 	_parentStack.top()->addChild(node);
