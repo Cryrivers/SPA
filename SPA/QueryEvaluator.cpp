@@ -36,7 +36,7 @@ QueryEvaluator::QueryEvaluator(void)
 	QCsizemap[RT_USESP] = pkb->usesPSize();
 	QCsizemap[RT_USESS] = pkb->usesSize();
 	QCsizemap[RT_CALLS] = pkb->callsSize();
-	QCsizemap[RT_CALLST] = 9999;
+	QCsizemap[RT_CALLST] = QCsizemap[RT_CALLS]*QCsizemap[RT_CALLS];
 	QCsizemap[RT_PARENT] = pkb->parentSize();
 	QCsizemap[RT_PARENTT] = 9999;
 	QCsizemap[RT_FOLLOWS] = pkb->followsSize();
@@ -106,22 +106,39 @@ bool QueryEvaluator::optimise()
 
 	// calculate the weights of the clauses
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
-		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
+		
+		if (mit->first >= 0) { // calculate weights only for dependent clauses
 			
-			if (mit->first >= 0) { // calculate weights only for dependent clauses
+			for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
 				value = QVsizemap[qVariableList[vit->variable1].variableType]*QVsizemap[qVariableList[vit->variable2].variableType]*QCsizemap[vit->relationType];
 				QCweights[mit->first].push_back(value);
 			}
-		
 		}
 	}
 	
+	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
+		
+		if (mit->first < 0) { // independent clauses
+			
+			for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit)
+				qClauseList2.push_back(*vit);
+		
+		} else { // dependent clauses
+			
+			for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit)
+				qClauseList2.push_back(*vit);
+
+		}
+	
+	}	
+	
+	/*
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
 		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit) {
 			qClauseList2.push_back(*vit);
 		}
 	}
-
+	*/
 	return true;
 }
 
