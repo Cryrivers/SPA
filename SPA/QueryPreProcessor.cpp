@@ -1538,8 +1538,7 @@ BOOLEAN QueryPreprocessor::setDependency(){
 		if(queryVarTable[i].mapTo==i){
 			if((queryVarTable[i].variableType==KT_STMT_NUM)||(queryVarTable[i].variableType==DT_UNDERSCORE)
 				||(queryVarTable[i].variableType==KT_KNOWN_VARIABLE)||(queryVarTable[i].variableType==KT_KNOWN_PROCEDURE)
-				||(queryVarTable[i].variableType==DT_STMTLST)||(queryVarTable[i].variableType==DT_CONSTANT)
-				||(queryVarTable[i].variableType==KT_KNOWN_CONSTANT)){
+				||(queryVarTable[i].variableType==DT_CONSTANT)||(queryVarTable[i].variableType==KT_KNOWN_CONSTANT)){
 				continue;
 			}else if(queryVarTable[i].countAppear>1&&queryVarTable[i].dependency==-1){
 				queryVarTable[i].dependency=i;
