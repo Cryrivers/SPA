@@ -1242,7 +1242,9 @@ int PKBController::callSize()
 
 int PKBController::stmtListSize()
 {
-	vector<int>* temp;
+	vector<int>* temp = new vector<int>();
 	_designExtractor->getAllStmtList(temp);
-	return temp->size();
+	int size = temp->size();
+	delete temp;
+	return size;
 }

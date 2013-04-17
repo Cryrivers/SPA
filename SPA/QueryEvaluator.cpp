@@ -10,6 +10,51 @@
 QueryEvaluator::QueryEvaluator(void)
 {
 	pkb = PKBController::createInstance();
+	/*
+	QVsizemap[DT_PROCEDURE] = pkb->procTableSize();
+	QVsizemap[DT_STMTLST] = pkb->stmtListSize();
+	QVsizemap[DT_STMT] = pkb->stmtSize();
+	QVsizemap[DT_PROGLINE] = pkb->stmtSize();
+	QVsizemap[DT_ASSIGN] = pkb->assignSize();
+	QVsizemap[DT_CALL] = pkb->callSize();
+	QVsizemap[DT_WHILE] = pkb->whileSize();
+	QVsizemap[DT_IF] = pkb->ifSize();
+	QVsizemap[DT_VARIABLE] = pkb->varTableSize();
+	QVsizemap[DT_CONSTANT] = pkb->constSize();
+	QVsizemap[DT_BOOLEAN] = 0; // invalid
+	QVsizemap[DT_UNDERSCORE] = -1; // special value (dependent on the relation type)
+	QVsizemap[DT_PLUS] = QVsizemap[DT_ASSIGN]; // set to assign
+	QVsizemap[DT_TIMES] = QVsizemap[DT_ASSIGN]; // set to assign
+	QVsizemap[DT_MINUS] = QVsizemap[DT_ASSIGN]; // set to assign
+	QVsizemap[KT_STMT_NUM] = 1; // constant
+	QVsizemap[KT_KNOWN_VARIABLE] = 1; // constant
+	QVsizemap[KT_KNOWN_PROCEDURE] = 1; // constant
+	QVsizemap[KT_KNOWN_CONSTANT] = 1; // constant
+
+	QCsizemap[RT_MODIFIESP] = pkb->modifiesPSize();
+	QCsizemap[RT_MODIFIESS] = pkb->modifiesSize();
+	QCsizemap[RT_USESP] = pkb->usesPSize();
+	QCsizemap[RT_USESS] = pkb->usesSize();
+	QCsizemap[RT_CALLS] = pkb->callsSize();
+	QCsizemap[RT_CALLST] = 9999;
+	QCsizemap[RT_PARENT] = pkb->parentSize();
+	QCsizemap[RT_PARENTT] = 9999;
+	QCsizemap[RT_FOLLOWS] = pkb->followsSize();
+	QCsizemap[RT_FOLLOWST] = 9999;
+	QCsizemap[RT_NEXT] = pkb->nextSize();
+	QCsizemap[RT_NEXTT] = 9999;
+	QCsizemap[RT_AFFECTS] = 9999;
+	QCsizemap[RT_AFFECTST] = 9999;
+	QCsizemap[RT_CONTAINST] = 9999;
+	QCsizemap[RT_CONTAINS] = 9999;
+	QCsizemap[RT_SIBLING] = 9999;
+	QCsizemap[RT_NEXTBIP] = 9999;
+	QCsizemap[RT_NEXTBIPT] = 9999;
+	QCsizemap[RT_AFFECTSBIP] = 9999;
+	QCsizemap[RT_AFFECTSBIPT] = 9999;
+	QCsizemap[CT_PATTERN] = 9999;
+	QCsizemap[CT_WITH] = 9999;
+	*/
 }
 
 

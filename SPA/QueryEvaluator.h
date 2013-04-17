@@ -19,6 +19,8 @@ class QueryEvaluator
 	map<int, vector<QueryClause>> qClauseList;
 	vector<QueryVariable> qVariableList;
 	vector<QueryTarget> qTargetList;
+	map<int, int> QVsizemap;
+	map<int, int> QCsizemap;
 	map<int, map<int, vector<int>>> dependencymap;
 	map<int, map<int, vector<string>>> targetmap;
 	

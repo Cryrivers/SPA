@@ -222,7 +222,7 @@ public:
 	int callSize();
 	int stmtListSize();
 	int constSize(){
-		_constTable->size();
+		return _constTable->size();
 	}
 
 
