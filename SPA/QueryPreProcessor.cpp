@@ -1034,7 +1034,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 									if(inV<0) return false;  
 									queryVarTable[ia].variableType=KT_KNOWN_VARIABLE; 	
 									queryVarTable[ia].content=inV; 
-								}else if(frontAttr==AT_PROC_NAME&&queryVarTable[ia].variableType==DT_CALL){
+								}else if(frontAttr==AT_CALL_PROC_NAME&&queryVarTable[ia].variableType==DT_CALL){
 									int inP = pkb->getProcIndex(back);
 									if(inP<0) return false;	   
 									QueryVariable var;
@@ -1052,7 +1052,7 @@ BOOLEAN QueryPreprocessor::setupClaTable(vector<string> claTable){
 									qc.attribute2=AT_PROCTABLEINDEX;
 									queryClaTable.push_back(qc);
 									continue;
-								}else if(frontAttr==AT_CALL_PROC_NAME){	 
+								}else if(frontAttr==AT_PROC_NAME){	 
 									int inP = pkb->getProcIndex(back);
 									if(inP<0) return false; 
 									queryVarTable[ia].variableType=KT_KNOWN_PROCEDURE; 
