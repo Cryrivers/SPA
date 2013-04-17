@@ -1,0 +1,782 @@
+32
+cat: All Category
+1 - Parent, Typed, ImplstmtLine ::
+if if; while w;
+Select w such that Parent (if, w)
+32,49,88,94, 107, 114
+5000
+2 - Parent, Typed, ImplstmtLine ::
+variable v; while w;
+Select w pattern w(v, _)
+100,107,114,26,32,49,51,64,7,88,94
+5000
+3 - Parent, Typed, ImplstmtLine ::
+variable v; while w;
+Select w pattern w("i", _)
+7, 26, 64, 100
+5000
+4 - Parent, Typed, ImplstmtLine ::
+if if; while w;
+Select if pattern if ("z", _, _)
+103, 9
+5000
+5 - Parent, Typed, ImplstmtLine ::
+if if; variable v;
+Select if pattern if (v, _, _)
+103,30,45,68,84,9
+5000
+6 - Parent, Typed, ImplstmtLine ::
+while w1, w2;
+Select <w1, w2> such that Parent (w1, w2)
+49 51
+5000
+7 - Parent, Typed, ImplstmtLine ::
+while w; if if;
+Select <w, if> such that Parent (if, w)
+107 103,114 103,32 30,49 45,88 84,94 84
+5000
+8 - Parent, Typed, ImplstmtLine ::
+call c;
+Select c with c.procName = "Daniel"
+20
+5000
+9 - Parent, Typed, ImplstmtLine ::
+call c;
+Select c with c.procName = "Mary"
+39, 78, 86
+5000
+10 - Parent, Typed, ImplstmtLine ::
+call c;
+Select c with c.procName = "peiyu"
+
+5000
+11 - Modifies, Typed, ImplstmtLine ::
+procedure p; variable v;
+Select <p, v> such that Modifies (p, v)
+Bill d,Bill e,Bill i,Bill m,Bill n,Bill r,Bill t,Bill x,Bill y,Bill z,Carl d,Carl i,Carl m,Carl n,Carl r,Carl t,Carl x,Carl y,Carl z,Daniel d,Daniel i,Daniel m,Daniel n,Daniel r,Daniel t,Daniel x,Daniel y,Daniel z,Jane d,Jane i,Jane m,Jane n,Jane r,Jane t,Jane x,Jane y,Jane z,John d,John i,John n,John r,John t,John x,John y,John z,Mary d,Mary i,Mary n,Mary r,Mary t,Mary x,Mary y,Mary z
+5000
+12 - Uses, Typed, ImplstmtLine ::
+procedure p; variable v;
+Select <p, v> such that Uses (p, v)
+Bill d,Bill i,Bill m,Bill n,Bill r,Bill t,Bill x,Bill y,Bill z,Carl d,Carl i,Carl m,Carl n,Carl r,Carl t,Carl x,Carl y,Carl z,Daniel d,Daniel i,Daniel m,Daniel n,Daniel r,Daniel t,Daniel x,Daniel y,Daniel z,Jane d,Jane i,Jane m,Jane n,Jane r,Jane t,Jane x,Jane y,Jane z,John d,John i,John m,John n,John r,John t,John x,John y,John z,Mary d,Mary i,Mary m,Mary n,Mary r,Mary t,Mary x,Mary y,Mary z
+5000
+13 - Calls, Typed, ImplstmtLine ::
+procedure p, q;
+Select <p, q> such that Calls(p, q)
+Bill Carl,Carl Daniel,Carl Jane,Carl Mary,Daniel John,Jane Mary,John Mary
+5000
+14 - Calls, Typed, ImplstmtLine ::
+if if1, if2;
+Select BOOLEAN with if1.stmt# = 9 and if2.stmt# = 30
+true
+5000
+15 - Calls, Typed, ImplstmtLine ::
+if if;
+Select BOOLEAN with if.stmt# = 11
+false
+5000
+16 - Calls, Typed, ImplstmtLine ::
+while w;
+Select w such that Calls ("Bill", "Carl")
+100,107,114,26,32,49,51,64,7,88,94
+5000
+17 - Calls, Typed, ImplstmtLine ::
+procedure p;
+Select p such that Calls (p, _)
+Bill,Carl,Daniel,Jane,John
+5000
+18 - Calls, Typed, ImplstmtLine ::
+while w;
+Select w such that Calls (_, _)
+100,107,114,26,32,49,51,64,7,88,94
+5000
+19 - Calls, Typed, ImplstmtLine ::
+while w; if if;
+Select <if, w> such that Calls ("Bill", "Carl")
+68 64,103 100,103 107,103 114,103 26,103 32,103 49,103 51,103 64,103 7,103 88,103 94,30 100,30 107,30 114,30 26,30 32,30 49,30 51,30 64,30 7,30 88,30 94,45 100,45 107,45 114,45 26,45 32,45 49,45 51,45 64,45 7,45 88,45 94,68 100,68 107,68 114,68 26,68 32,68 49,68 51,68 7,68 88,68 94,84 100,84 107,84 114,84 26,84 32,84 49,84 51,84 64,84 7,84 88,84 94,9 100,9 107,9 114,9 26,9 32,9 49,9 51,9 64,9 7,9 88,9 94
+5000
+20 - Modifies, Typed, ImplstmtLine ::
+procedure p, q; assign a;
+Select <p, q> such that Modifies (a, "x")
+Bill Bill,Bill Carl,Bill Daniel,Bill Jane,Bill John,Bill Mary,Carl Bill,Carl Carl,Carl Daniel,Carl Jane,Carl John,Carl Mary,Daniel Bill,Daniel Carl,Daniel Daniel,Daniel Jane,Daniel John,Daniel Mary,Jane Bill,Jane Carl,Jane Daniel,Jane Jane,Jane John,Jane Mary,John Bill,John Carl,John Daniel,John Jane,John John,John Mary,Mary Bill,Mary Carl,Mary Daniel,Mary Jane,Mary John,Mary Mary
+5000
+21 - Modifies, Typed, ImplstmtLine ::
+assign a;
+Select a with 1 = 2
+
+5000
+22 - Modifies, Typed, ImplstmtLine ::
+assign a;
+Select a such that Modifies (a, "r") pattern a(_, _"n"_) with 2=2 such that Uses (a, "m") 
+18,76
+5000
+23 - Uses, Typed, ImplstmtLine ::
+constant c; prog_line n;
+Select c with n = 1
+1,10,11,12,2,3,4,5,6,7,8
+5000
+24 - Modifies, Typed, ImplstmtLine ::
+assign a;
+Select a with 4 = 4
+1,10,101,102,104,105,106,108,109,11,110,111,112,113,115,116,117,118,119,12,13,14,15,16,17,18,19,2,21,22,24,25,27,28,29,3,31,33,34,35,36,37,38,4,40,41,42,43,44,46,47,48,50,52,53,54,55,56,58,59,6,60,61,62,63,65,66,67,69,70,71,72,73,74,75,76,77,79,8,80,81,82,83,85,87,89,90,91,92,93,95,96,97,98,99
+5000
+25 - Parent, Typed, ImplstmtLine ::
+while w; stmt s;
+Select s such that Parent (w, s)
+101,102,103,108,109,110,111,115,116,118,14,15,27,28,29,30,33,34,38,50,51,52,53,65,66,67,68,77,8,89,9,90,91,95,96
+5000
+26 - ParentStar, Typed, ImplstmtLine ::
+while w; stmt s;
+Select s such that Parent* (w, s)
+10,101,102,103,104,105,106,107,108,109,11,110,111,112,113,114,115,116,117,118,12,13,14,15,27,28,29,30,31,32,33,34,35,36,37,38,50,51,52,53,65,66,67,68,69,70,71,72,73,74,75,76,77,8,89,9,90,91,95,96
+5000
+27 - ParentStar, Typed, ImplstmtLine ::
+if if; stmt s;
+Select s such that Parent* (if, s)
+10,104,105,106,107,108,109,11,110,111,112,113,114,115,116,117,12,13,31,32,33,34,35,36,37,46,47,48,49,50,51,52,53,54,55,56,69,70,71,72,73,74,75,76,85,86,87,88,89,90,91,92,93,94,95,96
+5000
+28 - AffectStar, Typed, ImplstmtLine ::
+assign a1, a2;
+Select a2 such that Affects* (a2, a1) with a1.stmt#=80
+79
+5000
+29 - Modifies, Typed, ImplstmtLine ::
+stmt s; variable v;
+Select <s, v> such that Modifies (s, v)
+1 z,10 y,100 d,100 i,100 n,100 r,100 t,100 x,100 y,100 z,101 z,102 i,103 i,103 n,103 r,103 t,103 x,103 y,103 z,104 x,105 y,106 n,107 i,107 n,107 r,107 x,108 r,109 i,11 i,110 n,111 x,112 t,113 r,114 x,114 z,115 x,116 z,117 y,118 d,119 t,12 x,13 i,14 x,15 y,16 n,17 m,18 r,19 d,2 x,20 d,20 i,20 m,20 n,20 r,20 t,20 x,20 y,20 z,21 d,22 y,23 d,23 i,23 m,23 n,23 r,23 t,23 x,23 y,23 z,24 t,25 z,26 i,26 m,26 r,26 t,26 x,27 t,28 r,29 x,3 y,30 i,30 m,30 r,30 t,31 r,32 i,32 m,33 i,34 m,35 t,36 m,37 i,38 m,39 d,39 i,39 n,39 r,39 t,39 x,39 y,39 z,4 d,40 m,41 r,42 d,43 z,44 y,45 i,45 n,45 x,45 y,45 z,46 x,47 y,48 z,49 n,49 x,49 y,5 d,5 i,5 m,5 n,5 r,5 t,5 x,5 y,5 z,50 y,51 x,52 x,53 n,54 i,55 y,56 z,57 d,57 i,57 n,57 r,57 t,57 x,57 y,57 z,58 z,59 x,6 e,60 y,61 d,62 d,63 m,64 i,64 m,64 n,64 r,64 x,64 y,65 r,66 i,67 y,68 i,68 m,68 n,68 r,68 x,68 y,69 y,7 e,7 i,7 x,7 y,70 i,71 n,72 x,73 x,74 i,75 m,76 r,77 x,78 d,78 i,78 n,78 r,78 t,78 x,78 y,78 z,79 n,8 e,80 r,81 t,82 z,83 y,84 d,84 i,84 n,84 r,84 t,84 x,84 y,84 z,85 x,86 d,86 i,86 n,86 r,86 t,86 x,86 y,86 z,87 t,88 n,88 x,88 z,89 z,9 i,9 x,9 y,90 x,91 n,92 i,93 y,94 y,94 z,95 z,96 y,97 t,98 d,99 i
+5000
+30 - Uses, Typed, ImplstmtLine ::
+stmt s; variable v;
+Select <s, v> such that Uses (s, v)
+10 y,10 z,100 d,100 i,100 m,100 n,100 r,100 t,100 x,100 y,100 z,101 x,101 y,102 i,103 d,103 i,103 m,103 n,103 r,103 t,103 x,103 y,103 z,104 m,104 y,104 z,105 i,105 m,105 n,105 z,106 d,106 i,106 y,107 m,107 x,107 y,107 z,108 y,108 z,109 x,11 y,110 m,110 x,111 z,112 i,112 m,113 d,113 m,114 i,114 n,114 r,114 t,114 x,114 y,114 z,115 n,115 t,115 y,116 i,116 r,116 t,116 x,116 y,117 i,117 y,117 z,118 i,118 m,118 n,119 t,12 y,12 z,13 i,14 y,14 z,15 z,17 n,18 m,18 n,19 m,19 r,2 z,20 d,20 i,20 m,20 n,20 r,20 t,20 x,20 y,20 z,21 m,21 n,21 r,22 d,22 n,22 x,23 d,23 i,23 m,23 n,23 r,23 t,23 x,23 y,23 z,24 d,24 m,24 n,25 t,25 x,26 i,26 m,26 n,26 r,26 t,27 m,27 n,28 m,28 t,29 m,29 n,3 x,3 z,30 i,30 n,30 r,30 t,31 n,31 r,32 i,32 r,33 r,34 i,35 t,36 n,36 r,37 i,38 n,38 r,39 d,39 i,39 m,39 n,39 r,39 t,39 x,39 y,39 z,4 x,4 y,40 m,41 m,42 m,42 r,44 z,45 d,45 i,45 m,45 n,45 r,45 t,45 x,45 y,45 z,46 y,46 z,47 x,47 z,48 x,48 y,49 i,49 m,49 n,49 r,49 t,49 z,5 d,5 i,5 m,5 n,5 r,5 t,5 x,5 y,5 z,50 n,50 r,51 m,51 t,52 m,53 i,54 i,55 i,55 y,55 z,56 d,56 x,56 z,57 d,57 i,57 m,57 n,57 r,57 t,57 x,57 y,57 z,59 z,6 d,6 x,6 z,60 x,60 z,61 x,61 y,62 d,62 x,62 z,63 d,63 r,63 x,64 i,64 m,64 n,64 r,64 x,64 y,64 z,65 x,65 y,66 m,66 n,67 m,67 x,68 i,68 m,68 n,68 r,68 x,68 y,68 z,69 y,69 z,7 i,7 x,7 y,7 z,70 y,71 i,71 x,72 z,73 y,73 z,74 i,75 i,75 n,75 r,76 m,76 n,77 y,77 z,78 d,78 i,78 m,78 n,78 r,78 t,78 x,78 y,78 z,79 m,8 x,8 y,80 i,80 n,81 x,81 y,83 z,84 d,84 i,84 m,84 n,84 r,84 t,84 x,84 y,84 z,85 m,85 y,86 d,86 i,86 m,86 n,86 r,86 t,86 x,86 y,86 z,87 i,87 n,87 z,88 d,88 i,88 m,88 n,88 r,88 t,88 x,88 y,89 m,89 y,9 i,9 y,9 z,90 i,90 n,90 t,91 d,91 i,91 r,92 r,93 d,93 r,93 x,94 d,94 i,94 t,94 x,94 y,95 d,95 i,95 x,96 i,96 t,97 i,97 n,97 r,98 i,98 x,98 z,99 m,99 n,99 r
+5000
+31 - Uses, Typed, ImplstmtLine ::
+assign a;
+Select BOOLEAN with 1 = 2
+false
+5000
+32 - Affects, Typed, ImplstmtLine ::
+assign a1, a2;
+Select a2 such that Affects (a1, a2) with a1.stmt#=27
+28,35
+5000
+33 - Modifies, Typed, ImplstmtLine ::
+assign a;
+Select a such that Modifies (a, "r") pattern a(a, _"n"_) with 2=2 such that Uses (a, "m") and Affects* (34, a) 
+
+5000
+34 - AffectStar, Typed, ImplstmtLine ::
+assign a; variable v;
+Select a such that Affects (25, a) and Affects* (34, a) pattern a(_, _) with 3 = 3 such that Uses (a, v)
+
+5000
+35 - Modifies, Typed, ImplstmtLine ::
+assign a; prog_line n;
+Select a with n = 2
+1,10,101,102,104,105,106,108,109,11,110,111,112,113,115,116,117,118,119,12,13,14,15,16,17,18,19,2,21,22,24,25,27,28,29,3,31,33,34,35,36,37,38,4,40,41,42,43,44,46,47,48,50,52,53,54,55,56,58,59,6,60,61,62,63,65,66,67,69,70,71,72,73,74,75,76,77,79,8,80,81,82,83,85,87,89,90,91,92,93,95,96,97,98,99
+5000
+36 - AffectStar, Typed, ImplstmtLine ::
+assign a; variable v;
+Select a such that Follows* (25, a) and Affects* (34, a) pattern a(_, _) with 3 = 3 such that Uses (a, v)
+
+5000
+37 - AffectStar, Typed, ImplstmtLine ::
+assign a1, a2, a3; variable v;
+Select <a1, a2, a3> such that Affects* (27, a1) and Affects* (33, a2) pattern a1(_, _) pattern a2(_, _)  with 3 = 3 such that Affects* (a3, 80) and Follows* (33, a2) and Uses(a1, "r") and Uses (a3, "m")
+31 34 79,33 34 79,36 34 79,38 34 79
+5000
+38 - Affects, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN such that Affects (27, 28)
+true
+5000
+39 - Affects, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN such that Affects* (27, 28)
+true
+5000
+40 - Affects, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN such that Affects* (27, _)
+true
+5000
+41 - Affects, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN such that Affects* (25, _)
+false
+5000
+42 - Affects, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN such that Affects* (_, 28)
+true
+5000
+43 - Affects, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN such that Affects* (_, _)
+true
+5000
+44 - Follows, Typed, ImplstmtLine ::
+assign a1, a2;
+Select a1 such that Follows (1, 3)
+
+5000
+45 - Follows, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN such that Follows (1, 3)
+false
+5000
+46 - Follows, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN such that Follows (_, _)
+true
+5000
+47 - Follows, Typed, ImplstmtLine ::
+assign a1, a2;
+Select BOOLEAN pattern a1(_, _"peiyu"_)
+false
+5000
+48 - Modifies, Typed, ImplstmtLine ::
+procedure p; variable v;
+Select BOOLEAN such that Modifies("Carl", "y") and Calls("Carl", "Daniel") and Uses("Mary", "r")
+true
+5000
+49 - Modifies, Typed, ImplstmtLine ::
+procedure p; variable v;
+Select BOOLEAN such that Modifies("Carl", "y") and Calls("Carl", "Bill") and Uses("Mary", "r")
+false
+5000
+50 - Modifies, Typed, ImplstmtLine ::
+prog_line n;
+Select BOOLEAN with n = 200
+false
+5000
+51 - Modifies, Typed, ImplstmtLine ::
+prog_line n;
+Select BOOLEAN with n = 20
+true
+5000
+52 - Parent, Typed, ImplstmtLine ::
+call c;
+Select c.procName with c.stmt#= 39
+Mary
+5000
+53 - AffectStar, Typed, ImplstmtLine ::
+assign a1, a2, a3; variable v;
+Select <a1, a2, a3> such that Affects* (27, a1) and Affects* (33, a2) pattern a1(_, _) pattern a2(_, _)  with 3 = 3 such that Affects* (a3, 80) and Follows* (33, a2) and Uses(a1, "r") and Uses (a3, "m")
+31 34 79,33 34 79,36 34 79,38 34 79
+5000
+54 - AffectStar, Typed, ImplstmtLine ::
+assign a1, a2, a3; variable v;
+Select <a1, a2, a3> such that Affects* (27, a1) and Affects* (33, a2) pattern a1(_, _) pattern a2(_, _)  with 3 = 3 such that Affects* (a3, 80) and Follows* (33, 34) and Uses(19, "r") and Uses (24, "m") and Parent(30, 36)
+28 34 79,28 37 79,31 34 79,31 37 79,33 34 79,33 37 79,34 34 79,34 37 79,35 34 79,35 37 79,36 34 79,36 37 79,37 34 79,37 37 79,38 34 79,38 37 79
+5000
+55 - Follows, Typed, ImplstmtLine ::
+assign a1; variable v; call Mary; procedure John;
+Select a1 such that Follows(1, 2) with Mary.procName="Mary" and John="Fool" and v="x"
+
+5000
+56 - Parent, Typed, ImplstmtLine ::
+assign a1, a2; variable v;
+Select <a1, a2> such that Parent(1,3)
+
+5000
+57 - Modifies, Typed, ImplstmtLine ::
+assign a1, a2; variable v;
+Select <a1, a2> such that Modifies(1,"x")
+
+5000
+58 - Modifies, Typed, ImplstmtLine ::
+stmtLst s1, s2; variable v; if if;
+Select <s1, s2> pattern if(v, s1, s2)
+
+5000
+59 - Modifies, Typed, ImplstmtLine ::
+if if; variable v;
+Select if pattern if(v, _, _)
+103,30,45,68,84,9
+5000
+60 - AffectsBip, Typed, ImplstmtLine ::
+assign a1, a2; variable v;
+Select BOOLEAN such that AffectsBip*(3, 4)
+true
+5000
+61 - AffectsBip, Typed, ImplstmtLine ::
+assign a1, a2; variable v;
+Select a1 such that AffectsBip(a1, 25)
+24,59,77,104,111,115
+5000
+62 - AffectsBipStar, Typed, ImplstmtLine ::
+assign a1, a2; variable v;
+Select a1 such that AffectsBip*(a1, 25)
+16,17,24,40,54,58,59,60,61,62,63,65,66,67,69,70,71,74,75,77,79,80,91,101,102,104,105,106,108,109,110,111,112,113,115,116,117,118,76,82,83,85,92,98,99
+5000
+63 - AffectsBipStar, Typed, ImplstmtLine ::
+prog_line n; variable v;
+Select n such that AffectsBip*(n, 25)
+16,17,24,40,54,58,59,60,61,62,63,65,66,67,69,70,71,74,75,77,79,80,91,101,102,104,105,106,108,109,110,111,112,113,115,116,117,118,76,82,83,85,92,98,99
+5000
+64 - NextBip, Typed, ImplstmtLine ::
+prog_line n; variable v;
+Select n such that NextBip(n, 24)
+119
+5000
+65 - NextBipStar, Typed, ImplstmtLine ::
+prog_line n; variable v;
+Select n such that NextBip*(n, 25)
+1,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,16,17,18,19,2,20,21,22,23,24,3,4,40,41,42,43,44,45,46,47,48,49,5,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99
+5000
+66 - NextBipStar, Typed, ImplstmtLine ::
+stmt s;
+Select s such that NextBip*(s, 25)
+1,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,16,17,18,19,2,20,21,22,23,24,3,4,40,41,42,43,44,45,46,47,48,49,5,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99
+5000
+67 - NextBipStar, Typed, ImplstmtLine ::
+assign a; variable v;
+Select a such that NextBip*(a, 25)
+1,101,102,104,105,106,108,109,110,111,112,113,115,116,117,118,119,16,17,18,19,2,21,22,24,3,4,40,41,42,43,44,46,47,48,50,52,53,54,55,56,58,59,60,61,62,63,65,66,67,69,70,71,72,73,74,75,76,77,79,80,81,82,83,85,87,89,90,91,92,93,95,96,97,98,99
+5000
+68 - Follows, Typed, ImplstmtLine ::
+assign a,b;
+Select <a,b> such that Follows(1,a) and Follows(2,a) and Follows(a, b)
+
+5000
+69 - Follows, Typed, ImplstmtLine ::
+assign a,b;
+Select <a,b> such that Follows(1,a) and Follows(2,a)
+
+5000
+70 - NextStar, Typed, ImplstmtLine ::
+prog_line n1, n2;
+Select n1 such that Next*(n1, n2) with n2 = 91
+79,80,81,82,83,84,85,86,87,88,89,90,91
+5000
+71 - Parent, Typed, ImplstmtLine ::
+if if; while w;
+Select if pattern if ("z", _, _)
+103, 9
+5000
+72 - Parent, Typed, ImplstmtLine ::
+if if; while w;
+Select if pattern if ("z", _)
+
+5000
+73 - AffectStar, Typed, ImplstmtLine ::
+assign a1, a2, a3; variable v1, v2;
+Select <a1, a2, a3> such that Affects* (27, a1) such that Affects* (33, a2) pattern a1(v1, _) and a2(v2, _)  with 3 = 3 such that Affects* (a3, 80) such that Follows* (33, a2) such that Uses(a1, "r") such that Uses (a3, "m")
+31 34 79,33 34 79,36 34 79,38 34 79
+5000
+74 - Modifies, Typed, ImplstmtLine ::
+procedure p; variable v;
+Select p.procName such that Uses (p, v.varName)
+Bill,Carl,Daniel,Jane,John,Mary
+5000
+75 - AffectStar, Typed, ImplstmtLine ::
+assign a;
+Select a such that Affects*(a, a)
+101,102,104,105,106,109,110,111,112,115,116,117,118,13,28,31,37,38,67,69,71,74,75,77
+5000
+76 - AffectStar, Typed, ImplstmtLine ::
+assign a;
+Select a.stmt# such that Affects*(a.stmt#, a)
+101,102,104,105,106,109,110,111,112,115,116,117,118,13,28,31,37,38,67,69,71,74,75,77
+5000
+77 - ParentStar, Typed, ImplstmtLine ::
+stmt s1, s2;
+Select s1.stmt# such that Parent*(s1.stmt#, s2)
+100,103,107,114,26,30,32,45,49,51,64,68,7,84,88,9,94
+5000
+78 - ParentStar, Typed, ImplstmtLine ::
+stmt s1, s2;
+Select s1 such that Parent*(s1, s2)
+100,103,107,114,26,30,32,45,49,51,64,68,7,84,88,9,94
+5000
+79 - ParentStar, Typed, ImplstmtLine ::
+stmt s1, s2; while w;
+Select w such that Parent*(w, s2)
+100,107,114,26,32,49,51,64,7,88,94
+5000
+80 - ParentStar, Typed, ImplstmtLine ::
+stmt s1, s2; while w;
+Select w.stmt# such that Parent*(w.stmt#, s2)
+100,107,114,26,32,49,51,64,7,88,94
+5000
+81 - ParentStar, Typed, ImplstmtLine ::
+stmt s1, s2; while w;
+Select w such that Parent*(w, s2) with Follows(1, 2)
+
+5000
+82 - AffectStar, Typed, ImplstmtLine ::
+assign a1, a2, a3; variable v;
+Select <a1, a2, a3> such that Affects* (27, a1) and Affects* (33, a2) pattern a1(v, _"n"_) and a2("m", _"i"_) and a3("n",_"m"_) with 3 = 3 and Affects* (a3, 80) and Follows* (33, a2) and Uses(a1, "r") and Uses (a3, "m")
+31 34 79,36 34 79,38 34 79
+5000
+83 - Uses, Typed, ImplstmtLine ::
+constant c; assign a;
+Select c.value with a.stmt# = 11
+1,10,11,12,2,3,4,5,6,7,8
+5000
+84 - Uses, Typed, ImplstmtLine ::
+constant c; if if;
+Select c.value with if.stmt# = 9
+1,10,11,12,2,3,4,5,6,7,8
+5000
+85 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Modifies (108, "r")
+d,e,i,m,n,r,t,x,y,z
+5000
+86 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Modifies (_, "r")
+d,e,i,m,n,r,t,x,y,z
+5000
+87 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Modifies (108, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+88 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Uses (_, "r")
+d,e,i,m,n,r,t,x,y,z
+5000
+89 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Uses (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+90 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Follows* (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+91 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Follows* (_, 3)
+d,e,i,m,n,r,t,x,y,z
+5000
+92 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Follows* (2, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+93 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Parent* (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+94 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Parent* (_, 33)
+d,e,i,m,n,r,t,x,y,z
+5000
+95 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Parent* (32, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+96 - Next, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Next (3, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+97 - Next, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Next (_, 3)
+d,e,i,m,n,r,t,x,y,z
+5000
+98 - Next, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Next (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+99 - NextStar, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Next* (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+100 - NextStar, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Next* (3, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+101 - NextStar, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Next* (_, 3)
+d,e,i,m,n,r,t,x,y,z
+5000
+102 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that Uses (108, "z")
+d,e,i,m,n,r,t,x,y,z
+5000
+103 - Modifies, Typed, ImplstmtLine ::
+assign a; variable z;
+Select z.varName such that Uses (108, "z")
+d,e,i,m,n,r,t,x,y,z
+5000
+104 - Calls, Typed, ImplstmtLine ::
+procedure John; variable z;
+Select John such that Calls (John, _)
+Bill,Carl,Daniel,Jane,John
+5000
+105 - Calls, Typed, ImplstmtLine ::
+procedure John; variable z;
+Select John such that Calls ("John", _)
+Bill,Carl,Daniel,Jane,John,Mary
+5000
+106 - Calls, Typed, ImplstmtLine ::
+procedure John; variable z;
+Select John such that Calls (_, _)
+Bill,Carl,Daniel,Jane,John,Mary
+5000
+107 - Calls, Typed, ImplstmtLine ::
+assign a; variable z;
+Select a pattern a(z, _) and a(_, _"x"_)
+101,109,110,116,22,25,3,4,47,48,56,6,60,61,62,63,65,67,71,8,81,93,95,98
+5000
+108 - Modifies, Typed, ImplstmtLine ::
+assign a; variable z;
+Select z.varName such that Uses (a, "z")
+d,e,i,m,n,r,t,x,y,z
+5000
+109 - Modifies, Typed, ImplstmtLine ::
+if if; variable z;
+Select z.varName such that Uses (if, "z")
+d,e,i,m,n,r,t,x,y,z
+5000
+110 - Modifies, Typed, ImplstmtLine ::
+while w; variable z;
+Select z.varName such that Uses (w, "z")
+d,e,i,m,n,r,t,x,y,z
+5000
+111 - Modifies, Typed, ImplstmtLine ::
+procedure John; variable z;
+Select John such that Modifies ("John", "z")
+Bill,Carl,Daniel,John,Jane,Mary
+5000
+112 - Modifies, Typed, ImplstmtLine ::
+procedure John; variable z;
+Select John such that Uses ("John", "z")
+Bill,Carl,Daniel,John,Jane,Mary
+5000
+113 - Modifies, Typed, ImplstmtLine ::
+procedure p; variable z;
+Select p such that Calls ("John", "Mary")
+Bill,Carl,Daniel,John,Jane,Mary
+5000
+114 - Modifies, Typed, ImplstmtLine ::
+procedure John; variable z;
+Select John such that Modifies ("John", z)
+Bill,Carl,Daniel,John,Jane,Mary
+5000
+115 - Modifies, Typed, ImplstmtLine ::
+procedure John; variable z;
+Select John such that Uses ("John", z)
+Bill,Carl,Daniel,John,Jane,Mary
+5000
+116 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that AffectsBip (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+117 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that AffectsBip (_, a)
+d,e,i,m,n,r,t,x,y,z
+5000
+118 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that AffectsBip (a, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+119 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that AffectsBip* (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+120 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that AffectsBip* (a, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+121 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that AffectsBip* (_, a)
+d,e,i,m,n,r,t,x,y,z
+5000
+122 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that NextBip (_, a)
+d,e,i,m,n,r,t,x,y,z
+5000
+123 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that NextBip (a, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+124 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that NextBip (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+125 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that NextBip* (_, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+126 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that NextBip* (a, _)
+d,e,i,m,n,r,t,x,y,z
+5000
+127 - Modifies, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v.varName such that NextBip* (_, a)
+d,e,i,m,n,r,t,x,y,z
+5000
+128 - Modifies, Typed, ImplstmtLine ::
+stmt s; variable v;
+Select v.varName such that NextBip* (s, s)
+d,e,i,m,n,r,t,x,y,z
+5000
+129 - Modifies, Typed, ImplstmtLine ::
+stmt s; variable v;
+Select v.varName such that AffectsBip (s, s)
+d,e,i,m,n,r,t,x,y,z
+5000
+130 - Modifies, Typed, ImplstmtLine ::
+stmt s; variable v;
+Select v.varName such that Affects* (s, s)
+d,e,i,m,n,r,t,x,y,z
+5000
+131 - Modifies, Typed, ImplstmtLine ::
+stmt s; variable v;
+Select v.varName such that AffectsBip* (s, s)
+d,e,i,m,n,r,t,x,y,z
+5000
+132 - AffectsBip, Typed, ImplstmtLine ::
+assign a;
+Select a such that AffectsBip(25, a)
+10,12,14,15,6,98
+5000
+133 - AffectsBip, Typed, ImplstmtLine ::
+call c; stmt s; 
+Select <s, c>
+1 20,1 23,1 39,1 5,1 57,1 78,1 86,10 20,10 23,10 39,10 5,10 57,10 78,10 86,100 20,100 23,100 39,100 5,100 57,100 78,100 86,101 20,101 23,101 39,101 5,101 57,101 78,101 86,102 20,102 23,102 39,102 5,102 57,102 78,102 86,103 20,103 23,103 39,103 5,103 57,103 78,103 86,104 20,104 23,104 39,104 5,104 57,104 78,104 86,105 20,105 23,105 39,105 5,105 57,105 78,105 86,106 20,106 23,106 39,106 5,106 57,106 78,106 86,107 20,107 23,107 39,107 5,107 57,107 78,107 86,108 20,108 23,108 39,108 5,108 57,108 78,108 86,109 20,109 23,109 39,109 5,109 57,109 78,109 86,11 20,11 23,11 39,11 5,11 57,11 78,11 86,110 20,110 23,110 39,110 5,110 57,110 78,110 86,111 20,111 23,111 39,111 5,111 57,111 78,111 86,112 20,112 23,112 39,112 5,112 57,112 78,112 86,113 20,113 23,113 39,113 5,113 57,113 78,113 86,114 20,114 23,114 39,114 5,114 57,114 78,114 86,115 20,115 23,115 39,115 5,115 57,115 78,115 86,116 20,116 23,116 39,116 5,116 57,116 78,116 86,117 20,117 23,117 39,117 5,117 57,117 78,117 86,118 20,118 23,118 39,118 5,118 57,118 78,118 86,119 20,119 23,119 39,119 5,119 57,119 78,119 86,12 20,12 23,12 39,12 5,12 57,12 78,12 86,13 20,13 23,13 39,13 5,13 57,13 78,13 86,14 20,14 23,14 39,14 5,14 57,14 78,14 86,15 20,15 23,15 39,15 5,15 57,15 78,15 86,16 20,16 23,16 39,16 5,16 57,16 78,16 86,17 20,17 23,17 39,17 5,17 57,17 78,17 86,18 20,18 23,18 39,18 5,18 57,18 78,18 86,19 20,19 23,19 39,19 5,19 57,19 78,19 86,2 20,2 23,2 39,2 5,2 57,2 78,2 86,20 20,20 23,20 39,20 5,20 57,20 78,20 86,21 20,21 23,21 39,21 5,21 57,21 78,21 86,22 20,22 23,22 39,22 5,22 57,22 78,22 86,23 20,23 23,23 39,23 5,23 57,23 78,23 86,24 20,24 23,24 39,24 5,24 57,24 78,24 86,25 20,25 23,25 39,25 5,25 57,25 78,25 86,26 20,26 23,26 39,26 5,26 57,26 78,26 86,27 20,27 23,27 39,27 5,27 57,27 78,27 86,28 20,28 23,28 39,28 5,28 57,28 78,28 86,29 20,29 23,29 39,29 5,29 57,29 78,29 86,3 20,3 23,3 39,3 5,3 57,3 78,3 86,30 20,30 23,30 39,30 5,30 57,30 78,30 86,31 20,31 23,31 39,31 5,31 57,31 78,31 86,32 20,32 23,32 39,32 5,32 57,32 78,32 86,33 20,33 23,33 39,33 5,33 57,33 78,33 86,34 20,34 23,34 39,34 5,34 57,34 78,34 86,35 20,35 23,35 39,35 5,35 57,35 78,35 86,36 20,36 23,36 39,36 5,36 57,36 78,36 86,37 20,37 23,37 39,37 5,37 57,37 78,37 86,38 20,38 23,38 39,38 5,38 57,38 78,38 86,39 20,39 23,39 39,39 5,39 57,39 78,39 86,4 20,4 23,4 39,4 5,4 57,4 78,4 86,40 20,40 23,40 39,40 5,40 57,40 78,40 86,41 20,41 23,41 39,41 5,41 57,41 78,41 86,42 20,42 23,42 39,42 5,42 57,42 78,42 86,43 20,43 23,43 39,43 5,43 57,43 78,43 86,44 20,44 23,44 39,44 5,44 57,44 78,44 86,45 20,45 23,45 39,45 5,45 57,45 78,45 86,46 20,46 23,46 39,46 5,46 57,46 78,46 86,47 20,47 23,47 39,47 5,47 57,47 78,47 86,48 20,48 23,48 39,48 5,48 57,48 78,48 86,49 20,49 23,49 39,49 5,49 57,49 78,49 86,5 20,5 23,5 39,5 5,5 57,5 78,5 86,50 20,50 23,50 39,50 5,50 57,50 78,50 86,51 20,51 23,51 39,51 5,51 57,51 78,51 86,52 20,52 23,52 39,52 5,52 57,52 78,52 86,53 20,53 23,53 39,53 5,53 57,53 78,53 86,54 20,54 23,54 39,54 5,54 57,54 78,54 86,55 20,55 23,55 39,55 5,55 57,55 78,55 86,56 20,56 23,56 39,56 5,56 57,56 78,56 86,57 20,57 23,57 39,57 5,57 57,57 78,57 86,58 20,58 23,58 39,58 5,58 57,58 78,58 86,59 20,59 23,59 39,59 5,59 57,59 78,59 86,6 20,6 23,6 39,6 5,6 57,6 78,6 86,60 20,60 23,60 39,60 5,60 57,60 78,60 86,61 20,61 23,61 39,61 5,61 57,61 78,61 86,62 20,62 23,62 39,62 5,62 57,62 78,62 86,63 20,63 23,63 39,63 5,63 57,63 78,63 86,64 20,64 23,64 39,64 5,64 57,64 78,64 86,65 20,65 23,65 39,65 5,65 57,65 78,65 86,66 20,66 23,66 39,66 5,66 57,66 78,66 86,67 20,67 23,67 39,67 5,67 57,67 78,67 86,68 20,68 23,68 39,68 5,68 57,68 78,68 86,69 20,69 23,69 39,69 5,69 57,69 78,69 86,7 20,7 23,7 39,7 5,7 57,7 78,7 86,70 20,70 23,70 39,70 5,70 57,70 78,70 86,71 20,71 23,71 39,71 5,71 57,71 78,71 86,72 20,72 23,72 39,72 5,72 57,72 78,72 86,73 20,73 23,73 39,73 5,73 57,73 78,73 86,74 20,74 23,74 39,74 5,74 57,74 78,74 86,75 20,75 23,75 39,75 5,75 57,75 78,75 86,76 20,76 23,76 39,76 5,76 57,76 78,76 86,77 20,77 23,77 39,77 5,77 57,77 78,77 86,78 20,78 23,78 39,78 5,78 57,78 78,78 86,79 20,79 23,79 39,79 5,79 57,79 78,79 86,8 20,8 23,8 39,8 5,8 57,8 78,8 86,80 20,80 23,80 39,80 5,80 57,80 78,80 86,81 20,81 23,81 39,81 5,81 57,81 78,81 86,82 20,82 23,82 39,82 5,82 57,82 78,82 86,83 20,83 23,83 39,83 5,83 57,83 78,83 86,84 20,84 23,84 39,84 5,84 57,84 78,84 86,85 20,85 23,85 39,85 5,85 57,85 78,85 86,86 20,86 23,86 39,86 5,86 57,86 78,86 86,87 20,87 23,87 39,87 5,87 57,87 78,87 86,88 20,88 23,88 39,88 5,88 57,88 78,88 86,89 20,89 23,89 39,89 5,89 57,89 78,89 86,9 20,9 23,9 39,9 5,9 57,9 78,9 86,90 20,90 23,90 39,90 5,90 57,90 78,90 86,91 20,91 23,91 39,91 5,91 57,91 78,91 86,92 20,92 23,92 39,92 5,92 57,92 78,92 86,93 20,93 23,93 39,93 5,93 57,93 78,93 86,94 20,94 23,94 39,94 5,94 57,94 78,94 86,95 20,95 23,95 39,95 5,95 57,95 78,95 86,96 20,96 23,96 39,96 5,96 57,96 78,96 86,97 20,97 23,97 39,97 5,97 57,97 78,97 86,98 20,98 23,98 39,98 5,98 57,98 78,98 86,99 20,99 23,99 39,99 5,99 57,99 78,99 86
+5000
+134 - AffectsBip, Typed, ImplstmtLine ::
+assign a; stmtLst s; 
+Select <s, a>
+
+5000
+135 - AffectsBip, Typed, ImplstmtLine ::
+assign a; call c; 
+Select <a, c.procName>
+1 Carl,1 Daniel,1 Jane,1 John,1 Mary,10 Carl,10 Daniel,10 Jane,10 John,10 Mary,101 Carl,101 Daniel,101 Jane,101 John,101 Mary,102 Carl,102 Daniel,102 Jane,102 John,102 Mary,104 Carl,104 Daniel,104 Jane,104 John,104 Mary,105 Carl,105 Daniel,105 Jane,105 John,105 Mary,106 Carl,106 Daniel,106 Jane,106 John,106 Mary,108 Carl,108 Daniel,108 Jane,108 John,108 Mary,109 Carl,109 Daniel,109 Jane,109 John,109 Mary,11 Carl,11 Daniel,11 Jane,11 John,11 Mary,110 Carl,110 Daniel,110 Jane,110 John,110 Mary,111 Carl,111 Daniel,111 Jane,111 John,111 Mary,112 Carl,112 Daniel,112 Jane,112 John,112 Mary,113 Carl,113 Daniel,113 Jane,113 John,113 Mary,115 Carl,115 Daniel,115 Jane,115 John,115 Mary,116 Carl,116 Daniel,116 Jane,116 John,116 Mary,117 Carl,117 Daniel,117 Jane,117 John,117 Mary,118 Carl,118 Daniel,118 Jane,118 John,118 Mary,119 Carl,119 Daniel,119 Jane,119 John,119 Mary,12 Carl,12 Daniel,12 Jane,12 John,12 Mary,13 Carl,13 Daniel,13 Jane,13 John,13 Mary,14 Carl,14 Daniel,14 Jane,14 John,14 Mary,15 Carl,15 Daniel,15 Jane,15 John,15 Mary,16 Carl,16 Daniel,16 Jane,16 John,16 Mary,17 Carl,17 Daniel,17 Jane,17 John,17 Mary,18 Carl,18 Daniel,18 Jane,18 John,18 Mary,19 Carl,19 Daniel,19 Jane,19 John,19 Mary,2 Carl,2 Daniel,2 Jane,2 John,2 Mary,21 Carl,21 Daniel,21 Jane,21 John,21 Mary,22 Carl,22 Daniel,22 Jane,22 John,22 Mary,24 Carl,24 Daniel,24 Jane,24 John,24 Mary,25 Carl,25 Daniel,25 Jane,25 John,25 Mary,27 Carl,27 Daniel,27 Jane,27 John,27 Mary,28 Carl,28 Daniel,28 Jane,28 John,28 Mary,29 Carl,29 Daniel,29 Jane,29 John,29 Mary,3 Carl,3 Daniel,3 Jane,3 John,3 Mary,31 Carl,31 Daniel,31 Jane,31 John,31 Mary,33 Carl,33 Daniel,33 Jane,33 John,33 Mary,34 Carl,34 Daniel,34 Jane,34 John,34 Mary,35 Carl,35 Daniel,35 Jane,35 John,35 Mary,36 Carl,36 Daniel,36 Jane,36 John,36 Mary,37 Carl,37 Daniel,37 Jane,37 John,37 Mary,38 Carl,38 Daniel,38 Jane,38 John,38 Mary,4 Carl,4 Daniel,4 Jane,4 John,4 Mary,40 Carl,40 Daniel,40 Jane,40 John,40 Mary,41 Carl,41 Daniel,41 Jane,41 John,41 Mary,42 Carl,42 Daniel,42 Jane,42 John,42 Mary,43 Carl,43 Daniel,43 Jane,43 John,43 Mary,44 Carl,44 Daniel,44 Jane,44 John,44 Mary,46 Carl,46 Daniel,46 Jane,46 John,46 Mary,47 Carl,47 Daniel,47 Jane,47 John,47 Mary,48 Carl,48 Daniel,48 Jane,48 John,48 Mary,50 Carl,50 Daniel,50 Jane,50 John,50 Mary,52 Carl,52 Daniel,52 Jane,52 John,52 Mary,53 Carl,53 Daniel,53 Jane,53 John,53 Mary,54 Carl,54 Daniel,54 Jane,54 John,54 Mary,55 Carl,55 Daniel,55 Jane,55 John,55 Mary,56 Carl,56 Daniel,56 Jane,56 John,56 Mary,58 Carl,58 Daniel,58 Jane,58 John,58 Mary,59 Carl,59 Daniel,59 Jane,59 John,59 Mary,6 Carl,6 Daniel,6 Jane,6 John,6 Mary,60 Carl,60 Daniel,60 Jane,60 John,60 Mary,61 Carl,61 Daniel,61 Jane,61 John,61 Mary,62 Carl,62 Daniel,62 Jane,62 John,62 Mary,63 Carl,63 Daniel,63 Jane,63 John,63 Mary,65 Carl,65 Daniel,65 Jane,65 John,65 Mary,66 Carl,66 Daniel,66 Jane,66 John,66 Mary,67 Carl,67 Daniel,67 Jane,67 John,67 Mary,69 Carl,69 Daniel,69 Jane,69 John,69 Mary,70 Carl,70 Daniel,70 Jane,70 John,70 Mary,71 Carl,71 Daniel,71 Jane,71 John,71 Mary,72 Carl,72 Daniel,72 Jane,72 John,72 Mary,73 Carl,73 Daniel,73 Jane,73 John,73 Mary,74 Carl,74 Daniel,74 Jane,74 John,74 Mary,75 Carl,75 Daniel,75 Jane,75 John,75 Mary,76 Carl,76 Daniel,76 Jane,76 John,76 Mary,77 Carl,77 Daniel,77 Jane,77 John,77 Mary,79 Carl,79 Daniel,79 Jane,79 John,79 Mary,8 Carl,8 Daniel,8 Jane,8 John,8 Mary,80 Carl,80 Daniel,80 Jane,80 John,80 Mary,81 Carl,81 Daniel,81 Jane,81 John,81 Mary,82 Carl,82 Daniel,82 Jane,82 John,82 Mary,83 Carl,83 Daniel,83 Jane,83 John,83 Mary,85 Carl,85 Daniel,85 Jane,85 John,85 Mary,87 Carl,87 Daniel,87 Jane,87 John,87 Mary,89 Carl,89 Daniel,89 Jane,89 John,89 Mary,90 Carl,90 Daniel,90 Jane,90 John,90 Mary,91 Carl,91 Daniel,91 Jane,91 John,91 Mary,92 Carl,92 Daniel,92 Jane,92 John,92 Mary,93 Carl,93 Daniel,93 Jane,93 John,93 Mary,95 Carl,95 Daniel,95 Jane,95 John,95 Mary,96 Carl,96 Daniel,96 Jane,96 John,96 Mary,97 Carl,97 Daniel,97 Jane,97 John,97 Mary,98 Carl,98 Daniel,98 Jane,98 John,98 Mary,99 Carl,99 Daniel,99 Jane,99 John,99 Mary
+5000
+136 - AffectsBip, Typed, ImplstmtLine ::
+assign a; call c; 
+Select <a, c.stmt#>
+1 20,1 23,1 39,1 5,1 57,1 78,1 86,10 20,10 23,10 39,10 5,10 57,10 78,10 86,101 20,101 23,101 39,101 5,101 57,101 78,101 86,102 20,102 23,102 39,102 5,102 57,102 78,102 86,104 20,104 23,104 39,104 5,104 57,104 78,104 86,105 20,105 23,105 39,105 5,105 57,105 78,105 86,106 20,106 23,106 39,106 5,106 57,106 78,106 86,108 20,108 23,108 39,108 5,108 57,108 78,108 86,109 20,109 23,109 39,109 5,109 57,109 78,109 86,11 20,11 23,11 39,11 5,11 57,11 78,11 86,110 20,110 23,110 39,110 5,110 57,110 78,110 86,111 20,111 23,111 39,111 5,111 57,111 78,111 86,112 20,112 23,112 39,112 5,112 57,112 78,112 86,113 20,113 23,113 39,113 5,113 57,113 78,113 86,115 20,115 23,115 39,115 5,115 57,115 78,115 86,116 20,116 23,116 39,116 5,116 57,116 78,116 86,117 20,117 23,117 39,117 5,117 57,117 78,117 86,118 20,118 23,118 39,118 5,118 57,118 78,118 86,119 20,119 23,119 39,119 5,119 57,119 78,119 86,12 20,12 23,12 39,12 5,12 57,12 78,12 86,13 20,13 23,13 39,13 5,13 57,13 78,13 86,14 20,14 23,14 39,14 5,14 57,14 78,14 86,15 20,15 23,15 39,15 5,15 57,15 78,15 86,16 20,16 23,16 39,16 5,16 57,16 78,16 86,17 20,17 23,17 39,17 5,17 57,17 78,17 86,18 20,18 23,18 39,18 5,18 57,18 78,18 86,19 20,19 23,19 39,19 5,19 57,19 78,19 86,2 20,2 23,2 39,2 5,2 57,2 78,2 86,21 20,21 23,21 39,21 5,21 57,21 78,21 86,22 20,22 23,22 39,22 5,22 57,22 78,22 86,24 20,24 23,24 39,24 5,24 57,24 78,24 86,25 20,25 23,25 39,25 5,25 57,25 78,25 86,27 20,27 23,27 39,27 5,27 57,27 78,27 86,28 20,28 23,28 39,28 5,28 57,28 78,28 86,29 20,29 23,29 39,29 5,29 57,29 78,29 86,3 20,3 23,3 39,3 5,3 57,3 78,3 86,31 20,31 23,31 39,31 5,31 57,31 78,31 86,33 20,33 23,33 39,33 5,33 57,33 78,33 86,34 20,34 23,34 39,34 5,34 57,34 78,34 86,35 20,35 23,35 39,35 5,35 57,35 78,35 86,36 20,36 23,36 39,36 5,36 57,36 78,36 86,37 20,37 23,37 39,37 5,37 57,37 78,37 86,38 20,38 23,38 39,38 5,38 57,38 78,38 86,4 20,4 23,4 39,4 5,4 57,4 78,4 86,40 20,40 23,40 39,40 5,40 57,40 78,40 86,41 20,41 23,41 39,41 5,41 57,41 78,41 86,42 20,42 23,42 39,42 5,42 57,42 78,42 86,43 20,43 23,43 39,43 5,43 57,43 78,43 86,44 20,44 23,44 39,44 5,44 57,44 78,44 86,46 20,46 23,46 39,46 5,46 57,46 78,46 86,47 20,47 23,47 39,47 5,47 57,47 78,47 86,48 20,48 23,48 39,48 5,48 57,48 78,48 86,50 20,50 23,50 39,50 5,50 57,50 78,50 86,52 20,52 23,52 39,52 5,52 57,52 78,52 86,53 20,53 23,53 39,53 5,53 57,53 78,53 86,54 20,54 23,54 39,54 5,54 57,54 78,54 86,55 20,55 23,55 39,55 5,55 57,55 78,55 86,56 20,56 23,56 39,56 5,56 57,56 78,56 86,58 20,58 23,58 39,58 5,58 57,58 78,58 86,59 20,59 23,59 39,59 5,59 57,59 78,59 86,6 20,6 23,6 39,6 5,6 57,6 78,6 86,60 20,60 23,60 39,60 5,60 57,60 78,60 86,61 20,61 23,61 39,61 5,61 57,61 78,61 86,62 20,62 23,62 39,62 5,62 57,62 78,62 86,63 20,63 23,63 39,63 5,63 57,63 78,63 86,65 20,65 23,65 39,65 5,65 57,65 78,65 86,66 20,66 23,66 39,66 5,66 57,66 78,66 86,67 20,67 23,67 39,67 5,67 57,67 78,67 86,69 20,69 23,69 39,69 5,69 57,69 78,69 86,70 20,70 23,70 39,70 5,70 57,70 78,70 86,71 20,71 23,71 39,71 5,71 57,71 78,71 86,72 20,72 23,72 39,72 5,72 57,72 78,72 86,73 20,73 23,73 39,73 5,73 57,73 78,73 86,74 20,74 23,74 39,74 5,74 57,74 78,74 86,75 20,75 23,75 39,75 5,75 57,75 78,75 86,76 20,76 23,76 39,76 5,76 57,76 78,76 86,77 20,77 23,77 39,77 5,77 57,77 78,77 86,79 20,79 23,79 39,79 5,79 57,79 78,79 86,8 20,8 23,8 39,8 5,8 57,8 78,8 86,80 20,80 23,80 39,80 5,80 57,80 78,80 86,81 20,81 23,81 39,81 5,81 57,81 78,81 86,82 20,82 23,82 39,82 5,82 57,82 78,82 86,83 20,83 23,83 39,83 5,83 57,83 78,83 86,85 20,85 23,85 39,85 5,85 57,85 78,85 86,87 20,87 23,87 39,87 5,87 57,87 78,87 86,89 20,89 23,89 39,89 5,89 57,89 78,89 86,90 20,90 23,90 39,90 5,90 57,90 78,90 86,91 20,91 23,91 39,91 5,91 57,91 78,91 86,92 20,92 23,92 39,92 5,92 57,92 78,92 86,93 20,93 23,93 39,93 5,93 57,93 78,93 86,95 20,95 23,95 39,95 5,95 57,95 78,95 86,96 20,96 23,96 39,96 5,96 57,96 78,96 86,97 20,97 23,97 39,97 5,97 57,97 78,97 86,98 20,98 23,98 39,98 5,98 57,98 78,98 86,99 20,99 23,99 39,99 5,99 57,99 78,99 86
+5000
+137 - AffectsBip, Typed, ImplstmtLine ::
+assign a; constant c; 
+Select <a, c>
+1 1,1 10,1 11,1 12,1 2,1 3,1 4,1 5,1 6,1 7,1 8,10 1,10 10,10 11,10 12,10 2,10 3,10 4,10 5,10 6,10 7,10 8,101 1,101 10,101 11,101 12,101 2,101 3,101 4,101 5,101 6,101 7,101 8,102 1,102 10,102 11,102 12,102 2,102 3,102 4,102 5,102 6,102 7,102 8,104 1,104 10,104 11,104 12,104 2,104 3,104 4,104 5,104 6,104 7,104 8,105 1,105 10,105 11,105 12,105 2,105 3,105 4,105 5,105 6,105 7,105 8,106 1,106 10,106 11,106 12,106 2,106 3,106 4,106 5,106 6,106 7,106 8,108 1,108 10,108 11,108 12,108 2,108 3,108 4,108 5,108 6,108 7,108 8,109 1,109 10,109 11,109 12,109 2,109 3,109 4,109 5,109 6,109 7,109 8,11 1,11 10,11 11,11 12,11 2,11 3,11 4,11 5,11 6,11 7,11 8,110 1,110 10,110 11,110 12,110 2,110 3,110 4,110 5,110 6,110 7,110 8,111 1,111 10,111 11,111 12,111 2,111 3,111 4,111 5,111 6,111 7,111 8,112 1,112 10,112 11,112 12,112 2,112 3,112 4,112 5,112 6,112 7,112 8,113 1,113 10,113 11,113 12,113 2,113 3,113 4,113 5,113 6,113 7,113 8,115 1,115 10,115 11,115 12,115 2,115 3,115 4,115 5,115 6,115 7,115 8,116 1,116 10,116 11,116 12,116 2,116 3,116 4,116 5,116 6,116 7,116 8,117 1,117 10,117 11,117 12,117 2,117 3,117 4,117 5,117 6,117 7,117 8,118 1,118 10,118 11,118 12,118 2,118 3,118 4,118 5,118 6,118 7,118 8,119 1,119 10,119 11,119 12,119 2,119 3,119 4,119 5,119 6,119 7,119 8,12 1,12 10,12 11,12 12,12 2,12 3,12 4,12 5,12 6,12 7,12 8,13 1,13 10,13 11,13 12,13 2,13 3,13 4,13 5,13 6,13 7,13 8,14 1,14 10,14 11,14 12,14 2,14 3,14 4,14 5,14 6,14 7,14 8,15 1,15 10,15 11,15 12,15 2,15 3,15 4,15 5,15 6,15 7,15 8,16 1,16 10,16 11,16 12,16 2,16 3,16 4,16 5,16 6,16 7,16 8,17 1,17 10,17 11,17 12,17 2,17 3,17 4,17 5,17 6,17 7,17 8,18 1,18 10,18 11,18 12,18 2,18 3,18 4,18 5,18 6,18 7,18 8,19 1,19 10,19 11,19 12,19 2,19 3,19 4,19 5,19 6,19 7,19 8,2 1,2 10,2 11,2 12,2 2,2 3,2 4,2 5,2 6,2 7,2 8,21 1,21 10,21 11,21 12,21 2,21 3,21 4,21 5,21 6,21 7,21 8,22 1,22 10,22 11,22 12,22 2,22 3,22 4,22 5,22 6,22 7,22 8,24 1,24 10,24 11,24 12,24 2,24 3,24 4,24 5,24 6,24 7,24 8,25 1,25 10,25 11,25 12,25 2,25 3,25 4,25 5,25 6,25 7,25 8,27 1,27 10,27 11,27 12,27 2,27 3,27 4,27 5,27 6,27 7,27 8,28 1,28 10,28 11,28 12,28 2,28 3,28 4,28 5,28 6,28 7,28 8,29 1,29 10,29 11,29 12,29 2,29 3,29 4,29 5,29 6,29 7,29 8,3 1,3 10,3 11,3 12,3 2,3 3,3 4,3 5,3 6,3 7,3 8,31 1,31 10,31 11,31 12,31 2,31 3,31 4,31 5,31 6,31 7,31 8,33 1,33 10,33 11,33 12,33 2,33 3,33 4,33 5,33 6,33 7,33 8,34 1,34 10,34 11,34 12,34 2,34 3,34 4,34 5,34 6,34 7,34 8,35 1,35 10,35 11,35 12,35 2,35 3,35 4,35 5,35 6,35 7,35 8,36 1,36 10,36 11,36 12,36 2,36 3,36 4,36 5,36 6,36 7,36 8,37 1,37 10,37 11,37 12,37 2,37 3,37 4,37 5,37 6,37 7,37 8,38 1,38 10,38 11,38 12,38 2,38 3,38 4,38 5,38 6,38 7,38 8,4 1,4 10,4 11,4 12,4 2,4 3,4 4,4 5,4 6,4 7,4 8,40 1,40 10,40 11,40 12,40 2,40 3,40 4,40 5,40 6,40 7,40 8,41 1,41 10,41 11,41 12,41 2,41 3,41 4,41 5,41 6,41 7,41 8,42 1,42 10,42 11,42 12,42 2,42 3,42 4,42 5,42 6,42 7,42 8,43 1,43 10,43 11,43 12,43 2,43 3,43 4,43 5,43 6,43 7,43 8,44 1,44 10,44 11,44 12,44 2,44 3,44 4,44 5,44 6,44 7,44 8,46 1,46 10,46 11,46 12,46 2,46 3,46 4,46 5,46 6,46 7,46 8,47 1,47 10,47 11,47 12,47 2,47 3,47 4,47 5,47 6,47 7,47 8,48 1,48 10,48 11,48 12,48 2,48 3,48 4,48 5,48 6,48 7,48 8,50 1,50 10,50 11,50 12,50 2,50 3,50 4,50 5,50 6,50 7,50 8,52 1,52 10,52 11,52 12,52 2,52 3,52 4,52 5,52 6,52 7,52 8,53 1,53 10,53 11,53 12,53 2,53 3,53 4,53 5,53 6,53 7,53 8,54 1,54 10,54 11,54 12,54 2,54 3,54 4,54 5,54 6,54 7,54 8,55 1,55 10,55 11,55 12,55 2,55 3,55 4,55 5,55 6,55 7,55 8,56 1,56 10,56 11,56 12,56 2,56 3,56 4,56 5,56 6,56 7,56 8,58 1,58 10,58 11,58 12,58 2,58 3,58 4,58 5,58 6,58 7,58 8,59 1,59 10,59 11,59 12,59 2,59 3,59 4,59 5,59 6,59 7,59 8,6 1,6 10,6 11,6 12,6 2,6 3,6 4,6 5,6 6,6 7,6 8,60 1,60 10,60 11,60 12,60 2,60 3,60 4,60 5,60 6,60 7,60 8,61 1,61 10,61 11,61 12,61 2,61 3,61 4,61 5,61 6,61 7,61 8,62 1,62 10,62 11,62 12,62 2,62 3,62 4,62 5,62 6,62 7,62 8,63 1,63 10,63 11,63 12,63 2,63 3,63 4,63 5,63 6,63 7,63 8,65 1,65 10,65 11,65 12,65 2,65 3,65 4,65 5,65 6,65 7,65 8,66 1,66 10,66 11,66 12,66 2,66 3,66 4,66 5,66 6,66 7,66 8,67 1,67 10,67 11,67 12,67 2,67 3,67 4,67 5,67 6,67 7,67 8,69 1,69 10,69 11,69 12,69 2,69 3,69 4,69 5,69 6,69 7,69 8,70 1,70 10,70 11,70 12,70 2,70 3,70 4,70 5,70 6,70 7,70 8,71 1,71 10,71 11,71 12,71 2,71 3,71 4,71 5,71 6,71 7,71 8,72 1,72 10,72 11,72 12,72 2,72 3,72 4,72 5,72 6,72 7,72 8,73 1,73 10,73 11,73 12,73 2,73 3,73 4,73 5,73 6,73 7,73 8,74 1,74 10,74 11,74 12,74 2,74 3,74 4,74 5,74 6,74 7,74 8,75 1,75 10,75 11,75 12,75 2,75 3,75 4,75 5,75 6,75 7,75 8,76 1,76 10,76 11,76 12,76 2,76 3,76 4,76 5,76 6,76 7,76 8,77 1,77 10,77 11,77 12,77 2,77 3,77 4,77 5,77 6,77 7,77 8,79 1,79 10,79 11,79 12,79 2,79 3,79 4,79 5,79 6,79 7,79 8,8 1,8 10,8 11,8 12,8 2,8 3,8 4,8 5,8 6,8 7,8 8,80 1,80 10,80 11,80 12,80 2,80 3,80 4,80 5,80 6,80 7,80 8,81 1,81 10,81 11,81 12,81 2,81 3,81 4,81 5,81 6,81 7,81 8,82 1,82 10,82 11,82 12,82 2,82 3,82 4,82 5,82 6,82 7,82 8,83 1,83 10,83 11,83 12,83 2,83 3,83 4,83 5,83 6,83 7,83 8,85 1,85 10,85 11,85 12,85 2,85 3,85 4,85 5,85 6,85 7,85 8,87 1,87 10,87 11,87 12,87 2,87 3,87 4,87 5,87 6,87 7,87 8,89 1,89 10,89 11,89 12,89 2,89 3,89 4,89 5,89 6,89 7,89 8,90 1,90 10,90 11,90 12,90 2,90 3,90 4,90 5,90 6,90 7,90 8,91 1,91 10,91 11,91 12,91 2,91 3,91 4,91 5,91 6,91 7,91 8,92 1,92 10,92 11,92 12,92 2,92 3,92 4,92 5,92 6,92 7,92 8,93 1,93 10,93 11,93 12,93 2,93 3,93 4,93 5,93 6,93 7,93 8,95 1,95 10,95 11,95 12,95 2,95 3,95 4,95 5,95 6,95 7,95 8,96 1,96 10,96 11,96 12,96 2,96 3,96 4,96 5,96 6,96 7,96 8,97 1,97 10,97 11,97 12,97 2,97 3,97 4,97 5,97 6,97 7,97 8,98 1,98 10,98 11,98 12,98 2,98 3,98 4,98 5,98 6,98 7,98 8,99 1,99 10,99 11,99 12,99 2,99 3,99 4,99 5,99 6,99 7,99 8
+5000
+138 - AffectsBip, Typed, ImplstmtLine ::
+assign a; constant c; 
+Select <a, c.value>
+1 1,1 10,1 11,1 12,1 2,1 3,1 4,1 5,1 6,1 7,1 8,10 1,10 10,10 11,10 12,10 2,10 3,10 4,10 5,10 6,10 7,10 8,101 1,101 10,101 11,101 12,101 2,101 3,101 4,101 5,101 6,101 7,101 8,102 1,102 10,102 11,102 12,102 2,102 3,102 4,102 5,102 6,102 7,102 8,104 1,104 10,104 11,104 12,104 2,104 3,104 4,104 5,104 6,104 7,104 8,105 1,105 10,105 11,105 12,105 2,105 3,105 4,105 5,105 6,105 7,105 8,106 1,106 10,106 11,106 12,106 2,106 3,106 4,106 5,106 6,106 7,106 8,108 1,108 10,108 11,108 12,108 2,108 3,108 4,108 5,108 6,108 7,108 8,109 1,109 10,109 11,109 12,109 2,109 3,109 4,109 5,109 6,109 7,109 8,11 1,11 10,11 11,11 12,11 2,11 3,11 4,11 5,11 6,11 7,11 8,110 1,110 10,110 11,110 12,110 2,110 3,110 4,110 5,110 6,110 7,110 8,111 1,111 10,111 11,111 12,111 2,111 3,111 4,111 5,111 6,111 7,111 8,112 1,112 10,112 11,112 12,112 2,112 3,112 4,112 5,112 6,112 7,112 8,113 1,113 10,113 11,113 12,113 2,113 3,113 4,113 5,113 6,113 7,113 8,115 1,115 10,115 11,115 12,115 2,115 3,115 4,115 5,115 6,115 7,115 8,116 1,116 10,116 11,116 12,116 2,116 3,116 4,116 5,116 6,116 7,116 8,117 1,117 10,117 11,117 12,117 2,117 3,117 4,117 5,117 6,117 7,117 8,118 1,118 10,118 11,118 12,118 2,118 3,118 4,118 5,118 6,118 7,118 8,119 1,119 10,119 11,119 12,119 2,119 3,119 4,119 5,119 6,119 7,119 8,12 1,12 10,12 11,12 12,12 2,12 3,12 4,12 5,12 6,12 7,12 8,13 1,13 10,13 11,13 12,13 2,13 3,13 4,13 5,13 6,13 7,13 8,14 1,14 10,14 11,14 12,14 2,14 3,14 4,14 5,14 6,14 7,14 8,15 1,15 10,15 11,15 12,15 2,15 3,15 4,15 5,15 6,15 7,15 8,16 1,16 10,16 11,16 12,16 2,16 3,16 4,16 5,16 6,16 7,16 8,17 1,17 10,17 11,17 12,17 2,17 3,17 4,17 5,17 6,17 7,17 8,18 1,18 10,18 11,18 12,18 2,18 3,18 4,18 5,18 6,18 7,18 8,19 1,19 10,19 11,19 12,19 2,19 3,19 4,19 5,19 6,19 7,19 8,2 1,2 10,2 11,2 12,2 2,2 3,2 4,2 5,2 6,2 7,2 8,21 1,21 10,21 11,21 12,21 2,21 3,21 4,21 5,21 6,21 7,21 8,22 1,22 10,22 11,22 12,22 2,22 3,22 4,22 5,22 6,22 7,22 8,24 1,24 10,24 11,24 12,24 2,24 3,24 4,24 5,24 6,24 7,24 8,25 1,25 10,25 11,25 12,25 2,25 3,25 4,25 5,25 6,25 7,25 8,27 1,27 10,27 11,27 12,27 2,27 3,27 4,27 5,27 6,27 7,27 8,28 1,28 10,28 11,28 12,28 2,28 3,28 4,28 5,28 6,28 7,28 8,29 1,29 10,29 11,29 12,29 2,29 3,29 4,29 5,29 6,29 7,29 8,3 1,3 10,3 11,3 12,3 2,3 3,3 4,3 5,3 6,3 7,3 8,31 1,31 10,31 11,31 12,31 2,31 3,31 4,31 5,31 6,31 7,31 8,33 1,33 10,33 11,33 12,33 2,33 3,33 4,33 5,33 6,33 7,33 8,34 1,34 10,34 11,34 12,34 2,34 3,34 4,34 5,34 6,34 7,34 8,35 1,35 10,35 11,35 12,35 2,35 3,35 4,35 5,35 6,35 7,35 8,36 1,36 10,36 11,36 12,36 2,36 3,36 4,36 5,36 6,36 7,36 8,37 1,37 10,37 11,37 12,37 2,37 3,37 4,37 5,37 6,37 7,37 8,38 1,38 10,38 11,38 12,38 2,38 3,38 4,38 5,38 6,38 7,38 8,4 1,4 10,4 11,4 12,4 2,4 3,4 4,4 5,4 6,4 7,4 8,40 1,40 10,40 11,40 12,40 2,40 3,40 4,40 5,40 6,40 7,40 8,41 1,41 10,41 11,41 12,41 2,41 3,41 4,41 5,41 6,41 7,41 8,42 1,42 10,42 11,42 12,42 2,42 3,42 4,42 5,42 6,42 7,42 8,43 1,43 10,43 11,43 12,43 2,43 3,43 4,43 5,43 6,43 7,43 8,44 1,44 10,44 11,44 12,44 2,44 3,44 4,44 5,44 6,44 7,44 8,46 1,46 10,46 11,46 12,46 2,46 3,46 4,46 5,46 6,46 7,46 8,47 1,47 10,47 11,47 12,47 2,47 3,47 4,47 5,47 6,47 7,47 8,48 1,48 10,48 11,48 12,48 2,48 3,48 4,48 5,48 6,48 7,48 8,50 1,50 10,50 11,50 12,50 2,50 3,50 4,50 5,50 6,50 7,50 8,52 1,52 10,52 11,52 12,52 2,52 3,52 4,52 5,52 6,52 7,52 8,53 1,53 10,53 11,53 12,53 2,53 3,53 4,53 5,53 6,53 7,53 8,54 1,54 10,54 11,54 12,54 2,54 3,54 4,54 5,54 6,54 7,54 8,55 1,55 10,55 11,55 12,55 2,55 3,55 4,55 5,55 6,55 7,55 8,56 1,56 10,56 11,56 12,56 2,56 3,56 4,56 5,56 6,56 7,56 8,58 1,58 10,58 11,58 12,58 2,58 3,58 4,58 5,58 6,58 7,58 8,59 1,59 10,59 11,59 12,59 2,59 3,59 4,59 5,59 6,59 7,59 8,6 1,6 10,6 11,6 12,6 2,6 3,6 4,6 5,6 6,6 7,6 8,60 1,60 10,60 11,60 12,60 2,60 3,60 4,60 5,60 6,60 7,60 8,61 1,61 10,61 11,61 12,61 2,61 3,61 4,61 5,61 6,61 7,61 8,62 1,62 10,62 11,62 12,62 2,62 3,62 4,62 5,62 6,62 7,62 8,63 1,63 10,63 11,63 12,63 2,63 3,63 4,63 5,63 6,63 7,63 8,65 1,65 10,65 11,65 12,65 2,65 3,65 4,65 5,65 6,65 7,65 8,66 1,66 10,66 11,66 12,66 2,66 3,66 4,66 5,66 6,66 7,66 8,67 1,67 10,67 11,67 12,67 2,67 3,67 4,67 5,67 6,67 7,67 8,69 1,69 10,69 11,69 12,69 2,69 3,69 4,69 5,69 6,69 7,69 8,70 1,70 10,70 11,70 12,70 2,70 3,70 4,70 5,70 6,70 7,70 8,71 1,71 10,71 11,71 12,71 2,71 3,71 4,71 5,71 6,71 7,71 8,72 1,72 10,72 11,72 12,72 2,72 3,72 4,72 5,72 6,72 7,72 8,73 1,73 10,73 11,73 12,73 2,73 3,73 4,73 5,73 6,73 7,73 8,74 1,74 10,74 11,74 12,74 2,74 3,74 4,74 5,74 6,74 7,74 8,75 1,75 10,75 11,75 12,75 2,75 3,75 4,75 5,75 6,75 7,75 8,76 1,76 10,76 11,76 12,76 2,76 3,76 4,76 5,76 6,76 7,76 8,77 1,77 10,77 11,77 12,77 2,77 3,77 4,77 5,77 6,77 7,77 8,79 1,79 10,79 11,79 12,79 2,79 3,79 4,79 5,79 6,79 7,79 8,8 1,8 10,8 11,8 12,8 2,8 3,8 4,8 5,8 6,8 7,8 8,80 1,80 10,80 11,80 12,80 2,80 3,80 4,80 5,80 6,80 7,80 8,81 1,81 10,81 11,81 12,81 2,81 3,81 4,81 5,81 6,81 7,81 8,82 1,82 10,82 11,82 12,82 2,82 3,82 4,82 5,82 6,82 7,82 8,83 1,83 10,83 11,83 12,83 2,83 3,83 4,83 5,83 6,83 7,83 8,85 1,85 10,85 11,85 12,85 2,85 3,85 4,85 5,85 6,85 7,85 8,87 1,87 10,87 11,87 12,87 2,87 3,87 4,87 5,87 6,87 7,87 8,89 1,89 10,89 11,89 12,89 2,89 3,89 4,89 5,89 6,89 7,89 8,90 1,90 10,90 11,90 12,90 2,90 3,90 4,90 5,90 6,90 7,90 8,91 1,91 10,91 11,91 12,91 2,91 3,91 4,91 5,91 6,91 7,91 8,92 1,92 10,92 11,92 12,92 2,92 3,92 4,92 5,92 6,92 7,92 8,93 1,93 10,93 11,93 12,93 2,93 3,93 4,93 5,93 6,93 7,93 8,95 1,95 10,95 11,95 12,95 2,95 3,95 4,95 5,95 6,95 7,95 8,96 1,96 10,96 11,96 12,96 2,96 3,96 4,96 5,96 6,96 7,96 8,97 1,97 10,97 11,97 12,97 2,97 3,97 4,97 5,97 6,97 7,97 8,98 1,98 10,98 11,98 12,98 2,98 3,98 4,98 5,98 6,98 7,98 8,99 1,99 10,99 11,99 12,99 2,99 3,99 4,99 5,99 6,99 7,99 8
+5000
+139 - AffectsBip, Typed, ImplstmtLine ::
+call c; variable v;
+Select v such that Modifies(c,v) with c.procName="Mary"
+d,i,n,r,t,x,y,z
+5000
+140 - AffectsBip, Typed, ImplstmtLine ::
+call c; variable v;
+Select v
+d,e,i,m,n,r,t,x,y,z
+5000
+141 - AffectsBip, Typed, ImplstmtLine ::
+call c; variable v;
+Select v such that Uses(c,v) with c.procName="Mary"
+d,i,m,n,r,t,x,y,z
+5000
+142 - AffectsBip, Typed, ImplstmtLine ::
+assign a; variable v;
+Select a such that Modifies(a,v) with a.stmt#=2
+2
+5000
+143 - AffectsBip, Typed, ImplstmtLine ::
+stmtLst s;
+Select s
+1,10,101,104,108,112,115,12,16,27,31,33,36,40,46,50,52,54,58,65,69,73,79,8,85,89,92,95,98
+5000
+144 - AffectsBip, Typed, ImplstmtLine ::
+assign a; variable v;
+Select v such that Modifies(a,v) with a=2
+x
+5000
+145 - AffectStar, Typed, ImplstmtLine ::
+assign a1, a2; variable v;
+Select a2 such that Affects*(a1, a2) with a1.stmt#=27
+28,31,33,34,35,36,37,38
+5000
+146 - AffectStar, Typed, ImplstmtLine ::
+assign a1, a2; stmt s; variable v;
+Select s such that Affects*(a1, s) with a1=27
+28,31,33,34,35,36,37,38
+5000
+146 - Modifies, Typed, ImplstmtLine ::
+call x; stmt s; variable v;
+Select x such that Modifies(x, "x")
+20,23,39,5,57,78,86
+5000
+147 - Modifies, Typed, ImplstmtLine ::
+procedure e; stmt s; variable v;
+Select e such that Modifies(e, "e")
+Bill
+5000
+148 - Calls, Typed, ImplstmtLine ::
+procedure p; stmt s; variable v;
+Select p such that Calls(_, p)
+Carl,Daniel,Jane,John,Mary
+5000
+149 - Calls, Typed, ImplstmtLine ::
+procedure p; stmt s; variable v;
+Select p such that Calls(p, _)
+Bill,Carl,Daniel,Jane,John
+5000
+150 - Modifies, Typed, ImplstmtLine ::
+call x; stmt s; variable v;
+Select x.procName such that Modifies(x, "x")
+Carl,Daniel,Jane,John,Mary
+5000
+151 - Modifies, Typed, ImplstmtLine ::
+procedure e; stmt s; variable v;
+Select e.procName such that Modifies(e, "e")
+Bill
+5000
+152 - ParentStar, Typed, ImplstmtLine ::
+while w; stmt s; variable v;
+Select w such that Parent*(w, s) with w= 26
+26
+5000
+153 - ParentStar, Typed, ImplstmtLine ::
+if if; stmt s;
+Select if such that Parent*(w, s) with if = 30
+
+5000
+154 - ParentStar, Typed, ImplstmtLine ::
+if if; stmt s;
+Selet if such that Parent*(if, s) with if = 30
+
+5000
+155 - ParentStar, Typed, ImplstmtLine ::
+if if; stmt s;
+Selet s such that Parent*(if, s)
+
+5000
