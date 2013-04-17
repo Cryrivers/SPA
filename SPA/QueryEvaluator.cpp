@@ -768,7 +768,8 @@ bool QueryEvaluator::intersect(vector<int>* vecA, vector<int>* vecB, int a, int 
 
 /**
  * \fn		QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec)
- * \brief	Perform intersection with the dependency map for single variable. Map is not empty. Incoming variable either already exists or is new. 
+ * \brief	Perform intersection with the dependency map for single variable. Map is not empty. 
+ *			Incoming variable either already exists or is new. 
  * \param [in]	dep: dependency of v;
  *				v: query variable index;
  *				vec: vector corresponding to v. 
@@ -781,6 +782,11 @@ bool QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec) {
 	if (dependencymap[dep].count(v) == 1) {
 	// variable already exists, remove rows from map
 	
+	/****************************************************************************************
+	NEW EVALUATION:
+		Convert vec to set and when checking use count
+	****************************************************************************************/
+		
 		size = dependencymap[dep][v].size();
 		index = 0;
 		
@@ -812,6 +818,11 @@ bool QueryEvaluator::intersectDependencyMap(int dep, int v, vector<int>* vec) {
 
 	} else {
 	// variable is new, do cartesian product
+	
+	/****************************************************************************************
+	NEW EVALUATION:
+		This case will NEVER happen
+	****************************************************************************************/
 		
 		size = dependencymap[dep].begin()->second.size();
 			
@@ -856,6 +867,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	if (dependencymap[dep].count(a) == 1 && dependencymap[dep].count(b) == 1) {
 	// both variable already exists, remove rows from map
 	
+	/****************************************************************************************
+	NEW EVALUATION:
+		Iterate through the list and check Boolean, if false, remove from list.
+		At end, if map becomes empty -> return false
+	****************************************************************************************/
+		
 		size = dependencymap[dep][a].size();
 		index = 0;
 		
@@ -888,7 +905,14 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 	} else if (dependencymap[dep].count(a) == 1) {
 	// variable a exists in map
-		
+	
+	/****************************************************************************************
+	NEW EVALUATION:
+		Use a map to keep values of a (key) pointing to list of b (value)
+		a found in key -> duplicate b in it
+		a not found in key -> remove row from dependency map
+	****************************************************************************************/
+
 		size = dependencymap[dep][a].size();
 		
 		for (int i = 0; i < size; i++) {
@@ -931,7 +955,14 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 	} else if (dependencymap[dep].count(b) == 1) {
 	// variable b exists in map
-
+	
+	/****************************************************************************************
+	NEW EVALUATION:
+		Use a map to keep values of b (key) pointing to list of a (value)
+		b found in key -> duplicate a in it
+		b not found in key -> remove row from dependency map
+	****************************************************************************************/
+		
 		size = dependencymap[dep][b].size();
 		
 		for (int i = 0; i < size; i++) {
@@ -974,7 +1005,12 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 	
 	} else {
 	// both variables are new, do cartesian product
-		
+	
+	/****************************************************************************************
+	NEW EVALUATION:
+		This case will NEVER happen
+	****************************************************************************************/
+
 		size = dependencymap[dep].begin()->second.size();
 			
 		for (int j = 0; j < vecA->size(); j++) {
