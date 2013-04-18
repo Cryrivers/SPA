@@ -133,11 +133,19 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 
 		// clear visited nodes that are within the same procedure
 		PROC_INDEX currentProc = node1->getProcIndex();
-		STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
-		for(int i=stmt1; i<=stmt2; i++) {
-			int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
-			if(index >=0)
-				visitedNodes->erase(visitedNodes->begin()+index);
+		//STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
+		//for(int i=stmt1; i<=stmt2; i++) {
+			//int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
+			//if(index >=0)
+				//visitedNodes->erase(visitedNodes->begin()+index);
+		//}
+		int visitedSize = visitedNodes->size();
+		int indexOn = 0;
+		for(int i=0; i<visitedSize; i++) {
+			if(visitedNodes->at(indexOn)->getProcIndex() == currentProc)
+				visitedNodes->erase(visitedNodes->begin()+indexOn);
+			else
+				indexOn++;
 		}
 
 		// pop call stack
@@ -451,11 +459,19 @@ void AffectsBip::getAffectsBipFirstHelper(CFGNode* node2, vector<CFGNode*> visit
 				// clear visited nodes that are within the same procedure before jump back
 				vector<CFGNode*> visitedNodesCopy = visitedNodes;
 				PROC_INDEX currentProc = node2->getProcIndex();
-				STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
-				for(int i=stmt1; i<=stmt2; i++) {
-					int index = indexOf((visitedNodesCopy), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
-					if(index >=0)
-						visitedNodesCopy.erase(visitedNodesCopy.begin()+index);
+				//STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
+				//for(int i=stmt1; i<=stmt2; i++) {
+					//int index = indexOf((visitedNodesCopy), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
+					//if(index >=0)
+						//visitedNodesCopy.erase(visitedNodesCopy.begin()+index);
+				//}
+				int visitedSize = visitedNodesCopy.size();
+				int indexOn = 0;
+				for(int i=0; i<visitedSize; i++) {
+					if(visitedNodesCopy.at(indexOn)->getProcIndex() == currentProc)
+						visitedNodesCopy.erase(visitedNodesCopy.begin()+indexOn);
+					else
+						indexOn++;
 				}
 
 				// pop call stack
@@ -655,11 +671,19 @@ void AffectsBip::getAffectsBipSecondHelper(CFGNode* node1, vector<CFGNode*>* vis
 
 		// clear visited nodes that are within the same procedure
 		PROC_INDEX currentProc = node1->getProcIndex();
-		STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
-		for(int i=stmt1; i<=stmt2; i++) {
-			int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
-			if(index >=0)
-				visitedNodes->erase(visitedNodes->begin()+index);
+		//STMT stmt1 = _pkb->getProcStart(currentProc); STMT stmt2 = _pkb->getProcEnd(currentProc);
+		//for(int i=stmt1; i<=stmt2; i++) {
+			//int index = indexOf((*visitedNodes), _pkb->getCFGBip()->getCFGNodeByStmtNumber(i));
+			//if(index >=0)
+				//visitedNodes->erase(visitedNodes->begin()+index);
+		//}
+		int visitedSize = visitedNodes->size();
+		int indexOn = 0;
+		for(int i=0; i<visitedSize; i++) {
+			if(visitedNodes->at(indexOn)->getProcIndex() == currentProc)
+				visitedNodes->erase(visitedNodes->begin()+indexOn);
+			else
+				indexOn++;
 		}
 
 		// pop call stack
