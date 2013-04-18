@@ -48,3 +48,8 @@ while w; stmtLst st1, st2;
 Select BOOLEAN such that Siblings(st1, st2) and Contains*(w, st1)
 true
 5000
+11 - Contains* ::
+stmt s; variable v;
+Select v such that Contains*(s, v) with s.stmt#=2;
+com,pure
+5000

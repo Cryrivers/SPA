@@ -1072,7 +1072,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 
 		size = dependencymap[dep][a].size();
 		
-		/******** Optimised Intersection ********
+		/******** Optimised Intersection ********/
 		// populate r-map
 		for (int j = 0; j < vecA->size(); j++) {
 			rMap[vecA->at(j)].insert(vecB->at(j));
@@ -1103,9 +1103,9 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			}
 
 		}
-		******** End of Optimised Intersection ********/
+		/******** End of Optimised Intersection ********/
 		
-		/******** Old Intersection ********/
+		/******** Old Intersection ********
 		
 		for (int i = 0; i < size; i++) {
 		
@@ -1158,7 +1158,7 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 		
 		size = dependencymap[dep][b].size();
 		
-		/******** Optimised Intersection ********
+		/******** Optimised Intersection ********/
 		// populate r-map
 		for (int j = 0; j < vecB->size(); j++) {
 			rMap[vecB->at(j)].insert(vecA->at(j));
@@ -1189,9 +1189,9 @@ bool QueryEvaluator::intersectDependencyMapPair(int dep, int a, vector<int>* vec
 			}
 		
 		}
-		******** End of Optimised Intersection ********/
+		/******** End of Optimised Intersection ********/
 		
-		/******** Old Intersection ********/
+		/******** Old Intersection ********
 
 		for (int i = 0; i < size; i++) {
 		
