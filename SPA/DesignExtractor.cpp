@@ -2521,57 +2521,23 @@ STMT_LIST DesignExtractor::getContainsSecond( int indexA, ASTNodeType argA, ASTN
 
 BOOLEAN DesignExtractor::contains( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
 {
-	vector<int> temp1,temp2,temp3,temp4;
+	vector<int> temp1,temp2,temp3,temp4,temp5,temp6,temp7,temp8;
 	switch (arg) {
 	case 0:
 		if (argA == AST_STMT)
 		{
-			contains_00(indexAs,&temp1,AST_ASSIGNMENT, argB);
-			contains_00(indexAs,&temp2,AST_WHILE_LOOP, argB);
-			contains_00(indexAs,&temp3,AST_IF_BRANCH, argB);
-			contains_00(indexAs,&temp4,AST_CALL, argB);
-			for (int i = 0; i < temp1.size(); i++)
-			{
-				indexBs->push_back(temp1.at(i));
-			}
-			for (int i = 0; i < temp2.size(); i++)
-			{
-				indexBs->push_back(temp2.at(i));
-			}
-			for (int i = 0; i < temp3.size(); i++)
-			{
-				indexBs->push_back(temp3.at(i));
-			}
-			for (int i = 0; i < temp4.size(); i++)
-			{
-				indexBs->push_back(temp4.at(i));
-			}
-			if (indexBs->size() > 0) return true;
+			if (contains_00(indexAs,&temp1,AST_ASSIGNMENT, argB)) return true;
+			if (contains_00(indexAs,&temp2,AST_WHILE_LOOP, argB)) return true;
+			if (contains_00(indexAs,&temp3,AST_IF_BRANCH, argB)) return true;
+			if (contains_00(indexAs,&temp4,AST_CALL, argB)) return true;
 			return false;
 		}
 		if (argB == AST_STMT)
 		{
-			contains_00(&temp1,indexBs, argA, AST_ASSIGNMENT);
-			contains_00(&temp2,indexBs, argA, AST_WHILE_LOOP);
-			contains_00(&temp3,indexBs, argA, AST_IF_BRANCH);
-			contains_00(&temp4,indexBs, argA, AST_CALL);
-			for (int i = 0; i < temp1.size(); i++)
-			{
-				indexAs->push_back(temp1.at(i));
-			}
-			for (int i = 0; i < temp2.size(); i++)
-			{
-				indexAs->push_back(temp2.at(i));
-			}
-			for (int i = 0; i < temp3.size(); i++)
-			{
-				indexAs->push_back(temp3.at(i));
-			}
-			for (int i = 0; i < temp4.size(); i++)
-			{
-				indexAs->push_back(temp4.at(i));
-			}
-			if (indexAs->size() > 0) return true;
+			if (contains_00(&temp1,indexBs, argA, AST_ASSIGNMENT)) return true;
+			if (contains_00(&temp2,indexBs, argA, AST_WHILE_LOOP)) return true;
+			if (contains_00(&temp3,indexBs, argA, AST_IF_BRANCH)) return true;
+			if (contains_00(&temp4,indexBs, argA, AST_CALL)) return true;
 			return false;
 		}
 		return(contains_00(indexAs, indexBs, argA, argB));
@@ -2604,38 +2570,10 @@ BOOLEAN DesignExtractor::contains( vector<int>* indexAs, vector<int>* indexBs, A
 		}
 		if (argB == AST_STMT)
 		{
-			contains_01(&temp1,indexBs, argA, AST_ASSIGNMENT);
-			contains_01(&temp2,indexBs, argA, AST_WHILE_LOOP);
-			contains_01(&temp3,indexBs, argA, AST_IF_BRANCH);
-			contains_01(&temp4,indexBs, argA, AST_CALL);
-			for (int i = 0; i < temp1.size(); i++)
-			{
-				indexAs->push_back(temp1.at(i));
-			}
-			for (int i = 0; i < temp2.size(); i++)
-			{
-				indexAs->push_back(temp2.at(i));
-			}
-			for (int i = 0; i < temp3.size(); i++)
-			{
-				indexAs->push_back(temp3.at(i));
-			}
-			for (int i = 0; i < temp4.size(); i++)
-			{
-				indexAs->push_back(temp4.at(i));
-			}
-			if (indexAs->size() > 0) return true;
-				return false;
-		}
-		return(contains_01(indexAs, indexBs, argA, argB));
-
-	case 2:
-		if (argA == AST_STMT)
-		{
-			contains_10(indexAs,&temp1,AST_ASSIGNMENT, argB);
-			contains_10(indexAs,&temp2,AST_WHILE_LOOP, argB);
-			contains_10(indexAs,&temp3,AST_IF_BRANCH, argB);
-			contains_10(indexAs,&temp4,AST_CALL, argB);
+			contains_01(indexAs,&temp1, argA, AST_ASSIGNMENT);
+			contains_01(indexAs,&temp2, argA, AST_WHILE_LOOP);
+			contains_01(indexAs,&temp3, argA, AST_IF_BRANCH);
+			contains_01(indexAs,&temp4, argA, AST_CALL);
 			for (int i = 0; i < temp1.size(); i++)
 			{
 				indexBs->push_back(temp1.at(i));
@@ -2653,6 +2591,34 @@ BOOLEAN DesignExtractor::contains( vector<int>* indexAs, vector<int>* indexBs, A
 				indexBs->push_back(temp4.at(i));
 			}
 			if (indexBs->size() > 0) return true;
+				return false;
+		}
+		return(contains_01(indexAs, indexBs, argA, argB));
+
+	case 2:
+		if (argA == AST_STMT)
+		{
+			contains_10(&temp1,indexBs,AST_ASSIGNMENT, argB);
+			contains_10(&temp2,indexBs,AST_WHILE_LOOP, argB);
+			contains_10(&temp3,indexBs,AST_IF_BRANCH, argB);
+			contains_10(&temp4,indexBs,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
 			return false;
 		}
 		if (argB == AST_STMT)
@@ -2685,10 +2651,26 @@ BOOLEAN DesignExtractor::contains( vector<int>* indexAs, vector<int>* indexBs, A
 	case 3:
 		if (argA == AST_STMT)
 		{
-			contains_11(indexAs,&temp1,AST_ASSIGNMENT, argB);
-			contains_11(indexAs,&temp2,AST_WHILE_LOOP, argB);
-			contains_11(indexAs,&temp3,AST_IF_BRANCH, argB);
-			contains_11(indexAs,&temp4,AST_CALL, argB);
+			contains_11(&temp5,&temp1,AST_ASSIGNMENT, argB);
+			contains_11(&temp6,&temp2,AST_WHILE_LOOP, argB);
+			contains_11(&temp7,&temp3,AST_IF_BRANCH, argB);
+			contains_11(&temp8,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp5.size(); i++)
+			{
+				indexAs->push_back(temp5.at(i));
+			}
+			for (int i = 0; i < temp6.size(); i++)
+			{
+				indexAs->push_back(temp6.at(i));
+			}
+			for (int i = 0; i < temp7.size(); i++)
+			{
+				indexAs->push_back(temp7.at(i));
+			}
+			for (int i = 0; i < temp8.size(); i++)
+			{
+				indexAs->push_back(temp8.at(i));
+			}
 			for (int i = 0; i < temp1.size(); i++)
 			{
 				indexBs->push_back(temp1.at(i));
@@ -2710,10 +2692,10 @@ BOOLEAN DesignExtractor::contains( vector<int>* indexAs, vector<int>* indexBs, A
 		}
 		if (argB == AST_STMT)
 		{
-			contains_11(&temp1,indexBs, argA, AST_ASSIGNMENT);
-			contains_11(&temp2,indexBs, argA, AST_WHILE_LOOP);
-			contains_11(&temp3,indexBs, argA, AST_IF_BRANCH);
-			contains_11(&temp4,indexBs, argA, AST_CALL);
+			contains_11(&temp1,&temp5, argA, AST_ASSIGNMENT);
+			contains_11(&temp2,&temp6, argA, AST_WHILE_LOOP);
+			contains_11(&temp3,&temp7, argA, AST_IF_BRANCH);
+			contains_11(&temp4,&temp8, argA, AST_CALL);
 			for (int i = 0; i < temp1.size(); i++)
 			{
 				indexAs->push_back(temp1.at(i));
@@ -2729,6 +2711,22 @@ BOOLEAN DesignExtractor::contains( vector<int>* indexAs, vector<int>* indexBs, A
 			for (int i = 0; i < temp4.size(); i++)
 			{
 				indexAs->push_back(temp4.at(i));
+			}
+			for (int i = 0; i < temp5.size(); i++)
+			{
+				indexBs->push_back(temp5.at(i));
+			}
+			for (int i = 0; i < temp6.size(); i++)
+			{
+				indexBs->push_back(temp6.at(i));
+			}
+			for (int i = 0; i < temp7.size(); i++)
+			{
+				indexBs->push_back(temp7.at(i));
+			}
+			for (int i = 0; i < temp8.size(); i++)
+			{
+				indexBs->push_back(temp8.at(i));
 			}
 			if (indexAs->size() > 0) return true;
 			return false;
@@ -3552,57 +3550,23 @@ BOOLEAN DesignExtractor::sibling_11( vector<int>* indexAs, vector<int> *indexBs,
 
 BOOLEAN DesignExtractor::containsStar( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
 {
-	vector<int> temp1,temp2,temp3,temp4;
+	vector<int> temp1,temp2,temp3,temp4,temp5,temp6,temp7,temp8;
 	switch (arg) {
 	case 0:
 		if (argA == AST_STMT)
 		{
-			containsStar_00(indexAs,&temp1,AST_ASSIGNMENT, argB);
-			containsStar_00(indexAs,&temp2,AST_WHILE_LOOP, argB);
-			containsStar_00(indexAs,&temp3,AST_IF_BRANCH, argB);
-			containsStar_00(indexAs,&temp4,AST_CALL, argB);
-			for (int i = 0; i < temp1.size(); i++)
-			{
-				indexBs->push_back(temp1.at(i));
-			}
-			for (int i = 0; i < temp2.size(); i++)
-			{
-				indexBs->push_back(temp2.at(i));
-			}
-			for (int i = 0; i < temp3.size(); i++)
-			{
-				indexBs->push_back(temp3.at(i));
-			}
-			for (int i = 0; i < temp4.size(); i++)
-			{
-				indexBs->push_back(temp4.at(i));
-			}
-			if (indexBs->size() > 0) return true;
+			if(containsStar_00(indexAs,&temp1,AST_ASSIGNMENT, argB)) return true;
+			if(containsStar_00(indexAs,&temp2,AST_WHILE_LOOP, argB)) return true;
+			if(containsStar_00(indexAs,&temp3,AST_IF_BRANCH, argB)) return true;
+			if(containsStar_00(indexAs,&temp4,AST_CALL, argB)) return true;
 			return false;
 		}
 		if (argB == AST_STMT)
 		{
-			containsStar_00(&temp1,indexBs, argA, AST_ASSIGNMENT);
-			containsStar_00(&temp2,indexBs, argA, AST_WHILE_LOOP);
-			containsStar_00(&temp3,indexBs, argA, AST_IF_BRANCH);
-			containsStar_00(&temp4,indexBs, argA, AST_CALL);
-			for (int i = 0; i < temp1.size(); i++)
-			{
-				indexAs->push_back(temp1.at(i));
-			}
-			for (int i = 0; i < temp2.size(); i++)
-			{
-				indexAs->push_back(temp2.at(i));
-			}
-			for (int i = 0; i < temp3.size(); i++)
-			{
-				indexAs->push_back(temp3.at(i));
-			}
-			for (int i = 0; i < temp4.size(); i++)
-			{
-				indexAs->push_back(temp4.at(i));
-			}
-			if (indexAs->size() > 0) return true;
+			if(containsStar_00(&temp1,indexBs, argA, AST_ASSIGNMENT)) return true;
+			if(containsStar_00(&temp2,indexBs, argA, AST_WHILE_LOOP)) return true;
+			if(containsStar_00(&temp3,indexBs, argA, AST_IF_BRANCH)) return true;
+			if(containsStar_00(&temp4,indexBs, argA, AST_CALL)) return true;
 			return false;
 		}
 		return(containsStar_00(indexAs, indexBs, argA, argB));
@@ -3635,38 +3599,10 @@ BOOLEAN DesignExtractor::containsStar( vector<int>* indexAs, vector<int>* indexB
 		}
 		if (argB == AST_STMT)
 		{
-			containsStar_01(&temp1,indexBs, argA, AST_ASSIGNMENT);
-			containsStar_01(&temp2,indexBs, argA, AST_WHILE_LOOP);
-			containsStar_01(&temp3,indexBs, argA, AST_IF_BRANCH);
-			containsStar_01(&temp4,indexBs, argA, AST_CALL);
-			for (int i = 0; i < temp1.size(); i++)
-			{
-				indexAs->push_back(temp1.at(i));
-			}
-			for (int i = 0; i < temp2.size(); i++)
-			{
-				indexAs->push_back(temp2.at(i));
-			}
-			for (int i = 0; i < temp3.size(); i++)
-			{
-				indexAs->push_back(temp3.at(i));
-			}
-			for (int i = 0; i < temp4.size(); i++)
-			{
-				indexAs->push_back(temp4.at(i));
-			}
-			if (indexAs->size() > 0) return true;
-			return false;
-		}
-		return(containsStar_01(indexAs, indexBs, argA, argB));
-
-	case 2:
-		if (argA == AST_STMT)
-		{
-			containsStar_10(indexAs,&temp1,AST_ASSIGNMENT, argB);
-			containsStar_10(indexAs,&temp2,AST_WHILE_LOOP, argB);
-			containsStar_10(indexAs,&temp3,AST_IF_BRANCH, argB);
-			containsStar_10(indexAs,&temp4,AST_CALL, argB);
+			containsStar_01(indexAs,&temp1, argA, AST_ASSIGNMENT);
+			containsStar_01(indexAs,&temp2, argA, AST_WHILE_LOOP);
+			containsStar_01(indexAs,&temp3, argA, AST_IF_BRANCH);
+			containsStar_01(indexAs,&temp4, argA, AST_CALL);
 			for (int i = 0; i < temp1.size(); i++)
 			{
 				indexBs->push_back(temp1.at(i));
@@ -3684,6 +3620,34 @@ BOOLEAN DesignExtractor::containsStar( vector<int>* indexAs, vector<int>* indexB
 				indexBs->push_back(temp4.at(i));
 			}
 			if (indexBs->size() > 0) return true;
+			return false;
+		}
+		return(containsStar_01(indexAs, indexBs, argA, argB));
+
+	case 2:
+		if (argA == AST_STMT)
+		{
+			containsStar_10(&temp1,indexBs,AST_ASSIGNMENT, argB);
+			containsStar_10(&temp2,indexBs,AST_WHILE_LOOP, argB);
+			containsStar_10(&temp3,indexBs,AST_IF_BRANCH, argB);
+			containsStar_10(&temp4,indexBs,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
 			return false;
 		}
 		if (argB == AST_STMT)
@@ -3716,10 +3680,26 @@ BOOLEAN DesignExtractor::containsStar( vector<int>* indexAs, vector<int>* indexB
 	case 3:
 		if (argA == AST_STMT)
 		{
-			containsStar_11(indexAs,&temp1,AST_ASSIGNMENT, argB);
-			containsStar_11(indexAs,&temp2,AST_WHILE_LOOP, argB);
-			containsStar_11(indexAs,&temp3,AST_IF_BRANCH, argB);
-			containsStar_11(indexAs,&temp4,AST_CALL, argB);
+			containsStar_11(&temp5,&temp1,AST_ASSIGNMENT, argB);
+			containsStar_11(&temp6,&temp2,AST_WHILE_LOOP, argB);
+			containsStar_11(&temp7,&temp3,AST_IF_BRANCH, argB);
+			containsStar_11(&temp8,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp5.size(); i++)
+			{
+				indexAs->push_back(temp5.at(i));
+			}
+			for (int i = 0; i < temp6.size(); i++)
+			{
+				indexAs->push_back(temp6.at(i));
+			}
+			for (int i = 0; i < temp7.size(); i++)
+			{
+				indexAs->push_back(temp7.at(i));
+			}
+			for (int i = 0; i < temp8.size(); i++)
+			{
+				indexAs->push_back(temp8.at(i));
+			}
 			for (int i = 0; i < temp1.size(); i++)
 			{
 				indexBs->push_back(temp1.at(i));
@@ -3741,10 +3721,10 @@ BOOLEAN DesignExtractor::containsStar( vector<int>* indexAs, vector<int>* indexB
 		}
 		if (argB == AST_STMT)
 		{
-			containsStar_11(&temp1,indexBs, argA, AST_ASSIGNMENT);
-			containsStar_11(&temp2,indexBs, argA, AST_WHILE_LOOP);
-			containsStar_11(&temp3,indexBs, argA, AST_IF_BRANCH);
-			containsStar_11(&temp4,indexBs, argA, AST_CALL);
+			containsStar_11(&temp1,&temp5, argA, AST_ASSIGNMENT);
+			containsStar_11(&temp2,&temp6, argA, AST_WHILE_LOOP);
+			containsStar_11(&temp3,&temp7, argA, AST_IF_BRANCH);
+			containsStar_11(&temp4,&temp8, argA, AST_CALL);
 			for (int i = 0; i < temp1.size(); i++)
 			{
 				indexAs->push_back(temp1.at(i));
@@ -3760,6 +3740,22 @@ BOOLEAN DesignExtractor::containsStar( vector<int>* indexAs, vector<int>* indexB
 			for (int i = 0; i < temp4.size(); i++)
 			{
 				indexAs->push_back(temp4.at(i));
+			}
+			for (int i = 0; i < temp5.size(); i++)
+			{
+				indexBs->push_back(temp5.at(i));
+			}
+			for (int i = 0; i < temp6.size(); i++)
+			{
+				indexBs->push_back(temp6.at(i));
+			}
+			for (int i = 0; i < temp7.size(); i++)
+			{
+				indexBs->push_back(temp7.at(i));
+			}
+			for (int i = 0; i < temp8.size(); i++)
+			{
+				indexBs->push_back(temp8.at(i));
 			}
 			if (indexAs->size() > 0) return true;
 			return false;
