@@ -79,7 +79,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	const int querySize = 1;
 	string query[querySize];	   
 	//query[0]="";
-	query[0]="while w; stmtLst st1, st2; Select BOOLEAN such that Siblings(st1, st2) and Contains*(w, st1)"; 
+	query[0]="stmt s; Select s such that Siblings(1,s)"; 
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
