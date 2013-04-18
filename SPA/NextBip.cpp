@@ -703,6 +703,29 @@ void NextBip::getNextBipStarFirstHelper(CFGNode* node2,vector<CFGNode*> visitedN
 			CFGNode* currentNode = prev_nodes.at(i);
 			if(currentNode->getBipType() == CFG_BIP_OUT) { //jump to return nodes
 				STMT_LIST prevStmts = _pkb->getNextFirst(node2->getStartStatement());
+				if(prevStmts.size() == 0) { //a dummy node
+					vector<CFGNode*> prevStmtsNodes = _pkb->getCFGBip()->getCFGNodeByStmtNumber(_pkb->getProcStart(currentNode->getProcIndex()))->getPrevEdges();
+					for(int j=0; j<prevStmtsNodes.size(); j++) {
+						CFGNode* temp = prevStmtsNodes.at(j);
+						if(temp->getCFGType() != CFG_CALL_STATEMENT)
+							continue;
+
+						stack<STMT> callStackCopy = callStack;
+						callStackCopy.push(temp->getEndStatement()); //push to call stack
+						if(indexOf((visitedNodes), currentNode) >= 0) {
+							//current predecessor has been visited, do not visit it again
+						} else {
+							visitedNodes.push_back(currentNode); //mark current predecessor as visited to avoid re-visit
+							for(int i=currentNode->getEndStatement(); i>=currentNode->getStartStatement(); i--) {
+								if(i != -1)
+									result->push_back(i);
+							}
+							getNextBipStarFirstHelper(currentNode, visitedNodes, callStackCopy, result);
+						}
+					}
+				}
+
+
 				for(int j=0; j<prevStmts.size();j++) {
 					if(_pkb->getCFGBip()->getCFGNodeByStmtNumber(prevStmts.at(j))->getCFGType() != CFG_CALL_STATEMENT) {
 						//not a call statement, do not consider
