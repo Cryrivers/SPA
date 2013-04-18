@@ -3383,6 +3383,7 @@ BOOLEAN DesignExtractor::containsStar_00( vector<int>* indexAs, vector<int>* ind
 		{
 			if (ast->at(i)->getNodeType() == argA)
 			{
+				flag = false;
 				b = ast->at(i)->getChildren();
 				containsStarCase1aRecursive(b, argB, &flag);
 				if(flag == true) return true;
@@ -3395,6 +3396,7 @@ BOOLEAN DesignExtractor::containsStar_00( vector<int>* indexAs, vector<int>* ind
 		{
 			if (ast->at(i)->getNodeType() == argA)
 			{
+				flag = false;
 				b = ast->at(i)->getChildren();
 				containsStarCase1bRecursive(b, argB, *indexBs, &flag);
 				if(flag == true) return true;
@@ -3407,6 +3409,7 @@ BOOLEAN DesignExtractor::containsStar_00( vector<int>* indexAs, vector<int>* ind
 		{
 			if (ast->at(i)->getNodeType() == argA && indexOf(*indexAs, ast->at(i)->getNodeValue()) >=0)
 			{
+				flag = false;
 				b = ast->at(i)->getChildren();
 				containsStarCase1aRecursive(b, argB, &flag);
 				if(flag == true) return true;
@@ -3418,6 +3421,7 @@ BOOLEAN DesignExtractor::containsStar_00( vector<int>* indexAs, vector<int>* ind
 		{
 			if (ast->at(i)->getNodeType() == argA && indexOf(*indexAs, ast->at(i)->getNodeValue())>=0)
 			{
+				flag = false;
 				b = ast->at(i)->getChildren();
 				containsStarCase1bRecursive(b, argB, *indexBs, &flag);
 				if(flag == true) return true;
@@ -3520,6 +3524,7 @@ BOOLEAN DesignExtractor::containsStar_10( vector<int>* indexAs, vector<int>* ind
 		{
 			if (ast->at(i)->getNodeType() == argA)
 			{
+				flag = false;
 				b = ast->at(i)->getChildren();
 				containsStarCase1aRecursive(b, argB, &flag);
 				if(flag == true) indexAs->push_back(ast->at(i)->getNodeValue());
@@ -3531,19 +3536,20 @@ BOOLEAN DesignExtractor::containsStar_10( vector<int>* indexAs, vector<int>* ind
 		{
 			if (ast->at(i)->getNodeType() == argA)
 			{
+				flag = false;
 				b = ast->at(i)->getChildren();
 				containsStarCase1bRecursive(b, argB, *indexBs, &flag);
 				if(flag == true) indexAs->push_back(ast->at(i)->getNodeValue());
 			}
 		}
 	}else if (size2 == 0) {  //size2==0 && size1 !=0, case 1c
-		flag = false;
 		temp = *indexAs;
 		indexAs->clear();
 		for (int i = 0; i < ast->size(); i++)
 		{
 			if (ast->at(i)->getNodeType() == argA && indexOf(temp, ast->at(i)->getNodeValue()) >=0)
 			{
+				flag = false;
 				b = ast->at(i)->getChildren();
 				containsStarCase1aRecursive(b, argB, &flag);
 				if(flag == true) indexAs->push_back(ast->at(i)->getNodeValue());
@@ -3557,6 +3563,7 @@ BOOLEAN DesignExtractor::containsStar_10( vector<int>* indexAs, vector<int>* ind
 		{
 			if (ast->at(i)->getNodeType() == argA && indexOf(temp, ast->at(i)->getNodeValue())>=0)
 			{
+				flag = false;
 				b = ast->at(i)->getChildren();
 				containsStarCase1bRecursive(b, argB, *indexBs, &flag);
 				if(flag == true) indexAs->push_back(ast->at(i)->getNodeValue());

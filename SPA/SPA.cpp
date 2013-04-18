@@ -41,7 +41,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	program = "";
 
 	//ifstream myfile("../SampleCode/CS3202Test1Code.c");
-	ifstream myfile("../SampleCode/source1.txt");
+	ifstream myfile("../SampleCode/CS3202Test2Code.c");
 
 	if (myfile.is_open())
 	{
@@ -79,7 +79,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	const int querySize = 1;
 	string query[querySize];	   
 	//query[0]="";
-	query[0]="prog_line n; Select BOOLEAN with n=20";  
+	query[0]="while w; stmtLst st1, st2; Select BOOLEAN such that Siblings(st1, st2) and Contains*(w, st1)"; 
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
