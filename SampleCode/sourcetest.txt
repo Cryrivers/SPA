@@ -641,8 +641,8 @@ Select v.varName such that NextBip* (s, s)
 d,e,i,m,n,r,t,x,y,z
 5000
 129 - Modifies, Typed, ImplstmtLine ::
-stmt s; variable v;
-Select v.varName such that AffectsBip (s, s)
+assign a; variable v;
+Select v.varName such that AffectsBip (a, a)
 d,e,i,m,n,r,t,x,y,z
 5000
 130 - Modifies, Typed, ImplstmtLine ::

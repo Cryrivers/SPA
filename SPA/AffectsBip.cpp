@@ -64,26 +64,31 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 			//current successor has been visited, do not visit it again
 		} else {
 			visitedNodes->push_back(next_node); //mark current successor as visited to avoid re-visit
-			int start1 = next_node->getStartStatement();
-			int end1 = next_node->getEndStatement();
-			for(int k=start1; k<=end1; k++) {
-				STMT_LIST temp1; temp1.push_back(k);
 
-				if(k == stmt2) {
-					if(_pkb->uses(&temp1, &modifiedVar, 0)) {
-						*result = 1; //true
-						return;
-					}
-					else {
-						*result = 0;
-						return;
-					}
-				} else { //k is not stmt2
-					if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
-						return;
+			if(next_node->getCFGType() != CFG_NORMAL_BLOCK) {
+				//this node is if or while or call or dummy, go to next node directly
+			} else {
+				int start1 = next_node->getStartStatement(); int end1 = next_node->getEndStatement();
+				for(int k=start1; k<=end1; k++) {
+					STMT_LIST temp1; temp1.push_back(k);
+
+					if(k == stmt2) {
+						if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+							*result = 1; //true
+							return;
+						}
+						else {
+							*result = 0;
+							return;
+						}
+					} else { //k is not stmt2
+						if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+							return;
+						}
 					}
 				}
 			}
+				
 			isAffectsBipHelper(next_node, stmt2, visitedNodes, modifiedVar, result, callStack);
 		}
 	} 
@@ -98,30 +103,39 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 					//current successor has been visited, do not visit it again
 				} else {
 					visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+					bool carryOn = true;
 
-					int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
-					for(int k=start1; k<=end1; k++) {
-						STMT_LIST temp1; temp1.push_back(k);
+					if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
+						//this node is if or while or call or dummy, go to next node directly
+					} else {
+						int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
+						for(int k=start1; k<=end1; k++) {
+							STMT_LIST temp1; temp1.push_back(k);
 
-						if(k == stmt2) {
-							if(_pkb->uses(&temp1, &modifiedVar, 0)) {
-								*result = 1; //true
-								return;
-							}
-							else {
-								*result = 0;
-								return;
-							}
-						} else { //k is not stmt2
-							if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
-								return;
+							if(k == stmt2) {
+								if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+									*result = 1; //true
+									return;
+								}
+								else {
+									*result = 0;
+									return;
+								}
+							} else { //k is not stmt2
+								if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+									carryOn = false;
+									break;
+								}
 							}
 						}
 					}
 
-					isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
-					if(*result != -1) //result already decided
-						return;
+					if(carryOn) {
+						isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
+						if(*result != -1) //result already decided
+							return;
+					}
+						
 				}
 			}
 		}
@@ -159,30 +173,38 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 						//current successor has been visited, do not visit it again
 					} else {
 						visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
+						bool carryOn = true;
 
-						int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
-						for(int k=start1; k<=end1; k++) {
-							STMT_LIST temp1; temp1.push_back(k);
+						if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
+							//this node is if or while or call or dummy, go to next node directly
+						} else {
+							int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
+							for(int k=start1; k<=end1; k++) {
+								STMT_LIST temp1; temp1.push_back(k);
 
-							if(k == stmt2) {
-								if(_pkb->uses(&temp1, &modifiedVar, 0)) {
-									*result = 1; //true
-									return;
-								}
-								else {
-									*result = 0; //false
-									return;
-								}
-							} else { //k is not stmt2
-								if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
-									return;
+								if(k == stmt2) {
+									if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+										*result = 1; //true
+										return;
+									}
+									else {
+										*result = 0; //false
+										return;
+									}
+								} else { //k is not stmt2
+									if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+										carryOn = false;
+										break;
+									}
 								}
 							}
 						}
-
-						isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
-						if(*result != -1)
-							return;
+						if(carryOn) {
+							isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
+							if(*result != -1)
+								return;
+						}
+							
 					}
 				}
 			}
@@ -203,29 +225,38 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 							//current successor has been visited, do not visit it again
 						} else {
 							visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
-							int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
-							for(int k=start1; k<=end1; k++) {
-								STMT_LIST temp1; temp1.push_back(k);
+							bool carryOn = true;
 
-								if(k == stmt2) {
-									if(_pkb->uses(&temp1, &modifiedVar, 0)) {
-										*result = 1; //true
-										return;
-									}
-									else {
-										*result = 0; //false
-										return;
-									}
-								} else { //k is not stmt2
-									if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
-										return;
+							if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
+								//this node is if or while or call or dummy, go to next node directly
+							} else {
+								int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
+								for(int k=start1; k<=end1; k++) {
+									STMT_LIST temp1; temp1.push_back(k);
+
+									if(k == stmt2) {
+										if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+											*result = 1; //true
+											return;
+										}
+										else {
+											*result = 0; //false
+											return;
+										}
+									} else { //k is not stmt2
+										if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+											carryOn = false;
+											break;
+										}
 									}
 								}
 							}
-						
-							isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
-							if(*result != -1)
-								return;
+						    if(carryOn) {
+								isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
+								if(*result != -1)
+									return;
+							}
+								
 						}
 					}
 				} else {
@@ -240,29 +271,38 @@ void AffectsBip::isAffectsBipHelper(CFGNode* node1, STMT stmt2, vector<CFGNode*>
 							//current successor has been visited, do not visit it again
 						} else {
 							visitedNodes->push_back(currentNode); //mark current successor as visited to avoid re-visit
-							int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
-							for(int k=start1; k<=end1; k++) {
-								STMT_LIST temp1; temp1.push_back(k);
+							bool carryOn = true;
 
-								if(k == stmt2) {
-									if(_pkb->uses(&temp1, &modifiedVar, 0)) {
-										*result = 1; //true
-										return;
-									}
-									else {
-										*result = 0; //false
-										return;
-									}
-								} else { //k is not stmt2
-									if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
-										return;
+							if(currentNode->getCFGType() != CFG_NORMAL_BLOCK) {
+								//this node is if or while or call or dummy, go to next node directly
+							} else {
+								int start1 = currentNode->getStartStatement(); int end1 = currentNode->getEndStatement();
+								for(int k=start1; k<=end1; k++) {
+									STMT_LIST temp1; temp1.push_back(k);
+
+									if(k == stmt2) {
+										if(_pkb->uses(&temp1, &modifiedVar, 0)) {
+											*result = 1; //true
+											return;
+										}
+										else {
+											*result = 0; //false
+											return;
+										}
+									} else { //k is not stmt2
+										if(_pkb->modifies(&temp1, &modifiedVar, 0)) { //k modifies the variable, this path is broken
+											carryOn = false;
+											break;
+										}
 									}
 								}
 							}
-						
-							isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
-							if(*result != -1)
-								return;
+							if(carryOn) {
+								isAffectsBipHelper(currentNode, stmt2, visitedNodes, modifiedVar, result, callStack);
+								if(*result != -1)
+									return;
+							}
+								
 						}
 					}
 				}	
