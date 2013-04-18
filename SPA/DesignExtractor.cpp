@@ -2521,17 +2521,218 @@ STMT_LIST DesignExtractor::getContainsSecond( int indexA, ASTNodeType argA, ASTN
 
 BOOLEAN DesignExtractor::contains( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
 {
+	vector<int> temp1,temp2,temp3,temp4;
 	switch (arg) {
 	case 0:
+		if (argA == AST_STMT)
+		{
+			contains_00(indexAs,&temp1,AST_ASSIGNMENT, argB);
+			contains_00(indexAs,&temp2,AST_WHILE_LOOP, argB);
+			contains_00(indexAs,&temp3,AST_IF_BRANCH, argB);
+			contains_00(indexAs,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexBs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexBs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexBs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexBs->push_back(temp4.at(i));
+			}
+			if (indexBs->size() > 0) return true;
+			return false;
+		}
+		if (argB == AST_STMT)
+		{
+			contains_00(&temp1,indexBs, argA, AST_ASSIGNMENT);
+			contains_00(&temp2,indexBs, argA, AST_WHILE_LOOP);
+			contains_00(&temp3,indexBs, argA, AST_IF_BRANCH);
+			contains_00(&temp4,indexBs, argA, AST_CALL);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
+			return false;
+		}
 		return(contains_00(indexAs, indexBs, argA, argB));
 
 	case 1:
+		if (argA == AST_STMT)
+		{
+			contains_01(indexAs,&temp1,AST_ASSIGNMENT, argB);
+			contains_01(indexAs,&temp2,AST_WHILE_LOOP, argB);
+			contains_01(indexAs,&temp3,AST_IF_BRANCH, argB);
+			contains_01(indexAs,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexBs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexBs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexBs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexBs->push_back(temp4.at(i));
+			}
+			if (indexBs->size() > 0) return true;
+				return false;
+		}
+		if (argB == AST_STMT)
+		{
+			contains_01(&temp1,indexBs, argA, AST_ASSIGNMENT);
+			contains_01(&temp2,indexBs, argA, AST_WHILE_LOOP);
+			contains_01(&temp3,indexBs, argA, AST_IF_BRANCH);
+			contains_01(&temp4,indexBs, argA, AST_CALL);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
+				return false;
+		}
 		return(contains_01(indexAs, indexBs, argA, argB));
 
 	case 2:
+		if (argA == AST_STMT)
+		{
+			contains_10(indexAs,&temp1,AST_ASSIGNMENT, argB);
+			contains_10(indexAs,&temp2,AST_WHILE_LOOP, argB);
+			contains_10(indexAs,&temp3,AST_IF_BRANCH, argB);
+			contains_10(indexAs,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexBs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexBs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexBs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexBs->push_back(temp4.at(i));
+			}
+			if (indexBs->size() > 0) return true;
+			return false;
+		}
+		if (argB == AST_STMT)
+		{
+			contains_10(&temp1,indexBs, argA, AST_ASSIGNMENT);
+			contains_10(&temp2,indexBs, argA, AST_WHILE_LOOP);
+			contains_10(&temp3,indexBs, argA, AST_IF_BRANCH);
+			contains_10(&temp4,indexBs, argA, AST_CALL);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
+			return false;
+		}
 		return(contains_10(indexAs, indexBs, argA, argB));
 
 	case 3:
+		if (argA == AST_STMT)
+		{
+			contains_11(indexAs,&temp1,AST_ASSIGNMENT, argB);
+			contains_11(indexAs,&temp2,AST_WHILE_LOOP, argB);
+			contains_11(indexAs,&temp3,AST_IF_BRANCH, argB);
+			contains_11(indexAs,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexBs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexBs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexBs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexBs->push_back(temp4.at(i));
+			}
+			if (indexBs->size() > 0) return true;
+			return false;
+		}
+		if (argB == AST_STMT)
+		{
+			contains_11(&temp1,indexBs, argA, AST_ASSIGNMENT);
+			contains_11(&temp2,indexBs, argA, AST_WHILE_LOOP);
+			contains_11(&temp3,indexBs, argA, AST_IF_BRANCH);
+			contains_11(&temp4,indexBs, argA, AST_CALL);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
+			return false;
+		}
 		return(contains_11(indexAs, indexBs, argA, argB));
 
 	default:
@@ -3351,17 +3552,218 @@ BOOLEAN DesignExtractor::sibling_11( vector<int>* indexAs, vector<int> *indexBs,
 
 BOOLEAN DesignExtractor::containsStar( vector<int>* indexAs, vector<int>* indexBs, ASTNodeType argA, ASTNodeType argB, int arg )
 {
+	vector<int> temp1,temp2,temp3,temp4;
 	switch (arg) {
 	case 0:
+		if (argA == AST_STMT)
+		{
+			containsStar_00(indexAs,&temp1,AST_ASSIGNMENT, argB);
+			containsStar_00(indexAs,&temp2,AST_WHILE_LOOP, argB);
+			containsStar_00(indexAs,&temp3,AST_IF_BRANCH, argB);
+			containsStar_00(indexAs,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexBs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexBs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexBs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexBs->push_back(temp4.at(i));
+			}
+			if (indexBs->size() > 0) return true;
+			return false;
+		}
+		if (argB == AST_STMT)
+		{
+			containsStar_00(&temp1,indexBs, argA, AST_ASSIGNMENT);
+			containsStar_00(&temp2,indexBs, argA, AST_WHILE_LOOP);
+			containsStar_00(&temp3,indexBs, argA, AST_IF_BRANCH);
+			containsStar_00(&temp4,indexBs, argA, AST_CALL);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
+			return false;
+		}
 		return(containsStar_00(indexAs, indexBs, argA, argB));
 
 	case 1:
+		if (argA == AST_STMT)
+		{
+			containsStar_01(indexAs,&temp1,AST_ASSIGNMENT, argB);
+			containsStar_01(indexAs,&temp2,AST_WHILE_LOOP, argB);
+			containsStar_01(indexAs,&temp3,AST_IF_BRANCH, argB);
+			containsStar_01(indexAs,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexBs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexBs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexBs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexBs->push_back(temp4.at(i));
+			}
+			if (indexBs->size() > 0) return true;
+			return false;
+		}
+		if (argB == AST_STMT)
+		{
+			containsStar_01(&temp1,indexBs, argA, AST_ASSIGNMENT);
+			containsStar_01(&temp2,indexBs, argA, AST_WHILE_LOOP);
+			containsStar_01(&temp3,indexBs, argA, AST_IF_BRANCH);
+			containsStar_01(&temp4,indexBs, argA, AST_CALL);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
+			return false;
+		}
 		return(containsStar_01(indexAs, indexBs, argA, argB));
 
 	case 2:
+		if (argA == AST_STMT)
+		{
+			containsStar_10(indexAs,&temp1,AST_ASSIGNMENT, argB);
+			containsStar_10(indexAs,&temp2,AST_WHILE_LOOP, argB);
+			containsStar_10(indexAs,&temp3,AST_IF_BRANCH, argB);
+			containsStar_10(indexAs,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexBs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexBs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexBs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexBs->push_back(temp4.at(i));
+			}
+			if (indexBs->size() > 0) return true;
+			return false;
+		}
+		if (argB == AST_STMT)
+		{
+			containsStar_10(&temp1,indexBs, argA, AST_ASSIGNMENT);
+			containsStar_10(&temp2,indexBs, argA, AST_WHILE_LOOP);
+			containsStar_10(&temp3,indexBs, argA, AST_IF_BRANCH);
+			containsStar_10(&temp4,indexBs, argA, AST_CALL);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
+			return false;
+		}
 		return(containsStar_10(indexAs, indexBs, argA, argB));
 
 	case 3:
+		if (argA == AST_STMT)
+		{
+			containsStar_11(indexAs,&temp1,AST_ASSIGNMENT, argB);
+			containsStar_11(indexAs,&temp2,AST_WHILE_LOOP, argB);
+			containsStar_11(indexAs,&temp3,AST_IF_BRANCH, argB);
+			containsStar_11(indexAs,&temp4,AST_CALL, argB);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexBs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexBs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexBs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexBs->push_back(temp4.at(i));
+			}
+			if (indexBs->size() > 0) return true;
+			return false;
+		}
+		if (argB == AST_STMT)
+		{
+			containsStar_11(&temp1,indexBs, argA, AST_ASSIGNMENT);
+			containsStar_11(&temp2,indexBs, argA, AST_WHILE_LOOP);
+			containsStar_11(&temp3,indexBs, argA, AST_IF_BRANCH);
+			containsStar_11(&temp4,indexBs, argA, AST_CALL);
+			for (int i = 0; i < temp1.size(); i++)
+			{
+				indexAs->push_back(temp1.at(i));
+			}
+			for (int i = 0; i < temp2.size(); i++)
+			{
+				indexAs->push_back(temp2.at(i));
+			}
+			for (int i = 0; i < temp3.size(); i++)
+			{
+				indexAs->push_back(temp3.at(i));
+			}
+			for (int i = 0; i < temp4.size(); i++)
+			{
+				indexAs->push_back(temp4.at(i));
+			}
+			if (indexAs->size() > 0) return true;
+			return false;
+		}
 		return(containsStar_11(indexAs, indexBs, argA, argB));
 
 	default:
