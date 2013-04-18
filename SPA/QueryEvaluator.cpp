@@ -101,7 +101,7 @@ bool QueryEvaluator::evaluate(map<int, vector<QueryClause>> qcl, vector<QueryVar
  */
 bool QueryEvaluator::optimise()
 {
-	/*********************** Query Optimisation *******************************
+	/*********************** Query Optimisation *******************************/
 	
 	map<int, vector<long long>> QCweights; // key: dep; keeps the weight of query clauses 
 	long long value;
@@ -159,9 +159,9 @@ bool QueryEvaluator::optimise()
 						
 						// add the variables into the visitedVariableSet if they are dependent 
 						if (qVariableList[(*mit).second[*it].variable1].dependency >= 0)
-							visitedVariableSet.insert(qc.variable1);
+							visitedVariableSet.insert((*mit).second[*it].variable1);
 						if (qVariableList[(*mit).second[*it].variable2].dependency >= 0)
-							visitedVariableSet.insert(qc.variable2);
+							visitedVariableSet.insert((*mit).second[*it].variable2);
 						
 						sIndexList.erase(it); // remove the qcIndex from the list
 						found = true;
@@ -182,9 +182,9 @@ bool QueryEvaluator::optimise()
 						
 							// add the variables into the visitedVariableSet if they are dependent 
 							if (qVariableList[(*mit).second[*it].variable1].dependency >= 0)
-								visitedVariableSet.insert(qc.variable1);
+								visitedVariableSet.insert((*mit).second[*it].variable1);
 							if (qVariableList[(*mit).second[*it].variable2].dependency >= 0)
-								visitedVariableSet.insert(qc.variable2);
+								visitedVariableSet.insert((*mit).second[*it].variable2);
 						
 							sIndexList.erase(it); // remove the qcIndex from the list
 							break;
@@ -195,9 +195,9 @@ bool QueryEvaluator::optimise()
 			}
 		}
 	}	
-	*********************** End of Query Optimisation *******************************/
+	/*********************** End of Query Optimisation *******************************/
 
-	/*********************** No Optimisation *******************************/
+	/*********************** No Optimisation *******************************
 	for (map<int, vector<QueryClause>>::iterator mit = qClauseList.begin(); mit != qClauseList.end(); ++mit) {
 		for (vector<QueryClause>::iterator vit = (*mit).second.begin(); vit != (*mit).second.end(); ++vit)
 				qClauseList2.push_back(*vit);
