@@ -493,7 +493,7 @@ ASTNode *Parser::_buildAssignmentAST(statement *s)
 	regex hashAllVariables("[a-zA-Z][a-zA-Z0-9]*"); //with #
 	string varFmt("#$&#");
 	string constFmt("$1%$2%");
-	regex hashAllConstants("([-\\+\\*\\s*])([0-9]+)"); //with %
+	regex hashAllConstants("([-\\(\\+\\*\\s*])([0-9]+)"); //with %
 
 	infixExpr = regex_replace(infixExpr, removeWhitespace, rmvWS);
 	infixExpr = regex_replace(infixExpr, hashAllVariables, varFmt);
