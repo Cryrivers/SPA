@@ -1633,7 +1633,10 @@ int QueryPreprocessor::parse(string query){
 		declares.clear();
 		//=======================================>>Stage 2 Select
 		vector<string> targets = getTargets(query);
-		if((targets.size()<=0)||(!setupTarTable(targets)))		
+		if(targets.size()<=0){
+			 targets.push_back(query);
+		}
+		if(!setupTarTable(targets))
 			break;
 		targets.clear();
 		//=======================================>>Stage 3 Clause

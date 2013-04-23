@@ -76,10 +76,11 @@ int _tmain(int argc, _TCHAR *argv[])
 	list<string> result;
 
 	
-	const int querySize = 1;
+	const int querySize = 2;
 	string query[querySize];	   
-	//query[0]="";
-	query[0]="stmt s; Select s such that Siblings(1,s)"; 
+	//query[0]="";											 
+	query[0]="if ifstmt; stmt s; Select ifstmt"; 
+	query[1]="stmt s1,s2; Select s2 such that Next*(8,s2)";
 	
 	for(int i=0; i<querySize; i++){						 						 
 		cout<<"-------------------------------------------------------------------------------------"<<endl;
