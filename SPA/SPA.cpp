@@ -41,7 +41,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	program = "";
 
 	//ifstream myfile("../SampleCode/CS3202Test1Code.c");
-	ifstream myfile("../SampleCode/CS3202Test2Code.c");
+	ifstream myfile("../SampleCode/CFGTest.c");
 
 	if (myfile.is_open())
 	{
@@ -71,6 +71,7 @@ int _tmain(int argc, _TCHAR *argv[])
 	}
 
 	SPA_TIME_MEASURE("Parser", parser->parse(program));
+	PKBController::createInstance()->getCFG()->__printDotGraphForGraphviz();
 
 	QueryProcessor *processor = new QueryProcessor();
 	list<string> result;
