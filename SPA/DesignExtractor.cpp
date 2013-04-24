@@ -921,10 +921,29 @@ BOOLEAN DesignExtractor::assignPattern(vector<int> *a, vector<int> *b, string ex
 				return(false);
 			}
 			return(true);
-		}else if ((b->size() == 1)) {
+		}else if (a->size() == 0 && b->size() == 1) {
 			if(expr == ""){
 				for(int j = 0; j < assign->size(); j++){
 					if(b->at(0) == assign->at(j)->getChildren()->getNodeValue()){
+						temp->push_back(assign->at(j)->getStmtNumber());
+					}
+				}
+			}else{
+				tree = _pkb->getAST()->buildAssignmentSubtree(b->at(0), expr);
+				if (flag == 0) {
+					temp = _pkb->getAST()->containTree(tree);
+				}else {
+					temp = _pkb->getAST()->containSubtree(tree);
+				}
+			}
+			if (temp->size() == 0) {
+				return(false);
+			}
+			return(true);
+		}else if (a->size() > 0 && b->size() == 1) {
+			if(expr == ""){
+				for(int j = 0; j < assign->size(); j++){
+					if(indexOf(*a, assign->at(j)->getNodeValue()) >= 0 && b->at(0) == assign->at(j)->getChildren()->getNodeValue()){
 						temp->push_back(assign->at(j)->getStmtNumber());
 					}
 				}
@@ -1018,7 +1037,11 @@ BOOLEAN DesignExtractor::assignPattern(vector<int> *a, vector<int> *b, string ex
 			return(true);
 		}else if ((a->size() > 0) && (b->size() > 0)) {
 			if(expr == ""){
-				getAllAssignment(temp);
+				for(int j = 0; j < assign->size(); j++){
+					if(indexOf(*temp, assign->at(j)->getChildren()->getNodeValue())>=0){
+						temp->push_back(assign->at(j)->getStmtNumber());
+					}
+				}
 			}else{
 				tree = _pkb->getAST()->buildAssignmentSubtree(-1, expr);
 				if (flag == 0) {
@@ -1242,14 +1265,18 @@ BOOLEAN DesignExtractor::assignPattern(vector<int> *a, vector<int> *b, string ex
 			return(true);
 		}else if ((a->size() > 0) && (b->size() > 0)) {
 			if(expr == ""){
-				getAllAssignment(temp);
+				for(int j = 0; j < assign->size(); j++){
+					if(indexOf(*b,assign->at(j)->getChildren()->getNodeValue()) >= 0){
+						temp->push_back(assign->at(j)->getStmtNumber());
+					}
+				}
 			}else{
-			tree = _pkb->getAST()->buildAssignmentSubtree(-1, expr);
-			if (flag == 0) {
-				temp = _pkb->getAST()->containTree(tree);
-			}else {
-				temp = _pkb->getAST()->containSubtree(tree);
-			}
+				tree = _pkb->getAST()->buildAssignmentSubtree(-1, expr);
+				if (flag == 0) {
+					temp = _pkb->getAST()->containTree(tree);
+				}else {
+					temp = _pkb->getAST()->containSubtree(tree);
+				}
 			}
 			i = 0;
 			while (i < a->size()) {
